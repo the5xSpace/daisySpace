@@ -1,0 +1,48 @@
+[
+  {
+    "id": "document",
+    "name": "playground-sample",
+    "version": "1.0",
+    "clock": {
+      "interval": "2026-01-01T00:00:00Z/2026-01-01T00:30:00Z",
+      "currentTime": "2026-01-01T00:00:00Z",
+      "multiplier": 20,
+      "range": "LOOP_STOP",
+      "step": "SYSTEM_CLOCK_MULTIPLIER"
+    }
+  },
+  {
+    "id": "sat1",
+    "name": "SAT-001",
+    "availability": "2026-01-01T00:00:00Z/2026-01-01T00:30:00Z",
+    "position": {
+      "epoch": "2026-01-01T00:00:00Z",
+      "cartographicDegrees": [
+        0, 116.325, 40.055, 300000,
+        600, 116.45, 40.10, 320000,
+        1200, 116.60, 40.15, 340000,
+        1800, 116.75, 40.20, 360000
+      ]
+    },
+    "point": {
+      "pixelSize": 10,
+      "color": { "rgba": [255, 64, 64, 255] }
+    },
+    "label": {
+      "text": "SAT-001",
+      "font": "14px sans-serif",
+      "fillColor": { "rgba": [255, 255, 255, 255] },
+      "showBackground": true,
+      "backgroundColor": { "rgba": [0, 0, 0, 140] },
+      "backgroundPadding": { "cartesian2": [7, 5] },
+      "pixelOffset": { "cartesian2": [0, -18] }
+    },
+    "path": {
+      "show": [
+        { "interval": "2026-01-01T00:00:00Z/2026-01-01T00:30:00Z", "boolean": true }
+      ],
+      "width": 2
+    }
+  }
+]
+

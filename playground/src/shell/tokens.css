@@ -1,0 +1,358 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   DaisySpace-Sdk Playground — Design Tokens v2.2
+   Theme-aware design system.
+   @theme defines dark values (default).
+   :root.sidebar-theme-light overrides --color-*
+   with light values matching website palette.
+   ═══════════════════════════════════════════════ */
+
+@theme {
+    /* ── Surface / Background ── */
+    --color-bg-root: #07080d;
+    --color-bg-base: #0a0c14;
+    --color-bg-surface: #0e111b;
+    --color-bg-elevated: #131723;
+    --color-bg-panel: rgba(12, 15, 22, 0.88);
+    --color-bg-inset: #0b0d15;
+    --color-bg-hover: rgba(255, 255, 255, 0.03);
+    --color-bg-active: rgba(255, 255, 255, 0.05);
+
+    /* ── Code Editor Tokens (DARK default) ── */
+    --cm-bg: #0b0d15;
+    --cm-gutter-bg: rgba(223, 228, 240, 0.012);
+    --cm-gutter-fg: rgba(210, 220, 240, 0.32);
+    --cm-gutter-border: rgba(120, 145, 200, 0.06);
+    --cm-fg: #dfe4f0;
+    --cm-fg-muted: rgba(210, 220, 240, 0.55);
+    --cm-selection: rgba(77, 168, 255, 0.20);
+    --cm-active-line: rgba(77, 168, 255, 0.03);
+    --cm-active-gutter: rgba(77, 168, 255, 0.05);
+    --cm-cursor: #4da8ff;
+    --cm-caret: rgba(77, 168, 255, 0.55);
+    --cm-fold-bg: #131723;
+    --cm-fold-fg: rgba(210, 220, 240, 0.32);
+    --cm-fold-border: rgba(120, 145, 200, 0.18);
+    --cm-accent-line: rgba(77, 168, 255, 0.18);
+
+    /* Token semantic colors (syntax highlight) */
+    --cm-keyword: #c792ea;        /* const/let/return/import/class/function */
+    --cm-control: #89ddff;        /* if/else/for/while/try/catch/await */
+    --cm-string: #c3e88d;         /* "..." '...' `...` */
+    --cm-number: #f78c6c;         /* 123, 0xff, 1.5e3 */
+    --cm-bool: #f78c6c;           /* true, false, null, undefined */
+    --cm-comment: rgba(210, 220, 240, 0.40);
+    --cm-doc: rgba(210, 220, 240, 0.30);
+    --cm-function: #82aaff;       /* function name */
+    --cm-method: #82aaff;
+    --cm-variable: #eeffff;       /* default identifier */
+    --cm-type: #ffcb6b;           /* class/type name */
+    --cm-operator: #89ddff;       /* + - * / = < > */
+    --cm-punct: rgba(223, 228, 240, 0.55);
+    --cm-property: #f07178;       /* obj.key */
+    --cm-attribute: #ffcb6b;      /* @attr */
+    --cm-meta: rgba(223, 228, 240, 0.55);   /* @decorator / meta keywords */
+    --cm-tag: #f07178;            /* HTML tag */
+    --cm-angle: rgba(223, 228, 240, 0.45);  /* < > */
+    --cm-attr-name: #ffcb6b;      /* HTML attr name */
+    --cm-attr-value: #c3e88d;     /* HTML attr value */
+    --cm-css-prop: #82aaff;
+    --cm-css-value: #c3e88d;
+    --cm-css-unit: #f78c6c;
+    --cm-css-at: #c792ea;
+    --cm-css-comment: rgba(210, 220, 240, 0.40);
+    --cm-invalid: #f4616e;
+    --cm-bracket: rgba(223, 228, 240, 0.55);
+
+    /* ── Accent (Cool Blue-Cyan spectrum, theme-invariant) ── */
+    --color-accent: #4da8ff;
+    --color-accent-soft: #5eb8ff;
+    --color-accent-muted: rgba(77, 168, 255, 0.12);
+    --color-accent-subtle: rgba(77, 168, 255, 0.06);
+    --color-accent-glow: rgba(77, 168, 255, 0.18);
+
+    /* ── Text ── */
+    --color-txt: #dfe4f0;
+    --color-txt-secondary: rgba(210, 220, 240, 0.58);
+    --color-txt-tertiary: rgba(210, 220, 240, 0.32);
+    --color-txt-muted: rgba(210, 220, 240, 0.20);
+
+    /* ── Border ── */
+    --color-border-default: rgba(120, 145, 200, 0.10);
+    --color-border-emph: rgba(120, 145, 200, 0.18);
+    --color-border-subtle: rgba(120, 145, 200, 0.06);
+    --color-border-focus: rgba(77, 168, 255, 0.48);
+
+    /* ── Semantic Colors (theme-invariant) ── */
+    --color-success: #3ecf8e;
+    --color-success-muted: rgba(62, 207, 142, 0.12);
+    --color-success-soft: rgba(62, 207, 142, 0.06);
+
+    --color-warning: #f0b94d;
+    --color-warning-muted: rgba(240, 185, 77, 0.12);
+    --color-warning-soft: rgba(240, 185, 77, 0.06);
+
+    --color-error: #f4616e;
+    --color-error-muted: rgba(244, 97, 110, 0.12);
+    --color-error-soft: rgba(244, 97, 110, 0.06);
+
+    --color-info: #5ea3f0;
+    --color-info-muted: rgba(94, 163, 240, 0.12);
+    --color-info-soft: rgba(94, 163, 240, 0.06);
+
+    --color-purple: #b38ef0;
+    --color-purple-muted: rgba(179, 142, 240, 0.12);
+    --color-purple-soft: rgba(179, 142, 240, 0.06);
+
+    /* ── Scrollbar ── */
+    --color-scrollbar: rgba(120, 145, 200, 0.08);
+    --color-scrollbar-hover: rgba(120, 145, 200, 0.18);
+
+    /* ── Typography ── */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+
+    /* ── Shadows ── */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.40);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+    --shadow-glow-accent: 0 0 18px rgba(77, 168, 255, 0.14);
+    --shadow-glow-error: 0 0 16px rgba(244, 97, 110, 0.18);
+
+    /* ── Easing ── */
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ── Radius ── */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+
+    /* ── Animations ── */
+    --animate-fade-in: fade-in 0.2s var(--ease-smooth);
+    --animate-slide-up: slide-up 0.3s var(--ease-out-expo);
+    --animate-scale-in: scale-in 0.25s var(--ease-out-back);
+    --animate-slide-right: slide-right 0.25s var(--ease-out-expo);
+}
+
+/* ═══════════════════════════════════════════════
+   RGB variants for rgba() in component styles
+   (Same as @theme values — dark default)
+   ═══════════════════════════════════════════════ */
+:root {
+    --ds-bg-root-rgb: 7, 8, 13;
+    --ds-bg-surface-rgb: 14, 17, 27;
+    --ds-bg-inset-rgb: 11, 13, 21;
+    --ds-txt-rgb: 223, 228, 240;
+
+    /* ── Demo overlay panel colors (dark default) ── */
+    --ds-overlay-bg: linear-gradient(180deg, rgba(10,18,29,0.92), rgba(6,10,16,0.82)), rgba(5,9,14,0.88);
+    --ds-overlay-text: #dcecff;
+    --ds-overlay-text-bright: #ffffff;
+    --ds-overlay-text-muted: rgba(220,236,255,0.42);
+    --ds-overlay-text-label: rgba(220,236,255,0.55);
+    --ds-overlay-card-bg: rgba(255,255,255,0.045);
+    --ds-overlay-embed-bg: rgba(0,0,0,0.3);
+    --ds-overlay-border: rgba(106,188,255,0.2);
+    --ds-overlay-accent: #63d7ff;
+    --ds-overlay-btn-bg: rgba(255,255,255,0.04);
+    --ds-overlay-btn-text: rgba(220,236,255,0.76);
+    --ds-overlay-btn-primary-bg: linear-gradient(135deg, rgba(77,168,255,0.22), rgba(62,207,142,0.12));
+    --ds-overlay-btn-primary-text: #eaf8ff;
+    --ds-overlay-btn-primary-border: rgba(99,215,255,0.28);
+    --ds-overlay-accent-warm: #ffd866;
+    --ds-overlay-accent-warm-muted: rgba(240, 185, 77, 0.12);
+    --ds-overlay-accent-warm-hover: rgba(240, 185, 77, 0.22);
+    --ds-overlay-accent-warm-border: rgba(240, 185, 77, 0.25);
+    --ds-overlay-accent-warm-soft: rgba(240, 185, 77, 0.06);
+}
+
+/* ═══════════════════════════════════════════════
+   Light Theme — overrides --color-* directly
+   (Matches website :root palette)
+   ═══════════════════════════════════════════════ */
+:root.sidebar-theme-light {
+    /* ── Surface / Background ── */
+    --color-bg-root: #f7f7f4;
+    --color-bg-base: #f4f3f0;
+    --color-bg-surface: #f0efec;
+    --color-bg-elevated: #eae9e4;
+    --color-bg-panel: rgba(247, 247, 244, 0.90);
+    --color-bg-inset: #e3e2dc;
+    --color-bg-hover: rgba(38, 37, 30, 0.04);
+    --color-bg-active: rgba(38, 37, 30, 0.07);
+
+    /* ── Code Editor Tokens (LIGHT override) ── */
+    --cm-bg: #e3e2dc;
+    --cm-gutter-bg: rgba(38, 37, 30, 0.025);
+    --cm-gutter-fg: rgba(38, 37, 30, 0.40);
+    --cm-gutter-border: rgba(38, 37, 30, 0.08);
+    --cm-fg: #26251e;
+    --cm-fg-muted: rgba(38, 37, 30, 0.62);
+    --cm-selection: rgba(77, 168, 255, 0.18);
+    --cm-active-line: rgba(77, 168, 255, 0.05);
+    --cm-active-gutter: rgba(77, 168, 255, 0.08);
+    --cm-cursor: #4da8ff;
+    --cm-caret: rgba(77, 168, 255, 0.55);
+    --cm-fold-bg: #eae9e4;
+    --cm-fold-fg: rgba(38, 37, 30, 0.45);
+    --cm-fold-border: rgba(38, 37, 30, 0.12);
+    --cm-accent-line: rgba(77, 168, 255, 0.25);
+
+    /* Token semantic colors (light variants) */
+    --cm-keyword: #7c3aed;
+    --cm-control: #0891b2;
+    --cm-string: #16a34a;
+    --cm-number: #ea580c;
+    --cm-bool: #ea580c;
+    --cm-comment: rgba(38, 37, 30, 0.45);
+    --cm-doc: rgba(38, 37, 30, 0.40);
+    --cm-function: #2563eb;
+    --cm-method: #2563eb;
+    --cm-variable: #1a1a14;
+    --cm-type: #b45309;
+    --cm-operator: #0891b2;
+    --cm-punct: rgba(38, 37, 30, 0.60);
+    --cm-property: #dc2626;
+    --cm-attribute: #b45309;
+    --cm-meta: rgba(38, 37, 30, 0.60);
+    --cm-tag: #dc2626;
+    --cm-angle: rgba(38, 37, 30, 0.55);
+    --cm-attr-name: #b45309;
+    --cm-attr-value: #16a34a;
+    --cm-css-prop: #2563eb;
+    --cm-css-value: #16a34a;
+    --cm-css-unit: #ea580c;
+    --cm-css-at: #7c3aed;
+    --cm-css-comment: rgba(38, 37, 30, 0.45);
+    --cm-invalid: #dc2626;
+    --cm-bracket: rgba(38, 37, 30, 0.60);
+
+    /* ── Text ── */
+    --color-txt: #26251e;
+    --color-txt-secondary: #6b6960;
+    --color-txt-tertiary: #9e9c94;
+    --color-txt-muted: rgba(38, 37, 30, 0.20);
+
+    /* ── Border ── */
+    --color-border-default: #d4d2cc;
+    --color-border-emph: rgba(38, 37, 30, 0.12);
+    --color-border-subtle: rgba(38, 37, 30, 0.06);
+    --color-border-focus: rgba(77, 168, 255, 0.48);
+
+    /* ── Scrollbar ── */
+    --color-scrollbar: rgba(38, 37, 30, 0.08);
+    --color-scrollbar-hover: rgba(38, 37, 30, 0.15);
+
+    /* ── Shadows ── */
+    --shadow-sm: 0 1px 2px rgba(38, 37, 30, 0.04);
+    --shadow-md: 0 4px 12px rgba(38, 37, 30, 0.06);
+    --shadow-lg: 0 8px 24px rgba(38, 37, 30, 0.08);
+    --shadow-glow-accent: 0 0 18px rgba(77, 168, 255, 0.12);
+    --shadow-glow-error: 0 0 16px rgba(244, 97, 110, 0.14);
+
+    /* ── RGB variants ── */
+    --ds-bg-root-rgb: 247, 247, 244;
+    --ds-bg-surface-rgb: 240, 239, 236;
+    --ds-bg-inset-rgb: 227, 226, 220;
+    --ds-txt-rgb: 38, 37, 30;
+
+    /* ── Demo overlay panel colors (light) ── */
+    --ds-overlay-bg: linear-gradient(180deg, rgba(247,247,244,0.95), rgba(240,239,236,0.92)), rgba(240,239,236,0.90);
+    --ds-overlay-text: #26251e;
+    --ds-overlay-text-bright: #1a1a14;
+    --ds-overlay-text-muted: rgba(38,37,30,0.64);
+    --ds-overlay-text-label: rgba(38,37,30,0.82);
+    --ds-overlay-card-bg: rgba(38,37,30,0.04);
+    --ds-overlay-embed-bg: rgba(38,37,30,0.06);
+    --ds-overlay-border: rgba(38,37,30,0.14);
+    --ds-overlay-accent: #4da8ff;
+    --ds-overlay-btn-bg: rgba(38,37,30,0.04);
+    --ds-overlay-btn-text: rgba(38,37,30,0.84);
+    --ds-overlay-btn-primary-bg: linear-gradient(135deg, rgba(77,168,255,0.18), rgba(62,207,142,0.10));
+    --ds-overlay-btn-primary-text: #1a1a14;
+    --ds-overlay-btn-primary-border: rgba(77,168,255,0.25);
+    --ds-overlay-accent-warm: #b45309;
+    --ds-overlay-accent-warm-muted: rgba(180, 83, 9, 0.10);
+    --ds-overlay-accent-warm-hover: rgba(180, 83, 9, 0.18);
+    --ds-overlay-accent-warm-border: rgba(180, 83, 9, 0.18);
+    --ds-overlay-accent-warm-soft: rgba(180, 83, 9, 0.05);
+}
+
+/* ═══════════════════════════════════════════════
+   Global Reset & Base
+   ═══════════════════════════════════════════════ */
+
+*, *::before, *::after {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-scrollbar) transparent;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: var(--color-scrollbar);
+    border-radius: 999px;
+    transition: background 0.25s;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-scrollbar-hover); }
+::-webkit-scrollbar-corner { background: transparent; }
+
+/* ── Focus Ring ── */
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+    border-radius: 3px;
+}
+
+/* ── Selection ── */
+::selection {
+    background: rgba(77, 168, 255, 0.25);
+    color: #fff;
+}
+
+/* ── Keyframes ── */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slide-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-right {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scale-in {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(244, 97, 110, 0.35); }
+    50% { box-shadow: 0 0 0 10px rgba(244, 97, 110, 0); }
+}
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+@keyframes breathe {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+@keyframes orbit-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes orbit-spin-reverse {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+@keyframes gradient-drift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}

@@ -1,0 +1,12 @@
+node_modules/
+.tmp/
+.playwright-cli/
+dist/
+playground/dist/
+website/docs/.vitepress/cache/
+website/docs/.vitepress/dist/
+website/docs/public/playground/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example

@@ -1,0 +1,16 @@
+{
+  "name": "@daisy-space/website",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress serve docs"
+  },
+  "devDependencies": {
+    "lucide-vue-next": "^0.577.0",
+    "typescript": "^5.4.0",
+    "vitepress": "^1.6.4"
+  }
+}

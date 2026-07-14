@@ -1,0 +1,17 @@
+{
+  "name": "daisy-space-open",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "dev:playground": "pnpm --dir playground dev",
+    "build:playground": "pnpm --dir playground build",
+    "typecheck:playground": "pnpm --dir playground typecheck",
+    "docs:api": "node ./scripts/generate-api-docs.mjs",
+    "dev:site": "node ./scripts/dev-site.mjs",
+    "dev:website": "node ./scripts/run-website.mjs dev",
+    "build:website": "node ./scripts/run-website.mjs build",
+    "build:site": "node ./scripts/build-site.mjs",
+    "typecheck": "pnpm run typecheck:playground"
+  }
+}
