@@ -10,3 +10,4 @@ website/i18n/*.tmp-*
 *.tsbuildinfo
 .env
 .env.*
+playground/vite-*.log
