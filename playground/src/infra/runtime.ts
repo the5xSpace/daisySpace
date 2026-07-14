@@ -14,10 +14,9 @@ let _sdkInitialized = false;
 export function initSdkBaseUrl(): void {
     if (_sdkInitialized) return;  // ✅ 只初始化一次
 
-    const baseUrl = (import.meta as any).env?.BASE_URL;
-    if (typeof baseUrl === "string" && baseUrl.trim()) {
-        Daisy.BuildModuleUrl.setBaseUrl(baseUrl);
-    }
+    const appBaseUrl = (import.meta as any).env?.BASE_URL || "/";
+    const normalizedAppBase = appBaseUrl.endsWith("/") ? appBaseUrl : `${appBaseUrl}/`;
+    Daisy.BuildModuleUrl.setBaseUrl(`${normalizedAppBase}daisy-sdk/`);
     Daisy.Engine.beforeInit();
     initDaisyErrorInterceptor();    // ✅ 初始化 AOP 全局异常拦截器
     _sdkInitialized = true;

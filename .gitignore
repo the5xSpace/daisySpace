@@ -6,7 +6,7 @@ playground/dist/
 website/docs/.vitepress/cache/
 website/docs/.vitepress/dist/
 website/docs/public/playground/
+website/i18n/*.tmp-*
 *.tsbuildinfo
 .env
 .env.*
-!.env.example

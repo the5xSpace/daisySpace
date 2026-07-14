@@ -1,5 +1,6 @@
 import { spawn } from "node:child_process";
-import { firstPositionalArg, generateApiDocs } from "./generate-api-docs.mjs";
+import { firstPositionalArg } from "./generate-api-docs.mjs";
+import { refreshDocumentation } from "./refresh-docs.mjs";
 
 const mode = process.argv[2];
 const sdkPath = firstPositionalArg(process.argv.slice(3));
@@ -29,7 +30,7 @@ function runWebsite(command) {
 }
 
 try {
-  await generateApiDocs(sdkPath);
+  await refreshDocumentation(sdkPath);
   await runWebsite(mode);
 } catch (error) {
   console.error(error instanceof Error ? error.message : error);

@@ -1,0 +1,356 @@
+[**daisy-space-sdk v0.3.0**](../README.md)
+
+***
+
+[daisy-space-sdk](../README.md) / SimulationTimeDisplayWidget
+
+# Class: SimulationTimeDisplayWidget
+
+仿真时间显示 Widget。
+
+将仿真时间显示接入引擎 Widget 生命周期。
+
+## Example
+
+```ts
+const widget = engine.addWidget(new Daisy.SimulationTimeDisplayWidget({
+ widgetOptions: {
+ preset: "rightTop",
+ title: "SIM TIME",
+ timeLabel: { preset: "date-time-ms" },
+ },
+}));
+```
+
+## Extends
+
+- [`Widget`](Widget.md)
+
+## Constructors
+
+### Constructor
+
+> **new SimulationTimeDisplayWidget**(`options?`): `SimulationTimeDisplayWidget`
+
+创建仿真时间显示 Widget。
+
+#### Parameters
+
+##### options?
+
+[`SimulationTimeDisplayWidgetOptions`](../interfaces/SimulationTimeDisplayWidgetOptions.md) = `{}`
+
+#### Returns
+
+`SimulationTimeDisplayWidget`
+
+#### Overrides
+
+[`Widget`](Widget.md).[`constructor`](Widget.md#constructor)
+
+## Properties
+
+### engine?
+
+> `optional` **engine?**: [`Engine`](Engine.md)
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`engine`](Widget.md#engine)
+
+***
+
+### id?
+
+> `optional` **id?**: `string`
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`id`](Widget.md#id)
+
+***
+
+### isDestroyed?
+
+> `optional` **isDestroyed?**: `boolean` = `false`
+
+当前 Widget 是否已经释放。
+集合管理器用它避开已销毁的单例实例。
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`isDestroyed`](Widget.md#isdestroyed)
+
+***
+
+### key
+
+> **key**: `string` = `"daisy.simulation-time"`
+
+Widget 标识键（用于单例去重）。
+
+#### Overrides
+
+[`Widget`](Widget.md).[`key`](Widget.md#key)
+
+***
+
+### name?
+
+> `optional` **name?**: `string`
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`name`](Widget.md#name)
+
+***
+
+### rebuildOnMorph
+
+> **rebuildOnMorph**: `boolean` = `false`
+
+场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
+默认 true；UI 类 widget 通常应设为 false。
+
+#### Overrides
+
+[`Widget`](Widget.md).[`rebuildOnMorph`](Widget.md#rebuildonmorph)
+
+***
+
+### singleton
+
+> **singleton**: `boolean` = `true`
+
+是否为单例 widget。
+- 若为 true，Engine 内同 key 只允许存在一个实例。
+
+#### Overrides
+
+[`Widget`](Widget.md).[`singleton`](Widget.md#singleton)
+
+***
+
+### zoomIgnored
+
+> **zoomIgnored**: `boolean` = `true`
+
+是否在相机聚合观测时忽略。
+UI 控制器类 widget 应设为 true。
+
+#### Overrides
+
+[`Widget`](Widget.md).[`zoomIgnored`](Widget.md#zoomignored)
+
+## Methods
+
+### createIn2d()
+
+> **createIn2d**(`_`): `void`
+
+在 2D 模式下创建 Widget 资源。
+子类应重写此方法以实现 2D 模式特有的初始化逻辑（如添加 Billboard、Label 等）。
+
+#### Parameters
+
+##### \_
+
+[`Engine`](Engine.md)
+
+引擎实例
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`createIn2d`](Widget.md#createin2d)
+
+***
+
+### destroy()
+
+> **destroy**(): `void`
+
+销毁内部时间控件并解除 Widget 注册。
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[`Widget`](Widget.md).[`destroy`](Widget.md#destroy)
+
+***
+
+### is3d()
+
+> **is3d**(): `boolean`
+
+判断当前场景是否处于 3D 模式。
+
+#### Returns
+
+`boolean`
+
+若为 3D 模式返回 true，否则返回 false
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`is3d`](Widget.md#is3d)
+
+***
+
+### morphSwitchHandle()
+
+> **morphSwitchHandle**(`_`): `void`
+
+场景模式切换处理。
+当场景在 2D/3D 之间切换时由引擎回调触发，子类可重写以实现自适应逻辑。
+
+#### Parameters
+
+##### \_
+
+`SceneMode`
+
+切换后的场景模式
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`morphSwitchHandle`](Widget.md#morphswitchhandle)
+
+***
+
+### offMorphSwitch()
+
+> **offMorphSwitch**(`callback`): `void`
+
+移除场景模式切换监听。
+
+#### Parameters
+
+##### callback
+
+(`mode`) => `void`
+
+需要移除的回调函数
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`offMorphSwitch`](Widget.md#offmorphswitch)
+
+***
+
+### onMorphSwitch()
+
+> **onMorphSwitch**(`callback`): `void`
+
+注册场景模式切换监听。
+
+#### Parameters
+
+##### callback
+
+(`mode`) => `void`
+
+场景切换时的回调函数
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`onMorphSwitch`](Widget.md#onmorphswitch)
+
+***
+
+### refresh()
+
+> **refresh**(): `void`
+
+立即刷新当前仿真时间。
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[`Widget`](Widget.md).[`refresh`](Widget.md#refresh)
+
+***
+
+### register()
+
+> **register**(`engine`): `this`
+
+注册到引擎，并在 UI 可用时挂载内部时间控件。
+
+#### Parameters
+
+##### engine
+
+[`Engine`](Engine.md)
+
+#### Returns
+
+`this`
+
+#### Overrides
+
+[`Widget`](Widget.md).[`register`](Widget.md#register)
+
+***
+
+### setTitle()
+
+> **setTitle**(`title`): `this`
+
+更新标题并保留到后续注册配置。
+
+#### Parameters
+
+##### title
+
+`string`
+
+#### Returns
+
+`this`
+
+***
+
+### update()
+
+> **update**(`_`): `void`
+
+每帧更新回调。
+子类应重写此方法以实现逐帧驱动逻辑（如位置插值、状态同步等）。
+
+#### Parameters
+
+##### \_
+
+`JulianDate`
+
+当前仿真时间（JulianDate）
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Widget`](Widget.md).[`update`](Widget.md#update)

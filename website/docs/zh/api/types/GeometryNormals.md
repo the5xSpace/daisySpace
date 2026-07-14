@@ -1,0 +1,11 @@
+[**daisy-space-sdk v0.3.0**](../README.md)
+
+***
+
+[daisy-space-sdk](../README.md) / GeometryNormals
+
+# Type Alias: GeometryNormals
+
+> **GeometryNormals** = `Daisy.Cartesian3`[] \| `Float32Array` \| `number`[]
+
+顶点法线：支持 Cartesian3[] / Float32Array / number[]。

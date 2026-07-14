@@ -1,0 +1,9 @@
+[**daisy-space-sdk v0.3.0**](../README.md)
+
+***
+
+[daisy-space-sdk](../README.md) / CapsuleParticleImageSource
+
+# Type Alias: CapsuleParticleImageSource
+
+> **CapsuleParticleImageSource** = `string` \| `HTMLCanvasElement` \| `HTMLImageElement`

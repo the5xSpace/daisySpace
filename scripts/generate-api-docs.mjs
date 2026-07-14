@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const scriptFile = fileURLToPath(import.meta.url);
 const root = path.resolve(path.dirname(scriptFile), "..");
-const apiOutDir = path.join(root, "website", "docs", "api");
+const apiOutDir = path.join(root, "website", "docs", "_source", "api");
 const apiIndexFile = path.join(root, "website", "docs", ".vitepress", "api-index.json");
 
 export function firstPositionalArg(args) {

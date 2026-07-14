@@ -40,7 +40,7 @@ function escapeRegex(str: string): string {
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function linkifyText(content: string): string {
+function linkifyText(content: string, localePrefix = ""): string {
     const { terms, index } = loadIndex();
     if (!/[A-Z]/.test(content)) return content;
 
@@ -49,7 +49,7 @@ function linkifyText(content: string): string {
     for (const term of terms) {
         if (!result.includes(term)) continue;
 
-        const url = index[term];
+        const url = `${localePrefix}${index[term]}`;
         // 排除后接泛型类型参数 \<T\> / &lt;T&gt; / <T> 的情况，避免 Vue 模板
         // 编译时把 <T> 误解析为未闭合的组件标签
         const regex = new RegExp(
@@ -65,11 +65,7 @@ function linkifyText(content: string): string {
     return result;
 }
 
-/**
- * 递归遍历 token 树，对所有 text token 执行 linkify。
- * 命中后 token.type 改为 'html_inline'，确保后续渲染器按原始 HTML 输出。
- */
-function walk(tokens: Token[]): void {
+function walk(tokens: Token[], localePrefix: string): void {
     for (let i = 0; i < tokens.length; i++) {
         const token = tokens[i];
 
@@ -80,7 +76,7 @@ function walk(tokens: Token[]): void {
             if (content.length < 3) { /* skip */ }
             else if (_insideLink(tokens, i)) { /* skip */ }
             else {
-                const linked = linkifyText(content);
+                const linked = linkifyText(content, localePrefix);
                 if (linked !== content) {
                     const wasCode = token.type === "code_inline";
                     token.type = "html_inline";
@@ -90,7 +86,7 @@ function walk(tokens: Token[]): void {
         }
 
         if (token.children && token.children.length > 0) {
-            walk(token.children);
+            walk(token.children, localePrefix);
         }
     }
 }
@@ -104,7 +100,9 @@ function _insideLink(tokens: Token[], idx: number): boolean {
 
 export function autoApiLink(md: MarkdownIt): void {
     md.core.ruler.push("api_links", (state) => {
-        walk(state.tokens);
+        const sourcePath = String(state.env?.path ?? "").replaceAll("\\", "/");
+        const localePrefix = sourcePath.startsWith("en/") || sourcePath.includes("/en/") ? "/en" : "";
+        walk(state.tokens, localePrefix);
     });
 }
 

@@ -24,7 +24,7 @@ playground/src/demos/ — 按模块分组的 demo 文件夹
 
 | 命令 | 说明 |
 |---|---|
-| npm run dev:playground | 启动开发服务器（端口 5174） |
+| npm run dev:playground | 启动开发服务器（端口由 Vite 自动选择） |
 | npm run build | 完整构建（含 playground） |
 
 ## 添加新 Demo

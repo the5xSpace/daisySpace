@@ -1,5 +1,5 @@
 /**
- * 扫描 website/docs/api/ 目录，生成统一的 API 符号 → URL 索引 JSON。
+ * 扫描 website/docs/_source/api/ 目录，生成统一的 API 符号 → URL 索引 JSON。
  */
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const API_DIR = path.resolve(__dirname, "../api");
+const API_DIR = path.resolve(__dirname, "../_source/api");
 const OUT_FILE = path.resolve(__dirname, "api-index.json");
 
 const CATEGORY_TO_URL: Record<string, string> = {

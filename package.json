@@ -8,10 +8,23 @@
     "build:playground": "pnpm --dir playground build",
     "typecheck:playground": "pnpm --dir playground typecheck",
     "docs:api": "node ./scripts/generate-api-docs.mjs",
-    "dev:site": "node ./scripts/dev-site.mjs",
-    "dev:website": "node ./scripts/run-website.mjs dev",
+    "docs:i18n:init": "node ./scripts/docs-i18n.mjs init",
+    "docs:prepare": "node ./scripts/docs-i18n.mjs prepare",
+    "docs:diff": "node ./scripts/docs-i18n.mjs diff",
+    "docs:accept": "node ./scripts/docs-i18n.mjs accept",
+    "docs:check": "node ./scripts/docs-i18n.mjs check",
+    "test:docs": "node --test ./scripts/docs-i18n/*.test.mjs",
+    "test:site": "node --test ./scripts/dev-ports.test.mjs",
+    "dev:site": "node ./scripts/dev-site.mjs ../DaisySim",
+    "dev:website": "node ./scripts/run-website.mjs dev ../DaisySim",
     "build:website": "node ./scripts/run-website.mjs build",
     "build:site": "node ./scripts/build-site.mjs",
     "typecheck": "pnpm run typecheck:playground"
+  },
+  "devDependencies": {
+    "mdast-util-from-markdown": "^2.0.3",
+    "mdast-util-gfm": "^3.1.0",
+    "micromark-extension-gfm": "^3.0.0",
+    "yaml": "^2.9.0"
   }
 }

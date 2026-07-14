@@ -59,9 +59,12 @@ function setGradient() {
     engine.geoLayer.setSky({
         type: Daisy.GeoSkyType.SkyBox,
         sources: {
-            positiveX: "/sandAssets/SkyBox/gradient/px.jpg", negativeX: "/sandAssets/SkyBox/gradient/nx.jpg",
-            positiveY: "/sandAssets/SkyBox/gradient/py.jpg", negativeY: "/sandAssets/SkyBox/gradient/ny.jpg",
-            positiveZ: "/sandAssets/SkyBox/gradient/pz.jpg", negativeZ: "/sandAssets/SkyBox/gradient/nz.jpg",
+            positiveX: Daisy.BuildModuleUrl.getUrl("sandAssets/SkyBox/gradient/px.jpg"),
+            negativeX: Daisy.BuildModuleUrl.getUrl("sandAssets/SkyBox/gradient/nx.jpg"),
+            positiveY: Daisy.BuildModuleUrl.getUrl("sandAssets/SkyBox/gradient/py.jpg"),
+            negativeY: Daisy.BuildModuleUrl.getUrl("sandAssets/SkyBox/gradient/ny.jpg"),
+            positiveZ: Daisy.BuildModuleUrl.getUrl("sandAssets/SkyBox/gradient/pz.jpg"),
+            negativeZ: Daisy.BuildModuleUrl.getUrl("sandAssets/SkyBox/gradient/nz.jpg"),
         },
     });
     __log("已切换为渐变天空盒");

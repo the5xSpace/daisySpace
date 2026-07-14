@@ -2,7 +2,8 @@ import { cp, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawn } from "node:child_process";
-import { firstPositionalArg, generateApiDocs } from "./generate-api-docs.mjs";
+import { firstPositionalArg } from "./generate-api-docs.mjs";
+import { refreshDocumentation } from "./refresh-docs.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const playgroundDist = path.join(root, "playground", "dist");
@@ -20,7 +21,7 @@ function run(command, args) {
   });
 }
 
-await generateApiDocs(firstPositionalArg(process.argv.slice(2)));
+await refreshDocumentation(firstPositionalArg(process.argv.slice(2)));
 await run("pnpm", ["--dir", "playground", "build"]);
 await rm(hostedPlayground, {recursive: true, force: true});
 await mkdir(path.dirname(hostedPlayground), {recursive: true});

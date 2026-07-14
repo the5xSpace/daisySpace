@@ -104,6 +104,41 @@ beamCount += addBeam({
     outline: true,
     outlineColor: beamColors.right,
 }) ? 1 : 0;
+
+// 三种棱锥波束：通过横向和纵向开角展示方形、宽矩形和窄矩形截面。
+beamCount += addBeam({
+    name: "SquareBeam",
+    type: Daisy.PW.SensorType.Pyramid,
+    emitDirection: Daisy.EmitDirection.TO_FRONT,
+    apertureDeg: { xDeg: 12, yDeg: 12 },
+    beamLength: 520000,
+    color: Daisy.Color.fromCssColorString("#b58cff").withAlpha(0.26),
+    outline: true,
+    outlineColor: Daisy.Color.fromCssColorString("#d8c6ff"),
+    outlineWidth: 1.5,
+}) ? 1 : 0;
+beamCount += addBeam({
+    name: "RectangleBeam",
+    type: Daisy.PW.SensorType.Pyramid,
+    emitDirection: Daisy.EmitDirection.TO_AFTER,
+    apertureDeg: { xDeg: 28, yDeg: 10 },
+    beamLength: 620000,
+    color: Daisy.Color.fromCssColorString("#ff7b9c").withAlpha(0.24),
+    outline: true,
+    outlineColor: Daisy.Color.fromCssColorString("#ffc0d0"),
+    outlineWidth: 1.5,
+}) ? 1 : 0;
+beamCount += addBeam({
+    name: "NarrowRectangleBeam",
+    type: Daisy.PW.SensorType.Pyramid,
+    emitDirection: Daisy.EmitDirection.TO_RIGHT,
+    apertureDeg: { xDeg: 5, yDeg: 22 },
+    beamLength: 700000,
+    color: Daisy.Color.fromCssColorString("#ff944d").withAlpha(0.24),
+    outline: true,
+    outlineColor: Daisy.Color.fromCssColorString("#ffd0a8"),
+    outlineWidth: 1.5,
+}) ? 1 : 0;
 beamCount += addBeam({
     name: "GroundScan",
     type: Daisy.PW.SensorType.EllipticalCone,
@@ -125,5 +160,5 @@ beamCount += addBeam({
 }) ? 1 : 0;
 
 engine.camera.followTarget(sat, { view: { distance: 2000000, pitchDeg: -30 } });
-__log(`卫星波束已创建: ${beamCount}/7`);
+__log(`卫星波束已创建: ${beamCount}/10`);
 </script>

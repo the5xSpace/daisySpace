@@ -21,6 +21,23 @@ resolved relative to this repository root:
 pnpm docs:api -- ../DaisySim
 ```
 
+The canonical Markdown lives in `website/docs/_source`. Chinese output is
+generated; English Markdown is maintained directly by Codex or another mature
+coding agent. See [`website/DOC_TRANSLATION.md`](website/DOC_TRANSLATION.md) for
+the skill-style incremental diff, translation, acceptance, and validation workflow.
+
+```bash
+pnpm docs:prepare
+pnpm docs:diff
+pnpm docs:accept
+pnpm docs:check
+pnpm test:docs
+```
+
+Website builds regenerate TypeDoc output and refuse stale translations. The
+repository never calls a model or stores model credentials. Until Codex finishes
+strict acceptance, English routes are excluded rather than serving stale content.
+
 Website development and builds generate the API documentation first:
 
 ```bash
@@ -34,8 +51,9 @@ For integrated development with live Playground updates, start both applications
 pnpm dev:site -- ../DaisySim
 ```
 
-The website runs at `http://localhost:5173/` and proxies `/playground/` to the
-Playground dev server on port `5174`.
+The command selects available ports for both servers and prints the actual website and
+`/playground/` URLs. When the preferred ports are occupied, it automatically advances
+to the next available ports and keeps the proxy and HMR configuration synchronized.
 
 Build the Playground and VitePress website together:
 

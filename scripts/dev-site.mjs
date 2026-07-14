@@ -1,5 +1,7 @@
-import { spawn } from "node:child_process";
-import { firstPositionalArg, generateApiDocs } from "./generate-api-docs.mjs";
+import { spawn, spawnSync } from "node:child_process";
+import { findAvailablePort, parsePreferredPort } from "./dev-ports.mjs";
+import { firstPositionalArg } from "./generate-api-docs.mjs";
+import { refreshDocumentation } from "./refresh-docs.mjs";
 
 const sdkPath = firstPositionalArg(process.argv.slice(2));
 const children = [];
@@ -25,7 +27,14 @@ function stopChildren(signal = "SIGTERM") {
   stopping = true;
   for (const child of children) {
     if (child.exitCode === null && child.signalCode === null) {
-      child.kill(signal);
+      if (process.platform === "win32" && child.pid) {
+        spawnSync("taskkill", ["/PID", String(child.pid), "/T", "/F"], {
+          stdio: "ignore",
+          shell: false,
+        });
+      } else {
+        child.kill(signal);
+      }
     }
   }
 }
@@ -34,13 +43,29 @@ process.on("SIGINT", () => stopChildren("SIGINT"));
 process.on("SIGTERM", () => stopChildren("SIGTERM"));
 
 try {
-  await generateApiDocs(sdkPath);
-  console.log("[dev:site] website: http://localhost:5173/");
-  console.log("[dev:site] playground: http://localhost:5173/playground/");
+  await refreshDocumentation(sdkPath);
+  const preferredWebsitePort = parsePreferredPort(process.env.DAISY_SITE_PORT, 5173);
+  const websitePort = await findAvailablePort(preferredWebsitePort);
+  const preferredPlaygroundPort = parsePreferredPort(
+    process.env.DAISY_PLAYGROUND_PORT,
+    websitePort + 1,
+  );
+  const playgroundPort = await findAvailablePort(preferredPlaygroundPort, {
+    excluded: new Set([websitePort]),
+  });
+  const siteEnvironment = {
+    DAISY_SITE_PORT: String(websitePort),
+    DAISY_PLAYGROUND_PORT: String(playgroundPort),
+  };
+
+  console.log(`[dev:site] website: http://127.0.0.1:${websitePort}/`);
+  console.log(`[dev:site] playground: http://127.0.0.1:${websitePort}/playground/`);
+  console.log(`[dev:site] internal playground port: ${playgroundPort}`);
 
   const firstExit = await Promise.race([
-    start("playground", ["--dir", "playground", "dev"]),
+    start("playground", ["--dir", "playground", "dev"], siteEnvironment),
     start("website", ["--dir", "website", "dev"], {
+      ...siteEnvironment,
       DAISY_PLAYGROUND_PROXY: "true",
     }),
   ]);
