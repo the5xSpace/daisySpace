@@ -204,6 +204,8 @@ function setupNodeAnimations() {
 }
 
 var rotating = $state(true);
+var explosionEnabled = $state(false);
+var demoExplosionFactor = 0.8;
 var startMs = performance.now();
 
 function updateAnimations() {
@@ -297,6 +299,24 @@ function toggleRotation() {
     __log("节点旋转: " + (rotating ? "play" : "pause"));
 }
 
+function enableExplosionView() {
+    explosionEnabled = true;
+    for (var i = 0; i < featureList.length; i++) {
+        featureList[i].enableExplosion({ factor: demoExplosionFactor });
+    }
+    engine.triggerUpdateOnce();
+    __log("模型爆炸图: enabled, factor=" + demoExplosionFactor);
+}
+
+function disableExplosionView() {
+    explosionEnabled = false;
+    for (var i = 0; i < featureList.length; i++) {
+        featureList[i].disableExplosion();
+    }
+    engine.triggerUpdateOnce();
+    __log("模型爆炸图: disabled");
+}
+
 function setModelShow(idx, show) {
     featureList[idx].options = Object.assign({}, featureList[idx].options, { show });
 }
@@ -343,6 +363,14 @@ import DemoPanel from "../../shell/DemoPanel.svelte";
         <div class="model-group-label">动画控制</div>
         <div class="btn-stack">
             <button onclick={toggleRotation}>暂停 / 恢复节点旋转</button>
+        </div>
+    </div>
+
+    <div class="model-group">
+        <div class="model-group-label">爆炸图</div>
+        <div class="btn-grid-2">
+            <button class:active={explosionEnabled} onclick={enableExplosionView}>启用爆炸</button>
+            <button class:active={!explosionEnabled} onclick={disableExplosionView}>取消爆炸</button>
         </div>
     </div>
 
@@ -426,4 +454,9 @@ button {
     transition: all 0.12s;
 }
 button:hover { background: var(--color-accent-muted); border-color: var(--color-accent); }
+button.active {
+    background: var(--color-accent-muted);
+    border-color: var(--color-accent);
+    color: var(--panel-text-bright);
+}
 </style>
