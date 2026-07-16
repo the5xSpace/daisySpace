@@ -205,7 +205,12 @@ function setupNodeAnimations() {
 
 var rotating = $state(true);
 var explosionEnabled = $state(false);
-var demoExplosionFactor = 0.8;
+var demoExplosionOptions = {
+    factor: 1,
+    minimumDistanceRatio: 0.32,
+    indexDistanceFactor: 0.08,
+    indexCurvePower: 1.2,
+};
 var startMs = performance.now();
 
 function updateAnimations() {
@@ -301,11 +306,12 @@ function toggleRotation() {
 
 function enableExplosionView() {
     explosionEnabled = true;
+    rotating = false;
     for (var i = 0; i < featureList.length; i++) {
-        featureList[i].enableExplosion({ factor: demoExplosionFactor });
+        featureList[i].enableExplosion(demoExplosionOptions);
     }
     engine.triggerUpdateOnce();
-    __log("模型爆炸图: enabled, factor=" + demoExplosionFactor);
+    __log("模型爆炸图: enabled via ModelFeature.enableExplosion(), factor=" + demoExplosionOptions.factor);
 }
 
 function disableExplosionView() {
@@ -369,8 +375,8 @@ import DemoPanel from "../../shell/DemoPanel.svelte";
     <div class="model-group">
         <div class="model-group-label">爆炸图</div>
         <div class="btn-grid-2">
-            <button class:active={explosionEnabled} onclick={enableExplosionView}>启用爆炸</button>
-            <button class:active={!explosionEnabled} onclick={disableExplosionView}>取消爆炸</button>
+            <button class:active={explosionEnabled} onclick={enableExplosionView}>启用爆炸图</button>
+            <button class:active={!explosionEnabled} onclick={disableExplosionView}>取消爆炸图</button>
         </div>
     </div>
 
