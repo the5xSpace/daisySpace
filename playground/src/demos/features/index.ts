@@ -122,7 +122,7 @@ export const coverageAreaFeatureDemo: DemoDefinition = {
 };
 
 export const freeGeometryDemo: DemoDefinition = {
-    id: "features-free-geometry", title: "自由几何组件", subtitle: "小熊 / 二十面体 / 钻石星 · 线框切换",
+    id: "features-free-geometry", title: "自定义几何组件", subtitle: "小熊 / 二十面体 / 钻石星 · 线框切换",
     problem: "展示 FreeGeometryFeature 用顶点和索引自定义任意 3D 几何体。支持线框模式运行时切换。",
     module: "features", tags: ["freegeometry", "custom", "wireframe", "bear", "icosahedron"], difficulty: "intermediate", preset: "earth-basic",
     code: () => import("./FreeGeometryFeature.svelte?raw").then((m) => m.default),

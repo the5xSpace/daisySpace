@@ -108,7 +108,7 @@ interface IFeature {
 | `EllipsoidFeature` | 椭球体 | `radii`, `material`, `outline` |
 | `SphereFeature` | 球体 | `radius`, `material`, `outline`, `texture` |
 | `EllipticalConeFeature` | 椭圆锥体（传感器锥体） | `length`, `topRadius`, `bottomRadiusX/Y`, `material` |
-| `FreeGeometryFeature` | 自由几何体 | `positions`, `indices`, `normals`, `st`, `material` |
+| `FreeGeometryFeature` | 自定义几何体 | `positions`, `indices`, `normals`, `st`, `material` |
 
 ### 模型与场景（Model / Scene）
 

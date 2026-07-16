@@ -1,6 +1,6 @@
 <script>
 // =============================================================================
-// FreeGeometry Demo — 自由几何组件
+// FreeGeometry Demo — 自定义组件
 //
 // 演示 FreeGeometryFeature 创建自定义 3D 几何：
 // 1. 低多边形小熊（组合 UV 球体拼成）
@@ -217,7 +217,7 @@ registerCleanup(() => {
 import DemoPanel from "../../shell/DemoPanel.svelte";
 </script>
 
-<DemoPanel title="自由几何">
+<DemoPanel title="自定义几何">
     <h2 class="fg-title">FreeGeometryFeature</h2>
     <p class="fg-desc">用顶点和索引自定义任意 3D 几何体</p>
 

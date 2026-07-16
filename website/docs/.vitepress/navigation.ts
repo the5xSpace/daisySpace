@@ -47,7 +47,7 @@ const guideSections = [
       [label("线性图形", "Line Features"), "/guide/line-features"],
       [label("面状图形", "Area Features"), "/guide/area-features"],
       [label("立体几何", "Solid Geometry"), "/guide/solid-geometry"],
-      [label("自由几何", "Free Geometry"), "/guide/free-geometry"],
+      [label("自定义几何", "Free Geometry"), "/guide/free-geometry"],
       [label("椭圆锥体", "Elliptical Cones"), "/guide/elliptical-cone"],
       [label("着色器多边形", "Shader Polygons"), "/guide/shader-polygon"],
       [label("地面覆盖", "Ground Coverage"), "/guide/coverage-features"],

@@ -6,7 +6,7 @@
 
 # Class: FreeGeometryFeature
 
-自由几何 Feature —— 让用户创建任意 3D 几何图形而不暴露 底层。
+自定义几何 Feature —— 让用户创建任意 3D 几何图形而不暴露 底层。
 
 用户传入 DaisyGeometryDescriptor（局部坐标的顶点/法线/索引），
 Daisy 自动构建底层 Daisy.Geometry + SafePrimitive + MaterialAppearance，
