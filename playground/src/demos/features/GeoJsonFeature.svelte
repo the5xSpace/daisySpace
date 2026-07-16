@@ -76,7 +76,7 @@ async function loadDefault() {
     loading = true;
     error = "";
     try {
-        await feature.loadFromUrl("/data/ne_110m_admin_0_countries.geojson", (polygons, options) => {
+        await feature.loadFromUrl("data/ne_110m_admin_0_countries.geojson", (polygons, options) => {
             return {
                 polygons,
                 options: {
