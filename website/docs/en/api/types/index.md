@@ -1,8 +1,8 @@
 # Type Aliases
 
-共 264 个 types。
+264 types in total.
 
-| 名称 | 链接 |
+| Name | Link |
 |------|------|
 | `ActiveModelAnimationInfo` | [ActiveModelAnimationInfo](ActiveModelAnimationInfo.md) |
 | `ArcRotateCameraHost` | [ArcRotateCameraHost](ArcRotateCameraHost.md) |

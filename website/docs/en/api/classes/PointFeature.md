@@ -6,9 +6,9 @@
 
 # Class: PointFeature
 
-点要素（PointFeature）。
+Point feature (`PointFeature`).
 
-基于 `Engine.collections.pointPrimitiveCollection` 创建 `PointPrimitive`。
+Creates a `PointPrimitive` from `Engine.collections.pointPrimitiveCollection`.
 
 ## Extends
 
@@ -40,9 +40,9 @@
 
 > **handle**: (`mode`) => `void`
 
-场景模式切换时的默认处理。
+Default handling when the scene mode changes.
 
-2D/非 3D 模式下，默认销毁机体坐标轴以避免异常显示。
+In 2D or other non-3D modes, the local body axes are destroyed by default to avoid rendering artifacts.
 
 #### Parameters
 
@@ -126,7 +126,7 @@
 
 > **get** **id**(): `string`
 
-Feature 的唯一标识。
+Unique identifier for the feature.
 
 ##### Default
 
@@ -140,10 +140,10 @@ Feature 的唯一标识。
 
 > **set** **id**(`value`): `void`
 
-Feature 的唯一标识。
+Unique identifier for the feature.
 
-通常由基类在构造时自动生成：`${type}__${GenGuid()}`。
-子类也可以在注册前手动覆盖。
+It is usually generated automatically by the base class during construction as `${type}__${GenGuid()}`.
+Subclasses can also override it manually before registration.
 
 ##### Default
 
@@ -171,9 +171,9 @@ Feature 的唯一标识。
 
 > **get** **includeInBoundingSphere**(): `boolean`
 
-当前 Feature 是否参与 Entity 的包围球聚合。
+Whether the current feature participates in the entity's bounding sphere aggregation.
 
-默认值为 `true`。辅助线、粒子等不希望影响相机取景的 Feature 可以关闭。
+The default is `true`. You can disable this for helper lines, particles, and other features that should not affect camera framing.
 
 ##### Returns
 
@@ -217,7 +217,7 @@ Feature 的唯一标识。
 
 > **set** **lodMode**(`mode`): `void`
 
-设置当前 Feature 的 LOD 模式。
+Sets the current feature's LOD mode.
 
 ##### Parameters
 

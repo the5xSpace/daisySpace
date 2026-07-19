@@ -6,13 +6,13 @@
 
 # Class: ModelFeature
 
-glTF/GLB 模型组件（不对外暴露 ）。
+glTF/GLB model component, not exposed publicly.
 
-提供：
-- 节点列表读取与节点变换（显示/隐藏、偏移、旋转、缩放、矩阵覆盖）
-- 模型内置动画播放/停止（基于 activeAnimations）
+Provides:
+- Node list access and node transforms, including show/hide, translation, rotation, scaling, and matrix overrides
+- Built-in model animation play and stop support based on `activeAnimations`
 
-节点变换以“状态副作用”的形式存在，并在每帧 update 自动应用到模型各节点。
+Node transforms are stored as stateful side effects and are automatically applied to model nodes on every update.
 
 ## Examples
 
@@ -88,9 +88,9 @@ model.onload(() => {
 
 > **handle**: (`mode`) => `void`
 
-场景模式切换时的默认处理。
+Default handling when the scene mode changes.
 
-2D/非 3D 模式下，默认销毁机体坐标轴以避免异常显示。
+In 2D or other non-3D modes, the local body axes are destroyed by default to avoid rendering artifacts.
 
 #### Parameters
 

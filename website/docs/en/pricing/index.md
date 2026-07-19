@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 定价 — DaisySpace-Sdk
+title: Pricing - DaisySpace-Sdk
 ---
 
 <PricingPage />

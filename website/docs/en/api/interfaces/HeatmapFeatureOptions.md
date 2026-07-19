@@ -6,6 +6,8 @@
 
 # Interface: HeatmapFeatureOptions
 
+Options for the heatmap feature.
+
 ## Properties
 
 ### colors?
