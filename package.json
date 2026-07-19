@@ -15,8 +15,8 @@
     "docs:check": "node ./scripts/docs-i18n.mjs check",
     "test:docs": "node --test ./scripts/docs-i18n/*.test.mjs",
     "test:site": "node --test ./scripts/dev-ports.test.mjs",
-    "dev:site": "node ./scripts/dev-site.mjs ../DaisySim",
-    "dev:website": "node ./scripts/run-website.mjs dev ../DaisySim",
+    "dev:site": "node ./scripts/dev-site.mjs ../DaisySpaceSdk",
+    "dev:website": "node ./scripts/run-website.mjs dev ../DaisySpaceSdk",
     "build:website": "node ./scripts/run-website.mjs build",
     "build:site": "node ./scripts/build-site.mjs",
     "typecheck": "pnpm run typecheck:playground"

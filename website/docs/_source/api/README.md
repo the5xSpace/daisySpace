@@ -384,6 +384,8 @@
 - [ModelAnimationPlayOptions](types/ModelAnimationPlayOptions.md)
 - [ModelAnimationTimeCallback](types/ModelAnimationTimeCallback.md)
 - [ModelDistanceFallbackPointOptions](types/ModelDistanceFallbackPointOptions.md)
+- [ModelExplosionOptions](types/ModelExplosionOptions.md)
+- [ModelExplosionState](types/ModelExplosionState.md)
 - [ModelNodeInfo](types/ModelNodeInfo.md)
 - [ModelNodeTransformState](types/ModelNodeTransformState.md)
 - [ObserverDefinition](types/ObserverDefinition.md)

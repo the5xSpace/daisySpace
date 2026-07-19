@@ -439,7 +439,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Inherited from
 
-[`FreeGeometryFeature`](FreeGeometryFeature.md).[`useLod`](FreeGeometryFeature.md#uselod)
+[`Feature`](Feature.md).[`useLod`](Feature.md#uselod)
 
 ***
 

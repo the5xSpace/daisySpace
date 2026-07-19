@@ -168,7 +168,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 #### Inherited from
 
-[`Mars`](PW.Mars.md).[`position`](PW.Mars.md#position)
+[`BaseObject`](PW.BaseObject.md).[`position`](PW.BaseObject.md#position)
 
 ## Methods
 

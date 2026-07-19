@@ -189,7 +189,7 @@ vehicle.addComponent(sensor);
 
 #### Inherited from
 
-[`RouteComponent`](PW.RouteComponent.md).[`name`](PW.RouteComponent.md#name)
+[`BaseComponent`](PW.BaseComponent.md).[`name`](PW.BaseComponent.md#name)
 
 ***
 

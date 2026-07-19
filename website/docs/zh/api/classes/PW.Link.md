@@ -147,7 +147,7 @@ sat.addLink({
 
 #### Inherited from
 
-[`BaseComponent`](PW.BaseComponent.md).[`name`](PW.BaseComponent.md#name)
+[`RouteComponent`](PW.RouteComponent.md).[`name`](PW.RouteComponent.md#name)
 
 ***
 

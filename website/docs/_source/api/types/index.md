@@ -1,6 +1,6 @@
 # Type Aliases
 
-共 264 个 types。
+共 266 个 types。
 
 | 名称 | 链接 |
 |------|------|
@@ -125,6 +125,8 @@
 | `ModelAnimationPlayOptions` | [ModelAnimationPlayOptions](ModelAnimationPlayOptions.md) |
 | `ModelAnimationTimeCallback` | [ModelAnimationTimeCallback](ModelAnimationTimeCallback.md) |
 | `ModelDistanceFallbackPointOptions` | [ModelDistanceFallbackPointOptions](ModelDistanceFallbackPointOptions.md) |
+| `ModelExplosionOptions` | [ModelExplosionOptions](ModelExplosionOptions.md) |
+| `ModelExplosionState` | [ModelExplosionState](ModelExplosionState.md) |
 | `ModelNodeInfo` | [ModelNodeInfo](ModelNodeInfo.md) |
 | `ModelNodeTransformState` | [ModelNodeTransformState](ModelNodeTransformState.md) |
 | `ObserveRes` | [ObserveRes](ObserveRes.md) |

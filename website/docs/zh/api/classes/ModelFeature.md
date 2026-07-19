@@ -648,6 +648,18 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### disableExplosion()
+
+> **disableExplosion**(): `this`
+
+关闭模型爆炸图，并把没有用户节点变换的节点交还给 glTF 原始 transform/动画。
+
+#### Returns
+
+`this`
+
+***
+
 ### disableTracking()
 
 > **disableTracking**(): `void`
@@ -661,6 +673,34 @@ Feature 的显示名称（业务自定义）。
 #### Inherited from
 
 [`Feature`](Feature.md).[`disableTracking`](Feature.md#disabletracking)
+
+***
+
+### enableExplosion()
+
+> **enableExplosion**(`options?`): `this`
+
+启用模型爆炸图。
+
+爆炸方向来自节点中心相对模型本地坐标中心的方向；`factor` 表示外移比例：
+- `0.5`：每个节点再向外移动自身中心距离的 50%
+- `1`：每个节点再向外移动自身中心距离的 100%
+
+#### Parameters
+
+##### options?
+
+`number` \| [`ModelExplosionOptions`](../types/ModelExplosionOptions.md)
+
+#### Returns
+
+`this`
+
+#### Example
+
+```ts
+model.enableExplosion({ factor: 0.8 });
+```
 
 ***
 
@@ -759,6 +799,18 @@ Feature 的显示名称（业务自定义）。
 #### Inherited from
 
 [`Feature`](Feature.md).[`getEngine`](Feature.md#getengine)
+
+***
+
+### getExplosionState()
+
+> **getExplosionState**(): [`ModelExplosionState`](../types/ModelExplosionState.md)
+
+获取当前爆炸图状态。
+
+#### Returns
+
+[`ModelExplosionState`](../types/ModelExplosionState.md)
 
 ***
 
@@ -1164,6 +1216,46 @@ undefined 配置项
 #### Inherited from
 
 [`Feature`](Feature.md).[`setBodyAxis`](Feature.md#setbodyaxis)
+
+***
+
+### setExploded()
+
+> **setExploded**(`enabled`, `options?`): `this`
+
+设置爆炸图开关。
+
+#### Parameters
+
+##### enabled
+
+`boolean`
+
+##### options?
+
+`number` \| [`ModelExplosionOptions`](../types/ModelExplosionOptions.md)
+
+#### Returns
+
+`this`
+
+***
+
+### setExplosionFactor()
+
+> **setExplosionFactor**(`factor`): `this`
+
+设置爆炸强度。`factor <= 0` 会关闭爆炸图。
+
+#### Parameters
+
+##### factor
+
+`number`
+
+#### Returns
+
+`this`
 
 ***
 

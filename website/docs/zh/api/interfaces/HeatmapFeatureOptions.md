@@ -16,7 +16,7 @@
 
 ### colorScheme?
 
-> `optional` **colorScheme?**: `"custom"` \| `"thermal"` \| `"viridis"` \| `"blue-red"`
+> `optional` **colorScheme?**: `"thermal"` \| `"viridis"` \| `"blue-red"` \| `"custom"`
 
 ***
 

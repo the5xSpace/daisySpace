@@ -194,11 +194,11 @@
 
 #### Get Signature
 
-> **get** **particleFeature**(): [`CapsuleParticleFeature`](CapsuleParticleFeature.md) \| [`ParticleFeature`](ParticleFeature.md) \| `undefined`
+> **get** **particleFeature**(): [`ParticleFeature`](ParticleFeature.md) \| [`CapsuleParticleFeature`](CapsuleParticleFeature.md) \| `undefined`
 
 ##### Returns
 
-[`CapsuleParticleFeature`](CapsuleParticleFeature.md) \| [`ParticleFeature`](ParticleFeature.md) \| `undefined`
+[`ParticleFeature`](ParticleFeature.md) \| [`CapsuleParticleFeature`](CapsuleParticleFeature.md) \| `undefined`
 
 ***
 

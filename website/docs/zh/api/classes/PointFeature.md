@@ -378,7 +378,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Inherited from
 
-[`PopoverFeature`](UI.PopoverFeature.md).[`throttleable`](UI.PopoverFeature.md#throttleable)
+[`Feature`](Feature.md).[`throttleable`](Feature.md#throttleable)
 
 ***
 

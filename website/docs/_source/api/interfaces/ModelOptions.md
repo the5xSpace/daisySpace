@@ -248,6 +248,18 @@ true
 
 ***
 
+### explosion?
+
+> `optional` **explosion?**: `number` \| `boolean` \| [`ModelExplosionOptions`](../types/ModelExplosionOptions.md)
+
+初始爆炸图配置。
+
+- `true`：启用默认爆炸图（factor=1）
+- `number`：作为 factor 启用
+- `ModelExplosionOptions`：完整配置
+
+***
+
 ### featureIdLabel?
 
 > `optional` **featureIdLabel?**: `string`
