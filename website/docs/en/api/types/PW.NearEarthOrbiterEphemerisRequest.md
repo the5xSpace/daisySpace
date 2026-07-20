@@ -8,7 +8,7 @@
 
 > **NearEarthOrbiterEphemerisRequest** = `{ endTime: Daisy.JulianDate; startTime: Daisy.JulianDate }`
 
-星历计算请求参数（基于通用轨道源 + SGP4）。
+Ephemeris computation request parameters (based on generic orbit source + SGP4).
 
 ## Example
 
@@ -26,7 +26,7 @@ const ephemeris = sat.calculateEphemeris({
 
 > **endTime**: `Daisy.JulianDate`
 
-采样结束时刻（仿真时间）
+Sampling end time (simulation time)
 
 ***
 
@@ -34,7 +34,7 @@ const ephemeris = sat.calculateEphemeris({
 
 > `optional` **intervalSeconds?**: `number`
 
-采样间隔（秒）；默认 60
+Sampling interval (seconds); default 60
 
 ***
 
@@ -42,7 +42,7 @@ const ephemeris = sat.calculateEphemeris({
 
 > `optional` **observerLocation?**: \[`number`, `number`, `number`\]
 
-观测者位置（经/纬/高），单位：deg/deg/m；默认 [0,0,0]
+Observer position (lng/lat/height), units: deg/deg/m; default [0,0,0]
 
 ***
 
@@ -50,4 +50,4 @@ const ephemeris = sat.calculateEphemeris({
 
 > **startTime**: `Daisy.JulianDate`
 
-采样开始时刻（仿真时间）
+Sampling start time (simulation time)

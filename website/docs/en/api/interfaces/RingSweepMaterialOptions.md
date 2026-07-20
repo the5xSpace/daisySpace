@@ -12,7 +12,7 @@
 
 > `optional` **color?**: `Color`
 
-背景颜色。默认蓝色。
+Background color. Defaults to blue.
 
 ***
 
@@ -20,7 +20,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度，范围为 0 至 1。默认 `1`。
+Overall alpha, range 0 to 1. Default `1`.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `optional` **speed?**: `number`
 
-扫描速度，最小值为 `0.1`。默认 `1`。
+Scan speed, minimum `0.1`. Default `1`.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **sweepColor?**: `Color`
 
-扫描扇面颜色。默认橙色。
+Scan sector color. Defaults to orange.
 
 ***
 
@@ -44,4 +44,4 @@
 
 > `optional` **width?**: `number`
 
-扫描扇面宽度，范围为 0.01 至 0.5。默认 `0.12`。
+Scan sector width, range 0.01 to 0.5. Default `0.12`.

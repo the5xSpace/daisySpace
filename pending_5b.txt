@@ -1,0 +1,15 @@
+api/classes/Resource.md|||资源注册中心。|||用于统一管理第三方地理服务所需的 token / key，|||避免在任何 Options 中直接暴露认证信息。|||获取资源凭据。|||设置 ArcGIS Key。|||设置 Ion 资产 Token。
+api/classes/Shader.md|||Daisy 自定义材质 Shader 基类。|||提供默认注册逻辑，子类通常只需声明 `type`、`glsl` 和 `uniforms`。|||Daisy GLSL 材质源码。|||全局唯一的材质类型标识。|||默认 uniform 参数。
+api/interfaces/EntityTimeState.md|||实体在某一时刻的时间状态快照。|||实体在该时刻的位置（世界坐标系）。|||实体在该时刻的位置（地固坐标系 / ECEF）。|||实体在该时刻的位置（惯性坐标系）。|||仿真时间。
+api/interfaces/IFeature.md|||Daisy Feature 抽象能力接口。|||Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模型、点、线、面、UI 覆盖层等）。|||当前 Feature 是否需要 Entity 在每帧预先计算模型矩阵。|||点、标签、广告牌这类只依赖实体位置的 Feature 可以返回 false，|||从而让海量目标场景跳过不必要的姿态/矩阵计算。|||强制更新
+api/interfaces/IShader.md|||Daisy 自定义材质 Shader 接口。|||所有可由 Shader 管理器统一注册的自定义材质需实现该接口。|||Daisy GLSL 材质源码；直接字符串会自动识别并转换 Daisy 标识符。|||全局唯一的材质类型标识。|||Shader 默认 uniform 参数。动态参数会在绘制时解析。
+api/interfaces/MarkerWidgetOptions.md|||MarkerWidget 配置选项。|||标签字体。|||标记点像素大小。|||最大显示距离（单位：米）。超过此距离自动隐藏。|||标记目标列表。
+api/interfaces/RingSweepMaterialOptions.md|||背景颜色。默认蓝色。|||整体透明度，范围为 0 至 1。默认 `1`。|||扫描速度，最小值为 `0.1`。默认 `1`。|||扫描扇面颜色。默认橙色。|||扫描扇面宽度，范围为 0.01 至 0.5。默认 `0.12`。
+api/interfaces/ShaderParamBinding.md|||动态 Shader 参数，在材质绘制时解析为具体 uniform 值。|||当前值无法解析时使用的回退值。|||该参数对应的 GLSL uniform 类型。|||动态参数对象的稳定识别标记。|||读取当前 uniform 值。
+api/interfaces/ViewDistanceStrategyOptions.md|||视距策略构造参数。|||当前使用的场景模板名。|||- 可使用 `ViewScene.*` 的内置值|||- 或注册自定义模板名|||自定义模板集合。|||会与内置模板合并；同名 key 会覆盖内置值。
+api/types/PassPrediction.md|||过境预报（三点报：进站/最高点/出站）。|||解释：|||- `aos`: Acquisition of Signal，卫星从低于 `minElevationDeg` 上升到满足阈值的时刻（进站）|||- `tca`: Time of Closest Approach，这里用于“最大仰角”发生时刻（最高点）|||- `los`: Loss of Signal，卫星从满足阈值下降到低于阈值的时刻（出站）|||注意：|||- 当前实现使用等步长采样 + 二分/三分细化，适合快速分析与可视窗口推断
+api/types/PW.NearEarthOrbiterEphemerisRequest.md|||星历计算请求参数（基于通用轨道源 + SGP4）。|||采样结束时刻（仿真时间）|||采样间隔（秒）；默认 60|||观测者位置（经/纬/高），单位：deg/deg/m；默认 [0,0,0]|||采样开始时刻（仿真时间）
+api/types/PW.NearEarthOrbiterTransitRequest.md|||搜索结束时刻（仿真时间）|||返回最大过境数量（可选）|||最小仰角（度），默认 4|||观测者位置（纬度/经度/海拔），单位：deg/deg/m，内部会自动兼容 km 写法。|||搜索开始时刻（仿真时间）
+api/types/PW.SensorBeamAttitudeDeg.md|||传感器波束姿态（角度制，单位：deg）。|||- `azimuthDeg`：方位角（绕 +Z 旋转）|||- `elevationDeg`：俯仰角（抬升/下压）|||- `rollDeg`：横滚角（绕光轴旋转）|||绕局部 +Z 轴旋转的方位角，单位为度。|||波束抬升或下压的俯仰角，单位为度。|||绕波束轴旋转的横滚角，单位为度。
+api/types/PW.SensorTrackInterval.md|||单个传感器跟踪目标时间区间。|||区间结束时刻。|||区间开始时刻。|||`end` 的兼容别名。|||区间内跟踪的目标；为空时表示该区间不跟踪。
+api/variables/TimeFormatters.md|||常用时间格式配置构造器。|||北京时间（UTC+8）。短别名：bjt。|||协调世界时。短别名：utc。|||相对 T0 的累计秒。短别名：t0。|||创建使用自定义回调的格式配置。

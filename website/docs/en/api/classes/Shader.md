@@ -6,9 +6,9 @@
 
 # Class: Shader
 
-Daisy 自定义材质 Shader 基类。
+Daisy custom material Shader base class.
 
-提供默认注册逻辑，子类通常只需声明 `type`、`glsl` 和 `uniforms`。
+Provides default registration logic; subclasses typically only need to declare `type`, `glsl`, and `uniforms`.
 
 ## Example
 
@@ -47,7 +47,7 @@ class WarningShader extends Daisy.Shader {
 
 > **glsl**: [`MaterialShaderSource`](../types/MaterialShaderSource.md) = `""`
 
-Daisy GLSL 材质源码。
+Daisy GLSL material source code.
 
 #### Implementation of
 
@@ -59,7 +59,7 @@ Daisy GLSL 材质源码。
 
 > **type**: `string` = `""`
 
-全局唯一的材质类型标识。
+Globally unique material type identifier.
 
 #### Implementation of
 
@@ -71,7 +71,7 @@ Daisy GLSL 材质源码。
 
 > **uniforms**: `any` = `{}`
 
-默认 uniform 参数。
+Default uniform parameters.
 
 #### Implementation of
 

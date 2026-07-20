@@ -6,10 +6,10 @@
 
 # Class: Resource
 
-资源注册中心。
+Resource registry.
 
-用于统一管理第三方地理服务所需的 token / key，
-避免在任何 Options 中直接暴露认证信息。
+Used to centrally manage tokens/keys required by third-party geographic services,
+avoiding direct exposure of authentication information in any Options.
 
 ## Example
 
@@ -34,7 +34,7 @@ Daisy.Resource.setArcGisKey("your-key");
 
 > `static` **get**(`key`): `string` \| `undefined`
 
-获取资源凭据。
+Get resource credentials.
 
 #### Parameters
 
@@ -58,7 +58,7 @@ const token = Daisy.Resource.get("cesium-ion");
 
 > `static` **setArcGisKey**(`key`): `void`
 
-设置 ArcGIS Key。
+Set ArcGIS Key.
 
 #### Parameters
 
@@ -82,7 +82,7 @@ Daisy.Resource.setArcGisKey("your-key");
 
 > `static` **setCesiumIonToken**(`token`): `void`
 
-设置 Ion 资产 Token。
+Set Ion asset Token.
 
 #### Parameters
 

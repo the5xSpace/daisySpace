@@ -6,7 +6,7 @@
 
 # Interface: MarkerWidgetOptions
 
-MarkerWidget 配置选项。
+MarkerWidget configuration options.
 
 ## Properties
 
@@ -14,7 +14,7 @@ MarkerWidget 配置选项。
 
 > `optional` **font?**: `string`
 
-标签字体。
+Label font.
 
 ***
 
@@ -22,7 +22,7 @@ MarkerWidget 配置选项。
 
 > `optional` **pointSize?**: `number`
 
-标记点像素大小。
+Marker point pixel size.
 
 ***
 
@@ -30,7 +30,7 @@ MarkerWidget 配置选项。
 
 > `optional` **showDistance?**: `number`
 
-最大显示距离（单位：米）。超过此距离自动隐藏。
+Maximum display distance (in meters). Auto-hides beyond this distance.
 
 ***
 
@@ -38,4 +38,4 @@ MarkerWidget 配置选项。
 
 > `optional` **targets?**: [`MarkerTarget`](MarkerTarget.md)[]
 
-标记目标列表。
+Marker target list.

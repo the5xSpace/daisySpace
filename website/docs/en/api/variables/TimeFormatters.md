@@ -8,7 +8,7 @@
 
 > `const` **TimeFormatters**: `object`
 
-常用时间格式配置构造器。
+Common time format configuration constructor.
 
 ## Type Declaration
 
@@ -16,7 +16,7 @@
 
 > **beijingTime**: (`options`) => [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md)
 
-北京时间（UTC+8）。短别名：bjt。
+Beijing time (UTC+8). Short alias: bjt.
 
 #### Parameters
 
@@ -46,7 +46,7 @@
 
 > **coordinatedUniversalTime**: (`options`) => [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md)
 
-协调世界时。短别名：utc。
+Coordinated Universal Time. Short alias: utc.
 
 #### Parameters
 
@@ -62,7 +62,7 @@
 
 > **elapsedSeconds**: (`t0`, `options`) => [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md)
 
-相对 T0 的累计秒。短别名：t0。
+Cumulative seconds relative to T0. Short alias: t0.
 
 #### Parameters
 
@@ -114,7 +114,7 @@
 
 > **custom**(`formatter`, `options?`): [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md)
 
-创建使用自定义回调的格式配置。
+Creates a format configuration using a custom callback.
 
 #### Parameters
 

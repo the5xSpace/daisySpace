@@ -8,7 +8,7 @@
 
 > **SensorTrackInterval** = `{ start: Daisy.JulianDate }`
 
-单个传感器跟踪目标时间区间。
+Single sensor tracking target time interval.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **end?**: `Daisy.JulianDate`
 
-区间结束时刻。
+Interval end time.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > **start**: `Daisy.JulianDate`
 
-区间开始时刻。
+Interval start time.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **stop?**: `Daisy.JulianDate`
 
-`end` 的兼容别名。
+Compatibility alias for `end`.
 
 ***
 
@@ -40,4 +40,4 @@
 
 > `optional` **target?**: `SensorTrackingTargetValue`
 
-区间内跟踪的目标；为空时表示该区间不跟踪。
+Target tracked within the interval; empty means no tracking in this interval.

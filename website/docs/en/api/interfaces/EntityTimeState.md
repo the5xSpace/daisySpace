@@ -6,7 +6,7 @@
 
 # Interface: EntityTimeState
 
-实体在某一时刻的时间状态快照。
+Time state snapshot of an entity at a given moment.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **position?**: `Cartesian3`
 
-实体在该时刻的位置（世界坐标系）。
+Entity position at that moment (world coordinates).
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **positionECEF?**: `Cartesian3`
 
-实体在该时刻的位置（地固坐标系 / ECEF）。
+Entity position at that moment (Earth-fixed / ECEF).
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **positionInertial?**: `Cartesian3`
 
-实体在该时刻的位置（惯性坐标系）。
+Entity position at that moment (inertial coordinates).
 
 ***
 
@@ -38,4 +38,4 @@
 
 > **time**: `JulianDate`
 
-仿真时间。
+Simulation time.

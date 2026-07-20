@@ -8,11 +8,11 @@
 
 > **SensorBeamAttitudeDeg** = `{ azimuthDeg: number; elevationDeg: number; rollDeg: number }`
 
-传感器波束姿态（角度制，单位：deg）。
+Sensor beam attitude (angular, units: deg).
 
-- `azimuthDeg`：方位角（绕 +Z 旋转）
-- `elevationDeg`：俯仰角（抬升/下压）
-- `rollDeg`：横滚角（绕光轴旋转）
+- `azimuthDeg`: azimuth angle (rotation around +Z)
+- `elevationDeg`: elevation angle (up/down)
+- `rollDeg`: roll angle (rotation around the optical axis)
 
 ## Properties
 
@@ -20,7 +20,7 @@
 
 > **azimuthDeg**: `number`
 
-绕局部 +Z 轴旋转的方位角，单位为度。
+Azimuth angle rotating around the local +Z axis, in degrees.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > **elevationDeg**: `number`
 
-波束抬升或下压的俯仰角，单位为度。
+Elevation angle for beam up/down tilt, in degrees.
 
 ***
 
@@ -36,4 +36,4 @@
 
 > **rollDeg**: `number`
 
-绕波束轴旋转的横滚角，单位为度。
+Roll angle rotating around the beam axis, in degrees.

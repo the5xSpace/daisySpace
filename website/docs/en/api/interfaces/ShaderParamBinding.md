@@ -6,7 +6,7 @@
 
 # Interface: ShaderParamBinding\<T\>
 
-动态 Shader 参数，在材质绘制时解析为具体 uniform 值。
+Dynamic Shader parameter, resolved to a specific uniform value during material rendering.
 
 ## Type Parameters
 
@@ -20,7 +20,7 @@
 
 > `readonly` **fallback**: `T`
 
-当前值无法解析时使用的回退值。
+Fallback value used when the current value cannot be resolved.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `readonly` **glslType**: [`ShaderParamType`](../types/ShaderParamType.md)
 
-该参数对应的 GLSL uniform 类型。
+The GLSL uniform type corresponding to this parameter.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `readonly` **kind**: `"daisy-shader-param"`
 
-动态参数对象的稳定识别标记。
+Stable identification tag for the dynamic parameter object.
 
 ## Methods
 
@@ -44,7 +44,7 @@
 
 > **getValue**(): `T`
 
-读取当前 uniform 值。
+Reads the current uniform value.
 
 #### Returns
 

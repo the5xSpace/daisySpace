@@ -6,9 +6,9 @@
 
 # Interface: IFeature
 
-Daisy Feature 抽象能力接口。
+Daisy Feature abstract capability interface.
 
-Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模型、点、线、面、UI 覆盖层等）。
+Feature is used to mount renderable or interactive capabilities (such as models, points, lines, surfaces, UI overlays, etc.) on Daisy.Entity.
 
 ## Properties
 
@@ -34,10 +34,10 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 
 > `readonly` **requiresEntityModelMatrix**: `boolean`
 
-当前 Feature 是否需要 Entity 在每帧预先计算模型矩阵。
+Whether the current Feature requires the Entity to precompute the model matrix each frame.
 
-点、标签、广告牌这类只依赖实体位置的 Feature 可以返回 false，
-从而让海量目标场景跳过不必要的姿态/矩阵计算。
+Features that only depend on entity position, such as points, labels, and billboards, can return false,
+allowing large-scale target scenes to skip unnecessary attitude/matrix calculations.
 
 ***
 
@@ -145,7 +145,7 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 
 > **forceFlush**(): `void`
 
-强制更新
+Force update
 
 #### Returns
 

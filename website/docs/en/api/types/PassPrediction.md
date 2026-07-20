@@ -8,15 +8,15 @@
 
 > **PassPrediction** = `{ aos: OrbitState; aosAzimuthDeg: number; durationSeconds: number; los: OrbitState; losAzimuthDeg: number; maxElevationDeg: number; minElevationDeg: number; observer: ObserverDefinition; satId: string; tca: OrbitState; timeBasis: "UTC" }`
 
-过境预报（三点报：进站/最高点/出站）。
+Pass prediction (three-point report: AOS/TCA/LOS).
 
-解释：
-- `aos`: Acquisition of Signal，卫星从低于 `minElevationDeg` 上升到满足阈值的时刻（进站）
-- `tca`: Time of Closest Approach，这里用于“最大仰角”发生时刻（最高点）
-- `los`: Loss of Signal，卫星从满足阈值下降到低于阈值的时刻（出站）
+Explanation:
+- `aos`: Acquisition of Signal, the moment when the satellite rises from below `minElevationDeg` to meet the threshold (acquisition)
+- `tca`: Time of Closest Approach, used here for the moment of maximum elevation (culmination)
+- `los`: Loss of Signal, the moment when the satellite falls from meeting the threshold to below it (loss)
 
-注意：
-- 当前实现使用等步长采样 + 二分/三分细化，适合快速分析与可视窗口推断
+Note:
+- The current implementation uses uniform step sampling + bisection/trisection refinement, suitable for fast analysis and visibility window inference
 
 ## Properties
 

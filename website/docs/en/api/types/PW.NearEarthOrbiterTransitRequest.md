@@ -14,7 +14,7 @@
 
 > **endTime**: `Daisy.JulianDate`
 
-搜索结束时刻（仿真时间）
+Search end time (simulation time)
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **maxTransits?**: `number`
 
-返回最大过境数量（可选）
+Maximum number of passes to return (optional)
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **minElevationDeg?**: `number`
 
-最小仰角（度），默认 4
+Minimum elevation angle (degrees), default 4
 
 ***
 
@@ -38,7 +38,7 @@
 
 > **observerLocation**: \[`number`, `number`, `number`\]
 
-观测者位置（纬度/经度/海拔），单位：deg/deg/m，内部会自动兼容 km 写法。
+Observer position (lat/lng/altitude), units: deg/deg/m; internally auto-compatible with km notation.
 
 ***
 
@@ -46,4 +46,4 @@
 
 > **startTime**: `Daisy.JulianDate`
 
-搜索开始时刻（仿真时间）
+Search start time (simulation time)

@@ -6,9 +6,9 @@
 
 # Interface: IShader
 
-Daisy 自定义材质 Shader 接口。
+Daisy custom material Shader interface.
 
-所有可由 Shader 管理器统一注册的自定义材质需实现该接口。
+All custom materials that can be registered by the Shader manager must implement this interface.
 
 ## Properties
 
@@ -16,7 +16,7 @@ Daisy 自定义材质 Shader 接口。
 
 > **glsl**: [`MaterialShaderSource`](../types/MaterialShaderSource.md)
 
-Daisy GLSL 材质源码；直接字符串会自动识别并转换 Daisy 标识符。
+Daisy GLSL material source code; plain strings are automatically recognized and Daisy identifiers are converted.
 
 ***
 
@@ -24,7 +24,7 @@ Daisy GLSL 材质源码；直接字符串会自动识别并转换 Daisy 标识�
 
 > **type**: `string`
 
-全局唯一的材质类型标识。
+Globally unique material type identifier.
 
 ***
 
@@ -32,4 +32,4 @@ Daisy GLSL 材质源码；直接字符串会自动识别并转换 Daisy 标识�
 
 > **uniforms**: `any`
 
-Shader 默认 uniform 参数。动态参数会在绘制时解析。
+Shader default uniform parameters. Dynamic parameters are resolved at render time.
