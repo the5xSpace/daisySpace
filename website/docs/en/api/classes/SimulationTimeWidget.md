@@ -6,11 +6,11 @@
 
 # Class: SimulationTimeWidget
 
-独立的仿真时间显示控件，仅显示当前仿真时间。
+A standalone simulation time display widget that shows only the current simulation time.
 
-- 支持 preset 位置预设（与控制面板一致）
-- 支持任意 position 覆盖（left/top/right/bottom/transform）
-- 支持亮/暗主题、圆角、边框与背景透明度、额外 className
+- Supports preset position presets (consistent with the control panel)
+- Supports arbitrary position overrides (left/top/right/bottom/transform)
+- Supports light/dark themes, rounded corners, borders, background opacity, and extra className
 
 ## Example
 
@@ -31,7 +31,7 @@ if (ui) {
 
 > **new SimulationTimeWidget**(`daisy`, `mount`, `opts?`): `SimulationTimeWidget`
 
-创建并挂载仿真时间控件，同时开始监听仿真时钟。
+Creates and mounts the simulation time widget, and starts listening to the simulation clock.
 
 #### Parameters
 
@@ -57,7 +57,7 @@ if (ui) {
 
 > **element**: `HTMLDivElement`
 
-控件根节点。
+Root node of the widget.
 
 ## Methods
 
@@ -65,7 +65,7 @@ if (ui) {
 
 > **destroy**(): `void`
 
-解除时钟监听、拖拽和层级管理，并移除控件节点。
+Removes clock listening, dragging, and z-order management, and removes the widget node.
 
 #### Returns
 
@@ -77,7 +77,7 @@ if (ui) {
 
 > **refresh**(): `void`
 
-立即按当前仿真时刻刷新显示文本。
+Immediately refreshes the displayed text to the current simulation time.
 
 #### Returns
 
@@ -89,7 +89,7 @@ if (ui) {
 
 > **setTitle**(`title`): `this`
 
-更新标题；传入空字符串会隐藏标题节点。
+Updates the title; passing an empty string hides the title node.
 
 #### Parameters
 

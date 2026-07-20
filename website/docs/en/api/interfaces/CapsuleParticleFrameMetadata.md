@@ -12,7 +12,7 @@
 
 > **contentRect**: [`CapsuleParticleFrameRect`](CapsuleParticleFrameRect.md)
 
-本帧真实有 alpha 的内容包围盒，单位：sourceSize 像素坐标。
+The actual content bounding box with alpha for this frame, in sourceSize pixel coordinates.
 
 ***
 
@@ -20,7 +20,7 @@
 
 > **cropRect**: [`CapsuleParticleFrameRect`](CapsuleParticleFrameRect.md)
 
-实际裁剪区域，单位：sourceSize 像素坐标。为了动画稳定，当前同一批帧共用 union crop。
+The actual crop region, in sourceSize pixel coordinates. For animation stability, the current batch of frames shares a union crop.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > **logicalRect**: [`CapsuleParticleFrameRect`](CapsuleParticleFrameRect.md)
 
-原始逻辑绘制区域。length/radius 仍以这个区域作为基准。
+The original logical drawing region. length/radius are still based on this region.
 
 ***
 
@@ -36,10 +36,9 @@
 
 > **playRect**: [`CapsuleParticleFrameRect`](CapsuleParticleFrameRect.md)
 
-裁剪 sprite 对应的局部播放矩形。
+The local playback rectangle corresponding to the cropped sprite.
 
-x/width 沿喷焰长度方向，0 是喷口，1 是 length 末端；
-y/height 沿横向宽度方向，-1 到 1 对应完整 radius 范围。
+x/width runs along the plume length direction, where 0 is the nozzle and 1 is the length end; y/height runs along the transverse width direction, where -1 to 1 maps to the full radius range.
 
 ***
 
@@ -47,7 +46,7 @@ y/height 沿横向宽度方向，-1 到 1 对应完整 radius 范围。
 
 > **sourceSize**: [`CapsuleParticleFrameSize`](CapsuleParticleFrameSize.md)
 
-粒子实际生成的大画布尺寸，单位：px。
+The size of the large canvas where particles are actually generated, in px.
 
 ***
 
@@ -55,4 +54,4 @@ y/height 沿横向宽度方向，-1 到 1 对应完整 radius 范围。
 
 > **spriteSize**: [`CapsuleParticleFrameSize`](CapsuleParticleFrameSize.md)
 
-裁剪后真正送入材质播放的 sprite 尺寸，单位：px。
+The sprite size actually fed into the material for playback after cropping, in px.

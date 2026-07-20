@@ -8,7 +8,7 @@
 
 > **DaisyNoiseFieldOptions** = `object`
 
-噪声场材质配置。
+Noise field material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **colorA?**: [`DColor`](DColor.md)
 
-噪声低值颜色。
+Noise low value color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **colorB?**: [`DColor`](DColor.md)
 
-噪声高值颜色。
+Noise high value color.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **contrast?**: `number`
 
-明暗对比度，范围为 0 至 1。
+Contrast, range 0 to 1.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度，范围为 0 至 1。
+Overall opacity, range 0 to 1.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **scale?**: `number`
 
-噪声空间尺度。
+Noise spatial scale.
 
 ***
 
@@ -56,4 +56,4 @@
 
 > `optional` **speed?**: `number`
 
-动画速度。
+Animation speed.

@@ -8,7 +8,7 @@
 
 > **CubeGeometryOptions** = `object`
 
-圆锥体几何参数
+Cone geometry parameters
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **bottomLength?**: `number`
 
-底部长（单位：米）
+Bottom length (in meters)
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **bottomWidth?**: `number`
 
-底部宽（单位：米）
+Bottom width (in meters)
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **height?**: `number`
 
-高度（单位：米）
+Height (in meters)
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **topLength?**: `number`
 
-顶面长（单位：米）
+Top length (in meters)
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **topWidth?**: `number`
 
-顶面宽（单位：米）
+Top width (in meters)
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **vertexFormat?**: `Daisy.VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 

@@ -1,0 +1,183 @@
+{
+  "api/classes/LiteController.md": [
+    ["精简模式控制器。", "Lite mode controller."],
+    ["仅包含浮动控制面板，不包含键盘快捷键等高级控制组件。\n适用于对 UI 复杂度要求较低的场景。", "Includes only the floating control panel, without advanced control components such as keyboard shortcuts.\nSuitable for scenarios with low UI complexity requirements."],
+    ["创建精简控制器。", "Creates the lite controller."],
+    ["DaisyUIManager 实例。", "DaisyUIManager instance."],
+    ["挂载 DOM 容器。", "Mount DOM container."],
+    ["控制器根 DOM 元素。", "Controller root DOM element."],
+    ["销毁控制器并释放资源。", "Destroys the controller and releases resources."]
+  ],
+  "api/classes/SimulationTimeWidget.md": [
+    ["独立的仿真时间显示控件，仅显示当前仿真时间。", "A standalone simulation time display widget that shows only the current simulation time."],
+    ["- 支持 preset 位置预设（与控制面板一致）", "- Supports preset position presets (consistent with the control panel)"],
+    ["- 支持任意 position 覆盖（left/top/right/bottom/transform）", "- Supports arbitrary position overrides (left/top/right/bottom/transform)"],
+    ["- 支持亮/暗主题、圆角、边框与背景透明度、额外 className", "- Supports light/dark themes, rounded corners, borders, background opacity, and extra className"],
+    ["创建并挂载仿真时间控件，同时开始监听仿真时钟。", "Creates and mounts the simulation time widget, and starts listening to the simulation clock."],
+    ["控件根节点。", "Root node of the widget."],
+    ["解除时钟监听、拖拽和层级管理，并移除控件节点。", "Removes clock listening, dragging, and z-order management, and removes the widget node."],
+    ["立即按当前仿真时刻刷新显示文本。", "Immediately refreshes the displayed text to the current simulation time."],
+    ["更新标题；传入空字符串会隐藏标题节点。", "Updates the title; passing an empty string hides the title node."]
+  ],
+  "api/classes/StandardController.md": [
+    ["标准模式控制器。", "Standard mode controller."],
+    ["包含浮动控制面板和键盘快捷键控制组件。\n适用于需要完整交互控制的场景。", "Includes the floating control panel and keyboard shortcut control components.\nSuitable for scenarios requiring full interactive control."],
+    ["创建标准控制器。", "Creates the standard controller."],
+    ["DaisyUIManager 实例。", "DaisyUIManager instance."],
+    ["挂载 DOM 容器。", "Mount DOM container."],
+    ["控制器根 DOM 元素。", "Controller root DOM element."],
+    ["销毁控制器并释放资源。", "Destroys the controller and releases resources."]
+  ],
+  "api/interfaces/CapsuleParticleFrameMetadata.md": [
+    ["本帧真实有 alpha 的内容包围盒，单位：sourceSize 像素坐标。", "The actual content bounding box with alpha for this frame, in sourceSize pixel coordinates."],
+    ["实际裁剪区域，单位：sourceSize 像素坐标。为了动画稳定，当前同一批帧共用 union crop。", "The actual crop region, in sourceSize pixel coordinates. For animation stability, the current batch of frames shares a union crop."],
+    ["原始逻辑绘制区域。length/radius 仍以这个区域作为基准。", "The original logical drawing region. length/radius are still based on this region."],
+    ["裁剪 sprite 对应的局部播放矩形。\n\nx/width 沿喷焰长度方向，0 是喷口，1 是 length 末端；\ny/height 沿横向宽度方向，-1 到 1 对应完整 radius 范围。", "The local playback rectangle corresponding to the cropped sprite.\n\nx/width runs along the plume length direction, where 0 is the nozzle and 1 is the length end; y/height runs along the transverse width direction, where -1 to 1 maps to the full radius range."],
+    ["粒子实际生成的大画布尺寸，单位：px。", "The size of the large canvas where particles are actually generated, in px."],
+    ["裁剪后真正送入材质播放的 sprite 尺寸，单位：px。", "The sprite size actually fed into the material for playback after cropping, in px."]
+  ],
+  "api/interfaces/MarkerTarget.md": [
+    ["标记目标配置。", "Marker target configuration."],
+    ["定义一个需要在场景中标注的目标点。", "Defines a target point that needs to be marked in the scene."],
+    ["标记颜色。", "Marker color."],
+    ["获取目标在指定时刻的位置。", "Gets the target position at the specified time."],
+    ["仿真时间。", "Simulation time."],
+    ["目标位置（世界坐标）。", "Target position (world coordinates)."],
+    ["标记标签文本。", "Marker label text."]
+  ],
+  "api/interfaces/SpiralFlowMaterialOptions.md": [
+    ["基础颜色。默认蓝色。", "Base color. Defaults to blue."],
+    ["归一化环带密度，范围为 0 至 1。默认 `0.3`。", "Normalized ring density, range 0 to 1. Default `0.3`."],
+    ["流动方向；`-1` 向上，其余值向下。默认向下。", "Flow direction; `-1` is upward, other values are downward. Defaults to downward."],
+    ["整体透明度，范围为 0 至 1。默认 `1`。", "Overall opacity, range 0 to 1. Default `1`."],
+    ["流动速度，最小值为 `0.1`。默认 `1`。", "Flow speed, minimum `0.1`. Default `1`."],
+    ["螺旋环带颜色。默认黄色。", "Spiral ring color. Defaults to yellow."],
+    ["环带宽度，范围为 0.05 至 0.95。默认 `0.35`。", "Ring width, range 0.05 to 0.95. Default `0.35`."]
+  ],
+  "api/types/ArcRotateCameraOptions.md": [
+    ["环绕相机配置项。", "Orbit camera configuration options."],
+    ["- viewForm 优先级高于 initialXXX", "- viewForm takes priority over initialXXX"],
+    ["- localBodyAxis 可用于覆盖目标的局部坐标系（用于定义“绕谁转”的参考轴）", "- localBodyAxis can be used to override the target's local coordinate system (used to define the reference axis for the orbit target)"],
+    ["当目标离椭球地表低于该高度（米）时，自动禁用触地绕行策略。\n\n近地目标继续使用触地绕行容易把相机压进地表，设置该阈值后会改为阻止继续下拉。", "When the target is below this height (meters) above the ellipsoid surface, the ground-contact orbit strategy is automatically disabled.\n\nFor near-Earth targets, continuing to use ground-contact orbiting can push the camera into the surface; setting this threshold switches to blocking further pull-down."],
+    ["是否允许相机视线触地后压缩有效半径，形成“贴地绕行/从底部绕过”的交互。\n\n关闭后，继续向地面方向拖拽会被阻止，但水平旋转、向上拖拽和缩放仍可继续。", "Whether to allow the camera view ray to compress the effective radius after touching the ground, creating a \"ground-hugging orbit / bypass from below\" interaction.\n\nWhen disabled, dragging further toward the ground is blocked, but horizontal rotation, upward dragging, and zooming remain available."],
+    ["跟随参考系模式。", "Follow reference frame mode."]
+  ],
+  "api/types/CentralBody.md": [
+    ["基于 `wasm-sgp4` 内核的高精度轨道分析器（JS/TS 层只做“分析 + 坐标/椭球对齐”）。", "A high-precision orbit analyzer based on the `wasm-sgp4` core (the JS/TS layer only performs \"analysis + coordinate/ellipsoid alignment\")."],
+    ["设计原则：", "Design principles:"],
+    ["- 轨道动力学（SGP4 传播）全部在 `wasm-sgp4` 中完成", "- Orbital dynamics (SGP4 propagation) are all performed in `wasm-sgp4`"],
+    ["- JS/TS 层负责：时间统一（UTC）、坐标系转换（）、椭球几何、分析逻辑（过境/交汇/互视等）", "- The JS/TS layer is responsible for: time unification (UTC), coordinate conversion (), ellipsoid geometry, and analysis logic (pass/rendezvous/mutual visibility, etc.)"],
+    ["坐标系约定：", "Coordinate system conventions:"],
+    ["- ECI：这里使用 `TEME`（与 SGP4 输出一致）", "- ECI: `TEME` is used here (consistent with SGP4 output)"],
+    ["- ECEF：使用 的 `TEME -> PseudoFixed` 变换矩阵（见 `Daisy.Transforms.computeTemeToPseudoFixedMatrix`）", "- ECEF: uses the `TEME -> PseudoFixed` transformation matrix (see `Daisy.Transforms.computeTemeToPseudoFixedMatrix`)"],
+    ["- LLA：使用 `Daisy.Ellipsoid.cartesianToCartographic` 输出经纬高（角度制）", "- LLA: uses `Daisy.Ellipsoid.cartesianToCartographic` to output longitude/latitude/height (in degrees)"],
+    ["- ENU：使用 `Daisy.Transforms.eastNorthUpToFixedFrame` 基于椭球建立局部 ENU", "- ENU: uses `Daisy.Transforms.eastNorthUpToFixedFrame` to build a local ENU based on the ellipsoid"],
+    ["时间系统约定：", "Time system conventions:"],
+    ["- 所有输入与输出时间均为 UTC（JS Date 的 epoch 毫秒 + `timeBasis: \"UTC\"` 标识）", "- All input and output times are UTC (JS Date epoch milliseconds + `timeBasis: \"UTC\"` flag)"]
+  ],
+  "api/types/CubeGeometryOptions.md": [
+    ["圆锥体几何参数", "Cone geometry parameters"],
+    ["底部长（单位：米）", "Bottom length (in meters)"],
+    ["底部宽（单位：米）", "Bottom width (in meters)"],
+    ["高度（单位：米）", "Height (in meters)"],
+    ["顶面长（单位：米）", "Top length (in meters)"],
+    ["顶面宽（单位：米）", "Top width (in meters)"],
+    ["顶点格式。", "Vertex format."]
+  ],
+  "api/types/DaisyCellularOptions.md": [
+    ["细胞噪声材质配置。", "Cellular noise material configuration."],
+    ["单元内部颜色。", "Inner cell color."],
+    ["单元数量。", "Number of cells."],
+    ["单元边缘颜色。", "Cell edge color."],
+    ["单元边缘宽度。", "Cell edge width."],
+    ["单元随机扰动强度。", "Cell random jitter intensity."],
+    ["整体透明度。", "Overall opacity."]
+  ],
+  "api/types/DaisyContourBandsOptions.md": [
+    ["分层等值带材质配置。", "Layered contour band material configuration."],
+    ["色带数量。", "Number of color bands."],
+    ["高值颜色。", "High value color."],
+    ["分界线宽度。", "Boundary line width."],
+    ["低值颜色。", "Low value color."],
+    ["整体透明度。", "Overall opacity."],
+    ["色带倾斜偏移。", "Color band tilt offset."]
+  ],
+  "api/types/DaisyGridGlowOptions.md": [
+    ["发光网格材质配置。", "Glowing grid material configuration."],
+    ["网格背景颜色。", "Grid background color."],
+    ["横纵网格数量。", "Number of horizontal and vertical grid cells."],
+    ["网格线颜色。", "Grid line color."],
+    ["网格线宽度。", "Grid line width."],
+    ["整体透明度。", "Overall opacity."],
+    ["发光脉冲速度。", "Glow pulse speed."]
+  ],
+  "api/types/DaisyNoiseFieldOptions.md": [
+    ["噪声场材质配置。", "Noise field material configuration."],
+    ["噪声低值颜色。", "Noise low value color."],
+    ["噪声高值颜色。", "Noise high value color."],
+    ["明暗对比度，范围为 0 至 1。", "Contrast, range 0 to 1."],
+    ["整体透明度，范围为 0 至 1。", "Overall opacity, range 0 to 1."],
+    ["噪声空间尺度。", "Noise spatial scale."],
+    ["动画速度。", "Animation speed."]
+  ],
+  "api/types/DaisyScanlineOptions.md": [
+    ["扫描线材质配置。", "Scanline material configuration."],
+    ["背景颜色。", "Background color."],
+    ["扫描线密度。", "Scanline density."],
+    ["整体透明度。", "Overall opacity."],
+    ["扫描线颜色。", "Scanline color."],
+    ["扫描速度。", "Scan speed."],
+    ["扫描线宽度。", "Scanline width."]
+  ],
+  "api/types/DaisyTurbulenceOptions.md": [
+    ["湍流材质配置。", "Turbulence material configuration."],
+    ["湍流低值颜色。", "Turbulence low value color."],
+    ["湍流高值颜色。", "Turbulence high value color."],
+    ["扰动强度。", "Disturbance intensity."],
+    ["整体透明度。", "Overall opacity."],
+    ["湍流空间尺度。", "Turbulence spatial scale."],
+    ["动画速度。", "Animation speed."]
+  ],
+  "api/types/GeoEarthTransparencyOptions.md": [
+    ["统一透明度，0 为完全透明，1 为完全不透明。", "Uniform opacity; 0 is fully transparent, 1 is fully opaque."],
+    ["背面透明度。", "Back face opacity."],
+    ["背面透明度随相机距离变化。", "Back face opacity varies with camera distance."],
+    ["是否启用地球半透明。", "Whether to enable semi-transparent Earth."],
+    ["正面透明度。", "Front face opacity."],
+    ["正面透明度随相机距离变化。", "Front face opacity varies with camera distance."],
+    ["是否显示大气层。", "Whether to show the atmosphere."]
+  ],
+  "api/types/PW.SensorLinkOptions.md": [
+    ["传感器链路跟踪与流动效果配置。", "Sensor link tracking and flow effect configuration."],
+    ["链路中的波束流动效果配置。", "Beam flow effect configuration within the link."],
+    ["推荐写法：", "Recommended usage:"],
+    ["上述写法会直接使用内置默认流动材质；\n如果需要覆盖默认表现，再补充 `material` 或其它参数即可。", "The above usage directly uses the built-in default flow material; if you need to override the default appearance, add `material` or other parameters."],
+    ["链路跟踪计划（可按时段切换目标）。", "Link tracking schedule (can switch targets by time period)."],
+    ["- 只写 `track` 即可完成基础跟踪", "- Writing only `track` completes basic tracking"],
+    ["- 当你只需要“默认流动效果”时，`flow` 也可以只写\n `activeWhen`", "- When you only need the \"default flow effect\", `flow` can also be written as just\n `activeWhen`"],
+    ["- 默认材质会自动根据波束颜色生成，视觉效果通常已经足够好", "- The default material is automatically generated from the beam color, and the visual result is usually good enough"]
+  ],
+  "guide/widgets-display.md": [
+    ["# 仿真时间与帧率显示", "# Simulation Time and Frame Rate Display"],
+    ["在屏幕上显示当前仿真时间。", "Displays the current simulation time on screen."],
+    ["预设位置，同上", "Preset position, same as above"],
+    ["主题配色", "Theme color scheme"],
+    ["标题文字", "Title text"],
+    ["是否显示边框", "Whether to show the border"],
+    ["圆角：`\"md\"` / `\"lg\"` / `\"full\"`", "Corner radius: `\"md\"` / `\"lg\"` / `\"full\"`"],
+    ["背景透明度（0~1）", "Background opacity (0~1)"],
+    ["时间格式覆盖，详见 [时间格式化](", "Time format override; see [Time Formatting]("],
+    ["### 动态更新", "### Dynamic Update"],
+    ["绿色", "Green"],
+    ["极佳", "Excellent"],
+    ["青色", "Cyan"],
+    ["优秀", "Good"],
+    ["蓝色", "Blue"],
+    ["流畅", "Smooth"],
+    ["黄色", "Yellow"],
+    ["一般", "Average"],
+    ["红色", "Red"],
+    ["差", "Poor"],
+    ["> **相关 API**：", "> **Related API**: "]
+  ]
+}

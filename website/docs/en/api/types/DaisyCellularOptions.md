@@ -8,7 +8,7 @@
 
 > **DaisyCellularOptions** = `object`
 
-细胞噪声材质配置。
+Cellular noise material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **baseColor?**: [`DColor`](DColor.md)
 
-单元内部颜色。
+Inner cell color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **cellCount?**: `number`
 
-单元数量。
+Number of cells.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **edgeColor?**: [`DColor`](DColor.md)
 
-单元边缘颜色。
+Cell edge color.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **edgeWidth?**: `number`
 
-单元边缘宽度。
+Cell edge width.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **jitter?**: `number`
 
-单元随机扰动强度。
+Cell random jitter intensity.
 
 ***
 
@@ -56,4 +56,4 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.

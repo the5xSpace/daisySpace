@@ -6,10 +6,10 @@
 
 # Class: LiteController
 
-精简模式控制器。
+Lite mode controller.
 
-仅包含浮动控制面板，不包含键盘快捷键等高级控制组件。
-适用于对 UI 复杂度要求较低的场景。
+Includes only the floating control panel, without advanced control components such as keyboard shortcuts.
+Suitable for scenarios with low UI complexity requirements.
 
 ## Constructors
 
@@ -17,7 +17,7 @@
 
 > **new LiteController**(`daisy`, `mount`): `LiteController`
 
-创建精简控制器。
+Creates the lite controller.
 
 #### Parameters
 
@@ -25,13 +25,13 @@
 
 `DaisyUIManager`
 
-DaisyUIManager 实例。
+DaisyUIManager instance.
 
 ##### mount
 
 `HTMLElement`
 
-挂载 DOM 容器。
+Mount DOM container.
 
 #### Returns
 
@@ -43,7 +43,7 @@ DaisyUIManager 实例。
 
 > **root**: `HTMLDivElement`
 
-控制器根 DOM 元素。
+Controller root DOM element.
 
 ## Methods
 
@@ -51,7 +51,7 @@ DaisyUIManager 实例。
 
 > **destroy**(): `void`
 
-销毁控制器并释放资源。
+Destroys the controller and releases resources.
 
 #### Returns
 

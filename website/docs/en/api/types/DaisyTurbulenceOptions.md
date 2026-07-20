@@ -8,7 +8,7 @@
 
 > **DaisyTurbulenceOptions** = `object`
 
-湍流材质配置。
+Turbulence material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **colorA?**: [`DColor`](DColor.md)
 
-湍流低值颜色。
+Turbulence low value color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **colorB?**: [`DColor`](DColor.md)
 
-湍流高值颜色。
+Turbulence high value color.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **intensity?**: `number`
 
-扰动强度。
+Disturbance intensity.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **scale?**: `number`
 
-湍流空间尺度。
+Turbulence spatial scale.
 
 ***
 
@@ -56,4 +56,4 @@
 
 > `optional` **speed?**: `number`
 
-动画速度。
+Animation speed.

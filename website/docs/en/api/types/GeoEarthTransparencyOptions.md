@@ -14,7 +14,7 @@
 
 > `optional` **alpha?**: `number`
 
-统一透明度，0 为完全透明，1 为完全不透明。
+Uniform opacity; 0 is fully transparent, 1 is fully opaque.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **backFaceAlpha?**: `number`
 
-背面透明度。
+Back face opacity.
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **backFaceAlphaByDistance?**: `Daisy.NearFarScalar`
 
-背面透明度随相机距离变化。
+Back face opacity varies with camera distance.
 
 ***
 
@@ -38,7 +38,7 @@
 
 > `optional` **enabled?**: `boolean`
 
-是否启用地球半透明。
+Whether to enable semi-transparent Earth.
 
 ***
 
@@ -46,7 +46,7 @@
 
 > `optional` **frontFaceAlpha?**: `number`
 
-正面透明度。
+Front face opacity.
 
 ***
 
@@ -54,7 +54,7 @@
 
 > `optional` **frontFaceAlphaByDistance?**: `Daisy.NearFarScalar`
 
-正面透明度随相机距离变化。
+Front face opacity varies with camera distance.
 
 ***
 
@@ -62,4 +62,4 @@
 
 > `optional` **showGroundAtmosphere?**: `boolean`
 
-是否显示大气层。
+Whether to show the atmosphere.

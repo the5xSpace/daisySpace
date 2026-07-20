@@ -12,7 +12,7 @@
 
 > `optional` **color?**: [`DColor`](../types/DColor.md)
 
-基础颜色。默认蓝色。
+Base color. Defaults to blue.
 
 ***
 
@@ -20,7 +20,7 @@
 
 > `optional` **count?**: `number`
 
-归一化环带密度，范围为 0 至 1。默认 `0.3`。
+Normalized ring density, range 0 to 1. Default `0.3`.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `optional` **direction?**: `number`
 
-流动方向；`-1` 向上，其余值向下。默认向下。
+Flow direction; `-1` is upward, other values are downward. Defaults to downward.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度，范围为 0 至 1。默认 `1`。
+Overall opacity, range 0 to 1. Default `1`.
 
 ***
 
@@ -44,7 +44,7 @@
 
 > `optional` **speed?**: `number`
 
-流动速度，最小值为 `0.1`。默认 `1`。
+Flow speed, minimum `0.1`. Default `1`.
 
 ***
 
@@ -52,7 +52,7 @@
 
 > `optional` **spiralColor?**: [`DColor`](../types/DColor.md)
 
-螺旋环带颜色。默认黄色。
+Spiral ring color. Defaults to yellow.
 
 ***
 
@@ -60,4 +60,4 @@
 
 > `optional` **thickness?**: `number`
 
-环带宽度，范围为 0.05 至 0.95。默认 `0.35`。
+Ring width, range 0.05 to 0.95. Default `0.35`.

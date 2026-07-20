@@ -8,7 +8,7 @@
 
 > **SensorLinkOptions** = `object`
 
-传感器链路跟踪与流动效果配置。
+Sensor link tracking and flow effect configuration.
 
 ## Properties
 
@@ -16,17 +16,16 @@
 
 > `optional` **flow?**: [`SensorFlowOptions`](PW.SensorFlowOptions.md)
 
-链路中的波束流动效果配置。
+Beam flow effect configuration within the link.
 
-推荐写法：
+Recommended usage:
 ```ts
 flow: {
  activeWhen: windows,
 }
 ```
 
-上述写法会直接使用内置默认流动材质；
-如果需要覆盖默认表现，再补充 `material` 或其它参数即可。
+The above usage directly uses the built-in default flow material; if you need to override the default appearance, add `material` or other parameters.
 
 ***
 
@@ -34,10 +33,10 @@ flow: {
 
 > `optional` **track?**: [`SensorTrackInterval`](PW.SensorTrackInterval.md)[]
 
-链路跟踪计划（可按时段切换目标）。
+Link tracking schedule (can switch targets by time period).
 
-推荐写法：
-- 只写 `track` 即可完成基础跟踪
-- 当你只需要“默认流动效果”时，`flow` 也可以只写
+Recommended usage:
+- Writing only `track` completes basic tracking
+- When you only need the "default flow effect", `flow` can also be written as just
  `activeWhen`
-- 默认材质会自动根据波束颜色生成，视觉效果通常已经足够好
+- The default material is automatically generated from the beam color, and the visual result is usually good enough

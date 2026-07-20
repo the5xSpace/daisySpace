@@ -8,7 +8,7 @@
 
 > **DaisyGridGlowOptions** = `object`
 
-发光网格材质配置。
+Glowing grid material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **baseColor?**: [`DColor`](DColor.md)
 
-网格背景颜色。
+Grid background color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **cellCount?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-横纵网格数量。
+Number of horizontal and vertical grid cells.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **lineColor?**: [`DColor`](DColor.md)
 
-网格线颜色。
+Grid line color.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **lineWidth?**: `number`
 
-网格线宽度。
+Grid line width.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -56,4 +56,4 @@
 
 > `optional` **pulseSpeed?**: `number`
 
-发光脉冲速度。
+Glow pulse speed.

@@ -8,7 +8,7 @@
 
 > **DaisyContourBandsOptions** = `object`
 
-分层等值带材质配置。
+Layered contour band material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **bandCount?**: `number`
 
-色带数量。
+Number of color bands.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **highColor?**: [`DColor`](DColor.md)
 
-高值颜色。
+High value color.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **lineWidth?**: `number`
 
-分界线宽度。
+Boundary line width.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **lowColor?**: [`DColor`](DColor.md)
 
-低值颜色。
+Low value color.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -56,4 +56,4 @@
 
 > `optional` **slope?**: `number`
 
-色带倾斜偏移。
+Color band tilt offset.

@@ -6,9 +6,9 @@
 
 # Interface: MarkerTarget
 
-标记目标配置。
+Marker target configuration.
 
-定义一个需要在场景中标注的目标点。
+Defines a target point that needs to be marked in the scene.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **color?**: `Color`
 
-标记颜色。
+Marker color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > **getPosition**: (`time`) => `Cartesian3`
 
-获取目标在指定时刻的位置。
+Gets the target position at the specified time.
 
 #### Parameters
 
@@ -32,13 +32,13 @@
 
 `JulianDate`
 
-仿真时间。
+Simulation time.
 
 #### Returns
 
 `Cartesian3`
 
-目标位置（世界坐标）。
+Target position (world coordinates).
 
 ***
 
@@ -46,4 +46,4 @@
 
 > **label**: `string`
 
-标记标签文本。
+Marker label text.

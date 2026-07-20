@@ -8,10 +8,10 @@
 
 > **ArcRotateCameraOptions** = `object`
 
-环绕相机配置项。
+Orbit camera configuration options.
 
-- viewForm 优先级高于 initialXXX
-- localBodyAxis 可用于覆盖目标的局部坐标系（用于定义“绕谁转”的参考轴）
+- viewForm takes priority over initialXXX
+- localBodyAxis can be used to override the target's local coordinate system (used to define the reference axis for the orbit target)
 
 ## Properties
 
@@ -19,9 +19,9 @@
 
 > `optional` **disableGroundCollisionSlideBelowTargetHeight?**: `number`
 
-当目标离椭球地表低于该高度（米）时，自动禁用触地绕行策略。
+When the target is below this height (meters) above the ellipsoid surface, the ground-contact orbit strategy is automatically disabled.
 
-近地目标继续使用触地绕行容易把相机压进地表，设置该阈值后会改为阻止继续下拉。
+For near-Earth targets, continuing to use ground-contact orbiting can push the camera into the surface; setting this threshold switches to blocking further pull-down.
 
 ***
 
@@ -29,9 +29,9 @@
 
 > `optional` **enableGroundCollisionSlide?**: `boolean`
 
-是否允许相机视线触地后压缩有效半径，形成“贴地绕行/从底部绕过”的交互。
+Whether to allow the camera view ray to compress the effective radius after touching the ground, creating a "ground-hugging orbit / bypass from below" interaction.
 
-关闭后，继续向地面方向拖拽会被阻止，但水平旋转、向上拖拽和缩放仍可继续。
+When disabled, dragging further toward the ground is blocked, but horizontal rotation, upward dragging, and zooming remain available.
 
 #### Default
 
@@ -105,7 +105,7 @@ true
 
 > `optional` **targetFrameMode?**: [`ArcRotateTargetFrameMode`](ArcRotateTargetFrameMode.md)
 
-跟随参考系模式。
+Follow reference frame mode.
 
 #### Default
 

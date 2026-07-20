@@ -8,7 +8,7 @@
 
 > **DaisyScanlineOptions** = `object`
 
-扫描线材质配置。
+Scanline material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **baseColor?**: [`DColor`](DColor.md)
 
-背景颜色。
+Background color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **density?**: `number`
 
-扫描线密度。
+Scanline density.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **scanColor?**: [`DColor`](DColor.md)
 
-扫描线颜色。
+Scanline color.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **speed?**: `number`
 
-扫描速度。
+Scan speed.
 
 ***
 
@@ -56,4 +56,4 @@
 
 > `optional` **thickness?**: `number`
 
-扫描线宽度。
+Scanline width.

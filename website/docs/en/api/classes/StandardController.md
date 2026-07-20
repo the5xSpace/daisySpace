@@ -6,10 +6,10 @@
 
 # Class: StandardController
 
-标准模式控制器。
+Standard mode controller.
 
-包含浮动控制面板和键盘快捷键控制组件。
-适用于需要完整交互控制的场景。
+Includes the floating control panel and keyboard shortcut control components.
+Suitable for scenarios requiring full interactive control.
 
 ## Constructors
 
@@ -17,7 +17,7 @@
 
 > **new StandardController**(`daisy`, `mount`): `StandardController`
 
-创建标准控制器。
+Creates the standard controller.
 
 #### Parameters
 
@@ -25,13 +25,13 @@
 
 `DaisyUIManager`
 
-DaisyUIManager 实例。
+DaisyUIManager instance.
 
 ##### mount
 
 `HTMLElement`
 
-挂载 DOM 容器。
+Mount DOM container.
 
 #### Returns
 
@@ -43,7 +43,7 @@ DaisyUIManager 实例。
 
 > **root**: `HTMLDivElement`
 
-控制器根 DOM 元素。
+Controller root DOM element.
 
 ## Methods
 
@@ -51,7 +51,7 @@ DaisyUIManager 实例。
 
 > **destroy**(): `void`
 
-销毁控制器并释放资源。
+Destroys the controller and releases resources.
 
 #### Returns
 
