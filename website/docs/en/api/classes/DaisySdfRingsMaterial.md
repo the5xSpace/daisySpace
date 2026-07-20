@@ -6,7 +6,7 @@
 
 # Class: DaisySdfRingsMaterial
 
-距离场多层环形材质。
+Distance field multi-layer ring material.
 
 ## Extends
 

@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DOWN\_EMIT\_DIFFUSE**: `"DownEmitDiffuse"` = `'DownEmitDiffuse'`
 
-下发射漫反射材质类型标识。
+Downward emit diffuse material type identifier.

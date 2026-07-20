@@ -8,7 +8,7 @@
 
 > **TimeSample**\<`T`\> = `object`
 
-时间采样点：每个值必须与一个仿真时间一一对应。
+Time sample point: each value must correspond one-to-one with a simulation time.
 
 ## Example
 

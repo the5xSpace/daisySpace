@@ -10,10 +10,10 @@
 
 轨道全状态输出（满足“同时包含 ECI/ECEF/LLA/时间戳”的约束）。
 
-- `eci.frame` 固定为 `TEME`（与 SGP4 输出一致）
-- `ecef.frame` 固定为 `ECEF`
-- `lla` 为角度制经纬高（基于 `Daisy.Ellipsoid`）
-- `enu` 仅在传入 `observer`（或 `includeENU`）时输出
+- `eci.frame` is always `TEME` (consistent with SGP4 output)
+- `ecef.frame` is always `ECEF`
+- `lla` is latitude/longitude/height in degrees (based on `Daisy.Ellipsoid`)
+- `enu` is only output when `observer` (or `includeENU`) is provided
 
 ## Properties
 

@@ -8,10 +8,10 @@
 
 > **ConjunctionOptions** = `object`
 
-交汇预报选项。
+Conjunction prediction options.
 
-- `stepSeconds`: 采样步长（越小越精细但更耗时）
-- `distanceThreshold`: 触发候选区间的距离阈值（只对阈值内区间做细化搜索）
+- `stepSeconds`: sampling step size (smaller = more precise but slower)
+- `distanceThreshold`: distance threshold for triggering candidate intervals (only intervals within the threshold are refined)
 
 ## Properties
 

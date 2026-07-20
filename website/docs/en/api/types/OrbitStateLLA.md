@@ -8,9 +8,9 @@
 
 > **OrbitStateLLA** = `{ height: number; latitudeDeg: number; longitudeDeg: number }`
 
-地理坐标（经纬高，角度制）。
+Geographic coordinates (latitude/longitude/height, in degrees).
 
-单位：
+Units:
 - `longitudeDeg`, `latitudeDeg`: deg
 - `height`: m
 

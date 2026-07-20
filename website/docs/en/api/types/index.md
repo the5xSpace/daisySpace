@@ -1,6 +1,6 @@
 # Type Aliases
 
-264 types in total.
+266 types total.
 
 | Name | Link |
 |------|------|
@@ -125,6 +125,8 @@
 | `ModelAnimationPlayOptions` | [ModelAnimationPlayOptions](ModelAnimationPlayOptions.md) |
 | `ModelAnimationTimeCallback` | [ModelAnimationTimeCallback](ModelAnimationTimeCallback.md) |
 | `ModelDistanceFallbackPointOptions` | [ModelDistanceFallbackPointOptions](ModelDistanceFallbackPointOptions.md) |
+| `ModelExplosionOptions` | [ModelExplosionOptions](ModelExplosionOptions.md) |
+| `ModelExplosionState` | [ModelExplosionState](ModelExplosionState.md) |
 | `ModelNodeInfo` | [ModelNodeInfo](ModelNodeInfo.md) |
 | `ModelNodeTransformState` | [ModelNodeTransformState](ModelNodeTransformState.md) |
 | `ObserveRes` | [ObserveRes](ObserveRes.md) |

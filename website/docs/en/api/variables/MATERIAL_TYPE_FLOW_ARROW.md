@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_FLOW\_ARROW**: `"FlowArrow"` = `'FlowArrow'`
 
-流动箭头材质类型标识。
+Flow arrow material type identifier.

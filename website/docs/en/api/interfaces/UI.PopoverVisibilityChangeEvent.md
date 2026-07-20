@@ -37,7 +37,7 @@ Why the state changed.
 > **rendered**: `boolean`
 
 Whether the DOM is actually rendered in the current frame.
-当前帧 DOM 是否真实显示；距离、遮挡、离屏可能让它为 false。
+Whether the DOM is actually visible in the current frame; distance, occlusion, and off-screen conditions may cause it to be false.
 
 ***
 

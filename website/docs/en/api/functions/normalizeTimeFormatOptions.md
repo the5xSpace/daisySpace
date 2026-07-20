@@ -8,7 +8,7 @@
 
 > **normalizeTimeFormatOptions**(`config?`): [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md)
 
-将预设名、回调或完整配置统一转换为选项对象。
+Converts preset names, callbacks, or full configurations into a unified options object.
 
 ## Parameters
 

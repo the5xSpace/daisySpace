@@ -1,14 +1,14 @@
-# Performance Optimization
+# 性能优化
 
-## High Performance Mode
+## 高性能模式
 
-Enabled when the scene contains a large number of entities (hundreds to tens of thousands). Core strategies:
+当场景中实体数量较大（数百至数万级别）时启用。核心策略：
 
-**Entity update grouping**: Entities are divided into N groups by ID hash, with only one group updated per frame (reducing CPU traversal overhead).
+**实体更新分组**：将实体按 ID 哈希分配到 N 组，每帧仅更新其中一组（降低 CPU 遍历开销）。
 
-**Update frequency throttling**: Active entities (hover/selected/tracked) update at high frequency, while inactive entities update at low frequency.
+**更新频率节流**：活跃实体（hover/选中/跟踪）高频更新，非活跃实体低频更新。
 
-**Feature type pruning**: Inactive entities only retain whitelisted Feature types (e.g., Point, Label, Billboard), skipping expensive rendering features like models and trails.
+**Feature 类型裁剪**：非活跃实体仅保留白名单中的 Feature 类型（如 Point、Label、Billboard），跳过模型、轨迹等渲染开销较大的 Feature。
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -36,25 +36,25 @@ engine.setHighPerformanceMode({
 })
 ```
 
-## Worker Thread Acceleration
+## Worker 线程加速
 
-The following computation-intensive tasks are automatically offloaded to Web Workers:
+以下计算密集型任务自动卸载到 Web Worker：
 
-- Trail path sampling (TrailPathFeature pre-computation)
-- Sensor coverage area merging (WASM boolean operations)
-- Shader polygon mesh construction (ShaderPolygonFeature)
+- 轨迹路径采样（TrailPathFeature 预计算）
+- 传感器覆盖区域合并（WASM 布尔运算）
+- 着色器多边形网格构建（ShaderPolygonFeature）
 
-Workers load ES Modules via `import.meta.url`, requiring no user configuration.
+Worker 通过 `import.meta.url` 加载 ES Module，无需用户配置。
 
-## WASM Acceleration
+## WASM 加速
 
-Self-compiled AssemblyScript modules are used for the following core computations:
+自编译 AssemblyScript 模块用于以下核心计算：
 
-- **SGP4 orbit propagation** — `HighPrecisionSGP4Analyzer` uses wasm-sgp4 for high-precision orbit computation
-- **Occlusion detection** — `isOccludedByEllipsoid` uses WASM for ray-ellipsoid intersection
-- **Coverage merging** — Boolean merging of multiple sensor footprints
+- **SGP4 轨道传播** — `HighPrecisionSGP4Analyzer` 使用 wasm-sgp4 实现高精度轨道计算
+- **遮挡检测** — `isOccludedByEllipsoid` 使用 WASM 做射线-椭球求交
+- **覆盖合并** — 多个传感器 footprint 的布尔合并
 
-## FPS Control
+## FPS 控制
 
 ```typescript
 // 控制 Daisy 逻辑更新帧率
@@ -72,7 +72,7 @@ engine.stopAutoRender()   // 按需渲染（省电）
 engine.startAutoRender()  // 恢复自动渲染
 ```
 
-## 2D / 3D Mode
+## 2D / 3D 模式
 
 ```typescript
 engine.morphTo(Daisy.SceneMode.SCENE3D)
@@ -84,14 +84,14 @@ engine.isMorphing
 engine.onMorphSwitch((mode) => { /* ... */ })
 ```
 
-When switching modes, all Features' `morphSwitchHandle()` is called. In 2D mode, ExtraCamera is automatically paused, and tracked entities are released (restored when switching back to 3D).
+模式切换时，所有 Feature 的 `morphSwitchHandle()` 被调用。2D 模式下 ExtraCamera 被自动暂停，跟踪实体被解除（切换回 3D 时恢复）。
 
-## Large Constellation Recommendations
+## 大星座场景建议
 
-- Enable high performance mode; `entityUpdateGroups` is recommended to be 1/4 to 1/2 of the square root of the entity count
-- When ground clipping is not needed, set satellite sensors to `throughGround: false` to extend directly by `beamLength`
-- Disable trail paths for non-hover satellites (`path: { show: false }`)
-- Use `ResolutionSecond` to control TrailPathFeature sampling density
+- 启用高性能模式，`entityUpdateGroups` 建议取实体数开方的 1/4 ~ 1/2
+- 不需要地面裁剪时，卫星传感器设置 `throughGround: false`，直接按 `beamLength` 延伸
+- 非 hover 卫星关闭轨迹路径（`path: { show: false }`）
+- 使用 `ResolutionSecond` 控制 TrailPathFeature 采样密度
 
 
 ---

@@ -8,9 +8,9 @@
 
 > **rgbToHsl**(`color`): [`HslColor`](../types/HslColor.md)
 
-RGB 转 HSL。
+RGB to HSL.
 
-- 输入与输出分量均为 0~1，h 为角度制 0~360
+- Input and output components are 0~1, h is 0~360 in degrees
 
 ## Parameters
 

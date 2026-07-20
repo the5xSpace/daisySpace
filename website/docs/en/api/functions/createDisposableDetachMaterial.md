@@ -8,10 +8,10 @@
 
 > **createDisposableDetachMaterial**(): `Material`
 
-创建一个组件移除时使用的临时材质。
+Creates a temporary material used when removing a component.
 
-线对象从集合移除时会销毁自身挂载的材质。Feature 销毁只应解除组件对业务材质的引用，
-不能销毁外部传入或多处共享的材质。
+When a line object is removed from a collection, its attached material is destroyed. Feature destruction should only release the component's reference to the business material,
+not destroy externally provided or shared materials.
 
 ## Returns
 

@@ -8,7 +8,7 @@
 
 > **TaskStepListRenderer** = (`container`, `state`) => `void`
 
-自定义任务步骤列表渲染函数。
+Custom task step list render function.
 
 ## Parameters
 

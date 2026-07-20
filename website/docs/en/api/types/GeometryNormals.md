@@ -8,4 +8,4 @@
 
 > **GeometryNormals** = `Daisy.Cartesian3`[] \| `Float32Array` \| `number`[]
 
-顶点法线：支持 Cartesian3[] / Float32Array / number[]。
+Vertex normals: supports Cartesian3[] / Float32Array / number[].

@@ -6,7 +6,7 @@
 
 # Class: DaisyTopoRippleMaterial
 
-动态地形等值波纹材质。
+Dynamic terrain contour ripple material.
 
 ## Extends
 

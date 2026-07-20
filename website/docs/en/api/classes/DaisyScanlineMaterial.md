@@ -6,7 +6,7 @@
 
 # Class: DaisyScanlineMaterial
 
-动态扫描线材质。
+Dynamic scanline material.
 
 ## Extends
 

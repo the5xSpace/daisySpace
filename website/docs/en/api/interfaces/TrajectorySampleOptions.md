@@ -12,7 +12,7 @@
 
 > `optional` **computeBackend?**: [`TrajectoryComputeBackendMode`](../types/TrajectoryComputeBackendMode.md)
 
-预留的批量计算后端开关。默认 cpu，保持现有同步 行为。
+Reserved batch computation backend switch. Defaults to cpu, maintaining existing synchronous behavior.
 
 ***
 

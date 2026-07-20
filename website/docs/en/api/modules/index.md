@@ -1,8 +1,8 @@
 # Modules
 
-共 23 个 modules。
+23 modules total.
 
-| 名称 | 链接 |
+| Name | Link |
 |------|------|
 | `ArcGisMapServerImageryProvider` | [ArcGisMapServerImageryProvider](Daisy.ArcGisMapServerImageryProvider.md) |
 | `CallbackProperty` | [CallbackProperty](Daisy.CallbackProperty.md) |

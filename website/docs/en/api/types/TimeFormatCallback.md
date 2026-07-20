@@ -8,7 +8,7 @@
 
 > **TimeFormatCallback** = (`dateTime`) => `string`
 
-自定义时间格式化函数。
+Custom time formatting function.
 
 ## Parameters
 

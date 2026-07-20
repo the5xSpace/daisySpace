@@ -8,4 +8,4 @@
 
 > `const` **AviationTemplate**: [`ViewDistanceTemplate`](../types/ViewDistanceTemplate.md)
 
-航空尺度的内置视距模板。
+Built-in view distance template for aviation scale.

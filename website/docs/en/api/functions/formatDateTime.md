@@ -8,10 +8,10 @@
 
 > **formatDateTime**(`dateTime`, `pattern`): `string`
 
-使用 token 模式格式化日期时间上下文。
+Formats a date-time context using token patterns.
 
-支持 `YYYY`、`MMM`、`MM`、`M`、`DD`、`D`、`HH`、`H`、`mm`、`m`、
-`ss`、`s`、`SSS`、`TZ` 和 `Z`。
+Supports `YYYY`, `MMM`, `MM`, `M`, `DD`, `D`, `HH`, `H`, `mm`, `m`,
+`ss`, `s`, `SSS`, `TZ`, and `Z`.
 
 ## Parameters
 

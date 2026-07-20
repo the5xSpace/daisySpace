@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_COVERAGE\_AREA**: `"DaisyCoverageArea"` = `'DaisyCoverageArea'`
 
-Daisy 覆盖区域材质类型标识（coverageTexture + step 硬裁切 + 统一填充色）。
+Daisy coverage area material type identifier (coverageTexture + step hard clip + uniform fill color).

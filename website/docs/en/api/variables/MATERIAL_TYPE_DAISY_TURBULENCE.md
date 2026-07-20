@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_TURBULENCE**: `"DaisyTurbulence"` = `'DaisyTurbulence'`
 
-Daisy 湍流程序化材质类型标识。
+Daisy turbulence procedural material type identifier.

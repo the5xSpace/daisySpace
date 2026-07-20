@@ -8,9 +8,9 @@
 
 > **InterSatelliteVisibilityOptions** = `object`
 
-互视窗口预报选项。
+Inter-satellite visibility window prediction options.
 
-- `stepSeconds`: 采样步长（越小越精细但更耗时）
+- `stepSeconds`: sampling step size (smaller = more precise but slower)
 
 ## Properties
 

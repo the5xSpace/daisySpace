@@ -8,12 +8,12 @@
 
 > **ConjunctionEvent** = `{ minDistance: number; relativeSpeedPerSecond: number; satAId: string; satBId: string; stateA: OrbitState; stateB: OrbitState; tcaTimestampMs: number; tcaUtc: Date; timeBasis: "UTC" }`
 
-交汇事件（>=2 星最近距离预报）。
+Conjunction event (closest approach prediction for >=2 satellites).
 
-- `tcaUtc`: 最近距离发生时刻（TCA）
-- `minDistance`: 最近距离（m）
-- `relativeSpeedPerSecond`: 相对速度模长（m/s），基于 ECEF 速度估计
-- `stateA`/`stateB`: 同一 `tcaUtc` 下双方的完整状态输出（含 ECI/ECEF/LLA）
+- `tcaUtc`: Time of Closest Approach (TCA)
+- `minDistance`: minimum distance (m)
+- `relativeSpeedPerSecond`: relative speed magnitude (m/s), estimated from ECEF velocities
+- `stateA`/`stateB`: full state output for both objects at the same `tcaUtc` (including ECI/ECEF/LLA)
 
 ## Properties
 

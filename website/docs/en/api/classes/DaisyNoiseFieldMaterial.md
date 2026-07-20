@@ -6,7 +6,7 @@
 
 # Class: DaisyNoiseFieldMaterial
 
-动态噪声场材质。
+Dynamic noise field material.
 
 ## Extends
 

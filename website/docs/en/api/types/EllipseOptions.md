@@ -42,7 +42,7 @@ false
 
 ### classificationType?
 
-> `optional` **classificationType?**: `ClassificationType`
+> `optional` **classificationType?**: `Daisy.ClassificationType`
 
 贴地分类目标。
 
@@ -51,7 +51,7 @@ false
 #### Default
 
 ```ts
-ClassificationType.BOTH
+Daisy.ClassificationType.BOTH
 ```
 
 ### distanceDisplayCondition?

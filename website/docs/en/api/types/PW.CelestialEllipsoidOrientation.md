@@ -8,7 +8,7 @@
 
 > **CelestialEllipsoidOrientation** = `Daisy.Matrix3` \| `Daisy.Quaternion` \| ((`time?`) => `Daisy.Matrix3` \| `Daisy.Quaternion` \| `undefined` \| `null`)
 
-天体局部坐标系到世界坐标的姿态来源
+Orientation source from celestial body local coordinates to world coordinates
 
-- 支持固定矩阵/四元数
-- 或按时间返回的函数
+- Supports fixed matrix/quaternion
+- Or a function that returns a value by time

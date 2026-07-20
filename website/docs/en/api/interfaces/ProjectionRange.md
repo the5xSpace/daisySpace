@@ -6,7 +6,7 @@
 
 # Interface: ProjectionRange
 
-投影区间（min/max）。
+Projection range (min/max).
 
 ## Properties
 

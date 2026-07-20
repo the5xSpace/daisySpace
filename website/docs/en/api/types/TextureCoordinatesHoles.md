@@ -8,9 +8,9 @@
 
 > **TextureCoordinatesHoles** = `{ positions: Daisy.Cartesian2[] }`
 
-纹理坐标孔洞结构（positions + holes）。
+Texture coordinate hole structure (positions + holes).
 
-与 `Holes` 对应，但 positions 为 `Daisy.Cartesian2[]`。
+Corresponds to `Holes`, but positions are `Daisy.Cartesian2[]`.
 
 ## Properties
 

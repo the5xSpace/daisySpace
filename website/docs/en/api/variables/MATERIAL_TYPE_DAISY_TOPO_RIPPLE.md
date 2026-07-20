@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_TOPO\_RIPPLE**: `"DaisyTopoRipple"` = `'DaisyTopoRipple'`
 
-Daisy 地形波纹程序化材质类型标识。
+Daisy topo ripple procedural material type identifier.

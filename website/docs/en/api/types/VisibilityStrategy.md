@@ -8,7 +8,7 @@
 
 > **VisibilityStrategy** = `{ mode: VisibilityMode }`
 
-可见性策略配置。
+Visibility strategy configuration.
 
 ## Properties
 
@@ -16,4 +16,4 @@
 
 > **mode**: [`VisibilityMode`](../enums/VisibilityMode.md)
 
-可见性控制模式。
+Visibility control mode.

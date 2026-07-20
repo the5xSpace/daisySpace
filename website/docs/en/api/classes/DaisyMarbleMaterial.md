@@ -6,7 +6,7 @@
 
 # Class: DaisyMarbleMaterial
 
-动态大理石纹材质。
+Dynamic marble texture material.
 
 ## Extends
 

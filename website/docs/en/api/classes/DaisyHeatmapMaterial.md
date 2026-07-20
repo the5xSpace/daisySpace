@@ -6,7 +6,7 @@
 
 # Class: DaisyHeatmapMaterial
 
-径向热力分布材质。
+Radial thermal distribution material.
 
 ## Extends
 

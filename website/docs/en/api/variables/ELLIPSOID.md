@@ -8,7 +8,7 @@
 
 > `const` **ELLIPSOID**: `object`
 
-常用椭球体定义集合。
+Common ellipsoid definition collection.
 
 ## Type Declaration
 

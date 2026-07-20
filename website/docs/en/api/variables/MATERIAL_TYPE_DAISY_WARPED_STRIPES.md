@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_WARPED\_STRIPES**: `"DaisyWarpedStripes"` = `'DaisyWarpedStripes'`
 
-Daisy 扭曲条纹程序化材质类型标识。
+Daisy warped stripes procedural material type identifier.

@@ -6,7 +6,7 @@
 
 # Class: RadialPulseMaterial
 
-从中心向外生成环形扩散效果的动态材质。
+A dynamic material that generates a ring diffusion effect from the center outward.
 
 ## Extends
 

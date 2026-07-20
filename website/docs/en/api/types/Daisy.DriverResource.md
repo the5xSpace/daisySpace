@@ -8,4 +8,4 @@
 
 > **DriverResource** = `any`
 
-Daisy 命名空间透传类型。
+Daisy namespace passthrough type.

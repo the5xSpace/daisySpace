@@ -6,7 +6,7 @@
 
 # Class: DaisyHalftoneMaterial
 
-半色调网点材质。
+Halftone dot material.
 
 ## Extends
 

@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_AURORA**: `"DaisyAurora"` = `'DaisyAurora'`
 
-Daisy 极光程序化材质类型标识。
+Daisy aurora procedural material type identifier.

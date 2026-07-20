@@ -8,4 +8,4 @@
 
 > **FootprintAtTimeDrawOptions** = `Omit`\<[`FootprintDrawOptions`](PW.FootprintDrawOptions.md), `"begin"` \| `"end"`\>
 
-单时刻覆盖绘制配置，不需要起止时刻。
+Single-time coverage drawing configuration, no start/end time needed.

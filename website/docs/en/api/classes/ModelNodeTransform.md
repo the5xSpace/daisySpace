@@ -6,9 +6,9 @@
 
 # Class: ModelNodeTransform
 
-节点变换控制器（链式调用）。
+Node transform controller (chainable).
 
-通过 ModelFeature.transformNode(name) 获取实例；变换会作为状态副作用在每帧 update 自动生效。
+Obtain an instance via ModelFeature.transformNode(name). Transforms are applied automatically as state side effects in each frame's update.
 
 ## Example
 

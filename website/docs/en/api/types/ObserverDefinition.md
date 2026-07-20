@@ -8,7 +8,7 @@
 
 > **ObserverDefinition** = `{ latitudeDeg: number; longitudeDeg: number }`
 
-观测点定义（角度制经纬度 + 米制高度）。
+Observer definition (angular latitude/longitude + height in meters).
 
 ## Properties
 

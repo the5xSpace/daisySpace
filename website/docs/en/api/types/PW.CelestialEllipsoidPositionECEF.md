@@ -8,7 +8,7 @@
 
 > **CelestialEllipsoidPositionECEF** = `Daisy.Cartesian3` \| ((`time?`) => `Daisy.Cartesian3` \| `undefined` \| `null`)
 
-天体中心在 ECEF 下的位置来源
+Position source of the celestial body center in ECEF
 
-- 可直接给定固定坐标
-- 可提供按时间返回的函数
+- Can be given as fixed coordinates
+- Can be provided as a function returning a value by time

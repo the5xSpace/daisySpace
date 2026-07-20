@@ -8,7 +8,7 @@
 
 > **resolveSimTimeValue**\<`T`\>(`value`, `time`): `T`
 
-解析仿真时间值。
+Resolves a simulation time value.
 
 ## Type Parameters
 

@@ -8,4 +8,4 @@
 
 > **CelestialRayLike** = \{ `direction`: `Daisy.Cartesian3`; `origin`: `Daisy.Cartesian3`; \} \| `Daisy.Ray`
 
-射线输入类型（ECEF 坐标系）
+Ray input type (ECEF coordinate system)

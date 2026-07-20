@@ -6,7 +6,7 @@
 
 # Interface: DynamicShaderParamOptions\<T\>
 
-自定义动态 Shader 参数配置。
+Custom dynamic Shader parameter configuration.
 
 ## Type Parameters
 
@@ -20,4 +20,4 @@
 
 > **fallback**: `T`
 
-解析器返回 `undefined` 时使用的值，同时用于校验声明的 GLSL 类型。
+The value used when the parser returns `undefined`, also used to validate the declared GLSL type.

@@ -12,4 +12,4 @@
 
 > `optional` **timeFormat?**: [`TimeFormatConfig`](../types/TimeFormatConfig.md)
 
-局部时间格式；未设置时使用引擎的全局 `timeFormat`。
+Local time format; falls back to the engine's global `timeFormat` when not set.

@@ -6,9 +6,9 @@
 
 # Class: PointFeature
 
-Point feature (`PointFeature`).
+点要素（PointFeature）。
 
-Creates a `PointPrimitive` from `Engine.collections.pointPrimitiveCollection`.
+基于 `Engine.collections.pointPrimitiveCollection` 创建 `PointPrimitive`。
 
 ## Extends
 
@@ -40,9 +40,9 @@ Creates a `PointPrimitive` from `Engine.collections.pointPrimitiveCollection`.
 
 > **handle**: (`mode`) => `void`
 
-Default handling when the scene mode changes.
+场景模式切换时的默认处理。
 
-In 2D or other non-3D modes, the local body axes are destroyed by default to avoid rendering artifacts.
+2D/非 3D 模式下，默认销毁机体坐标轴以避免异常显示。
 
 #### Parameters
 
@@ -126,7 +126,7 @@ In 2D or other non-3D modes, the local body axes are destroyed by default to avo
 
 > **get** **id**(): `string`
 
-Unique identifier for the feature.
+Feature 的唯一标识。
 
 ##### Default
 
@@ -140,10 +140,10 @@ Unique identifier for the feature.
 
 > **set** **id**(`value`): `void`
 
-Unique identifier for the feature.
+Feature 的唯一标识。
 
-It is usually generated automatically by the base class during construction as `${type}__${GenGuid()}`.
-Subclasses can also override it manually before registration.
+通常由基类在构造时自动生成：`${type}__${GenGuid()}`。
+子类也可以在注册前手动覆盖。
 
 ##### Default
 
@@ -171,9 +171,9 @@ Subclasses can also override it manually before registration.
 
 > **get** **includeInBoundingSphere**(): `boolean`
 
-Whether the current feature participates in the entity's bounding sphere aggregation.
+当前 Feature 是否参与 Entity 的包围球聚合。
 
-The default is `true`. You can disable this for helper lines, particles, and other features that should not affect camera framing.
+默认值为 `true`。辅助线、粒子等不希望影响相机取景的 Feature 可以关闭。
 
 ##### Returns
 
@@ -217,7 +217,7 @@ The default is `true`. You can disable this for helper lines, particles, and oth
 
 > **set** **lodMode**(`mode`): `void`
 
-Sets the current feature's LOD mode.
+设置当前 Feature 的 LOD 模式。
 
 ##### Parameters
 
@@ -378,7 +378,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Inherited from
 
-[`PopoverFeature`](UI.PopoverFeature.md).[`throttleable`](UI.PopoverFeature.md#throttleable)
+[`Feature`](Feature.md).[`throttleable`](Feature.md#throttleable)
 
 ***
 

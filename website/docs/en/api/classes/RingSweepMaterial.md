@@ -6,7 +6,7 @@
 
 # Class: RingSweepMaterial
 
-沿角度方向循环扫描的动态扇面材质。
+A dynamic fan-shaped material that scans cyclically along the angular direction.
 
 ## Extends
 

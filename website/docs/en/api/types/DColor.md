@@ -8,4 +8,4 @@
 
 > **DColor** = `Color` \| `string`
 
-Daisy API 接受的颜色对象或 CSS 颜色字符串。
+Color object or CSS color string accepted by the Daisy API.

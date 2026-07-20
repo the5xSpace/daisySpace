@@ -6,7 +6,7 @@
 
 # Class: DaisyCellularMaterial
 
-细胞噪声边界材质。
+Cellular noise boundary material.
 
 ## Extends
 

@@ -8,4 +8,4 @@
 
 > **ParticleEmitFrom** = `NormalizedParticleEmitFrom` \| `"VOLUME"` \| `"SHELL"` \| `"EDGE"`
 
-粒子发射区域：`"volume"`（体积）/ `"shell"`（壳面）/ `"edge"`（边缘）。
+Particle emission area: `"volume"` / `"shell"` / `"edge"`.

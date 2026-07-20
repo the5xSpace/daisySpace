@@ -8,4 +8,4 @@
 
 > `const` **DEFAULT\_TIME\_FORMAT**: [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md)
 
-SDK 默认时间格式配置。
+SDK default time format configuration.

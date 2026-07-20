@@ -8,7 +8,7 @@
 
 > **julianDateToAbsSeconds**(`time`): `number`
 
-将 JulianDate 转为单调绝对秒，和 TrailPathFeature 内部时间轴保持一致。
+Converts a JulianDate to monotonic absolute seconds, consistent with the TrailPathFeature internal timeline.
 
 ## Parameters
 

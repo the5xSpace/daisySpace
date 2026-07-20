@@ -8,9 +8,9 @@
 
 > **ArrowPointerLabelOptions** = [`DaisyLabelOptions`](../interfaces/DaisyLabelOptions.md) & `object` \| `string`
 
-箭头前端 label 配置。
+Arrow tip label configuration.
 
-该类型在 `DaisyLabelOptions` 的基础上要求必须提供 `text`。
+This type extends `DaisyLabelOptions` and requires that `text` be provided.
 
 ## Example
 

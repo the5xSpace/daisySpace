@@ -8,9 +8,9 @@
 
 > **mergeTimeFormatOptions**(`base?`, `override?`): [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md)
 
-合并基础与局部时间格式配置。
+Merges base and local time format configurations.
 
-当局部配置是预设名或回调时会完整替换基础配置；局部配置为对象时按字段覆盖。
+When the local config is a preset name or callback, it fully replaces the base config. When the local config is an object, it merges by field.
 
 ## Parameters
 

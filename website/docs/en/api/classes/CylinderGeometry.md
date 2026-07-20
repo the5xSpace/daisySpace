@@ -6,7 +6,7 @@
 
 # Class: CylinderGeometry
 
-Daisy圆锥/柱体（封装 CylinderGeometry）
+Daisy cone/cylinder (wraps CylinderGeometry)
 
 ## Constructors
 

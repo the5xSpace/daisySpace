@@ -8,9 +8,9 @@
 
 > **OrbitStateECEF** = `{ frame: "ECEF"; position: Daisy.Cartesian3; velocityPerSecond: Daisy.Cartesian3 }`
 
-轨道状态（ECEF / 地固坐标）。
+Orbit state (ECEF / Earth-fixed coordinates).
 
-单位：
+Units:
 - `position`: m
 - `velocityPerSecond`: m/s
 

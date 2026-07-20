@@ -8,4 +8,4 @@
 
 > **FollowTarget** = [`Entity`](../classes/Entity.md) \| [`BaseObject`](../classes/PW.BaseObject.md)
 
-可被相机追踪的目标类型。
+Target types that can be tracked by the camera.

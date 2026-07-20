@@ -6,7 +6,7 @@
 
 # Class: DaisyGridGlowMaterial
 
-脉冲发光网格材质。
+Pulsing glow grid material.
 
 ## Extends
 

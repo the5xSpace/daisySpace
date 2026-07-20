@@ -8,7 +8,7 @@
 
 > **ModelExplosionState** = `Required`\<`Pick`\<[`ModelExplosionOptions`](ModelExplosionOptions.md), `"enabled"` \| `"factor"`\>\> & `object`
 
-Current state of the exploded-view model.
+Current state of the model explosion view.
 
 ## Type Declaration
 

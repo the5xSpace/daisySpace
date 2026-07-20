@@ -8,4 +8,4 @@
 
 > **ParticleEmitterAxis** = `"x"` \| `"y"` \| `"z"`
 
-粒子发射器参考轴：`"x"` / `"y"` / `"z"`。
+Particle emitter reference axis: `"x"` / `"y"` / `"z"`.

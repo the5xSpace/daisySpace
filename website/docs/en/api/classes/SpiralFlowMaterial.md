@@ -6,7 +6,7 @@
 
 # Class: SpiralFlowMaterial
 
-沿表面高度方向生成多层滚动环带的螺旋流动材质。
+A spiral flow material that generates multi-layer rolling rings along the surface height direction.
 
 ## Example
 

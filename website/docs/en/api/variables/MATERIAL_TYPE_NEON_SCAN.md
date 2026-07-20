@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_NEON\_SCAN**: `"NeonScan"` = `'NeonScan'`
 
-霓虹扫描材质类型标识。
+Neon scan material type identifier.

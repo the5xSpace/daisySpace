@@ -8,7 +8,7 @@
 
 > **removePrimitive**(`collection`, `primitive`): `void`
 
-从空间渲染集合移除对象前，摘掉其外观材质引用。
+Before removing an object from the spatial rendering collection, detaches its appearance material reference.
 
 ## Parameters
 

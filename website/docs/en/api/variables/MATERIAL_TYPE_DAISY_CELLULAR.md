@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_CELLULAR**: `"DaisyCellular"` = `'DaisyCellular'`
 
-Daisy 细胞自动机程序化材质类型标识。
+Daisy cellular automata procedural material type identifier.

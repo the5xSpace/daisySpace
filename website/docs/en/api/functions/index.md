@@ -1,8 +1,8 @@
 # Functions
 
-共 86 个 functions。
+86 functions total.
 
-| 名称 | 链接 |
+| Name | Link |
 |------|------|
 | `acosClamped()` | [acosClamped()](Daisy.Math.acosClamped.md) |
 | `asinClamped()` | [asinClamped()](Daisy.Math.asinClamped.md) |

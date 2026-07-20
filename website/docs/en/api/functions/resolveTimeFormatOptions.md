@@ -8,7 +8,7 @@
 
 > **resolveTimeFormatOptions**(`primary?`, `legacy?`): [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md)
 
-按主配置、兼容配置、SDK 默认值的顺序解析最终配置。
+Resolves the final configuration by checking main config, compatibility config, and SDK defaults in order.
 
 ## Parameters
 

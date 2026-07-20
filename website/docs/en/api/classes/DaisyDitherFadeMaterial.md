@@ -6,7 +6,7 @@
 
 # Class: DaisyDitherFadeMaterial
 
-抖动阈值淡变材质。
+Dither threshold fade material.
 
 ## Extends
 

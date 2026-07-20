@@ -8,4 +8,4 @@
 
 > **GeometryUvs** = `Daisy.Cartesian2`[] \| `Float32Array` \| `number`[]
 
-纹理坐标：支持 Cartesian2[] / Float32Array / number[]。
+Texture coordinates: supports Cartesian2[] / Float32Array / number[].

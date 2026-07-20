@@ -8,9 +8,9 @@
 
 > **Holes** = `{ positions: Daisy.Cartesian3[] }`
 
-多边形孔洞结构（positions + holes）。
+Polygon hole structure (positions + holes).
 
-与 Daisy.PolygonHierarchy 的概念一致，可递归嵌套。
+Consistent with the concept of Daisy.PolygonHierarchy, allowing recursive nesting.
 
 ## Properties
 

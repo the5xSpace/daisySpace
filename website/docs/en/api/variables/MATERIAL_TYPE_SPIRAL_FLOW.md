@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_SPIRAL\_FLOW**: `"SpiralFlow"` = `'SpiralFlow'`
 
-螺旋流动材质类型标识。
+Spiral flow material type identifier.

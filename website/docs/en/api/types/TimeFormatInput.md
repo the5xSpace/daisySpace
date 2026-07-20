@@ -8,4 +8,4 @@
 
 > **TimeFormatInput** = `Daisy.JulianDate` \| `Date` \| `string` \| `number`
 
-可转换为仿真时刻的输入；数字按 Unix 毫秒时间戳解释。
+Input convertible to a simulation time; numbers are interpreted as Unix millisecond timestamps.

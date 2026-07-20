@@ -8,4 +8,4 @@
 
 > **ArcRotateCameraMode** = `"Initial"` \| `"Follow"` \| `"UserControl"`
 
-ArcRotate（环绕）相机的工作模式。
+ArcRotate camera operating mode.

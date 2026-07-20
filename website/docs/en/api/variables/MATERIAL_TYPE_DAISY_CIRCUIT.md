@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_CIRCUIT**: `"DaisyCircuit"` = `'DaisyCircuit'`
 
-Daisy 电路板程序化材质类型标识。
+Daisy circuit board procedural material type identifier.

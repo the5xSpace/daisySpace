@@ -8,9 +8,9 @@
 
 > **OrbitStateENU** = `{ azimuthDeg: number; east: number; elevationDeg: number; north: number; range: number; up: number }`
 
-观测者局部坐标（ENU）以及派生量（方位/仰角/距离）。
+Observer local coordinates (ENU) and derived quantities (azimuth/elevation/range).
 
-单位：
+Units:
 - `east`, `north`, `up`: m
 - `azimuthDeg`, `elevationDeg`: deg
 - `range`: m

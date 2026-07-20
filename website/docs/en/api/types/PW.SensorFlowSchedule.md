@@ -8,4 +8,4 @@
 
 > **SensorFlowSchedule** = `boolean` \| [`TimeValue`](TimeValue.md)\<`boolean`\> \| [`TimeRanges`](PW.TimeRanges.md) \| [`TimeValue`](TimeValue.md)\<[`TimeRanges`](PW.TimeRanges.md)\>
 
-流动效果的启用计划，可按布尔值、动态值或时间范围控制。
+Flow effect enable schedule, controllable by boolean, dynamic value, or time range.

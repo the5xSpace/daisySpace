@@ -6,7 +6,7 @@
 
 # Class: DaisyContourBandsMaterial
 
-分层等值带材质。
+Layered contour bands material.
 
 ## Extends
 

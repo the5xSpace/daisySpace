@@ -8,6 +8,6 @@
 
 > **GroundStationPresetModel** = `"dsn34"` \| `"dsn70"` \| `"radome"`
 
-GroundStation 配置。
+GroundStation configuration.
 
-默认会挂载一个地面站天线模型；如只需要抽象点位，可传 `model: false` 关闭。
+By default, a ground station antenna model is mounted. Pass `model: false` to use only an abstract point.

@@ -6,7 +6,7 @@
 
 # Class: FlowArrowMaterialProperty
 
-流动箭头材质属性
+Flow arrow material property
 
 ## Implements
 

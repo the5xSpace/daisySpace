@@ -8,4 +8,4 @@
 
 > **SunOcclusionState** = `"sunlit"` \| `"penumbra"` \| `"umbra"`
 
-太阳遮挡状态：`sunlit` 为无遮挡，`penumbra` 为部分遮挡，`umbra` 为完全遮挡。
+Sun occlusion state: `sunlit` for no occlusion, `penumbra` for partial occlusion, `umbra` for full occlusion.

@@ -8,10 +8,10 @@
 
 > **ArcRotateInputInstallOptions** = `{ canvas: HTMLCanvasElement }`
 
-输入监听安装参数。
+Input listener installation parameters.
 
-- canvas：接收 pointer/wheel 事件
-- screenSpaceCameraController：可选，用于在安装时禁用输入、卸载时恢复
+- canvas: receives pointer/wheel events
+- screenSpaceCameraController: optional, used to disable input on install and restore on uninstall
 
 ## Properties
 

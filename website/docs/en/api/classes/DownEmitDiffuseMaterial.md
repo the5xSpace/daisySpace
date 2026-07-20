@@ -6,7 +6,7 @@
 
 # Class: DownEmitDiffuseMaterial
 
-光束向下流动并在底部形成扩散环的动态材质。
+A dynamic material where a beam flows downward and forms a diffuse ring at the bottom.
 
 ## Extends
 

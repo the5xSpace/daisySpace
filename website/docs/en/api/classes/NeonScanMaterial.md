@@ -6,7 +6,7 @@
 
 # Class: NeonScanMaterial
 
-叠加带状扫描与柔光效果的动态材质。
+A dynamic material with带状 scanning and soft glow effects.
 
 ## Extends
 

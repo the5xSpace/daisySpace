@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_HEATMAP**: `"DaisyHeatmap"` = `'DaisyHeatmap'`
 
-Daisy 热力图程序化材质类型标识。
+Daisy heatmap procedural material type identifier.

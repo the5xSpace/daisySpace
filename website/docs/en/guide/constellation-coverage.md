@@ -1,8 +1,8 @@
-# Constellation Coverage Analysis
+# 星座覆盖分析
 
-Constellation coverage analysis evaluates a set of satellites' coverage capability over the Earth's (or any celestial body's) surface within a specified time period — coverage percentage, maximum gap, revisit time, and other metrics.
+星座覆盖分析用于评估一组卫星在指定时间段内对地球（或任意天体）表面的覆盖能力——覆盖率、最大间隙、重访时间等指标。
 
-## Concept Model
+## 概念模型
 
 ```
 Constellation（星座容器）
@@ -14,9 +14,9 @@ Constellation（星座容器）
         └── 输出 CoverageAnalysisResult（stats + polygons + summaries）
 ```
 
-## Constellation Container (PW.Constellation)
+## 星座容器（PW.Constellation）
 
-[Constellation](/en/api/classes/PW.Constellation) is an aggregate container for satellites, providing batch operation interfaces.
+[Constellation](/en/api/classes/PW.Constellation) 是卫星的聚合容器，提供批量操作接口。
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -24,21 +24,21 @@ import * as Daisy from "daisy-space-sdk"
 const constellation = new Daisy.PW.Constellation()
 ```
 
-### Core Methods
+### 核心方法
 
-| Method | Description |
-|--------|-------------|
-| `addSatellite(sat)` | Add a satellite |
-| `removeSatellite(sat)` | Remove a satellite |
-| `bindEngine(engine)` | Bind the engine (auto-calls `bindEngine` for all unbound satellites) |
-| `getSatellites()` | Get a read-only array of all satellites |
-| `get allSensors` | Get all Sensor components from all satellites |
-| `satelliteCount` | Number of satellites |
-| `destroy()` | Destroy the constellation and all its satellites |
+| 方法 | 说明 |
+|------|------|
+| `addSatellite(sat)` | 添加一颗卫星 |
+| `removeSatellite(sat)` | 移除一颗卫星 |
+| `bindEngine(engine)` | 绑定引擎（自动为所有未绑卫星调用 `bindEngine`） |
+| `getSatellites()` | 获取所有卫星的只读数组 |
+| `get allSensors` | 获取所有卫星的全部 Sensor 组件 |
+| `satelliteCount` | 卫星数量 |
+| `destroy()` | 销毁星座及所有卫星 |
 
-### Walker Topology
+### Walker 拓扑
 
-An optional `WalkerTopology` can be passed during construction to describe the constellation configuration (for advanced analysis):
+构造时可选传入 `WalkerTopology` 描述星座构型（用于后续高级分析）：
 
 ```typescript
 const walkerTopology: WalkerTopology = {
@@ -53,9 +53,9 @@ const constellation = new Daisy.PW.Constellation(walkerTopology)
 // constellation.topology → WalkerTopology
 ```
 
-## Coverage Analysis Engine
+## 覆盖分析引擎
 
-`Analysis.ConstellationCoverageAnalysis` is the entry point for coverage analysis.
+`Analysis.ConstellationCoverageAnalysis` 是覆盖分析入口。
 
 ```typescript
 const analysis = new Daisy.Analysis.ConstellationCoverageAnalysis({
@@ -63,15 +63,15 @@ const analysis = new Daisy.Analysis.ConstellationCoverageAnalysis({
 })
 ```
 
-### Constructor Parameters
+### 构造参数
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `backend` | `BeamProjectorBackend` (optional) | Footprint computation backend (`CPU` or `GPU`) |
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `backend` | `BeamProjectorBackend`（可选） | footprint 计算后端（`CPU` 或 `GPU`） |
 
 ### setConstellation()
 
-The constellation must be bound before analysis:
+分析前必须先绑定星座：
 
 ```typescript
 await analysis.setConstellation(constellation)
@@ -79,7 +79,7 @@ await analysis.setConstellation(constellation)
 
 ### computeCoverageOverRange()
 
-Core analysis entry point, returns `CoverageAnalysisResult`:
+核心分析入口，返回 `CoverageAnalysisResult`：
 
 ```typescript
 const result: CoverageAnalysisResult = await analysis.computeCoverageOverRange({
@@ -99,9 +99,9 @@ const result: CoverageAnalysisResult = await analysis.computeCoverageOverRange({
 })
 ```
 
-`startTime`/`endTime` can also use `start`/`end` aliases.
+`startTime`/`endTime` 也可用 `start`/`end` 别名。
 
-### Return Value (CoverageAnalysisResult)
+### 返回值（CoverageAnalysisResult）
 
 ```typescript
 interface CoverageAnalysisResult {
@@ -126,20 +126,20 @@ interface CoverageAnalysisResult {
 }
 ```
 
-Each `satelliteCoverages` item contains:
+`satelliteCoverages` 每项包含：
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `satelliteName` | `string` | Satellite name |
-| `sensorCount` | `number` | Number of sensors |
-| `polygonCount` | `number` | Number of footprint polygons from this satellite |
-| `polygons` | `SatelliteCoveragePolygon[]` | List of footprint details for this satellite |
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `satelliteName` | `string` | 卫星名称 |
+| `sensorCount` | `number` | 传感器数量 |
+| `polygonCount` | `number` | 该星产生的 footprint 多边形数 |
+| `polygons` | `SatelliteCoveragePolygon[]` | 该星的 footprint 详情列表 |
 
-Each `polygons` item contains: `satelliteName` / `sensorName` / `time` / `ring: [lon, lat][]`.
+`polygons` 每项包含：`satelliteName` / `sensorName` / `time` / `ring: [lon, lat][]`。
 
-## Rendering Coverage Fence
+## 渲染覆盖围栏
 
-The `polygons` output from coverage analysis can be rendered via [CoverageAreaFeature](/en/api/classes/CoverageAreaFeature):
+覆盖分析的 `polygons` 输出可通过 [CoverageAreaFeature](/en/api/classes/CoverageAreaFeature) 渲染：
 
 ```typescript
 const engine = await Daisy.Engine.create("container")
@@ -169,7 +169,7 @@ coverageFeature.setPolygons(
 )
 ```
 
-## Complete Example (Two-Satellite Constellation)
+## 完整示例（双星星座）
 
 ```typescript
 const engine = await Daisy.Engine.create("container")
@@ -215,19 +215,19 @@ console.log(`最大间隙: ${result.stats.maxGapSeconds.toFixed(0)}s`)
 console.log(`重访时间: ${result.stats.revisitTimeSeconds.toFixed(0)}s`)
 ```
 
-## Qianfan Constellation (164 Satellites) Real-World Case
+## 千帆星座（164 星）真实案例
 
-The Qianfan constellation is a large-scale 164-satellite constellation case study. Key points:
+千帆星座是一个 164 颗卫星的大规模星座案例。关键要点：
 
-1. **Batch creation**: Iterate through the TLE array, creating a `Satellite` + mounting `Sensor` + calling `constellation.addSatellite(sat)` for each
-2. **Progress callback**: Use `onProgress` for real-time analysis progress feedback (`current/total: satName`)
-3. **GPU backend recommended**: `backend: Analysis.BeamProjectorBackend.GPU` significantly accelerates large-scale constellations
-4. **Per-satellite filtering**: The `targets` parameter can specify a subset of satellites for analysis, avoiding redundant computation
-5. **Fence rendering**: After analysis, pass `result.polygons` to `CoverageAreaFeature.setPolygons()` for rendering
-6. **Resource cleanup**: Call `analysis.destroy()` to release computational resources after analysis
+1. **批量创建**：遍历 TLE 数组为每颗卫星创建 `Satellite` + 挂载 `Sensor` + 调用 `constellation.addSatellite(sat)`
+2. **进度回调**：通过 `onProgress` 实时反馈分析进度（`current/total: satName`）
+3. **GPU 后端推荐**：`backend: Analysis.BeamProjectorBackend.GPU` 对大规模星座显著加速
+4. **按星筛选**：`targets` 参数可指定参与分析的卫星子集，避免重复计算
+5. **围栏渲染**：分析完成后将 `result.polygons` 传入 `CoverageAreaFeature.setPolygons()` 渲染
+6. **资源释放**：分析完成后调用 `analysis.destroy()` 释放计算资源
 
-> **Tip**: Large-scale constellation analysis may take a long time (depending on satellite count × time period × step size). It is recommended to first verify parameters with a smaller window and step size, then scale up to the full analysis.
+> **提示**：大规模星座分析可能耗时较长（取决于卫星数 × 时间段 × 步长）。建议先用较小的窗口和步长验证参数，再放大到完整分析。
 
 ---
 
-> **Related API**: [PW.Constellation](/en/api/classes/PW.Constellation) · [PW.Satellite](/en/api/classes/PW.Satellite) · [CoverageAreaFeature](/en/api/classes/CoverageAreaFeature)
+> **相关 API**：[PW.Constellation](/en/api/classes/PW.Constellation) · [PW.Satellite](/en/api/classes/PW.Satellite) · [CoverageAreaFeature](/en/api/classes/CoverageAreaFeature)

@@ -1,8 +1,8 @@
-# Time Formatting
+# 时间格式化
 
-All time-related components (simulation time display, timeline ticks, Gantt chart labels, etc.) share the same formatting system. The engine maintains a global default format, and each component can independently override it.
+所有时间相关组件（仿真时间显示、时间轴刻度、甘特图标签等）共享同一套格式化系统。引擎维护全局默认格式，各组件可独立覆盖。
 
-## Global Settings
+## 全局设置
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -16,7 +16,7 @@ engine.setTimeFormat("date-time")
 engine.setTimeFormat({ preset: "date-time", utcOffsetHours: 8, timezoneName: "BJT" })
 
 // 使用工厂函数
-engine.setTimeFormat(Daisy.TimeFormatters.beijingTime({ format: "HH:mm:ss TZ" })
+engine.setTimeFormat(Daisy.TimeFormatters.beijingTime({ format: "HH:mm:ss TZ" }))
 
 // T0 相对时间（常用于发射场景）
 engine.setTimeFormat({ preset: "t0", t0: launchEpoch, t0Label: "T" })
@@ -25,10 +25,10 @@ engine.setTimeFormat({ preset: "t0", t0: launchEpoch, t0Label: "T" })
 const fmt = engine.getTimeFormat()
 ```
 
-### Presets
+### 预设
 
-| Preset | Output Example |
-|---------|----------------|
+| 预设 | 输出示例 |
+|------|----------|
 | `"utc"` | `2026-07-01 00:00:00 UTC` |
 | `"bjt"` | `2026-07-01 08:00:00 BJT` |
 | `"iso"` | `2026-07-01T00:00:00Z` |
@@ -38,12 +38,12 @@ const fmt = engine.getTimeFormat()
 | `"time-ms"` | `00:00:00.000` |
 | `"date-time"` | `2026-07-01 00:00:00 UTC` |
 | `"date-time-ms"` | `2026-07-01 00:00:00.000 UTC` |
-| `"t0"` | `T+123.0s` (requires `t0` reference time) |
-| `"cesium"` | `Jul 01 2026 00:00:00 UTC` (compatibility format) |
+| `"t0"` | `T+123.0s`（需要传 `t0` 参考时间） |
+| `"cesium"` | `Jul 01 2026 00:00:00 UTC`（兼容格式） |
 
-## Component-level Override
+## 组件级覆盖
 
-Pass `timeFormat` (or an equivalent field) when constructing each component to override the global format. Override logic: when passing a function or string, it **fully replaces** the global format; when passing an object, it **shallow-merges** with the global format.
+各组件构造时传入 `timeFormat`（或等效字段）即可覆盖全局格式。覆盖逻辑：传入函数或字符串时**完全替换**全局格式；传入对象时**浅合并**全局格式。
 
 ### SimulationTimeWidget
 
@@ -80,9 +80,9 @@ engine.addWidget(new Daisy.TaskTimeLineWidget(schedule, {
 }))
 ```
 
-## Custom Format Generator
+## 自定义格式生成器
 
-Register a fully custom formatting function via `TimeFormatters.custom()`:
+通过 `TimeFormatters.custom()` 注册完全自定义的格式化函数：
 
 ```typescript
 engine.setTimeFormat(Daisy.TimeFormatters.custom(
@@ -96,33 +96,33 @@ engine.setTimeFormat(Daisy.TimeFormatters.custom(
 // 输出: "2026 Q3 01日"
 ```
 
-The `dt` object ([TimeFormatDateTime](/en/api/interfaces/TimeFormatDateTime)) provides full time fields and shortcut methods:
+`dt` 对象（[TimeFormatDateTime](/en/api/interfaces/TimeFormatDateTime)）提供全量时间字段和快捷方法：
 
-| Field | Description |
-|-------|-------------|
-| `dt.date` | JS Date (timezone-offset) |
-| `dt.utcDate` | Original UTC Date |
-| `dt.relativeSeconds` | Seconds relative to T0 |
-| `dt.timestampMs` | Millisecond timestamp |
-| `dt.format(pattern)` | Secondary formatting using token templates |
-| `dt.toISOString()` | ISO 8601 string |
+| 字段 | 说明 |
+|------|------|
+| `dt.date` | JS Date（已偏移时区） |
+| `dt.utcDate` | 原始 UTC Date |
+| `dt.relativeSeconds` | 相对 T0 的秒数 |
+| `dt.timestampMs` | 毫秒时间戳 |
+| `dt.format(pattern)` | 用令牌模板二次格式化 |
+| `dt.toISOString()` | ISO 8601 字符串 |
 
-## Format Tokens
+## Format 令牌
 
-The following tokens are available when customizing the `format` string:
+自定义 `format` 字符串时可用以下令牌：
 
-| Token | Description | Example |
-|-------|-------------|---------|
-| `YYYY` | Four-digit year | `2026` |
-| `MM` | Two-digit month | `07` |
-| `MMM` | English month abbreviation | `Jul` |
-| `DD` | Two-digit day | `01` |
-| `HH` | Two-digit hour (24h) | `14` |
-| `mm` | Two-digit minute | `30` |
-| `ss` | Two-digit second | `45` |
-| `SSS` | Three-digit millisecond | `123` |
-| `TZ` | Timezone name | `UTC` / `BJT` / `UTC+08` |
-| `Z` | Timezone offset | `Z` / `+08:00` |
+| 令牌 | 说明 | 示例 |
+|------|------|------|
+| `YYYY` | 四位年份 | `2026` |
+| `MM` | 两位月份 | `07` |
+| `MMM` | 英文月份缩写 | `Jul` |
+| `DD` | 两位日期 | `01` |
+| `HH` | 两位小时（24h） | `14` |
+| `mm` | 两位分钟 | `30` |
+| `ss` | 两位秒 | `45` |
+| `SSS` | 三位毫秒 | `123` |
+| `TZ` | 时区名称 | `UTC` / `BJT` / `UTC+08` |
+| `Z` | 时区偏移 | `Z` / `+08:00` |
 
 ```typescript
 engine.setTimeFormat({
@@ -134,12 +134,12 @@ engine.setTimeFormat({
 // 输出: "2026年07月01日 08:00:00 BJT"
 ```
 
-## Direct Formatting
+## 直接格式化
 
-Without modifying the global format, you can call `engine.formatTime()` for one-off formatting:
+不修改全局格式时，可调用 `engine.formatTime()` 单次格式化：
 
 ```typescript
 const label = engine.formatTime(currentTime, { preset: "t0", t0: launchEpoch })
 ```
 
-> **Related API**: [TimeFormatConfig](/en/api/types/TimeFormatConfig) · [TimeFormatOptions](/en/api/interfaces/TimeFormatOptions) · [TimeFormatDateTime](/en/api/interfaces/TimeFormatDateTime) · [TimeFormatCallback](/en/api/types/TimeFormatCallback) · [TimelineLabelOptions](/en/api/interfaces/TimelineLabelOptions)
+> **相关 API**：[TimeFormatConfig](/en/api/types/TimeFormatConfig) · [TimeFormatOptions](/en/api/interfaces/TimeFormatOptions) · [TimeFormatDateTime](/en/api/interfaces/TimeFormatDateTime) · [TimeFormatCallback](/en/api/types/TimeFormatCallback) · [TimelineLabelOptions](/en/api/interfaces/TimelineLabelOptions)

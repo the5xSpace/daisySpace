@@ -8,4 +8,4 @@
 
 > `const` **SpaceTemplate**: [`ViewDistanceTemplate`](../types/ViewDistanceTemplate.md)
 
-航天/空间尺度的内置视距模板。
+Built-in view distance template for space/aerospace scale.

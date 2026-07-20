@@ -1,11 +1,12 @@
 # Enumerations
 
-共 26 个 enums。
+27 enums total.
 
-| 名称 | 链接 |
+| Name | Link |
 |------|------|
 | `ArcType` | [ArcType](Daisy.ArcType.md) |
 | `Axis` | [Axis](Daisy.Axis.md) |
+| `ClassificationType` | [ClassificationType](Daisy.ClassificationType.md) |
 | `ClockRange` | [ClockRange](Daisy.ClockRange.md) |
 | `ClockStep` | [ClockStep](Daisy.ClockStep.md) |
 | `ColorBlendMode` | [ColorBlendMode](Daisy.ColorBlendMode.md) |

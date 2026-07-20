@@ -1,8 +1,8 @@
-# GPU General-Purpose Computing
+# GPU 通用计算
 
-DaisySpace-Sdk has a built-in WebGL2-based GPGPU pipeline, implementing general-purpose GPU computing through offscreen WebGL contexts and shaders, with no dependency on WebGPU.
+DaisySpace-Sdk 内置基于 WebGL2 的 GPGPU 管线，通过 offscreen WebGL 上下文 + 着色器实现通用 GPU 计算，无需依赖 WebGPU。
 
-## Architecture
+## 架构
 
 ```
 GpuDeviceManager（设备管理器，单例）
@@ -12,11 +12,11 @@ GpuDeviceManager（设备管理器，单例）
         └── step({ program, input, output })（执行计算）
 ```
 
-The underlying layer is based on the [gpu-io](https://github.com/amandaghassaei/gpu-io) library, which encodes `Float32Array` data into WebGL textures, performs parallel computation via fragment shaders, and reads results back to the CPU.
+底层基于 [gpu-io](https://github.com/amandaghassaei/gpu-io) 库，将 `Float32Array` 数据编码为 WebGL 纹理，通过 fragment shader 并行计算，再读回 CPU。
 
 ## GpuDeviceManager
 
-[GpuDeviceManager](/en/api/classes/GpuDeviceManager) is the device-level manager, providing static methods:
+[GpuDeviceManager](/en/api/classes/GpuDeviceManager) 是设备级管理者，提供静态方法：
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -37,11 +37,11 @@ const existing = Daisy.GpuDeviceManager.getComposer()
 Daisy.GpuDeviceManager.destroy()
 ```
 
-`createComposer()` internally creates a hidden `<canvas>` element and initializes a `GPUComposer`. All subsequent GPU computations share the same context.
+`createComposer()` 内部创建隐藏 `<canvas>` 元素并初始化 `GPUComposer`，之后所有 GPU 计算共享同一上下文。
 
 ## GPUComposer
 
-`GPUComposer` is the computation scheduling core. Since it's managed by `GpuDeviceManager`, direct creation is usually unnecessary. Manual creation is used for independent context scenarios:
+`GPUComposer` 是计算调度核心。由于已由 `GpuDeviceManager` 管理，通常不需要直接创建。手动创建用于独立上下文场景：
 
 ```typescript
 import { GPUComposer } from "gpu-io"
@@ -53,7 +53,7 @@ const composer = new GPUComposer({ canvas })
 
 ## GPUProgram
 
-`GPUProgram` compiles fragment shaders and manages uniform variables:
+`GPUProgram` 编译 fragment shader 并管理 uniform 变量：
 
 ```typescript
 import { GPUProgram, FLOAT } from "gpu-io"
@@ -82,16 +82,16 @@ const program = new GPUProgram(composer, {
 program.setUniform("u_scale", 2.5, FLOAT)
 ```
 
-### Built-in Texture Naming Convention
+### 内建纹理命名约定
 
-The input/output `GPULayer` instances passed to `GPUComposer`'s `step()` are automatically bound in order:
-- The 0th input layer is bound as `u_input` (alias for single input) or determined by the `name` property
-- Can be accessed in the shader via `texture(layerSamplerName, v_uv)`
-- The output layer writes to `out_result` (`out vec4`)
+GPUComposer 的 `step()` 传入的 input/output `GPULayer` 会按顺序自动绑定：
+- 第 0 个 input layer 绑定为 `u_input`（单输入时的别名）或由 `name` 属性决定
+- 可通过 `texture(layerSamplerName, v_uv)` 在 shader 中访问
+- 输出 layer 写入 `out_result`（`out vec4`）
 
 ## GPULayer
 
-`GPULayer` encapsulates JavaScript arrays as GPU textures:
+`GPULayer` 将 JavaScript 数组封装为 GPU 纹理：
 
 ```typescript
 import { GPULayer, FLOAT, NEAREST, CLAMP_TO_EDGE } from "gpu-io"
@@ -123,19 +123,19 @@ const outputLayer = new GPULayer(composer, {
 })
 ```
 
-### Key Parameters
+### 关键参数
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `name` | `string` | Layer name (corresponds to the sampler uniform name in the shader) |
-| `type` | GPULayerType | Data type (`FLOAT` / `BYTE` / `UNSIGNED_BYTE` etc.) |
-| `numComponents` | `number` | Components per pixel (1/2/3/4) |
-| `dimensions` | `[number, number]` | Texture width and height |
-| `array` | TypedArray | Input data (not passed for output layers) |
-| `filter` | FilterMode | `NEAREST` (precise) or `LINEAR` (interpolated) |
-| `wrapX` / `wrapY` | WrapMode | `CLAMP_TO_EDGE` / `REPEAT` etc. |
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `name` | `string` | 层名称（对应 shader 中的 sampler uniform 名） |
+| `type` | GPULayerType | 数据类型（`FLOAT` / `BYTE` / `UNSIGNED_BYTE` 等） |
+| `numComponents` | `number` | 每像素分量数（1/2/3/4） |
+| `dimensions` | `[number, number]` | 纹理宽高 |
+| `array` | TypedArray | 输入数据（输出层不传） |
+| `filter` | FilterMode | `NEAREST`（精确）或 `LINEAR`（插值） |
+| `wrapX` / `wrapY` | WrapMode | `CLAMP_TO_EDGE` / `REPEAT` 等 |
 
-## Executing Computations
+## 执行计算
 
 ```typescript
 // 执行一次 GPU 计算
@@ -150,9 +150,9 @@ const raw = await outputLayer.getValuesAsync()
 const resultArray = new Float32Array(raw.buffer ?? raw)
 ```
 
-`step()` is synchronous (submits GPU commands), but `getValuesAsync()` is asynchronous (requires `gl.readPixels`).
+`step()` 是同步的（提交 GPU 命令），但 `getValuesAsync()` 是异步的（需要 `gl.readPixels`）。
 
-## Complete Example: GPU Parallel Vector Operations
+## 完整示例：GPU 并行向量运算
 
 ```typescript
 import { GPUComposer, GPULayer, GPUProgram, FLOAT, NEAREST, CLAMP_TO_EDGE } from "gpu-io"
@@ -221,17 +221,17 @@ const result = await gpuVectorAdd(3.0,
 // result = [18.0, 24.0, 30.0, 36.0] = 3 × [6, 8, 10, 12]
 ```
 
-## Use Cases
+## 适用场景
 
-| Scenario | Advantage |
-|----------|-----------|
-| Constellation coverage analysis | Parallelized footprint computation for thousands of satellites |
-| Particle simulation | Large-scale particle position/velocity updates |
-| Terrain analysis | Grid operations like elevation queries and slope calculation |
-| General vector operations | Element-wise operations on large arrays (add, subtract, multiply, divide) |
+| 场景 | 优势 |
+|------|------|
+| 星座覆盖分析 | 数千颗卫星的 footprint 计算并行化 |
+| 粒子模拟 | 大量粒子位置/速度更新 |
+| 地形分析 | 高程查询、坡度计算等栅格运算 |
+| 通用向量运算 | 大规模数组的加减乘除等 element-wise 操作 |
 
-> **Note**: GPU computing is suitable for highly data-parallel tasks. For small-scale data (< several hundred elements), direct CPU usage is recommended, as the overhead of GPU upload/readback may outweigh the computational benefits.
+> **注意**：GPU 计算适合数据并行度高的任务。小规模数据（< 几百个元素）建议直接用 CPU，GPU 上传/读回的开销可能超过计算收益。
 
 ---
 
-> **Related API**: [GpuDeviceManager](/en/api/classes/GpuDeviceManager)
+> **相关 API**：[GpuDeviceManager](/en/api/classes/GpuDeviceManager)

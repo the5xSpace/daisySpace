@@ -8,4 +8,4 @@
 
 > **TimeRanges** = [`TimeRange`](PW.TimeRange.md)[]
 
-多个覆盖采样时间范围。
+Multiple coverage sampling time ranges.

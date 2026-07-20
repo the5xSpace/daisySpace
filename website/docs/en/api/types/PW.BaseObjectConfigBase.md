@@ -8,7 +8,7 @@
 
 > **BaseObjectConfigBase** = [`BaseObjectTransformTimeline`](PW.BaseObjectTransformTimeline.md) & `object`
 
-BaseObject 级别的通用配置。
+BaseObject-level common configuration.
 
 ## Type Declaration
 

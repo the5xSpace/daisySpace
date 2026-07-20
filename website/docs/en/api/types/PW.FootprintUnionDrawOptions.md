@@ -8,4 +8,4 @@
 
 > **FootprintUnionDrawOptions** = [`FootprintDrawOptions`](PW.FootprintDrawOptions.md)
 
-合并覆盖绘制配置；调用方通常将 `union` 设为 `true`。
+Merged coverage drawing configuration; callers typically set `union` to `true`.

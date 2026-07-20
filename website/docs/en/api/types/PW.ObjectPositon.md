@@ -8,4 +8,4 @@
 
 > **ObjectPositon** = `Daisy.Cartesian3` \| [`TrajectorySample`](../classes/TrajectorySample.md) \| [`TrajectorySampleBodyFixed`](../classes/TrajectorySampleBodyFixed.md)
 
-物理对象可接受的位置类型。
+Position types accepted by physical objects.

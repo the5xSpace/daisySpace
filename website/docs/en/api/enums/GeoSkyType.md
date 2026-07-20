@@ -6,7 +6,7 @@
 
 # Enumeration: GeoSkyType
 
-天空渲染类型枚举
+Sky rendering type enumeration
 
 ## Enumeration Members
 

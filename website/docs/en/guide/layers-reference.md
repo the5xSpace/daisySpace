@@ -1,12 +1,12 @@
-# Reference Plane and Grid Layers
+# 参考平面与网格图层
 
-Auxiliary layers are added to the scene via `engine.addViewLayer()`, independent of imagery/terrain layers. All layers inherit from [Layer](/en/api/classes/Layer), supporting the `show` / `destroy` lifecycle.
+辅助图层通过 `engine.addViewLayer()` 添加到场景，独立于影像/地形图层。所有图层继承自 [Layer](/en/api/classes/Layer)，支持 `show` / `destroy` 生命周期。
 
-## Reference Planes
+## 参考平面
 
-### Equatorial Plane
+### 赤道面
 
-[EquatorialPlaneLayers](/en/api/classes/Plane.EquatorialPlaneLayers) draws a semi-transparent disk + grid at the Earth's equatorial position:
+[EquatorialPlaneLayers](/en/api/classes/Plane.EquatorialPlaneLayers) 在地球赤道位置绘制半透明圆盘 + 网格：
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -19,9 +19,9 @@ engine.addViewLayer(new Daisy.Plane.EquatorialPlaneLayers({
 }))
 ```
 
-### Ecliptic Plane
+### 黄道面
 
-[EclipticPlaneLayers](/en/api/classes/Plane.EclipticPlaneLayers) draws a disk + grid at the ecliptic plane position:
+[EclipticPlaneLayers](/en/api/classes/Plane.EclipticPlaneLayers) 在黄道面位置绘制圆盘 + 网格：
 
 ```typescript
 engine.addViewLayer(new Daisy.Plane.EclipticPlaneLayers({
@@ -31,9 +31,9 @@ engine.addViewLayer(new Daisy.Plane.EclipticPlaneLayers({
 }))
 ```
 
-### Ecliptic Reference Plane (with scale)
+### 黄道参考平面（带刻度）
 
-[EclipticReferencePlaneLayers](/en/api/classes/Plane.EclipticReferencePlaneLayers) draws concentric circle scale marks on the ecliptic plane:
+[EclipticReferencePlaneLayers](/en/api/classes/Plane.EclipticReferencePlaneLayers) 在黄道面上绘制同心圆刻度标记：
 
 ```typescript
 engine.addViewLayer(new Daisy.Plane.EclipticReferencePlaneLayers({
@@ -42,30 +42,30 @@ engine.addViewLayer(new Daisy.Plane.EclipticReferencePlaneLayers({
 }))
 ```
 
-### PlaneLayer Common Options
+### PlaneLayer 通用选项
 
-The above three share [PlaneLayerOptions](/en/api/interfaces/Plane.PlaneLayerOptions):
+以上三者共享 [PlaneLayerOptions](/en/api/interfaces/Plane.PlaneLayerOptions)：
 
-| Option | Type | Default | Description |
-|--------|------|:---:|-------------|
-| `show` | `boolean` | `true` | Whether to show |
-| `color` | `DColor` | — | Grid line color |
-| `planeAlpha` | `number` | `0.1` | Disk fill transparency |
-| `segments` | `number` | — | Disk segments (higher = smoother) |
-| `referenceRadius` | `number` | — | Reference radius (meters) |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Distance display condition |
-| `gridStyle` | `PlaneGridStyle` | — | Grid style (see below) |
+| 选项 | 类型 | 默认值 | 说明 |
+|------|------|:---:|------|
+| `show` | `boolean` | `true` | 是否显示 |
+| `color` | `DColor` | — | 网格线颜色 |
+| `planeAlpha` | `number` | `0.1` | 圆盘填充透明度 |
+| `segments` | `number` | — | 圆盘分段数（越大越圆滑） |
+| `referenceRadius` | `number` | — | 参考半径（米） |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | 距离显示条件 |
+| `gridStyle` | `PlaneGridStyle` | — | 网格样式（见下方） |
 
-### Grid Style
+### 网格样式
 
-| Option | Type | Default | Description |
-|--------|------|:---:|-------------|
-| `followCamera` | `boolean` | `true` | Whether to adapt grid density based on camera distance |
-| `cellPixelSize` | `number` | `80` | Target grid cell screen pixel size |
-| `linePixelWidth` | `number` | `1` | Grid line pixel width |
-| `minCellSizeMeters` | `number` | `100000` | Minimum grid cell size (prevents over-density) |
-| `maxCellSizeMeters` | `number` | `5e9` | Maximum grid cell size (prevents under-density) |
-| `cellAlpha` | `number` | `0.1` | Grid cell fill transparency |
+| 选项 | 类型 | 默认值 | 说明 |
+|------|------|:---:|------|
+| `followCamera` | `boolean` | `true` | 是否根据相机距离自适应网格密度 |
+| `cellPixelSize` | `number` | `80` | 目标网格单元屏幕像素尺寸 |
+| `linePixelWidth` | `number` | `1` | 网格线像素宽 |
+| `minCellSizeMeters` | `number` | `100000` | 网格单元最小尺寸（防止过密） |
+| `maxCellSizeMeters` | `number` | `5e9` | 网格单元最大尺寸（防止过稀） |
+| `cellAlpha` | `number` | `0.1` | 网格单元填充透明度 |
 
 ```typescript
 new Daisy.Plane.EquatorialPlaneLayers({
@@ -80,11 +80,11 @@ new Daisy.Plane.EquatorialPlaneLayers({
 })
 ```
 
-## Latitude/Longitude Grids
+## 经纬度网格
 
 ### EarthGridLayers
 
-[EarthGridLayers](/en/api/classes/EarthGridLayers) draws latitude/longitude grid lines on the Earth's surface:
+[EarthGridLayers](/en/api/classes/EarthGridLayers) 在地球表面绘制经纬度网格线：
 
 ```typescript
 engine.addViewLayer(new Daisy.EarthGridLayers({
@@ -96,7 +96,7 @@ engine.addViewLayer(new Daisy.EarthGridLayers({
 
 ### CelestialGeodeticGridLayers
 
-[CelestialGeodeticGridLayers](/en/api/classes/CelestialGeodeticGridLayers) draws latitude/longitude grids on a specified celestial body surface. `EarthGridLayers` is its Earth-default subclass:
+[CelestialGeodeticGridLayers](/en/api/classes/CelestialGeodeticGridLayers) 在指定天体表面绘制经纬度网格。`EarthGridLayers` 是其地球默认子类：
 
 ```typescript
 const mars = Daisy.PW.CelestialEllipsoid.create({
@@ -109,16 +109,16 @@ engine.addViewLayer(new Daisy.CelestialGeodeticGridLayers({
 }, mars))
 ```
 
-| Option | Type | Description |
-|--------|------|-------------|
-| `show` | `boolean` | Whether to show |
-| `color` | `DColor` | Grid line color |
-| `width` | `number` | Line width (pixels) |
-| Constructor second parameter | `CelestialEllipsoid` | Bound celestial body (defaults to Earth when omitted) |
+| 选项 | 类型 | 说明 |
+|------|------|------|
+| `show` | `boolean` | 是否显示 |
+| `color` | `DColor` | 网格线颜色 |
+| `width` | `number` | 线宽（像素） |
+| 构造函数第二参数 | `CelestialEllipsoid` | 绑定的天体（省略时默认为地球） |
 
-## Celestial Sphere Grid
+## 天球网格
 
-[CelestialSphereGridLayers](/en/api/classes/CelestialSphereGridLayers) draws a grid sphere on the celestial sphere at latitude/longitude intervals:
+[CelestialSphereGridLayers](/en/api/classes/CelestialSphereGridLayers) 以经纬度间隔在天球上绘制网格球面：
 
 ```typescript
 engine.addViewLayer(new Daisy.CelestialSphereGridLayers({
@@ -128,15 +128,15 @@ engine.addViewLayer(new Daisy.CelestialSphereGridLayers({
 }))
 ```
 
-| Option | Type | Default | Description |
-|--------|------|:---:|-------------|
-| `show` | `boolean` | `true` | Whether to show |
-| `color` | `DColor` | — | Grid line color |
-| `radius` | `number` | — | Sphere radius (meters) |
+| 选项 | 类型 | 默认值 | 说明 |
+|------|------|:---:|------|
+| `show` | `boolean` | `true` | 是否显示 |
+| `color` | `DColor` | — | 网格线颜色 |
+| `radius` | `number` | — | 球体半径（米） |
 
-## Night Tiles
+## 夜间瓦片
 
-[NightTileLayer](/en/api/classes/NightTileLayer) restricts night tiles to display only on the Earth's night side. It uses the same day/night boundary calculation for both 3D Earth and 2D maps, defaulting to Daisy's built-in offline night tiles (`static/night`, `z=0..3`), with no dependency on third-party network services.
+[NightTileLayer](/en/api/classes/NightTileLayer) 将夜间瓦片限制在地球夜侧显示。它在 3D 地球和 2D 地图中使用同一套日夜边界计算，默认使用 Daisy 内置的离线夜景瓦片（`static/night`，`z=0..3`），不依赖第三方网络服务。
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -149,7 +149,7 @@ const nightTiles = new Daisy.NightTileLayer({
 engine.addWidget(nightTiles)
 ```
 
-When remote night light data is needed, you can pass a Daisy imagery source configuration. The example below uses NASA GIBS:
+需要使用远程夜间灯光数据时，可以传入 Daisy 影像源配置。下面以 NASA GIBS 为例：
 
 ```typescript
 const nightTiles = new Daisy.NightTileLayer({
@@ -164,23 +164,23 @@ const nightTiles = new Daisy.NightTileLayer({
 })
 ```
 
-| Option | Default | Description |
-|--------|:---:|-------------|
-| `show` | `true` | Whether to show night tiles |
-| `dayAlpha` | `0` | Day area transparency |
-| `nightAlpha` | `1` | Night area transparency |
-| `brightness` | `1` | Tile brightness |
-| `contrast` | `1` | Tile contrast |
-| `enableLighting` | `true` | Auto-enable Earth day/night calculation |
-| `source` | Daisy built-in offline XYZ | Custom Daisy imagery source; can pass XYZ, WMTS, etc. remote sources |
+| 选项 | 默认值 | 说明 |
+|------|:---:|------|
+| `show` | `true` | 是否显示夜间瓦片 |
+| `dayAlpha` | `0` | 白昼区域透明度 |
+| `nightAlpha` | `1` | 夜间区域透明度 |
+| `brightness` | `1` | 瓦片亮度 |
+| `contrast` | `1` | 瓦片对比度 |
+| `enableLighting` | `true` | 自动启用地球日夜计算 |
+| `source` | Daisy 内置离线 XYZ | 自定义 Daisy 影像源；可传入 XYZ、WMTS 等远程源 |
 
-`NightTileLayer` does not rewrite original tile pixels, nor does it control the base imagery's maximum level. The base imagery's `maxLevel` should be set in the base imagery source configuration; the night effect only blends its own imagery based on the Earth's lighting state. After passing a `source`, tile requests and service capabilities are the responsibility of the user-provided imagery source configuration.
+`NightTileLayer` 不改写原始瓦片像素，也不控制基础影像的最大层级。基础影像的 `maxLevel` 应在基础影像源配置中设置；夜间效果只负责按地球光照状态混合自身影像。传入 `source` 后，瓦片请求和服务能力由用户提供的影像源配置负责。
 
-## Sun Cone
+## 日锥
 
-[SunConeLayer](/en/api/classes/SunConeLayer) draws the umbra and penumbra on the side of the celestial body facing away from the Sun. It is suitable for solar/lunar eclipse analysis, spacecraft shadow entry/exit, and solar state analysis, not a decorative layer required for ordinary maps.
+[SunConeLayer](/en/api/classes/SunConeLayer) 绘制天体背向太阳一侧的本影和半影。它适合日食/月食、航天器进出影区和太阳能状态分析，不是普通地图必需的装饰图层。
 
-The sun cone only has clear spatial meaning in 3D, so **2D mode does not create cone primitives**; switching back to 3D will automatically rebuild following the Daisy Layer lifecycle. Night tiles do not depend on the sun cone, and the two can be used independently.
+日锥只在 3D 中有明确的空间含义，因此 **2D 模式不会创建锥体 Primitive**；切回 3D 时会按照 Daisy Layer 生命周期自动重建。夜间瓦片不依赖日锥，两者可以独立使用。
 
 ```typescript
 const sunCone = new Daisy.SunConeLayer({
@@ -192,11 +192,11 @@ const sunCone = new Daisy.SunConeLayer({
 engine.addViewLayer(sunCone)
 ```
 
-`visualLengthScale` only compresses the display length, allowing the celestial body and cone to be identified in the same field of view; `calculateSunConeDimensions()` and occlusion determination always use real physical dimensions.
+`visualLengthScale` 只压缩显示长度，使天体和锥体能在同一视野中辨认；`calculateSunConeDimensions()` 与遮挡判定始终使用真实物理尺寸。
 
-### Determining a Moving Object's Lighting State
+### 判断移动物体的光照状态
 
-Pass the current world coordinates of an entity or physical object directly to `getSunOcclusionState()`:
+将实体或物理对象的当前世界坐标直接传给 `getSunOcclusionState()`：
 
 ```typescript
 const position = satellite.getCurrentPosition()
@@ -206,7 +206,7 @@ if (position) {
 }
 ```
 
-Reuse the same set of celestial body objects for custom central bodies:
+自定义中心天体时复用同一组天体对象：
 
 ```typescript
 const moon = Daisy.PW.CelestialEllipsoid.Moon()
@@ -217,15 +217,15 @@ const state = Daisy.getSunOcclusionState(position, engine.getCurrentTime(), {
 })
 ```
 
-### Mode and Lifecycle
+### 模式与生命周期
 
-| Capability | 3D | 2D | morph Behavior |
-|------------|:---:|:---:|----------------|
-| Night tiles | Supported | Supported | Destroys own imagery and re-registers |
-| Sun cone umbra/penumbra | 3D control | - | Creates spatial primitives only in 3D scenes |
-| Sun occlusion calculation | Supported | Supported | Pure computation, holds no rendering resources |
+| 能力 | 3D | 2D | morph 行为 |
+|------|:---:|:---:|------|
+| 夜间瓦片 | 支持 | 支持 | 销毁自身影像并重新注册 |
+| 日锥本影/半影 | 3D 控件 | - | 仅在 3D 场景创建空间图元 |
+| 太阳遮挡计算 | 支持 | 支持 | 纯计算，不持有渲染资源 |
 
-## Layer Management
+## 图层管理
 
 ```typescript
 const layer = new Daisy.EarthGridLayers()
@@ -245,6 +245,6 @@ layer.destroy()
 engine.removeWidget(layer, true)
 ```
 
-> `removeViewLayer()` is a compatibility interface that only removes the layer from the update collection; `destroy()` must be called to release resources. New code is recommended to use `removeWidget(layer, true)`.
+> `removeViewLayer()` 是兼容接口，只把图层移出更新集合；需要继续释放资源时必须调用 `destroy()`。推荐新代码使用 `removeWidget(layer, true)`。
 
-> **Related API**: Plane.[EclipticPlaneLayers](/en/api/classes/Plane.EclipticPlaneLayers) · Plane.[EquatorialPlaneLayers](/en/api/classes/Plane.EquatorialPlaneLayers) · Plane.[EclipticReferencePlaneLayers](/en/api/classes/Plane.EclipticReferencePlaneLayers) · [EarthGridLayers](/en/api/classes/EarthGridLayers) · [CelestialGeodeticGridLayers](/en/api/classes/CelestialGeodeticGridLayers) · [CelestialSphereGridLayers](/en/api/classes/CelestialSphereGridLayers) · [NightTileLayer](/en/api/classes/NightTileLayer) · [SunConeLayer](/en/api/classes/SunConeLayer)
+> **相关 API**：Plane.[EclipticPlaneLayers](/en/api/classes/Plane.EclipticPlaneLayers) · Plane.[EquatorialPlaneLayers](/en/api/classes/Plane.EquatorialPlaneLayers) · Plane.[EclipticReferencePlaneLayers](/en/api/classes/Plane.EclipticReferencePlaneLayers) · [EarthGridLayers](/en/api/classes/EarthGridLayers) · [CelestialGeodeticGridLayers](/en/api/classes/CelestialGeodeticGridLayers) · [CelestialSphereGridLayers](/en/api/classes/CelestialSphereGridLayers) · [NightTileLayer](/en/api/classes/NightTileLayer) · [SunConeLayer](/en/api/classes/SunConeLayer)

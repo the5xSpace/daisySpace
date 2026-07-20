@@ -8,4 +8,4 @@
 
 > `const` **MaritimeTemplate**: [`ViewDistanceTemplate`](../types/ViewDistanceTemplate.md)
 
-海事/海面尺度的内置视距模板。
+Built-in view distance template for maritime/sea surface scale.

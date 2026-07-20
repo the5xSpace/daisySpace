@@ -8,4 +8,4 @@
 
 > **GeometryIndices** = `Uint16Array` \| `Uint32Array` \| `number`[]
 
-索引：支持 Uint16Array / Uint32Array / number[]（Daisy 自动选类型）。
+Indices: supports Uint16Array / Uint32Array / number[] (Daisy auto-selects the type).

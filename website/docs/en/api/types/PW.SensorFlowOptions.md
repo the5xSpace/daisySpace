@@ -8,4 +8,4 @@
 
 > **SensorFlowOptions** = `boolean` \| [`SensorFlowConfigDetail`](PW.SensorFlowConfigDetail.md)
 
-波束流动效果开关或详细配置。
+Beam flow effect toggle or detailed configuration.

@@ -1,8 +1,8 @@
 # Variables
 
-共 89 个 variables。
+89 variables total.
 
-| 名称 | 链接 |
+| Name | Link |
 |------|------|
 | `AviationTemplate` | [AviationTemplate](AviationTemplate.md) |
 | `BuiltinTemplates` | [BuiltinTemplates](BuiltinTemplates.md) |

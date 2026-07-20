@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_RING\_SWEEP**: `"RingSweep"` = `'RingSweep'`
 
-环形扫描材质类型标识。
+Ring sweep material type identifier.

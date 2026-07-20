@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_ADVANCED\_WATER**: `"DaisyAdvancedWater"` = `'DaisyAdvancedWater'`
 
-Daisy 高级水面程序化材质类型标识。
+Daisy advanced water procedural material type identifier.

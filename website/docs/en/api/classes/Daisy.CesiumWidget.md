@@ -119,7 +119,7 @@ If true, this widget will automatically track the clock settings of newly added 
 
 ## Param
 
-Context and WebGL creation properties passed to Scene.
+Context and WebGL creation properties passed to [Scene](Daisy.Scene.md).
 
 ## Param
 
@@ -153,7 +153,7 @@ If true, the active element will blur when the widget's canvas is clicked. Setti
 
 ## Param
 
-If true, rendering a frame will only occur when needed as determined by changes within the scene. Enabling improves performance of the application, but requires using Scene#requestRender to render a new frame explicitly in this mode. This will be necessary in many cases after making changes to the scene in other parts of the API. See [Performance with Explicit Rendering](https://cesium.com/blog/2018/01/24/cesium-scene-rendering-performance/|Improving).
+If true, rendering a frame will only occur when needed as determined by changes within the scene. Enabling improves performance of the application, but requires using [Scene#requestRender](Daisy.Scene.md#requestrender) to render a new frame explicitly in this mode. This will be necessary in many cases after making changes to the scene in other parts of the API. See [Performance with Explicit Rendering](https://cesium.com/blog/2018/01/24/cesium-scene-rendering-performance/|Improving).
 
 ## Param
 
@@ -430,7 +430,7 @@ it to 2.0 will cause the scene to be rendered at 1280x960 and then scaled down.
 
 ### scene
 
-> `readonly` **scene**: `Scene`
+> `readonly` **scene**: [`Scene`](Daisy.Scene.md)
 
 Gets the scene.
 
@@ -501,7 +501,7 @@ If true the widget will use requestAnimationFrame to
 perform rendering and resizing of the widget, as well as drive the
 simulation clock. If set to false, you must manually call the
 `resize`, `render` methods as part of a custom
-render loop. If an error occurs during rendering, Scene's
+render loop. If an error occurs during rendering, [Scene](Daisy.Scene.md)'s
 `renderError` event will be raised and this property
 will be set to false. It must be set back to true to continue rendering
 after the error.

@@ -8,10 +8,10 @@
 
 > **VisibilityWindow** = `{ endTimestampMs: number; endUtc: Date; satIds: string[]; startTimestampMs: number; startUtc: Date; timeBasis: "UTC" }`
 
-可视窗口（用于互视/遮挡分析）。
+Visibility window (for inter-satellite visibility/occlusion analysis).
 
-- `startUtc`/`endUtc` 为 UTC
-- `satIds` 为参与窗口的卫星标识（当前实现为 NORAD ID 字符串）
+- `startUtc`/`endUtc` are UTC
+- `satIds` are satellite identifiers participating in the window (currently NORAD ID strings)
 
 ## Properties
 

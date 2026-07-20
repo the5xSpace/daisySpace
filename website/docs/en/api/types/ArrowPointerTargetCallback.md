@@ -8,12 +8,12 @@
 
 > **ArrowPointerTargetCallback** = (`entity`, `time`) => `Daisy.Cartesian3` \| `undefined`
 
-ArrowPointerFeature 可用的指向目标类型。
+Target types available for ArrowPointerFeature.
 
-- `Daisy.Cartesian3`：静态坐标点
-- `Entity`：Daisy 实体（内部会转成回调，每帧取其当前位置）
-- `Entity`： 实体（内部会转成回调，每帧用 `position.getValue(time)` / `getValueInReferenceFrame`）
-- `ArrowPointerTargetCallback`：回调函数（由使用方自行计算目标位置）
+- `Daisy.Cartesian3`: static coordinate point
+- `Entity`: Daisy entity (internally converted to a callback, gets its current position each frame)
+- `Entity`: entity (internally converted to a callback, uses `position.getValue(time)` / `getValueInReferenceFrame` each frame)
+- `ArrowPointerTargetCallback`: callback function (the caller computes the target position)
 
 ## Parameters
 

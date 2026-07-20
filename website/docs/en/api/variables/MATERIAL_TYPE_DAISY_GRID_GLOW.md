@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_GRID\_GLOW**: `"DaisyGridGlow"` = `'DaisyGridGlow'`
 
-Daisy 网格发光程序化材质类型标识。
+Daisy grid glow procedural material type identifier.

@@ -6,9 +6,9 @@
 
 # Class: Satellite
 
-Satellite is a semantic alias for `NearEarthOrbiter`.
+Satellite：NearEarthOrbiter 的语义别名。
 
-The naming is closer to "satellite", which makes it easier to distinguish related business objects such as `SpaceStation`, `Debris`, and `Satellite`.
+语义更贴近“卫星”，便于在业务侧区分 SpaceStation / Debris / Satellite 等同族对象。
 
 ## Example
 
@@ -31,7 +31,7 @@ sat.bindViewer(viewer);
 
 > **new Satellite**(`options?`, `celestialEllipsoid?`): `Satellite`
 
-Creates a `NearEarthOrbiter`.
+创建 NearEarthOrbiter。
 
 #### Parameters
 
@@ -39,13 +39,13 @@ Creates a `NearEarthOrbiter`.
 
 [`NearEarthOrbiterConfig`](../types/PW.NearEarthOrbiterConfig.md)
 
-Configuration, including the orbit source and propagation strategy.
+配置（含轨道源与传播策略）
 
 ##### celestialEllipsoid?
 
 [`CelestialEllipsoid`](PW.CelestialEllipsoid.md) = `...`
 
-The owning celestial body, which defaults to Earth.
+所属天体（默认地球）
 
 #### Returns
 
@@ -93,7 +93,7 @@ The owning celestial body, which defaults to Earth.
 
 > **get** **entity**(): [`Entity`](Entity.md) \| `CelestialEntity`
 
-Gets the host entity, which is used for mounting features, interaction events, updates, and more.
+获取宿主 Entity（用于挂载 Feature、交互事件、更新等）。
 
 ##### Returns
 
@@ -111,9 +111,9 @@ Gets the host entity, which is used for mounting features, interaction events, u
 
 > **get** **options**(): [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
 
-The original snapshot of the object's creation and configuration parameters, with the exact structure extended by subclasses.
+对象创建/配置参数的原始快照（不同子类会扩展其结构）。
 
-Note: this is the source of the semantic configuration, not the rendered result. Rendering is realized by `_applyConfig` together with `Feature` / `Component`.
+注意：这是“语义配置”的来源，而不是渲染结果。渲染落地由 _applyConfig + Feature/Component 完成。
 
 ##### Returns
 
@@ -139,7 +139,7 @@ Note: this is the source of the semantic configuration, not the rendered result.
 
 > **set** **orientation**(`value`): `void`
 
-Conveniently sets orientation by writing to the host entity's `orientation`.
+便捷设置姿态（写入宿主 Entity.orientation）。
 
 ##### Parameters
 
@@ -163,10 +163,10 @@ Conveniently sets orientation by writing to the host entity's `orientation`.
 
 > **get** **position**(): [`ObjectPositon`](../types/PW.ObjectPositon.md)
 
-Sets the object's position, supporting either static coordinates or sampled trajectories.
+设置对象位置（支持静态坐标或采样轨迹）。
 
-- After assignment, the value is also written to the host `entity.position`
-- `TrajectorySample` values that support an inertial frame are not allowed for `CelestialEntity` objects that are not Earth-based bodies
+- 赋值后会同步写入宿主 entity.position
+- 对 CelestialEntity（非地球天体）不允许使用支持惯性系的 TrajectorySample
 
 ##### Example
 
@@ -182,7 +182,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **set** **position**(`value`): `void`
 
-Conveniently sets the position, supporting either static coordinates or sampled trajectories.
+便捷设置位置（支持静态坐标或采样轨迹）。
 
 ##### Parameters
 
@@ -204,9 +204,9 @@ Conveniently sets the position, supporting either static coordinates or sampled 
 
 > **addComponent**\<`T`\>(`component`): `T`
 
-Mounts a `PhysicalWorld` component onto the current object.
+挂载一个 PhysicalWorld 组件到当前对象。
 
-Note: features should still be mounted through `Entity.addFeature()`. This method is only for `IComponent`.
+注意：Feature 仍应通过 Entity.addFeature() 的路径挂载；该方法仅面向 IComponent。
 
 #### Type Parameters
 

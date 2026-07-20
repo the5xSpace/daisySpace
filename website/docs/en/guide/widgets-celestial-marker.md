@@ -1,8 +1,8 @@
-# Celestial Marker
+# 天体标记
 
-[CelestialMarkerWidget](/en/api/classes/CelestialMarkerWidget) draws point markers and text labels for celestial bodies (Earth, Moon, Sun, Mars) in the 3D scene. Inherits from [MarkerWidget](/en/api/classes/MarkerWidget).
+[CelestialMarkerWidget](/en/api/classes/CelestialMarkerWidget) 在 3D 场景中为天体（地球、月球、太阳、火星）绘制点标记和文字标签。继承自 [MarkerWidget](/en/api/classes/MarkerWidget)。
 
-## Basic Usage
+## 基本用法
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -20,21 +20,21 @@ engine.addWidget(new Daisy.CelestialMarkerWidget({
 }))
 ```
 
-| Option | Type | Default | Description |
-|--------|------|:---:|---|
-| `earth` | boolean | `false` | Whether to show the Earth marker |
-| `moon` | boolean | `false` | Whether to show the Moon marker |
-| `sun` | boolean | `false` | Whether to show the Sun marker |
-| `mars` | boolean | `false` | Whether to show the Mars marker |
-| `showDistance` | number | `90000000` | Maximum camera distance for marker visibility (meters) |
-| `pointSize` | number | `8` | Marker point pixel size |
-| `font` | string | `"14px sans-serif"` | Label font |
+| 选项 | 类型 | 默认值 | 说明 |
+|------|------|:---:|------|
+| `earth` | boolean | `false` | 是否显示地球标记 |
+| `moon` | boolean | `false` | 是否显示月球标记 |
+| `sun` | boolean | `false` | 是否显示太阳标记 |
+| `mars` | boolean | `false` | 是否显示火星标记 |
+| `showDistance` | number | `90000000` | 标记可见的最大相机距离（米） |
+| `pointSize` | number | `8` | 标记点像素大小 |
+| `font` | string | `"14px sans-serif"` | 标签字体 |
 
-Marker targets are determined at Widget construction time; to change targets at runtime, destroy the old Widget and create a new one.
+标记目标在 Widget 构造时确定；运行时若需更换目标，应销毁旧 Widget 后重新创建。
 
-## Custom Targets
+## 自定义目标
 
-`CelestialMarkerWidget` supports arbitrary marker targets via the `custom` field:
+`CelestialMarkerWidget` 通过 `custom` 字段支持任意标记目标：
 
 ```typescript
 new Daisy.CelestialMarkerWidget({
@@ -50,6 +50,6 @@ new Daisy.CelestialMarkerWidget({
 })
 ```
 
-Each [MarkerTarget](/en/api/interfaces/MarkerTarget) contains `label`, `color`, and `getPosition(time)`.
+每个 [MarkerTarget](/en/api/interfaces/MarkerTarget) 包含 `label`、`color`、`getPosition(time)`。
 
-> **Related API**: [CelestialMarkerWidget](/en/api/classes/CelestialMarkerWidget) · [MarkerWidget](/en/api/classes/MarkerWidget)
+> **相关 API**：[CelestialMarkerWidget](/en/api/classes/CelestialMarkerWidget) · [MarkerWidget](/en/api/classes/MarkerWidget)

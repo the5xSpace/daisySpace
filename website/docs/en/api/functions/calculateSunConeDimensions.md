@@ -8,7 +8,7 @@
 
 > **calculateSunConeDimensions**(`input`): [`SunConeDimensions`](../interfaces/SunConeDimensions.md)
 
-根据两个球形天体的半径和中心距计算本影长度及对应位置的半影半径。
+Calculates the umbra length and corresponding penumbra radius based on the radii and center distance of two spherical celestial bodies.
 
 ## Parameters
 

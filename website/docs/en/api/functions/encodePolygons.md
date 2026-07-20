@@ -8,10 +8,10 @@
 
 > **encodePolygons**(`polygons`, `outlineWidth?`, `outlineColor?`, `resolution?`, `maxPolygons?`, `options?`): `object`
 
-将所有 CoveragePolygon 绘制到一张 canvas 上。
+Draws all CoveragePolygons onto a single canvas.
 
-每个 ring 会先做经线解包，再展开成一个或多个独立的 canvas path，
-这样就不会把跨 ±180° 的边硬连成一条横贯全图的长边。
+Each ring is first unwrapped along the meridian, then expanded into one or more independent canvas paths,
+so that edges crossing ±180° are not forced into a single line spanning the entire map.
 
 ## Parameters
 

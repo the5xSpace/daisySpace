@@ -8,4 +8,4 @@
 
 > **SimulationTimeWidgetTheme** = `"dark"` \| `"light"`
 
-仿真时间控件的明暗主题。
+Simulation time widget light/dark theme.

@@ -6,8 +6,6 @@
 
 # Interface: HeatmapFeatureOptions
 
-Options for the heatmap feature.
-
 ## Properties
 
 ### colors?
@@ -18,7 +16,7 @@ Options for the heatmap feature.
 
 ### colorScheme?
 
-> `optional` **colorScheme?**: `"custom"` \| `"thermal"` \| `"viridis"` \| `"blue-red"`
+> `optional` **colorScheme?**: `"thermal"` \| `"viridis"` \| `"blue-red"` \| `"custom"`
 
 ***
 

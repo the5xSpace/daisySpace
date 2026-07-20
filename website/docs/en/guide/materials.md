@@ -1,14 +1,14 @@
-# Material System
+# 材质系统
 
-`MaterialFactory` provides a unified material factory, encapsulating 40+ built-in materials and custom effect materials. All materials are created via factory methods, returning `DaisyMaterialDescriptor` that can be passed to any Feature's `material` parameter.
+`MaterialFactory` 提供统一材质工厂，封装 40+ 种内置材质和自定义特效材质。所有材质通过工厂方法创建，返回 `DaisyMaterialDescriptor`，可传入任意 Feature 的 `material` 参数。
 
-## Surface Materials
+## 面材质（Surface）
 
-Applicable to surface Features (Ellipse, Polygon, Rectangle, etc.) and solid geometry. All methods are called statically through `MaterialFactory`.
+适用于面要素（Ellipse、Polygon、Rectangle 等）和立体几何。所有方法均通过 `MaterialFactory` 静态调用。
 
 ### Solid / Color
 
-The most basic solid color material, also the most stable default material for points, surfaces, and solid geometry.
+最基础的纯色材质，也是点、面、立体几何最稳定的默认材质。
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -19,14 +19,14 @@ Daisy.MaterialFactory.Solid({ color: "#38bdf8", alpha: 0.74 })
 Daisy.MaterialFactory.Color(Daisy.Color.RED.withAlpha(0.5))
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | `WHITE` | Color |
-| `alpha` | `number` | `1` | Alpha (0–1) |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | `WHITE` | 颜色 |
+| `alpha` | `number` | `1` | 透明度（0–1） |
 
 ### Image
 
-Image texture material, suitable for surfaces and solids with texture coordinates.
+图片贴图材质，适合带纹理坐标的面与立体几何。
 
 ```typescript
 Daisy.MaterialFactory.Image("/assets/texture.png")
@@ -34,14 +34,14 @@ Daisy.MaterialFactory.Image("/assets/texture.png")
 Daisy.MaterialFactory.Builtin("image", { image: canvasElement, repeat: 3 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `image` | `string` \| `HTMLCanvasElement` \| `HTMLImageElement` | — | Texture source |
-| `repeat` | `number` \| `Cartesian2` | 1 | Texture repeat count |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `image` | `string` \| `HTMLCanvasElement` \| `HTMLImageElement` | — | 纹理源 |
+| `repeat` | `number` \| `Cartesian2` | 1 | 纹理重复次数 |
 
 ### Grid
 
-Regular grid material, suitable for grid surfaces, area boundaries, and body surface guide lines.
+规则网格材质，适合网格面、区域边界和体表辅助线。
 
 ```typescript
 Daisy.MaterialFactory.Grid({
@@ -52,17 +52,17 @@ Daisy.MaterialFactory.Grid({
 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | `WHITE` | Grid line color |
-| `cellAlpha` | `number` | `0.1` | Cell fill transparency |
-| `lineCount` | `Cartesian2` | `(8, 8)` | Row/column grid line count |
-| `lineThickness` | `Cartesian2` | `(1, 1)` | Row/column line width |
-| `lineOffset` | `Cartesian2` | `(0, 0)` | Grid line offset |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | `WHITE` | 网格线颜色 |
+| `cellAlpha` | `number` | `0.1` | 格子填充透明度 |
+| `lineCount` | `Cartesian2` | `(8, 8)` | 行/列网格线数量 |
+| `lineThickness` | `Cartesian2` | `(1, 1)` | 行/列线宽 |
+| `lineOffset` | `Cartesian2` | `(0, 0)` | 网格线偏移 |
 
 ### Checkerboard
 
-Checkerboard material, suitable for texture coordinate debugging and regular filling.
+棋盘格材质，适合纹理坐标调试和规则填充。
 
 ```typescript
 Daisy.MaterialFactory.Checkerboard({
@@ -72,15 +72,15 @@ Daisy.MaterialFactory.Checkerboard({
 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `lightColor` | `DColor` | `WHITE` | Light square color |
-| `darkColor` | `DColor` | `DARKGRAY` | Dark square color |
-| `repeat` | `Cartesian2` | `(2, 2)` | Row/column repeat count |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `lightColor` | `DColor` | `WHITE` | 亮格颜色 |
+| `darkColor` | `DColor` | `DARKGRAY` | 暗格颜色 |
+| `repeat` | `Cartesian2` | `(2, 2)` | 行列重复次数 |
 
 ### Stripe
 
-Stripe material, suitable for directional textures and scan bases.
+条纹材质，适合方向性纹理和扫描基底。
 
 ```typescript
 Daisy.MaterialFactory.Stripe({
@@ -91,17 +91,17 @@ Daisy.MaterialFactory.Stripe({
 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `evenColor` | `DColor` | `CYAN` | Even stripe color |
-| `oddColor` | `DColor` | `BLACK` | Odd stripe color |
-| `repeat` | `number` | 1 | Repeat count |
-| `offset` | `number` | 0 | Stripe offset |
-| `orientation` | `StripeOrientation` | `HORIZONTAL` | Direction: `HORIZONTAL` / `VERTICAL` |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `evenColor` | `DColor` | `CYAN` | 偶数条纹颜色 |
+| `oddColor` | `DColor` | `BLACK` | 奇数条纹颜色 |
+| `repeat` | `number` | 1 | 重复次数 |
+| `offset` | `number` | 0 | 条纹偏移 |
+| `orientation` | `StripeOrientation` | `HORIZONTAL` | 方向：`HORIZONTAL` / `VERTICAL` |
 
 ### Dot
 
-Dot matrix material, suitable for discrete sampling, masking, and low-density filling.
+点阵材质，适合离散采样、遮罩和低密度填充。
 
 ```typescript
 Daisy.MaterialFactory.Dot({
@@ -111,15 +111,15 @@ Daisy.MaterialFactory.Dot({
 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `lightColor` | `DColor` | `WHITE` | Dot color |
-| `darkColor` | `DColor` | `BLACK` | Background color |
-| `repeat` | `Cartesian2` | `(1, 1)` | Row/column repeat count |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `lightColor` | `DColor` | `WHITE` | 圆点颜色 |
+| `darkColor` | `DColor` | `BLACK` | 背景颜色 |
+| `repeat` | `Cartesian2` | `(1, 1)` | 行列重复次数 |
 
-## Polyline Materials
+## 线材质（Polyline）
 
-Applicable to `PolylineFeature`. Created via `MaterialFactory.Builtin(type, options)` or dedicated shortcut methods.
+适用于 `PolylineFeature`。通过 `MaterialFactory.Builtin(type, options)` 或专用快捷方法创建。
 
 ### PolylineGlow
 
@@ -129,11 +129,11 @@ Daisy.MaterialFactory.PolylineGlow({ color: Daisy.Color.CYAN, glowPower: 0.25 })
 Daisy.MaterialFactory.Builtin("polylineGlow", { color: "#22d3ee", glowPower: 0.22 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | `WHITE` | Main line color |
-| `glowPower` | `number` | `0.25` | Glow intensity (0–1) |
-| `taperPower` | `number` | `1.0` | Taper power |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | `WHITE` | 主线颜色 |
+| `glowPower` | `number` | `0.25` | 光晕强度（0–1） |
+| `taperPower` | `number` | `1.0` | 锥度衰减 |
 
 ### PolylineDash
 
@@ -141,54 +141,54 @@ Daisy.MaterialFactory.Builtin("polylineGlow", { color: "#22d3ee", glowPower: 0.2
 Daisy.MaterialFactory.PolylineDash({ color: Daisy.Color.RED, dashLength: 16 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | `WHITE` | Dash color |
-| `gapColor` | `DColor` | `TRANSPARENT` | Gap color |
-| `dashLength` | `number` | 16 | Dash length (pixels) |
-| `dashPattern` | `number` | `255` | Dash pattern bitmask |
-| `speed` | `number` | 0 | Flow speed (>0 enables dynamic effect, unit px/s) |
-| `flowColor` | `DColor` | — | Flow color (only effective in dynamic mode) |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | `WHITE` | 虚线颜色 |
+| `gapColor` | `DColor` | `TRANSPARENT` | 间隔颜色 |
+| `dashLength` | `number` | 16 | 虚线长度（像素） |
+| `dashPattern` | `number` | `255` | 虚线样式位掩码 |
+| `speed` | `number` | 0 | 流动速度（>0 时开启动态效果，单位 px/s） |
+| `flowColor` | `DColor` | — | 流动颜色（仅动态模式有效） |
 
 ### PolylineArrow
 
-Single arrow flowing along the polyline, suitable for direction indication.
+单箭头沿折线流动，适合方向指示。
 
 ```typescript
 Daisy.MaterialFactory.PolylineArrow({ color: "#34d399", speed: 1.5, arrowSize: 24 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | `WHITE` | Arrow color |
-| `speed` | `number` | 1.2 | Flow speed |
-| `direction` | `"forward"` \| `"backward"` \| `"both"` | `"forward"` | Flow direction |
-| `arrowSize` | `number` | 15 | Arrow texture size (pixels) |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | `WHITE` | 箭头颜色 |
+| `speed` | `number` | 1.2 | 流动速度 |
+| `direction` | `"forward"` \| `"backward"` \| `"both"` | `"forward"` | 流动方向 |
+| `arrowSize` | `number` | 15 | 箭头纹理大小（像素） |
 
 ### PolylineArrowPath
 
-Repeating arrows flowing along the line, suitable for path planning/route lines.
+重复箭头沿线流动，适合路径规划/行进路线。
 
 ```typescript
 Daisy.MaterialFactory.PolylineArrowPath({ color: Daisy.Color.ORANGE, speed: 3.0 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | `YELLOW` | Arrow color |
-| `speed` | `number` | 3.0 | Flow speed |
-| `arrowSize` | `number` | 15 | Arrow size (percentage of spacing) |
-| `spacing` | `number` | 0.2 | Arrow spacing |
-| `direction` | `"forward"` \| `"backward"` | `"forward"` | Direction |
-| `glowColor` | `DColor` | — | Optional: enables internal glow effect on arrows |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | `YELLOW` | 箭头颜色 |
+| `speed` | `number` | 3.0 | 流动速度 |
+| `arrowSize` | `number` | 15 | 箭头大小（占间距的百分比） |
+| `spacing` | `number` | 0.2 | 箭头间距 |
+| `direction` | `"forward"` \| `"backward"` | `"forward"` | 方向 |
+| `glowColor` | `DColor` | — | 可选：开启箭头内部流光效果 |
 
-## Custom Effect Materials
+## 自定义特效材质
 
-The SDK has 20+ built-in custom Shader materials (registered via `shaderManager.boot()`). Below are the complete parameter tables for the 5 core effect materials.
+Sdk 内置 20+ 种自定义 Shader 材质（通过 `shaderManager.boot()` 注册）。以下为 5 大核心特效材质的完整参数表。
 
 ### SpiralFlow
 
-Spiral axial flow, suitable for circular areas and energy diffusion surfaces.
+螺旋轴向流动，适合圆形区域和能量扩散面。
 
 ```typescript
 Daisy.MaterialFactory.SpiralFlow({
@@ -202,19 +202,19 @@ Daisy.MaterialFactory.SpiralFlow({
 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | Blue `(30,144,255)` | Main color |
-| `spiralColor` | `DColor` | `YELLOW` | Spiral line color |
-| `speed` | `number` | `1.0` | Scroll speed (≥0.1) |
-| `count` | `number` | `6.0` | Layer count, range `[1, 20]` |
-| `thickness` | `number` | `0.35` | Band width, range `[0.05, 0.95]` |
-| `opacity` | `number` | `1.0` | Alpha (0–1) |
-| `direction` | `"forward" \| "backward"` | `"forward"` | Flow direction |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | 蓝色 `(30,144,255)` | 主颜色 |
+| `spiralColor` | `DColor` | `YELLOW` | 螺旋线颜色 |
+| `speed` | `number` | `1.0` | 滚动速度（≥0.1） |
+| `count` | `number` | `6.0` | 层数，范围 `[1, 20]` |
+| `thickness` | `number` | `0.35` | 带宽，范围 `[0.05, 0.95]` |
+| `opacity` | `number` | `1.0` | 透明度（0–1） |
+| `direction` | `"forward" \| "backward"` | `"forward"` | 流动方向 |
 
 ### DownEmitDiffuse
 
-Energy surface diffusing downward from center, suitable for projection-style area representation.
+从中心向下扩散的能量面，适合投影式区域表达。
 
 ```typescript
 Daisy.MaterialFactory.DownEmitDiffuse({
@@ -227,18 +227,18 @@ Daisy.MaterialFactory.DownEmitDiffuse({
 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | `GREEN` | Main color |
-| `bottomColor` | `DColor` | Bright green `(0,255,128)` | Bottom diffusion color |
-| `speed` | `number` | `1.0` | Animation speed (≥0.1) |
-| `diffusionRadius` | `number` | `0.45` | Diffusion radius (0.05–1.0) |
-| `diffusionWidth` | `number` | `0.06` | Diffusion band width (0.01–0.5) |
-| `opacity` | `number` | `1.0` | Alpha (0–1) |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | `GREEN` | 主颜色 |
+| `bottomColor` | `DColor` | 亮绿 `(0,255,128)` | 底部扩散颜色 |
+| `speed` | `number` | `1.0` | 动画速度（≥0.1） |
+| `diffusionRadius` | `number` | `0.45` | 扩散半径（0.05–1.0） |
+| `diffusionWidth` | `number` | `0.06` | 扩散带宽（0.01–0.5） |
+| `opacity` | `number` | `1.0` | 透明度（0–1） |
 
 ### NeonScan
 
-Neon diagonal scan, suitable for radar sweeps and state highlight surfaces.
+霓虹斜向扫描，适合雷达扫掠和状态高亮面。
 
 ```typescript
 Daisy.MaterialFactory.NeonScan({
@@ -251,18 +251,18 @@ Daisy.MaterialFactory.NeonScan({
 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `baseColor` | `DColor` | `PURPLE` | Base color |
-| `neonColor` | `DColor` | `CYAN` | Neon scan band color |
-| `speed` | `number` | `1.5` | Scan speed (≥0.1) |
-| `bandWidth` | `number` | `0.15` | Scan band width (0.01–0.5) |
-| `glowSize` | `number` | `0.35` | Glow diffusion radius (0.05–0.95) |
-| `opacity` | `number` | `1.0` | Alpha (0–1) |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `baseColor` | `DColor` | `PURPLE` | 基底颜色 |
+| `neonColor` | `DColor` | `CYAN` | 霓虹扫描带颜色 |
+| `speed` | `number` | `1.5` | 扫描速度（≥0.1） |
+| `bandWidth` | `number` | `0.15` | 扫描带宽度（0.01–0.5） |
+| `glowSize` | `number` | `0.35` | 柔光扩散半径（0.05–0.95） |
+| `opacity` | `number` | `1.0` | 透明度（0–1） |
 
 ### RadialPulse
 
-Center radial pulse, suitable for alarm ranges and propagation effects.
+中心径向脉冲，适合告警范围和传播效果。
 
 ```typescript
 Daisy.MaterialFactory.RadialPulse({
@@ -275,18 +275,18 @@ Daisy.MaterialFactory.RadialPulse({
 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | `CYAN` | Base color |
-| `pulseColor` | `DColor` | `WHITE` | Pulse ring color |
-| `speed` | `number` | `1.0` | Pulse speed (≥0.1) |
-| `ringWidth` | `number` | `0.08` | Pulse ring width (0.01–0.5) |
-| `center` | `Cartesian2` | `(0.5, 0.5)` | Pulse center (UV coordinates) |
-| `opacity` | `number` | `1.0` | Alpha (0–1) |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | `CYAN` | 基底颜色 |
+| `pulseColor` | `DColor` | `WHITE` | 脉冲环颜色 |
+| `speed` | `number` | `1.0` | 脉冲速度（≥0.1） |
+| `ringWidth` | `number` | `0.08` | 脉冲环宽度（0.01–0.5） |
+| `center` | `Cartesian2` | `(0.5, 0.5)` | 脉冲中心（UV 坐标） |
+| `opacity` | `number` | `1.0` | 透明度（0–1） |
 
 ### RingSweep
 
-Angular ring sweep, suitable for disc-shaped scanning beams.
+角向环形扫描，适合圆盘形态的扫描光束。
 
 ```typescript
 Daisy.MaterialFactory.RingSweep({
@@ -298,39 +298,39 @@ Daisy.MaterialFactory.RingSweep({
 })
 ```
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `color` | `DColor` | `BLUE` | Base color |
-| `sweepColor` | `DColor` | `ORANGE` | Sweep beam color |
-| `speed` | `number` | `1.0` | Scan speed (≥0.1) |
-| `width` | `number` | `0.12` | Beam width (0.01–0.5) |
-| `opacity` | `number` | `1.0` | Alpha (0–1) |
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `color` | `DColor` | `BLUE` | 基底颜色 |
+| `sweepColor` | `DColor` | `ORANGE` | 扫掠光束颜色 |
+| `speed` | `number` | `1.0` | 扫描速度（≥0.1） |
+| `width` | `number` | `0.12` | 光束宽度（0.01–0.5） |
+| `opacity` | `number` | `1.0` | 透明度（0–1） |
 
-## Daisy Advanced Shader Materials
+## Daisy 高级着色器材质
 
-Below are 17 `Daisy*` series advanced materials, all callable via `MaterialFactory.*` shortcut methods.
+以下是 17 种 `Daisy*` 系列高级材质，均通过 `MaterialFactory.*` 快捷方法调用。
 
-| Method | Effect | Description |
-|--------|--------|-------------|
-| `DaisyNoiseField` | fbm noise field | Suitable for clouds, energy surfaces, and body surface perturbations, `colorA` / `colorB` / `scale` / `speed` / `contrast` |
-| `DaisyGridGlow` | Glowing grid | Pulsing grid lines, `baseColor` / `lineColor` / `cellCount` / `lineWidth` / `speed` |
-| `DaisyContourBands` | Contour banding | Height/intensity/graded areas, `lowColor` / `highColor` / `bandCount` / `slope` |
-| `DaisyCellular` | Cellular boundary texture | Suitable for partitioned areas and non-uniform boundaries, `baseColor` / `edgeColor` / `cellCount` |
-| `DaisyHeatmap` | Radial heatmap | Suitable for intensity centers and risk distribution, `coldColor` / `midColor` / `hotColor` / `radius` |
-| `DaisyScanline` | Scan line flicker | Suitable for screen, radar, and panel-style materials, `baseColor` / `scanColor` / `density` / `thickness` |
-| `DaisyTurbulence` | Turbulence noise | Suitable for unstable clouds and fluid-like surfaces, `colorA` / `colorB` / `scale` / `intensity` |
-| `DaisyMarble` | Noise-distorted marbling | Suitable for geological, energy cloud, and decorative body surfaces, `baseColor` / `veinColor` / `frequency` / `warp` |
-| `DaisySdfRings` | SDF concentric rings | Suitable for precise pulses, targets, and ripples, `ringColor` / `count` / `width` |
-| `DaisyHalftone` | Halftone dots | Suitable for density expression and graphic masking, `paperColor` / `inkColor` / `density` |
-| `DaisyWarpedStripes` | Domain-warped stripes | Suitable for flow direction, wind fields, and irregular bands, `colorA` / `colorB` / `frequency` / `warpStrength` |
-| `DaisyAurora` | Aurora curtain | Suitable for vertical flow and energy curtains, `lowColor` / `highColor` / `waviness` |
-| `DaisyCircuit` | Circuit line pulse | Suitable for data links and tech body surfaces, `traceColor` / `cells` |
-| `DaisyTopoRipple` | Contour radar wave | Suitable for terrain-like scanning and hot zone propagation, `lineColor` / `bands` / `rippleCount` |
-| `DaisyMatrixRain` | Matrix rain | Suitable for data streams and matrix-style information surfaces, `rainColor` / `columns` / `rows` |
-| `DaisyDitherFade` | Bayer dither fade | Suitable for low-cost transparent transitions and scan masks, `colorA` / `colorB` / `radial` |
-| `DaisyAdvancedWater` | Advanced water surface | 5-layer waves, cross normals, Fresnel effect, Blinn-Phong specular, `baseColor` / `surfaceColor` / `waveSpeed` / `waveFrequency` |
+| 方法 | 效果 | 说明 |
+|------|------|------|
+| `DaisyNoiseField` | fbm 噪声场 | 适合云雾、能量面和体表扰动，`colorA` / `colorB` / `scale` / `speed` / `contrast` |
+| `DaisyGridGlow` | 发光网格 | 脉冲网格线，`baseColor` / `lineColor` / `cellCount` / `lineWidth` / `speed` |
+| `DaisyContourBands` | 等值线分层 | 高度/强度/分级区域，`lowColor` / `highColor` / `bandCount` / `slope` |
+| `DaisyCellular` | 细胞边界纹理 | 适合分块区域和非均匀边界，`baseColor` / `edgeColor` / `cellCount` |
+| `DaisyHeatmap` | 径向热力图 | 适合强度中心和风险分布，`coldColor` / `midColor` / `hotColor` / `radius` |
+| `DaisyScanline` | 扫描线闪烁 | 适合屏幕、雷达、面板式材质，`baseColor` / `scanColor` / `density` / `thickness` |
+| `DaisyTurbulence` | 湍流噪声 | 适合不稳定云团和流体感表面，`colorA` / `colorB` / `scale` / `intensity` |
+| `DaisyMarble` | 噪声扭曲云纹 | 适合地质、能量云和装饰性体表，`baseColor` / `veinColor` / `frequency` / `warp` |
+| `DaisySdfRings` | SDF 同心环 | 适合精确脉冲、靶心和波纹，`ringColor` / `count` / `width` |
+| `DaisyHalftone` | 半调网点 | 适合密度表达和图形化遮罩，`paperColor` / `inkColor` / `density` |
+| `DaisyWarpedStripes` | 域扭曲条纹 | 适合流向、风场和不规则条带，`colorA` / `colorB` / `frequency` / `warpStrength` |
+| `DaisyAurora` | 极光帘幕 | 适合垂直流动和能量幕墙，`lowColor` / `highColor` / `waviness` |
+| `DaisyCircuit` | 电路线脉冲 | 适合数据链路和科技体表，`traceColor` / `cells` |
+| `DaisyTopoRipple` | 等值线扫雷达波 | 适合地形感扫描和热区传播，`lineColor` / `bands` / `rippleCount` |
+| `DaisyMatrixRain` | 码流雨滴 | 适合数据流和矩阵式信息面，`rainColor` / `columns` / `rows` |
+| `DaisyDitherFade` | Bayer 点阵渐隐 | 适合低成本透明过渡和扫描遮罩，`colorA` / `colorB` / `radial` |
+| `DaisyAdvancedWater` | 高级拟态水面 | 5 层波浪、cross 法线、菲涅尔效应、Blinn-Phong 高光，`baseColor` / `surfaceColor` / `waveSpeed` / `waveFrequency` |
 
-Usage examples:
+使用示例：
 
 ```typescript
 // 噪声场
@@ -346,41 +346,41 @@ Daisy.MaterialFactory.DaisyHeatmap({ coldColor: "#2563eb", midColor: "#22c55e", 
 Daisy.MaterialFactory.DaisyAdvancedWater({ baseColor: "#001432", surfaceColor: "#006496", waveSpeed: 0.8, waveFrequency: 12.0 })
 ```
 
-## Bonus Texture Materials (Builtin)
+## Bonus 贴图材质（Builtin）
 
-In addition to surface materials, `MaterialFactory.Builtin()` also supports the following standard texture material types, called via `Builtin(type, options)`:
+除面材质外，`MaterialFactory.Builtin()` 还支持以下标准贴图材质类型，通过 `Builtin(type, options)` 调用：
 
-| type | Description | Key Parameters |
-|------|-------------|----------------|
-| `"diffuseMap"` | Diffuse map | `image`, `repeat` |
-| `"alphaMap"` | Alpha mask map | `image`, `repeat` |
-| `"specularMap"` | Specular intensity map | `image`, `repeat` |
-| `"emissionMap"` | Emission map | `image`, `repeat` |
-| `"bumpMap"` | Bump perturbation map | `image`, `repeat`, `strength` |
-| `"normalMap"` | Normal map | `image`, `repeat`, `strength` |
-| `"water"` | Water normal animation | `normalMap`, `frequency`, `animationSpeed`, `amplitude` |
-| `"rimLighting"` | Rim lighting material | `color`, `rimColor`, `width` |
-| `"fade"` | Directional fade | `fadeInColor`, `fadeOutColor`, `maximumDistance`, `fadeDirection` |
-| `"elevationContour"` | Terrain contour lines | `contourColor`, `spacing`, `width` |
-| `"elevationRamp"` | Terrain height gradient | `image`, `minimumHeight`, `maximumHeight` |
-| `"slopeRamp"` | Terrain slope gradient | `image` |
-| `"aspectRamp"` | Terrain aspect gradient | `image` |
-| `"elevationBand"` | Terrain height banding | `heights`, `colors` |
-| `"waterMask"` | Surface water/land mask | `waterColor`, `landColor` |
+| type | 说明 | 关键参数 |
+|------|------|----------|
+| `"diffuseMap"` | 漫反射贴图 | `image`、`repeat` |
+| `"alphaMap"` | 透明遮罩贴图 | `image`、`repeat` |
+| `"specularMap"` | 高光强度贴图 | `image`、`repeat` |
+| `"emissionMap"` | 自发光贴图 | `image`、`repeat` |
+| `"bumpMap"` | 凹凸扰动贴图 | `image`、`repeat`、`strength` |
+| `"normalMap"` | 法线贴图 | `image`、`repeat`、`strength` |
+| `"water"` | 水面法线动画 | `normalMap`、`frequency`、`animationSpeed`、`amplitude` |
+| `"rimLighting"` | 边缘光材质 | `color`、`rimColor`、`width` |
+| `"fade"` | 方向渐隐 | `fadeInColor`、`fadeOutColor`、`maximumDistance`、`fadeDirection` |
+| `"elevationContour"` | 地形等高线 | `contourColor`、`spacing`、`width` |
+| `"elevationRamp"` | 地形高度渐变 | `image`、`minimumHeight`、`maximumHeight` |
+| `"slopeRamp"` | 地形坡度渐变 | `image` |
+| `"aspectRamp"` | 地形坡向渐变 | `image` |
+| `"elevationBand"` | 地形高度分带 | `heights`、`colors` |
+| `"waterMask"` | 地表水陆遮罩 | `waterColor`、`landColor` |
 
-## Carrier Type Compatibility
+## 载体类型兼容性
 
-Different materials are applicable to different Feature carrier types:
+不同材质适用于不同 Feature 载体类型：
 
-| Carrier | Feature Type | Available Materials |
-|---------|-------------|-------------------|
-| `point` | `PointFeature` | Only `Solid / Color` (PointFeature uses `color` parameter, doesn't accept `material`) |
-| `line` | `PolylineFeature` | `PolylineGlow`, `PolylineDash`, `PolylineArrow`, `PolylineArrowPath`, `PolylineOutline` |
-| `surface` | `EllipseFeature`, `PolygonFeature`, `RectangleFeature` etc. | All surface materials, custom effect materials, Daisy advanced materials |
-| `solid` | `CylinderFeature`, `BoxFeature`, `EllipsoidFeature`, `SphereFeature` | All surface materials, Daisy advanced materials (except `AdvancedWater`) |
-| `terrain` | Earth surface / Globe | `ElevationContour`, `ElevationRamp`, `SlopeRamp`, `AspectRamp`, `ElevationBand`, `WaterMask` |
+| 载体 | Feature 类型 | 可用材质 |
+|------|-------------|---------|
+| `point` | `PointFeature` | 仅 `Solid / Color`（PointFeature 使用 `color` 参数，不接收 `material`） |
+| `line` | `PolylineFeature` | `PolylineGlow`、`PolylineDash`、`PolylineArrow`、`PolylineArrowPath`、`PolylineOutline` |
+| `surface` | `EllipseFeature`、`PolygonFeature`、`RectangleFeature` 等 | 所有面材质、自定义特效材质、Daisy 高级材质 |
+| `solid` | `CylinderFeature`、`BoxFeature`、`EllipsoidFeature`、`SphereFeature` | 所有面材质、Daisy 高级材质（`AdvancedWater` 除外） |
+| `terrain` | 地球表面 / Globe | `ElevationContour`、`ElevationRamp`、`SlopeRamp`、`AspectRamp`、`ElevationBand`、`WaterMask` |
 
-### Material Mounting Examples
+### 材质挂载示例
 
 ```typescript
 const entity = engine.createEntity("demo")
@@ -408,7 +408,7 @@ entity.addFeature(new Daisy.PointFeature({
 }))
 ```
 
-> **Related API**: [MaterialFactory](/en/api/classes/MaterialFactory) · [SpiralFlowMaterial](/en/api/classes/SpiralFlowMaterial) · [DownEmitDiffuseMaterial](/en/api/classes/DownEmitDiffuseMaterial) · [NeonScanMaterial](/en/api/classes/NeonScanMaterial) · [RadialPulseMaterial](/en/api/classes/RadialPulseMaterial) · [RingSweepMaterial](/en/api/classes/RingSweepMaterial)
+> **相关 API**：[MaterialFactory](/en/api/classes/MaterialFactory) · [SpiralFlowMaterial](/en/api/classes/SpiralFlowMaterial) · [DownEmitDiffuseMaterial](/en/api/classes/DownEmitDiffuseMaterial) · [NeonScanMaterial](/en/api/classes/NeonScanMaterial) · [RadialPulseMaterial](/en/api/classes/RadialPulseMaterial) · [RingSweepMaterial](/en/api/classes/RingSweepMaterial)
 
 ---
 

@@ -8,10 +8,10 @@
 
 > **classifySunOcclusion**(`input`): [`SunOcclusionState`](../types/SunOcclusionState.md)
 
-根据观察点看到的光源与遮挡天体视圆关系判定光照状态。
+Determines the illumination state based on the apparent disk relationship between the light source and the occluding celestial body as seen from the observation point.
 
-当遮挡天体视圆完整覆盖光源时返回 `umbra`，部分相交时返回 `penumbra`，
-否则返回 `sunlit`。
+Returns `umbra` when the occluding body's disk fully covers the light source, `penumbra` when partially intersecting,
+and `sunlit` otherwise.
 
 ## Parameters
 

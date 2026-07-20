@@ -8,7 +8,7 @@
 
 > `const` **HPSpg4Analyzer**: `HighPrecisionSGP4Analyzer`
 
-默认单例（模块加载后会自动 `init()`）。
+Default singleton (auto-initialized via `init()` after module load).
 
 ## Example
 

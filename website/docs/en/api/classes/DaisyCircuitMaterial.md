@@ -6,7 +6,7 @@
 
 # Class: DaisyCircuitMaterial
 
-动态电路板纹材质。
+Dynamic circuit board texture material.
 
 ## Extends
 

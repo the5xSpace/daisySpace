@@ -8,4 +8,4 @@
 
 > **MoonConfig** = [`CelestialBodyConfig`](PW.CelestialBodyConfig.md)
 
-月球对象配置
+Moon object configuration

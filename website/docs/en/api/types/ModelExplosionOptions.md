@@ -8,14 +8,15 @@
 
 > **ModelExplosionOptions** = `object`
 
-Exploded-view model configuration.
+模型爆炸图配置。
 
-The exploded view moves each glTF node outward along the direction from the node center to the model-space center:
-- `factor = 0` means no displacement
-- `factor = 1` means using one unit of the base explosion distance
-- The larger the node index, the larger the default progressive distance in the same direction, forming a layered exploded-view profile
+爆炸图会把每个 glTF 节点沿“节点中心相对模型坐标中心”的方向外移：
+- `factor = 0` 表示无位移
+- `factor = 1` 表示使用一倍基础爆炸距离
+- 节点 index 越大，默认会沿同一方向套用更大的递进距离，形成爆炸图的分层曲线
 
-By default, the SDK reads the mesh vertex bounding box to locate the part center instead of relying only on the node transform origin. This covers the common modeling pattern where the node origin is at the model center but the actual geometry is offset from it.
+SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读取节点 transform 原点；
+这样能覆盖“节点原点在模型中心，但几何体实际偏离中心”的常见建模方式。
 
 ## Properties
 
@@ -23,7 +24,7 @@ By default, the SDK reads the mesh vertex bounding box to locate the part center
 
 > `optional` **center?**: `Daisy.Cartesian3`
 
-Explosion center in model local coordinates. Defaults to the model origin.
+爆炸中心，使用模型本地坐标。默认模型坐标原点。
 
 ***
 
@@ -31,7 +32,7 @@ Explosion center in model local coordinates. Defaults to the model origin.
 
 > `optional` **enabled?**: `boolean`
 
-Whether the exploded view is enabled. Defaults to `true`.
+是否启用爆炸图。默认 `true`。
 
 ***
 
@@ -39,7 +40,7 @@ Whether the exploded view is enabled. Defaults to `true`.
 
 > `optional` **excludeNodeNames?**: `string`[]
 
-Excludes the specified nodes.
+排除指定节点。
 
 ***
 
@@ -47,7 +48,7 @@ Excludes the specified nodes.
 
 > `optional` **factor?**: `number`
 
-Explosion strength multiplier. `0` is equivalent to off. The default is `1`.
+爆炸强度倍率。`0` 等价于关闭，默认 `1`。
 
 ***
 
@@ -55,7 +56,7 @@ Explosion strength multiplier. `0` is equivalent to off. The default is `1`.
 
 > `optional` **indexCurvePower?**: `number`
 
-Exponent for the progressive curve applied to node indices. Defaults to `1.2`.
+节点 index 递进曲线幂指数。默认 `1.2`。
 
 ***
 
@@ -63,9 +64,10 @@ Exponent for the progressive curve applied to node indices. Defaults to `1.2`.
 
 > `optional` **indexDistanceFactor?**: `number`
 
-Coefficient for the progressive distance applied to node indices.
+节点 index 递进距离系数。
 
-The explosion distance is multiplied by `1 + indexDistanceFactor * index^indexCurvePower`. Pass `0` to disable index-based progression and keep only the base radial explosion.
+爆炸距离会乘以 `1 + indexDistanceFactor * index^indexCurvePower`；
+传 `0` 可关闭 index 递进，只保留基础径向爆炸。
 
 ***
 
@@ -73,9 +75,9 @@ The explosion distance is multiplied by `1 + indexDistanceFactor * index^indexCu
 
 > `optional` **minimumDistance?**: `number`
 
-Minimum explosion displacement in model local units.
+最小爆炸位移，使用模型本地坐标单位。
 
-If omitted, `minimumDistanceRatio` is used to compute it automatically from the model's bounding radius. Pass `0` to disable the minimum displacement.
+不传时使用 `minimumDistanceRatio` 自动按模型包围半径计算；传 `0` 可关闭最小位移。
 
 ***
 
@@ -83,7 +85,7 @@ If omitted, `minimumDistanceRatio` is used to compute it automatically from the 
 
 > `optional` **minimumDistanceRatio?**: `number`
 
-Ratio of the automatic minimum displacement to the model's local bounding radius. Defaults to `0.16`.
+自动最小位移占模型本地包围半径的比例。默认 `0.16`。
 
 ***
 
@@ -91,4 +93,4 @@ Ratio of the automatic minimum displacement to the model's local bounding radius
 
 > `optional` **nodeNames?**: `string`[]
 
-Enables the explosion effect only for the specified nodes. If omitted, all positionable nodes are included.
+仅对指定节点启用爆炸；不传表示所有可定位节点。

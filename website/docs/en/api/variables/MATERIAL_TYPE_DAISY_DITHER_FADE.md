@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_DITHER\_FADE**: `"DaisyDitherFade"` = `'DaisyDitherFade'`
 
-Daisy 抖动淡出程序化材质类型标识。
+Daisy dither fade procedural material type identifier.

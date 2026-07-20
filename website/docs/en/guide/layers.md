@@ -1,10 +1,10 @@
-# Geo Layers
+# 地理图层
 
-`engine.geoLayer` manages three types of geographic resources: imagery, terrain, and sky/atmosphere.
+`engine.geoLayer` 管理三类地理资源：影像、地形和天空/大气。
 
-## Imagery
+## 影像（Imagery）
 
-### Base Map Setup
+### 底图设置
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -32,18 +32,18 @@ engine.geoLayer.setBaseImagery({
 })
 ```
 
-Supported `GeoImageryType`:
+支持的 `GeoImageryType`：
 
-| Type | Description |
-|------|-------------|
-| `XYZ` | Standard tile service (requires `url`, template `{z}/{y}/{x}`) |
-| `OpenStreetMap` | OSM OpenStreetMap |
-| `ArcGisMapServer` | ArcGIS map service (requires `url`) |
-| `WMTS` | WMTS standard service |
-| `WMS` | WMS standard service |
-| `CesiumIon` | Cesium Ion resource (requires `assetId`) |
+| 类型 | 说明 |
+|------|------|
+| `XYZ` | 标准瓦片服务（需 `url`，模板 `{z}/{y}/{x}`） |
+| `OpenStreetMap` | OSM 开放街道地图 |
+| `ArcGisMapServer` | ArcGIS 地图服务（需 `url`） |
+| `WMTS` | WMTS 标准服务 |
+| `WMS` | WMS 标准服务 |
+| `CesiumIon` | Cesium Ion 资源（需 `assetId`） |
 
-### Overlay Layers
+### 叠加图层
 
 ```typescript
 // 叠加标注图层
@@ -55,18 +55,18 @@ engine.geoLayer.addImagery({
 engine.geoLayer.clearImagery()
 ```
 
-## Terrain
+## 地形（Terrain）
 
-### Terrain Types
+### 地形类型
 
-`GeoTerrainType` enum provides four terrain data sources:
+`GeoTerrainType` 枚举提供了四种地形数据源：
 
-| Type | Description |
-|------|-------------|
-| `GeoTerrainType.CesiumIon` | Cesium Ion asset terrain (loads default global terrain when `assetId` is omitted) |
-| `GeoTerrainType.ArcGis` | ArcGIS terrain service |
-| `GeoTerrainType.Ellipsoid` | Smooth ellipsoid (no elevation), suitable for Moon/Mars scenes |
-| `GeoTerrainType.Custom` | Custom elevation data (requires `provider`) |
+| 类型 | 说明 |
+|------|------|
+| `GeoTerrainType.CesiumIon` | Cesium Ion 资产地形（`assetId` 省略时加载默认全球地形） |
+| `GeoTerrainType.ArcGis` | ArcGIS 地形服务 |
+| `GeoTerrainType.Ellipsoid` | 光滑椭球体（无高程），适用于月球/火星场景 |
+| `GeoTerrainType.Custom` | 自定义高程数据（需 `provider`） |
 
 ```typescript
 // 默认全球地形（Cesium Ion，省略 assetId 即加载默认地形）
@@ -75,9 +75,9 @@ engine.geoLayer.setTerrain({
 })
 ```
 
-### Custom Elevation Terrain
+### 自定义高程地形
 
-Pass a custom terrain provider via `GeoTerrainType.Custom`:
+通过 `GeoTerrainType.Custom` 传入自定义地形 provider：
 
 ```typescript
 engine.geoLayer.setTerrain({
@@ -86,9 +86,9 @@ engine.geoLayer.setTerrain({
 })
 ```
 
-### Procedural Terrain (CustomHeightmapTerrainProvider)
+### 程序化地形 (CustomHeightmapTerrainProvider)
 
-`CustomHeightmapTerrainProvider` allows dynamically generating elevation data via a callback function, with no external service needed:
+`CustomHeightmapTerrainProvider` 允许通过回调函数动态生成高程数据，无需外部服务：
 
 ```typescript
 engine.geoLayer.setTerrain({
@@ -113,9 +113,9 @@ engine.geoLayer.setTerrain({
 })
 ```
 
-> `callback(x, y, level)` — `x` / `y` are tile coordinates, `level` is the zoom level. The return value must be a `Float32Array` elevation array (unit: meters).
+> `callback(x, y, level)` 的 `x` / `y` 为瓦片坐标，`level` 为缩放级别。返回值必须是 `Float32Array` 高程数组（单位：米）。
 
-## Sky / Atmosphere
+## 天空 / 大气（Sky）
 
 ```typescript
 // 默认天空盒
@@ -135,21 +135,21 @@ engine.geoLayer.setSky({
 })
 ```
 
-### Sky Types
+### 天空类型
 
-`GeoSkyType` enum controls sky rendering:
+`GeoSkyType` 枚举控制天空渲染方式：
 
-| Type | Description |
-|------|-------------|
-| `GeoSkyType.None` | No sky rendering, solid color background |
-| `GeoSkyType.SkyBox` | Custom skybox texture (six-sided cube map) |
-| `GeoSkyType.Default` | Default atmospheric scattering sky |
+| 类型 | 说明 |
+|------|------|
+| `GeoSkyType.None` | 不渲染天空，纯色背景 |
+| `GeoSkyType.SkyBox` | 自定义天空盒纹理（六面体贴图） |
+| `GeoSkyType.Default` | 默认大气散射天空 |
 
-> `GeoSkyType.None` is suitable for deep space/star field scenes; `GeoSkyType.Default` automatically adapts to the planet's ellipsoid.
+> `GeoSkyType.None` 适合深空/星表场景；`GeoSkyType.Default` 自动适配星球椭球体。
 
 ### setGlobeOptions
 
-Controls the rendering behavior of the Earth ellipsoid:
+控制地球椭球体的渲染行为：
 
 ```typescript
 engine.geoLayer.setGlobeOptions({
@@ -159,15 +159,15 @@ engine.geoLayer.setGlobeOptions({
 })
 ```
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `show` | `boolean` | Whether to show the Earth surface |
-| `baseColor` | `Color` | Base color when no imagery is available (Moon/Mars often use `BLACK`) |
-| `depthTestAgainstTerrain` | `boolean` | Whether to enable depth testing (prevents objects from penetrating terrain) |
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `show` | `boolean` | 是否显示地球表面 |
+| `baseColor` | `Color` | 无影像时的基础色（月球/火星等常用 `BLACK`） |
+| `depthTestAgainstTerrain` | `boolean` | 是否开启深度测试（避免物体穿透地形） |
 
-## Fog
+## 雾效
 
-Fog is used to simulate atmospheric attenuation, enhancing scene depth and long-distance occlusion:
+雾效用于模拟大气衰减，增强场景纵深感和远距离遮挡效果：
 
 ```typescript
 engine.geoLayer.setFog({
@@ -177,18 +177,18 @@ engine.geoLayer.setFog({
 })
 ```
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `enabled` | `boolean` | Whether to enable fog |
-| `density` | `number` | Fog density (default `8.0e-5`) |
-| `screenSpaceErrorFactor` | `number` | SSE factor, affects fog decay rate with distance (default `6000`) |
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `enabled` | `boolean` | 是否启用雾效 |
+| `density` | `number` | 雾浓度（默认 `8.0e-5`） |
+| `screenSpaceErrorFactor` | `number` | SSE 系数，影响雾随距离衰减速率（默认 `6000`） |
 
-> **Related API**: [Engine](/en/api/classes/Engine) · `CustomHeightmapTerrainProvider`
+> **相关 API**：[Engine](/en/api/classes/Engine) · `CustomHeightmapTerrainProvider`
 
 
 ---
 
 <!--
-示例参考: [GeoLayer demos](https://github.com/the5xSpace/daisySpace/tree/main/playground/src/demos/geoLayer)
+  示例参考: [GeoLayer demos](https://github.com/the5xSpace/daisySpace/tree/main/playground/src/demos/geoLayer)
   评分配额: API 30/30 | 概念 25/25 | 示例 20/20 | 陷阱 15/15 | 结构 10/10 → 100/100
 -->

@@ -6,11 +6,13 @@
 
 # Class: FreeGeometryFeature
 
-Free geometry feature that lets users create arbitrary 3D shapes without exposing the underlying implementation.
+自由几何 Feature —— 让用户创建任意 3D 几何图形而不暴露 底层。
 
-The user provides a `DaisyGeometryDescriptor` (local-space vertices, normals, and indices), and Daisy automatically builds the underlying `Daisy.Geometry` + `SafePrimitive` + `MaterialAppearance`, then adds it to `engine.collections.primitiveCollection`.
+用户传入 DaisyGeometryDescriptor（局部坐标的顶点/法线/索引），
+Daisy 自动构建底层 Daisy.Geometry + SafePrimitive + MaterialAppearance，
+并加入 engine.collections.primitiveCollection。
 
-The geometry follows the entity's movement and rotation in local coordinates, matching the behavior of `CylinderFeature` and `BoxFeature`.
+几何体跟随 Entity 移动/旋转（局部坐标系），与 CylinderFeature/BoxFeature 行为一致。
 
 ## Example
 
@@ -59,9 +61,9 @@ entity.addFeature(feature);
 
 > **handle**: (`mode`) => `void`
 
-Default handling when the scene mode changes.
+场景模式切换时的默认处理。
 
-In 2D or other non-3D modes, the local body axes are destroyed by default to avoid rendering artifacts.
+2D/非 3D 模式下，默认销毁机体坐标轴以避免异常显示。
 
 #### Parameters
 
@@ -145,7 +147,7 @@ In 2D or other non-3D modes, the local body axes are destroyed by default to avo
 
 > **get** **id**(): `string`
 
-Unique identifier for the feature.
+Feature 的唯一标识。
 
 ##### Default
 
@@ -159,10 +161,10 @@ Unique identifier for the feature.
 
 > **set** **id**(`value`): `void`
 
-Unique identifier for the feature.
+Feature 的唯一标识。
 
-It is usually generated automatically by the base class during construction as `${type}__${GenGuid()}`.
-Subclasses can also override it manually before registration.
+通常由基类在构造时自动生成：`${type}__${GenGuid()}`。
+子类也可以在注册前手动覆盖。
 
 ##### Default
 
@@ -190,9 +192,9 @@ Subclasses can also override it manually before registration.
 
 > **get** **includeInBoundingSphere**(): `boolean`
 
-Whether the current feature participates in the entity's bounding sphere aggregation.
+当前 Feature 是否参与 Entity 的包围球聚合。
 
-The default is `true`. You can disable this for helper lines, particles, and other features that should not affect camera framing.
+默认值为 `true`。辅助线、粒子等不希望影响相机取景的 Feature 可以关闭。
 
 ##### Returns
 
@@ -202,7 +204,7 @@ The default is `true`. You can disable this for helper lines, particles, and oth
 
 > **set** **includeInBoundingSphere**(`value`): `void`
 
-Sets whether the current feature participates in the entity's bounding sphere aggregation.
+设置当前 Feature 是否参与 Entity 的包围球聚合。
 
 ##### Parameters
 

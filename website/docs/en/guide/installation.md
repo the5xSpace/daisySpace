@@ -1,23 +1,23 @@
 ---
-title: Installation
+title: 安装
 ---
 
-# Installation
+# 安装
 
-DaisySpace-Sdk is distributed as an npm package and is intended for modern frontend projects such as Vite, Vue, React, and Svelte.
+DaisySpace-Sdk 以 npm 包形式发布，推荐在 Vite / Vue / React / Svelte 等现代前端工程中使用。
 
-## Requirements
+## 环境要求
 
-| Item | Requirement |
+| 项目 | 要求 |
 |------|------|
 | Node.js | 18+ |
-| Package manager | npm / pnpm / yarn |
-| TypeScript | `strict` is recommended |
-| Browser | A modern browser with WebGL2 support |
+| 包管理器 | npm / pnpm / yarn 均可 |
+| TypeScript | 推荐开启 `strict` |
+| 浏览器 | 支持 WebGL2 的现代浏览器 |
 
-The SDK pins its underlying rendering runtime inside the package. Applications do not need to declare or upgrade that rendering dependency separately.
+SDK 已在包内锁定底层渲染运行时版本，业务项目不需要额外声明或升级底层渲染依赖。
 
-## Install The SDK
+## 安装 SDK
 
 ```bash
 # npm
@@ -30,15 +30,15 @@ pnpm add daisy-space-sdk
 yarn add daisy-space-sdk
 ```
 
-## Minimal Integration
+## 最小工程接入
 
-Prepare a container in HTML:
+HTML 中准备一个容器：
 
 ```html
 <div id="daisyContainer" style="width: 100vw; height: 100vh"></div>
 ```
 
-Create the engine in application code:
+业务代码中创建引擎：
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -47,7 +47,7 @@ const engine = await Daisy.Engine.create("daisyContainer")
 engine.play()
 ```
 
-The container can also be passed directly as an `HTMLElement`:
+容器也可以直接传入 `HTMLElement`：
 
 ```typescript
 const container = document.getElementById("daisyContainer")
@@ -56,17 +56,17 @@ if (!container) throw new Error("daisyContainer not found")
 const engine = await Daisy.Engine.create(container)
 ```
 
-## Static Resource Path
+## 静态资源路径
 
-`daisy-space-sdk` includes the Cesium runtime, Worker, imagery, models, and other static resources. Keep the SDK `dist` directory structure and point `BuildModuleUrl` at the public directory before creating the engine:
+`daisy-space-sdk` 包含 Cesium 运行时、Worker、影像、模型等静态资源。应用需要保留 SDK `dist` 的目录结构，并在创建引擎前将 `BuildModuleUrl` 指向该公开目录：
 
 ```typescript
 Daisy.BuildModuleUrl.setBaseUrl("/vendor/daisy/")
 const engine = await Daisy.Engine.create("daisyContainer")
 ```
 
-When application code references an SDK asset, generate its URL with `Daisy.BuildModuleUrl.getUrl()`. Do not use application-root paths such as `/static/...` or `/sandAssets/...`. See [Built-in Static Resources](/en/guide/builtin-assets) for the complete directory list and build-tool requirements.
+业务代码引用 SDK 内置资源时，必须通过 `Daisy.BuildModuleUrl.getUrl()` 生成 URL，不要使用 `/static/...` 或 `/sandAssets/...` 等应用根路径。完整目录清单和构建工具接入要求见 [内置静态资源](/en/guide/builtin-assets)。
 
-## Next Steps
+## 下一步
 
-After installation, run the minimal example in [Quick Start](/en/guide/), then continue with [Satellite](/en/guide/satellite), [Sensor](/en/guide/sensor), or [Route Aircraft](/en/guide/route-aircraft) for your use case.
+安装完成后，先跑通 [快速开始](/en/guide/) 的最小示例，再按业务类型进入 [卫星](/en/guide/satellite)、[传感器](/en/guide/sensor) 或 [航线飞行器](/en/guide/route-aircraft)。

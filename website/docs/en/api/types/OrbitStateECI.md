@@ -8,9 +8,9 @@
 
 > **OrbitStateECI** = `{ frame: "TEME" \| "J2000"; position: Daisy.Cartesian3; velocityPerSecond: Daisy.Cartesian3 }`
 
-轨道状态（ECI / TEME）。
+Orbit state (ECI / TEME).
 
-单位：
+Units:
 - `position`: m
 - `velocityPerSecond`: m/s
 

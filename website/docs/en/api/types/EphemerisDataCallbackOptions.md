@@ -8,9 +8,9 @@
 
 > **EphemerisDataCallbackOptions** = `{ callback: (append) => void; referenceFrame: Daisy.ReferenceFrame }`
 
-星历数据源配置（回调追加形式）。
+Ephemeris data source configuration (callback append form).
 
-用于持续追加位置点（如实时流数据）。
+Used for continuously appending position points (e.g., real-time streaming data).
 
 ## Properties
 

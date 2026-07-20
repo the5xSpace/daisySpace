@@ -8,7 +8,7 @@
 
 > **CollisionHandlerFunc** = (`box`) => `void`
 
-碰撞处理回调函数类型
+Collision handler callback function type
 
 ## Parameters
 
@@ -16,7 +16,7 @@
 
 [`BoundBoxFeature`](../classes/BoundBoxFeature.md)
 
-被碰撞的盒子，可以通过 box.entity 获取实体对象
+The collided box; the entity object can be accessed via box.entity
 
 ## Returns
 

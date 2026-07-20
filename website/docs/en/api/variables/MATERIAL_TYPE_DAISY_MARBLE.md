@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_MARBLE**: `"DaisyMarble"` = `'DaisyMarble'`
 
-Daisy 大理石程序化材质类型标识。
+Daisy marble procedural material type identifier.

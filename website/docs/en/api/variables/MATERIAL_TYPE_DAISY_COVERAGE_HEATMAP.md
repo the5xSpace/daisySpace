@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_COVERAGE\_HEATMAP**: `"DaisyCoverageHeatmap"` = `'DaisyCoverageHeatmap'`
 
-Daisy 覆盖热力图材质类型标识（coverageTexture + thermal color scale）。
+Daisy coverage heatmap material type identifier (coverageTexture + thermal color scale).

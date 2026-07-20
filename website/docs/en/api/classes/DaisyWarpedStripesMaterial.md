@@ -6,7 +6,7 @@
 
 # Class: DaisyWarpedStripesMaterial
 
-动态扭曲条纹材质。
+Dynamic warped stripes material.
 
 ## Extends
 

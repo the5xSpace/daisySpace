@@ -6,7 +6,7 @@
 
 # PW
 
-PhysicalWorld 模块入口。
+PhysicalWorld module entry point.
 
 ## Enumerations
 

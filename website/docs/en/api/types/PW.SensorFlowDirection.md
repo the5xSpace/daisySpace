@@ -8,4 +8,4 @@
 
 > **SensorFlowDirection** = `"forward"` \| `"reverse"` \| `1` \| `-1`
 
-流动方向；`forward`/`1` 为正向，`reverse`/`-1` 为反向。
+Flow direction; `forward`/`1` for forward, `reverse`/`-1` for reverse.

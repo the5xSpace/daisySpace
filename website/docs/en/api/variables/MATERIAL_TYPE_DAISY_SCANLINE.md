@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_SCANLINE**: `"DaisyScanline"` = `'DaisyScanline'`
 
-Daisy 扫描线程序化材质类型标识。
+Daisy scanline procedural material type identifier.

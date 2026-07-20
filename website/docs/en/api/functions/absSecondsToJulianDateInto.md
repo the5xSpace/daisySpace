@@ -8,7 +8,7 @@
 
 > **absSecondsToJulianDateInto**(`absSeconds`, `result`): `JulianDate`
 
-将绝对秒写回可复用 JulianDate，避免批量采样时频繁分配对象。
+Writes absolute seconds into a reusable JulianDate to avoid frequent object allocation during batch sampling.
 
 ## Parameters
 

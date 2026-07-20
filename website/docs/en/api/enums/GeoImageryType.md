@@ -6,7 +6,7 @@
 
 # Enumeration: GeoImageryType
 
-地理影像图层类型枚举
+Geographic imagery layer type enumeration
 
 ## Enumeration Members
 

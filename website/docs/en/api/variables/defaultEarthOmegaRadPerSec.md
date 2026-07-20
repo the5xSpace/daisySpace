@@ -8,4 +8,4 @@
 
 > `const` **defaultEarthOmegaRadPerSec**: `0.00007292115` = `7.2921150e-5`
 
-地球自转的默认角速度（以弧度/秒为单位）
+Default angular velocity of Earth's rotation (in radians per second)

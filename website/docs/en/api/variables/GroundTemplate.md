@@ -8,4 +8,4 @@
 
 > `const` **GroundTemplate**: [`ViewDistanceTemplate`](../types/ViewDistanceTemplate.md)
 
-地面/近景尺度的内置视距模板。
+Built-in view distance template for ground/close-range scale.

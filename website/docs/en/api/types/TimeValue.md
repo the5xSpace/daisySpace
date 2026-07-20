@@ -8,7 +8,7 @@
 
 > **TimeValue**\<`T`\> = [`SimTimeValue`](SimTimeValue.md)\<`T`\>
 
-兼容别名：历史上很多 options 字段使用 TimeValue 命名。
+Compatibility alias: historically many options fields used the TimeValue name.
 
 建议新代码优先使用 `SimTimeValue<T>`，表达“仿真时间驱动”的语义更明确。
 

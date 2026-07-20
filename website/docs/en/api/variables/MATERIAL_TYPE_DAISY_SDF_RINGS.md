@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_SDF\_RINGS**: `"DaisySdfRings"` = `'DaisySdfRings'`
 
-Daisy SDF 环形程序化材质类型标识。
+Daisy SDF rings procedural material type identifier.

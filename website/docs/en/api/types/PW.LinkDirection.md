@@ -8,4 +8,4 @@
 
 > **LinkDirection** = `"forward"` \| `"reverse"`
 
-传输动画方向。
+Transmission animation direction.

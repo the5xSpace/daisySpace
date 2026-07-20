@@ -22,10 +22,10 @@
 
 > `optional` **pixelSize?**: `number`
 
-兼容字段，等同 `sizePx`。
+Compatibility field, equivalent to `sizePx`.
 
 ### sizePx?
 
 > `optional` **sizePx?**: `number`
 
-像素尺寸。默认 fallback 点只按像素渲染，不使用米制尺寸。
+Pixel size. Default fallback points are rendered in pixels only, not using metric dimensions.

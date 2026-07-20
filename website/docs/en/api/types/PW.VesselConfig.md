@@ -8,6 +8,6 @@
 
 > **VesselConfig** = [`VehicleConfig`](PW.VehicleConfig.md)
 
-Vessel 配置。
+Vessel configuration.
 
-目前复用 VehicleConfig，后续可扩展船舶专有字段（例如航线、航速模型、船体参数等）。
+Currently reuses VehicleConfig; can be extended with vessel-specific fields (e.g., routes, speed models, hull parameters) in the future.

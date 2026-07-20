@@ -6,7 +6,7 @@
 
 # Class: DaisyTurbulenceMaterial
 
-动态湍流噪声材质。
+Dynamic turbulence noise material.
 
 ## Extends
 

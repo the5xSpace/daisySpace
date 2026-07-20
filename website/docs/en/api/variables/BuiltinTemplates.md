@@ -8,4 +8,4 @@
 
 > `const` **BuiltinTemplates**: `Map`\<`string`, [`ViewDistanceTemplate`](../types/ViewDistanceTemplate.md)\>
 
-内置视距模板集合（按 `ViewScene` 索引）。
+Built-in view distance template collection (indexed by `ViewScene`).

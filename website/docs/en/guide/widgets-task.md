@@ -1,11 +1,11 @@
-# Task Board
+# 任务看板
 
-Task board components visualize [TimeTask](/en/api/classes/TimeTask) and [TimePointTask](/en/api/classes/TimePointTask) from [TimeSchedule](/en/api/classes/TimeSchedule). Two views are available:
+任务看板组件将 [TimeSchedule](/en/api/classes/TimeSchedule) 中的 [TimeTask](/en/api/classes/TimeTask) 和 [TimePointTask](/en/api/classes/TimePointTask) 可视化。提供两种视图：
 
-| Component | View | Use Case |
-|-----------|------|----------|
-| [TaskGanttWidget](/en/api/classes/TaskGanttWidget) | Gantt chart (bars + timeline) | Time interval tasks |
-| [TaskTimeLineWidget](/en/api/classes/TaskTimeLineWidget) | Step list (status + progress) | Time point tasks / sequential steps |
+| 组件 | 视图 | 适用场景 |
+|------|------|----------|
+| [TaskGanttWidget](/en/api/classes/TaskGanttWidget) | 甘特图（横条 + 时间轴） | 时间区间任务 |
+| [TaskTimeLineWidget](/en/api/classes/TaskTimeLineWidget) | 步骤列表（状态 + 进度） | 时间点任务 / 顺序步骤 |
 
 ## TaskGanttWidget
 
@@ -44,21 +44,21 @@ const gantt = new Daisy.TaskGanttWidget(engine.timeSchedule, {
 engine.addWidget(gantt)
 ```
 
-### Constructor Options
+### 构造选项
 
-| Option | Type | Default | Description |
-|--------|------|:---:|-------------|
-| `mode` | `"standard"` \| `"lite"` | `"standard"` | Standard Gantt chart / Lite list |
-| `title` | string | `"Timeline"` | Panel title |
-| `width` | number | 680 | Panel width (px) |
-| `height` | number | 190 | Panel height (px) |
-| `pixelsPerMinute` | number | 18 | Timeline pixel density |
-| `tickCount` | number | 6 | Number of timeline ticks |
-| `timeFormat` | TimeFormatConfig | — | Task label time format, see [Time Format](/en/guide/time-format) |
-| `axisTimeFormat` | TimeFormatConfig | — | Independent timeline tick format (falls back to timeFormat if not set) |
-| `x` / `y` / `right` / `bottom` | number | — | Panel position |
+| 选项 | 类型 | 默认值 | 说明 |
+|------|------|:---:|------|
+| `mode` | `"standard"` \| `"lite"` | `"standard"` | 标准甘特图 / 精简列表 |
+| `title` | string | `"时间线"` | 面板标题 |
+| `width` | number | 680 | 面板宽度（px） |
+| `height` | number | 190 | 面板高度（px） |
+| `pixelsPerMinute` | number | 18 | 时间轴像素密度 |
+| `tickCount` | number | 6 | 时间轴刻度数 |
+| `timeFormat` | TimeFormatConfig | — | 任务标签时间格式，[时间格式化](/en/guide/time-format) |
+| `axisTimeFormat` | TimeFormatConfig | — | 独立的时间轴刻度格式（不传则复用 timeFormat） |
+| `x` / `y` / `right` / `bottom` | number | — | 面板位置 |
 
-### Runtime Methods
+### 运行时方法
 
 ```typescript
 gantt.setTitle("发射流程")
@@ -67,7 +67,7 @@ gantt.refresh()
 
 ## TaskTimeLineWidget
 
-A step list view that displays task status and progress in a vertical list:
+步骤列表视图，以纵向列表展示任务状态和进度：
 
 ```typescript
 const stepList = new Daisy.TaskTimeLineWidget(engine.timeSchedule, {
@@ -75,30 +75,30 @@ const stepList = new Daisy.TaskTimeLineWidget(engine.timeSchedule, {
     title: "任务进度",
     timeFormat: { preset: "t0", t0: start },
     onStepClick: (task) => {
-console.log("点击了任务:", task.name)
+        console.log("点击了任务:", task.name)
     },
 })
 engine.addWidget(stepList)
 ```
 
-### Constructor Options
+### 构造选项
 
-| Option | Type | Default | Description |
-|--------|------|:---:|-------------|
-| `mode` | `"standard"` \| `"lite"` | `"standard"` | Standard detail / Lite list |
-| `title` | string | `"Task Progress"` | Panel title |
-| `width` | number | 320 | Panel width (px) |
-| `height` | number | 180 | Panel height (px) |
-| `timeFormat` | TimeFormatConfig | — | Step time format |
-| `onStepClick` | `(task: TimeTask) => void` | — | Step click callback |
+| 选项 | 类型 | 默认值 | 说明 |
+|------|------|:---:|------|
+| `mode` | `"standard"` \| `"lite"` | `"standard"` | 标准详情 / 精简列表 |
+| `title` | string | `"任务进度"` | 面板标题 |
+| `width` | number | 320 | 面板宽度（px） |
+| `height` | number | 180 | 面板高度（px） |
+| `timeFormat` | TimeFormatConfig | — | 步骤时间格式 |
+| `onStepClick` | `(task: TimeTask) => void` | — | 点击步骤回调 |
 
-### Task Status
+### 任务状态
 
-| Status | Description |
-|--------|-------------|
-| idle | Not started |
-| entered | Entered the time interval |
-| active | Currently executing |
-| finished | Completed |
+| 状态 | 说明 |
+|------|------|
+| idle | 未开始 |
+| entered | 已进入时间区间 |
+| active | 当前正在执行 |
+| finished | 已完成 |
 
-> **Related API**: [TaskGanttWidget](/en/api/classes/TaskGanttWidget) · [TaskTimeLineWidget](/en/api/classes/TaskTimeLineWidget) · [TimeSchedule](/en/api/classes/TimeSchedule) · [TimeTask](/en/api/classes/TimeTask) · [TimePointTask](/en/api/classes/TimePointTask)
+> **相关 API**：[TaskGanttWidget](/en/api/classes/TaskGanttWidget) · [TaskTimeLineWidget](/en/api/classes/TaskTimeLineWidget) · [TimeSchedule](/en/api/classes/TimeSchedule) · [TimeTask](/en/api/classes/TimeTask) · [TimePointTask](/en/api/classes/TimePointTask)

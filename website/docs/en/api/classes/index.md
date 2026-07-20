@@ -1,8 +1,8 @@
 # Classes
 
-共 230 个 classes。
+234 classes total.
 
-| 名称 | 链接 |
+| Name | Link |
 |------|------|
 | `ArcRotateCameraMaintainer` | [ArcRotateCameraMaintainer](ArcRotateCameraMaintainer.md) |
 | `ArrowPointerFeature` | [ArrowPointerFeature](ArrowPointerFeature.md) |
@@ -60,11 +60,13 @@
 | `GeometryAttribute` | [GeometryAttribute](Daisy.GeometryAttribute.md) |
 | `GeometryAttributes` | [GeometryAttributes](Daisy.GeometryAttributes.md) |
 | `GeometryInstance` | [GeometryInstance](Daisy.GeometryInstance.md) |
+| `GroundPrimitive` | [GroundPrimitive](Daisy.GroundPrimitive.md) |
 | `HeadingPitchRange` | [HeadingPitchRange](Daisy.HeadingPitchRange.md) |
 | `ImageryLayer` | [ImageryLayer](Daisy.ImageryLayer.md) |
 | `ImageryProvider` | [ImageryProvider](Daisy.ImageryProvider.md) |
 | `IonImageryProvider` | [IonImageryProvider](Daisy.IonImageryProvider.md) |
 | `JulianDate` | [JulianDate](Daisy.JulianDate.md) |
+| `LabelCollection` | [LabelCollection](Daisy.LabelCollection.md) |
 | `Material` | [Material](Daisy.Material.md) |
 | `MaterialAppearance` | [MaterialAppearance](Daisy.MaterialAppearance.md) |
 | `MaterialProperty` | [MaterialProperty](Daisy.MaterialProperty.md) |
@@ -82,7 +84,9 @@
 | `Quaternion` | [Quaternion](Daisy.Quaternion.md) |
 | `Ray` | [Ray](Daisy.Ray.md) |
 | `Rectangle` | [Rectangle](Daisy.Rectangle.md) |
+| `RectangleGeometry` | [RectangleGeometry](Daisy.RectangleGeometry.md) |
 | `Request` | [Request](Daisy.Request.md) |
+| `Scene` | [Scene](Daisy.Scene.md) |
 | `SingleTileImageryProvider` | [SingleTileImageryProvider](Daisy.SingleTileImageryProvider.md) |
 | `SphereEmitter` | [SphereEmitter](Daisy.SphereEmitter.md) |
 | `TimeInterval` | [TimeInterval](Daisy.TimeInterval.md) |

@@ -8,4 +8,4 @@
 
 > **GeometryPositions** = `Daisy.Cartesian3`[] \| `Float64Array` \| `Float32Array` \| `number`[]
 
-顶点位置：支持 Cartesian3[] / Float64Array / Float32Array / number[]。
+Vertex positions: supports Cartesian3[] / Float64Array / Float32Array / number[].

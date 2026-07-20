@@ -70,7 +70,7 @@ false
 
 ### classificationType?
 
-> `optional` **classificationType?**: `ClassificationType`
+> `optional` **classificationType?**: `Daisy.ClassificationType`
 
 ***
 

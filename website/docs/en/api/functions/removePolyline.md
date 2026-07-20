@@ -8,7 +8,7 @@
 
 > **removePolyline**(`collection`, `polyline`): `void`
 
-从 PolylineCollection 移除折线前，先摘掉原 material 引用，避免 remove 销毁共享材质。
+Before removing a polyline from PolylineCollection, detaches the material reference to avoid destroying shared materials.
 
 ## Parameters
 

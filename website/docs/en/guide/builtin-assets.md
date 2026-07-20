@@ -1,10 +1,10 @@
 ---
-title: Built-in Static Resources
+title: 内置静态资源
 ---
 
-# Built-in Static Resources
+# 内置静态资源
 
-The `dist` directory of `daisy-space-sdk` contains not only JavaScript and type declarations, but also the Cesium files, Worker, imagery, models, and sample data required to run the engine. All built-in assets should be rooted at the SDK asset base URL and resolved with `Daisy.BuildModuleUrl.getUrl()`.
+`daisy-space-sdk` 的 `dist` 目录除了 JavaScript 和类型声明，还包含引擎运行所需的 Cesium 文件、Worker、影像、模型和示例数据。所有内置资源都应以 SDK 的资源基址为根，通过 `Daisy.BuildModuleUrl.getUrl()` 生成 URL。
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -14,13 +14,13 @@ const skyboxPositiveX = Daisy.BuildModuleUrl.getUrl(
 )
 ```
 
-::: warning Do not use application-root paths
-Do not write application-root paths such as `/sandAssets/...`, `/static/...`, or `/cesium/...`. These URLs bypass the SDK asset base URL and can lead to 404s or the wrong asset version when the application is deployed under a subdirectory, on a CDN, or into multiple isolated SDK directories.
+::: warning 不要使用应用根路径
+不要写 `/sandAssets/...`、`/static/...`、`/cesium/...` 等应用根路径。这些地址会绕过 SDK 资源基址，在应用部署到子目录、CDN 或多个 SDK 隔离目录时产生 404 或加载到错误版本的资源。
 :::
 
-## Configure the Asset Base URL
+## 配置资源基址
 
-The asset base URL must point to an HTTP-accessible copy of the SDK `dist` directory and must be set before calling `Engine.create()`. When copying the files, keep the internal `dist` directory structure intact and do not flatten the subdirectories into the application root.
+资源基址必须指向可通过 HTTP 访问的 SDK `dist` 副本，并在 `Engine.create()` 之前设置。复制时保留 `dist` 内部目录结构，不要把各目录拍平到应用根目录。
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -31,7 +31,7 @@ Daisy.BuildModuleUrl.setBaseUrl("/vendor/daisy/")
 const engine = await Daisy.Engine.create("daisyContainer")
 ```
 
-When deploying on a CDN, use a separate SDK root directory as well:
+部署在 CDN 时同样使用一个独立的 SDK 根目录：
 
 ```typescript
 Daisy.BuildModuleUrl.setBaseUrl(
@@ -39,31 +39,31 @@ Daisy.BuildModuleUrl.setBaseUrl(
 )
 ```
 
-`BuildModuleUrl.getUrl()` accepts paths relative to that base URL; `http:`, `https:`, `data:`, and `blob:` URLs are returned unchanged. Prefer passing relative paths that do not start with `/` so the code clearly expresses that the asset belongs to the SDK.
+`BuildModuleUrl.getUrl()` 接受相对于该根目录的路径；`http:`、`https:`、`data:` 和 `blob:` URL 会原样返回。建议传入不以 `/` 开头的相对路径，让代码清楚表达“这是 SDK 内置资源”。
 
-> Build tools such as Vite and Webpack usually do not automatically publish non-JavaScript files from `node_modules/daisy-space-sdk/dist`. Applications need to map or copy the SDK `dist` directory to the same public location in both development and production builds. The SDK already includes the Cesium runtime, so business projects do not need `vite-plugin-cesium`, and they should not bring in a second copy of Cesium.
+> Vite、Webpack 等构建工具通常不会自动发布 `node_modules/daisy-space-sdk/dist` 中的非 JavaScript 文件。应用需要在开发服务和生产构建中将 SDK `dist` 完整映射或复制到同一个公开目录。SDK 已内置 Cesium 运行时，业务项目不需要安装 `vite-plugin-cesium`，也不应另行引入一份 Cesium。
 
-## Asset Directory Overview
+## 资源目录总览
 
-The SDK currently includes the following asset root directories. Public assets can be referenced directly by business code; internal assets are managed by the engine; demo assets are only for examples and tests.
+SDK 当前包含以下全部资源根目录。公开资源可供业务直接引用；内部资源由引擎管理；演示资源只用于示例和测试。
 
-| Root Directory | Category | Purpose | Usage Constraints |
+| 根目录 | 分类 | 用途 | 使用约束 |
 |------|------|------|------|
-| `assets/` | SDK internal | Bundled chunks and compute Workers | File names include content hashes and can only be loaded by the SDK |
-| `cesium/` | SDK internal | Cesium assets, Widgets, workers, styles, and runtime data | Used automatically by `Engine`; do not assemble internal file paths manually |
-| `static/` | Public asset | Default imagery, night imagery, skyboxes, celestial textures, and common models | Use `BuildModuleUrl.getUrl()` |
-| `models/` | Public asset | GLB sample models for spacecraft, vehicles, and ground facilities | Good for demos and prototypes; verify file names when upgrading the SDK |
-| `data/` | Public asset | Country boundaries, land outlines, and population data | Load with the appropriate parser |
-| `sandAssets/` | Public asset | Gradient skyboxes used by Playground | Usable in business scenarios, but verify file names when upgrading the SDK |
-| `tileset/` | Public asset | Dragon sample 3D Tiles dataset | Load from `tileset/tileset.json` |
-| `cache/` | Demo asset | Starlink demo cache and ephemeris text | Not a production data source or stable contract |
-| `tests/` | Test asset | SDK automated test fixtures | Not for production features |
+| `assets/` | SDK 内部 | 构建后的模块分块与计算 Worker | 文件名带内容哈希，只能由 SDK 加载 |
+| `cesium/` | SDK 内部 | Cesium Assets、Widgets、Workers、样式及运行时数据 | 由 `Engine` 自动使用，不要拼接内部文件地址 |
+| `static/` | 公开资源 | 默认影像、夜景影像、天空盒、天体纹理及常用模型 | 使用 `BuildModuleUrl.getUrl()` |
+| `models/` | 公开资源 | 航天器、车辆、地面设施等 GLB 示例模型 | 适合演示和原型，升级 SDK 时核对文件名 |
+| `data/` | 公开资源 | 国家边界、陆地轮廓和人口数据 | 使用对应格式的加载器读取 |
+| `sandAssets/` | 公开资源 | Playground 使用的渐变天空盒 | 可用于业务场景，但升级 SDK 时核对文件名 |
+| `tileset/` | 公开资源 | Dragon 示例 3D Tiles 数据集 | 从 `tileset/tileset.json` 加载 |
+| `cache/` | 演示资源 | Starlink 演示缓存与星历文本 | 不作为业务数据源或稳定接口 |
+| `tests/` | 测试资源 | SDK 自动测试样例 | 不用于生产功能 |
 
-## Common Public Assets
+## 常用公开资源
 
-### Earth and Night Imagery
+### 地球与夜景影像
 
-`static/earth/` and `static/night/` are the SDK's built-in low-zoom XYZ tiles. They currently cover levels `0` through `3`, making them suitable for offline previews and default scenes, but not for high-resolution global basemaps.
+`static/earth/` 和 `static/night/` 是 SDK 自带的低级别 XYZ 瓦片，当前覆盖 `0` 至 `3` 级，适合离线预览和默认场景，不是高分辨率全球底图。
 
 ```typescript
 const earthUrl = Daisy.BuildModuleUrl.getUrl(
@@ -81,17 +81,17 @@ engine.geoLayer.setBaseImagery({
 })
 ```
 
-`static/assets/NaturalEarthII/` also provides a `0` through `2` level set of Natural Earth II tiles and `tilemapresource.xml`.
+`static/assets/NaturalEarthII/` 还提供一套 `0` 至 `2` 级的 Natural Earth II 瓦片及 `tilemapresource.xml`。
 
-### Skyboxes
+### 天空盒
 
-Each skybox includes six faces: `px`, `nx`, `py`, `ny`, `pz`, and `nz`.
+每套天空盒都包含 `px`、`nx`、`py`、`ny`、`pz`、`nz` 六个面：
 
-| Path Pattern | Format | Description |
+| 路径模式 | 格式 | 说明 |
 |------|------|------|
-| `static/assets/SkyBox/default/{face}.png` | PNG | Daisy default skybox |
-| `static/assets/SkyBox/cesium/{face}.jpg` | JPG | Cesium-style skybox |
-| `sandAssets/SkyBox/gradient/{face}.jpg` | JPG | Playground gradient skybox |
+| `static/assets/SkyBox/default/{face}.png` | PNG | Daisy 默认天空盒 |
+| `static/assets/SkyBox/cesium/{face}.jpg` | JPG | Cesium 风格天空盒 |
+| `sandAssets/SkyBox/gradient/{face}.jpg` | JPG | Playground 渐变天空盒 |
 
 ```typescript
 const skybox = (face: string) =>
@@ -110,20 +110,20 @@ engine.geoLayer.setSky({
 })
 ```
 
-### Celestial Textures and Common Models
+### 天体纹理与常用模型
 
-| Asset Path | Purpose |
+| 资源路径 | 用途 |
 |------|------|
-| `static/assets/moon/moon_2048x1024.jpg` | Moon surface texture |
-| `static/assets/moon/moon_terrain_1440x720.jpg` | Moon terrain texture |
-| `static/assets/moon/img.png` | Moon image asset |
-| `static/assets/mars/mars_1920x960.png` | Mars surface texture |
-| `static/assets/camera.glb`, `camera2.glb` | Camera models |
-| `static/assets/radar0.glb` | Radar model |
-| `static/assets/satellite0.glb`, `satellite1.glb` | Satellite models |
-| `static/assets/satellite2.gltf`, `satellite3.gltf` | Satellite glTF models |
-| `static/assets/rocket.png` | Rocket image |
-| `static/assets/satellite0.png`, `moonSmall.jpg` | Icons and thumbnails |
+| `static/assets/moon/moon_2048x1024.jpg` | 月球表面纹理 |
+| `static/assets/moon/moon_terrain_1440x720.jpg` | 月球地形纹理 |
+| `static/assets/moon/img.png` | 月球图像资源 |
+| `static/assets/mars/mars_1920x960.png` | 火星表面纹理 |
+| `static/assets/camera.glb`、`camera2.glb` | 相机模型 |
+| `static/assets/radar0.glb` | 雷达模型 |
+| `static/assets/satellite0.glb`、`satellite1.glb` | 卫星模型 |
+| `static/assets/satellite2.gltf`、`satellite3.gltf` | 卫星 glTF 模型 |
+| `static/assets/rocket.png` | 火箭图片 |
+| `static/assets/satellite0.png`、`moonSmall.jpg` | 图标与缩略图 |
 
 ```typescript
 const moonTexture = Daisy.BuildModuleUrl.getUrl(
@@ -137,7 +137,7 @@ const satelliteModel = Daisy.BuildModuleUrl.getUrl(
 )
 ```
 
-The `models/` directory also includes full GLB sample models such as Astronaut, CesiumMan, Hubble, Juno, ISS, a Mars rover, a deep-space network antenna, a drone, and a cargo ship. The reference pattern is the same, for example:
+`models/` 目录还包含 Astronaut、CesiumMan、Hubble、Juno、ISS、火星探测器、深空网络天线、无人机、货船等完整 GLB 示例模型。引用方式一致，例如：
 
 ```typescript
 const modelUrl = Daisy.BuildModuleUrl.getUrl(
@@ -147,18 +147,18 @@ const modelUrl = Daisy.BuildModuleUrl.getUrl(
 entity.addFeature(new Daisy.ModelFeature({ url: modelUrl }))
 ```
 
-These sample models are intended for quick scene setup, but their file names are not guaranteed to remain unchanged across SDK versions. If a production project depends on a specific model, pin the SDK version or manage the approved model and its license as part of your own asset pipeline.
+这些示例模型用于快速搭建场景，不保证文件名跨 SDK 版本不变。生产项目若依赖特定模型内容，建议固定 SDK 版本，或将已确认授权和版本的模型纳入自己的业务资产管理。
 
-### Data and 3D Tiles
+### 数据与 3D Tiles
 
-| Asset Path | Content |
+| 资源路径 | 内容 |
 |------|------|
-| `data/ne_110m_admin_0_countries.geojson` | 110m country boundaries |
-| `data/ne_110m_land.geojson` | 110m land outline |
-| `data/ne_50m_land.geojson` | 50m land outline |
-| `data/population-global-360x180.bin` | Global population raster binary |
-| `data/population-points.json` | Population point data |
-| `tileset/tileset.json` | Entry point for the Dragon sample Tileset |
+| `data/ne_110m_admin_0_countries.geojson` | 110m 国家边界 |
+| `data/ne_110m_land.geojson` | 110m 陆地轮廓 |
+| `data/ne_50m_land.geojson` | 50m 陆地轮廓 |
+| `data/population-global-360x180.bin` | 全球人口栅格二进制数据 |
+| `data/population-points.json` | 人口点数据 |
+| `tileset/tileset.json` | Dragon 示例 Tileset 入口 |
 
 ```typescript
 const countriesUrl = Daisy.BuildModuleUrl.getUrl(
@@ -173,9 +173,9 @@ entity.addFeature(new Daisy.TilesetFeature({
 }))
 ```
 
-## SDK Internal Assets
+## SDK 内部资源
 
-`assets/` contains bundled chunks and Workers, while `cesium/` contains the static files for the underlying rendering runtime. Both asset groups must ship with the SDK, but business code should not reference specific files directly.
+`assets/` 中包含打包分块和 Worker，`cesium/` 中包含底层渲染运行时的静态文件。这两类资源必须随 SDK 一起发布，但业务代码不应直接引用具体文件。
 
 ```typescript
 // 正确：只设置 SDK 总资源基址
@@ -186,18 +186,18 @@ Daisy.BuildModuleUrl.setBaseUrl("/vendor/daisy/")
 // import("/assets/CoverageWorker.worker-Cn8q0X8o.js")
 ```
 
-`Engine.create()` derives the underlying runtime directory from the SDK base URL. Unless you are diagnosing compatibility issues in an older release, do not call `Engine.setEngineBaseUrl()` separately to override the Cesium path.
+`Engine.create()` 会从 SDK 总资源基址推导底层运行时目录。除非在排查旧版本兼容问题，否则不要单独调用 `Engine.setEngineBaseUrl()` 覆盖 Cesium 路径。
 
-## Demo and Test Assets
+## 演示与测试资源
 
-`cache/starlink-demo-cache.json`, `cache/starlink-ephemeris.txt`, and `tests/data/sample.czml` are included to reproduce examples and automated tests. They may change with the demos and should not be treated as a production data contract.
+`cache/starlink-demo-cache.json`、`cache/starlink-ephemeris.txt` 和 `tests/data/sample.czml` 随包提供是为了复现实例与自动测试。它们可能随演示调整，不应作为生产数据契约。
 
-## Troubleshooting 404s
+## 排查 404
 
-1. Print `Daisy.BuildModuleUrl.baseUrl` before creating the engine and confirm that it points to the published SDK `dist` root.
-2. Use `Daisy.BuildModuleUrl.getUrl("cesium/approximateTerrainHeights.json")` to check the final URL, then open it directly in the browser.
-3. Confirm that development and production builds use the same public-directory mapping and that all asset root directories were copied.
-4. Confirm that you are not hardcoding `/sandAssets/`, `/static/`, or `/cesium/`.
-5. When using a CDN, confirm that CORS headers, cache versioning, and the SDK JavaScript version all match.
+1. 在创建引擎前输出 `Daisy.BuildModuleUrl.baseUrl`，确认它指向已发布的 SDK `dist` 根目录。
+2. 用 `Daisy.BuildModuleUrl.getUrl("cesium/approximateTerrainHeights.json")` 检查最终 URL，并在浏览器直接访问。
+3. 确认开发服务器和生产构建使用相同的公开目录映射，且复制了所有资源根目录。
+4. 确认没有硬编码 `/sandAssets/`、`/static/` 或 `/cesium/`。
+5. 使用 CDN 时确认跨域响应头、缓存版本和 SDK JavaScript 版本一致。
 
-> **Related APIs**: [BuildModuleUrl](/en/api/classes/BuildModuleUrl) · [Engine](/en/api/classes/Engine) · [ModelFeature](/en/api/classes/ModelFeature) · [TilesetFeature](/en/api/classes/TilesetFeature)
+> **相关 API**：[BuildModuleUrl](/en/api/classes/BuildModuleUrl) · [Engine](/en/api/classes/Engine) · [ModelFeature](/en/api/classes/ModelFeature) · [TilesetFeature](/en/api/classes/TilesetFeature)

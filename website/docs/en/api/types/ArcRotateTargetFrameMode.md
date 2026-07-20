@@ -8,7 +8,7 @@
 
 > **ArcRotateTargetFrameMode** = `"model"` \| `"enu"`
 
-环绕相机跟随目标时使用的参考系。
+Reference frame used by the orbit camera when following a target.
 
-- model：使用目标 worldMatrix，环绕视角会继承目标姿态
-- enu：使用目标位置的 East-North-Up 参考系，避免相机继承目标俯仰/滚转
+- model: uses the target's worldMatrix, the orbit view inherits the target's orientation
+- enu: uses the East-North-Up reference frame at the target position, preventing the camera from inheriting the target's pitch/roll

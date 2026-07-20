@@ -15,7 +15,7 @@ results from SceneTransforms.worldToWindowCoordinates when the browser zoom is n
 
 ### scene
 
-`Scene`
+[`Scene`](../classes/Daisy.Scene.md)
 
 The scene.
 

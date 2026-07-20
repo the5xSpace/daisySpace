@@ -8,4 +8,4 @@
 
 > `const` **EPSILON**: `1e-7` = `1e-7`
 
-常用误差阈值（1e-7）。
+Common error threshold (1e-7).

@@ -6,7 +6,7 @@
 
 # Interface: BoundBoxCollisionStats
 
-单次碰撞检测的运行统计。
+Runtime statistics for a single collision detection.
 
 ## Properties
 

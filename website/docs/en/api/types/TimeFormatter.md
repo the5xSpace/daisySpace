@@ -8,7 +8,7 @@
 
 > **TimeFormatter** = (`jd`) => `string`
 
-旧版时间文本格式化函数。
+Legacy time text formatting function.
 
 ## Parameters
 
@@ -22,4 +22,4 @@
 
 ## Deprecated
 
-请使用 `TimeFormatConfig` 配置时间格式。
+Use `TimeFormatConfig` to configure time formatting.

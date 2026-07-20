@@ -6,13 +6,20 @@
 
 # Class: CapsuleParticleFeature
 
-Capsule particle feature.
+胶囊粒子 Feature。
 
-Division of responsibilities with `ParticleFeature`:
-- `ParticleFeature` is a "world particle" feature: each particle has its own position, velocity, and lifetime, making it suitable for natural effects such as rain, snow, smoke, water flow, and dust that remain part of the physical world after leaving the host.
-- `CapsuleParticleFeature` is a "host-bound capsule particle" feature: it plays pre-rendered canvas animation frames on a world-anchored textured quad, making it suitable for strongly host-attached, tightly focused effects such as rocket plumes, aircraft exhaust, and attitude-control thrusters that need a continuous visual body.
+与 ParticleFeature 的分工：
+- ParticleFeature 是“世界粒子”：每个粒子都有独立位置、速度、生命周期，适合雨、雪、
+ 烟雾、水流、风尘等离开宿主后仍属于物理世界的自然效果。
+- CapsuleParticleFeature 是“宿主胶囊粒子”：使用一个世界锚定贴图面片播放
+ 预生成 canvas 动画帧，适合火箭喷焰、飞机尾焰、姿控喷口等强绑定宿主、
+ 强聚焦目标、需要连续视觉体的效果。
 
-Design rationale: `ParticleSystem` uses one billboard per particle internally. When the host moves quickly and the model also enables `minimumPixelSize`, discrete particles expose tail smear, scattered dots, and scale inconsistency. Capsule particles condense the main flame into a single continuous textured quad. The quad's root is determined by the host's local nozzle, and its long axis follows the host's local direction; the optional `screenSpaceSizing` only adjusts length and radius according to meters per pixel at the nozzle, without changing the nozzle anchor, so close-up views do not drift away from the local coordinate axis because of screen-space offset.
+设计原因： ParticleSystem 内部是“每粒子一个 billboard”。当宿主高速运动、
+模型又启用 minimumPixelSize 时，离散粒子会暴露甩尾、散点和比例尺不一致的问题。
+胶囊粒子把主体火焰收束为单个连续贴图片面。片面根部由宿主局部喷口决定，
+长轴由宿主本地方向决定；可选的 screenSpaceSizing 只按喷口处 meters-per-pixel
+调整长度/半径，不改变喷口锚点，因此近景不会因屏幕偏移而离开本地坐标轴。
 
 ## Extends
 
@@ -44,9 +51,9 @@ Design rationale: `ParticleSystem` uses one billboard per particle internally. W
 
 > **handle**: (`mode`) => `void`
 
-Default handling when the scene mode changes.
+场景模式切换时的默认处理。
 
-In 2D or other non-3D modes, the local body axes are destroyed by default to avoid rendering artifacts.
+2D/非 3D 模式下，默认销毁机体坐标轴以避免异常显示。
 
 #### Parameters
 
@@ -130,7 +137,7 @@ In 2D or other non-3D modes, the local body axes are destroyed by default to avo
 
 > **get** **id**(): `string`
 
-Unique identifier for the feature.
+Feature 的唯一标识。
 
 ##### Default
 
@@ -144,10 +151,10 @@ Unique identifier for the feature.
 
 > **set** **id**(`value`): `void`
 
-Unique identifier for the feature.
+Feature 的唯一标识。
 
-It is usually generated automatically by the base class during construction as `${type}__${GenGuid()}`.
-Subclasses can also override it manually before registration.
+通常由基类在构造时自动生成：`${type}__${GenGuid()}`。
+子类也可以在注册前手动覆盖。
 
 ##### Default
 
@@ -175,9 +182,9 @@ Subclasses can also override it manually before registration.
 
 > **get** **includeInBoundingSphere**(): `boolean`
 
-Whether the current feature participates in the entity's bounding sphere aggregation.
+当前 Feature 是否参与 Entity 的包围球聚合。
 
-The default is `true`. You can disable this for helper lines, particles, and other features that should not affect camera framing.
+默认值为 `true`。辅助线、粒子等不希望影响相机取景的 Feature 可以关闭。
 
 ##### Returns
 
@@ -187,7 +194,7 @@ The default is `true`. You can disable this for helper lines, particles, and oth
 
 > **set** **includeInBoundingSphere**(`value`): `void`
 
-Sets whether the current feature participates in the entity's bounding sphere aggregation.
+设置当前 Feature 是否参与 Entity 的包围球聚合。
 
 ##### Parameters
 
@@ -432,7 +439,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Inherited from
 
-[`FreeGeometryFeature`](FreeGeometryFeature.md).[`useLod`](FreeGeometryFeature.md#uselod)
+[`Feature`](Feature.md).[`useLod`](Feature.md#uselod)
 
 ***
 

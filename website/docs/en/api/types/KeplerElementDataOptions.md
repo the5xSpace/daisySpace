@@ -8,9 +8,9 @@
 
 > **KeplerElementDataOptions** = `{ keplerElement: object; name: string }`
 
-开普勒根数数据源配置。
+Keplerian element data source configuration.
 
-数值单位与含义取决于上游数据约定，SDK 会按字段名直接使用。
+The units and meaning of values depend on upstream data conventions; the SDK uses them directly by field name.
 
 ## Properties
 

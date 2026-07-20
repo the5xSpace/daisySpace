@@ -6,13 +6,13 @@
 
 # Class: ModelFeature
 
-glTF/GLB model component, not exposed publicly.
+glTF/GLB 模型组件（不对外暴露 ）。
 
-Provides:
-- Node list access and node transforms, including show/hide, translation, rotation, scaling, and matrix overrides
-- Built-in model animation play and stop support based on `activeAnimations`
+提供：
+- 节点列表读取与节点变换（显示/隐藏、偏移、旋转、缩放、矩阵覆盖）
+- 模型内置动画播放/停止（基于 activeAnimations）
 
-Node transforms are stored as stateful side effects and are automatically applied to model nodes on every update.
+节点变换以“状态副作用”的形式存在，并在每帧 update 自动应用到模型各节点。
 
 ## Examples
 
@@ -88,9 +88,9 @@ model.onload(() => {
 
 > **handle**: (`mode`) => `void`
 
-Default handling when the scene mode changes.
+场景模式切换时的默认处理。
 
-In 2D or other non-3D modes, the local body axes are destroyed by default to avoid rendering artifacts.
+2D/非 3D 模式下，默认销毁机体坐标轴以避免异常显示。
 
 #### Parameters
 
@@ -648,6 +648,18 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### disableExplosion()
+
+> **disableExplosion**(): `this`
+
+关闭模型爆炸图，并把没有用户节点变换的节点交还给 glTF 原始 transform/动画。
+
+#### Returns
+
+`this`
+
+***
+
 ### disableTracking()
 
 > **disableTracking**(): `void`
@@ -661,6 +673,34 @@ Feature 的显示名称（业务自定义）。
 #### Inherited from
 
 [`Feature`](Feature.md).[`disableTracking`](Feature.md#disabletracking)
+
+***
+
+### enableExplosion()
+
+> **enableExplosion**(`options?`): `this`
+
+启用模型爆炸图。
+
+爆炸方向来自节点中心相对模型本地坐标中心的方向；`factor` 表示外移比例：
+- `0.5`：每个节点再向外移动自身中心距离的 50%
+- `1`：每个节点再向外移动自身中心距离的 100%
+
+#### Parameters
+
+##### options?
+
+`number` \| [`ModelExplosionOptions`](../types/ModelExplosionOptions.md)
+
+#### Returns
+
+`this`
+
+#### Example
+
+```ts
+model.enableExplosion({ factor: 0.8 });
+```
 
 ***
 
@@ -759,6 +799,18 @@ Feature 的显示名称（业务自定义）。
 #### Inherited from
 
 [`Feature`](Feature.md).[`getEngine`](Feature.md#getengine)
+
+***
+
+### getExplosionState()
+
+> **getExplosionState**(): [`ModelExplosionState`](../types/ModelExplosionState.md)
+
+获取当前爆炸图状态。
+
+#### Returns
+
+[`ModelExplosionState`](../types/ModelExplosionState.md)
 
 ***
 
@@ -1164,6 +1216,46 @@ undefined 配置项
 #### Inherited from
 
 [`Feature`](Feature.md).[`setBodyAxis`](Feature.md#setbodyaxis)
+
+***
+
+### setExploded()
+
+> **setExploded**(`enabled`, `options?`): `this`
+
+设置爆炸图开关。
+
+#### Parameters
+
+##### enabled
+
+`boolean`
+
+##### options?
+
+`number` \| [`ModelExplosionOptions`](../types/ModelExplosionOptions.md)
+
+#### Returns
+
+`this`
+
+***
+
+### setExplosionFactor()
+
+> **setExplosionFactor**(`factor`): `this`
+
+设置爆炸强度。`factor <= 0` 会关闭爆炸图。
+
+#### Parameters
+
+##### factor
+
+`number`
+
+#### Returns
+
+`this`
 
 ***
 

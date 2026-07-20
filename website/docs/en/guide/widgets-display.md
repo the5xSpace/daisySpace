@@ -1,8 +1,8 @@
-# Simulation Time and Frame Rate Display
+# 仿真时间与帧率显示
 
 ## SimulationTimeDisplayWidget
 
-[SimulationTimeDisplayWidget](/en/api/classes/SimulationTimeDisplayWidget) displays the current simulation time on screen.
+[SimulationTimeDisplayWidget](/en/api/classes/SimulationTimeDisplayWidget) 在屏幕上显示当前仿真时间。
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -21,43 +21,43 @@ engine.addWidget(new Daisy.SimulationTimeDisplayWidget({
 }))
 ```
 
-| Option | Type | Description |
-|--------|------|-------------|
-| `preset` | string | Preset position, same as above |
-| `theme` | `"dark"` \| `"light"` | Theme color scheme |
-| `title` | string | Title text |
-| `border` | boolean | Whether to show a border |
-| `radius` | string | Border radius: `"md"` / `"lg"` / `"full"` |
-| `backgroundOpacity` | number | Background opacity (0~1) |
-| `timeLabel` | `TimelineLabelOptions` | Time format override, see [Time Format](/en/guide/time-format) |
+| 选项 | 类型 | 说明 |
+|------|------|------|
+| `preset` | string | 预设位置，同上 |
+| `theme` | `"dark"` \| `"light"` | 主题配色 |
+| `title` | string | 标题文字 |
+| `border` | boolean | 是否显示边框 |
+| `radius` | string | 圆角：`"md"` / `"lg"` / `"full"` |
+| `backgroundOpacity` | number | 背景透明度（0~1） |
+| `timeLabel` | `TimelineLabelOptions` | 时间格式覆盖，详见 [时间格式化](/en/guide/time-format) |
 
-### Dynamic Updates
+### 动态更新
 
 ```typescript
 const sw = new Daisy.SimulationTimeDisplayWidget({ widgetOptions: { title: "SIM TIME" } })
 engine.addWidget(sw)
 
-// Change title at runtime
+// 运行时改标题
 sw.setTitle("UTC TIME")
 
-// Force refresh
+// 强制刷新
 sw.refresh()
 ```
 
 ## FrameRateWidget
 
-[FrameRateWidget](/en/api/classes/FrameRateWidget) displays a real-time FPS counter.
+[FrameRateWidget](/en/api/classes/FrameRateWidget) 显示实时 FPS 计数器。
 
 ```typescript
 engine.addWidget(new Daisy.FrameRateWidget())
 ```
 
-| FPS | Color | Label |
-|-----|-------|-------|
-| >50 | Green | Excellent |
-| >30 | Cyan | Great |
-| >20 | Blue | Smooth |
-| >10 | Yellow | Fair |
-| ≤10 | Red | Poor |
+| FPS | 颜色 | 标签 |
+|---|---|---|
+| >50 | 绿色 | 极佳 |
+| >30 | 青色 | 优秀 |
+| >20 | 蓝色 | 流畅 |
+| >10 | 黄色 | 一般 |
+| ≤10 | 红色 | 差 |
 
-> **Related API**: [SimulationTimeDisplayWidget](/en/api/classes/SimulationTimeDisplayWidget) · [FrameRateWidget](/en/api/classes/FrameRateWidget) · [SimulationTimeWidget](/en/api/classes/SimulationTimeWidget)
+> **相关 API**：[SimulationTimeDisplayWidget](/en/api/classes/SimulationTimeDisplayWidget) · [FrameRateWidget](/en/api/classes/FrameRateWidget) · [SimulationTimeWidget](/en/api/classes/SimulationTimeWidget)

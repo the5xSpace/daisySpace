@@ -6,7 +6,7 @@
 
 # Enumeration: GeoTerrainType
 
-地形类型枚举
+Terrain type enumeration
 
 ## Enumeration Members
 

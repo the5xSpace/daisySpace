@@ -8,4 +8,4 @@
 
 > **SimulationTimeWidgetRadius** = `"none"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` \| `"full"`
 
-仿真时间控件的圆角预设。
+Simulation time widget border radius preset.

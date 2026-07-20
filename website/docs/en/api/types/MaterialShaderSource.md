@@ -8,4 +8,4 @@
 
 > **MaterialShaderSource** = `string` \| [`DaisyMaterialShaderSource`](../interfaces/DaisyMaterialShaderSource.md)
 
-自定义材质接受的 GLSL 字符串或旧版显式 Daisy GLSL 描述。
+GLSL string or legacy explicit Daisy GLSL description accepted by custom materials.

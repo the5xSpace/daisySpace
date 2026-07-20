@@ -8,4 +8,4 @@
 
 > **TimeFormatConfig** = [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md) \| [`TimeFormatCallback`](TimeFormatCallback.md) \| [`TimeFormatPreset`](TimeFormatPreset.md)
 
-时间格式配置，可使用完整选项、回调函数或预设名。
+Time format configuration, can use full options, callback function, or preset name.

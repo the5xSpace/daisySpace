@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_CONTOUR\_BANDS**: `"DaisyContourBands"` = `'DaisyContourBands'`
 
-Daisy 等高线带程序化材质类型标识。
+Daisy contour bands procedural material type identifier.

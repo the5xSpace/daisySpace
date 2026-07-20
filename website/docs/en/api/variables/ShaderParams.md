@@ -8,9 +8,9 @@
 
 > `const` **ShaderParams**: `Readonly`\<\{ `dynamic`: [`ShaderParamBinding`](../interfaces/ShaderParamBinding.md)\<`T`\>; `entityPosition`: [`ShaderParamBinding`](../interfaces/ShaderParamBinding.md)\<`Cartesian3`\>; `timeSeconds`: [`ShaderParamBinding`](../interfaces/ShaderParamBinding.md)\<`number`\>; \}\>
 
-Shader 动态参数快捷构造器。
+Shader dynamic parameter shortcut constructor.
 
-返回值可直接放入 `MaterialFactory.Custom()` 的 `uniforms`；材质绘制时会读取最新值。
+The return value can be directly placed in `MaterialFactory.Custom()`'s `uniforms`; the material reads the latest values during rendering.
 
 ## Example
 

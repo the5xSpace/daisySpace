@@ -48,7 +48,7 @@ true
 
 ### classificationType?
 
-> `optional` **classificationType?**: `ClassificationType`
+> `optional` **classificationType?**: `Daisy.ClassificationType`
 
 贴地折线分类目标。
 
@@ -57,7 +57,7 @@ true
 #### Default
 
 ```ts
-ClassificationType.BOTH
+Daisy.ClassificationType.BOTH
 ```
 
 ### depthFailMaterial?

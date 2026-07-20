@@ -6,7 +6,7 @@
 
 # Class: DaisyMatrixRainMaterial
 
-动态字符雨材质。
+Dynamic matrix rain material.
 
 ## Extends
 

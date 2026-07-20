@@ -15,7 +15,7 @@ HTML element at the same screen position as an object in the scene.
 
 ### scene
 
-`Scene`
+[`Scene`](../classes/Daisy.Scene.md)
 
 The scene.
 

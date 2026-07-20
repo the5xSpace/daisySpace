@@ -1,8 +1,8 @@
 # Interfaces
 
-共 129 个 interfaces。
+129 interfaces total.
 
-| 名称 | 链接 |
+| Name | Link |
 |------|------|
 | `AltitudeProfile` | [AltitudeProfile](AltitudeProfile.md) |
 | `ArcGisImageryOptions` | [ArcGisImageryOptions](ArcGisImageryOptions.md) |

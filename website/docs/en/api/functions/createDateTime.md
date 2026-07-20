@@ -8,7 +8,7 @@
 
 > **createDateTime**(`time`, `config?`): [`TimeFormatDateTime`](../interfaces/TimeFormatDateTime.md)
 
-将仿真时刻解析为目标时区下的格式化上下文。
+Parses a simulation time into a formatted context under the target timezone.
 
 ## Parameters
 

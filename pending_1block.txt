@@ -1,0 +1,126 @@
+api/classes/CylinderGeometry.md|Daisy圆锥/柱体（封装 CylinderGeometry）
+api/classes/DaisyAuroraMaterial.md|动态极光带材质。
+api/classes/DaisyCellularMaterial.md|细胞噪声边界材质。
+api/classes/DaisyCircuitMaterial.md|动态电路板纹材质。
+api/classes/DaisyContourBandsMaterial.md|分层等值带材质。
+api/classes/DaisyDitherFadeMaterial.md|抖动阈值淡变材质。
+api/classes/DaisyGridGlowMaterial.md|脉冲发光网格材质。
+api/classes/DaisyHalftoneMaterial.md|半色调网点材质。
+api/classes/DaisyHeatmapMaterial.md|径向热力分布材质。
+api/classes/DaisyMarbleMaterial.md|动态大理石纹材质。
+api/classes/DaisyMatrixRainMaterial.md|动态字符雨材质。
+api/classes/DaisyNoiseFieldMaterial.md|动态噪声场材质。
+api/classes/DaisyScanlineMaterial.md|动态扫描线材质。
+api/classes/DaisySdfRingsMaterial.md|距离场多层环形材质。
+api/classes/DaisyTopoRippleMaterial.md|动态地形等值波纹材质。
+api/classes/DaisyTurbulenceMaterial.md|动态湍流噪声材质。
+api/classes/DaisyWarpedStripesMaterial.md|动态扭曲条纹材质。
+api/classes/DownEmitDiffuseMaterial.md|光束向下流动并在底部形成扩散环的动态材质。
+api/classes/FlowArrowMaterialProperty.md|流动箭头材质属性
+api/classes/NeonScanMaterial.md|叠加带状扫描与柔光效果的动态材质。
+api/classes/RadialPulseMaterial.md|从中心向外生成环形扩散效果的动态材质。
+api/classes/RingSweepMaterial.md|沿角度方向循环扫描的动态扇面材质。
+api/classes/SpiralFlowMaterial.md|沿表面高度方向生成多层滚动环带的螺旋流动材质。
+api/enums/GeoImageryType.md|地理影像图层类型枚举
+api/enums/GeoSkyType.md|天空渲染类型枚举
+api/enums/GeoTerrainType.md|地形类型枚举
+api/functions/absSecondsToJulianDateInto.md|将绝对秒写回可复用 JulianDate，避免批量采样时频繁分配对象。
+api/functions/calculateSunConeDimensions.md|根据两个球形天体的半径和中心距计算本影长度及对应位置的半影半径。
+api/functions/createDateTime.md|将仿真时刻解析为目标时区下的格式化上下文。
+api/functions/createTimeFormatter.md|创建可重复使用的仿真时间格式化函数。
+api/functions/formatTime.md|按指定配置格式化一个仿真时刻。
+api/functions/getComplementaryColor.md|计算补色（h + 180°），并轻微提亮亮度。
+api/functions/julianDateToAbsSeconds.md|将 JulianDate 转为单调绝对秒，和 TrailPathFeature 内部时间轴保持一致。
+api/functions/normalizeTimeFormatOptions.md|将预设名、回调或完整配置统一转换为选项对象。
+api/functions/removePolyline.md|从 PolylineCollection 移除折线前，先摘掉原 material 引用，避免 remove 销毁共享材质。
+api/functions/removePrimitive.md|从空间渲染集合移除对象前，摘掉其外观材质引用。
+api/functions/resolveSimTimeValue.md|解析仿真时间值。
+api/functions/resolveTimeFormatOptions.md|按主配置、兼容配置、SDK 默认值的顺序解析最终配置。
+api/functions/toJulianDate.md|将日期、字符串或 Unix 毫秒时间戳转换为仿真时刻。
+api/interfaces/BoundBoxCollisionStats.md|单次碰撞检测的运行统计。
+api/interfaces/OBB.md|有向包围盒（Oriented Bounding Box）。
+api/interfaces/ProjectionRange.md|投影区间（min/max）。
+api/interfaces/TimelineWidgetOptions.md|局部时间格式；未设置时使用引擎的全局 `timeFormat`。
+api/interfaces/TrajectorySampleOptions.md|预留的批量计算后端开关。默认 cpu，保持现有同步 行为。
+api/modules/PW.md|PhysicalWorld 模块入口。
+api/types/ArcRotateCameraHost.md|相机宿主：提供底层相机引用。
+api/types/ArcRotateCameraMode.md|ArcRotate（环绕）相机的工作模式。
+api/types/Daisy.DriverResource.md|Daisy 命名空间透传类型。
+api/types/Daisy.Ion2DImageryProvider.md|Daisy 命名空间透传类型。
+api/types/DaisyBuiltinMaterialType.md|`MaterialFactory.Builtin()` 支持的内置材质类型。
+api/types/DColor.md|Daisy API 接受的颜色对象或 CSS 颜色字符串。
+api/types/DMaterial.md|Daisy API 接受的材质实例、颜色或材质描述。
+api/types/EphemerisDataOptions.md|星历数据源配置（离线数组形式）。
+api/types/FollowTarget.md|可被相机追踪的目标类型。
+api/types/FrameRateWidgetOptions.md|使用自定义浮窗（彩色标签+可拖拽），默认 true；false 时退回底层默认 debugShowFramesPerSecond
+api/types/GeoImageryOptions.md|影像配置联合类型
+api/types/GeometryIndices.md|索引：支持 Uint16Array / Uint32Array / number[]（Daisy 自动选类型）。
+api/types/GeometryNormals.md|顶点法线：支持 Cartesian3[] / Float32Array / number[]。
+api/types/GeometryPositions.md|顶点位置：支持 Cartesian3[] / Float64Array / Float32Array / number[]。
+api/types/GeometryUvs.md|纹理坐标：支持 Cartesian2[] / Float32Array / number[]。
+api/types/MaterialShaderSource.md|自定义材质接受的 GLSL 字符串或旧版显式 Daisy GLSL 描述。
+api/types/ModelExplosionState.md|模型爆炸图当前状态。
+api/types/ObserverDefinition.md|观测点定义（角度制经纬度 + 米制高度）。
+api/types/ParticleEmitFrom.md|粒子发射区域：`"volume"`（体积）/ `"shell"`（壳面）/ `"edge"`（边缘）。
+api/types/ParticleEmitterAxis.md|粒子发射器参考轴：`"x"` / `"y"` / `"z"`。
+api/types/Pathway.md|线或路径类要素使用的有序路径点集合。
+api/types/PW.BaseObjectConfigBase.md|BaseObject 级别的通用配置。
+api/types/PW.CelestialRayLike.md|射线输入类型（ECEF 坐标系）
+api/types/PW.FootprintAtTimeDrawOptions.md|单时刻覆盖绘制配置，不需要起止时刻。
+api/types/PW.FootprintUnionDrawOptions.md|合并覆盖绘制配置；调用方通常将 `union` 设为 `true`。
+api/types/PW.LinkDirection.md|传输动画方向。
+api/types/PW.LinkEndpoint.md|链路端点，可使用物理对象、实体、实体包装对象或固定世界坐标。
+api/types/PW.LinkSchedule.md|链路显示计划；布尔值表示始终显示或隐藏。
+api/types/PW.MoonConfig.md|月球对象配置
+api/types/PW.ObjectPositon.md|物理对象可接受的位置类型。
+api/types/PW.SensorFlowDirection.md|流动方向；`forward`/`1` 为正向，`reverse`/`-1` 为反向。
+api/types/PW.SensorFlowOptions.md|波束流动效果开关或详细配置。
+api/types/PW.SensorFlowSchedule.md|流动效果的启用计划，可按布尔值、动态值或时间范围控制。
+api/types/PW.TimeRanges.md|多个覆盖采样时间范围。
+api/types/ShaderParamType.md|动态参数对应的 GLSL uniform 类型。
+api/types/ShaderParamUnavailablePolicy.md|实体位置不可用时的处理策略：保留上次有效值、使用回退值或使用零向量。
+api/types/SimulationTimeWidgetRadius.md|仿真时间控件的圆角预设。
+api/types/SimulationTimeWidgetTheme.md|仿真时间控件的明暗主题。
+api/types/SunOcclusionState.md|太阳遮挡状态：`sunlit` 为无遮挡，`penumbra` 为部分遮挡，`umbra` 为完全遮挡。
+api/types/TaskStepListRenderer.md|自定义任务步骤列表渲染函数。
+api/types/TimeFormatCallback.md|自定义时间格式化函数。
+api/types/TimeFormatConfig.md|时间格式配置，可使用完整选项、回调函数或预设名。
+api/types/TimeFormatInput.md|可转换为仿真时刻的输入；数字按 Unix 毫秒时间戳解释。
+api/types/TimeSample.md|时间采样点：每个值必须与一个仿真时间一一对应。
+api/variables/AviationTemplate.md|航空尺度的内置视距模板。
+api/variables/BuiltinTemplates.md|内置视距模板集合（按 `ViewScene` 索引）。
+api/variables/DEFAULT_TIME_FORMAT.md|SDK 默认时间格式配置。
+api/variables/defaultEarthOmegaRadPerSec.md|地球自转的默认角速度（以弧度/秒为单位）
+api/variables/ELLIPSOID.md|常用椭球体定义集合。
+api/variables/EPSILON.md|常用误差阈值（1e-7）。
+api/variables/GLSL.md|Daisy 方言字符串现已自动识别，请直接传给 `MaterialFactory.Custom()` 或 `Shader.glsl`。
+api/variables/GroundTemplate.md|地面/近景尺度的内置视距模板。
+api/variables/HPSpg4Analyzer.md|默认单例（模块加载后会自动 `init()`）。
+api/variables/MaritimeTemplate.md|海事/海面尺度的内置视距模板。
+api/variables/MATERIAL_TYPE_DAISY_ADVANCED_WATER.md|Daisy 高级水面程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_AURORA.md|Daisy 极光程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_CELLULAR.md|Daisy 细胞自动机程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_CIRCUIT.md|Daisy 电路板程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_CONTOUR_BANDS.md|Daisy 等高线带程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_COVERAGE_AREA.md|Daisy 覆盖区域材质类型标识（coverageTexture + step 硬裁切 + 统一填充色）。
+api/variables/MATERIAL_TYPE_DAISY_COVERAGE_HEATMAP.md|Daisy 覆盖热力图材质类型标识（coverageTexture + thermal color scale）。
+api/variables/MATERIAL_TYPE_DAISY_DITHER_FADE.md|Daisy 抖动淡出程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_GRID_GLOW.md|Daisy 网格发光程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_HALFTONE.md|Daisy 半调程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_HEATMAP.md|Daisy 热力图程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_MARBLE.md|Daisy 大理石程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_MATRIX_RAIN.md|Daisy 矩阵雨程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_NOISE_FIELD.md|Daisy 噪声场程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_SCANLINE.md|Daisy 扫描线程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_SDF_RINGS.md|Daisy SDF 环形程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_TOPO_RIPPLE.md|Daisy 地形波纹程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_TURBULENCE.md|Daisy 湍流程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DAISY_WARPED_STRIPES.md|Daisy 扭曲条纹程序化材质类型标识。
+api/variables/MATERIAL_TYPE_DOWN_EMIT_DIFFUSE.md|下发射漫反射材质类型标识。
+api/variables/MATERIAL_TYPE_FLOW_ARROW.md|流动箭头材质类型标识。
+api/variables/MATERIAL_TYPE_NEON_SCAN.md|霓虹扫描材质类型标识。
+api/variables/MATERIAL_TYPE_RADIAL_PULSE.md|径向脉冲材质类型标识。
+api/variables/MATERIAL_TYPE_RING_SWEEP.md|环形扫描材质类型标识。
+api/variables/MATERIAL_TYPE_SPIRAL_FLOW.md|螺旋流动材质类型标识。
+api/variables/SpaceTemplate.md|航天/空间尺度的内置视距模板。
+api/variables/TimeFormatPatterns.md|各日期时间预设对应的 token 模式。

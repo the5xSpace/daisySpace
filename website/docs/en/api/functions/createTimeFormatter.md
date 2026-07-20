@@ -8,7 +8,7 @@
 
 > **createTimeFormatter**(`config?`): (`time`) => `string`
 
-创建可重复使用的仿真时间格式化函数。
+Creates a reusable simulation time formatting function.
 
 ## Parameters
 

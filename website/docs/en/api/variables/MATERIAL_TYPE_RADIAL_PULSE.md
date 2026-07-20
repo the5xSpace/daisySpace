@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_RADIAL\_PULSE**: `"RadialPulse"` = `'RadialPulse'`
 
-径向脉冲材质类型标识。
+Radial pulse material type identifier.

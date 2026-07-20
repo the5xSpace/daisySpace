@@ -6,7 +6,7 @@
 
 # Interface: OBB
 
-有向包围盒（Oriented Bounding Box）。
+Oriented Bounding Box (OBB).
 
 ## Properties
 

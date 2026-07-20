@@ -6,7 +6,7 @@
 
 # Enumeration: SplitDirection
 
-The direction to display a primitive or ImageryLayer relative to the Scene#splitPosition.
+The direction to display a primitive or ImageryLayer relative to the [Scene#splitPosition](../classes/Daisy.Scene.md#splitposition).
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ The direction to display a primitive or ImageryLayer relative to the Scene#split
 
 > **LEFT**: `-1`
 
-Display the primitive or ImageryLayer to the left of the Scene#splitPosition.
+Display the primitive or ImageryLayer to the left of the [Scene#splitPosition](../classes/Daisy.Scene.md#splitposition).
 
 ***
 
@@ -30,4 +30,4 @@ Always display the primitive or ImageryLayer.
 
 > **RIGHT**: `1`
 
-Display the primitive or ImageryLayer to the right of the Scene#splitPosition.
+Display the primitive or ImageryLayer to the right of the [Scene#splitPosition](../classes/Daisy.Scene.md#splitposition).

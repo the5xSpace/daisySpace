@@ -8,4 +8,4 @@
 
 > **LinkSchedule** = `boolean` \| [`LinkTimeRange`](PW.LinkTimeRange.md) \| [`LinkTimeRange`](PW.LinkTimeRange.md)[]
 
-链路显示计划；布尔值表示始终显示或隐藏。
+Link display schedule; boolean values indicate always show or always hide.

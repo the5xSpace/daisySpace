@@ -8,4 +8,4 @@
 
 > **DMaterial** = `Material` \| [`DColor`](DColor.md) \| [`DaisyMaterialDescriptor`](DaisyMaterialDescriptor.md)
 
-Daisy API 接受的材质实例、颜色或材质描述。
+Material instance, color, or material description accepted by the Daisy API.

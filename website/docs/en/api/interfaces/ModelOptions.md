@@ -6,8 +6,8 @@
 
 # Interface: ModelOptions
 
-Configuration options for the 3D model entity component.
-ModelOptions
+3D模型实体组件的配置选项
+ ModelOptions
 
 ## Extends
 
@@ -19,7 +19,7 @@ ModelOptions
 
 > `optional` **allowPicking?**: `boolean`
 
-Whether the model can be picked with `Scene#pick`.
+是否允许使用Scene#pick拾取模型
 
 #### Default
 
@@ -33,7 +33,7 @@ true
 
 > `optional` **asynchronous?**: `boolean`
 
-Whether to create the model's WebGL resources asynchronously.
+是否异步创建模型的WebGL资源
 
 #### Default
 
@@ -47,7 +47,7 @@ true
 
 > `optional` **backFaceCulling?**: `boolean`
 
-Whether to cull back-face geometry.
+是否剔除背面几何体
 
 #### Default
 
@@ -61,7 +61,7 @@ true
 
 > `optional` **basePath?**: `string` \| `Resource`
 
-The relative base path for URLs in the glTF JSON.
+glTF JSON中路径的相对基础路径
 
 #### Default
 
@@ -75,7 +75,7 @@ The relative base path for URLs in the glTF JSON.
 
 > `optional` **clampAnimations?**: `boolean`
 
-Whether to keep the model's animation pose on frames without keyframes.
+是否在没有关键帧的帧上保持模型的动画姿势
 
 #### Default
 
@@ -89,7 +89,7 @@ true
 
 > `optional` **color?**: [`DColor`](../types/DColor.md)
 
-The color used to blend with the model's rendered color.
+与模型渲染颜色混合的颜色
 
 ***
 
@@ -97,7 +97,7 @@ The color used to blend with the model's rendered color.
 
 > `optional` **colorBlendAmount?**: `number`
 
-Value used to determine blend strength when `colorBlendMode` is `MIX`.
+当colorBlendMode为MIX时，用于确定颜色强度的值
 
 #### Default
 
@@ -111,7 +111,7 @@ Value used to determine blend strength when `colorBlendMode` is `MIX`.
 
 > `optional` **colorBlendMode?**: `ColorBlendMode`
 
-Defines how the color is blended with the model.
+定义颜色如何与模型混合
 
 #### Default
 
@@ -125,7 +125,7 @@ ColorBlendMode.HIGHLIGHT
 
 > `optional` **cull?**: `boolean`
 
-Whether to use frustum or horizon culling for the model. If the model is part of a 3D tileset, this property is always `false` because the 3D tiles culling system is used instead.
+是否使用视锥体/地平线剔除模型,如果模型是3D平铺集的一部分，则此属性将始终为false，因为使用了3D平铺剔除系统。
 
 #### Default
 
@@ -139,7 +139,7 @@ true
 
 > `optional` **customShader?**: `CustomShader`
 
-Custom shader used to add user-defined GLSL code to the vertex and fragment shaders.
+自定义着色器，用于向顶点和片段着色器添加用户定义的GLSL代码
 
 ***
 
@@ -147,7 +147,7 @@ Custom shader used to add user-defined GLSL code to the vertex and fragment shad
 
 > `optional` **debugShowBoundingVolume?**: `boolean`
 
-Whether to show the bounding spheres for each draw command in the model, for debugging only.
+是否显示模型中每个绘制命令的边界球（仅用于调试）
 
 #### Default
 
@@ -161,7 +161,7 @@ false
 
 > `optional` **debugWireframe?**: `boolean`
 
-Whether to draw the model in wireframe mode, for debugging only.
+是否以线框模式绘制模型（仅用于调试）
 
 #### Default
 
@@ -175,7 +175,7 @@ false
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-Specifies the distance condition under which the model is shown relative to the camera.
+指定模型在距离相机多远时显示的条件
 
 ***
 
@@ -183,9 +183,10 @@ Specifies the distance condition under which the model is shown relative to the 
 
 > `optional` **distanceFallbackPoint?**: `boolean` \| [`ModelDistanceFallbackPointOptions`](../types/ModelDistanceFallbackPointOptions.md)
 
-Fallback point for distant viewing.
+远距离替代点。
 
-Deprecated: responsibility for the fallback point has been moved down to `modelDistanceFallbackPoint` at the `BaseObject` layer. `ModelFeature` no longer handles automatic switching to a fallback point beyond the viewing distance.
+已废弃：远距替代点职责已下沉到 BaseObject 层的 `modelDistanceFallbackPoint`。
+ModelFeature 本身不再负责“超出视距后自动切点”。
 
 #### Deprecated
 
@@ -195,7 +196,7 @@ Deprecated: responsibility for the fallback point has been moved down to `modelD
 
 > `optional` **enableDebugWireframe?**: `boolean`
 
-Whether wireframe mode is enabled, for debugging only. Set this to `true` for WebGL1.
+是否启用线框模式（仅用于调试，WebGL1需要设置为true）
 
 #### Default
 
@@ -209,7 +210,7 @@ false
 
 > `optional` **enablePick?**: `boolean`
 
-Whether CPU picking is allowed when WebGL 2 or newer is not available.
+是否允许在不使用WebGL 2或更高版本时使用CPU拾取
 
 #### Default
 
@@ -223,7 +224,7 @@ false
 
 > `optional` **enableShowOutline?**: `boolean`
 
-Whether to enable outlines for models using the `CESIUM_primitive_outline` extension.
+是否启用使用CESIUM_primitive_outline扩展的模型的轮廓
 
 #### Default
 
@@ -237,7 +238,7 @@ true
 
 > `optional` **enableVerticalExaggeration?**: `boolean`
 
-Whether to exaggerate the model along the ellipsoid normal when `Scene.verticalExaggeration` is set to a value other than `1.0`.
+当Scene.verticalExaggeration设置为非1.0值时，是否沿椭球体法线方向夸张模型
 
 #### Default
 
@@ -247,11 +248,23 @@ true
 
 ***
 
+### explosion?
+
+> `optional` **explosion?**: `number` \| `boolean` \| [`ModelExplosionOptions`](../types/ModelExplosionOptions.md)
+
+初始爆炸图配置。
+
+- `true`：启用默认爆炸图（factor=1）
+- `number`：作为 factor 启用
+- `ModelExplosionOptions`：完整配置
+
+***
+
 ### featureIdLabel?
 
 > `optional` **featureIdLabel?**: `string`
 
-Label for the feature ID set used for picking and styling.
+用于拾取和样式化的特征ID集的标签
 
 #### Default
 
@@ -265,7 +278,7 @@ Label for the feature ID set used for picking and styling.
 
 > `optional` **forwardAxis?**: `Axis`
 
-The forward axis of the glTF model.
+glTF模型的前轴
 
 #### Default
 
@@ -279,7 +292,7 @@ Axis.Z
 
 > `optional` **gltfCallback?**: `GltfCallback`
 
-Function invoked with the loaded glTF object after loading completes.
+加载完成后使用加载的gltf对象调用的函数
 
 ***
 
@@ -287,7 +300,7 @@ Function invoked with the loaded glTF object after loading completes.
 
 > `optional` **id?**: `string`
 
-User-defined object returned by `Scene#pick`.
+用户定义的对象，用于Scene#pick时返回
 
 #### Overrides
 
@@ -299,9 +312,9 @@ User-defined object returned by `Scene#pick`.
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-Whether to participate in the owning entity's bounding sphere aggregation.
+是否参与所属 Entity 的包围球聚合。
 
-Useful for features that should be included in camera `zoom` / `flyTo` framing. Helper lines and temporary effects can disable this.
+适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
 
 #### Inherited from
 
@@ -313,7 +326,7 @@ Useful for features that should be included in camera `zoom` / `flyTo` framing. 
 
 > `optional` **incrementallyLoadTextures?**: `boolean`
 
-Whether to continue streaming textures after the model is loaded.
+是否在模型加载后继续流式加载纹理
 
 #### Default
 
@@ -327,7 +340,7 @@ true
 
 > `optional` **instanceFeatureIdLabel?**: `string`
 
-Label for the instance feature ID set used for picking and styling.
+用于拾取和样式化的实例特征ID集的标签
 
 #### Default
 
@@ -341,7 +354,7 @@ Label for the instance feature ID set used for picking and styling.
 
 > `optional` **lightColor?**: `Cartesian3`
 
-Lighting color used when shading the model; if undefined, the scene lighting color is used.
+模型着色时的光照颜色，未定义时使用场景的光照颜色
 
 ***
 
@@ -349,7 +362,7 @@ Lighting color used when shading the model; if undefined, the scene lighting col
 
 > `optional` **maximumScale?**: `number`
 
-Maximum scale for the model, which also caps `minimumPixelSize`.
+模型的最大缩放比例，minimumPixelSize的上限
 
 ***
 
@@ -357,7 +370,7 @@ Maximum scale for the model, which also caps `minimumPixelSize`.
 
 > `optional` **minimumPixelSize?**: `number`
 
-Minimum pixel size for the model to keep it visible at long distance.
+模型的最小像素大小，确保模型在远处仍然可见
 
 #### Default
 
@@ -371,7 +384,7 @@ Minimum pixel size for the model to keep it visible at long distance.
 
 > `optional` **modelMatrix?**: `Matrix4`
 
-4x4 transformation matrix used to convert the model from model coordinates to world coordinates.
+4x4变换矩阵，用于将模型从模型坐标转换到世界坐标
 
 #### Default
 
@@ -385,7 +398,7 @@ Matrix4.IDENTITY
 
 > `optional` **name?**: `string`
 
-Name, which can be used for display or debugging.
+名称（可用于展示/调试）。
 
 #### Inherited from
 
@@ -397,7 +410,7 @@ Name, which can be used for display or debugging.
 
 > `optional` **opaquePass?**: `boolean`
 
-Draw pass for the model's opaque parts.
+模型不透明部分的绘制通道
 
 #### Default
 
@@ -411,7 +424,7 @@ Pass.OPAQUE
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-Color used when rendering outlines.
+渲染轮廓时使用的颜色
 
 #### Default
 
@@ -425,7 +438,7 @@ AutoColor.BLACK
 
 > `optional` **overlayPass?**: `boolean`
 
-Whether to enable the overlay render pass.
+是否启用叠加渲染通道。
 
 #### Inherited from
 
@@ -437,7 +450,7 @@ Whether to enable the overlay render pass.
 
 > `optional` **pointCloudShading?**: `any`
 
-`PointCloudShading` options used to control point attenuation and lighting.
+用于控制点衰减和光照的PointCloudShading对象选项
 
 ***
 
@@ -445,7 +458,7 @@ Whether to enable the overlay render pass.
 
 > `optional` **projectTo2D?**: `boolean`
 
-Whether to project the model position accurately to 2D.
+是否准确地将模型位置投影到2D
 
 #### Default
 
@@ -459,7 +472,7 @@ false
 
 > `optional` **releaseGltfJson?**: `boolean`
 
-Whether to release the glTF JSON after loading.
+是否在glTF加载后释放glTF JSON
 
 #### Default
 
@@ -473,7 +486,7 @@ false
 
 > `optional` **renderOrder?**: `number`
 
-Render order value. Smaller values are rendered earlier.
+渲染排序值（数值越小越先渲染）。
 
 #### Inherited from
 
@@ -485,7 +498,7 @@ Render order value. Smaller values are rendered earlier.
 
 > `optional` **scale?**: `number`
 
-Uniform scale factor for the model.
+模型的统一缩放比例
 
 #### Default
 
@@ -499,7 +512,7 @@ Uniform scale factor for the model.
 
 > `optional` **shadows?**: `ShadowMode`
 
-Whether the model casts or receives shadows.
+模型是否投射或接收光源的阴影
 
 #### Default
 
@@ -513,7 +526,7 @@ ShadowMode.ENABLED
 
 > `optional` **show?**: `boolean`
 
-Whether to render the model.
+是否渲染模型
 
 #### Default
 
@@ -527,7 +540,7 @@ true
 
 > `optional` **showOutline?**: `boolean`
 
-Whether to display outlines for models using the `CESIUM_primitive_outline` extension.
+是否显示使用CESIUM_primitive_outline扩展的模型的轮廓
 
 #### Default
 
@@ -541,7 +554,7 @@ true
 
 > `optional` **silhouetteColor?**: [`DColor`](../types/DColor.md)
 
-Outline color.
+轮廓颜色
 
 #### Default
 
@@ -555,7 +568,7 @@ AutoColor.RED
 
 > `optional` **silhouetteSize?**: `number`
 
-Outline size in pixels.
+轮廓大小（像素）
 
 #### Default
 
@@ -569,7 +582,7 @@ Outline size in pixels.
 
 > `optional` **splitDirection?**: `SplitDirection`
 
-Split direction applied to the model.
+应用于模型的分割方向
 
 #### Default
 
@@ -583,7 +596,7 @@ SplitDirection.NONE
 
 > `optional` **upAxis?**: `Axis`
 
-The up axis of the glTF model.
+glTF模型的上轴
 
 #### Default
 
@@ -597,7 +610,7 @@ Axis.Y
 
 > **url**: `string` \| `Resource`
 
-URL of the model, supporting `.gltf` and `.glb` formats.
+模型的URL地址，支持.gltf或.glb格式
 
 ***
 
@@ -605,7 +618,7 @@ URL of the model, supporting `.gltf` and `.glb` formats.
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-Visibility strategy configuration.
+可见性策略配置。
 
 #### Inherited from
 

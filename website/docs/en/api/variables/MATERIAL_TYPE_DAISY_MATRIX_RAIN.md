@@ -8,4 +8,4 @@
 
 > `const` **MATERIAL\_TYPE\_DAISY\_MATRIX\_RAIN**: `"DaisyMatrixRain"` = `'DaisyMatrixRain'`
 
-Daisy 矩阵雨程序化材质类型标识。
+Daisy matrix rain procedural material type identifier.

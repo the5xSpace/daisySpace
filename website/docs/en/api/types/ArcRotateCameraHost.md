@@ -8,4 +8,4 @@
 
 > **ArcRotateCameraHost** = `object`
 
-相机宿主：提供底层相机引用。
+Camera host: provides the underlying camera reference.

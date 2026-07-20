@@ -8,15 +8,15 @@
 
 > **ModelNodeTransformState** = `object`
 
-模型节点变换状态（状态副作用）。
+Model node transform state (state side effect).
 
-- 该状态不会立即修改节点渲染，而是在 ModelFeature.update() 每帧自动应用到对应节点
-- matrix 优先级最高：
- - matrix === null：恢复为 undefined，把变换控制权交还给 glTF 原始 transform/动画
- - matrix 存在：直接覆盖节点 matrix
+- This state does not immediately modify node rendering; it is automatically applied to the corresponding node in each frame's ModelFeature.update()
+- matrix has highest priority:
+ - matrix === null: restores to undefined, returning transform control to the glTF original transform/animation
+ - matrix present: directly overwrites the node matrix
 - opacity / colorOverlay：
- - 底层 ModelNode 本身不提供节点级 color/alpha
- - Daisy 在内部通过修改模型 DrawCommand 的 uniformMap，让节点复用 的 model_color/model_colorBlend 管线
+ - The underlying ModelNode does not provide node-level color/alpha
+ - Daisy internally modifies the model's DrawCommand uniformMap, allowing the node to reuse the model_color/model_colorBlend pipeline
  - 该方案会保留原有光照结果（在 lightingStage 之后叠加），避免“纯色贴片”式的突兀效果
 
 ## Properties

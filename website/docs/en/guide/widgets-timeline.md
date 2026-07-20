@@ -1,8 +1,8 @@
-# Timeline
+# 时间轴
 
-[TimelineWidget](/en/api/classes/TimelineWidget) is a fully custom time bar control that replaces the underlying native timeline. Supports zooming, panning, time tick labels, track paths, and interval highlighting.
+[TimelineWidget](/en/api/classes/TimelineWidget) 是一个完整的自定义时间条控件，替代底层原生时间轴。支持缩放、平移、时间刻度标签、轨道路径和区间高亮。
 
-## Basic Usage
+## 基本用法
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -19,18 +19,18 @@ engine.addWidget(timeline)
 engine.play(1)
 ```
 
-TimelineWidget is anchored to the bottom of the container.
+TimelineWidget 固定锚定在容器底部。
 
-## Timeline Operations
+## 时间轴操作
 
-| Operation | Behavior |
-|-----------|----------|
-| Left mouse drag | Pan the time window |
-| Mouse wheel | Zoom the time window |
-| Click on the tick area | Jump to that time |
-| Drag the pointer | Move the current time |
+| 操作 | 行为 |
+|------|------|
+| 鼠标左键拖拽 | 平移时间窗口 |
+| 鼠标滚轮 | 缩放时间窗口 |
+| 点击刻度区域 | 跳转到该时刻 |
+| 拖动指针 | 移动当前时间 |
 
-## Zoom Control
+## 缩放控制
 
 ```typescript
 // 缩放到指定时间范围
@@ -40,35 +40,35 @@ timeline.zoomTo(startTime, stopTime)
 timeline.zoomFrom(0.5)
 ```
 
-## Tracks and Highlights
+## 轨道与高亮
 
 ```typescript
-// Add a colored track (overlay a color bar on the timeline)
+// 添加彩色轨道（在时间轴上叠加色条）
 const track = timeline.addTrack(
     { start: Daisy.JulianDate.fromIso8601("2026-07-01T06:00:00Z"), stop: Daisy.JulianDate.fromIso8601("2026-07-01T12:00:00Z") },
     6,
     "rgba(0, 255, 255, 0.9)",
 )
 
-// Add a highlight range
+// 添加高亮区间
 timeline.addHighlightRange("rgba(255, 255, 0, 0.3)", 12)
 ```
 
-| Method | Description |
-|--------|-------------|
-| `addTrack(interval, heightPx, color?, bgColor?)` | Add a track color bar |
-| `addHighlightRange(color, heightPx, base?)` | Add a highlight range |
+| 方法 | 说明 |
+|------|------|
+| `addTrack(interval, heightPx, color?, bgColor?)` | 添加轨道色条 |
+| `addHighlightRange(color, heightPx, base?)` | 添加高亮区间 |
 
-## Time Formatting
+## 时间格式化
 
 ```typescript
-// Change format at runtime
+// 运行时更换格式
 timeline.configureLabel({ preset: "iso-ms" })
 
-// Manually format a single time
+// 手动格式化单个时刻
 const label = timeline.makeLabel(currentTime)
 ```
 
-See [Time Format](/en/guide/time-format) for details.
+详见 [时间格式化](/en/guide/time-format)。
 
-> **Related API**: [TimelineWidget](/en/api/classes/TimelineWidget) · [TimelineTrack](/en/api/classes/TimelineTrack) · [TimelineHighlightRange](/en/api/classes/TimelineHighlightRange)
+> **相关 API**：[TimelineWidget](/en/api/classes/TimelineWidget) · [TimelineTrack](/en/api/classes/TimelineTrack) · [TimelineHighlightRange](/en/api/classes/TimelineHighlightRange)

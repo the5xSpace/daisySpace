@@ -8,10 +8,10 @@
 
 > **TimeSeries**\<`T`\> = `object`
 
-时间采样序列。
+Time sample series.
 
-- `samples`：离散采样点列表（会按 time 排序）
-- `interpolation`：插值模式
+- `samples`: list of discrete sample points (sorted by time)
+- `interpolation`: interpolation mode
 
 ## Example
 

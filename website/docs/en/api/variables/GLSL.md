@@ -10,4 +10,4 @@
 
 ## Deprecated
 
-Daisy 方言字符串现已自动识别，请直接传给 `MaterialFactory.Custom()` 或 `Shader.glsl`。
+Daisy dialect strings are now auto-detected. Pass them directly to `MaterialFactory.Custom()` or `Shader.glsl`.

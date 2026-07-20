@@ -8,10 +8,10 @@
 
 > **PassOptions** = `object`
 
-过境预报选项。
+Pass prediction options.
 
-- `minElevationDeg`: 最小仰角阈值
-- `stepSeconds`: 采样步长（越小越精细但更耗时）
+- `minElevationDeg`: minimum elevation angle threshold
+- `stepSeconds`: sampling step size (smaller = more precise but slower)
 
 ## Properties
 

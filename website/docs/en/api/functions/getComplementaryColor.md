@@ -8,7 +8,7 @@
 
 > **getComplementaryColor**(`color`): `Color`
 
-计算补色（h + 180°），并轻微提亮亮度。
+Calculates the complementary color (h + 180°) and slightly brightens the luminance.
 
 ## Parameters
 

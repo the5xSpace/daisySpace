@@ -8,9 +8,9 @@
 
 > `const` **resolveTimeValue**: \<`T`\>(`value`, `time`) => `T` = `resolveSimTimeValue`
 
-兼容导出：历史 API 名称。
+Compatibility export: legacy API name.
 
-解析仿真时间值。
+Resolves a simulation time value.
 
 ## Type Parameters
 

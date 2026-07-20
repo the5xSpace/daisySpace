@@ -8,7 +8,7 @@
 
 > **Pathway** = (`Cartesian3` \| [`Entity`](../classes/Entity.md) \| [`REF`](../enums/REF.md))[]
 
-线或路径类要素使用的有序路径点集合。
+Ordered collection of path points used by line or path features.
 
 ## Example
 

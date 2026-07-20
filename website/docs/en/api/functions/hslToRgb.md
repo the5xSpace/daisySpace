@@ -8,9 +8,9 @@
 
 > **hslToRgb**(`hsl`): `Color`
 
-HSL 转 RGB。
+HSL to RGB.
 
-- h: 角度制 0~360
+- h: 0~360 in degrees
 - s/l/a: 0~1
 
 ## Parameters

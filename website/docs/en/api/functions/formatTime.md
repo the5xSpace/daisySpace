@@ -8,7 +8,7 @@
 
 > **formatTime**(`time`, `config?`): `string`
 
-按指定配置格式化一个仿真时刻。
+Formats a simulation time according to the specified configuration.
 
 ## Parameters
 

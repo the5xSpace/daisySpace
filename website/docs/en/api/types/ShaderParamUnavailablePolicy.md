@@ -8,4 +8,4 @@
 
 > **ShaderParamUnavailablePolicy** = `"hold"` \| `"fallback"` \| `"zero"`
 
-实体位置不可用时的处理策略：保留上次有效值、使用回退值或使用零向量。
+Policy when entity position is unavailable: keep last valid value, use fallback value, or use zero vector.

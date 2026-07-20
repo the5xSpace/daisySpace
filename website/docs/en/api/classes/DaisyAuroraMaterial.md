@@ -6,7 +6,7 @@
 
 # Class: DaisyAuroraMaterial
 
-动态极光带材质。
+Dynamic aurora material.
 
 ## Extends
 

@@ -8,7 +8,7 @@
 
 > **EphemerisDataOptions** = `{ ephemeris: TimePosition[]; referenceFrame: Daisy.ReferenceFrame }`
 
-星历数据源配置（离线数组形式）。
+Ephemeris data source configuration (offline array form).
 
 ## Properties
 

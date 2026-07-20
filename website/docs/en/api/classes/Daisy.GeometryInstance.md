@@ -55,7 +55,7 @@ The model matrix that transforms to transform the geometry from model to world c
 
 ## Param
 
-A user-defined object to return when the instance is picked with Scene#pick or get/set per-instance attributes with Primitive#getGeometryInstanceAttributes.
+A user-defined object to return when the instance is picked with [Scene#pick](Daisy.Scene.md#pick) or get/set per-instance attributes with Primitive#getGeometryInstanceAttributes.
 
 ## Param
 
