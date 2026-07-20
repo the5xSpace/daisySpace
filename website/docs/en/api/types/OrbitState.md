@@ -8,7 +8,7 @@
 
 > **OrbitState** = `{ ecef: OrbitStateECEF; eci: OrbitStateECI; lla: OrbitStateLLA; timeBasis: "UTC"; timestampMs: number; timeUtc: Date }`
 
-轨道全状态输出（满足“同时包含 ECI/ECEF/LLA/时间戳”的约束）。
+Full orbit state output (satisfying the constraint of “including ECI/ECEF/LLA/timestamp simultaneously”).
 
 - `eci.frame` is always `TEME` (consistent with SGP4 output)
 - `ecef.frame` is always `ECEF`

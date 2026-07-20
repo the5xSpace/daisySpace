@@ -6,7 +6,7 @@
 
 # Class: NeonScanMaterial
 
-A dynamic material with带状 scanning and soft glow effects.
+A dynamic material with striped scanning and soft glow effects.
 
 ## Extends
 

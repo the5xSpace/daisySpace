@@ -46,4 +46,4 @@ Whether the DOM is actually visible in the current frame; distance, occlusion, a
 > **visible**: `boolean`
 
 Whether the popover is requested to be open.
-由触发器/API 决定的“请求显示”状态。
+The “requested display” state determined by the trigger or API.

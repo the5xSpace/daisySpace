@@ -10,7 +10,7 @@
 
 Compatibility alias: historically many options fields used the TimeValue name.
 
-建议新代码优先使用 `SimTimeValue<T>`，表达“仿真时间驱动”的语义更明确。
+New code should prefer `SimTimeValue<T>`, which more clearly expresses “simulation time-driven” semantics.
 
 ## Type Parameters
 

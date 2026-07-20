@@ -17,7 +17,7 @@ Model node transform state (state side effect).
 - opacity / colorOverlay：
  - The underlying ModelNode does not provide node-level color/alpha
  - Daisy internally modifies the model's DrawCommand uniformMap, allowing the node to reuse the model_color/model_colorBlend pipeline
- - 该方案会保留原有光照结果（在 lightingStage 之后叠加），避免“纯色贴片”式的突兀效果
+ - This approach preserves the original lighting result (applied after lightingStage), avoiding abrupt "solid color patch" effects.
 
 ## Properties
 

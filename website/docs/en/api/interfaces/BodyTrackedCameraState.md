@@ -8,7 +8,7 @@
 
 Local state of the body-tracked camera.
 
-将相机位置与姿态表示在“机体坐标系”（随天体自转的局部坐标系）中，便于在天体旋转时保持相对视角稳定。
+Represents camera position and orientation in the “body coordinate system” (a local coordinate system that rotates with the celestial body), making it easy to maintain a stable relative view as the celestial body rotates.
 
 ## Properties
 

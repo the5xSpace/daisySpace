@@ -12,7 +12,7 @@ Propagation output options.
 
 - `centralBody`: central body selection for ellipsoid/geometry (default earth)
 - `ellipsoid`: explicitly specify the ellipsoid (higher priority than `centralBody`)
-- `earthRotationRateRadPerSec`: 地球自转角速度（用于 ECEF 速度修正项 \(\omega \times r\)），默认 `7.2921150e-5`
+- `earthRotationRateRadPerSec`: Earth's rotation rate (used for ECEF velocity correction term \(\omega \times r\)), default `7.2921150e-5`
 - `observer`: specify an observation point to output `enu`
 - `includeENU`: whether to force ENU output (not needed when `observer` is set)
 

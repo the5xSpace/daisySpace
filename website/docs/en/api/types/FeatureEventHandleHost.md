@@ -10,8 +10,8 @@
 
 FeatureEventHandle's host capability set.
 
-Implemented by the Feature base class to map ViewerEventHandle's SPACE_ENTITY_* events
-映射为“Feature 自身可监听 + 可选向上提交 Entity”的统一交互事件系统。
+Implemented by the Feature base class to map ViewerEventHandle’s SPACE_ENTITY_* events
+into a unified interaction event system where “Feature can listen itself + optionally submit Entity upward”.
 
 ## Properties
 
