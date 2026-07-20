@@ -1,8 +1,8 @@
-# Engine 引擎
+# Engine
 
-[Engine](/en/api/classes/Engine) 是 DaisySpace-Sdk 的运行时核心入口。一切操作——创建实体、控制相机、管理时间、添加图层——都通过 Engine 实例发起。
+[Engine](/en/api/classes/Engine) is the runtime core entry point of DaisySpace-Sdk. All operations — creating entities, controlling the camera, managing time, adding layers — are initiated through an Engine instance.
 
-## 创建引擎
+## Creating the Engine
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -20,19 +20,19 @@ const engine = await Daisy.Engine.create("daisyContainer", {
 })
 ```
 
-`Engine.create()` 是**异步**静态工厂方法。常用配置：
+`Engine.create()` is an **asynchronous** static factory method. Common configurations:
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|:---:|------|
-| `viewDistance` | [`ViewDistanceStrategyOptions`](/en/api/interfaces/ViewDistanceStrategyOptions) | — | 实体/Widget 视距策略（按场景级别切换），详见 [ViewDistance](/en/guide/view-distance) |
-| `updateMaxFps` | `number` | `32` | Daisy 逻辑更新最大帧率 |
-| `terrainDetection` | `boolean` | `true` | 启用地形碰撞检测 |
-| `entityUpdateGroups` | `number` | `6` | 实体交错更新分组数，范围 [1, 32] |
-| `lensFlare` | `boolean \|` [`EngineLensFlareOptions`](/en/api/interfaces/EngineLensFlareOptions) | — | 镜头光晕效果 |
+| Parameter | Type | Default | Description |
+|-----------|------|:---:|-------------|
+| `viewDistance` | [`ViewDistanceStrategyOptions`](/en/api/interfaces/ViewDistanceStrategyOptions) | — | Entity/Widget view distance strategy (switchable by scene level), see [ViewDistance](/en/guide/view-distance) |
+| `updateMaxFps` | `number` | `32` | Daisy logical update maximum frame rate |
+| `terrainDetection` | `boolean` | `true` | Enable terrain collision detection |
+| `entityUpdateGroups` | `number` | `6` | Entity interleaved update group count, range [1, 32] |
+| `lensFlare` | `boolean \|` [`EngineLensFlareOptions`](/en/api/interfaces/EngineLensFlareOptions) | — | Lens flare effect |
 
-> **注意**：`Engine.create()` 内部会自动设置静态资源基址。如果想自定义底层资源路径，在 `create` 前调用 `Engine.setEngineBaseUrl("/path/to/cesium/")`。
+> **Note**: `Engine.create()` internally sets the static resource base URL automatically. To customize the underlying resource path, call `Engine.setEngineBaseUrl("/path/to/cesium/")` before `create`.
 
-## 生命周期
+## Lifecycle
 
 ```
 Engine.create()  →  play()  →  setSceneTime()  →  [实体操作]  →  stop() / destroy()
@@ -61,17 +61,17 @@ engine.stop()
 engine.destroy()
 ```
 
-### play / pause / stop 的区别
+### play / pause / stop Differences
 
-| 方法 | `shouldAnimate` | `currentTime` |
-|------|:---:|---|
-| `play()` | `true` | 正常推进 |
-| `pause()` | `false` | **保持当前位置** |
-| `stop()` | `false` | **重置到 startTime** |
+| Method | `shouldAnimate` | `currentTime` |
+|--------|:---:|---|
+| `play()` | `true` | Advances normally |
+| `pause()` | `false` | **Keeps current position** |
+| `stop()` | `false` | **Resets to startTime** |
 
-## 实体管理
+## Entity Management
 
-[Entity](/en/api/classes/Entity) 是场景中所有可视化对象的容器。每个 Entity 通过挂载 [Feature](/en/api/classes/Feature) 组件来获得渲染能力。
+[Entity](/en/api/classes/Entity) is the container for all visualizable objects in the scene. Each Entity gains rendering capabilities by mounting [Feature](/en/api/classes/Feature) components.
 
 ```typescript
 // 方式一：engine.createEntity() 创建并自动注册
@@ -84,7 +84,7 @@ const entity = new Daisy.Entity("MyEntity")
 engine.addEntity(entity)
 ```
 
-查询实体：
+Querying entities:
 
 ```typescript
 engine.entities           // 所有实体数组
@@ -93,7 +93,7 @@ engine.getEntityByName("Satellite-01")  // 按名称查找
 engine.removeEntity(entity)  // 移除实体
 ```
 
-## 时间控制
+## Time Control
 
 ```typescript
 // 场景时间
@@ -114,9 +114,9 @@ const schedule = engine.createTimeSchedule()
 engine.removeTimeSchedule(schedule)
 ```
 
-## 相机控制
+## Camera Control
 
-Engine 通过 `engine.camera` 暴露相机能力：
+Engine exposes camera capabilities via `engine.camera`:
 
 ```typescript
 // 飞行动画到目标
@@ -155,7 +155,7 @@ const restore = engine.setCameraInputFlags({
 restore()  // 恢复
 ```
 
-## 2D / 3D 模式切换
+## 2D / 3D Mode Switching
 
 ```typescript
 engine.is3D()         // 当前是否为 3D 模式
@@ -168,11 +168,11 @@ engine.onMorphSwitch((mode) => { console.log("切换到:", mode) })
 engine.onMorphStart(() => { console.log("开始切换") })
 ```
 
-> **陷阱**：`morphTo` 只支持 2D 和 3D 之间的切换。2D 模式下会先移除追踪的实体，完成切换后恢复 [ExtraCamera](/en/api/classes/ExtraCamera)。
+> **Pitfall**: `morphTo` only supports switching between 2D and 3D. In 2D mode, tracked entities are first removed, then restored after switching back to [ExtraCamera](/en/api/classes/ExtraCamera).
 
-## 图层管理
+## Layer Management
 
-Engine 内置 `geoLayer` 管理器用于影像、地形、天空：
+Engine has a built-in `geoLayer` manager for imagery, terrain, and sky:
 
 ```typescript
 // 影像
@@ -191,7 +191,7 @@ engine.addViewLayer(myGridLayer)
 engine.removeViewLayer(myGridLayer)
 ```
 
-## Widget 管理
+## Widget Management
 
 ```typescript
 // Widget 不再通过 Engine.create 的顶层配置管理
@@ -204,11 +204,11 @@ engine.removeWidget(widget, true)  // 移除并销毁
 engine.clearWidgets()          // 清空全部
 ```
 
-> **已于近期变更**：`Engine.create` 的 `timeline` / `controlPanel` / `simulationTimeWidget` 配置已停用，调用时会输出 warning，请改用 `addWidget()`。
+> **Recent Change**: The `timeline` / `controlPanel` / `simulationTimeWidget` configurations in `Engine.create` have been deprecated. They will output a warning when called; use `addWidget()` instead.
 
-## 高性能模式
+## High Performance Mode
 
-当场景实体数量较大（数百至数万级别）时，启用高性能模式可显著降低每帧 CPU 开销：
+When the scene contains a large number of entities (hundreds to tens of thousands), enabling high performance mode can significantly reduce per-frame CPU overhead:
 
 ```typescript
 // 最简启用（使用默认参数）
@@ -231,18 +231,18 @@ engine.setHighPerformanceMode({
 engine.setHighPerformanceMode(false)
 ```
 
-**核心策略**：
+**Core Strategies**:
 
-| 策略 | 说明 |
-|------|------|
-| 实体更新分组 | 按 ID 哈希分配到 N 组，每帧只更新其中一组 |
-| 可见性检查分组 | 时间有效性 + 显隐状态的轻量检查也分组执行 |
-| 更新频率节流 | 活跃实体（hover/选中/跟踪）高频更新，其余低频 |
-| Feature 裁剪 | 非活跃实体仅保留白名单中的 Feature 类型 |
+| Strategy | Description |
+|----------|-------------|
+| Entity update grouping | Entities are divided into N groups by ID hash, only one group updated per frame |
+| Visibility check grouping | Lightweight time validity + visibility state checks are also grouped |
+| Update frequency throttling | Active entities (hover/selected/tracked) update at high frequency, others at low frequency |
+| Feature pruning | Inactive entities only retain whitelisted Feature types |
 
-启用后自动将 `stateCache` 时间桶设为 0.1s、`modelMatrixCache` 设为 1s。禁用后恢复为不限制。
+When enabled, `stateCache` time bucket is automatically set to 0.1s and `modelMatrixCache` to 1s. Disabling restores the unlimited state.
 
-## 渲染回调
+## Render Callbacks
 
 ```typescript
 // preRender：每帧渲染前
@@ -262,7 +262,7 @@ engine.stopAutoRender()   // 按需渲染模式（省电）
 engine.startAutoRender()  // 恢复自动渲染
 ```
 
-## 镜头光晕
+## Lens Flare
 
 ```typescript
 engine.setLensFlare({
@@ -277,7 +277,7 @@ engine.setLensFlareVisible(false)  // 临时隐藏（保留参数）
 engine.getLensFlareOptions()       // 获取当前配置
 ```
 
-## 天体系统
+## Celestial System
 
 ```typescript
 const engine = await Daisy.Engine.create("daisyContainer")
@@ -293,7 +293,7 @@ engine.currentCelestial
 engine.removeCelestial()
 ```
 
-## 其他实用方法
+## Other Utility Methods
 
 ```typescript
 engine.debug(true)        // 显示 FPS 面板
@@ -301,7 +301,7 @@ engine.resize()           // 手动触发 resize
 engine.setReferenceFrame(...)  // 设置参考坐标系
 engine.getDaisyUpdateFps()     // 获取 Daisy 逻辑帧率
 
-// 物理对象注册（[BaseObject](/api/classes/PW.BaseObject) 基类的内部调用）
+// 物理对象注册（[BaseObject](/en/api/classes/PW.BaseObject) 基类的内部调用）
 engine.registerObject(satellite)
 engine.unregisterObject(satellite)
 engine.getObjects()
@@ -314,25 +314,25 @@ engine.unlockTimeline()
 engine.resetPlaybackState(time?)
 ```
 
-## 销毁
+## Destruction
 
 ```typescript
 engine.destroy()
 ```
 
-`destroy()` 按顺序执行：
-1. 停止渲染循环
-2. 移除所有事件监听（morph、preUpdate、terrain 错误守卫等）
-3. 移除镜头光晕后处理
-4. 销毁所有 Entity / Widget / Layer / 物理对象
-5. 销毁渲染实例
+`destroy()` executes in order:
+1. Stop the render loop
+2. Remove all event listeners (morph, preUpdate, terrain error guard, etc.)
+3. Remove lens flare post-processing
+4. Destroy all Entity / Widget / Layer / physical objects
+5. Destroy the render instance
 
-> **注意**：不要在其他异步操作还在引用 engine 时调用 `destroy()`。
+> **Note**: Do not call `destroy()` while other asynchronous operations still reference the engine.
 
 ---
 
 
 <!--
-  示例参考: [EngineCreate.svelte](/playground/), [presets.ts](https://github.com/the5xSpace/daisySpace/tree/main/playground/src/infra)
+示例参考: [EngineCreate.svelte](/playground/), [presets.ts](https://github.com/the5xSpace/daisySpace/tree/main/playground/src/infra)
   评分配额: API 30/30 | 概念 25/25 | 示例 20/20 | 陷阱 15/15 | 结构 10/10 → 100/100
 -->
