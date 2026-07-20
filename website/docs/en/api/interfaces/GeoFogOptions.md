@@ -6,7 +6,7 @@
 
 # Interface: GeoFogOptions
 
-场景雾效配置；仅修改传入的字段。
+Scene fog configuration; only modifies the provided fields.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **brightness?**: `number`
 
-雾效亮度。
+Fog brightness.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **density?**: `number`
 
-雾密度；数值越大，远处地表越早融入背景。
+Fog density; larger values make distant terrain blend into the background sooner.
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **enabled?**: `boolean`
 
-是否启用雾效。
+Whether to enable fog.
 
 ***
 
@@ -38,7 +38,7 @@
 
 > `optional` **renderable?**: `boolean`
 
-是否直接渲染雾色；关闭后仍可保留雾效对细节层级的影响。
+Whether to render fog color directly; when disabled, fog still affects level-of-detail calculations.
 
 ***
 
@@ -46,4 +46,4 @@
 
 > `optional` **screenSpaceErrorFactor?**: `number`
 
-雾效参与细节层级计算时使用的屏幕空间误差系数。
+Screen-space error coefficient used when fog participates in level-of-detail calculations.

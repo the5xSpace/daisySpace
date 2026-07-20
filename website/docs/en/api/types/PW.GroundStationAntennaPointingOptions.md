@@ -14,9 +14,9 @@
 
 > `optional` **azimuthAxis?**: `Daisy.Cartesian3`
 
-方位旋转轴（模型节点局部坐标）。
+Azimuth rotation axis (model node local coordinates).
 
-DSN 预设模型使用 Y 轴作为模型竖直轴。
+DSN preset models use the Y axis as the model vertical axis.
 
 ***
 
@@ -24,7 +24,7 @@ DSN 预设模型使用 Y 轴作为模型竖直轴。
 
 > `optional` **azimuthNode?**: `string`
 
-方位旋转节点。DSN 34m/70m 模型中通常为 `azimuth`。
+Azimuth rotation node. Typically `azimuth` in DSN 34m/70m models.
 
 ***
 
@@ -32,7 +32,7 @@ DSN 预设模型使用 Y 轴作为模型竖直轴。
 
 > `optional` **azimuthOffsetDeg?**: `number`
 
-模型节点与业务角之间的固定偏置。
+Fixed offset between the model node and the business angle.
 
 ***
 
@@ -40,7 +40,7 @@ DSN 预设模型使用 Y 轴作为模型竖直轴。
 
 > `optional` **elevationAxis?**: `Daisy.Cartesian3`
 
-俯仰旋转轴（模型节点局部坐标）。
+Elevation rotation axis (model node local coordinates).
 
 ***
 
@@ -48,7 +48,7 @@ DSN 预设模型使用 Y 轴作为模型竖直轴。
 
 > `optional` **elevationNode?**: `string`
 
-俯仰旋转节点。DSN 34m/70m 模型中通常为 `elevation`。
+Elevation rotation node. Typically `elevation` in DSN 34m/70m models.
 
 ***
 

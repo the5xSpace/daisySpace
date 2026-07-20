@@ -6,7 +6,7 @@
 
 # Interface: SunOcclusionInput
 
-太阳遮挡判定参数。
+Sun occlusion determination parameters.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > **bodyCenter**: `Cartesian3`
 
-遮挡天体中心的世界坐标。
+World coordinates of the occluding body center.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > **bodyRadius**: `number`
 
-遮挡天体半径；单位须与世界坐标一致。
+Occluding body radius; units must be consistent with world coordinates.
 
 ***
 
@@ -30,7 +30,7 @@
 
 > **observer**: `Cartesian3`
 
-待判定观察点的世界坐标。
+World coordinates of the observation point to evaluate.
 
 ***
 
@@ -38,7 +38,7 @@
 
 > **sunCenter**: `Cartesian3`
 
-光源天体中心的世界坐标。
+World coordinates of the light source body center.
 
 ***
 
@@ -46,4 +46,4 @@
 
 > **sunRadius**: `number`
 
-光源天体半径；单位须与世界坐标一致。
+Light source body radius; units must be consistent with world coordinates.

@@ -12,7 +12,7 @@
 
 > `optional` **bottomColor?**: [`DColor`](../types/DColor.md)
 
-底部扩散环颜色。默认亮绿色。
+Bottom diffuse ring color. Defaults to bright green.
 
 ***
 
@@ -20,7 +20,7 @@
 
 > `optional` **color?**: [`DColor`](../types/DColor.md)
 
-光束基础颜色。默认绿色。
+Beam base color. Defaults to green.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `optional` **diffusionRadius?**: `number`
 
-扩散环半径，范围为 0.05 至 1。默认 `0.45`。
+Diffuse ring radius, range 0.05 to 1. Default `0.45`.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **diffusionWidth?**: `number`
 
-扩散环宽度，范围为 0.01 至 0.5。默认 `0.06`。
+Diffuse ring width, range 0.01 to 0.5. Default `0.06`.
 
 ***
 
@@ -44,7 +44,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度，范围为 0 至 1。默认 `1`。
+Overall alpha, range 0 to 1. Default `1`.
 
 ***
 
@@ -52,4 +52,4 @@
 
 > `optional` **speed?**: `number`
 
-下落动画速度，最小值为 `0.1`。默认 `1`。
+Falling animation speed, minimum `0.1`. Default `1`.

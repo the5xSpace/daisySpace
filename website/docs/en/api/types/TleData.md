@@ -8,7 +8,7 @@
 
 > **TleData** = `{ interval: number }`
 
-TLE 数据源配置。
+TLE data source configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@ TLE 数据源配置。
 
 > `optional` **endTime?**: `Daisy.JulianDate`
 
-开始时间 为空时使用场景结束时间
+Start time; uses scene end time when empty
 
 ***
 
@@ -24,7 +24,7 @@ TLE 数据源配置。
 
 > **interval**: `number`
 
-时间间隔 单位毫秒
+Time interval in milliseconds
 
 ***
 
@@ -32,7 +32,7 @@ TLE 数据源配置。
 
 > `optional` **noradNum?**: `number`
 
-norad编号
+NORAD ID
 
 ***
 
@@ -40,7 +40,7 @@ norad编号
 
 > `optional` **startTime?**: `Daisy.JulianDate`
 
-开始时间 为空时使用场景开始时间
+Start time; uses scene start time when empty
 
 ***
 
@@ -48,4 +48,4 @@ norad编号
 
 > `optional` **tle?**: `string`
 
-tle数据
+TLE data

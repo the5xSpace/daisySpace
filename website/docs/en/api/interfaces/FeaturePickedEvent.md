@@ -16,7 +16,7 @@
 
 > **comId**: `string`
 
-拾取到的组件/要素标识（可能包含 `__` 分隔信息）
+Picked component/feature identifier (may contain `__` separated info)
 
 #### Inherited from
 
@@ -28,7 +28,7 @@
 
 > **comType**: `string`
 
-组件类型（如 `Entity` 或 Feature 的 type）
+Component type (e.g., `Entity` or Feature type)
 
 #### Inherited from
 
@@ -40,7 +40,7 @@
 
 > **entity**: [`Entity`](../classes/Entity.md)
 
-Daisy 实体对象
+Daisy entity object
 
 #### Inherited from
 
@@ -52,7 +52,7 @@ Daisy 实体对象
 
 > **entityId**: `string`
 
-Daisy 实体 ID
+Daisy entity ID
 
 #### Inherited from
 
@@ -80,7 +80,7 @@ Daisy 实体 ID
 
 > `optional` **nodeId?**: `number`
 
-可选：当拾取到模型节点时，提供 glTF 节点索引
+Optional: glTF node index when a model node is picked
 
 #### Inherited from
 
@@ -92,7 +92,7 @@ Daisy 实体 ID
 
 > `optional` **nodeName?**: `string`
 
-可选：当拾取到模型节点时，提供节点名
+Optional: node name when a model node is picked
 
 #### Inherited from
 

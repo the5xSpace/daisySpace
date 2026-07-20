@@ -6,11 +6,11 @@
 
 # Class: Atmosphere
 
-行星大气参数容器
+Planetary atmosphere parameter container
 
-- 封装 Rayleigh/Mie 散射、吸收与强度等物理参数
-- 提供 getUniforms 将参数转换为材质 uniforms，供渲染使用
-- 与 CelestialAtmosphereFeature 搭配，在场景中显示大气层散射效果
+- Encapsulates Rayleigh/Mie scattering, absorption, intensity, and other physical parameters
+- Provides getUniforms to convert parameters into material uniforms for rendering
+- Works with CelestialAtmosphereFeature to display atmospheric scattering effects in the scene
 
 ## Example
 
@@ -46,7 +46,7 @@ feature.bindViewer(viewer);
 
 > **new Atmosphere**(`options`): `Atmosphere`
 
-构造函数
+Constructor
 
 #### Parameters
 
@@ -54,7 +54,7 @@ feature.bindViewer(viewer);
 
 [`AtmosphereOptions`](../types/PW.AtmosphereOptions.md)
 
-大气物理参数
+Atmospheric physical parameters
 
 #### Returns
 
@@ -78,13 +78,13 @@ feature.bindViewer(viewer);
 
 > **getUniforms**(): [`AtmosphereUniforms`](../types/PW.AtmosphereUniforms.md)
 
-将大气物理参数转换为材质 uniforms
+Converts atmospheric physical parameters into material uniforms
 
 #### Returns
 
 [`AtmosphereUniforms`](../types/PW.AtmosphereUniforms.md)
 
-可直接用于 Daisy.Material fabric.uniforms 的对象
+An object that can be directly used in Daisy.Material fabric.uniforms
 
 #### Example
 

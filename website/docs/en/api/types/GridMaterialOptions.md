@@ -8,7 +8,7 @@
 
 > **GridMaterialOptions** = `object`
 
-网格材质配置。
+Grid material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **cellAlpha?**: `number`
 
-网格单元内部透明度。默认 `0.1`。
+Grid cell interior alpha. Default `0.1`.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-网格线颜色。默认白色。
+Grid line color. Defaults to white.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **lineCount?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-横纵方向的网格数量；数字表示两个方向使用相同值。默认 8。
+Horizontal/vertical grid count; a single number applies the same value to both directions. Default 8.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **lineOffset?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-横纵方向的网格线偏移；数字表示两个方向使用相同值。默认 0。
+Horizontal/vertical grid line offset; a single number applies the same value to both directions. Default 0.
 
 ***
 
@@ -48,4 +48,4 @@
 
 > `optional` **lineThickness?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-横纵方向的网格线粗细；数字表示两个方向使用相同值。默认 1。
+Horizontal/vertical grid line thickness; a single number applies the same value to both directions. Default 1.

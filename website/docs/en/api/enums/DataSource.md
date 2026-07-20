@@ -6,9 +6,9 @@
 
 # Enumeration: DataSource
 
-轨道/位置数据的来源类型。
+Source type for orbit/position data.
 
-该枚举通常用于区分 TLE、开普勒根数、星历采样等不同的数据输入方式。
+This enum is typically used to distinguish between different data input methods such as TLE, Keplerian elements, ephemeris samples, etc.
 
 ## Enumeration Members
 
@@ -16,7 +16,7 @@
 
 > **EPHEMERIS**: `2`
 
-星历数据
+Ephemeris data
 
 ***
 
@@ -24,7 +24,7 @@
 
 > **KEPLER\_ELEMENT**: `1`
 
-kepler元素
+Keplerian elements
 
 ***
 
@@ -32,7 +32,7 @@ kepler元素
 
 > **LIVE\_UPDATE\_POSITION**: `3`
 
-实时更新位置
+Real-time position update
 
 ***
 
@@ -40,4 +40,4 @@ kepler元素
 
 > **TLE**: `0`
 
-tle 必须包含3行元素
+tle must include 3 lines of elements

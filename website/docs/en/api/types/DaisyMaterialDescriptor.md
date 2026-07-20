@@ -8,7 +8,7 @@
 
 > **DaisyMaterialDescriptor** = `{ kind: "daisy-material"; type: string }`
 
-Daisy 材质描述，可直接传给支持 `DMaterial` 的要素或组件。
+Daisy material descriptor, can be directly passed to features or components that support `DMaterial`.
 
 ## Properties
 
@@ -16,7 +16,7 @@ Daisy 材质描述，可直接传给支持 `DMaterial` 的要素或组件。
 
 > **kind**: `"daisy-material"`
 
-材质描述的稳定识别标记。
+Stable identification tag for the material description.
 
 ***
 
@@ -24,7 +24,7 @@ Daisy 材质描述，可直接传给支持 `DMaterial` 的要素或组件。
 
 > `optional` **source?**: [`MaterialShaderSource`](MaterialShaderSource.md)
 
-自定义材质源码；未设置时按已注册材质类型解析。
+Custom material source code; resolved by registered material type when not set.
 
 ***
 
@@ -32,7 +32,7 @@ Daisy 材质描述，可直接传给支持 `DMaterial` 的要素或组件。
 
 > `optional` **translucent?**: `boolean`
 
-是否按半透明材质处理。默认 `true`。
+Whether to treat as a translucent material. Default `true`.
 
 ***
 
@@ -40,7 +40,7 @@ Daisy 材质描述，可直接传给支持 `DMaterial` 的要素或组件。
 
 > **type**: `string`
 
-内置或已注册的材质类型标识。
+Built-in or registered material type identifier.
 
 ***
 
@@ -48,4 +48,4 @@ Daisy 材质描述，可直接传给支持 `DMaterial` 的要素或组件。
 
 > `optional` **uniforms?**: `Record`\<`string`, `unknown`\>
 
-材质 uniform 参数。
+Material uniform parameters.

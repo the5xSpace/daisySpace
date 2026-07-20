@@ -8,11 +8,11 @@
 
 > **GeoFencePoint** = `{ lat: number; lon: number }`
 
-地理围栏点（经纬高）。
+Geo-fence point (longitude/latitude/height).
 
-单位：
-- `lon/lat`：度
-- `height`：米
+Units:
+- `lon/lat`: degrees
+- `height`: meters
 
 ## Properties
 
@@ -20,7 +20,7 @@
 
 > `optional` **height?**: `number`
 
-高度，单位为米。
+Height, in meters.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > **lat**: `number`
 
-纬度，单位为度。
+Latitude, in degrees.
 
 ***
 
@@ -36,4 +36,4 @@
 
 > **lon**: `number`
 
-经度，单位为度。
+Longitude, in degrees.

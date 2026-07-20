@@ -6,7 +6,7 @@
 
 # Interface: RouteWaypoint
 
-单个航点定义
+Single waypoint definition
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **icon?**: `string`
 
-自定义图标 URL（不传则使用内置标记图标）
+Custom icon URL (uses built-in marker icon when not set)
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **label?**: `string`
 
-主标题（显示在标签第一行）
+Main title (displayed on the first line of the label)
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **popoverContent?**: `string`
 
-Popover 内容（HTML 字符串），不传则不创建 Popover
+Popover content (HTML string); no Popover is created when not set
 
 ***
 
@@ -38,7 +38,7 @@ Popover 内容（HTML 字符串），不传则不创建 Popover
 
 > **position**: `Cartesian3`
 
-航点世界坐标（WGS-84）
+Waypoint world coordinates (WGS-84)
 
 ***
 
@@ -46,4 +46,4 @@ Popover 内容（HTML 字符串），不传则不创建 Popover
 
 > `optional` **subtitle?**: `string`
 
-副标题（显示在标签第二行，更小的字号）
+Subtitle (displayed on the second line of the label, smaller font size)

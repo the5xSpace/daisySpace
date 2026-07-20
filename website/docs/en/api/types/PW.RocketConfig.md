@@ -14,16 +14,16 @@
 
 > `optional` **ascent?**: [`RocketAscentInput`](PW.RocketAscentInput.md)
 
-主动段弹道输入。传入后 Rocket 会在构造或绑定后生成 trajectory。
+Boost phase trajectory input. When provided, the Rocket generates a trajectory after construction or binding.
 
 ### autoAlignVerticalModelToFlight?
 
 > `optional` **autoAlignVerticalModelToFlight?**: `boolean`
 
-是否自动把竖直发射模型的本体 +Z 轴安装到 Rocket 前向 +X 轴。
+Whether to automatically mount the vertical launch model's body +Z axis to the Rocket's forward +X axis.
 
-许多火箭/导弹模型在 glTF 内以 +Z 作为鼻锥方向，而 Daisy Vehicle
-约定本体前向为 +X。开启后会给模型附加绕本体 Y 轴 -90° 的安装俯仰。
+Many rocket/missile models use +Z as the nose cone direction in glTF, while Daisy Vehicle
+convention uses +X as the forward direction. When enabled, a -90° pitch around the body Y axis is applied to the model.
 
 #### Default
 
@@ -35,7 +35,7 @@ true
 
 > `optional` **autoOrientationByVelocity?**: `boolean`
 
-是否根据轨迹速度自动写入姿态。
+Whether to automatically write attitude based on trajectory velocity.
 
 #### Default
 
@@ -47,10 +47,10 @@ true
 
 > `optional` **bodyAxis?**: `boolean` \| `BodyAxisOptions`
 
-机体坐标轴调试显示。传入 true 使用 Rocket 默认轴参数；传入对象则透传给 Entity.setBodyAxis。
+Body axis debug display. Pass true for Rocket default axis parameters; pass an object to forward to Entity.setBodyAxis.
 
 ### epoch?
 
 > `optional` **epoch?**: `Daisy.JulianDate`
 
-轨迹起始时刻。省略时优先使用场景当前时间，未绑定 Engine 时使用当前系统时间。
+Trajectory start time. When omitted, prefers the scene's current time; uses the current system time when not bound to an Engine.

@@ -6,7 +6,7 @@
 
 # Interface: SunConeDimensions
 
-日锥物理尺寸。
+Sun cone physical dimensions.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > **bodyRadius**: `number`
 
-输入的遮挡天体半径。
+Input occluding body radius.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > **centerDistance**: `number`
 
-输入的两天体中心距离。
+Input center distance between the two bodies.
 
 ***
 
@@ -30,7 +30,7 @@
 
 > **penumbraRadiusAtUmbraTip**: `number`
 
-在本影尖端轴向位置处的半影外半径。
+Penumbra outer radius at the axial position of the umbra tip.
 
 ***
 
@@ -38,7 +38,7 @@
 
 > **sunRadius**: `number`
 
-输入的光源天体半径。
+Input light source body radius.
 
 ***
 
@@ -46,4 +46,4 @@
 
 > **umbraLength**: `number`
 
-从遮挡天体中心沿背光方向到本影尖端的距离。
+Distance from the occluding body center along the anti-light direction to the umbra tip.

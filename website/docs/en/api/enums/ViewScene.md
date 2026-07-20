@@ -6,9 +6,9 @@
 
 # Enumeration: ViewScene
 
-内置视距场景模板名。
+Built-in view distance scene template name.
 
-不同场景对应不同的默认显示距离阈值配置（例如航天/航空/海事/地面）。
+Different scenes correspond to different default display distance threshold configurations (e.g., aerospace/aviation/maritime/ground).
 
 ## Enumeration Members
 
@@ -16,7 +16,7 @@
 
 > **AVIATION**: `"aviation"`
 
-航空尺度
+Aviation scale
 
 ***
 
@@ -24,7 +24,7 @@
 
 > **GROUND**: `"ground"`
 
-地面/近景尺度
+Ground/close-range scale
 
 ***
 
@@ -32,7 +32,7 @@
 
 > **MARITIME**: `"maritime"`
 
-海事/海面尺度
+Maritime/sea surface scale
 
 ***
 
@@ -40,4 +40,4 @@
 
 > **SPACE**: `"space"`
 
-航天/空间尺度
+Aerospace/space scale

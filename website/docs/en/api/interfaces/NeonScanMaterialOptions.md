@@ -12,7 +12,7 @@
 
 > `optional` **bandWidth?**: `number`
 
-扫描带宽度，范围为 0.01 至 0.5。默认 `0.15`。
+Scan band width, range 0.01 to 0.5. Default `0.15`.
 
 ***
 
@@ -20,7 +20,7 @@
 
 > `optional` **baseColor?**: `Color`
 
-背景颜色。默认紫色。
+Background color. Defaults to purple.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `optional` **glowSize?**: `number`
 
-柔光范围，范围为 0.05 至 0.95。默认 `0.35`。
+Soft light range, range 0.05 to 0.95. Default `0.35`.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **neonColor?**: `Color`
 
-霓虹扫描带颜色。默认青色。
+Neon scan band color. Defaults to cyan.
 
 ***
 
@@ -44,7 +44,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度，范围为 0 至 1。默认 `1`。
+Overall alpha, range 0 to 1. Default `1`.
 
 ***
 
@@ -52,4 +52,4 @@
 
 > `optional` **speed?**: `number`
 
-扫描速度，最小值为 `0.1`。默认 `1.5`。
+Scan speed, minimum `0.1`. Default `1.5`.

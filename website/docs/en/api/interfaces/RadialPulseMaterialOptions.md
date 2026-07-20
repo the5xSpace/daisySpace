@@ -12,7 +12,7 @@
 
 > `optional` **center?**: `Cartesian2`
 
-归一化纹理坐标中的扩散中心。默认 `(0.5, 0.5)`。
+Diffusion center in normalized texture coordinates. Default `(0.5, 0.5)`.
 
 ***
 
@@ -20,7 +20,7 @@
 
 > `optional` **color?**: `Color`
 
-背景颜色。默认青色。
+Background color. Defaults to cyan.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度，范围为 0 至 1。默认 `1`。
+Overall alpha, range 0 to 1. Default `1`.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **pulseColor?**: `Color`
 
-脉冲环颜色。默认白色。
+Pulse ring color. Defaults to white.
 
 ***
 
@@ -44,7 +44,7 @@
 
 > `optional` **ringWidth?**: `number`
 
-脉冲环宽度，范围为 0.01 至 0.5。默认 `0.08`。
+Pulse ring width, range 0.01 to 0.5. Default `0.08`.
 
 ***
 
@@ -52,4 +52,4 @@
 
 > `optional` **speed?**: `number`
 
-扩散速度，最小值为 `0.1`。默认 `1`。
+Diffusion speed, minimum `0.1`. Default `1`.

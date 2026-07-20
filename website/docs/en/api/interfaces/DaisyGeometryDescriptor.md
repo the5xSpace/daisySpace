@@ -6,8 +6,8 @@
 
 # Interface: DaisyGeometryDescriptor
 
-Daisy 几何描述 —— FreeGeometryFeature 的核心输入。
-positions 为局部坐标（相对 Entity 原点）。
+Daisy geometry descriptor - the core input for FreeGeometryFeature.
+positions are local coordinates (relative to the Entity origin).
 
 ## Properties
 
@@ -15,7 +15,7 @@ positions 为局部坐标（相对 Entity 原点）。
 
 > `optional` **boundingSphere?**: `BoundingSphere`
 
-包围球（可选，缺失时从 positions 自动计算）
+Bounding sphere (optional, auto-computed from positions when missing)
 
 ***
 
@@ -23,7 +23,7 @@ positions 为局部坐标（相对 Entity 原点）。
 
 > **indices**: [`GeometryIndices`](../types/GeometryIndices.md)
 
-索引数据（必填）
+Index data (required)
 
 ***
 
@@ -31,7 +31,7 @@ positions 为局部坐标（相对 Entity 原点）。
 
 > `optional` **normals?**: [`GeometryNormals`](../types/GeometryNormals.md)
 
-顶点法线（可选，缺失时按 autoNormals 自动计算）
+Vertex normals (optional, auto-computed according to autoNormals when missing)
 
 ***
 
@@ -39,7 +39,7 @@ positions 为局部坐标（相对 Entity 原点）。
 
 > **positions**: [`GeometryPositions`](../types/GeometryPositions.md)
 
-顶点位置（必填，局部坐标）
+Vertex positions (required, local coordinates)
 
 ***
 
@@ -47,4 +47,4 @@ positions 为局部坐标（相对 Entity 原点）。
 
 > `optional` **uvs?**: [`GeometryUvs`](../types/GeometryUvs.md)
 
-纹理坐标（可选）
+Texture coordinates (optional)

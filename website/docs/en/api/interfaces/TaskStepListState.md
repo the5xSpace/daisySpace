@@ -6,7 +6,7 @@
 
 # Interface: TaskStepListState
 
-自定义任务步骤列表渲染器接收的完整状态。
+Complete state received by the custom task step list renderer.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > **currentTime**: `JulianDate`
 
-当前仿真时刻。
+Current simulation time.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **onStepClick?**: (`task`) => `void`
 
-触发任务点击行为；未配置点击回调时不存在。
+Triggers task click behavior; not present when no click callback is configured.
 
 #### Parameters
 
@@ -40,7 +40,7 @@
 
 > **sceneEnd**: `JulianDate`
 
-当前场景的仿真结束时刻。
+Current scene simulation end time.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > **sceneStart**: `JulianDate`
 
-当前场景的仿真开始时刻。
+Current scene simulation start time.
 
 ***
 
@@ -56,4 +56,4 @@
 
 > **tasks**: [`TaskStepEntry`](TaskStepEntry.md)[]
 
-按调度器顺序生成的任务步骤。
+Task steps generated in scheduler order.

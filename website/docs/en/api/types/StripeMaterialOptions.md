@@ -8,7 +8,7 @@
 
 > **StripeMaterialOptions** = `object`
 
-条纹材质配置。
+Stripe material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **evenColor?**: [`DColor`](DColor.md)
 
-偶数条纹颜色。默认白色。
+Even stripe color. Defaults to white.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **oddColor?**: [`DColor`](DColor.md)
 
-奇数条纹颜色。默认黑色。
+Odd stripe color. Defaults to black.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **offset?**: `number`
 
-条纹相位偏移。默认 `0`。
+Stripe phase offset. Default `0`.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **orientation?**: `Daisy.StripeOrientation`
 
-条纹方向。默认水平方向。
+Stripe direction. Defaults to horizontal.
 
 ***
 
@@ -48,4 +48,4 @@
 
 > `optional` **repeat?**: `number`
 
-条纹重复次数。默认 `5`。
+Stripe repeat count. Default `5`.

@@ -12,7 +12,7 @@
 
 > `optional` **enabled?**: `boolean`
 
-是否启用屏幕空间预算。传入 false 时即使配置对象存在也不介入。
+Whether to enable screen-space budget. Pass false to disable even if the config object exists.
 
 ***
 
@@ -20,7 +20,7 @@
 
 > `optional` **maxEmissionRate?**: `number`
 
-发射率上限。与 targetParticleSpacingPx 同时存在时取更严格者。
+Emission rate upper limit. When both this and targetParticleSpacingPx are set, the stricter one applies.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `optional` **maxParticleSizePx?**: `number`
 
-单颗粒子最终 billboard 尺寸上限（像素）。仅影响 sizeInMeters=false 的屏幕像素粒子。
+Maximum final billboard size per particle (pixels). Only affects screen-pixel particles with sizeInMeters=false.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **maxTailLengthPx?**: `number`
 
-尾焰在屏幕上的最大长度（像素）。通过动态压缩粒子生命周期并裁剪超长存活粒子实现。
+Maximum plume length on screen (pixels). Achieved by dynamically compressing particle lifetime and culling over-long particles.
 
 ***
 
@@ -44,7 +44,7 @@
 
 > `optional` **minEmissionRate?**: `number`
 
-发射率下限。避免尾焰被压得过稀。
+Emission rate lower limit. Prevents the plume from becoming too sparse.
 
 ***
 
@@ -52,4 +52,4 @@
 
 > `optional` **targetParticleSpacingPx?**: `number`
 
-期望粒子沿尾焰方向的屏幕间距（像素）。用于动态限制发射率，避免近距离变成粒子云。
+Desired screen-space spacing between particles along the plume direction (pixels). Used to dynamically limit emission rate and avoid particle clouds at close range.

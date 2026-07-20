@@ -8,7 +8,7 @@
 
 > **TimeRange** = `{ start: Daisy.JulianDate; end: Daisy.JulianDate }`
 
-覆盖采样使用的时间范围。
+Time range used for coverage sampling.
 
 ## Properties
 
@@ -18,7 +18,7 @@
 
 #### Deprecated
 
-`start` 的兼容别名。
+Compatibility alias for `start`.
 
 ***
 
@@ -28,7 +28,7 @@
 
 #### Deprecated
 
-`start` 的兼容别名。
+Compatibility alias for `start`.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > **end**: `Daisy.JulianDate`
 
-结束时刻。
+End time.
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Deprecated
 
-`end` 的兼容别名。
+Compatibility alias for `end`.
 
 ***
 
@@ -54,4 +54,4 @@
 
 > **start**: `Daisy.JulianDate`
 
-开始时刻。
+Start time.

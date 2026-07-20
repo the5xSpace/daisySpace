@@ -14,7 +14,7 @@
 
 > `optional` **cellAlpha?**: `number`
 
-网格单元填充透明度（0~1）。
+Grid cell fill alpha (0~1).
 
 #### Default
 
@@ -28,7 +28,7 @@
 
 > `optional` **cellPixelSize?**: `number`
 
-目标网格单元的屏幕像素尺寸（仅 followCamera=true 生效）。
+Target grid cell screen pixel size (only effective when followCamera=true).
 
 #### Default
 
@@ -42,7 +42,7 @@
 
 > `optional` **followCamera?**: `boolean`
 
-是否根据相机距离自动调整网格密度，使屏幕上网格视觉密度更稳定。
+Whether to auto-adjust grid density based on camera distance for more stable visual grid density on screen.
 
 #### Default
 
@@ -56,7 +56,7 @@ true
 
 > `optional` **linePixelWidth?**: `number`
 
-网格线宽（像素）。
+Grid line width (pixels).
 
 #### Default
 
@@ -70,7 +70,7 @@ true
 
 > `optional` **maxCellSizeMeters?**: `number`
 
-网格单元最大尺寸（单位：米），用于限制过稀（仅 followCamera=true 生效）。
+Maximum grid cell size (meters), used to limit sparsity (only effective when followCamera=true).
 
 #### Default
 
@@ -84,7 +84,7 @@ true
 
 > `optional` **minCellSizeMeters?**: `number`
 
-网格单元最小尺寸（单位：米），用于限制过密导致闪烁（仅 followCamera=true 生效）。
+Minimum grid cell size (meters), used to limit density that causes flickering (only effective when followCamera=true).
 
 #### Default
 
