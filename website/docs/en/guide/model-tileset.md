@@ -1,6 +1,6 @@
-# 3D 模型与 Tileset
+# 3D Model and Tileset
 
-## ModelFeature — glTF/GLB 模型
+## ModelFeature — glTF/GLB Model
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -20,21 +20,21 @@ entity.addFeature(new Daisy.ModelFeature({
 }))
 ```
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `url` | `string` | glTF/GLB 资源路径 |
-| `scale` | `number` | 缩放 |
-| `minimumPixelSize` | `number` | 最小像素尺寸 |
-| `maximumScale` | `number` | 最大缩放 |
-| `color` | `DColor` | 叠加色 |
-| `silhouetteColor` | `DColor` | 轮廓色 |
-| `silhouetteSize` | `number` | 轮廓宽度（像素） |
-| `colorBlendMode` | `ColorBlendMode` | 颜色混合模式 |
-| `nodeTransform` | `object` | 节点初始变换配置 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `url` | `string` | glTF/GLB resource path |
+| `scale` | `number` | Scale |
+| `minimumPixelSize` | `number` | Minimum pixel size |
+| `maximumScale` | `number` | Maximum scale |
+| `color` | `DColor` | Overlay color |
+| `silhouetteColor` | `DColor` | Silhouette color |
+| `silhouetteSize` | `number` | Silhouette width (pixels) |
+| `colorBlendMode` | `ColorBlendMode` | Color blend mode |
+| `nodeTransform` | `object` | Node initial transform configuration |
 
-### 节点变换
+### Node Transformation
 
-节点需在模型加载完成（`onload`）后访问。`transformNode(name)` 返回可链式调用的 `ModelNodeTransform`，所设变换会作为状态副作用在每帧自动生效：
+Nodes must be accessed after the model is loaded (`onload`). `transformNode(name)` returns a chainable `ModelNodeTransform`, and the set transforms automatically take effect each frame as state side effects:
 
 ```typescript
 const model = entity.addFeature(new Daisy.ModelFeature({ url: "/sat.glb" }))
@@ -55,22 +55,22 @@ model.onload(() => {
 })
 ```
 
-### 节点变换 API
+### Node Transform API
 
-`model.transformNode(name)` 返回 `ModelNodeTransform`，其方法均可链式调用：
+`model.transformNode(name)` returns `ModelNodeTransform`, whose methods are all chainable:
 
-| 方法 | 说明 |
-|------|------|
-| `model.getNodeNames()` | 获取所有节点名称 `string[]` |
-| `model.transformNode(name)` | 获取指定节点的变换器（链式） |
-| `.setShow(visible)` | 设置节点可见性 |
-| `.setTranslation(Cartesian3)` | 设置平移 |
-| `.setRotation(Quaternion)` / `.setRotationAxisAngleDeg(axis, deg)` / `.setRotationHprDeg(h, p, r)` | 设置旋转 |
-| `.setScale(number \| Cartesian3)` | 设置缩放 |
-| `.setColorOverlay(color, blend)` / `.setOpacity(n)` | 设置叠加色 / 不透明度 |
-| `.setMatrix(matrix)` | 直接设置局部矩阵 |
+| Method | Description |
+|--------|-------------|
+| `model.getNodeNames()` | Get all node names `string[]` |
+| `model.transformNode(name)` | Get the specified node's transformer (chainable) |
+| `.setShow(visible)` | Set node visibility |
+| `.setTranslation(Cartesian3)` | Set translation |
+| `.setRotation(Quaternion)` / `.setRotationAxisAngleDeg(axis, deg)` / `.setRotationHprDeg(h, p, r)` | Set rotation |
+| `.setScale(number \| Cartesian3)` | Set scale |
+| `.setColorOverlay(color, blend)` / `.setOpacity(n)` | Set overlay color / opacity |
+| `.setMatrix(matrix)` | Directly set local matrix |
 
-### 动画控制
+### Animation Control
 
 ```typescript
 const animationId = model.playAnimation({
@@ -84,32 +84,32 @@ if (animationId) model.stopAnimation(animationId)
 model.getAnimationInfos()  // → [{ index: 0, name: "Rotation" }, ...]
 ```
 
-### ModelAnimationLoop 枚举
+### ModelAnimationLoop Enum
 
-| 值 | 说明 |
-|----|------|
-| `ModelAnimationLoop.NONE` | 不循环（播放一次后停止） |
-| `ModelAnimationLoop.REPEAT` | 重复循环 |
-| `ModelAnimationLoop.MIRRORED_REPEAT` | 镜像循环（先正向再反向） |
+| Value | Description |
+|-------|-------------|
+| `ModelAnimationLoop.NONE` | No loop (plays once then stops) |
+| `ModelAnimationLoop.REPEAT` | Repeat loop |
+| `ModelAnimationLoop.MIRRORED_REPEAT` | Mirror loop (forward then reverse) |
 
-### ModelAnimationPlayOptions 完整参数
+### ModelAnimationPlayOptions Full Parameters
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `name` | `string` | 动画名称（与 index 二选一） |
-| `index` | `number` | 动画索引（与 name 二选一） |
-| `startTime` | `JulianDate` | 动画开始时间 |
-| `delay` | `number` | 延迟启动（秒） |
-| `stopTime` | `JulianDate` | 动画停止时间 |
-| `removeOnStop` | `boolean` | 停止时自动移除 |
-| `multiplier` | `number` | 播放倍速 |
-| `reverse` | `boolean` | 反向播放 |
-| `loop` | `ModelAnimationLoop` | 循环模式 |
-| `animationTime` | `function` | 自定义时间映射函数 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `name` | `string` | Animation name (mutually exclusive with index) |
+| `index` | `number` | Animation index (mutually exclusive with name) |
+| `startTime` | `JulianDate` | Animation start time |
+| `delay` | `number` | Delay start (seconds) |
+| `stopTime` | `JulianDate` | Animation stop time |
+| `removeOnStop` | `boolean` | Auto-remove on stop |
+| `multiplier` | `number` | Playback speed multiplier |
+| `reverse` | `boolean` | Reverse playback |
+| `loop` | `ModelAnimationLoop` | Loop mode |
+| `animationTime` | `function` | Custom time mapping function |
 
 ## TilesetFeature — 3D Tiles
 
-用于加载大规模切片场景（城市模型、点云、倾斜摄影）：
+Used for loading large-scale tiled scenes (city models, point clouds, oblique photography):
 
 ```typescript
 entity.addFeature(new Daisy.TilesetFeature({
@@ -120,7 +120,7 @@ entity.addFeature(new Daisy.TilesetFeature({
 }))
 ```
 
-或使用 Ion 资源：
+Or using Ion resources:
 
 ```typescript
 entity.addFeature(new Daisy.TilesetFeature({
@@ -129,17 +129,17 @@ entity.addFeature(new Daisy.TilesetFeature({
 }))
 ```
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `url` | `string` | tileset.json 路径 |
-| `ionAssetId` | `number` | Ion 资源 ID |
-| `maximumScreenSpaceError` | `number` | 最大屏幕空间误差 |
-| `maximumMemoryUsage` | `number` | 最大内存（MB） |
-| `dynamicScreenSpaceError` | `boolean` | 自适应帧率优化 |
-| `modelMatrix` | `Matrix4` | 整体变换矩阵 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `url` | `string` | tileset.json path |
+| `ionAssetId` | `number` | Ion resource ID |
+| `maximumScreenSpaceError` | `number` | Maximum screen space error |
+| `maximumMemoryUsage` | `number` | Maximum memory (MB) |
+| `dynamicScreenSpaceError` | `boolean` | Adaptive frame rate optimization |
+| `modelMatrix` | `Matrix4` | Overall transform matrix |
 
 
-> **相关 API**：[ModelFeature](/en/api/classes/ModelFeature) · [TilesetFeature](/en/api/classes/TilesetFeature) · [ModelNodeTransform](/en/api/classes/ModelNodeTransform)
+> **Related API**: [ModelFeature](/en/api/classes/ModelFeature) · [TilesetFeature](/en/api/classes/TilesetFeature) · [ModelNodeTransform](/en/api/classes/ModelNodeTransform)
 
 ---
 

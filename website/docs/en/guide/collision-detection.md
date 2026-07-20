@@ -1,23 +1,23 @@
-# 碰撞检测
+# Collision Detection
 
-碰撞检测由 `BoundBoxFeature`（包围盒）和 `BoundBoxCollection`（检测集合）协作完成，支持 OBB/SAT 精确检测、宽相空间分桶和多实体高频碰撞事件。
+Collision detection is performed collaboratively by `BoundBoxFeature` (bounding box) and `BoundBoxCollection` (detection collection), supporting precise OBB/SAT detection, broad-phase spatial bucketing, and multi-entity high-frequency collision events.
 
-## 架构
+## Architecture
 
 ```
 Entity
   ├── BoundBoxFeature（单例，通过 getOrCreateBoundBoxFeature 获取）
-  │     └── Primitive（BoxGeometry / EllipsoidGeometry）
-  │     └── Polyline[]（轮廓线）
-  │     └── Transformer（位置/旋转/缩放）
-  └── ...
+  │     └└── Primitive（BoxGeometry / EllipsoidGeometry）
+  │     └└── Polyline[]（轮廓线）
+  │     └└── Transformer（位置/旋转/缩放）
+  └└── ...
 ```
 
-所有 `BoundBoxFeature` 自动注册到全局 `BoundBoxCollection`，统一调度碰撞检测。
+All `BoundBoxFeature` instances automatically register to the global `BoundBoxCollection`, which uniformly schedules collision detection.
 
-## 创建包围盒
+## Creating Bounding Boxes
 
-通过 `entity.getOrCreateBoundBoxFeature()` 获取实体的单例包围盒：
+Get the entity's singleton bounding box via `entity.getOrCreateBoundBoxFeature()`:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -40,32 +40,32 @@ const box = entity.getOrCreateBoundBoxFeature({
 })
 ```
 
-包围盒与实体同生命周期，每个实体只能有一个包围盒实例。
+The bounding box shares the entity's lifecycle; each entity can have only one bounding box instance.
 
-## 包围盒配置参数
+## Bounding Box Configuration Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|:---:|------|
-| `dimensions` | `Cartesian3` | `(100,100,100)` | 包围盒尺寸（米） |
-| `shape` | `"rect"` \| `"ball"` | `"ball"` | 几何体形状 |
-| `show` | `boolean` | `true` | 是否显示 |
-| `color` | `Color` | `GREEN(0.3)` | 填充颜色 |
-| `outlineColor` | `Color` | `BLACK(0.5)` | 轮廓颜色 |
-| `outlineWidth` | `number` | `2` | 轮廓线宽（像素） |
-| `visualScale` | `number` | `1.01` | 渲染缩放（不影响碰撞体） |
-| `enableCollision` | `boolean` | `false` | 启用碰撞检测 |
-| `collisionVisualMode` | `"none"` \| `"highlight"` | `"none"` | 碰撞外观模式 |
-| `collisionColor` | `Color` | `RED(0.5)` | 碰撞态颜色 |
-| `collisionVisualScale` | `number` | `1.08` | 碰撞态渲染缩放 |
+| Parameter | Type | Default | Description |
+|-----------|------|:---:|-------------|
+| `dimensions` | `Cartesian3` | `(100,100,100)` | Bounding box dimensions (meters) |
+| `shape` | `"rect"` \| `"ball"` | `"ball"` | Geometry shape |
+| `show` | `boolean` | `true` | Whether to display |
+| `color` | `Color` | `GREEN(0.3)` | Fill color |
+| `outlineColor` | `Color` | `BLACK(0.5)` | Outline color |
+| `outlineWidth` | `number` | `2` | Outline line width (pixels) |
+| `visualScale` | `number` | `1.01` | Render scale (does not affect collision body) |
+| `enableCollision` | `boolean` | `false` | Enable collision detection |
+| `collisionVisualMode` | `"none"` \| `"highlight"` | `"none"` | Collision appearance mode |
+| `collisionColor` | `Color` | `RED(0.5)` | Collision state color |
+| `collisionVisualScale` | `number` | `1.08` | Collision state render scale |
 
 ### collisionVisualMode
 
-- `"none"`：仅触发碰撞事件，不改变包围盒外观
-- `"highlight"`：碰撞时使用 `collisionColor` 高亮，分离后恢复原色
+- `"none"`: Only triggers collision events, does not change bounding box appearance
+- `"highlight"`: Highlights with `collisionColor` during collision, restores original color after separation
 
-## 包围盒变换
+## Bounding Box Transformation
 
-每个 `BoundBoxFeature` 内嵌 `Transformer`，支持独立旋转与缩放：
+Each `BoundBoxFeature` embeds a `Transformer`, supporting independent rotation and scaling:
 
 ```typescript
 box.transformer.setRotation({
@@ -77,17 +77,17 @@ box.transformer.setRotation({
 box.transformer.setScale(new Daisy.Cartesian3(1.5, 1.5, 1.5))
 ```
 
-`transformer` 与实体的世界矩阵合成，最终控制包围盒的 OBB（Oriented Bounding Box）姿态。
+`transformer` composites with the entity's world matrix, ultimately controlling the bounding box's OBB (Oriented Bounding Box) pose.
 
-## 碰撞事件
+## Collision Events
 
-`BoundBoxFeature` 提供三个碰撞事件回调：
+`BoundBoxFeature` provides three collision event callbacks:
 
-| 事件 | 说明 |
-|------|------|
-| `onCollisionStart(callback)` | 碰撞开始时触发 |
-| `onCollisionEnd(callback)` | 碰撞结束时触发 |
-| `onCollisionMove(callback)` | 碰撞持续中触发（高频，慎用） |
+| Event | Description |
+|-------|-------------|
+| `onCollisionStart(callback)` | Triggered when collision starts |
+| `onCollisionEnd(callback)` | Triggered when collision ends |
+| `onCollisionMove(callback)` | Triggered during collision (high frequency, use with caution) |
 
 ```typescript
 box.onCollisionStart((other) => {
@@ -99,22 +99,22 @@ box.onCollisionEnd((other) => {
 })
 ```
 
-> 高频场景下建议仅监听 start/end，避免 `collisionMove` 在高数量对象时刷屏。
+> In high-frequency scenarios, it is recommended to only listen to start/end, avoiding `collisionMove` flooding the console when there are many objects.
 
-## BoundBoxCollection — 全局检测集合
+## BoundBoxCollection — Global Detection Collection
 
-通过 `engine.collections.boundBoxCollection` 访问全局碰撞检测集合，控制检测策略和频率：
+Access the global collision detection collection via `engine.collections.boundBoxCollection`, controlling detection strategy and frequency:
 
-### 检测参数
+### Detection Parameters
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|:---:|------|
-| `enableCollisionDetection` | `boolean` | `true` | 碰撞检测总开关 |
-| `enableBroadPhase` | `boolean` | `true` | 宽相检测（外接球预筛） |
-| `spatialHashThreshold` | `number` | `80` | 超过此数量启用空间分桶 |
-| `collisionDetectionFrequencyHz` | `number` | `10` | 检测频率（1-10 Hz） |
+| Property | Type | Default | Description |
+|----------|------|:---:|-------------|
+| `enableCollisionDetection` | `boolean` | `true` | Collision detection master switch |
+| `enableBroadPhase` | `boolean` | `true` | Broad-phase detection (bounding sphere pre-screening) |
+| `spatialHashThreshold` | `number` | `80` | Enables spatial bucketing above this count |
+| `collisionDetectionFrequencyHz` | `number` | `10` | Detection frequency (1-10 Hz) |
 
-### 配置示例
+### Configuration Example
 
 ```typescript
 engine.collections.boundBoxCollection.enableBroadPhase = true
@@ -122,7 +122,7 @@ engine.collections.boundBoxCollection.spatialHashThreshold = 40
 engine.collections.boundBoxCollection.collisionDetectionFrequencyHz = 3
 ```
 
-### 统计信息
+### Statistics
 
 ```typescript
 const stats = engine.collections.boundBoxCollection.getStats()
@@ -139,14 +139,14 @@ const stats = engine.collections.boundBoxCollection.getStats()
 // }
 ```
 
-### 状态清理
+### State Cleanup
 
 ```typescript
 engine.collections.boundBoxCollection.clearCollisionStates()
 // 清空所有包围盒的当前碰撞状态，适用于批量重建场景
 ```
 
-## 检测管线
+## Detection Pipeline
 
 ```
 ┌─ 全量 Pair ─┐
@@ -156,11 +156,11 @@ engine.collections.boundBoxCollection.clearCollisionStates()
 └──────────────┘              └───────────────┘     └────────────────┘
 ```
 
-1. **宽相（Broad Phase）**：对象数超过 `spatialHashThreshold` 时使用空间分桶减少候选 pair；否则 O(N²) 全量遍历
-2. **外接球预筛**：比较两物体外接球半径之和与中心距，快速排除不可能碰撞的 pair
-3. **OBB/SAT 精检**：对有向包围盒做 15 轴分离检测（3+3+3×3），确定是否真正碰撞
+1. **Broad Phase**: When the object count exceeds `spatialHashThreshold`, spatial bucketing is used to reduce candidate pairs; otherwise, O(N²) full traversal
+2. **Bounding Sphere Pre-screening**: Compares the sum of the two objects' bounding sphere radii with the center distance to quickly eliminate impossible pairs
+3. **OBB/SAT Precise Detection**: Performs 15-axis separation detection (3+3+3×3) on the oriented bounding boxes to determine whether a real collision occurred
 
-## 完整示例
+## Complete Example
 
 ```typescript
 const engine = await Daisy.Engine.create("container")
@@ -215,4 +215,4 @@ engine.play(1)
 
 ---
 
-> **相关 API**：[BoundBoxFeature](/en/api/classes/BoundBoxFeature) · [BoundBoxCollection](/en/api/classes/BoundBoxCollection) · [Entity](/en/api/classes/Entity)
+> **Related API**: [BoundBoxFeature](/en/api/classes/BoundBoxFeature) · [BoundBoxCollection](/en/api/classes/BoundBoxCollection) · [Entity](/en/api/classes/Entity)

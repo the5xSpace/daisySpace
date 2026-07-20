@@ -1,18 +1,18 @@
-# 星座
+# Constellation
 
-Constellation 是卫星集合的容器，提供批量管理、统一绑定和分析集成能力。
+Constellation is a container for satellite collections, providing batch management, unified binding, and analysis integration capabilities.
 
-## 架构
+## Architecture
 
 ```
 Constellation
   ├── Satellite[0]  ── Entity ── Sensor/Path/Label ...
   ├── Satellite[1]
   ├── ...
-  └── Satellite[N]  ── Entity ── Sensor/Path/Label ...
+  └└── Satellite[N]  ── Entity ── Sensor/Path/Label ...
 ```
 
-## 创建与添加卫星
+## Creating and Adding Satellites
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -42,37 +42,37 @@ for (const data of tleList) {
 con.bindEngine(engine)
 ```
 
-`bindEngine()` 会遍历所有已添加的卫星，对尚未绑定 Engine 的卫星逐个调用 `sat.bindEngine(engine)`。
+`bindEngine()` iterates over all added satellites and calls `sat.bindEngine(engine)` for each satellite that has not yet been bound to an Engine.
 
-## 成员管理
+## Member Management
 
-| 方法 | 说明 |
-|------|------|
-| `addSatellite(sat)` | 添加卫星（若已 bindEngine 则自动绑定） |
-| `removeSatellite(sat)` | 移除卫星 |
-| `getSatelliteByName(name)` | 按名称查找卫星 |
-| `getSatellites()` | 获取只读卫星数组 |
-| `satelliteCount` | 成员数量 |
-| `forEach(fn)` | 遍历每一颗卫星 |
-| `map(fn)` | 映射为数组 |
-| `filter(fn)` | 过滤返回子集 |
+| Method | Description |
+|--------|-------------|
+| `addSatellite(sat)` | Add a satellite (auto-binds if already bindEngine'd) |
+| `removeSatellite(sat)` | Remove a satellite |
+| `getSatelliteByName(name)` | Find a satellite by name |
+| `getSatellites()` | Get a read-only satellite array |
+| `satelliteCount` | Member count |
+| `forEach(fn)` | Iterate over each satellite |
+| `map(fn)` | Map to an array |
+| `filter(fn)` | Filter and return a subset |
 
-## 聚合属性
+## Aggregate Properties
 
-| 属性 | 类型 | 说明 |
-|------|------|------|
-| `allSensors` | `Sensor[]` | 所有成员卫星的传感器列表 |
-| `allPositions` | `TrajectorySample[]` | 所有成员卫星的 TrajectorySample 位置 |
-| `allTles` | `Spg4Tle[]` | 所有成员卫星的 TLE 数据 |
+| Property | Type | Description |
+|----------|------|-------------|
+| `allSensors` | `Sensor[]` | List of sensors from all member satellites |
+| `allPositions` | `TrajectorySample[]` | TrajectorySample positions of all member satellites |
+| `allTles` | `Spg4Tle[]` | TLE data of all member satellites |
 
 ```typescript
 console.log(`总卫星数: ${con.satelliteCount}`)
 console.log(`总传感器数: ${con.allSensors.length}`)
 ```
 
-## Walker 拓扑
+## Walker Topology
 
-构造函数接受可选的 `WalkerTopology` 参数，用于记录 Walker 星座拓扑；成员卫星仍由业务侧创建后通过 `addSatellite()` 加入：
+The constructor accepts an optional `WalkerTopology` parameter to record the Walker constellation topology; member satellites are still created on the business side and added via `addSatellite()`:
 
 ```typescript
 const topology = {
@@ -87,11 +87,11 @@ const con = new Daisy.PW.Constellation(topology)
 // ... 后续业务侧根据拓扑参数逐颗创建并 addSatellite
 ```
 
-`topology` 属性可随时读取已注册的拓扑配置。
+The `topology` property can be read at any time to get the registered topology configuration.
 
-## 与覆盖分析集成
+## Integration with Coverage Analysis
 
-`Constellation` 可与 `ConstellationCoverageAnalysis` 配合使用，对星座的多星覆盖性能进行分析：
+`Constellation` can be used with `ConstellationCoverageAnalysis` to analyze the multi-satellite coverage performance of the constellation:
 
 ```typescript
 const analysis = new Daisy.Analysis.ConstellationCoverageAnalysis({
@@ -101,14 +101,14 @@ const analysis = new Daisy.Analysis.ConstellationCoverageAnalysis({
 // 详见「星座覆盖分析」文档
 ```
 
-## 资源清理
+## Resource Cleanup
 
 ```typescript
 con.destroy()
 // 依次销毁所有卫星并清空内部引用
 ```
 
-## 完整示例
+## Complete Example
 
 ```typescript
 const engine = await Daisy.Engine.create("container")
@@ -137,12 +137,12 @@ con.bindEngine(engine)
 console.log(`星座已就绪: ${con.satelliteCount} 颗卫星`)
 ```
 
-## 构造函数参数
+## Constructor Parameters
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `topology` | `WalkerTopology` | Walker 星座拓扑参数（可选） |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `topology` | `WalkerTopology` | Walker constellation topology parameters (optional) |
 
 ---
 
-> **相关 API**：[PW.Constellation](/en/api/classes/PW.Constellation) · [PW.Satellite](/en/api/classes/PW.Satellite)
+> **Related API**: [PW.Constellation](/en/api/classes/PW.Constellation) · [PW.Satellite](/en/api/classes/PW.Satellite)

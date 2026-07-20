@@ -1,8 +1,8 @@
-# 轨迹尾迹
+# Trail Path
 
-[TrailPathFeature](/en/api/classes/TrailPathFeature) 沿实体运动路径渲染一条分段彩色的尾迹线——历史段、当前段、未来段各独立控制颜色和材质。
+[TrailPathFeature](/en/api/classes/TrailPathFeature) renders a segment-colored trail line along an entity's motion path — history, current, and future segments each have independently controlled colors and materials.
 
-## 配置
+## Configuration
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -31,7 +31,7 @@ entity.addFeature(new Daisy.TrailPathFeature({
 }))
 ```
 
-或通过 `entity.setPath()` 快捷设置：
+Or quickly set it via `entity.setPath()`:
 
 ```typescript
 entity.setPath({
@@ -45,47 +45,47 @@ entity.setPath({
 })
 ```
 
-## 参数表
+## Parameter Table
 
-| 参数 | 类型 | 默认 | 说明 |
-|------|------|:---:|------|
-| `width` | `number` | 2 | 线宽（像素） |
-| `historySecond` | `number` | 43200 | 历史轨迹时间跨度（秒） |
-| `futureSecond` | `number` | 43200 | 未来轨迹时间跨度（秒） |
-| `resolutionSecond` | `number` | 60 | 采样间隔（秒） |
-| `maxDirectionInterpolationCount` | `number` | 720 | 方向插值上限 |
-| `autoOptimize` | `boolean` | true | 自适应密度采样 |
-| `color` | `DColor` | PURPLE | 当前段（历史与未来之间）颜色 |
-| `historyColor` | `DColor` | — | 历史段颜色 |
-| `futureColor` | `DColor` | — | 未来段颜色 |
-| `historyMaterial` | `DMaterial` | — | 历史段材质（优先于 historyColor） |
-| `futureMaterial` | `DMaterial` | — | 未来段材质（优先于 futureColor） |
-| `materialAppearance` | `MaterialAppearance` | — | 渲染外观控制（高级用法） |
-| `show` | `boolean` | true | 显隐 |
-| `updateIntervalSecond` | `number` | 1 | 轨迹线更新间隔（秒），降低可减少计算量 |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | 距离显示条件 |
-| `beforeSecond` | `number` | — | historySecond 的兼容别名（已废弃） |
-| `afterSecond` | `number` | — | futureSecond 的兼容别名（已废弃） |
+| Parameter | Type | Default | Description |
+|-----------|------|:---:|-------------|
+| `width` | `number` | 2 | Line width (pixels) |
+| `historySecond` | `number` | 43200 | History trail time span (seconds) |
+| `futureSecond` | `number` | 43200 | Future trail time span (seconds) |
+| `resolutionSecond` | `number` | 60 | Sampling interval (seconds) |
+| `maxDirectionInterpolationCount` | `number` | 720 | Direction interpolation cap |
+| `autoOptimize` | `boolean` | true | Adaptive density sampling |
+| `color` | `DColor` | PURPLE | Current segment (between history and future) color |
+| `historyColor` | `DColor` | — | History segment color |
+| `futureColor` | `DColor` | — | Future segment color |
+| `historyMaterial` | `DMaterial` | — | History segment material (overrides historyColor) |
+| `futureMaterial` | `DMaterial` | — | Future segment material (overrides futureColor) |
+| `materialAppearance` | `MaterialAppearance` | — | Render appearance control (advanced usage) |
+| `show` | `boolean` | true | Visibility |
+| `updateIntervalSecond` | `number` | 1 | Trail line update interval (seconds); lowering reduces computation |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Distance display condition |
+| `beforeSecond` | `number` | — | Compatibility alias for historySecond (deprecated) |
+| `afterSecond` | `number` | — | Compatibility alias for futureSecond (deprecated) |
 
-## 采样策略
+## Sampling Strategy
 
-`autoOptimize: true` 时，系统根据以下因素自适应调整采样密度：
+When `autoOptimize: true`, the system adaptively adjusts sampling density based on:
 
-- **相机距离**：距离越远，采样越稀疏
-- **实体速度**：速度越快，采样越密集以保持视觉连续性
-- **实体数量**：大量实体时自动降频
+- **Camera distance**: farther distances use sparser sampling
+- **Entity speed**: higher speeds use denser sampling to maintain visual continuity
+- **Entity count**: large numbers of entities automatically reduce frequency
 
-`autoOptimize: false` 时严格按 `resolutionSecond` 和 `maxDirectionInterpolationCount` 采样。
+When `autoOptimize: false`, sampling strictly follows `resolutionSecond` and `maxDirectionInterpolationCount`.
 
-## 性能要点
+## Performance Notes
 
-- TrailPathFeature 内部通过 Worker 线程预计算轨迹采样点
-- 大规模星座场景（数千颗卫星）中，非活跃实体的 TrailPathFeature 在高性能模式下会被跳过
-- 建议非 hover 卫星设置 `show: false` 或通过 `autoOptimize` 控制采样密度
+- TrailPathFeature internally pre-computes trail sampling points via a Worker thread
+- In large-scale constellation scenes (thousands of satellites), inactive entities' TrailPathFeature is skipped in high-performance mode
+- For non-hover satellites, it's recommended to set `show: false` or control sampling density via `autoOptimize`
 
-### TrajectorySample 数据构建
+### TrajectorySample Data Construction
 
-TrailPathFeature 依赖 Entity 的 position 为 TrajectorySample 类型。构建轨迹数据：
+TrailPathFeature depends on the Entity's position being a TrajectorySample type. Build trajectory data:
 
 ```typescript
 const trajectory = new Daisy.TrajectorySample(Daisy.ReferenceFrame.FIXED, {
@@ -110,23 +110,23 @@ trajectory.pushData({ time, position })
 entity.position = trajectory
 ```
 
-### 三段着色
+### Three-segment Coloring
 
-TrailPathFeature 将轨迹分为三段独立着色：
+TrailPathFeature divides the trail into three independently colored segments:
 
-- **历史段**（historySecond 范围内）：historyColor / historyMaterial
-- **当前段**（当前位置附近）：color
-- **未来段**（futureSecond 范围内）：futureColor / futureMaterial
+- **History segment** (within historySecond range): historyColor / historyMaterial
+- **Current segment** (near current position): color
+- **Future segment** (within futureSecond range): futureColor / futureMaterial
 
-未设置 historyColor/futureColor 时，所有段使用 color。
+When historyColor/futureColor are not set, all segments use color.
 
-### Worker 加速
+### Worker Acceleration
 
-TrailPathFeature 内部将轨迹采样计算卸载到 Web Worker 线程。当实体数量超过 100 时自动启用多线程预计算。`updateIntervalSecond` 控制预计算频率——值越大更新越懒但显示延迟越高。
+TrailPathFeature internally offloads trajectory sampling computation to a Web Worker thread. When the number of entities exceeds 100, multi-threaded pre-computation is automatically enabled. `updateIntervalSecond` controls the pre-computation frequency — larger values update more lazily but with higher display latency.
 
 ---
 
-> **相关 API**：[TrailPathFeature](/en/api/classes/TrailPathFeature) · [TrajectorySample](/en/api/classes/TrajectorySample) · [Entity](/en/api/classes/Entity)
+> **Related API**: [TrailPathFeature](/en/api/classes/TrailPathFeature) · [TrajectorySample](/en/api/classes/TrajectorySample) · [Entity](/en/api/classes/Entity)
 
 <!--
 示例参考: [TrailPath.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/features/TrailPath.svelte)

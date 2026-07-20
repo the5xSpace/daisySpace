@@ -1,13 +1,13 @@
-# 粒子系统
+# Particle System
 
-Daisy 提供两类粒子能力：[ParticleFeature](/en/api/classes/ParticleFeature)（世界空间粒子，逐粒子物理积分）和 [CapsuleParticleFeature](/en/api/classes/CapsuleParticleFeature)（宿主绑定的预渲染画布面片）。
+Daisy provides two types of particle capabilities: [ParticleFeature](/en/api/classes/ParticleFeature) (world-space particles, per-particle physics integration) and [CapsuleParticleFeature](/en/api/classes/CapsuleParticleFeature) (host-bound pre-rendered canvas sprite).
 
-**选型指南：**
+**Selection Guide:**
 
-| 场景 | 用 |
-|------|----|
-| 雨、雪、烟雾、风尘、水流等自然粒子 | [ParticleFeature](/en/api/classes/ParticleFeature) |
-| 火箭喷焰、飞机尾焰、姿控喷口等强绑定宿主的效果 | [CapsuleParticleFeature](/en/api/classes/CapsuleParticleFeature) |
+| Scenario | Use |
+|----------|-----|
+| Rain, snow, smoke, dust, water flow, etc. natural particles | [ParticleFeature](/en/api/classes/ParticleFeature) |
+| Rocket plume, aircraft exhaust, attitude control thrusters, etc. host-bound effects | [CapsuleParticleFeature](/en/api/classes/CapsuleParticleFeature) |
 
 ---
 
@@ -54,42 +54,42 @@ entity.addFeature(new Daisy.ParticleFeature({
 }))
 ```
 
-### 参数表
+### Parameter Table
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `image` | `string \| Canvas \| { image, x, y, width, height } \| { image, frameWidth, frameHeight, count, columns }` | 粒子贴图，支持图片裁切和序列帧 |
-| `preserveImageColor` | `boolean` | 保留贴图自身 RGB，仅用颜色控制 alpha |
-| `imageSize` | `Cartesian2` | 粒子尺寸（像素） |
-| `emitter` | [ParticleEmitterConfig](/en/api/types/ParticleEmitterConfig) | 发射器配置 |
-| `emitterModelMatrix` | `Matrix4` | 发射器变换矩阵 |
-| `emitterDirection` | `{ heading, pitch, roll }` | 发射朝向（度） |
-| `emissionRate` | `number` | 发射速率（粒子/秒） |
-| `speed` | `number` | 基准速度 |
-| `minimumSpeed` / `maximumSpeed` | `number` | 速度范围 |
-| `lifetime` / `particleLife` | `number` | 粒子寿命（秒） |
-| `minimumParticleLife` / `maximumParticleLife` | `number` | 寿命范围 |
-| `startScale` / `endScale` | `number` | 出生/消亡缩放 |
-| `scale` | `number` | 统一缩放 |
-| `startColor` / `endColor` | `DColor` | 出生/消亡色 |
-| `color` | `DColor` | 统一色 |
-| `mass` | `number` | 质量（影响重力） |
-| `minimumMass` / `maximumMass` | `number` | 质量范围 |
-| `gravity` | `boolean \| number \| Cartesian3 \| { enabled, acceleration, vector }` | 重力配置 |
-| `loop` | `boolean` | 循环发射 |
-| `bursts` | `ParticleBurst[]` | 爆发式发射 |
-| `followEntity` | `boolean` | 粒子跟随宿主本地坐标 |
-| `screenSpaceLimit` | `boolean \| ParticleScreenSpaceLimitOptions` | 屏幕空间预算 |
-| `updateCallback` | `function` | 每帧自定义更新回调 |
-| `sizeInMeters` | `boolean` | 粒子尺寸使用米制 |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | 距离显示条件 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `image` | `string \| Canvas \| { image, x, y, width, height } \| { image, frameWidth, frameHeight, count, columns }` | Particle texture, supports image cropping and sprite sheets |
+| `preserveImageColor` | `boolean` | Preserve texture's own RGB, only use color for alpha control |
+| `imageSize` | `Cartesian2` | Particle size (pixels) |
+| `emitter` | [ParticleEmitterConfig](/en/api/types/ParticleEmitterConfig) | Emitter configuration |
+| `emitterModelMatrix` | `Matrix4` | Emitter transform matrix |
+| `emitterDirection` | `{ heading, pitch, roll }` | Emission direction (degrees) |
+| `emissionRate` | `number` | Emission rate (particles/second) |
+| `speed` | `number` | Base speed |
+| `minimumSpeed` / `maximumSpeed` | `number` | Speed range |
+| `lifetime` / `particleLife` | `number` | Particle lifetime (seconds) |
+| `minimumParticleLife` / `maximumParticleLife` | `number` | Lifetime range |
+| `startScale` / `endScale` | `number` | Birth/death scale |
+| `scale` | `number` | Uniform scale |
+| `startColor` / `endColor` | `DColor` | Birth/death color |
+| `color` | `DColor` | Uniform color |
+| `mass` | `number` | Mass (affects gravity) |
+| `minimumMass` / `maximumMass` | `number` | Mass range |
+| `gravity` | `boolean \| number \| Cartesian3 \| { enabled, acceleration, vector }` | Gravity configuration |
+| `loop` | `boolean` | Loop emission |
+| `bursts` | `ParticleBurst[]` | Burst emission |
+| `followEntity` | `boolean` | Particles follow host local coordinates |
+| `screenSpaceLimit` | `boolean \| ParticleScreenSpaceLimitOptions` | Screen space budget |
+| `updateCallback` | `function` | Per-frame custom update callback |
+| `sizeInMeters` | `boolean` | Particle size in meters |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | Distance display condition |
 
-### 发射器类型
+### Emitter Types
 
-通过 `createParticleEmitter()` 创建，支持 17 种形状：
+Created via `createParticleEmitter()`, supports 17 shapes:
 
-| 类型 | 关键参数 |
-|------|----------|
+| Type | Key Parameters |
+|------|----------------|
 | `"point"` | `direction` |
 | `"circle"` | `radius`, `arc`, `radiusThickness`, `emitFrom` |
 | `"box"` | `dimensions`, `scale`, `emitFrom` |
@@ -108,9 +108,9 @@ entity.addFeature(new Daisy.ParticleFeature({
 | `"vibration"` | `amplitude`, `radius`, `axis`, `phase` |
 | `"orbit"` | `radius`, `height`, `phase`, `clockwise` |
 
-只有部分发射器支持 `emitFrom`（`"volume"` / `"shell"` / `"edge"`）；`direction` 也只适用于支持该字段的发射器。
+Only some emitters support `emitFrom` (`"volume"` / `"shell"` / `"edge"`); `direction` only applies to emitters that support that field.
 
-### 重力
+### Gravity
 
 ```typescript
 // 使用宿主天体表面重力
@@ -130,7 +130,7 @@ gravity: {
 }
 ```
 
-### 屏幕空间预算
+### Screen Space Budget
 
 ```typescript
 screenSpaceLimit: {
@@ -143,7 +143,7 @@ screenSpaceLimit: {
 }
 ```
 
-### 自定义贴图（Canvas）
+### Custom Texture (Canvas)
 
 ```typescript
 const canvas = document.createElement("canvas")
@@ -165,7 +165,7 @@ entity.addFeature(new Daisy.ParticleFeature({
 
 ## CapsuleParticleFeature
 
-胶囊粒子将整个粒子系统预渲染为一张 canvas，作为单个 Sprite 面片（Billboard）播放。适合需要强绑宿主、连续主体形态的效果。
+Capsule particles pre-render the entire particle system onto a canvas, playing it as a single Sprite sheet (Billboard). Suitable for effects that require strong host binding and continuous body shapes.
 
 ```typescript
 entity.addFeature(new Daisy.CapsuleParticleFeature({
@@ -204,28 +204,28 @@ entity.addFeature(new Daisy.CapsuleParticleFeature({
 }))
 ```
 
-### 预设
+### Presets
 
-| 预设 | 效果 |
-|------|------|
-| `"rocket-flame"` | 火箭尾焰（橙红色、拉伸强） |
-| `"jet-flame"` | 喷气火焰（蓝白色、高速） |
-| `"energy-plume"` | 能量羽流（扩散性强） |
-| `"soft-plume"` | 柔和尾烟 |
-| `"linear-streak"` | 线状拖尾 |
+| Preset | Effect |
+|--------|--------|
+| `"rocket-flame"` | Rocket exhaust (orange-red, strong stretch) |
+| `"jet-flame"` | Jet flame (blue-white, high speed) |
+| `"energy-plume"` | Energy plume (strong diffusion) |
+| `"soft-plume"` | Soft exhaust smoke |
+| `"linear-streak"` | Linear streak trail |
 
-### 参数表
+### Parameter Table
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `preset` | `CapsuleParticlePreset` | 预设（覆盖 emitter） |
-| `emitter` | `object` | 自定义发射器参数（totalParticles/emissionRate/spread/angle/speed/life/stretch/blendMode/gravity等） |
-| `scale` | `number` | 视觉缩放 |
-| `visualScaleMode` | `"none" \| "match-model"` | 匹配模型尺寸的缩放模式 |
-| `textureWidth` / `textureHeight` | `number` | 贴图尺寸（像素） |
-| `frameCount` | `number` | 序列帧帧数 |
-| `particleImage` | `string \| HTMLCanvasElement \| HTMLImageElement` | 单颗粒子图片/贴图源 |
-| `show` | `boolean` | 显隐 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `preset` | `CapsuleParticlePreset` | Preset (overrides emitter) |
+| `emitter` | `object` | Custom emitter parameters (totalParticles/emissionRate/spread/angle/speed/life/stretch/blendMode/gravity etc.) |
+| `scale` | `number` | Visual scale |
+| `visualScaleMode` | `"none" \| "match-model"` | Scale mode matching model size |
+| `textureWidth` / `textureHeight` | `number` | Texture dimensions (pixels) |
+| `frameCount` | `number` | Sprite sheet frame count |
+| `particleImage` | `string \| HTMLCanvasElement \| HTMLImageElement` | Single particle image/texture source |
+| `show` | `boolean` | Visibility |
 
 ---
 

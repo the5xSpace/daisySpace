@@ -1,31 +1,31 @@
-# 视距策略
+# View Distance Strategy
 
-`ViewDistanceStrategy` 管理不同观察尺度下各类型 Feature 的默认可见距离范围。当相机离目标太远或太近时，自动隐藏细节元素，在视觉质量与渲染性能之间取得平衡。
+`ViewDistanceStrategy` manages the default visibility distance ranges for each type of Feature at different observation scales. When the camera is too far from or too close to a target, detail elements are automatically hidden, balancing visual quality and rendering performance.
 
-## 核心概念
+## Core Concepts
 
-视距策略的核心是一张"场景模板"表：每种场景（航天/航空/海事/地面）定义了一组 `DistanceDisplayCondition`，按 6 个**视距等级**划分：
+The core of the view distance strategy is a "scene template" table: each scene (Space/Aviation/Maritime/Ground) defines a set of `DistanceDisplayCondition` values, divided into 6 **view distance levels**:
 
 ```
 EXTREME_NEAR  →  NEAR  →  MEDIUM  →  FAR  →  EXTREME_FAR  →  INFINITE
    (极近)       (近距)    (中距)     (远距)     (极远)          (无限)
 ```
 
-每个 `DistanceDisplayCondition(near, far)` 定义了一个可见区间——当相机到目标的距离在 `[near, far]` 之间时，对应 Feature 可见。
+Each `DistanceDisplayCondition(near, far)` defines a visibility interval — when the camera-to-target distance falls within `[near, far]`, the corresponding Feature is visible.
 
-## 内置场景模板
+## Built-in Scene Templates
 
-| 场景 | `ViewScene` 值 | 适用 |
-|------|:---:|---|
-| 航天/空间 | `"space"` | 卫星、轨道物体、天体（默认） |
-| 航空 | `"aviation"` | 飞行器、航路 |
-| 海事 | `"maritime"` | 船舶、海面平台 |
-| 地面 | `"ground"` | 地面站、近景细节 |
+| Scene | `ViewScene` Value | Applicable To |
+|-------|:---:|---|
+| Space | `"space"` | Satellites, orbital objects, celestial bodies (default) |
+| Aviation | `"aviation"` | Aircraft, flight routes |
+| Maritime | `"maritime"` | Ships, sea platforms |
+| Ground | `"ground"` | Ground stations, close-up details |
 
-各模板的阈值（单位：米）：
+Template thresholds (in meters):
 
-| 等级 | Space | Aviation | Maritime | Ground |
-|------|:---:|:---:|:---:|:---:|
+| Level | Space | Aviation | Maritime | Ground |
+|-------|:---:|:---:|:---:|:---:|
 | EXTREME_NEAR | 0 ~ 5e6 | 0 ~ 200 | 0 ~ 100 | 0 ~ 50 |
 | NEAR | 0 ~ 1e7 | 0 ~ 800 | 0 ~ 500 | 0 ~ 800 |
 | MEDIUM | 0 ~ 5.5e7 | 200 ~ 1e4 | 100 ~ 5e3 | 50 ~ 5e3 |
@@ -33,9 +33,9 @@ EXTREME_NEAR  →  NEAR  →  MEDIUM  →  FAR  →  EXTREME_FAR  →  INFINITE
 | EXTREME_FAR | 0 ~ 4e10 | 1e4 ~ 2e5 | 5e3 ~ 2e5 | 5e3 ~ 2e5 |
 | INFINITE | ∞ | ∞ | ∞ | ∞ |
 
-## 配置视距策略
+## Configuring the View Distance Strategy
 
-在创建 Engine 时配置：
+Configure it when creating the Engine:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -43,7 +43,7 @@ import * as Daisy from "daisy-space-sdk"
 const engine = await Daisy.Engine.create("daisyContainer", {
     daisy: {
         viewDistance: {
-            scene: Daisy.ViewScene.SPACE,  // 默认航天尺度
+scene: Daisy.ViewScene.SPACE,  // 默认航天尺度
         },
     },
 })
@@ -57,35 +57,35 @@ const template = engine.viewDistanceStrategy.getViewDistance()
 // template.FAR = new DistanceDisplayCondition(0, 3e8)
 ```
 
-## Feature 如何应用视距等级
+## How Features Apply View Distance Levels
 
-每个 Feature 在构造时有一个默认视距等级（大多数为 `FAR`），在 `register()` 阶段自动设置：
+Each Feature has a default view distance level at construction time (most default to `FAR`), which is automatically set during the `register()` phase:
 
 ```
 feature._options.distanceDisplayCondition = template[feature._defaultDistanceDisplayLevel]
 ```
 
-如果用户显式传入了 `distanceDisplayCondition`，则使用用户值（不覆盖）。
+If the user explicitly passes a `distanceDisplayCondition`, the user value is used instead (not overridden).
 
-自定义视距等级：
+Custom view distance level:
 
 ```typescript
 // 继承 Feature 后在构造函数中设置
 this._defaultDistanceDisplayLevel = Daisy.ViewDistanceLevel.NEAR
 ```
 
-## ViewDistanceLevel 枚举
+## ViewDistanceLevel Enum
 
-| 等级 | 含义 |
-|------|------|
-| `EXTREME_NEAR` | 极近——仅当相机非常靠近时可见 |
-| `NEAR` | 近距 |
-| `MEDIUM` | 中距 |
-| `FAR` | 远距（大多数 Feature 的默认值） |
-| `EXTREME_FAR` | 极远——几乎始终可见 |
-| `INFINITE` | 无限——不做上限裁剪 |
+| Level | Meaning |
+|-------|---------|
+| `EXTREME_NEAR` | Extremely near — only visible when the camera is very close |
+| `NEAR` | Near distance |
+| `MEDIUM` | Medium distance |
+| `FAR` | Far distance (default for most Features) |
+| `EXTREME_FAR` | Extremely far — almost always visible |
+| `INFINITE` | Infinite — no upper bound clipping |
 
-## 自定义场景模板
+## Custom Scene Templates
 
 ```typescript
 const customDdc = (n: number, f: number) => new Daisy.DistanceDisplayCondition(n, f)
@@ -110,32 +110,32 @@ const engine = await Daisy.Engine.create("daisyContainer", {
 })
 ```
 
-## 路径分辨率缩放
+## Path Resolution Scaling
 
-`PATH_RESOLUTION_SCALE` 是模板中一个特殊字段，用于控制轨迹路径的采样密度：
+`PATH_RESOLUTION_SCALE` is a special field in the template that controls the sampling density of trajectory paths:
 
-| 模板 | `PATH_RESOLUTION_SCALE` |
-|------|:---:|
+| Template | `PATH_RESOLUTION_SCALE` |
+|----------|:---:|
 | Space | 10 |
 | Aviation | 1 |
 | Maritime | 1 |
 | Ground | 1 |
 
-值越大，轨迹路径插值/采样越密，显示更平滑但计算开销更高。在 Space 场景下使用 `10` 是因为轨道跨距极大，需要更密的采样来保证视觉平滑。
+A larger value means denser trajectory path interpolation/sampling, resulting in smoother visuals but higher computational cost. Space scene uses `10` because orbital spans are extremely large and require denser sampling for visual smoothness.
 
-## 与 LOD 的关系
+## Relationship with LOD
 
-视距等级提供的 `DistanceDisplayCondition` 是"静态阈值"，而 LOD 判定（`isBehindCamera`、`isOccludedByEarth`、`isInCameraCullingVolume`）是"动态判定"。两者独立但协同：
+The `DistanceDisplayCondition` provided by view distance levels acts as a "static threshold", while LOD determination (`isBehindCamera`, `isOccludedByEarth`, `isInCameraCullingVolume`) is "dynamic determination". They are independent but work together:
 
-- `DistanceDisplayCondition` — 控制 Feature 的 GPU 级可见性（GPU 侧跳过渲染）
-- LOD 判定 — 控制 Entity 的整体 `update()` 是否执行（CPU 侧跳过计算）
+- `DistanceDisplayCondition` — controls GPU-level visibility of a Feature (GPU skips rendering)
+- LOD determination — controls whether the Entity's overall `update()` executes (CPU skips computation)
 
-高性能模式下，LOD 判定还会再叠加一层 Feature 白名单过滤（见 [高性能模式](/en/guide/engine#高性能模式)）。
+In high-performance mode, LOD determination also adds an additional layer of Feature whitelist filtering (see [High Performance Mode](/en/guide/engine#high-performance-mode)).
 
 
 ---
 
 <!--
-示例参考: [ViewDistance.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/ViewDistance.svelte)
-  评分配额: API 30/30 | 概念 25/25 | 示例 20/20 | 陷阱 10/15 | 结构 10/10 → 95/100
+Example reference: [ViewDistance.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/ViewDistance.svelte)
+  Score allocation: API 30/30 | Concept 25/25 | Example 20/20 | Pitfalls 10/15 | Structure 10/10 → 95/100
 -->

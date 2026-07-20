@@ -1,20 +1,20 @@
-# 链路通信
+# Link Communication
 
-Link 组件在两个端点之间渲染一条连接线，支持按时间调度显隐、流动箭头材质和方向控制。
+The Link component renders a connecting line between two endpoints, supporting time-scheduled visibility, flowing arrow materials, and direction control.
 
-## 架构
+## Architecture
 
-Link 实现 `IComponent` 接口，通过 `BaseObject.addLink()` 挂载：
+Link implements the `IComponent` interface and is attached via `BaseObject.addLink()`:
 
 ```
 源对象（卫星/地面站）
     └── Link 组件
-          └── PolylineFeature（动态更新两端位置）
+          └└── PolylineFeature（动态更新两端位置）
 ```
 
-链路的两个端点通过 `target` 指定，源端隐式等于宿主对象自身。Link 内部用 `CelestialEllipsoid` 做地球遮挡检测——当一端被地球挡住时自动隐藏链路线。
+The two endpoints of the link are specified via `target`; the source end implicitly equals the host object itself. Link internally uses `CelestialEllipsoid` for Earth occlusion detection — when one end is occluded by Earth, the link line is automatically hidden.
 
-## 添加链路
+## Adding a Link
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -52,22 +52,22 @@ sat.addLink({
 
 ## LinkOptions
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `target` | `BaseObject \| Entity \| Cartesian3 \| { entity }` | 链路对端 |
-| `show` | `boolean \| LinkTimeRange \| LinkTimeRange[]` | 显隐计划 |
-| `color` | `DColor` | 线颜色 |
-| `material` | `DMaterial` | 材质（优先级高于 color/speed/direction） |
-| `width` | `number` | `2` | 线宽（像素） |
-| `direction` | `"forward" \| "reverse"` | 流动方向 |
-| `speed` | `number` | 流动速度（默认 0） |
-| `clampToGround` | `boolean` | 贴地 |
-| `arcType` | `ArcType` | 插值方式 |
-| `name` | `string` | 名称 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `target` | `BaseObject \| Entity \| Cartesian3 \| { entity }` | Link opposite end |
+| `show` | `boolean \| LinkTimeRange \| LinkTimeRange[]` | Visibility schedule |
+| `color` | `DColor` | Line color |
+| `material` | `DMaterial` | Material (takes priority over color/speed/direction) |
+| `width` | `number` | `2` | Line width (pixels) |
+| `direction` | `"forward" \| "reverse"` | Flow direction |
+| `speed` | `number` | Flow speed (default 0) |
+| `clampToGround` | `boolean` | Clamped to ground |
+| `arcType` | `ArcType` | Interpolation method |
+| `name` | `string` | Name |
 
-## 时间调度（LinkSchedule）
+## Time Scheduling (LinkSchedule)
 
-`show` 参数支持三种形式：
+The `show` parameter supports three forms:
 
 ```typescript
 // 始终显示
@@ -83,7 +83,7 @@ show: [
 ]
 ```
 
-典型用法：先通过 `sat.getTransits()` 计算过境窗口，再将窗口映射为链路的时间区间：
+Typical usage: first compute transit windows via `sat.getTransits()`, then map the windows to link time intervals:
 
 ```typescript
 const transits = sat.getTransits({
@@ -105,7 +105,7 @@ site.addLink({
 })
 ```
 
-## 流动箭头材质
+## Flowing Arrow Material
 
 ```typescript
 // 使用 MaterialFactory 预设
@@ -121,15 +121,15 @@ site.addLink({
 })
 ```
 
-如果只传 `color` + `direction` + `speed` 而不传 `material`，Link 内部会自动生成默认的箭头流动材质。
+If only `color` + `direction` + `speed` are passed without `material`, Link internally generates a default arrow flow material.
 
-## 地球遮挡检测
+## Earth Occlusion Detection
 
-Link 自动使用当前宿主对象的 `celestialEllipsoid` 做遮挡检测：当链路线段的任一端点被天体遮挡时，自动隐藏链路。遮挡检测通过 `CelestialEllipsoid.rayIntersection()` 实现，仅在 3D 模式下生效。
+Link automatically uses the current host object's `celestialEllipsoid` for occlusion detection: when either endpoint of the link line segment is occluded by a celestial body, the link is automatically hidden. Occlusion detection is implemented via `CelestialEllipsoid.rayIntersection()` and only takes effect in 3D mode.
 
-## 动态端点
+## Dynamic Endpoints
 
-`target` 可以是移动的 Entity——Link 每帧通过 `entity.getCurrentPosition()` 获取对端位置并更新 PolylineFeature 的顶点。
+`target` can be a moving Entity — Link retrieves the opposite end's position via `entity.getCurrentPosition()` each frame and updates the PolylineFeature's vertices.
 
 
 ---

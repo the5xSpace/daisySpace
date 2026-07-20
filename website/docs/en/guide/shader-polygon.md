@@ -1,10 +1,10 @@
-# 着色器多边形
+# Shader Polygon
 
-[ShaderPolygonFeature](/en/api/classes/ShaderPolygonFeature) 是一个基于自定义着色器管线的多边形渲染组件，同时支持贴地投影和悬浮多边形，适用于覆盖区域、地理围栏、高性能批量渲染等场景。
+[ShaderPolygonFeature](/en/api/classes/ShaderPolygonFeature) is a polygon rendering component based on a custom shader pipeline, supporting both ground-projected and floating polygons, suitable for coverage areas, geo-fencing, and high-performance batch rendering scenarios.
 
-## 基础用法
+## Basic Usage
 
-多边形通过 `pathway` 定义顶点序列（`Cartesian3[]`），至少需要 3 个顶点：
+Polygons are defined by a vertex sequence (`Cartesian3[]`) via `pathway`, requiring at least 3 vertices:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -23,11 +23,11 @@ entity.addFeature(new Daisy.ShaderPolygonFeature({
 }))
 ```
 
-也支持通过 `polygonHierarchy`（`PolygonHierarchy`）或预构建的 `mesh`（`ShaderPolygonMeshInput`）输入几何数据。
+Input can also be provided via `polygonHierarchy` (`PolygonHierarchy`) or a pre-built `mesh` (`ShaderPolygonMeshInput`).
 
-## 贴地与悬浮
+## Ground Clamping and Floating
 
-`surfaceConform` 控制多边形是否投影到天体表面（默认 `false`）：
+`surfaceConform` controls whether the polygon is projected onto the celestial surface (default `false`):
 
 ```typescript
 // 贴地多边形（surfaceConform: true）
@@ -46,9 +46,9 @@ new Daisy.ShaderPolygonFeature({
 })
 ```
 
-曲面的细分粒度等高级参数可通过 `subdivisionGranularityMeters`、`maxSubdivisionDepth`、`surfaceErrorMeters` 等控制。
+Advanced surface subdivision parameters can be controlled via `subdivisionGranularityMeters`, `maxSubdivisionDepth`, `surfaceErrorMeters`, etc.
 
-## 轮廓边
+## Outline
 
 ```typescript
 new Daisy.ShaderPolygonFeature({
@@ -60,9 +60,9 @@ new Daisy.ShaderPolygonFeature({
 })
 ```
 
-> **注意：** 轮廓边基于测地线密化（`_densifyGeodesic`）生成，边数过多时会对性能有明显影响。ShadePolygonPerf 压测中已提示"启用轮廓边会导致性能急剧下降"。
+> **Note:** Outlines are generated based on geodesic densification (`_densifyGeodesic`). Excessive edge counts can significantly impact performance. The ShadePolygonPerf benchmark has already indicated that "enabling outlines causes a sharp performance degradation."
 
-### 动态更新轮廓
+### Dynamic Outline Updates
 
 ```typescript
 // 动态开启或关闭轮廓
@@ -70,21 +70,21 @@ feature.setOutline(true, Daisy.Color.WHITE, 1.5)
 feature.setOutline(false)
 ```
 
-## Worker 并行建网
+## Worker Parallel Mesh Building
 
-网格构建（三角化 + 曲面细分）默认在 Web Worker 中异步执行，不阻塞主线程：
+Mesh construction (triangulation + surface subdivision) is executed asynchronously in a Web Worker by default, without blocking the main thread:
 
-- 所有实例共享一个 `sharedMeshBuildWorker`，避免重复创建 Worker 开销
-- Worker 故障时自动回退到主线程（`meshBuildWorkerFallbackToMainThread = true`）
-- 可通过 `meshBuildInWorker` 选项关闭（一般不需要）
+- All instances share a `sharedMeshBuildWorker`, avoiding repeated Worker creation overhead
+- Automatically falls back to the main thread on Worker failure (`meshBuildWorkerFallbackToMainThread = true`)
+- Can be disabled via the `meshBuildInWorker` option (generally not needed)
 
-该机制保证了即使单帧内创建上百个多边形，主线程渲染也不被建网阻塞。
+This mechanism ensures that even when creating hundreds of polygons in a single frame, the main thread rendering is not blocked by mesh building.
 
-## 性能模式
+## Performance Mode
 
-### 批量创建
+### Batch Creation
 
-在 Perf 压测 Demo（`ShaderPolygonPerf.svelte`）中，采用**分批创建**模式避免单帧阻塞：
+In the Perf benchmark Demo (`ShaderPolygonPerf.svelte`), **batch creation** mode is used to avoid blocking a single frame:
 
 ```typescript
 const BATCH = 80  // 每批 80 个
@@ -101,60 +101,60 @@ function addBatch() {
 }
 ```
 
-### 压测数据
+### Benchmark Data
 
-`ShaderPolygonPerf` Demo 展示了 **1000 个彩色多边形**同时渲染的能力（最多 1000 个，4~8 边形，黄金角均匀分布到椭球面）。
+The `ShaderPolygonPerf` Demo demonstrates the ability to render **1000 colored polygons** simultaneously (up to 1000, 4~8 sides, distributed uniformly on the ellipsoid using golden angles).
 
-### 性能要点
+### Performance Tips
 
-| 要点 | 说明 |
-|------|------|
-| 分批创建 | 每批 ~80 个，`setTimeout(fn, 0)` 让出主线程 |
-| Worker 建网 | 默认开启，三角化不阻塞渲染 |
-| 避免大规模轮廓边 | 轮廓边需要测地线密化，开销显著 |
-| 控制曲面细分粒度 | `subdivisionGranularityMeters` 不宜设得过小 |
-| 控制多边形边数 | 单多边形边数越多，三角化与密化越重 |
+| Tip | Description |
+|-----|-------------|
+| Batch creation | ~80 per batch, `setTimeout(fn, 0)` to yield the main thread |
+| Worker mesh building | Enabled by default, triangulation doesn't block rendering |
+| Avoid large-scale outlines | Outlines require geodesic densification, significant overhead |
+| Control surface subdivision granularity | `subdivisionGranularityMeters` should not be set too small |
+| Control polygon vertex count | More vertices per polygon increases triangulation and densification cost |
 
-## 参数表
+## Parameter Table
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `pathway` | `Pathway` | — | 多边形顶点序列（`Cartesian3[]`/`REF` 等） |
-| `polygonHierarchy` | `PolygonHierarchy` | — | 多边形层级 |
-| `mesh` | `ShaderPolygonMeshInput` | — | 预构建网格（`{ vertices, indices, boundingSphere }`） |
-| `color` | `DColor` | `Color.CYAN.withAlpha(0.8)` | 填充颜色 |
-| `surfaceConform` | `boolean` | `false` | 是否投影到天体表面（贴地） |
-| `height` | `number` | — | 悬浮高度（米），`surfaceConform: false` 时有效 |
-| `outline` | `boolean` | `false` | 是否绘制轮廓线 |
-| `outlineColor` | `DColor` | `Color.BLACK` | 轮廓颜色 |
-| `outlineWidth` | `number` | `1` | 轮廓宽度（像素） |
-| `show` | `boolean` | `true` | 显隐 |
-| `name` | `string` | — | 名称（调试用） |
-| `effectType` | `number` | `0` | 着色器特效类型索引 |
-| `speed` | `number` | `1` | 特效动画速度 |
-| `radius` | `number` | `1` | 特效半径（米） |
-| `projectionMode` | `"tangent" \| "cartographic"` | `"tangent"` | 曲面投影模式 |
-| `projectionReferenceLongitude` | `number` | — | Cartographic 投影参考经度 |
-| `subdivisionGranularityMeters` | `number` | — | 曲面细分粒度（米） |
-| `maxSubdivisionDepth` | `number` | — | 最大细分深度 |
-| `surfaceErrorMeters` | `number` | — | 曲面拟合误差容限（米） |
-| `surfaceLiftMeters` | `number` | — | 曲面法线方向抬升（米） |
-| `boundaryDensify` | `boolean` | `true` | 边界加密插值 |
-| `boundaryMaxArcMeters` | `number` | — | 边界加密最大弧长（米） |
-| `boundaryMaxSagittaMeters` | `number` | — | 边界加密最大矢高（米） |
-| `boundaryMaxDeltaLonDeg` | `number` | — | 边界加密最大经度跨度 |
-| `boundaryMaxDeltaLatDeg` | `number` | — | 边界加密最大纬度跨度 |
-| `skinnyAspectLimit` | `number` | — | 狭长三角面长宽比阈值 |
-| `midpointErrorMeters` | `number` | — | 中点误差容限（米） |
-| `centroidErrorMeters` | `number` | — | 质心误差容限（米） |
-| `preferLongestEdgeSplit` | `boolean` | `false` | 优先沿最长边分裂 |
-| `disableCulling` | `boolean` | `false` | 禁用背面剔除 |
-| `disableBackFaceCulling` | `boolean` | `false` | 独立背面剔除 |
-| `depthTestEnabled` | `boolean` | `true` | 深度测试 |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | 距离显示条件 |
-| `ellipsoid` | `CelestialEllipsoid` | — | 天体椭球配置 |
-| `debug` | `boolean` | `false` | 调试模式 |
-| `debugWireframe` | `boolean` | `false` | 线框渲染（调试） |
-| `debugWireframeColor` | `Color` | — | 线框颜色 |
+| Parameter | Type | Default | Description |
+|-----------|------|--------|-------------|
+| `pathway` | `Pathway` | — | Polygon vertex sequence (`Cartesian3[]`/`REF` etc.) |
+| `polygonHierarchy` | `PolygonHierarchy` | — | Polygon hierarchy |
+| `mesh` | `ShaderPolygonMeshInput` | — | Pre-built mesh (`{ vertices, indices, boundingSphere }`) |
+| `color` | `DColor` | `Color.CYAN.withAlpha(0.8)` | Fill color |
+| `surfaceConform` | `boolean` | `false` | Whether to project onto celestial surface (ground clamp) |
+| `height` | `number` | — | Floating height (meters), effective when `surfaceConform: false` |
+| `outline` | `boolean` | `false` | Whether to draw outline |
+| `outlineColor` | `DColor` | `Color.BLACK` | Outline color |
+| `outlineWidth` | `number` | `1` | Outline width (pixels) |
+| `show` | `boolean` | `true` | Visibility |
+| `name` | `string` | — | Name (debugging) |
+| `effectType` | `number` | `0` | Shader effect type index |
+| `speed` | `number` | `1` | Effect animation speed |
+| `radius` | `number` | `1` | Effect radius (meters) |
+| `projectionMode` | `"tangent" \| "cartographic"` | `"tangent"` | Surface projection mode |
+| `projectionReferenceLongitude` | `number` | — | Cartographic projection reference longitude |
+| `subdivisionGranularityMeters` | `number` | — | Surface subdivision granularity (meters) |
+| `maxSubdivisionDepth` | `number` | — | Maximum subdivision depth |
+| `surfaceErrorMeters` | `number` | — | Surface fitting error tolerance (meters) |
+| `surfaceLiftMeters` | `number` | — | Surface normal lift (meters) |
+| `boundaryDensify` | `boolean` | `true` | Boundary densification interpolation |
+| `boundaryMaxArcMeters` | `number` | — | Boundary densification max arc length (meters) |
+| `boundaryMaxSagittaMeters` | `number` | — | Boundary densification max sagitta (meters) |
+| `boundaryMaxDeltaLonDeg` | `number` | — | Boundary densification max longitude span |
+| `boundaryMaxDeltaLatDeg` | `number` | — | Boundary densification max latitude span |
+| `skinnyAspectLimit` | `number` | — | Slender triangle aspect ratio threshold |
+| `midpointErrorMeters` | `number` | — | Midpoint error tolerance (meters) |
+| `centroidErrorMeters` | `number` | — | Centroid error tolerance (meters) |
+| `preferLongestEdgeSplit` | `boolean` | `false` | Prefer splitting along the longest edge |
+| `disableCulling` | `boolean` | `false` | Disable back-face culling |
+| `disableBackFaceCulling` | `boolean` | `false` | Independent back-face culling |
+| `depthTestEnabled` | `boolean` | `true` | Depth test |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Distance display condition |
+| `ellipsoid` | `CelestialEllipsoid` | — | Celestial ellipsoid configuration |
+| `debug` | `boolean` | `false` | Debug mode |
+| `debugWireframe` | `boolean` | `false` | Wireframe rendering (debugging) |
+| `debugWireframeColor` | `Color` | — | Wireframe color |
 
-> **相关 API**：[ShaderPolygonFeature](/en/api/classes/ShaderPolygonFeature)
+> **Related API**: [ShaderPolygonFeature](/en/api/classes/ShaderPolygonFeature)
