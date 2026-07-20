@@ -6,7 +6,7 @@
 
 # Class: CubeGeometry
 
-Daisy圆锥/柱体（封装 CubeGeometry）
+Daisy cone/cylinder (wraps CubeGeometry)
 
 ## Constructors
 
@@ -36,8 +36,8 @@ Daisy圆锥/柱体（封装 CubeGeometry）
 
 > `static` **computeBeamFootprintOnGround**(`options`): `Cartographic`[]
 
-计算矩形底面边界射线与椭球的交点（投影 footprint）
-与 EllipticConeGeometry 的 computeBeamFootprintOnGround 风格一致。
+Computes the intersection of the rectangular bottom boundary rays with the ellipsoid (projection footprint)
+Consistent with the style of EllipticConeGeometry's computeBeamFootprintOnGround.
 
 #### Parameters
 
@@ -81,7 +81,7 @@ Daisy圆锥/柱体（封装 CubeGeometry）
 
 > `static` **get2dPosition**(`cubeGeometry`, `matrix`, `rayPosition`, `ellipsoid?`, `slices?`): `Cartesian3`[]
 
-获取用于2D绘图的 footprint 投影坐标（Cartesian3），基于矩形底面
+Gets the 2D footprint projection coordinates (Cartesian3) based on the rectangular bottom
 
 #### Parameters
 

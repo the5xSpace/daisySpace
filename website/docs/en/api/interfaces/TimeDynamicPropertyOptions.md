@@ -6,7 +6,7 @@
 
 # Interface: TimeDynamicPropertyOptions\<T\>
 
-通用动态属性配置。
+Generic dynamic property configuration.
 
 ## Type Parameters
 
@@ -20,7 +20,7 @@
 
 > `optional` **defaultValue?**: `T`
 
-未命中任何区间时返回的默认值。
+Default value returned when no interval is matched.
 
 ***
 
@@ -28,4 +28,4 @@
 
 > `optional` **intervals?**: [`TimeDynamicInterval`](../types/TimeDynamicInterval.md)\<`T`\>[]
 
-初始时间区间列表；构造时会复制数组。
+Initial time interval list; the array is copied during construction.

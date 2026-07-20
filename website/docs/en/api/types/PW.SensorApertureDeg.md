@@ -8,7 +8,7 @@
 
 > **SensorApertureDeg** = [`TimeValue`](TimeValue.md)\<`number`\> \| \{ `xDeg`: [`TimeValue`](TimeValue.md)\<`number`\>; `yDeg`: [`TimeValue`](TimeValue.md)\<`number`\>; \}
 
-传感器单轴孔径角或横纵两个方向的动态孔径角，单位为度。
+Single-axis aperture angle or dual-axis dynamic aperture angle of the sensor, in degrees.
 
 ## Union Members
 
@@ -24,10 +24,10 @@
 
 > **xDeg**: [`TimeValue`](TimeValue.md)\<`number`\>
 
-横向孔径角。
+Horizontal aperture angle.
 
 #### yDeg
 
 > **yDeg**: [`TimeValue`](TimeValue.md)\<`number`\>
 
-纵向孔径角。
+Vertical aperture angle.

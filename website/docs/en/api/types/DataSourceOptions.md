@@ -8,7 +8,7 @@
 
 > **DataSourceOptions** = `{ data: TleData \| KeplerElementDataOptions \| EphemerisDataOptions \| EphemerisDataCallbackOptions; dataSource: DataSource }`
 
-数据源统一配置入口。
+Unified data source configuration entry.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > **data**: [`TleData`](TleData.md) \| [`KeplerElementDataOptions`](KeplerElementDataOptions.md) \| [`EphemerisDataOptions`](EphemerisDataOptions.md) \| [`EphemerisDataCallbackOptions`](EphemerisDataCallbackOptions.md)
 
-数据源
+Data source
 
 ***
 
@@ -24,4 +24,4 @@
 
 > **dataSource**: [`DataSource`](../enums/DataSource.md)
 
-数据源类型
+Data source type

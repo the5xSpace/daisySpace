@@ -8,7 +8,7 @@
 
 > **ModelNodeInfo** = `{ id: number; name: string }`
 
-模型节点信息。
+Model node information.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > **id**: `number`
 
-节点 ID。
+Node ID.
 
 ***
 
@@ -24,4 +24,4 @@
 
 > **name**: `string`
 
-节点名称。
+Node name.

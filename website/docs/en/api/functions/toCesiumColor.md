@@ -6,15 +6,15 @@
 
 # Function: toCesiumColor()
 
-将 Daisy 颜色输入转换为内部颜色值。
+Converts a Daisy color input to an internal color value.
 
 ## Param
 
-Daisy 颜色对象或 CSS 颜色字符串，例如 `#ff0`、`#ffff00`、`rgba(...)`。
+Daisy color object or CSS color string, e.g., `#ff0`、`#ffff00`、`rgba(...)`。
 
 ## Param
 
-当 `color` 为空时返回的默认值。
+Default value returned when `color` is empty.
 
 ## Call Signature
 

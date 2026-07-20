@@ -6,7 +6,7 @@
 
 # Interface: CelestialSunOcclusionOptions
 
-天体太阳遮挡判定参数。
+Celestial sun occlusion determination parameters.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **body?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-遮挡天体。默认使用地球模型。
+Occluding celestial body. Defaults to the Earth model.
 
 ***
 
@@ -22,4 +22,4 @@
 
 > `optional` **sun?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-光源天体。默认使用太阳模型。
+Light source celestial body. Defaults to the Sun model.

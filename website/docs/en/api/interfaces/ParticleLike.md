@@ -6,7 +6,7 @@
 
 # Interface: ParticleLike
 
-粒子接口（描述单个粒子的位置与速度）。
+Particle interface (describes the position and velocity of a single particle).
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > **position**: `Cartesian3`
 
-粒子位置（世界坐标）。
+Particle position (world coordinates).
 
 ***
 
@@ -22,4 +22,4 @@
 
 > **velocity**: `Cartesian3`
 
-粒子速度向量。
+Particle velocity vector.

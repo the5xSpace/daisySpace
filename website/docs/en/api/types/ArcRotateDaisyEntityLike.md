@@ -8,11 +8,11 @@
 
 > **ArcRotateDaisyEntityLike** = `object`
 
-可作为环绕目标的 DaisyEntity 兼容结构。
+DaisyEntity-compatible structure that can be used as an orbit target.
 
-说明：
-- worldMatrix/getWorldMatrix/getCurrentMatrix/getMatrix/matrix 任意提供一种即可
-- 当 worldMatrix 不可用时，可通过 getState(time) 的 position 字段回退生成平移矩阵
+Description:
+- Any one of worldMatrix/getWorldMatrix/getCurrentMatrix/getMatrix/matrix is sufficient
+- When worldMatrix is unavailable, a translation matrix can be generated from the position field of getState(time)
 
 ## Properties
 

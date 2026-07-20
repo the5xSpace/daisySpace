@@ -8,7 +8,7 @@
 
 > **ModelDistanceFallbackPointOptions** = `Omit`\<[`PointComOptions`](../interfaces/PointComOptions.md), `"position"` \| `"show"`\> & `object`
 
-模型远距离降级点配置。
+Model long-distance fallback point configuration.
 
 ## Type Declaration
 
@@ -16,10 +16,10 @@
 
 > `optional` **enabled?**: `boolean`
 
-是否启用远距离降级点。
+Whether to enable long-distance fallback point.
 
 ### farMultiplier?
 
 > `optional` **farMultiplier?**: `number`
 
-远距离降级距离倍数。
+Long-distance fallback distance multiplier.

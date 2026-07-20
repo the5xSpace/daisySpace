@@ -8,10 +8,10 @@
 
 > **ArcRotateEntityLike** = `{ bodyAxis: object; boundingSphere: object; worldMatrix: Daisy.Matrix4 }`
 
-可作为环绕目标的“兼容对象”（偏底层风格）。
+A "compatible object" that can be used as an orbit target (lower-level style).
 
-最少需要：
-- worldMatrix：目标在世界坐标系下的变换
+Minimum requirements:
+- worldMatrix: the target's transformation in world coordinates
 
 ## Properties
 

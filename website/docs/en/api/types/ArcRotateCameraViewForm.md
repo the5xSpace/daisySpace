@@ -8,13 +8,13 @@
 
 > **ArcRotateCameraViewForm** = `object`
 
-环绕视角参数（球坐标 + roll）。
+Orbit view parameters (spherical coordinates + roll).
 
-约定：
-- theta：水平角（绕局部 Z 轴）
-- phi：俯仰角（限制在接近 ±90° 以内，避免奇异）
-- radius：距离（大于 0）
-- roll：绕视线方向滚转
+Conventions:
+- theta: horizontal angle (around local Z axis)
+- phi: pitch angle (limited to near ±90° to avoid singularity)
+- radius: distance (greater than 0)
+- roll: roll around the view direction
 
 ## Properties
 

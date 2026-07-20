@@ -6,7 +6,7 @@
 
 # Interface: EntityPositionShaderParamOptions
 
-实体位置动态参数配置。
+Entity position dynamic parameter configuration.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **fallback?**: `Cartesian3`
 
-实体位置不可用时的回退世界坐标。默认零向量。
+Fallback world coordinates when entity position is unavailable. Defaults to zero vector.
 
 ***
 
@@ -22,4 +22,4 @@
 
 > `optional` **unavailable?**: [`ShaderParamUnavailablePolicy`](../types/ShaderParamUnavailablePolicy.md)
 
-位置不可用时的处理策略。默认 `hold`。
+Policy when position is unavailable. Defaults to `hold`.

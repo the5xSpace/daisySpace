@@ -8,7 +8,7 @@
 
 > **TimePosition** = `{ position: object; time: number }`
 
-单个带时间戳的位置点。
+Single position point with timestamp.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > **position**: `object`
 
-xyz 坐标 单位米
+XYZ coordinates in meters
 
 #### x
 
@@ -36,4 +36,4 @@ xyz 坐标 单位米
 
 > **time**: `number`
 
-时间戳精确到毫秒
+Timestamp accurate to milliseconds

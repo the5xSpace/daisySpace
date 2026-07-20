@@ -8,7 +8,7 @@
 
 > **LinkTimeRange** = `{ start: JulianDate; end: JulianDate }`
 
-链路显示时间区间，包含开始时刻、不包含结束时刻。
+Link display time range, inclusive of start time, exclusive of end time.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > **end**: `JulianDate`
 
-区间结束时刻。
+Interval end time.
 
 ***
 
@@ -24,4 +24,4 @@
 
 > **start**: `JulianDate`
 
-区间开始时刻。
+Interval start time.

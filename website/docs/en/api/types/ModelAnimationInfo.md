@@ -8,7 +8,7 @@
 
 > **ModelAnimationInfo** = `{ index: number }`
 
-模型动画信息。
+Model animation information.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > **index**: `number`
 
-动画索引。
+Animation index.
 
 ***
 
@@ -24,4 +24,4 @@
 
 > `optional` **name?**: `string`
 
-动画名称。
+Animation name.

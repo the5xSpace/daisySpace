@@ -6,7 +6,7 @@
 
 # Class: DaisyGLSLError
 
-Daisy GLSL 转换错误，包含错误标识符在源码中的行列信息。
+Daisy GLSL transformation error, containing the row and column information of the error identifier in the source code.
 
 ## Extends
 
@@ -56,7 +56,7 @@ Daisy GLSL 转换错误，包含错误标识符在源码中的行列信息。
 
 > `readonly` **column**: `number`
 
-错误所在列，从 1 开始。
+Column where the error occurred, starting from 1.
 
 ***
 
@@ -64,7 +64,7 @@ Daisy GLSL 转换错误，包含错误标识符在源码中的行列信息。
 
 > `readonly` **line**: `number`
 
-错误所在行，从 1 开始。
+Row where the error occurred, starting from 1.
 
 ***
 

@@ -8,11 +8,11 @@
 
 > **toCesiumMaterial**(`material`): `Material` \| `undefined`
 
-将 Daisy 材质输入转换为内部渲染材质实例。
+Converts a Daisy material input to an internal rendering material instance.
 
-- 字符串：作为图片 URL 创建图片材质
-- 材质实例：复制为独立实例，避免共享对象被销毁
-- Daisy 颜色对象：创建纯色材质
+- String: creates an image material from a URL
+- Material instance: clones as an independent instance to avoid shared object destruction
+- Daisy color object: creates a solid color material
 
 ## Parameters
 
@@ -20,7 +20,7 @@
 
 [`DMaterial`](../types/DMaterial.md) \| `undefined`
 
-材质描述
+Material description
 
 ## Returns
 

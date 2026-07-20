@@ -8,13 +8,13 @@
 
 > **SimTimeValue**\<`T`\> = `T` \| ((`time`) => `T`) \| [`TimeSample`](TimeSample.md)\<`T`\>[] \| [`TimeSeries`](TimeSeries.md)\<`T`\>
 
-仿真时间值（推荐使用的语义名）。
+Simulation time value (recommended semantic name).
 
-支持四种输入方式：
-- 常量：`T`
-- 回调：`(time) => T`
-- 采样数组：`TimeSample<T>[]`
-- 采样对象：`TimeSeries<T>`
+Supports four input methods:
+- Constant: `T`
+- Callback: `(time) => T`
+- Sample array: `TimeSample<T>[]`
+- Sample object: `TimeSeries<T>`
 
 ## Type Parameters
 

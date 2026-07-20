@@ -8,12 +8,12 @@
 
 > **BaseObjectTransformTimeline** = `object`
 
-物理对象的局部变换时间采样配置。
+Local transform time-sampling configuration for physical objects.
 
-说明：
-- 支持常量、回调、采样数组、采样序列四种 `TimeValue` 形式
-- `translate` 为推荐字段名
-- `tanslate` 为历史兼容拼写
+Notes:
+- Supports four `TimeValue` forms: constant, callback, sample array, sample sequence
+- `translate` is the recommended field name
+- `tanslate` is a legacy compatibility spelling
 
 ## Properties
 

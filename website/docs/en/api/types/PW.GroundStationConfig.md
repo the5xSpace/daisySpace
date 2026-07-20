@@ -14,14 +14,14 @@
 
 > `optional` **antenna?**: [`GroundStationAntennaPointingOptions`](PW.GroundStationAntennaPointingOptions.md)
 
-天线节点控制配置。
+Antenna node control configuration.
 
 ### stationModel?
 
 > `optional` **stationModel?**: [`GroundStationPresetModel`](PW.GroundStationPresetModel.md) \| [`ModelOptions`](../interfaces/ModelOptions.md) \| `false`
 
-预设站型模型。
+Preset station model.
 
-- 不传：默认 dsn34
-- false：不自动挂载模型
-- ModelOptions：使用自定义模型
+- Not set: defaults to dsn34
+- false: do not auto-mount model
+- ModelOptions: use a custom model

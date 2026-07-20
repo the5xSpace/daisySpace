@@ -8,7 +8,7 @@
 
 > **SolidMaterialOptions** = `object`
 
-纯色材质配置。
+Solid color material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **alpha?**: `number`
 
-覆盖颜色自身透明度的 alpha 值，范围为 0 至 1。
+Alpha value overriding the color's own transparency, range 0 to 1.
 
 ***
 
@@ -24,4 +24,4 @@
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-基础颜色。默认白色。
+Base color. Defaults to white.

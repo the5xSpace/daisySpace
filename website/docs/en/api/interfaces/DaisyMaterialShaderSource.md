@@ -6,7 +6,7 @@
 
 # Interface: DaisyMaterialShaderSource
 
-由旧版显式包装 API 创建的 Daisy 材质 Shader 源码描述。
+Daisy material Shader source description created by the legacy explicit wrapper API.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `readonly` **kind**: `"daisy-material-glsl"`
 
-Daisy 材质源码描述的稳定识别标记。
+Stable identification tag for Daisy material source description.
 
 ***
 
@@ -22,4 +22,4 @@ Daisy 材质源码描述的稳定识别标记。
 
 > `readonly` **source**: `string`
 
-待转换的 Daisy GLSL 源码。
+Daisy GLSL source to convert.

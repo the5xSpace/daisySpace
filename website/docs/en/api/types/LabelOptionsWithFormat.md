@@ -8,7 +8,7 @@
 
 > **LabelOptionsWithFormat** = `object` & [`DaisyLabelOptions`](../interfaces/DaisyLabelOptions.md)
 
-带格式化回调的标签选项。
+Label options with formatting callback.
 
 ## Type Declaration
 
@@ -16,13 +16,13 @@
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Display distance condition.
 
 ### format?
 
 > `optional` **format?**: (`value`) => `string`
 
-自定义文本格式化函数。
+Custom text formatting function.
 
 #### Parameters
 

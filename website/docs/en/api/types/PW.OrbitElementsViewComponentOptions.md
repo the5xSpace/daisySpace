@@ -32,8 +32,8 @@
 
 > `optional` **earthTransparencyAlpha?**: `number`
 
-启用轨道元素视图时自动设置的地球透明度（0~1），默认 0.35。
-设为 1 则不透明（不修改地球透明度）。
+Earth transparency automatically set when orbit elements view is enabled (0~1), defaults to 0.35.
+Set to 1 for opaque (does not modify Earth transparency).
 
 ***
 
@@ -41,7 +41,7 @@
 
 > `optional` **equatorDiskMaterial?**: `Daisy.Color`
 
-赤道面填充色，默认半透明黄色
+Equatorial plane fill color, defaults to semi-transparent yellow
 
 ***
 
@@ -85,7 +85,7 @@
 
 > `optional` **orbitPlaneMaterial?**: `Daisy.Color`
 
-轨道面填充色，默认半透明青色
+Orbit plane fill color, defaults to semi-transparent cyan
 
 ***
 

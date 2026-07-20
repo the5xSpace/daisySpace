@@ -8,12 +8,12 @@
 
 > `const` **Spg4**: `SPG4`
 
-SGP4 工具单例。
+SGP4 utility singleton.
 
-提供：
-- TLE 获取（CelesTrak）与本地缓存
-- 轨道源归一化（TLE / OMM XML / JSON GP）
-- 基于 `jspredict-dc` 的 SGP4 传播（位置/星历/过境）
+Provides:
+- TLE retrieval (CelesTrak) and local cache
+- Orbit source normalization (TLE / OMM XML / JSON GP)
+- SGP4 propagation (position/ephemeris/pass) based on `jspredict-dc`
 
 ## Example
 

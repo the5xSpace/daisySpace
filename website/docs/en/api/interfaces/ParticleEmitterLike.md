@@ -6,7 +6,7 @@
 
 # Interface: ParticleEmitterLike
 
-粒子发射器接口。
+Particle emitter interface.
 
 ## Methods
 
@@ -14,7 +14,7 @@
 
 > **emit**(`particle`): `void`
 
-发射一个粒子。
+Emit a single particle.
 
 #### Parameters
 
@@ -22,7 +22,7 @@
 
 [`ParticleLike`](ParticleLike.md)
 
-待初始化的粒子对象（需写入 position 和 velocity）。
+The particle object to initialize (must write position and velocity).
 
 #### Returns
 
