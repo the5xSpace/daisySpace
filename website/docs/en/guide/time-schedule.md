@@ -1,25 +1,25 @@
-# 时间调度
+# Time Schedule
 
-仿真时间调度是航天仿真的核心需求之一。DaisySpace-Sdk 提供两类时间能力：
-1. **仿真时钟** — Engine 层的时间播放控制（已涵盖在 [Engine 引擎](/en/guide/engine#时间控制)）
-2. **任务调度** — `TimeSchedule` + `TimeTask` / `TimePointTask` 实现的时间驱动任务系统
+Simulation time scheduling is one of the core requirements of space simulation. DaisySpace-Sdk provides two types of time capabilities:
+1. **Simulation clock** — Engine-level time playback control (covered in [Engine](/en/guide/engine#time-control))
+2. **Task scheduling** — Time-driven task system implemented by `TimeSchedule` + `TimeTask` / `TimePointTask`
 
-本文档聚焦于**任务调度器**。
+This document focuses on the **task scheduler**.
 
-## 架构
+## Architecture
 
 ```
-Engine.timeSchedule  ──→  TimeSchedule（默认实例）
-Engine.createTimeSchedule() ──→  TimeSchedule（自定义实例）
+Engine.timeSchedule  ──→  TimeSchedule (default instance)
+Engine.createTimeSchedule() ──→  TimeSchedule (custom instance)
 
 TimeSchedule
-    ├── TimeTask[]     时间区间任务（有起止时间）
-    └── TimePointTask[] 时间点任务（单次触发）
+    ├── TimeTask[]     Time interval tasks (with start/end times)
+    └── TimePointTask[] Time point tasks (single trigger)
 ```
 
-Engine 在构造函数中自动创建一个 `timeSchedule` 实例，每帧在 `RenderLoopManager` 中调用 `schedule.update(currentTime)`。如果需要独立的调度器（例如在特定 Entity 或 BaseObject 内使用），可以调用 `engine.createTimeSchedule()` 创建新实例。
+Engine automatically creates a `timeSchedule` instance in the constructor, calling `schedule.update(currentTime)` each frame in `RenderLoopManager`. For independent schedulers (e.g., within a specific Entity or BaseObject), call `engine.createTimeSchedule()` to create a new instance.
 
-## TimeTask — 时间区间任务
+## TimeTask — Time Interval Task
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -49,42 +49,42 @@ const task = new Daisy.TimeTask({
 schedule.add(task)
 ```
 
-`TimeTask` 构造参数：
+`TimeTask` constructor parameters:
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `id` | `string` | 任务唯一标识 |
-| `name` | `string` | 任务显示名称 |
-| `startJulianTime` | `JulianDate` | 开始时间 |
-| `endJulianTime` | `JulianDate` | 结束时间 |
-| `onEnter` | `TimeTaskHandler` | 进入区间时触发一次 |
-| `onTick` | `TimeTaskHandler` | 在区间内每帧触发 |
-| `onLeave` | `TimeTaskHandler` | 离开区间时触发一次 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `id` | `string` | Task unique identifier |
+| `name` | `string` | Task display name |
+| `startJulianTime` | `JulianDate` | Start time |
+| `endJulianTime` | `JulianDate` | End time |
+| `onEnter` | `TimeTaskHandler` | Triggered once when entering the interval |
+| `onTick` | `TimeTaskHandler` | Triggered each frame within the interval |
+| `onLeave` | `TimeTaskHandler` | Triggered once when leaving the interval |
 
-回调参数（4 个）：
-- `curTime` — 当前仿真时间
-- `ctx` — 上下文对象（Engine 实例）
-- `getStartOffset()` — 当前时间相对开始时间的秒偏移
-- `getEndOffset()` — 当前时间相对结束时间的秒偏移
+Callback parameters (4):
+- `curTime` — Current simulation time
+- `ctx` — Context object (Engine instance)
+- `getStartOffset()` — Seconds offset of current time relative to start time
+- `getEndOffset()` — Seconds offset of current time relative to end time
 
-### 状态流转
+### State Flow
 
 ```
-idle  ──(进入区间)──→  entered  ──(首帧 onTick)──→  active  ──(离开区间)──→  finished
-  ↑                                                                              │
-  └────────────────(loop 回退到开始之前)──────────────────────────────────────────┘
+idle  ──(enter interval)──→  entered  ──(first onTick)──→  active  ──(leave interval)──→  finished
+  ↑                                                                                        │
+  └────────────────(loop falls back before start)──────────────────────────────────────────┘
 ```
 
-| 状态 | 含义 |
-|------|------|
-| `idle` | 未进入区间 |
-| `entered` | 刚进入区间（`onEnter` 已触发，`onTick` 尚未） |
-| `active` | 正在区间内执行 |
-| `finished` | 已离开区间 |
+| State | Meaning |
+|-------|---------|
+| `idle` | Not yet entered the interval |
+| `entered` | Just entered the interval (`onEnter` triggered, `onTick` not yet) |
+| `active` | Currently executing within the interval |
+| `finished` | Has left the interval |
 
-## TimePointTask — 时间点任务
+## TimePointTask — Time Point Task
 
-在仿真时间到达指定时间点时触发一次：
+Triggered once when the simulation time reaches the specified time point:
 
 ```typescript
 const triggerTime = Daisy.JulianDate.addSeconds(startTime, 30 * 60, new Daisy.JulianDate())
@@ -101,18 +101,18 @@ const pointTask = new Daisy.TimePointTask({
 schedule.addPoint(pointTask)
 ```
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `id` | `string` | 唯一标识 |
-| `name` | `string` | 显示名称 |
-| `timeJulianTime` | `JulianDate` | 触发时间点 |
-| `onTrigger` | `TimePointTaskHandler` | 到达时触发一次 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `id` | `string` | Unique identifier |
+| `name` | `string` | Display name |
+| `timeJulianTime` | `JulianDate` | Trigger time point |
+| `onTrigger` | `TimePointTaskHandler` | Triggered once when reached |
 
-状态：`idle` → `triggered`（仅一次）。
+State: `idle` → `triggered` (once only).
 
-## 调度器管理
+## Scheduler Management
 
-`engine.timeSchedule` 是默认调度器，但也可以创建独立调度器：
+`engine.timeSchedule` is the default scheduler, but independent schedulers can also be created:
 
 ```typescript
 // 使用默认调度器
@@ -133,7 +133,7 @@ schedule.clear()            // 清空全部
 schedule.getTasks()         // 获取所有区间任务（只读）
 ```
 
-## 状态变更监听
+## Status Change Listener
 
 ```typescript
 schedule.onTaskStatusChange(({ task, prevStatus, currentStatus }) => {
@@ -143,11 +143,11 @@ schedule.onTaskStatusChange(({ task, prevStatus, currentStatus }) => {
 schedule.offTaskStatusChange(handler)  // 取消订阅
 ```
 
-此事件在状态转换时触发（微任务调度），常用于驱动 UI 组件（如 `TaskTimeLineWidget`、`TaskGanttWidget`）更新。
+This event is triggered on state transitions (microtask scheduling), commonly used to drive UI components (like `TaskTimeLineWidget`, `TaskGanttWidget`) updates.
 
-## 可视化组件
+## Visualization Components
 
-调度器可配合内置可视化 Widget 使用：
+The scheduler can be used with built-in visualization Widgets:
 
 ```typescript
 // 时间线进度
@@ -164,25 +164,25 @@ engine.addWidget(new Daisy.TaskGanttWidget(schedule, {
 }))
 ```
 
-## 调度器与仿真时钟的关系
+## Scheduler and Simulation Clock Relationship
 
-- 调度器**不控制**仿真时钟——它只**响应**仿真时钟。
-- Engine 的渲染循环每帧调用 `schedule.update(engine.getCurrentTime())`。
-- 仿真时间由 `engine.play()` / `engine.setMultiplier()` / `engine.setCurrentTime()` 驱动。
-- 调度器的任务回调通过**微任务队列**调度执行，异常自动捕获，不会中断调度器。
+- The scheduler does **not control** the simulation clock — it only **responds to** it.
+- The Engine's render loop calls `schedule.update(engine.getCurrentTime())` each frame.
+- Simulation time is driven by `engine.play()` / `engine.setMultiplier()` / `engine.setCurrentTime()`.
+- Scheduler task callbacks are executed via the **microtask queue**, with errors automatically caught, so they won't interrupt the scheduler.
 
-## 常见陷阱
+## Common Pitfalls
 
-> **陷阱 1 — 调度器依赖仿真时间**：仿真时间必须在 `TimeTask` 的 `[startJulianTime, endJulianTime]` 区间内任务才会触发。确保 `engine.setSceneTime()` 的范围覆盖任务时间。
+> **Pitfall 1 — Scheduler depends on simulation time**: The simulation time must be within `TimeTask`'s `[startJulianTime, endJulianTime]` interval for the task to trigger. Ensure `engine.setSceneTime()`'s range covers the task time.
 >
-> **陷阱 2 — loop 模式下的状态重置**：当 `setSceneTime(start, stop, true)` 启用循环时，`TimeSchedule` 在仿真时间跳回区间之前会自动将 `finished` 状态重置为 `idle`，保证每次循环都能重新触发任务。
+> **Pitfall 2 — State reset in loop mode**: When `setSceneTime(start, stop, true)` enables loop, `TimeSchedule` automatically resets `finished` state to `idle` before the simulation time jumps back to the interval, ensuring the task can re-trigger each cycle.
 >
-> **陷阱 3 — `engine.clock` 陷阱的延续**：如果 `engine.clock` 未正确同步（见 [Engine 陷阱](/en/guide/engine)），调度器从 `engine.getCurrentTime()` 读取的可能是实时时间而非仿真时间，导致任务永远无法匹配。
+> **Pitfall 3 — `engine.clock` issue**: If `engine.clock` is not properly synchronized (see [Engine Pitfalls](/en/guide/engine)), the scheduler may read real time instead of simulation time from `engine.getCurrentTime()`, causing tasks to never match.
 
 
 ---
 
 <!--
-  示例参考: [TimeSchedule.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/TimeSchedule.svelte)
+示例参考: [TimeSchedule.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/TimeSchedule.svelte)
   评分配额: API 30/30 | 概念 25/25 | 示例 20/20 | 陷阱 15/15 | 结构 10/10 → 100/100
 -->
