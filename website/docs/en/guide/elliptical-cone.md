@@ -1,8 +1,8 @@
-# 椭圆锥
+# Elliptical Cone
 
-[EllipticalConeFeature](/en/api/classes/EllipticalConeFeature) 是一个椭圆锥/椭圆台图元组件，基于 [EllipticConeGeometry](/en/api/classes/EllipticConeGeometry) 构建。X/Y 轴开口角可独立设置，常被 Sensor 组件用于渲染波束体积。
+[EllipticalConeFeature](/en/api/classes/EllipticalConeFeature) is an elliptical cone/truncated cone primitive component, built on [EllipticConeGeometry](/en/api/classes/EllipticConeGeometry). The X/Y aperture angles can be set independently, and it is commonly used by the Sensor component for rendering beam volumes.
 
-## 基础用法
+## Basic Usage
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -21,9 +21,9 @@ entity.addFeature(new Daisy.EllipticalConeFeature({
 }))
 ```
 
-## X/Y 独立开角
+## X/Y Independent Aperture
 
-椭圆锥的核心特点是 **顶面和底面各有两个独立轴半径**，可以创建椭圆形截面：
+The core feature of the elliptical cone is that **the top and bottom surfaces each have two independent axis radii**, allowing elliptical cross-sections:
 
 ```typescript
 // 顶部小端（靠近实体）
@@ -35,38 +35,37 @@ bottomSemiMajorAxis: 260000, // 长半轴（米）
 bottomSemiMinorAxis: 120000, // 短半轴（米）
 ```
 
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `topSemiMajorAxis` | `1` | 顶面长半轴（米） |
-| `topSemiMinorAxis` | `1` | 顶面短半轴（米） |
-| `bottomSemiMajorAxis` | `100` | 底面长半轴（米） |
-| `bottomSemiMinorAxis` | `50` | 底面短半轴（米） |
-| `slices` | `64` | 截面分割数（越大越圆滑，开销更大） |
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `topSemiMajorAxis` | `1` | Top semi-major axis (meters) |
+| `topSemiMinorAxis` | `1` | Top semi-minor axis (meters) |
+| `bottomSemiMajorAxis` | `100` | Bottom semi-major axis (meters) |
+| `bottomSemiMinorAxis` | `50` | Bottom semi-minor axis (meters) |
+| `slices` | `64` | Cross-section divisions (higher = smoother, more expensive) |
 
-若四个半径参数设为相同值，则退化为圆锥。
+If all four radius parameters are set to the same value, it degenerates into a cone.
 
-## 发射方向（emitDirection）
+## Emit Direction
 
-`emitDirection` 控制锥体的中心轴朝向和旋转枢轴位置，决定了椎体从实体位置向哪个方向延伸：
+`emitDirection` controls the cone's central axis orientation and rotation pivot position, determining the direction in which the cone extends from the entity position:
 
-| 值 | 对齐方式 | 典型场景 |
-|------|----------|----------|
-| `TO_GROUND` | 实体位置为顶部，向地表方向延伸 | 卫星对地波束 |
-| `CENTER` | 实体位置与锥体中心重合，绕中心旋转 | 自由朝向传感器 |
-| `TO_UP` | 实体位置为底部，向上延伸 | 地面站对空 |
-| `TO_BOTTOM` | 实体位置为顶部，向下方（-Z）延伸 | 飞机对地 |
-| `TO_FRONT` | 实体位置为底部，向前方（+X）延伸 | 车辆前视 |
-| `TO_AFTER` | 实体位置为底部，向后方（-X）延伸 | 后视传感器 |
-| `TO_LEFT` | 实体位置为底部，向左侧（+Y）延伸 | 侧视 |
-| `TO_RIGHT` | 实体位置为底部，向右侧（-Y）延伸 | 侧视 |
+| Value | Alignment | Typical Scenario |
+|-------|-----------|------------------|
+| `TO_GROUND` | Entity position at top, extends toward ground | Satellite ground beam |
+| `CENTER` | Entity position coincides with cone center, rotates around center | Free-orientation sensor |
+| `TO_UP` | Entity position at bottom, extends upward | Ground station skyward |
+| `TO_BOTTOM` | Entity position at top, extends downward (-Z) | Aircraft ground-facing |
+| `TO_FRONT` | Entity position at bottom, extends forward (+X) | Vehicle front-facing |
+| `TO_AFTER` | Entity position at bottom, extends backward (-X) | Rear-view sensor |
+| `TO_LEFT` | Entity position at bottom, extends left (+Y) | Side-view |
+| `TO_RIGHT` | Entity position at bottom, extends right (-Y) | Side-view |
 
-不同方向下，**旋转枢轴位置**不同：
+The **rotation pivot position** differs by direction:
+- `TO_GROUND`: Cone apex at entity position, rotates around this point
+- `CENTER`: Cone center at entity position, rotates around center
+- `TO_UP` / `TO_FRONT` etc.: Cone base point at entity position, rotates around this point
 
-- `TO_GROUND`：椎体顶点在实体位置，绕该点旋转
-- `CENTER`：椎体中心在实体位置，绕中心旋转
-- `TO_UP` / `TO_FRONT` 等：椎体底点在实体位置，绕该点旋转
-
-## 高度与自适应
+## Height and Auto-Length
 
 ```typescript
 // 固定高度
@@ -77,16 +76,16 @@ autoLength: false,
 autoLength: true,
 ```
 
-当 `autoLength: true` 时，锥体会根据运行态（如地表射线求交）动态更新高度，适合需要精确贴合地形/地面的场景。
+When `autoLength: true`, the cone dynamically updates its height based on runtime conditions (e.g., surface ray intersection), suitable for scenarios requiring precise terrain/ground alignment.
 
-## 封顶与封底
+## Top and Bottom Caps
 
 ```typescript
 capTop: true,     // 是否封闭顶面（默认 true）
 capBottom: true,  // 是否封闭底面（默认 true）
 ```
 
-## 轮廓与材质
+## Outline and Material
 
 ```typescript
 new Daisy.EllipticalConeFeature({
@@ -98,11 +97,11 @@ new Daisy.EllipticalConeFeature({
 })
 ```
 
-材质支持 `DMaterial` 或颜色（`DColor` / CSS 色值字符串）。轮廓线会随相机距离自动调整粗细（`outlineUpdateByCamera: true`）。
+Material supports `DMaterial` or colors (`DColor` / CSS color string). Outline width auto-adjusts with camera distance (`outlineUpdateByCamera: true`).
 
-## 动态旋转
+## Dynamic Rotation
 
-每个 Feature 自带 `transformer`，可通过 `setRotation()` 动态控制椎体朝向：
+Each Feature has a built-in `transformer`, which can dynamically control the cone's orientation via `setRotation()`:
 
 ```typescript
 const cone = new Daisy.EllipticalConeFeature({ /* ... */ })
@@ -118,11 +117,11 @@ engine.onPreRender(() => {
 })
 ```
 
-旋转效果取决于 `emitDirection` 设置的枢轴位置——例如 `TO_GROUND` 模式下椎体会绕顶点摆动，`CENTER` 模式下绕中心旋转，`TO_UP` 模式下绕底点摆动。
+The rotation effect depends on the pivot position set by `emitDirection` — for example, in `TO_GROUND` mode, the cone swings around its apex; in `CENTER` mode, it rotates around the center; in `TO_UP` mode, it swings around the base point.
 
-## Body Axis 辅助调试
+## Body Axis Debugging
 
-在为椎体做方向调试时，可通过实体的 `setBodyAxis()` 开启体轴可视化：
+When debugging the cone's orientation, enable body axis visualization via the entity's `setBodyAxis()`:
 
 ```typescript
 entity.setBodyAxis({
@@ -135,33 +134,33 @@ entity.setBodyAxis({
 })
 ```
 
-结合 `PointFeature` 标记实体位置，可以直观确认锥体的旋转枢轴和朝向是否正确。
+Combined with `PointFeature` to mark the entity position, you can intuitively verify whether the cone's rotation pivot and orientation are correct.
 
-## 参数表
+## Parameter Table
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `topSemiMajorAxis` | `number` | `1` | 顶面长半轴（米） |
-| `topSemiMinorAxis` | `number` | `1` | 顶面短半轴（米） |
-| `bottomSemiMajorAxis` | `number` | `100` | 底面长半轴（米） |
-| `bottomSemiMinorAxis` | `number` | `50` | 底面短半轴（米） |
-| `height` | `number` | `100` | 高度（米） |
-| `emitDirection` | `EmitDirection` | `TO_UP` | 发射方向/对齐基准 |
-| `autoLength` | `boolean` | `false` | 是否动态计算高度 |
-| `slices` | `number` | `64` | 截面分割数 |
-| `capTop` | `boolean` | `true` | 是否封顶 |
-| `capBottom` | `boolean` | `true` | 是否封底 |
-| `material` | `DMaterial` | — | 材质（优先于 `color`） |
-| `color` | `DColor` | `Color.BLUE.withAlpha(0.5)` | 颜色（`material` 未指定时） |
-| `outline` | `boolean` | `false` | 是否绘制轮廓线 |
-| `outlineColor` | `DColor` | — | 轮廓颜色 |
-| `outlineWidth` | `number` | `1` | 轮廓宽度（像素） |
-| `show` | `boolean` | `true` | 显隐 |
-| `fill` | `boolean` | `true` | 是否填充面 |
-| `numberOfVerticalLines` | `number` | `0` | 垂直线条数量（线框辅助） |
-| `position` | `Cartesian3` | — | 相对实体坐标偏移 |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | 距离显示条件 |
-| `vertexFormat` | `VertexFormat` | `POSITION_AND_NORMAL` | 顶点格式 |
-| `shadows` | `ShadowMode` | — | 阴影模式 |
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `topSemiMajorAxis` | `number` | `1` | Top semi-major axis (meters) |
+| `topSemiMinorAxis` | `number` | `1` | Top semi-minor axis (meters) |
+| `bottomSemiMajorAxis` | `number` | `100` | Bottom semi-major axis (meters) |
+| `bottomSemiMinorAxis` | `number` | `50` | Bottom semi-minor axis (meters) |
+| `height` | `number` | `100` | Height (meters) |
+| `emitDirection` | `EmitDirection` | `TO_UP` | Emit direction / alignment reference |
+| `autoLength` | `boolean` | `false` | Whether to dynamically compute height |
+| `slices` | `number` | `64` | Cross-section divisions |
+| `capTop` | `boolean` | `true` | Whether to cap the top |
+| `capBottom` | `boolean` | `true` | Whether to cap the bottom |
+| `material` | `DMaterial` | — | Material (overrides `color`) |
+| `color` | `DColor` | `Color.BLUE.withAlpha(0.5)` | Color (when `material` is not specified) |
+| `outline` | `boolean` | `false` | Whether to draw outline |
+| `outlineColor` | `DColor` | — | Outline color |
+| `outlineWidth` | `number` | `1` | Outline width (pixels) |
+| `show` | `boolean` | `true` | Visibility |
+| `fill` | `boolean` | `true` | Whether to fill the face |
+| `numberOfVerticalLines` | `number` | `0` | Number of vertical lines (wireframe helper) |
+| `position` | `Cartesian3` | — | Relative entity coordinate offset |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Distance display condition |
+| `vertexFormat` | `VertexFormat` | `POSITION_AND_NORMAL` | Vertex format |
+| `shadows` | `ShadowMode` | — | Shadow mode |
 
-> **相关 API**：[EllipticalConeFeature](/en/api/classes/EllipticalConeFeature) · [EllipticConeGeometry](/en/api/classes/EllipticConeGeometry)
+> **Related API**: [EllipticalConeFeature](/en/api/classes/EllipticalConeFeature) · [EllipticConeGeometry](/en/api/classes/EllipticConeGeometry)
