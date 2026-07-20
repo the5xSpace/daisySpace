@@ -1,22 +1,22 @@
-# 地面覆盖
+# Ground Coverage
 
-地面覆盖类 Feature 用于将多边形区域、热力数据和 GeoJSON 数据渲染为地球表面的彩色覆盖层。
+Ground coverage Features are used to render polygon areas, heatmap data, and GeoJSON data as colored overlay layers on the Earth's surface.
 
-## Feature 选型
+## Feature Selection
 
-| 需求 | Feature | 说明 |
-|------|---------|------|
-| 批量不规则多边形覆盖 | `CoverageAreaFeature` | 硬件加速栅格化，适合大规模多边形 |
-| 热力密度分布 | `HeatmapFeature` | 从散点生成热力图，支持地理遮罩 |
-| GeoJSON 数据导入 | `GeoJsonFeature` | 从 URL 加载 GeoJSON，自动解析渲染 |
+| Requirement | Feature | Description |
+|-------------|---------|-------------|
+| Batch irregular polygon coverage | `CoverageAreaFeature` | Hardware-accelerated rasterization, suitable for large-scale polygons |
+| Heat density distribution | `HeatmapFeature` | Generates heatmap from scatter points, supports geographic masking |
+| GeoJSON data import | `GeoJsonFeature` | Loads GeoJSON from URL, auto-parses and renders |
 
 ---
 
 ## CoverageAreaFeature
 
-`CoverageAreaFeature` 将多个不规则经纬度多边形以各自颜色栅格化为地面覆盖叠加在地球表面。内部使用 Canvas 2D 逐环 `beginPath/closePath/fill` 实现硬件加速栅格化。
+`CoverageAreaFeature` rasterizes multiple irregular latitude/longitude polygons with individual colors as ground coverage overlays on the Earth's surface. It uses Canvas 2D per-ring `beginPath/closePath/fill` for hardware-accelerated rasterization.
 
-### 基础用法
+### Basic Usage
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -47,16 +47,16 @@ entity.addFeature(new Daisy.CoverageAreaFeature({
 }))
 ```
 
-### polygons 格式
+### polygons Format
 
-`polygons` 是 `{ ring, color }` 数组，每项定义一个独立的多边形区域：
+`polygons` is an array of `{ ring, color }`, each defining an independent polygon area:
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `ring` | `[lng, lat][]` | 多边形顶点序列（经纬度坐标，闭合成环） |
-| `color` | `string` | 填充颜色（CSS 颜色字符串，如 `rgba(...)` 或 `hsl(...)`） |
+| Field | Type | Description |
+|-------|------|-------------|
+| `ring` | `[lng, lat][]` | Polygon vertex sequence (longitude/latitude coordinates, closed loop) |
+| `color` | `string` | Fill color (CSS color string, e.g., `rgba(...)` or `hsl(...)`) |
 
-### 动态更新
+### Dynamic Updates
 
 ```typescript
 // 更新全部多边形
@@ -71,11 +71,11 @@ feature.setOutline(2, "rgba(0, 255, 0, 0.9)")
 feature.setResolution(12)   // 12px/°
 ```
 
-`setResolution` 与 `setOutline` 的变更会立即生效，无需重新传入多边形数据。
+Changes to `setResolution` and `setOutline` take effect immediately without needing to re-pass polygon data.
 
-### 省份边界加载（35 省 195 环）
+### Province Boundary Loading (35 Provinces, 195 Rings)
 
-CoverageAreaFeature 支持大规模多边形加载。以下示例叠加中国各省份精确边界和数千个随机多边形：
+CoverageAreaFeature supports large-scale polygon loading. The following example overlays precise Chinese province boundaries and thousands of random polygons:
 
 ```typescript
 import { CHINA_PROVINCES } from "./chinaProvinces"
@@ -96,36 +96,36 @@ const feature = new Daisy.CoverageAreaFeature({
 entity.addFeature(feature)
 ```
 
-省份数据来源：DataV GeoJSON，共 35 个省，195 个多边形环。
+Province data source: DataV GeoJSON, 35 provinces, 195 polygon rings.
 
-### 分辨率与性能
+### Resolution and Performance
 
-`resolution`（单位：`px/°`）控制栅格 Canvas 的精度。值越高图像越清晰，但显存和绘制开销越大。建议范围 4~16：
+`resolution` (unit: `px/°`) controls the raster Canvas precision. Higher values yield sharper images but increase memory and rendering cost. Recommended range: 4~16:
 
-- 低分辨率（4~8）：适合高密度大量多边形，保证帧率
-- 高分辨率（12~16）：适合精细边界渲染（如省份边界）
+- Low resolution (4~8): Suitable for high-density large polygon sets, maintains frame rate
+- High resolution (12~16): Suitable for fine boundary rendering (e.g., province boundaries)
 
-> **注意：** 栅格化后为纹理，无法像矢量一样无极缩放。动态分辨率通过 `setResolution()` 即时重绘。
+> **Note:** After rasterization, it becomes a texture and cannot be scaled infinitely like vectors. Dynamic resolution is achieved via `setResolution()` for immediate redraw.
 
-### 参数表
+### Parameter Table
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `polygons` | `{ ring, color }[]` | `[]` | 多边形数组 |
-| `opacity` | `number` | `1` | 全局透明度 |
-| `resolution` | `number` | `8` | 栅格精度（px/°），范围建议 4~16 |
-| `outlineWidth` | `number` | `0` | 描边宽度（像素） |
-| `outlineColor` | `string` | `"rgba(0,0,0,1)"` | 描边颜色（CSS 字符串） |
-| `minVisible` | `number` | `0.01` | 最小可见分辨率阈值 |
-| `name` | `string` | — | 名称 |
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `polygons` | `{ ring, color }[]` | `[]` | Polygon array |
+| `opacity` | `number` | `1` | Global transparency |
+| `resolution` | `number` | `8` | Raster precision (px/°), recommended range 4~16 |
+| `outlineWidth` | `number` | `0` | Outline width (pixels) |
+| `outlineColor` | `string` | `"rgba(0,0,0,1)"` | Outline color (CSS string) |
+| `minVisible` | `number` | `0.01` | Minimum visible resolution threshold |
+| `name` | `string` | — | Name |
 
 ---
 
 ## HeatmapFeature
 
-`HeatmapFeature` 将散点数据渲染为热力覆盖图。原始数据通过 `grid` 描述符传入，包含点数组、地理范围和扩散半径。
+`HeatmapFeature` renders scatter point data as a heatmap overlay. The raw data is passed via a `grid` descriptor containing the point array, geographic region, and spread radius.
 
-### 基础用法
+### Basic Usage
 
 ```typescript
 entity.addFeature(new Daisy.HeatmapFeature({
@@ -148,15 +148,15 @@ entity.addFeature(new Daisy.HeatmapFeature({
 }))
 ```
 
-### grid 描述符
+### grid Descriptor
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `points` | `{ lng, lat, value }[]` | 热力点数组：`lng` 为经度，`lat` 为纬度，`value` 为权重 |
-| `region` | `{ westLon, southLat, eastLon, northLat }` | 热力渲染区域边界 |
-| `spread` | `number` | 单点热力扩散半径（度） |
+| Field | Type | Description |
+|-------|------|-------------|
+| `points` | `{ lng, lat, value }[]` | Heat point array: `lng` is longitude, `lat` is latitude, `value` is weight |
+| `region` | `{ westLon, southLat, eastLon, northLat }` | Heatmap rendering region boundary |
+| `spread` | `number` | Single point heat spread radius (degrees) |
 
-### 色标配置
+### Color Scale Configuration
 
 ```typescript
 // 预设色标
@@ -185,11 +185,11 @@ new Daisy.HeatmapFeature({
 })
 ```
 
-自定义色标时 `colorScheme` 必须设为 `"custom"`，`colors` 数组定义从低值到高值的颜色渐变序列。
+When using a custom color scale, `colorScheme` must be set to `"custom"`, and the `colors` array defines the gradient sequence from low to high values.
 
-### 地理遮罩
+### Geographic Masking
 
-通过 `masks` 数组可将热力图裁剪到指定地理区域，例如仅在陆地上显示：
+The `masks` array can clip the heatmap to specified geographic areas, e.g., displaying only over land:
 
 ```typescript
 // 加载陆地边界 GeoJSON 作为遮罩
@@ -206,14 +206,14 @@ new Daisy.HeatmapFeature({
 })
 ```
 
-| 遮罩字段 | 类型 | 说明 |
-|----------|------|------|
-| `geojson` | `object` | GeoJSON 几何数据 |
-| `type` | `"hideInside" \| "hideOutside"` | 遮罩类型；省略时使用默认行为 |
+| Mask Field | Type | Description |
+|------------|------|-------------|
+| `geojson` | `object` | GeoJSON geometry data |
+| `type` | `"hideInside" \| "hideOutside"` | Mask type; uses default behavior when omitted |
 
-### 外部数据加载
+### External Data Loading
 
-完整示例：加载人口密度点数据并配合陆地遮罩渲染全球人口热力图：
+Complete example: Loading population density point data with land mask to render a global population heatmap:
 
 ```typescript
 const [points, landGeoJSON] = await Promise.all([
@@ -234,24 +234,24 @@ entity.addFeature(new Daisy.HeatmapFeature({
 }))
 ```
 
-### 参数表
+### Parameter Table
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `grid` | `{ points, region, spread }` | — | 热力网格描述符 |
-| `colorScheme` | `"thermal" \| "viridis" \| "blue-red" \| "custom"` | `"thermal"` | 色标方案 |
-| `colors` | `DColor[]` | — | 自定义色标数组（`colorScheme: "custom"` 时必填） |
-| `masks` | `{ geojson, type }[]` | `[]` | 遮罩配置数组 |
-| `opacity` | `number` | `1` | 全局透明度 |
-| `name` | `string` | — | 名称 |
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `grid` | `{ points, region, spread }` | — | Heatmap grid descriptor |
+| `colorScheme` | `"thermal" \| "viridis" \| "blue-red" \| "custom"` | `"thermal"` | Color scale scheme |
+| `colors` | `DColor[]` | — | Custom color scale array (required when `colorScheme: "custom"`) |
+| `masks` | `{ geojson, type }[]` | `[]` | Mask configuration array |
+| `opacity` | `number` | `1` | Global transparency |
+| `name` | `string` | — | Name |
 
 ---
 
 ## GeoJsonFeature
 
-`GeoJsonFeature` 从 URL 异步加载 GeoJSON 数据，自动解析多边形并委托内部 `CoverageAreaFeature` 渲染。支持 FeatureCollection、Feature、MultiPolygon 等 GeoJSON 类型，可从 properties 中提取标签文字。
+`GeoJsonFeature` asynchronously loads GeoJSON data from a URL, automatically parses polygons, and delegates rendering to an internal `CoverageAreaFeature`. It supports FeatureCollection, Feature, MultiPolygon, and other GeoJSON types, and can extract label text from properties.
 
-### 基础用法
+### Basic Usage
 
 ```typescript
 const feature = new Daisy.GeoJsonFeature({
@@ -285,20 +285,20 @@ await feature.loadFromUrl("/data/ne_110m_admin_0_countries.geojson", (polygons, 
 
 ### loadFromUrl(url, callback)
 
-`loadFromUrl` 是 GeoJsonFeature 的核心方法，负责异步加载和解析：
+`loadFromUrl` is the core method of GeoJsonFeature, responsible for asynchronous loading and parsing:
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `url` | `string` | GeoJSON 文件的 URL 路径 |
-| `callback` | `(polygons, options) => { polygons, options }` | 返回修改后的 polygons 和 options |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `url` | `string` | URL path to the GeoJSON file |
+| `callback` | `(polygons, options) => { polygons, options }` | Returns modified polygons and options |
 
-回调接收两个参数：
-- `polygons`：解析后的多边形数组（`{ ring, color }[]` 格式，直接传递给内部 CoverageAreaFeature）
-- `options`：当前渲染选项（`{ outlineWidth, outlineColor, opacity }`）
+The callback receives two parameters:
+- `polygons`: Parsed polygon array (`{ ring, color }[]` format, directly passed to the internal CoverageAreaFeature)
+- `options`: Current render options (`{ outlineWidth, outlineColor, opacity }`)
 
-回调必须返回 `{ polygons, options }` 对象，可在此处按国家属性修改颜色、调整样式。
+The callback must return a `{ polygons, options }` object, where you can modify colors and adjust styles based on country properties.
 
-### 样式控制
+### Style Control
 
 ```typescript
 // 动态更新描边
@@ -308,11 +308,11 @@ feature.setOutline(1.5, "rgba(0, 255, 200, 0.8)")
 feature.setOpacity(0.6)
 ```
 
-`setOutline` 和 `setOpacity` 的底层委托给内部 `CoverageAreaFeature`，与直接使用 CoverageAreaFeature 行为一致。
+`setOutline` and `setOpacity` delegate to the internal `CoverageAreaFeature`, behaving identically to direct CoverageAreaFeature usage.
 
-### 标签渲染
+### Label Rendering
 
-通过 `label` 选项可从 GeoJSON properties 中自动提取标签文字并渲染：
+The `label` option can automatically extract label text from GeoJSON properties and render it:
 
 ```typescript
 new Daisy.GeoJsonFeature({
@@ -330,25 +330,25 @@ new Daisy.GeoJsonFeature({
 })
 ```
 
-标签文字由 GeoJSON 的 `properties` 字段中的 `name` 或 `admin` 等属性自动映射。
+Label text is automatically mapped from properties like `name` or `admin` in the GeoJSON `properties` field.
 
-### 支持的 GeoJSON 类型
+### Supported GeoJSON Types
 
-| 类型 | 说明 |
-|------|------|
-| `FeatureCollection` | 标准要素集合，最常见的数据格式 |
-| `Feature` | 单个要素 |
-| `MultiPolygon` | 多多边形（含孔洞的复杂区域） |
+| Type | Description |
+|------|-------------|
+| `FeatureCollection` | Standard feature collection, the most common data format |
+| `Feature` | Single feature |
+| `MultiPolygon` | Multi-polygon (complex areas with holes) |
 
-### 参数表
+### Parameter Table
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `outlineWidth` | `number` | `1` | 描边宽度（像素） |
-| `outlineColor` | `string` | — | 描边颜色（CSS 字符串） |
-| `opacity` | `number` | `1` | 全局透明度 |
-| `resolution` | `number` | `8` | 内部 CoverageAreaFeature 栅格精度（px/°） |
-| `label` | `{ show, font, fillColor, outlineColor, outlineWidth }` | — | 标签配置 |
-| `name` | `string` | — | 名称 |
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `outlineWidth` | `number` | `1` | Outline width (pixels) |
+| `outlineColor` | `string` | — | Outline color (CSS string) |
+| `opacity` | `number` | `1` | Global transparency |
+| `resolution` | `number` | `8` | Internal CoverageAreaFeature raster precision (px/°) |
+| `label` | `{ show, font, fillColor, outlineColor, outlineWidth }` | — | Label configuration |
+| `name` | `string` | — | Name |
 
-> **相关 API**：[CoverageAreaFeature](/en/api/classes/CoverageAreaFeature) · [HeatmapFeature](/en/api/classes/HeatmapFeature) · [GeoJsonFeature](/en/api/classes/GeoJsonFeature)
+> **Related API**: [CoverageAreaFeature](/en/api/classes/CoverageAreaFeature) · [HeatmapFeature](/en/api/classes/HeatmapFeature) · [GeoJsonFeature](/en/api/classes/GeoJsonFeature)
