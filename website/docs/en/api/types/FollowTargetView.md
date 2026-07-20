@@ -14,7 +14,7 @@
 
 > `optional` **distance?**: `number`
 
-相机到目标的距离，单位为米；未设置时由目标范围和当前相机状态推导。
+Distance from camera to target, in meters; derived from target range and current camera state when not set.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **headingDeg?**: `number`
 
-环绕目标的航向角，单位为度。
+Heading angle around the target, in degrees.
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **pitchDeg?**: `number`
 
-环绕目标的俯仰角，单位为度。
+Pitch angle around the target, in degrees.
 
 ***
 
@@ -38,4 +38,4 @@
 
 > `optional` **rollDeg?**: `number`
 
-相机横滚角，单位为度。
+Camera roll angle, in degrees.

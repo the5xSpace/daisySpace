@@ -6,7 +6,7 @@
 
 # Interface: SimulationTimeDisplayWidgetOptions
 
-仿真时间显示 Widget 配置。
+Simulation time display Widget configuration.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **daisy?**: `DaisyUIManager`
 
-已创建的 Daisy UI 管理器；未设置时使用引擎的 UI 管理器。
+Created Daisy UI manager; uses the engine's UI manager when not set.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **mount?**: `HTMLElement`
 
-挂载容器；未设置时使用 Daisy UI 覆盖层。
+Mount container; uses the Daisy UI overlay when not set.
 
 ***
 
@@ -30,4 +30,4 @@
 
 > `optional` **widgetOptions?**: [`SimulationTimeWidgetOptions`](../types/SimulationTimeWidgetOptions.md)
 
-时间显示控件的样式、位置和格式配置。
+Style, position, and format configuration for the time display control.

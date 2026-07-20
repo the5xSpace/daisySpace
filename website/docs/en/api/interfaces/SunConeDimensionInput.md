@@ -6,7 +6,7 @@
 
 # Interface: SunConeDimensionInput
 
-日锥物理尺寸计算参数。
+Sun cone physical dimension calculation parameters.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > **bodyRadius**: `number`
 
-遮挡天体半径；单位必须与 `sunRadius` 和 `centerDistance` 一致。
+Occluding body radius; units must be consistent with `sunRadius` and `centerDistance`.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > **centerDistance**: `number`
 
-两天体中心距离，必须大于两者半径之和。
+Center distance between the two bodies, must be greater than the sum of their radii.
 
 ***
 
@@ -30,4 +30,4 @@
 
 > **sunRadius**: `number`
 
-光源天体半径，必须大于 `bodyRadius`。
+Light source body radius, must be greater than `bodyRadius`.

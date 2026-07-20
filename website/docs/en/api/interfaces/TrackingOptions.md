@@ -6,9 +6,9 @@
 
 # Interface: TrackingOptions
 
-跟踪目标配置选项。
+Tracking target configuration options.
 
-用于让 Feature（如轨迹线、折线等）自动追踪某个动态目标。
+Used to make a Feature (e.g., trajectory line, polyline) automatically track a dynamic target.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **trackingEnabled?**: [`TimeValue`](../types/TimeValue.md)\<`boolean`\>
 
-是否启用跟踪（支持按仿真时间动态切换）。
+Whether to enable tracking (supports dynamic switching by simulation time).
 
 ***
 
@@ -24,4 +24,4 @@
 
 > **trackingTarget**: [`Entity`](../classes/Entity.md) \| `Cartesian3` \| [`FreeObject`](../classes/PW.FreeObject.md) \| \{ `entity`: [`Entity`](../classes/Entity.md); \} \| `undefined`
 
-跟踪目标（实体、坐标点或自由对象）。
+Tracking target (entity, coordinate point, or free object).

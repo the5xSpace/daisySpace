@@ -6,7 +6,7 @@
 
 # Enumeration: REF
 
-特殊参考点（用于几何/路径 API 的坐标参考系）。
+Special reference point (coordinate reference system for geometry/path APIs).
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@
 
 > **GLOBAL\_ORIGIN**: `2`
 
-全局原点。
+Global origin.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > **PARENT\_ENTITY**: `0`
 
-父实体位置。
+Parent entity position.
 
 ***
 
@@ -30,4 +30,4 @@
 
 > **SELF\_ENTITY**: `1`
 
-自身实体位置。
+Self entity position.

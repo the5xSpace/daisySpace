@@ -8,10 +8,10 @@
 
 > **generateDistinctColors**(`count`): `string`[]
 
-使用黄金角偏移生成 N 个视觉区分度高的 HSL 颜色。
+Generates N visually distinct HSL colors using golden angle offset.
 
-黄金角（~137.508°）确保相邻颜色在色环上均匀分布，避免颜色聚集。
-饱和度和亮度固定（70%/55%），仅旋转色相，适合在深色背景上使用。
+The golden angle (~137.508°) ensures adjacent colors are evenly distributed on the color wheel, avoiding color clustering.
+Saturation and lightness are fixed (70%/55%), only hue rotates, suitable for use on dark backgrounds.
 
 ## Parameters
 
@@ -19,13 +19,13 @@
 
 `number`
 
-生成颜色数量
+Number of colors to generate
 
 ## Returns
 
 `string`[]
 
-HSL 颜色字符串数组，如 `["hsl(0, 70%, 55%)", "hsl(138, 70%, 55%)", ...]`
+HSL color string array, e.g., `["hsl(0, 70%, 55%)", "hsl(138, 70%, 55%)", ...]`
 
 ## Example
 

@@ -6,7 +6,7 @@
 
 # Interface: GeoCelestialVisibilityOptions
 
-场景天体背景元素的显示配置。
+Display configuration for scene celestial background elements.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **moon?**: `boolean`
 
-是否显示月亮。
+Whether to show the moon.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **skyBox?**: `boolean`
 
-是否显示天空背景。
+Whether to show the sky background.
 
 ***
 
@@ -30,4 +30,4 @@
 
 > `optional` **sun?**: `boolean`
 
-是否显示太阳。
+Whether to show the sun.

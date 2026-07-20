@@ -8,7 +8,7 @@
 
 > **CameraFlyToTargetOptions** = `object`
 
-相机飞行到目标的额外参数。
+Additional parameters for camera fly-to target.
 
 ## Properties
 
@@ -16,9 +16,9 @@
 
 > `optional` **duration?**: `number`
 
-飞行耗时（秒）。
+Flight duration (seconds).
 
-数值越大，飞行过程越慢；为 0 时通常代表瞬移。
+Larger values make the flight slower; 0 usually represents instant teleportation.
 
 ***
 
@@ -26,4 +26,4 @@
 
 > `optional` **offset?**: `Daisy.HeadingPitchRange` \| `Daisy.Cartesian3`
 
-相机飞行目标偏移量
+Camera fly-to target offset

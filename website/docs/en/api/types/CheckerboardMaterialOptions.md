@@ -8,7 +8,7 @@
 
 > **CheckerboardMaterialOptions** = `object`
 
-棋盘格材质配置。
+Checkerboard material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **darkColor?**: [`DColor`](DColor.md)
 
-深色格颜色。默认黑色。
+Dark square color. Defaults to black.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **lightColor?**: [`DColor`](DColor.md)
 
-浅色格颜色。默认白色。
+Light square color. Defaults to white.
 
 ***
 
@@ -32,4 +32,4 @@
 
 > `optional` **repeat?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-横纵方向重复次数；数字表示两个方向使用相同值。默认 2。
+Horizontal/vertical repeat count; a single number applies the same value to both directions. Default 2.

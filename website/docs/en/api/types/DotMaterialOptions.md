@@ -8,7 +8,7 @@
 
 > **DotMaterialOptions** = `object`
 
-点阵材质配置。
+Dot matrix material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **darkColor?**: [`DColor`](DColor.md)
 
-背景颜色。默认黑色。
+Background color. Defaults to black.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **lightColor?**: [`DColor`](DColor.md)
 
-点颜色。默认白色。
+Dot color. Defaults to white.
 
 ***
 
@@ -32,4 +32,4 @@
 
 > `optional` **repeat?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-横纵方向重复次数；数字表示两个方向使用相同值。默认 10。
+Horizontal/vertical repeat count; a single number applies the same value to both directions. Default 10.

@@ -8,7 +8,7 @@
 
 > **TranslatePivot** = `{ x: number; y: number; z: (h) => number }`
 
-平移枢轴配置。
+Translation pivot configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > **x**: `number`
 
-X 方向偏移（单位：米）。
+X-axis offset (in meters).
 
 ***
 
@@ -24,7 +24,7 @@ X 方向偏移（单位：米）。
 
 > **y**: `number`
 
-Y 方向偏移（单位：米）。
+Y-axis offset (in meters).
 
 ***
 
@@ -32,7 +32,7 @@ Y 方向偏移（单位：米）。
 
 > **z**: (`h`) => `number`
 
-Z 方向偏移回调（根据高度 h 计算 Z 偏移）。
+Z-axis offset callback (computes Z offset based on height h).
 
 #### Parameters
 

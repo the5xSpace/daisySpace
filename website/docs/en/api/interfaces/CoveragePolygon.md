@@ -6,8 +6,8 @@
 
 # Interface: CoveragePolygon
 
-单个覆盖区域的闭合多边形定义。
-ring 为经纬度点数组，首尾无需重复（自动闭合）。
+Closed polygon definition for a single coverage area.
+ring is an array of longitude/latitude points; the first and last points need not repeat (auto-closed).
 
 ## Properties
 
@@ -15,7 +15,7 @@ ring 为经纬度点数组，首尾无需重复（自动闭合）。
 
 > **color**: `string`
 
-CSS 颜色字符串，如 "#ff0000" / "rgba(255,0,0,0.5)"
+CSS color string, e.g., "#ff0000" / "rgba(255,0,0,0.5)"
 
 ***
 
@@ -23,7 +23,7 @@ CSS 颜色字符串，如 "#ff0000" / "rgba(255,0,0,0.5)"
 
 > `optional` **label?**: `string`
 
-多边形标签文字（可选），设置后会在多边形重心位置显示
+Polygon label text (optional); when set, displayed at the polygon centroid
 
 ***
 
@@ -31,4 +31,4 @@ CSS 颜色字符串，如 "#ff0000" / "rgba(255,0,0,0.5)"
 
 > **ring**: \[`number`, `number`\][]
 
-闭合经纬度环 [[lng, lat], [lng, lat], ...]，至少 3 个点
+Closed longitude/latitude ring [[lng, lat], [lng, lat], ...], at least 3 points

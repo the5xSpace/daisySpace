@@ -8,7 +8,7 @@
 
 > **getSunOcclusionState**(`observer`, `time`, `options?`): [`SunOcclusionState`](../types/SunOcclusionState.md)
 
-使用天体对象判定任意世界坐标点的太阳遮挡状态。
+Determines the sun occlusion state for any world coordinate point using celestial body objects.
 
 ## Parameters
 
@@ -16,19 +16,19 @@
 
 `Cartesian3`
 
-待判定点的世界坐标。
+World coordinates of the point to evaluate.
 
 ### time
 
 `JulianDate`
 
-用于计算天体位置的仿真时刻。
+Simulation time used to calculate celestial body positions.
 
 ### options?
 
 [`CelestialSunOcclusionOptions`](../interfaces/CelestialSunOcclusionOptions.md) = `{}`
 
-遮挡天体和光源天体；未设置时使用地球与太阳模型。
+Occluding body and light source body; defaults to Earth and Sun models when not set.
 
 ## Returns
 

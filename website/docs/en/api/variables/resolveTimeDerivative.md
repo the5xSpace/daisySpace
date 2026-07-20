@@ -8,14 +8,14 @@
 
 > `const` **resolveTimeDerivative**: \<`T`\>(`value`, `time`) => `T` \| `undefined` = `resolveSimTimeDerivative`
 
-兼容导出：历史 API 名称。
+Compatibility export: legacy API name.
 
-计算仿真时间值在指定时刻的“变化率”（导数，单位：每秒）。
+Computes the "rate of change" (derivative, in units per second) of a simulation time value at a given time.
 
-说明：
-- 仅对“离散采样”输入（TimeSample/TimeSeries）有意义
-- 对 `"step"` 会返回 0（区间内保持常量）
-- 采用数值微分近似：在 `time` 左右取一个小时间窗做对称差分
+Notes:
+- Only meaningful for "discrete sample" inputs (TimeSample/TimeSeries)
+- Returns 0 for `"step"` (constant within the interval)
+- Uses numerical differentiation approximation: symmetric difference over a small time window around `time`
 
 ## Type Parameters
 

@@ -6,7 +6,7 @@
 
 # Enumeration: ModelAnimationLoop
 
-模型动画循环模式。
+Model animation loop mode.
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@
 
 > **MIRRORED\_REPEAT**: `2`
 
-镜像循环（先正向播放再反向播放）。
+Mirror loop (plays forward then reverse).
 
 ***
 
@@ -22,7 +22,7 @@
 
 > **NONE**: `0`
 
-不循环（播放一次后停止）。
+No loop (stops after playing once).
 
 ***
 
@@ -30,4 +30,4 @@
 
 > **REPEAT**: `1`
 
-重复循环。
+Repeat loop.

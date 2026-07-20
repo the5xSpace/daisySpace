@@ -8,9 +8,9 @@
 
 > **TaskGanttRenderer** = (`container`, `state`) => `void`
 
-自定义渲染函数签名。
+Custom render function signature.
 
-用户通过此函数完全控制时间线 UI 的渲染逻辑。
+The user fully controls the timeline UI rendering logic through this function.
 
 ## Parameters
 
@@ -18,13 +18,13 @@
 
 `HTMLElement`
 
-挂载 DOM 容器（Widget 创建的面板元素）
+Mount DOM container (panel element created by the Widget)
 
 ### state
 
 [`TaskGanttState`](../interfaces/TaskGanttState.md)
 
-当前调度状态快照（由 Widget 内部计算）
+Current schedule state snapshot (computed internally by the Widget)
 
 ## Returns
 

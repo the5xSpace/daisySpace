@@ -6,7 +6,7 @@
 
 # Interface: TimeAxisTick
 
-时间轴刻度信息。
+Timeline tick information.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > **label**: `string`
 
-刻度标签文本（由 formatTime 格式化）
+Tick label text (formatted by formatTime)
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **leftPx?**: `number`
 
-刻度在时间轴内容区内的左侧位置（px），渲染阶段会补齐。
+Left position of the tick within the timeline content area (px), populated during rendering.
 
 ***
 
@@ -30,4 +30,4 @@
 
 > **percent**: `number`
 
-刻度位置百分比 (0-100)
+Tick position percentage (0-100)

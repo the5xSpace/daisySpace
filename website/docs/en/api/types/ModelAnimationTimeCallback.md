@@ -8,7 +8,7 @@
 
 > **ModelAnimationTimeCallback** = (`duration`, `seconds`) => `number`
 
-动画时间回调函数。
+Animation time callback function.
 
 ## Parameters
 
@@ -16,16 +16,16 @@
 
 `number`
 
-动画总时长（秒）
+Total animation duration (seconds)
 
 ### seconds
 
 `number`
 
-当前播放时间（秒）
+Current playback time (seconds)
 
 ## Returns
 
 `number`
 
-映射后的实际播放时间（秒）
+Mapped actual playback time (seconds)

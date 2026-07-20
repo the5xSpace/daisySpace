@@ -6,7 +6,7 @@
 
 # Enumeration: VisibilityMode
 
-可见性控制模式。
+Visibility control mode.
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@
 
 > **click**: `"click"`
 
-点击模式（鼠标点击时显示）。
+Click mode (shown on mouse click).
 
 ***
 
@@ -22,7 +22,7 @@
 
 > **hover**: `"hover"`
 
-悬停模式（鼠标悬停时显示）。
+Hover mode (shown on mouse hover).
 
 ***
 
@@ -30,4 +30,4 @@
 
 > **normal**: `"normal"`
 
-正常模式（始终可见）。
+Normal mode (always visible).

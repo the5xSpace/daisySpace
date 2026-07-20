@@ -8,7 +8,7 @@
 
 > **MarsConfig** = [`CelestialBodyConfig`](PW.CelestialBodyConfig.md) & `object`
 
-火星对象配置（含大气层扩展）
+Mars object configuration (with atmosphere extension)
 
 ## Type Declaration
 
@@ -16,7 +16,7 @@
 
 > `optional` **atmosphere?**: `boolean` \| \{ `intensity?`: `number`; `show?`: `boolean`; \}
 
-大气层开关或参数
+Atmosphere toggle or parameters
 
 #### Union Members
 
@@ -32,10 +32,10 @@
 
 > `optional` **intensity?**: `number`
 
-强度偏移，负值减弱、正值增强
+Intensity offset, negative weakens, positive strengthens
 
 ##### show?
 
 > `optional` **show?**: `boolean`
 
-是否显示大气层
+Whether to show the atmosphere

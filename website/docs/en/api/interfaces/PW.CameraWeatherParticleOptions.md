@@ -18,7 +18,7 @@
 
 > `optional` **area?**: `Cartesian3`
 
-相机前天气发射体积，x/y/z 分别对应相机右、上、前方向，单位：米。
+Weather emission volume in front of the camera. x/y/z correspond to camera right/up/forward directions, in meters.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **distance?**: `number`
 
-天气体积中心距离相机的前向距离，单位：米。
+Forward distance from the camera to the center of the weather volume, in meters.
 
 ***
 
@@ -52,7 +52,7 @@
 
 > `optional` **intensity?**: `number`
 
-天气强度，范围 0~1。用于控制发射率和透明度。
+Weather intensity, range 0~1. Controls emission rate and transparency.
 
 ***
 
@@ -66,7 +66,7 @@
 
 > `optional` **particle?**: `Partial`\<[`ParticleFeatureOptions`](ParticleFeatureOptions.md)\>
 
-覆盖或追加底层世界粒子参数。
+Overrides or appends underlying world particle parameters.
 
 ***
 
