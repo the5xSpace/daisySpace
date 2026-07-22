@@ -1,6 +1,6 @@
 # Time Formatting
 
-All time-related components (simulation time display, timeline ticks, Gantt chart labels, etc.) share the same formatting system. The engine maintains global defaults; each component can override independently.
+All time-related components (simulation time display, timeline ticks, Gantt chart labels, etc.) share the same formatting system. The engine maintains a global default format, and each component can override it independently.
 
 ## Global Settings
 
@@ -27,7 +27,7 @@ const fmt = engine.getTimeFormat()
 
 ### Presets
 
-| 预设 | 输出示例 |
+| Preset | Output Example |
 |------|----------|
 | `"utc"` | `2026-07-01 00:00:00 UTC` |
 | `"bjt"` | `2026-07-01 08:00:00 BJT` |
@@ -38,12 +38,12 @@ const fmt = engine.getTimeFormat()
 | `"time-ms"` | `00:00:00.000` |
 | `"date-time"` | `2026-07-01 00:00:00 UTC` |
 | `"date-time-ms"` | `2026-07-01 00:00:00.000 UTC` |
-| `"t0"` | `T+123.0s`（requires `t0` reference time） |
-| `"cesium"` | `Jul 01 2026 00:00:00 UTC`（compatible format） |
+| `"t0"` | `T+123.0s` (requires `t0` reference time) |
+| `"cesium"` | `Jul 01 2026 00:00:00 UTC` (compatible format) |
 
-## Component-Level Override
+## Component-level Override
 
-Pass `timeFormat` (or equivalent field) at component construction time to override global settings. Override logic: passing a function or string **fully replaces** the global format; passing an object **shallow-merges** with the global format.
+Pass `timeFormat` (or equivalent field) during component construction to override the global format. Override logic: passing a function or string **fully replaces** the global format; passing an object **shallow-merges** with the global format.
 
 ### SimulationTimeWidget
 
@@ -80,9 +80,9 @@ engine.addWidget(new Daisy.TaskTimeLineWidget(schedule, {
 }))
 ```
 
-## Custom Format Generators
+## Custom Format Generator
 
-Register a fully custom formatter via `TimeFormatters.custom()`:
+Register a fully custom formatting function via `TimeFormatters.custom()`:
 
 ```typescript
 engine.setTimeFormat(Daisy.TimeFormatters.custom(
@@ -96,22 +96,22 @@ engine.setTimeFormat(Daisy.TimeFormatters.custom(
 // 输出: "2026 Q3 01日"
 ```
 
-The `dt` object ([TimeFormatDateTime](/api/interfaces/TimeFormatDateTime)) provides full time fields and helper methods:
+`dt` object ([TimeFormatDateTime](/en/api/interfaces/TimeFormatDateTime)) provides full time fields and helper methods:
 
-| 字段 | 说明 |
+| Field | Description |
 |------|------|
-| `dt.date` | JS Date（already shifted timezone） |
+| `dt.date` | JS Date (already shifted to timezone) |
 | `dt.utcDate` | Original UTC Date |
 | `dt.relativeSeconds` | Seconds relative to T0 |
 | `dt.timestampMs` | Millisecond timestamp |
-| `dt.format(pattern)` | Secondary format via token template |
+| `dt.format(pattern)` | Secondary format using token template |
 | `dt.toISOString()` | ISO 8601 string |
 
-## Format Tokens
+## Format 令牌
 
-When constructing a custom `format` string, the following tokens are available:
+The following tokens are available when constructing a custom `format` string:
 
-| 令牌 | 说明 | 示例 |
+| Token | Description | Example |
 |------|------|------|
 | `YYYY` | 4-digit year | `2026` |
 | `MM` | 2-digit month | `07` |
@@ -136,10 +136,10 @@ engine.setTimeFormat({
 
 ## Direct Formatting
 
-Without modifying global settings, call `engine.formatTime()` for one-off formatting:
+When not modifying the global format, call `engine.formatTime()` for one-time formatting:
 
 ```typescript
 const label = engine.formatTime(currentTime, { preset: "t0", t0: launchEpoch })
 ```
 
-> **Related APIs**: [TimeFormatConfig](/api/types/TimeFormatConfig) · [TimeFormatOptions](/api/interfaces/TimeFormatOptions) · [TimeFormatDateTime](/api/interfaces/TimeFormatDateTime) · [TimeFormatCallback](/api/types/TimeFormatCallback) · [TimelineLabelOptions](/api/interfaces/TimelineLabelOptions)
+> **Related API**: [TimeFormatConfig](/en/api/types/TimeFormatConfig) · [TimeFormatOptions](/en/api/interfaces/TimeFormatOptions) · [TimeFormatDateTime](/en/api/interfaces/TimeFormatDateTime) · [TimeFormatCallback](/en/api/types/TimeFormatCallback) · [TimelineLabelOptions](/en/api/interfaces/TimelineLabelOptions)

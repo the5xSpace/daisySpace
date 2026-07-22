@@ -52,18 +52,18 @@ sat.addLink({
 
 ## LinkOptions
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `target` | `BaseObject \| Entity \| Cartesian3 \| { entity }` | 链路对端 |
-| `show` | `boolean \| LinkTimeRange \| LinkTimeRange[]` | 显隐计划 |
-| `color` | `DColor` | 线颜色 |
-| `material` | `DMaterial` | 材质（优先级高于 color/speed/direction） |
-| `width` | `number` | `2` | 线宽（像素） |
-| `direction` | `"forward" \| "reverse"` | 流动方向 |
-| `speed` | `number` | 流动速度（默认 0） |
-| `clampToGround` | `boolean` | 贴地 |
-| `arcType` | `ArcType` | 插值方式 |
-| `name` | `string` | 名称 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `target` | `BaseObject \| Entity \| Cartesian3 \| { entity }` | Link peer |
+| `show` | `boolean \| LinkTimeRange \| LinkTimeRange[]` | Visibility schedule |
+| `color` | `DColor` | Line color |
+| `material` | `DMaterial` | Material (higher priority than color/speed/direction) |
+| `width` | `number` | `2` | Line width (pixels) |
+| `direction` | `"forward" \| "reverse"` | Flow direction |
+| `speed` | `number` | Flow speed (default 0) |
+| `clampToGround` | `boolean` | Clamp to ground |
+| `arcType` | `ArcType` | Interpolation type |
+| `name` | `string` | Name |
 
 ## Time Scheduling (LinkSchedule)
 

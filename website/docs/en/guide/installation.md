@@ -4,7 +4,7 @@ title: Installation
 
 # Installation
 
-Daisy Space SDK is published as an npm package, recommended for use in modern front-end projects such as Vite, Vue, React, or Svelte.
+DaisySpace-Sdk is published as an npm package, recommended for use in modern front-end projects such as Vite, Vue, React, or Svelte.
 
 ## Requirements
 
@@ -65,7 +65,7 @@ Daisy.BuildModuleUrl.setBaseUrl("/vendor/daisy/")
 const engine = await Daisy.Engine.create("daisyContainer")
 ```
 
-When referencing SDK built-in assets, you must generate URLs through `Daisy.BuildModuleUrl.getUrl()`. Do not use application root paths such as `/static/...` or `/sandAssets/...`. For the full asset directory listing and bundler integration requirements, see [内置静态资源](/en/guide/builtin-assets).
+When referencing SDK built-in assets, you must generate URLs through `Daisy.BuildModuleUrl.getUrl()`. Do not use application root paths such as `/static/...` or `/sandAssets/...`. For the full asset directory listing and bundler integration requirements, see [Built-in Static Resources](/en/guide/builtin-assets).
 
 ## Next Steps
 

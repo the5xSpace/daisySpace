@@ -46,24 +46,24 @@ con.bindEngine(engine)
 
 ## Member Management
 
-| 方法 | 说明 |
-|------|------|
-| `addSatellite(sat)` | 添加卫星（若已 bindEngine 则自动绑定） |
-| `removeSatellite(sat)` | 移除卫星 |
-| `getSatelliteByName(name)` | 按名称查找卫星 |
-| `getSatellites()` | 获取只读卫星数组 |
-| `satelliteCount` | 成员数量 |
-| `forEach(fn)` | 遍历每一颗卫星 |
-| `map(fn)` | 映射为数组 |
-| `filter(fn)` | 过滤返回子集 |
+| Method | Description |
+|--------|-------------|
+| `addSatellite(sat)` | Adds a satellite (auto-binds if already bindEngine) |
+| `removeSatellite(sat)` | Removes a satellite |
+| `getSatelliteByName(name)` | Finds a satellite by name |
+| `getSatellites()` | Gets a read-only satellite array |
+| `satelliteCount` | Member count |
+| `forEach(fn)` | Iterates over each satellite |
+| `map(fn)` | Maps to an array |
+| `filter(fn)` | Filters returning a subset |
 
 ## Aggregate Properties
 
-| 属性 | 类型 | 说明 |
-|------|------|------|
-| `allSensors` | `Sensor[]` | 所有成员卫星的传感器列表 |
-| `allPositions` | `TrajectorySample[]` | 所有成员卫星的 TrajectorySample 位置 |
-| `allTles` | `Spg4Tle[]` | 所有成员卫星的 TLE 数据 |
+| Property | Type | Description |
+|----------|------|-------------|
+| `allSensors` | `Sensor[]` | Sensor list of all member satellites |
+| `allPositions` | `TrajectorySample[]` | TrajectorySample positions of all member satellites |
+| `allTles` | `Spg4Tle[]` | TLE data of all member satellites |
 
 ```typescript
 console.log(`总卫星数: ${con.satelliteCount}`)
@@ -139,10 +139,10 @@ console.log(`星座已就绪: ${con.satelliteCount} 颗卫星`)
 
 ## Constructor Parameters
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `topology` | `WalkerTopology` | Walker 星座拓扑参数（可选） |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `topology` | `WalkerTopology` | Walker constellation topology parameters (optional) |
 
 ---
 
-> **Related APIs**: [PW.Constellation](/api/classes/PW.Constellation) · [PW.Satellite](/api/classes/PW.Satellite)
+> **Related API**: [PW.Constellation](/en/api/classes/PW.Constellation) · [PW.Satellite](/en/api/classes/PW.Satellite)

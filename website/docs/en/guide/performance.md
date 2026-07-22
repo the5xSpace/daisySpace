@@ -8,7 +8,7 @@ Enable when the scene contains a large number of entities (hundreds to tens of t
 
 **Update frequency throttling**: Active entities (hovered/selected/tracked) update at high frequency; inactive entities update at low frequency.
 
-**Feature type culling**: Inactive entities retain only whitelisted Feature types (e.g., Point, Label, Billboard), skipping expensive rendering features like models and trajectories.
+**Feature type culling**: Inactive entities retain only whitelisted Feature types (e.g., Point, Label, Billboard), skipping expensive rendering Feature like models and trajectories.
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
