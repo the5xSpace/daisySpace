@@ -1,6 +1,6 @@
-# 3D Models and Tileset
+# 3D 模型与 Tileset
 
-## ModelFeature — glTF/GLB Models
+## ModelFeature — glTF/GLB 模型
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -32,7 +32,7 @@ entity.addFeature(new Daisy.ModelFeature({
 | `colorBlendMode` | `ColorBlendMode` | 颜色混合模式 |
 | `nodeTransform` | `object` | 节点初始变换配置 |
 
-### Node Transforms
+### 节点变换
 
 节点需在模型加载完成（`onload`）后访问。`transformNode(name)` 返回可链式调用的 `ModelNodeTransform`，所设变换会作为状态副作用在每帧自动生效：
 
@@ -55,11 +55,11 @@ model.onload(() => {
 })
 ```
 
-### Node Transform API
+### 节点变换 API
 
-`model.transformNode(name)` returns `ModelNodeTransform`, all methods are chainable:
+`model.transformNode(name)` 返回 `ModelNodeTransform`，其方法均可链式调用：
 
-| Method | 说明 |
+| 方法 | 说明 |
 |------|------|
 | `model.getNodeNames()` | 获取所有节点名称 `string[]` |
 | `model.transformNode(name)` | 获取指定节点的变换器（链式） |
@@ -70,7 +70,7 @@ model.onload(() => {
 | `.setColorOverlay(color, blend)` / `.setOpacity(n)` | 设置叠加色 / 不透明度 |
 | `.setMatrix(matrix)` | 直接设置局部矩阵 |
 
-### Animation Control
+### 动画控制
 
 ```typescript
 const animationId = model.playAnimation({
@@ -84,7 +84,7 @@ if (animationId) model.stopAnimation(animationId)
 model.getAnimationInfos()  // → [{ index: 0, name: "Rotation" }, ...]
 ```
 
-### ModelAnimationLoop Enum
+### ModelAnimationLoop 枚举
 
 | 值 | 说明 |
 |----|------|
@@ -92,7 +92,7 @@ model.getAnimationInfos()  // → [{ index: 0, name: "Rotation" }, ...]
 | `ModelAnimationLoop.REPEAT` | 重复循环 |
 | `ModelAnimationLoop.MIRRORED_REPEAT` | 镜像循环（先正向再反向） |
 
-### ModelAnimationPlayOptions — Full Parameters
+### ModelAnimationPlayOptions 完整参数
 
 | 参数 | 类型 | 说明 |
 |------|------|------|
@@ -139,7 +139,7 @@ entity.addFeature(new Daisy.TilesetFeature({
 | `modelMatrix` | `Matrix4` | 整体变换矩阵 |
 
 
-> **Related APIs**: [ModelFeature](/api/classes/ModelFeature) · [TilesetFeature](/api/classes/TilesetFeature) · [ModelNodeTransform](/api/classes/ModelNodeTransform)
+> **Related API**: [ModelFeature](/en/api/classes/ModelFeature) · [TilesetFeature](/en/api/classes/TilesetFeature) · [ModelNodeTransform](/en/api/classes/ModelNodeTransform)
 
 ---
 

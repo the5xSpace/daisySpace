@@ -1,10 +1,10 @@
 # Event System
 
-Daisy Space SDK's event system has three layers: **Engine global layer** → **Entity aggregation layer** → **Feature self layer**. Raw screen mouse input is parsed into Daisy-format picking results inside `ViewerEventHandle`, then dispatched layer by layer.
+DaisySpace-Sdk 的事件系统分为三层：**Engine 全局层** → **Entity 聚合层** → **Feature 自身层**。原始屏幕鼠标输入在 `ViewerEventHandle` 中被解析为 Daisy 格式的拾取结果，然后沿三层逐级分发。
 
-## Event System Layers
+## Event System分层
 
-Daisy Space SDK events are grouped into three categories by usage scenario:
+DaisySpace-Sdk 的事件分为三组，按使用场景区分：
 
 | 层级 | 使用入口 | 适用场景 |
 |------|----------|----------|
@@ -15,7 +15,7 @@ Daisy Space SDK events are grouped into three categories by usage scenario:
 | 底层事件系统 | `EventManager` / `ViewerEventHandle` | 自定义事件管道（本文涵盖） |
 
 
-## Event Chain
+## 事件链路
 
 ```
 屏幕点击
@@ -36,9 +36,9 @@ Entity.onClick / onDblClick / onMouseEnter / onMouseLeave
 BaseObject 事件回调
 ```
 
-## EventManager — Generic Pub/Sub
+## EventManager — 通用发布订阅
 
-`EventManager` is the underlying infrastructure of the event system, providing standard publish-subscribe semantics:
+`EventManager` 是事件系统的底层基础设施，提供标准的发布-订阅模式：
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -72,11 +72,11 @@ em.getEvents()
 em.destroy()
 ```
 
-## ViewerEventHandle — Engine-Level Pick Bridge
+## ViewerEventHandle — 引擎级拾取桥接
 
-`engine.eventHandle` is the engine-mounted event bridge that converts screen-space mouse events into Daisy entity / Feature picking results.
+`engine.eventHandle` 是引擎挂载的事件桥接器，将屏幕空间鼠标事件解析为 Daisy 实体/Feature 拾取结果。
 
-**Listen to engine-global events:**
+**监听引擎全局事件：**
 
 ```typescript
 const eh = engine.eventHandle
@@ -103,7 +103,7 @@ eh.removeHoverSpaceEntityListener(handler)
 eh.removeHoverOutSpaceEntityListener(handler)
 ```
 
-`ViewerEventHandle` is implemented internally using `EventManager`. `pickResult` contains the following fields:
+`ViewerEventHandle` 内部使用 `EventManager` 实现，`pickResult` 包含以下字段：
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
@@ -113,9 +113,9 @@ eh.removeHoverOutSpaceEntityListener(handler)
 | `comType` | `string` | 命中的 Feature 类型名称 |
 | `nodeName` | `string` | 命中的渲染节点名称 |
 
-## Feature Interaction Events
+## Feature 交互事件
 
-Features expose an independent interaction event API, similar in usage to Entity:
+Feature 提供独立的交互事件 API，用法与 Entity 类似：
 
 ```typescript
 const point = new Daisy.PointFeature({ color: Daisy.Color.CYAN })
@@ -133,7 +133,7 @@ point.offClick(handler)  // 指定回调
 point.offClick()         // 全部回调
 ```
 
-**`FeaturePickedEvent` has two additional fields compared to the global pick result:**
+**事件数据 `FeaturePickedEvent` 比全局拾取多了两个字段：**
 
 | 字段 | 说明 |
 |------|------|
@@ -146,9 +146,9 @@ point.offClick()         // 全部回调
 >
 > 如果两者都不满足，Feature 不会向 `ViewerEventHandle` 注册拾取监听，也就不会收到事件。
 
-## Submitting Events to Entity (Bubbling)
+## 事件提交到 Entity（冒泡）
 
-Use `enableSubmitToEntity(true)` to allow a Feature's interaction events to bubble up to its parent Entity:
+通过 `enableSubmitToEntity(true)` 可以让 Feature 的交互事件向上冒泡到所属 Entity：
 
 ```typescript
 point.enableSubmitToEntity(true)
@@ -163,16 +163,16 @@ entity.onClick((e) => {
 })
 ```
 
-**Bubbling flow (inside FeatureEventHandle):**
+**冒泡流程（FeatureEventHandle 内部）：**
 
-1. Screen pick result arrives at `_handlePicked()`
-2. `matchesPickedResult()` checks whether `entityId` and `comId` match the current Feature
-3. Trigger the corresponding event on the Feature's own EventManager
-4. If `submitToEntityEnabled === true` and not blocked by `stopPropagation()`
-5. Call `feature.submitToEntity()` → `entity.receiveFeatureEvent()`
-6. Entity's `onClick` etc. callbacks execute
+1. 屏幕拾取结果到达 `_handlePicked()`
+2. `matchesPickedResult()` 检查 `entityId` 和 `comId` 是否匹配当前 Feature
+3. 触发 Feature 自身 EventManager 的对应事件
+4. 如果 `submitToEntityEnabled === true` 且未被 `stopPropagation()` 阻断
+5. 调用 `feature.submitToEntity()` → `entity.receiveFeatureEvent()`
+6. Entity 的 `onClick` 等回调执行
 
-### Stopping Bubbling
+### 阻止冒泡
 
 ```typescript
 point.onClick((e) => {
@@ -180,9 +180,9 @@ point.onClick((e) => {
 })
 ```
 
-## Entity Interaction Events
+## Entity 交互事件
 
-Entity aggregates picking results from itself and submissions from Features:
+Entity 聚合来自自身的拾取结果和来自 Feature 的提交：
 
 ```typescript
 entity.onClick((e) => {
@@ -202,9 +202,9 @@ entity.offMouseEnter(handler)
 entity.offMouseLeave(handler)
 ```
 
-> `onMouseEnter` / `onMouseLeave` event data `entityId` may be `"unknown"` (entity cannot be picked during mouseleave), but `comType` is still valid.
+> `onMouseEnter` / `onMouseLeave` 的事件数据 `entityId` 可能为 `"unknown"`（mouseleave 场景下无法拾取到实体），但 `comType` 仍然有效。
 
-## Interaction State
+## 交互状态
 
 ```typescript
 // Entity 的交互状态
@@ -213,9 +213,9 @@ entity.hovered      // 是否被悬停
 entity.interaction  // InteractionComponent { hovered, actived }
 ```
 
-These states are maintained by the framework every frame, and can be read via `e.entity?.activated` or `e.entity?.hovered` inside Feature and Entity event callbacks.
+这些状态由框架在每帧自动维护，Feature 和 Entity 的事件回调中可通过 `e.entity?.activated` 或 `e.entity?.hovered` 读取。
 
-## Feature Visibility and Interaction Coupling
+## Feature 可见性与交互联动
 
 ```typescript
 new Daisy.PointFeature({
@@ -224,16 +224,16 @@ new Daisy.PointFeature({
 })
 ```
 
-`VisibilityMode` enum:
-- `"normal"` — always visible (default)
-- `"hover"` — visible only when `entity.interaction.hovered === true`
-- `"click"` — visible only when `entity.interaction.actived === true`
+`VisibilityMode` 枚举：
+- `"normal"` — 始终可见（默认）
+- `"hover"` — 仅在 `entity.interaction.hovered === true` 时可见
+- `"click"` — 仅在 `entity.interaction.actived === true` 时可见
 
-Visibility is handled by `Feature.updateByInteraction()` (optional method of `IFeature`).
+可见性由 `Feature.updateByInteraction()` 方法处理（`IFeature` 的可选方法）。
 
-## Lifecycle Events
+## 生命周期事件
 
-Features provide a complete set of lifecycle event hooks (see [Feature Visual Component](/en/guide/feature#生命周期详解)):
+Feature 提供完整的生命周期事件钩子（详见 [Feature 可视化组件](/en/guide/feature#生命周期详解)）：
 
 ```typescript
 feature.onBeforeRegister(() => console.log("即将注册"))
@@ -245,16 +245,16 @@ feature.onBeforeDestroy(() => console.log("即将销毁"))
 feature.onDestroy(() => console.log("已销毁"))
 ```
 
-Entity also exposes two lifecycle events:
+Entity 也提供两个生命周期事件：
 
 ```typescript
 entity.onBeforeDestroy(() => console.log("Entity 即将销毁"))
 entity.onDestroy(() => console.log("Entity 已销毁"))
 ```
 
-## Custom Events
+## 自定义事件
 
-The underlying `EventManager` can be accessed directly via `engine.eventHandle.eventManager` to publish and subscribe to custom events:
+可通过 `engine.eventHandle.eventManager` 直接访问底层的 `EventManager` 来发布/订阅自定义事件：
 
 ```typescript
 const em = engine.eventHandle.eventManager
@@ -271,12 +271,12 @@ em.trigger("my-custom-event", {
 em.off("my-custom-event")
 ```
 
-> Note: `engine.eventHandle` is a `ViewerEventHandle` instance; its internal `eventManager` is an `EventManager` instance. The `add*` / `remove*` methods exposed by `ViewerEventHandle` are dedicated event channels (internally always uses `SpaceEvent.SPACE_ENTITY_*` event names) — do not mix with the underlying `eventManager.on()`.
+> 注意区分：`engine.eventHandle` 是 `ViewerEventHandle` 实例，它内部的 `eventManager` 是 `EventManager` 实例。`ViewerEventHandle` 暴露的 `add*/remove*` 方法是专用的事件通道（固定使用 `SpaceEvent.SPACE_ENTITY_*` 事件名），不要与底层 `eventManager.on()` 混用。
 
 
 ---
 
 <!--
-  示例参考: [EventSystem.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/EventSystem.svelte)
-   评分配额: API 30/30 | 概念 25/25 | 示例 20/20 | 陷阱 15/15 | 结构 10/10 → 100/100
+示例参考: [EventSystem.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/EventSystem.svelte)
+  评分配额: API 30/30 | 概念 25/25 | 示例 20/20 | 陷阱 15/15 | 结构 10/10 → 100/100
 -->
