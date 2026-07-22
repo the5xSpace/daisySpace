@@ -8,13 +8,12 @@
 
 > **PolylineGroundOptions** = `object`
 
-贴地折线（Polyline）创建参数。
+Parameters for creating a ground-clamped Polyline.
 
 ## Remarks
 
-- 当 `clampToGround=true` 时，会对传入的 `positions` 做贴地采样插值，
- 以获得更平滑/更贴地的折线效果（内部使用 `GeoMath.computeGroundPositions`）。
-- `material` 支持 Daisy SDK 的自动材质类型（如 `Daisy.Color`、Daisy.Material 等）。
+- When `clampToGround=true`, the provided `positions` are sampled and interpolated to the ground surface for a smoother, more terrain-following polyline effect (internally uses `GeoMath.computeGroundPositions`).
+- `material` supports automatic material types from the Daisy SDK (such as `Daisy.Color`, Daisy.Material, etc.).
 
 ## Example
 
@@ -38,7 +37,7 @@ const line = new PolylineGroundRenderable(viewer, {
 
 > `optional` **alwaysOnTop?**: `boolean`
 
-是否始终可见（内部等价为 depthFailMaterial = material）。
+Whether always visible (internally equivalent to depthFailMaterial = material).
 
 #### Default
 
@@ -58,7 +57,7 @@ false
 
 > `optional` **clampToGround?**: `boolean`
 
-是否贴地渲染。
+Whether to render clamped to ground.
 
 #### Default
 
@@ -78,7 +77,7 @@ false
 
 > `optional` **depthFailMaterial?**: [`DMaterial`](DMaterial.md)
 
-深度失败时使用的材质（可用于“被地球遮挡时仍可见”）。
+Material used when depth test fails (can be used to remain visible when occluded by Earth).
 
 ***
 
@@ -86,7 +85,7 @@ false
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md) \| `Daisy.Ellipsoid`
 
-贴地采样使用的椭球体。
+Ellipsoid used for ground sampling.
 
 #### Default
 
@@ -100,7 +99,7 @@ CelestialEllipsoid.Earth()
 
 > `optional` **loop?**: `boolean`
 
-贴地采样时是否闭合（会影响插值/采样的首尾处理）。
+Whether to close the path during ground sampling (affects the start/end handling of interpolation/sampling).
 
 #### Default
 
@@ -114,7 +113,7 @@ false
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-折线材质。
+Polyline material.
 
 #### Default
 
@@ -128,7 +127,7 @@ Daisy.Color.YELLOW
 
 > `optional` **positions?**: `Daisy.Cartesian3`[]
 
-折线控制点（世界坐标）。
+Polyline control points (world coordinates).
 
 #### Default
 
@@ -142,7 +141,7 @@ Daisy.Color.YELLOW
 
 > `optional` **sampleCount?**: `number`
 
-贴地插值采样点数量（采样密度）。
+Number of ground interpolation sample points (sampling density).
 
 #### Default
 
@@ -156,7 +155,7 @@ Daisy.Color.YELLOW
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -170,8 +169,8 @@ true
 
 > `optional` **sortBefore?**: `boolean`
 
-贴地采样前是否按地理顺序排序点位。
-对于时间序列轨迹（如星下点）应设为 false 以保持时间顺序。
+Whether to sort points in geographic order before ground sampling.
+For time-series trajectories (such as sub-satellite points), set to false to preserve temporal order.
 
 #### Default
 
@@ -185,10 +184,11 @@ true
 
 > `optional` **width?**: `number`
 
-线宽（像素）。
+Line width (in pixels).
 
 #### Default
 
 ```ts
 2
 ```
+

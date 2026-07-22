@@ -6,9 +6,9 @@
 
 # Interface: SphereOptions
 
-SphereFeature 配置。
+SphereFeature configuration.
 
-球体是三轴半径相等的 EllipsoidFeature 快捷封装。
+A sphere is a convenient wrapper around EllipsoidFeature with equal three-axis radii.
 
 ## Extends
 
@@ -20,9 +20,9 @@ SphereFeature 配置。
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
-当相机距离超出该范围时会自动隐藏。
+Automatically hides when the camera distance exceeds this range.
 
 #### Default
 
@@ -40,7 +40,7 @@ undefined（由视距策略与运行态决定）
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom identifier (for underlying render object identification/retrieval).
 
 #### Inherited from
 
@@ -52,9 +52,9 @@ undefined（由视距策略与运行态决定）
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to participate in the bounding sphere aggregation of the parent Entity.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Suitable for Features that need to be included in the camera zoom/flyTo framing. Guidelines, temporary effects, etc. can disable this.
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ undefined（由视距策略与运行态决定）
 
 > `optional` **lighting?**: `boolean`
 
-是否启用光照（影响明暗效果）。
+Whether to enable lighting (affects shading effects).
 
 #### Default
 
@@ -84,7 +84,7 @@ true
 
 > `optional` **material?**: [`DMaterial`](../types/DMaterial.md)
 
-球体材质。
+Sphere material.
 
 #### Overrides
 
@@ -96,7 +96,7 @@ true
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name (for display/debugging).
 
 #### Inherited from
 
@@ -108,7 +108,7 @@ true
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓线。
+Whether to draw outline.
 
 #### Default
 
@@ -126,7 +126,7 @@ true
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-轮廓颜色。
+Outline color.
 
 #### Overrides
 
@@ -138,7 +138,7 @@ true
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度（像素）。
+Outline width (pixels).
 
 #### Default
 
@@ -156,7 +156,7 @@ true
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable overlay render pass.
 
 #### Inherited from
 
@@ -168,7 +168,7 @@ true
 
 > `optional` **radius?**: `number`
 
-球半径（单位：米）。
+Sphere radius (unit: meters).
 
 #### Default
 
@@ -182,7 +182,7 @@ true
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render order value (lower values render first).
 
 #### Inherited from
 
@@ -194,7 +194,7 @@ true
 
 > `optional` **shadows?**: `ShadowMode`
 
-阴影模式。
+Shadow mode.
 
 #### Default
 
@@ -212,7 +212,7 @@ ShadowMode.DISABLED
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -230,9 +230,9 @@ true
 
 > `optional` **stOffset?**: `Cartesian2`
 
-纹理坐标偏移（单位：无量纲）。
+Texture coordinate offset (unit: dimensionless).
 
-当 `material` 为贴图材质时可用于滚动/平移贴图。
+Can be used to scroll/translate the texture when `material` is a mapped material.
 
 #### Default
 
@@ -250,7 +250,7 @@ Cartesian2.ZERO
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 

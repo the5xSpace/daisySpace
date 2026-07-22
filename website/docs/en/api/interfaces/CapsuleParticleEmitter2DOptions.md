@@ -12,7 +12,7 @@
 
 > `optional` **angle?**: `number`
 
-发射方向，单位：度。与 city41/particle.js 一致，90 表示向上喷射。
+Emission direction in degrees. Consistent with city41/particle.js, 90 means upward.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **colorVariance?**: `number`
 
-颜色随机强度，0~1。用于快速控制粒子间色彩差异。
+Color randomization intensity, 0~1. Used to quickly control color variation between particles.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **emissionRate?**: `number`
 
-发射频率语义，单位为“每个循环周期内的粒子密度”。预生成模式下主要影响出生相位分布。
+Emission frequency semantic — particle density per cycle period. In pre-generation mode, it primarily affects the birth phase distribution.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **enabled?**: `boolean`
 
-是否启用胶囊内部 2D 粒子发射器。关闭时仍保留贴片姿态和像素比例逻辑。
+Whether to enable the internal 2D particle emitter. When disabled, sprite orientation and pixel scale logic are preserved.
 
 ***
 
@@ -74,7 +74,7 @@
 
 > `optional` **gravity?**: [`CapsuleParticleEmitter2DVector`](CapsuleParticleEmitter2DVector.md)
 
-2D canvas 内的重力/持续加速度，单位为归一化 canvas 高度 / 秒²。
+Gravity/continuous acceleration in 2D canvas, in normalized canvas height / sec².
 
 ***
 
@@ -94,7 +94,7 @@
 
 > `optional` **particleRadius?**: `number`
 
-单颗粒子基础半径，归一化到 canvas 宽度。
+Base radius of a single particle, normalized to canvas width.
 
 ***
 
@@ -126,7 +126,7 @@
 
 > `optional` **source?**: [`CapsuleParticleEmitter2DVector`](CapsuleParticleEmitter2DVector.md)
 
-粒子出生点，归一化 canvas 坐标，x/y 范围通常为 0~1。
+Particle spawn point in normalized canvas coordinates, x/y range typically 0~1.
 
 ***
 
@@ -134,7 +134,7 @@
 
 > `optional` **sourceVariance?**: [`CapsuleParticleEmitter2DVector`](CapsuleParticleEmitter2DVector.md)
 
-粒子出生点随机半宽，归一化 canvas 坐标。
+Particle spawn point random half-width in normalized canvas coordinates.
 
 ***
 
@@ -142,7 +142,7 @@
 
 > `optional` **speed?**: `number`
 
-粒子速度，单位为归一化 canvas 高度 / 秒。
+Particle speed in normalized canvas height / sec.
 
 ***
 
@@ -174,7 +174,7 @@
 
 > `optional` **stretch?**: `number`
 
-粒子沿速度方向的拉伸倍数。
+Particle stretch factor along velocity direction.
 
 ***
 
@@ -194,4 +194,4 @@
 
 > `optional` **totalParticles?**: `number`
 
-预生成动画循环内参与绘制的粒子数量。
+Number of particles rendered in the pre-generated animation cycle.

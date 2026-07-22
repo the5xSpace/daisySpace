@@ -8,7 +8,7 @@
 
 > **CelestialBodyConfig** = `object`
 
-天体行星对象的共享配置基础。
+Shared base configuration for celestial body objects.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **arrowPointers?**: [`ArrowPointerOptions`](ArrowPointerOptions.md)[]
 
-指向箭头配置列表
+List of arrow pointer configurations
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **bodyAxis?**: `boolean` \| `BodyAxisOptions`
 
-是否显示体轴
+Whether to display the body axis
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **ellipsoid?**: `false` \| \{ `shadows?`: `Daisy.ShadowMode`; `show?`: `boolean`; `terminator?`: `boolean`; \}
 
-椭球配置，false 表示禁用
+Ellipsoid configuration; false disables it
 
 #### Union Members
 
@@ -48,19 +48,19 @@
 
 > `optional` **shadows?**: `Daisy.ShadowMode`
 
-阴影模式
+Shadow mode
 
 ##### show?
 
 > `optional` **show?**: `boolean`
 
-是否显示椭球
+Whether to display the ellipsoid
 
 ##### terminator?
 
 > `optional` **terminator?**: `boolean`
 
-是否启用晨昏线光照过渡
+Whether to enable day/night terminator lighting transition
 
 ***
 
@@ -68,7 +68,7 @@
 
 > `optional` **grid?**: `false` \| `ConstructorParameters`\<*typeof* [`CelestialGeodeticGridLayers`](../classes/CelestialGeodeticGridLayers.md)\>\[`0`\]
 
-经纬网格配置，false 表示禁用
+Latitude/longitude grid configuration; false disables it
 
 ***
 
@@ -76,7 +76,7 @@
 
 > `optional` **lockCamera?**: `boolean`
 
-是否锁定相机到天体
+Whether to lock the camera to the celestial body
 
 ***
 
@@ -84,7 +84,7 @@
 
 > `optional` **name?**: `string`
 
-名称
+Name
 
 ***
 
@@ -92,4 +92,4 @@
 
 > `optional` **track?**: `boolean`
 
-是否启用相机跟踪
+Whether to enable camera tracking

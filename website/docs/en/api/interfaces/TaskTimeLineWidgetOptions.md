@@ -6,7 +6,7 @@
 
 # Interface: TaskTimeLineWidgetOptions
 
-任务时间线控件配置。
+Task timeline widget configuration.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **bottom?**: `string` \| `number`
 
-自定义定位时相对容器底部的距离；数字按像素解释，也可传 CSS 长度。
+Distance from the bottom of the container for custom positioning; numbers are interpreted as pixels, CSS lengths are also accepted.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **container?**: `HTMLElement`
 
-控件挂载容器；未设置时挂载到引擎视图容器。
+Widget mount container; when unset, mounts to the engine view container.
 
 ***
 
@@ -32,7 +32,7 @@
 
 #### Deprecated
 
-请优先使用 `timeFormat`；该函数会完整覆盖全局时间格式。
+Please use `timeFormat` instead; this function will completely override the global time format.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **height?**: `number`
 
-面板最小初始高度，单位为像素。标准模式默认 180，精简模式默认 260。
+Panel minimum initial height, in pixels. Standard mode defaults to 180, lite mode defaults to 260.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **maxScrollHeight?**: `number`
 
-任务列表的最大滚动高度，单位为像素。
+Maximum scroll height of the task list, in pixels.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **minHeight?**: `number`
 
-用户缩放面板时允许的最小高度，单位为像素。
+Minimum height allowed when the user resizes the panel, in pixels.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **minWidth?**: `number`
 
-用户缩放面板时允许的最小宽度，单位为像素。
+Minimum width allowed when the user resizes the panel, in pixels.
 
 ***
 
@@ -72,7 +72,7 @@
 
 > `optional` **mode?**: `"lite"` \| `"standard"`
 
-显示模式。默认 `standard`。
+Display mode. Defaults to `standard`.
 
 ***
 
@@ -80,7 +80,7 @@
 
 > `optional` **onStepClick?**: (`task`) => `void`
 
-点击任务步骤时触发，参数为调度器中的原始任务对象。
+Triggered when a task step is clicked; the parameter is the raw task object from the scheduler.
 
 #### Parameters
 
@@ -98,7 +98,7 @@
 
 > `optional` **renderer?**: [`TaskStepListRenderer`](../types/TaskStepListRenderer.md)
 
-自定义列表渲染器；未设置时使用控件内置模板。
+Custom list renderer; when unset, uses the widget's built-in template.
 
 ***
 
@@ -106,7 +106,7 @@
 
 > `optional` **right?**: `string` \| `number`
 
-自定义定位时相对容器右侧的距离；数字按像素解释，也可传 CSS 长度。
+Distance from the right of the container for custom positioning; numbers are interpreted as pixels, CSS lengths are also accepted.
 
 ***
 
@@ -114,7 +114,7 @@
 
 > `optional` **timeFormat?**: [`TimeFormatConfig`](../types/TimeFormatConfig.md)
 
-局部时间格式；未设置时使用引擎的全局 `timeFormat`。
+Local time format; when unset, uses the engine's global `timeFormat`.
 
 ***
 
@@ -122,7 +122,7 @@
 
 > `optional` **title?**: `string`
 
-面板标题。默认 `任务进度`。
+Panel title. Defaults to `任务进度`.
 
 ***
 
@@ -130,7 +130,7 @@
 
 > `optional` **width?**: `string` \| `number`
 
-面板宽度；数字按像素解释，也可传 CSS 长度。标准模式默认 320，精简模式默认 220。
+Panel width; numbers are interpreted as pixels, CSS lengths are also accepted. Standard mode defaults to 320, lite mode defaults to 220.
 
 ***
 
@@ -138,7 +138,7 @@
 
 > `optional` **x?**: `number`
 
-自定义定位时相对容器左侧的像素距离。
+Pixel distance from the left of the container for custom positioning.
 
 ***
 
@@ -146,4 +146,4 @@
 
 > `optional` **y?**: `number`
 
-自定义定位时相对容器顶部的像素距离。
+Pixel distance from the top of the container for custom positioning.

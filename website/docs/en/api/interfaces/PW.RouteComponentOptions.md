@@ -6,7 +6,7 @@
 
 # Interface: RouteComponentOptions
 
-RouteComponent 配置
+RouteComponent configuration
 
 ## Properties
 
@@ -14,7 +14,7 @@ RouteComponent 配置
 
 > `optional` **arcType?**: `ArcType`
 
-连线插值方式
+Line interpolation method
 
 #### Default
 
@@ -28,7 +28,7 @@ ArcType.GEODESIC
 
 > `optional` **bezierSamples?**: `number`
 
-每段贝塞尔曲线采样点数
+Number of samples per bezier curve segment
 
 #### Default
 
@@ -42,7 +42,7 @@ ArcType.GEODESIC
 
 > `optional` **bezierTension?**: `number`
 
-贝塞尔张力角（角度制），控制曲线上拱幅度
+Bezier tension angle (in degrees), controls the curve arch amplitude
 
 #### Default
 
@@ -56,7 +56,7 @@ ArcType.GEODESIC
 
 > `optional` **clampToGround?**: `boolean`
 
-是否贴地
+Whether to clamp to ground
 
 #### Default
 
@@ -70,7 +70,7 @@ false
 
 > `optional` **curveType?**: `"bezier"` \| `"geodesic"`
 
-曲线类型
+Curve type
 
 #### Default
 
@@ -84,7 +84,7 @@ false
 
 > `optional` **defaultIcon?**: `string`
 
-默认图标 URL（内置标记 SVG）
+Default icon URL (built-in marker SVG)
 
 ***
 
@@ -92,7 +92,7 @@ false
 
 > `optional` **iconScale?**: `number`
 
-图标缩放
+Icon scale
 
 #### Default
 
@@ -106,7 +106,7 @@ false
 
 > `optional` **labelColor?**: [`DColor`](../types/DColor.md)
 
-标签填充色
+Label fill color
 
 #### Default
 
@@ -120,7 +120,7 @@ Color.WHITE
 
 > `optional` **labelFont?**: `string`
 
-标签字体
+Label font
 
 #### Default
 
@@ -134,7 +134,7 @@ Color.WHITE
 
 > `optional` **labelOffsetY?**: `number`
 
-标签垂直偏移（像素，负值为上移）@default -32
+Label vertical offset (pixels, negative moves up) @default -32
 
 ***
 
@@ -142,7 +142,7 @@ Color.WHITE
 
 > `optional` **lineColor?**: [`DColor`](../types/DColor.md)
 
-连线颜色
+Line color
 
 #### Default
 
@@ -156,7 +156,7 @@ cyan
 
 > `optional` **lineWidth?**: `number`
 
-连线宽度（像素）
+Line width (pixels)
 
 #### Default
 
@@ -170,11 +170,11 @@ cyan
 
 > `optional` **material?**: [`DMaterial`](../types/DMaterial.md)
 
-航线材质（DMaterial）。
+Route material (DMaterial).
 
-支持 Daisy.Material（如 PolylineGlow/PolylineDash/PolylineArrow 动态材质）、
-颜色字符串、Daisy.Color 或 DaisyMaterialDescriptor。
-设置后覆盖 lineColor。
+Supports Daisy.Material (e.g. PolylineGlow/PolylineDash/PolylineArrow dynamic materials),
+color strings, Daisy.Color or DaisyMaterialDescriptor.
+When set, overrides lineColor.
 
 ***
 
@@ -182,7 +182,7 @@ cyan
 
 > `optional` **popoverTrigger?**: `"click"` \| `"always"` \| `"hover"`
 
-Popover 触发方式
+Popover trigger method
 
 #### Default
 
@@ -196,7 +196,7 @@ Popover 触发方式
 
 > `optional` **showIcons?**: `boolean`
 
-是否显示航点图标
+Whether to show waypoint icons
 
 #### Default
 
@@ -210,7 +210,7 @@ true
 
 > `optional` **showLabels?**: `boolean`
 
-是否显示航点标签
+Whether to show waypoint labels
 
 #### Default
 
@@ -224,7 +224,7 @@ true
 
 > `optional` **showLine?**: `boolean`
 
-是否显示连线
+Whether to show the line
 
 #### Default
 
@@ -238,4 +238,4 @@ true
 
 > **waypoints**: [`RouteWaypoint`](PW.RouteWaypoint.md)[]
 
-航路点列表（至少 2 个）
+Waypoint list (at least 2)

@@ -6,7 +6,7 @@
 
 # Interface: NightTileLayerOptions
 
-夜间瓦片图层配置。默认使用 Daisy 内置离线夜景瓦片。
+Night tile layer configuration. Uses Daisy's built-in offline night tiles by default.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **alpha?**: `number`
 
-整体透明度，默认 1。
+Overall opacity, default 1.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **brightness?**: `number`
 
-亮度，默认 1。
+Brightness, default 1.
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **contrast?**: `number`
 
-对比度，默认 1。
+Contrast, default 1.
 
 ***
 
@@ -38,7 +38,7 @@
 
 > `optional` **dayAlpha?**: `number`
 
-白昼区域透明度，默认 0。
+Daytime region opacity, default 0.
 
 ***
 
@@ -46,7 +46,7 @@
 
 > `optional` **enableLighting?**: `boolean`
 
-是否自动启用地球光照，默认 true。
+Whether to automatically enable Earth lighting, default true.
 
 ***
 
@@ -54,7 +54,7 @@
 
 > `optional` **id?**: `string`
 
-图层 ID。
+Layer ID.
 
 ***
 
@@ -62,7 +62,7 @@
 
 > `optional` **name?**: `string`
 
-图层名称。
+Layer name.
 
 ***
 
@@ -70,7 +70,7 @@
 
 > `optional` **nightAlpha?**: `number`
 
-夜间区域透明度，默认 1。
+Nighttime region opacity, default 1.
 
 ***
 
@@ -78,7 +78,7 @@
 
 > `optional` **show?**: `boolean`
 
-是否显示，默认 true。
+Whether to show, default true.
 
 ***
 
@@ -86,4 +86,4 @@
 
 > `optional` **source?**: [`GeoImageryOptions`](../types/GeoImageryOptions.md)
 
-自定义瓦片源，默认使用 Daisy 内置离线夜景瓦片。
+Custom tile source, uses Daisy's built-in offline night tiles by default.

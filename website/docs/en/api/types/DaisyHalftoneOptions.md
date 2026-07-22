@@ -8,7 +8,7 @@
 
 > **DaisyHalftoneOptions** = `object`
 
-半色调网点材质配置。
+Halftone dot material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **density?**: `number`
 
-网点密度。
+Dot density.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **dotSize?**: `number`
 
-网点尺寸。
+Dot size.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **edgeSoftness?**: `number`
 
-网点边缘柔化宽度。
+Dot edge softness width.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **inkColor?**: [`DColor`](DColor.md)
 
-网点油墨颜色。
+Dot ink color.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **noiseAmount?**: `number`
 
-网点噪声扰动量。
+Dot noise jitter amount.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -64,4 +64,4 @@
 
 > `optional` **paperColor?**: [`DColor`](DColor.md)
 
-纸张背景颜色。
+Paper background color.

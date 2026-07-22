@@ -6,7 +6,7 @@
 
 # Class: TaskTimeLineWidget
 
-以可拖拽、可缩放的步骤列表展示任务调度状态。
+Displays task schedule status as a draggable, zoomable step list.
 
 ## Example
 
@@ -30,7 +30,7 @@ engine.addWidget(taskTimeline);
 
 > **new TaskTimeLineWidget**(`schedule`, `options?`): `TaskTimeLineWidget`
 
-创建任务时间线控件；调用 `engine.addWidget()` 后才会挂载并开始刷新。
+Creates a task timeline widget; it mounts and starts refreshing only after calling `engine.addWidget()`.
 
 #### Parameters
 
@@ -76,8 +76,8 @@ engine.addWidget(taskTimeline);
 
 > `optional` **isDestroyed?**: `boolean` = `false`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+The collection manager uses this to avoid destroyed singleton instances.
 
 #### Inherited from
 
@@ -89,7 +89,7 @@ engine.addWidget(taskTimeline);
 
 > **key**: `string` = `"daisy.task-timeline"`
 
-Widget 标识键（用于单例去重）。
+Widget identification key (for singleton deduplication).
 
 #### Overrides
 
@@ -111,8 +111,8 @@ Widget 标识键（用于单例去重）。
 
 > **rebuildOnMorph**: `boolean` = `false`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether destroy -> register rebuild is needed on scene morph (2D/3D).
+Default is true; UI widgets should usually be set to false.
 
 #### Overrides
 
@@ -124,8 +124,8 @@ Widget 标识键（用于单例去重）。
 
 > **singleton**: `boolean` = `true`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether it is a singleton widget.
+- If true, only one instance with the same key is allowed in the Engine.
 
 #### Overrides
 
@@ -137,8 +137,8 @@ Widget 标识键（用于单例去重）。
 
 > **zoomIgnored**: `boolean` = `true`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore during camera aggregation observation.
+UI controller widgets should be set to true.
 
 #### Overrides
 
@@ -150,8 +150,8 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`_`): `void`
 
-在 2D 模式下创建 Widget 资源。
-子类应重写此方法以实现 2D 模式特有的初始化逻辑（如添加 Billboard、Label 等）。
+Create Widget resources in 2D mode.
+Subclasses should override this method to implement 2D-specific initialization logic (such as adding Billboards, Labels, etc.).
 
 #### Parameters
 
@@ -159,7 +159,7 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](Engine.md)
 
-引擎实例
+Engine instance
 
 #### Returns
 
@@ -175,7 +175,7 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-停止刷新、解除事件监听并移除控件节点。
+Stops refreshing, unbinds event listeners, and removes the widget node.
 
 #### Returns
 
@@ -191,13 +191,13 @@ UI 控制器类 widget 应设为 true。
 
 > **is3d**(): `boolean`
 
-判断当前场景是否处于 3D 模式。
+Determines whether the current scene is in 3D mode.
 
 #### Returns
 
 `boolean`
 
-若为 3D 模式返回 true，否则返回 false
+Returns true if in 3D mode, false otherwise
 
 #### Inherited from
 
@@ -209,8 +209,8 @@ UI 控制器类 widget 应设为 true。
 
 > **morphSwitchHandle**(`_`): `void`
 
-场景模式切换处理。
-当场景在 2D/3D 之间切换时由引擎回调触发，子类可重写以实现自适应逻辑。
+Scene mode switch handler.
+Called by the engine when the scene switches between 2D/3D. Subclasses can override for adaptive logic.
 
 #### Parameters
 
@@ -218,7 +218,7 @@ UI 控制器类 widget 应设为 true。
 
 `SceneMode`
 
-切换后的场景模式
+The scene mode after switching
 
 #### Returns
 
@@ -234,7 +234,7 @@ UI 控制器类 widget 应设为 true。
 
 > **offMorphSwitch**(`callback`): `void`
 
-移除场景模式切换监听。
+Remove scene mode switch listener.
 
 #### Parameters
 
@@ -242,7 +242,7 @@ UI 控制器类 widget 应设为 true。
 
 (`mode`) => `void`
 
-需要移除的回调函数
+The callback function to remove
 
 #### Returns
 
@@ -258,7 +258,7 @@ UI 控制器类 widget 应设为 true。
 
 > **onMorphSwitch**(`callback`): `void`
 
-注册场景模式切换监听。
+Register scene mode switch listener.
 
 #### Parameters
 
@@ -266,7 +266,7 @@ UI 控制器类 widget 应设为 true。
 
 (`mode`) => `void`
 
-场景切换时的回调函数
+Callback function when scene switches
 
 #### Returns
 
@@ -282,7 +282,7 @@ UI 控制器类 widget 应设为 true。
 
 > **refresh**(): `void`
 
-使用当前任务状态立即重绘视图。
+Immediately redraws the view using the current task status.
 
 #### Returns
 
@@ -298,7 +298,7 @@ UI 控制器类 widget 应设为 true。
 
 > **register**(`engine`): `this`
 
-将控件注册到引擎并订阅任务状态变化。
+Registers the widget with the engine and subscribes to task status changes.
 
 #### Parameters
 
@@ -320,7 +320,7 @@ UI 控制器类 widget 应设为 true。
 
 > **renderTimeline**(`container`, `state`): `void`
 
-渲染任务步骤列表；子类可覆写此方法，配置的 `renderer` 优先于内置模板。
+Renders the task step list; subclasses can override this method, and the configured `renderer` takes precedence over the built-in template.
 
 #### Parameters
 
@@ -342,7 +342,7 @@ UI 控制器类 widget 应设为 true。
 
 > **setTitle**(`title`): `this`
 
-更新面板标题并立即刷新视图。
+Updates the panel title and immediately refreshes the view.
 
 #### Parameters
 
@@ -360,8 +360,8 @@ UI 控制器类 widget 应设为 true。
 
 > **update**(`_`): `void`
 
-每帧更新回调。
-子类应重写此方法以实现逐帧驱动逻辑（如位置插值、状态同步等）。
+Per-frame update callback.
+Subclasses should override this method to implement per-frame driving logic (such as position interpolation, state synchronization, etc.).
 
 #### Parameters
 
@@ -369,7 +369,7 @@ UI 控制器类 widget 应设为 true。
 
 `JulianDate`
 
-当前仿真时间（JulianDate）
+Current simulation time (JulianDate)
 
 #### Returns
 

@@ -6,7 +6,7 @@
 
 # Interface: WmsImageryOptions
 
-WMS 影像配置
+WMS imagery configuration
 
 ## Extends
 
@@ -18,7 +18,7 @@ WMS 影像配置
 
 > `optional` **alpha?**: `number`
 
-图层透明度（0 ~ 1），默认 1
+Layer transparency (0 ~ 1), defaults to 1
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ WMS 影像配置
 
 > `optional` **brightness?**: `number`
 
-图层亮度，默认 1。
+Layer brightness, defaults to 1.
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ WMS 影像配置
 
 > `optional` **colorToAlpha?**: `Color`
 
-与该颜色接近的像素将变为透明，可用于去除带底色的叠加瓦片背景。
+Pixels close to this color will become transparent, useful for removing backgrounds from overlaid tiles with solid colors.
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ WMS 影像配置
 
 > `optional` **colorToAlphaThreshold?**: `number`
 
-颜色转透明的 RGB 通道容差（0 ~ 1），默认 0.004。
+RGB channel tolerance for color-to-alpha (0 ~ 1), defaults to 0.004.
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ WMS 影像配置
 
 > `optional` **contrast?**: `number`
 
-图层对比度，默认 1。
+Layer contrast, defaults to 1.
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ WMS 影像配置
 
 > `optional` **dayAlpha?**: `number`
 
-白昼区域透明度（0 ~ 1）。启用地球光照时生效。
+Daytime area transparency (0 ~ 1). Takes effect when Earth lighting is enabled.
 
 #### Inherited from
 
@@ -90,7 +90,7 @@ WMS 影像配置
 
 > `optional` **format?**: `string`
 
-影像格式，默认 "image/png"
+Image format, defaults to "image/png"
 
 ***
 
@@ -98,7 +98,7 @@ WMS 影像配置
 
 > **layers**: `string`
 
-图层名称列表（逗号分隔）
+Comma-separated list of layer names
 
 ***
 
@@ -106,7 +106,7 @@ WMS 影像配置
 
 > `optional` **nightAlpha?**: `number`
 
-夜间区域透明度（0 ~ 1）。启用地球光照时生效。
+Nighttime area transparency (0 ~ 1). Takes effect when Earth lighting is enabled.
 
 #### Inherited from
 
@@ -118,7 +118,7 @@ WMS 影像配置
 
 > `optional` **show?**: `boolean`
 
-是否显示该图层，默认 true
+Whether to show this layer, defaults to true
 
 #### Inherited from
 
@@ -130,7 +130,7 @@ WMS 影像配置
 
 > `optional` **styles?**: `string`
 
-自定义样式名称
+Custom style name
 
 ***
 
@@ -138,7 +138,7 @@ WMS 影像配置
 
 > `optional` **transparent?**: `boolean`
 
-是否透明，默认 true
+Whether transparent, defaults to true
 
 ***
 
@@ -146,7 +146,7 @@ WMS 影像配置
 
 > **type**: [`WMS`](../enums/GeoImageryType.md#wms)
 
-图层类型：WMS
+Layer type: WMS
 
 ***
 
@@ -154,7 +154,7 @@ WMS 影像配置
 
 > **url**: `string`
 
-WMS 服务地址
+WMS service URL
 
 ***
 
@@ -162,4 +162,4 @@ WMS 服务地址
 
 > `optional` **version?**: `string`
 
-WMS 版本，默认 "1.1.1"
+WMS version, defaults to "1.1.1"

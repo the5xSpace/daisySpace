@@ -6,8 +6,8 @@
 
 # Interface: GeoGlobeOptions
 
-地表显示属性配置。
-所有字段均为可选，仅对传入的字段进行设置，未传入的字段保持当前值。
+Globe surface display property configuration.
+All fields are optional; only passed fields are set, unpassed fields retain their current values.
 
 ## Properties
 
@@ -15,7 +15,7 @@
 
 > `optional` **atmosphereBrightnessShift?**: `number`
 
-大气亮度偏移（-1~1）
+Atmosphere brightness shift (-1~1)
 
 ***
 
@@ -23,7 +23,7 @@
 
 > `optional` **atmosphereHueShift?**: `number`
 
-大气色调偏移（0~1）
+Atmosphere hue shift (0~1)
 
 ***
 
@@ -31,7 +31,7 @@
 
 > `optional` **atmosphereSaturationShift?**: `number`
 
-大气饱和度偏移（-1~1）
+Atmosphere saturation shift (-1~1)
 
 ***
 
@@ -39,7 +39,7 @@
 
 > `optional` **backFaceCulling?**: `boolean`
 
-是否剔除地形背面
+Whether to cull terrain back faces
 
 ***
 
@@ -47,7 +47,7 @@
 
 > `optional` **baseColor?**: `Color`
 
-无影像时的地球底色
+Earth base color when no imagery is available
 
 ***
 
@@ -55,7 +55,7 @@
 
 > `optional` **depthTestAgainstTerrain?**: `boolean`
 
-图元（Billboard/Polyline/Label 等）是否与地形做深度测试
+Whether primitives (Billboard/Polyline/Label etc.) should perform depth testing against terrain
 
 ***
 
@@ -63,7 +63,7 @@
 
 > `optional` **enableLighting?**: `boolean`
 
-是否启用日照光照效果
+Whether to enable sunlight lighting effects
 
 ***
 
@@ -71,7 +71,7 @@
 
 > `optional` **lambertDiffuseMultiplier?**: `number`
 
-日照 Lambert 漫反射系数（仅 enableLighting=true 时生效）
+Lambert diffuse multiplier for sunlight (only effective when enableLighting=true)
 
 ***
 
@@ -79,7 +79,7 @@
 
 > `optional` **lightingFadeInDistance?**: `number`
 
-光照开始衰减的距离（米），仅 enableLighting 或 showGroundAtmosphere 时生效
+Distance (meters) at which lighting starts to fade in, only effective when enableLighting or showGroundAtmosphere is set
 
 ***
 
@@ -87,7 +87,7 @@
 
 > `optional` **lightingFadeOutDistance?**: `number`
 
-光照完全生效的距离（米），仅 enableLighting 或 showGroundAtmosphere 时生效
+Distance (meters) at which lighting is fully effective, only effective when enableLighting or showGroundAtmosphere is set
 
 ***
 
@@ -95,7 +95,7 @@
 
 > `optional` **material?**: [`DMaterial`](../types/DMaterial.md) \| `null`
 
-地形材质；传入 null 可清除当前材质
+Terrain material; pass null to clear the current material
 
 ***
 
@@ -103,7 +103,7 @@
 
 > `optional` **maximumScreenSpaceError?**: `number`
 
-屏幕空间误差，值越高性能越好但画质越低
+Screen space error; higher values improve performance but reduce quality
 
 ***
 
@@ -111,7 +111,7 @@
 
 > `optional` **shadows?**: `number`
 
-阴影模式：0=禁用, 1=启用投射, 2=启用接收, 3=投射+接收
+Shadow mode: 0=disabled, 1=enable casting, 2=enable receiving, 3=cast+receive
 
 ***
 
@@ -119,7 +119,7 @@
 
 > `optional` **show?**: `boolean`
 
-是否显示地球，默认 true
+Whether to show the globe, default true
 
 ***
 
@@ -127,7 +127,7 @@
 
 > `optional` **showGroundAtmosphere?**: `boolean`
 
-是否显示地表大气层
+Whether to show the ground atmosphere
 
 ***
 
@@ -135,7 +135,7 @@
 
 > `optional` **showSkirts?**: `boolean`
 
-是否显示地形裙边
+Whether to show terrain skirts
 
 ***
 
@@ -143,7 +143,7 @@
 
 > `optional` **showWaterEffect?**: `boolean`
 
-是否显示水面波浪效果
+Whether to show water surface wave effects
 
 ***
 
@@ -151,7 +151,7 @@
 
 > `optional` **tileCacheSize?**: `number`
 
-地形瓦片缓存数量
+Terrain tile cache size
 
 ***
 
@@ -159,4 +159,4 @@
 
 > `optional` **vertexShadowDarkness?**: `number`
 
-顶点阴影暗度（仅 enableLighting=true 时生效）
+Vertex shadow darkness (only effective when enableLighting=true)

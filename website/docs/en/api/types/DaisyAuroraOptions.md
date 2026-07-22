@@ -8,7 +8,7 @@
 
 > **DaisyAuroraOptions** = `object`
 
-极光带材质配置。
+Aurora material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **highColor?**: [`DColor`](DColor.md)
 
-光带高值颜色。
+Aurora band high value color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **intensity?**: `number`
 
-发光强度。
+Glow intensity.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **lowColor?**: [`DColor`](DColor.md)
 
-光带低值颜色。
+Aurora band low value color.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **speed?**: `number`
 
-动画速度。
+Animation speed.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **waviness?**: `number`
 
-光带波动幅度。
+Aurora band wave amplitude.
 
 ***
 
@@ -64,4 +64,4 @@
 
 > `optional` **width?**: `number`
 
-光带宽度。
+Aurora band width.

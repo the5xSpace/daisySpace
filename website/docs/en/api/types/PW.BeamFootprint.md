@@ -8,7 +8,7 @@
 
 > **BeamFootprint** = `object`
 
-实时波束覆盖显示配置。
+Real-time beam footprint display configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **fillColor?**: [`DColor`](DColor.md)
 
-填充色
+Fill color
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **footprintTimes?**: `Daisy.JulianDate` \| `Daisy.JulianDate`[] \| [`TimeRange`](PW.TimeRange.md) \| [`TimeRanges`](PW.TimeRanges.md)
 
-覆盖输出时间范围 可以是一个或多个时刻，也可以是多个时间或者单个时间范围
+Output time range for coverage. Can be one or more moments, or multiple times or a single time range.
 
 ***
 
@@ -32,10 +32,9 @@
 
 > `optional` **maxSampleCount?**: `number`
 
-覆盖采样数量上限。默认 1000，最大有效值 3000。
+Maximum number of coverage samples. Default is 1000, maximum effective value is 3000.
 
-当时间范围 / 采样间隔推导出的采样数量超过上限时，系统会自动放大采样间隔，
-以降低覆盖绘制分辨率并保护渲染性能。
+When the sample count derived from the time range / sampling interval exceeds the limit, the system automatically increases the sampling interval, to reduce coverage rendering resolution and protect rendering performance.
 
 ***
 
@@ -43,7 +42,7 @@
 
 > `optional` **outline?**: `boolean`
 
-启用边框
+Enable outline
 
 ***
 
@@ -51,7 +50,7 @@
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-边框颜色
+Outline color
 
 ***
 
@@ -59,7 +58,7 @@
 
 > `optional` **outlineWidthPx?**: `number`
 
-边框宽度像素
+Outline width in pixels
 
 ***
 
@@ -67,7 +66,7 @@
 
 > `optional` **retainSeconds?**: `number`
 
-采样覆盖绘图过期后的保留时间，单位为秒；`0` 表示立即移除。
+Retention time (in seconds) after the sampled coverage plot expires; `0` means remove immediately.
 
 ***
 
@@ -75,7 +74,7 @@
 
 > `optional` **sampleStepSeconds?**: `number`
 
-采样间隔（秒），默认 60 秒
+Sampling interval (seconds), default is 60 seconds
 
 ***
 
@@ -83,4 +82,4 @@
 
 > `optional` **show?**: `boolean`
 
-是否启用波束覆盖实时可视化
+Whether to enable real-time visualization of beam footprint

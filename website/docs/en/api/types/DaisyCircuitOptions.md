@@ -8,7 +8,7 @@
 
 > **DaisyCircuitOptions** = `object`
 
-电路板纹材质配置。
+Circuit board material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **baseColor?**: [`DColor`](DColor.md)
 
-电路板底色。
+Circuit board base color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **cells?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-横纵单元数量。
+Horizontal and vertical cell count.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **glow?**: `number`
 
-发光强度。
+Glow intensity.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **nodeRadius?**: `number`
 
-节点半径。
+Node radius.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **speed?**: `number`
 
-动画速度。
+Animation speed.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **traceColor?**: [`DColor`](DColor.md)
 
-线路颜色。
+Trace color.
 
 ***
 
@@ -72,4 +72,4 @@
 
 > `optional` **traceWidth?**: `number`
 
-线路宽度。
+Trace width.

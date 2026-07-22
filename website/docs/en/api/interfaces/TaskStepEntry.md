@@ -6,7 +6,7 @@
 
 # Interface: TaskStepEntry
 
-任务步骤列表中的单条渲染数据。
+A single render data entry in the task step list.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > **color**: `string`
 
-分配给任务的 CSS 颜色字符串。
+CSS color string assigned to the task.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > **endTime**: `JulianDate`
 
-任务计划结束时刻。
+Scheduled end time of the task.
 
 ***
 
@@ -30,7 +30,7 @@
 
 > **id**: `string`
 
-任务唯一标识。
+Unique identifier of the task.
 
 ***
 
@@ -38,7 +38,7 @@
 
 > **name**: `string`
 
-任务显示名称。
+Display name of the task.
 
 ***
 
@@ -46,7 +46,7 @@
 
 > **progress**: `number`
 
-当前进度百分比，范围为 0 至 100。
+Current progress percentage, range 0 to 100.
 
 ***
 
@@ -54,7 +54,7 @@
 
 > **startTime**: `JulianDate`
 
-任务计划开始时刻。
+Scheduled start time of the task.
 
 ***
 
@@ -62,4 +62,4 @@
 
 > **status**: `TimeTaskStatus`
 
-当前任务状态。
+Current task status.

@@ -14,44 +14,44 @@
 
 > `optional` **alpha?**: `number`
 
-透明度覆盖，范围 0~1。
+Opacity override, range 0~1.
 
 ### color?
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-统一火焰主色。传入后会派生 startColor/endColor。
+Uniform flame main color. After passing, startColor/endColor will be derived.
 
 ### emissionRateScale?
 
 > `optional` **emissionRateScale?**: `number`
 
-发射率倍率。
+Emission rate scale.
 
 ### lengthScale?
 
 > `optional` **lengthScale?**: `number`
 
-粒子速度/长度表现倍率。
+Particle speed/length scale.
 
 ### preset?
 
 > `optional` **preset?**: [`PropulsionParticlePreset`](PW.PropulsionParticlePreset.md)
 
-内置粒子预设。当前仅提供 rocket-flame，后续粒子库会继续扩展。
+Built-in particle preset. Currently only provides rocket-flame; more presets will be added in the future.
 
 ### renderer?
 
 > `optional` **renderer?**: [`PropulsionParticleRenderer`](PW.PropulsionParticleRenderer.md)
 
-喷焰渲染管线。
+Propulsion particle renderer.
 
-- `capsule-sprite`：宿主胶囊粒子，一张世界锚定 sprite 面片，适合火箭/飞机喷焰。
-- `capsule-billboard`：旧配置兼容别名，内部同样走 `capsule-sprite`。
-- `world-particle`：世界粒子，逐粒子积分，适合烟雾、雨雪、水流等离开宿主后的自然粒子。
+- `capsule-sprite`: Host capsule particle, a world-anchored sprite patch, suitable for rocket/aircraft plumes.
+- `capsule-billboard`: Legacy config compatibility alias; internally also maps to `capsule-sprite`.
+- `world-particle`: World particle, integrated per particle, suitable for natural particles like smoke, rain, snow, and water flow after leaving the host.
 
 ### sizeScale?
 
 > `optional` **sizeScale?**: `number`
 
-粒子尺寸倍率。
+Particle size scale.

@@ -1,8 +1,8 @@
-# 控制面板
+# Control Panel
 
-[ControlPanelWidget](/en/api/classes/ControlPanelWidget) 封装播放/暂停/调速控件和键盘控制，支持三种模式。
+[ControlPanelWidget](/en/api/classes/ControlPanelWidget) wraps play/pause/speed controls and keyboard shortcuts, and supports three modes.
 
-## 基本用法
+## Basic Usage
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -12,15 +12,15 @@ const engine = await Daisy.Engine.create("daisyContainer")
 engine.addWidget(new Daisy.ControlPanelWidget({ mode: "standard" }))
 ```
 
-## 模式
+## Modes
 
-| 模式 | 说明 |
-|---|---|
-| `"lite"` | 仅浮动控制面板，不含键盘控制 |
-| `"standard"` | 浮动面板 + 键盘控制（Space 播放/暂停） |
-| `"customize"` | 自定义按钮列表，通过 `panelOptions.customize` 指定 |
+| Mode | Description |
+|------|-------------|
+| `"lite"` | Floating control panel only, without keyboard shortcuts |
+| `"standard"` | Floating panel + keyboard shortcuts (Space for play/pause) |
+| `"customize"` | Custom button list, specified via `panelOptions.customize` |
 
-## 面板选项
+## Panel Options
 
 ```typescript
 engine.addWidget(new Daisy.ControlPanelWidget({
@@ -34,20 +34,20 @@ engine.addWidget(new Daisy.ControlPanelWidget({
 }))
 ```
 
-| 选项 | 类型 | 说明 |
+| Option | Type | Description |
 |------|------|------|
-| `preset` | string | 预设位置：`"leftTop"` / `"rightTop"` / `"leftBottom"` / `"rightBottom"` |
-| `layout` | `"row"` \| `"column"` | 按钮排列方向 |
-| `draggable` | `boolean` | 是否可拖拽 |
-| `customize` | `string[]` | 需显示的按钮 ID 列表 |
+| `preset` | string | Preset position: `"leftTop"` / `"rightTop"` / `"leftBottom"` / `"rightBottom"` |
+| `layout` | `"row"` \| `"column"` | Button arrangement direction |
+| `draggable` | `boolean` | Whether draggable |
+| `customize` | `string[]` | List of button IDs to display |
 
-### 可用按钮 ID
+### Available Button IDs
 
 `play_pause` / `stop` / `speed` / `speedSlider` / `2d_3d`
 
-## 独立控制器
+## Standalone Controllers
 
-`ControlPanelWidget` 内部使用以下组件，也可不通过 Widget 直接创建：
+The `ControlPanelWidget` internally uses the following components, and can also be created directly without a Widget:
 
 ```typescript
 // 精简版（仅浮动面板）
@@ -57,4 +57,4 @@ const lite = new Daisy.LiteController(engine.ui, document.getElementById("contro
 const standard = new Daisy.StandardController(engine.ui, document.getElementById("controls")!)
 ```
 
-> **相关 API**：[ControlPanelWidget](/en/api/classes/ControlPanelWidget) · [LiteController](/en/api/classes/LiteController) · [StandardController](/en/api/classes/StandardController)
+> **Related API**: [ControlPanelWidget](/en/api/classes/ControlPanelWidget) · [LiteController](/en/api/classes/LiteController) · [StandardController](/en/api/classes/StandardController)

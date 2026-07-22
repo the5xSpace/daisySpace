@@ -6,7 +6,7 @@
 
 # Interface: TimeFormatParts
 
-目标时区下拆分后的日期时间字段。
+Date-time fields split under the target timezone.
 
 ## Extended by
 
@@ -18,7 +18,7 @@
 
 > **day**: `number`
 
-月内日期，范围为 1 至 31。
+Day of month, range 1 to 31.
 
 ***
 
@@ -26,7 +26,7 @@
 
 > **hour**: `number`
 
-小时，范围为 0 至 23。
+Hour, range 0 to 23.
 
 ***
 
@@ -34,7 +34,7 @@
 
 > **millisecond**: `number`
 
-毫秒，范围为 0 至 999。
+Millisecond, range 0 to 999.
 
 ***
 
@@ -42,7 +42,7 @@
 
 > **minute**: `number`
 
-分钟，范围为 0 至 59。
+Minute, range 0 to 59.
 
 ***
 
@@ -50,7 +50,7 @@
 
 > **month**: `number`
 
-月份，范围为 1 至 12。
+Month, range 1 to 12.
 
 ***
 
@@ -58,7 +58,7 @@
 
 > **second**: `number`
 
-秒，范围为 0 至 59。
+Second, range 0 to 59.
 
 ***
 
@@ -66,4 +66,4 @@
 
 > **year**: `number`
 
-四位年份。
+Four-digit year.

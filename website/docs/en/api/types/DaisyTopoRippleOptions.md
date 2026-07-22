@@ -8,7 +8,7 @@
 
 > **DaisyTopoRippleOptions** = `object`
 
-地形波纹材质配置。
+Terrain ripple material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **bands?**: `number`
 
-静态等值带数量。
+Number of static contour bands.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **baseColor?**: [`DColor`](DColor.md)
 
-背景颜色。
+Background color.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **bend?**: `number`
 
-等值线弯曲量。
+Contour line curvature.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **center?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-归一化纹理坐标中的波纹中心。
+Ripple center in normalized texture coordinates.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **intensity?**: `number`
 
-发光强度。
+Glow intensity.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **lineColor?**: [`DColor`](DColor.md)
 
-等值线颜色。
+Contour line color.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **lineWidth?**: `number`
 
-静态等值线宽度。
+Static contour line width.
 
 ***
 
@@ -72,7 +72,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -80,7 +80,7 @@
 
 > `optional` **radialWeight?**: `number`
 
-径向距离在等值计算中的权重。
+Weight of radial distance in the contour calculation.
 
 ***
 
@@ -88,7 +88,7 @@
 
 > `optional` **rippleCount?**: `number`
 
-动态波纹数量。
+Number of dynamic ripples.
 
 ***
 
@@ -96,7 +96,7 @@
 
 > `optional` **rippleWidth?**: `number`
 
-动态波纹宽度。
+Dynamic ripple width.
 
 ***
 
@@ -104,7 +104,7 @@
 
 > `optional` **slope?**: `number`
 
-等值线整体倾斜量。
+Overall tilt amount of contour lines.
 
 ***
 
@@ -112,7 +112,7 @@
 
 > `optional` **softness?**: `number`
 
-线条边缘柔化宽度。
+Line edge softening width.
 
 ***
 
@@ -120,4 +120,4 @@
 
 > `optional` **speed?**: `number`
 
-动画速度。
+Animation speed.

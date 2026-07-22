@@ -6,19 +6,19 @@
 
 # Class: ArcRotateCameraMaintainer
 
-环绕相机维护器（ArcRotate）。
+ArcRotate camera maintainer.
 
-面向“围绕某个目标点旋转/缩放”的跟随视角需求：内部维护一组环绕参数（水平角/俯仰角/距离/滚转），并在每帧根据目标的位姿求解并应用相机姿态。
+Designed for follow-view needs of "rotating/zooming around a target point": internally maintains a set of orbit parameters (horizontal angle/pitch/distance/roll), and computes and applies camera pose each frame based on the target's transform.
 
-特性：
-- 支持 DaisyEntity / 兼容对象（只要能提供 worldMatrix / 或可回退到 position）
-- 支持目标 worldMatrix 缺失时的 fallback（优先使用上一次有效矩阵；或从状态 position 生成平移矩阵）
-- 支持椭球地表碰撞约束（限制相机不会落到地表以下）
-- 支持 roll（绕视线方向的滚转）
-- 可安装输入监听：拖拽环绕、滚轮缩放；并支持禁用/恢复宿主的屏幕空间控制器
+Features:
+- Supports DaisyEntity / compatible objects (as long as they provide worldMatrix / or can fall back to position)
+- Supports fallback when target worldMatrix is missing (prefers the last valid matrix; or generates a translation matrix from state position)
+- Supports ellipsoid terrain collision constraint (prevents camera from going below terrain)
+- Supports roll (rotation around the view direction)
+- Installable input listeners: drag-to-orbit, scroll-to-zoom; supports disabling/restoring the host's screen space controller
 
-使用建议：
-- 业务上通常通过 `viewer.camera.followTarget(...)` 使用跟随能力；只有在需要自定义目标解析、输入、碰撞策略时才直接使用本类。
+Usage suggestions:
+- In practice, the following capability is typically used via `viewer.camera.followTarget(...)`; only use this class directly when custom target resolution, input, or collision strategies are needed.
 
 ## Example
 
@@ -57,19 +57,19 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 [`ArcRotateDaisyEntityLike`](../types/ArcRotateDaisyEntityLike.md)
 
-跟随目标（DaisyEntity 或兼容对象）
+Follow target (DaisyEntity or compatible object)
 
 ##### camera
 
 [`ArcRotateCameraHost`](../types/ArcRotateCameraHost.md)
 
-相机宿主（提供底层相机引用）
+Camera host (provides underlying camera reference)
 
 ##### options?
 
 [`ArcRotateCameraOptions`](../types/ArcRotateCameraOptions.md)
 
-初始化视角与局部坐标系配置
+Initial view and local coordinate system configuration
 
 #### Returns
 
@@ -105,7 +105,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **get** **disposed**(): `boolean`
 
-是否已释放。
+Whether it has been disposed.
 
 ##### Returns
 
@@ -119,10 +119,10 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **get** **mode**(): [`ArcRotateCameraMode`](../types/ArcRotateCameraMode.md)
 
-当前工作模式：
-- Initial：初始化（尚未进入稳定跟随）
-- Follow：跟随中（每帧根据目标刷新）
-- UserControl：外部正在直接操控相机（可在结束时回灌状态）
+Current working mode:
+- Initial: Initialization (not yet in stable following)
+- Follow: Following (updated each frame based on target)
+- UserControl: External direct camera manipulation (state can be fed back at end)
 
 ##### Returns
 
@@ -134,7 +134,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **attach**(): `void`
 
-初始化并挂接到目标，进入跟随模式。
+Initialize and attach to the target, enter follow mode.
 
 #### Returns
 
@@ -146,7 +146,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **dispose**(): `void`
 
-释放资源并解除引用（包含输入监听的卸载与 sscc 状态恢复）。
+Release resources and dereference (includes unloading input listeners and restoring sscc state).
 
 #### Returns
 
@@ -158,10 +158,10 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **installInputListeners**(`options`): `void`
 
-安装输入监听（拖拽环绕、滚轮缩放）。
+Install input listeners (drag-to-orbit, scroll-to-zoom).
 
-该方法不会直接改动相机，而是将输入转换为环绕/缩放意图交由内部控制器处理；
-同时会暂时禁用 `screenSpaceCameraController` 的输入，并在卸载时恢复。
+This method does not directly modify the camera; instead, it translates input into orbit/zoom intents for the internal controller;
+meanwhile, it temporarily disables `screenSpaceCameraController` input and restores it on uninstall.
 
 #### Parameters
 
@@ -179,7 +179,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **onUserControlEnd**(): `void`
 
-标记离开用户控制模式，并将当前相机状态回灌到内部环绕参数。
+Mark exit from user control mode and feed current camera state back into internal orbit parameters.
 
 #### Returns
 
@@ -191,7 +191,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **onUserControlStart**(): `void`
 
-标记进入用户控制模式（外部开始直接操控相机时调用）。
+Mark entry into user control mode (call when external direct camera manipulation begins).
 
 #### Returns
 
@@ -203,7 +203,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **orbitBy**(`deltaTheta`, `deltaPhi`): `void`
 
-按角度增量执行环绕。
+Perform orbit by angle increment.
 
 #### Parameters
 
@@ -211,13 +211,13 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 `number`
 
-水平方向增量（弧度）
+Horizontal delta (radians)
 
 ##### deltaPhi
 
 `number`
 
-垂直方向增量（弧度）
+Vertical delta (radians)
 
 #### Returns
 
@@ -229,7 +229,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **uninstallInputListeners**(`options?`): `void`
 
-卸载输入监听，并恢复 `screenSpaceCameraController` 状态。
+Uninstall input listeners and restore `screenSpaceCameraController` state.
 
 #### Parameters
 
@@ -249,9 +249,9 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **update**(`time`): `void`
 
-每帧更新（由外部渲染循环传入当前仿真时间）。
+Per-frame update (current simulation time is passed by the external render loop).
 
-注意：禁止在内部隐式获取 time，必须由调用方显式传入。
+Note: Do not implicitly obtain time internally; it must be explicitly passed by the caller.
 
 #### Parameters
 
@@ -269,7 +269,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 > **zoomByScale**(`scale`): `void`
 
-按比例缩放（>0，越大越远）。
+Zoom by scale (>0, larger values are farther).
 
 #### Parameters
 

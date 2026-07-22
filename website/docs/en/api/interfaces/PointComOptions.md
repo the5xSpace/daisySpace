@@ -6,7 +6,7 @@
 
 # Interface: PointComOptions
 
-点要素配置（PointFeature）。
+Point feature configuration (PointFeature).
 
 ## Extends
 
@@ -18,7 +18,7 @@
 
 > `optional` **color?**: [`DColor`](../types/DColor.md)
 
-颜色
+Color
 
 #### Default
 
@@ -32,7 +32,7 @@ Color.WHITE
 
 > `optional` **disableDepthTestDistance?**: `number`
 
-禁用深度测试的距离（单位：米）
+Distance to disable depth test (in meters)
 
 ***
 
@@ -40,7 +40,7 @@ Color.WHITE
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件
+Distance display condition
 
 ***
 
@@ -48,7 +48,7 @@ Color.WHITE
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom identifier (for underlying render object identification/retrieval).
 
 #### Inherited from
 
@@ -60,9 +60,9 @@ Color.WHITE
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to participate in the bounding sphere aggregation of the parent Entity.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Suitable for Features that need to be included in camera zoom/flyTo framing. Helper lines, temporary effects, etc. can disable this.
 
 #### Inherited from
 
@@ -74,7 +74,7 @@ Color.WHITE
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name (can be used for display/debugging).
 
 #### Inherited from
 
@@ -86,7 +86,7 @@ Color.WHITE
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-轮廓颜色
+Outline color
 
 ***
 
@@ -94,7 +94,7 @@ Color.WHITE
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度
+Outline width
 
 #### Default
 
@@ -108,7 +108,7 @@ Color.WHITE
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay render pass.
 
 #### Inherited from
 
@@ -120,11 +120,11 @@ Color.WHITE
 
 > `optional` **pixelSize?**: `number`
 
-点尺寸（单位：像素）。
+Point size (in pixels).
 
-与 `size` 同时设置时，以 `size` 为准。
+When set together with `size`, `size` takes precedence.
 
-兼容字段：等同 `sizePx`。
+Compatibility field: equivalent to `sizePx`.
 
 #### Default
 
@@ -138,7 +138,7 @@ Color.WHITE
 
 > `optional` **position?**: `Cartesian3`
 
-相对实体坐标系下的位置
+Position relative to the entity's coordinate system
 
 #### Default
 
@@ -152,7 +152,7 @@ Cartesian3.ZERO
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render order value (smaller values render first).
 
 #### Inherited from
 
@@ -164,7 +164,7 @@ Cartesian3.ZERO
 
 > `optional` **scaleByDistance?**: `NearFarScalar`
 
-缩放距离条件
+Scale by distance condition
 
 ***
 
@@ -172,7 +172,7 @@ Cartesian3.ZERO
 
 > `optional` **show?**: `boolean`
 
-显示
+Show
 
 #### Default
 
@@ -186,9 +186,9 @@ true
 
 > `optional` **size?**: `number`
 
-点尺寸（单位：米）。
+Point size (in meters).
 
-与 `sizePx` 二选一；若同时设置则优先使用米。
+Either this or `sizePx`; if both are set, meters take precedence.
 
 ***
 
@@ -196,9 +196,9 @@ true
 
 > `optional` **sizePx?**: `number`
 
-点尺寸（单位：像素）。
+Point size (in pixels).
 
-与 `size` 同时设置时，以 `size` 为准。
+When set together with `size`, `size` takes precedence.
 
 ***
 
@@ -206,7 +206,7 @@ true
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 

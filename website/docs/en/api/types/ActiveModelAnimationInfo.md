@@ -8,7 +8,7 @@
 
 > **ActiveModelAnimationInfo** = `{ id: string; name: string }`
 
-活跃动画信息（运行时状态）。
+Active animation info (runtime state).
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **delay?**: `number`
 
-延迟启动时间（单位：秒）。
+Delay start time (in seconds).
 
 ***
 
@@ -24,7 +24,7 @@
 
 > **id**: `string`
 
-动画唯一标识。
+Unique animation identifier.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **loop?**: [`ModelAnimationLoop`](../enums/ModelAnimationLoop.md)
 
-循环模式。
+Loop mode.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **multiplier?**: `number`
 
-播放速率倍数。
+Playback rate multiplier.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > **name**: `string`
 
-动画名称。
+Animation name.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **reverse?**: `boolean`
 
-是否反向播放。
+Whether to play in reverse.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **startTime?**: `Daisy.JulianDate`
 
-开始时间（仿真时间）。
+Start time (simulation time).
 
 ***
 
@@ -72,4 +72,4 @@
 
 > `optional` **stopTime?**: `Daisy.JulianDate`
 
-停止时间（仿真时间）。
+Stop time (simulation time).

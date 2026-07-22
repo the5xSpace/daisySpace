@@ -6,7 +6,7 @@
 
 # Interface: XYZImageryOptions
 
-XYZ 瓦片影像配置
+XYZ tile imagery configuration
 
 ## Extends
 
@@ -18,7 +18,7 @@ XYZ 瓦片影像配置
 
 > `optional` **alpha?**: `number`
 
-图层透明度（0 ~ 1），默认 1
+Layer opacity (0 ~ 1), default 1
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ XYZ 瓦片影像配置
 
 > `optional` **brightness?**: `number`
 
-图层亮度，默认 1。
+Layer brightness, default 1.
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ XYZ 瓦片影像配置
 
 > `optional` **colorToAlpha?**: `Color`
 
-与该颜色接近的像素将变为透明，可用于去除带底色的叠加瓦片背景。
+Pixels close to this color will become transparent; useful for removing backgrounds from overlay tiles.
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ XYZ 瓦片影像配置
 
 > `optional` **colorToAlphaThreshold?**: `number`
 
-颜色转透明的 RGB 通道容差（0 ~ 1），默认 0.004。
+RGB channel tolerance for color-to-transparency (0 ~ 1), default 0.004.
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ XYZ 瓦片影像配置
 
 > `optional` **contrast?**: `number`
 
-图层对比度，默认 1。
+Layer contrast, default 1.
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ XYZ 瓦片影像配置
 
 > `optional` **dayAlpha?**: `number`
 
-白昼区域透明度（0 ~ 1）。启用地球光照时生效。
+Daytime area opacity (0 ~ 1). Effective when Earth lighting is enabled.
 
 #### Inherited from
 
@@ -90,7 +90,7 @@ XYZ 瓦片影像配置
 
 > `optional` **maxLevel?**: `number`
 
-最大层级，默认 18
+Maximum level, default 18
 
 ***
 
@@ -98,7 +98,7 @@ XYZ 瓦片影像配置
 
 > `optional` **minLevel?**: `number`
 
-最小层级，默认 0
+Minimum level, default 0
 
 ***
 
@@ -106,7 +106,7 @@ XYZ 瓦片影像配置
 
 > `optional` **nightAlpha?**: `number`
 
-夜间区域透明度（0 ~ 1）。启用地球光照时生效。
+Nighttime area opacity (0 ~ 1). Effective when Earth lighting is enabled.
 
 #### Inherited from
 
@@ -118,7 +118,7 @@ XYZ 瓦片影像配置
 
 > `optional` **show?**: `boolean`
 
-是否显示该图层，默认 true
+Whether to display this layer, default true
 
 #### Inherited from
 
@@ -130,7 +130,7 @@ XYZ 瓦片影像配置
 
 > `optional` **subdomains?**: `string`[]
 
-子域名列表，用于 {s} 变量
+Subdomain list, used for {s} variable
 
 ***
 
@@ -138,7 +138,7 @@ XYZ 瓦片影像配置
 
 > **type**: [`XYZ`](../enums/GeoImageryType.md#xyz)
 
-图层类型：XYZ
+Layer type: XYZ
 
 ***
 
@@ -146,5 +146,5 @@ XYZ 瓦片影像配置
 
 > **url**: `string`
 
-瓦片 URL 模板
-支持 {x} {y} {z} {s}
+Tile URL template
+Supports {x} {y} {z} {s}

@@ -8,7 +8,7 @@
 
 > **FollowTargetOptions** = `object`
 
-相机跟踪目标配置。
+Camera follow target configuration.
 
 ## Properties
 
@@ -16,25 +16,25 @@
 
 > `optional` **arcRotate?**: `object`
 
-环绕跟踪交互配置。
+Orbit follow interaction configuration.
 
 #### disableGroundCollisionSlideBelowTargetHeight?
 
 > `optional` **disableGroundCollisionSlideBelowTargetHeight?**: `number`
 
-低于该目标高度时关闭地面碰撞滑移，单位为米。
+Disables ground collision slide when the target is below this height, in meters.
 
 #### enableGroundCollisionSlide?
 
 > `optional` **enableGroundCollisionSlide?**: `boolean`
 
-接近地面时是否沿地表滑移。
+Whether to slide along the terrain when near the ground.
 
 #### targetFrameMode?
 
 > `optional` **targetFrameMode?**: [`ArcRotateTargetFrameMode`](ArcRotateTargetFrameMode.md)
 
-目标局部坐标系模式。
+Target local coordinate system mode.
 
 ***
 
@@ -42,7 +42,7 @@
 
 > `optional` **installInputListeners?**: `boolean`
 
-是否安装跟踪交互监听。默认 `true`。
+Whether to install follow interaction listeners. Default `true`.
 
 ***
 
@@ -50,7 +50,7 @@
 
 > `optional` **optimizeRender?**: `boolean`
 
-是否在跟踪时启用按需渲染优化。默认 `true`。
+Whether to enable on-demand rendering optimization while following. Default `true`.
 
 ***
 
@@ -58,4 +58,4 @@
 
 > `optional` **view?**: [`FollowTargetView`](FollowTargetView.md)
 
-跟踪视角。
+Follow view.

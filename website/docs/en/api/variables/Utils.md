@@ -8,9 +8,9 @@
 
 > `const` **Utils**: `object`
 
-通用工具集合。
+General utility collection.
 
-该对象以“命名空间”形式导出，便于使用方按需调用。
+This object is exported in a "namespace" pattern for convenient selective access.
 
 ## Type Declaration
 
@@ -36,10 +36,10 @@
 
 > **createDisposableDetachMaterial**: () => `Material`
 
-创建一个组件移除时使用的临时材质。
+Creates a temporary material used when removing a component.
 
-线对象从集合移除时会销毁自身挂载的材质。Feature 销毁只应解除组件对业务材质的引用，
-不能销毁外部传入或多处共享的材质。
+When a line object is removed from a collection, it destroys its own material. Feature destruction should only release the component's reference to the business material,
+must not destroy externally passed or shared materials.
 
 #### Returns
 
@@ -49,10 +49,10 @@
 
 > **generateDistinctColors**: (`count`) => `string`[]
 
-使用黄金角偏移生成 N 个视觉区分度高的 HSL 颜色。
+Generates N visually distinct HSL colors using golden angle offset.
 
-黄金角（~137.508°）确保相邻颜色在色环上均匀分布，避免颜色聚集。
-饱和度和亮度固定（70%/55%），仅旋转色相，适合在深色背景上使用。
+The golden angle (~137.508°) ensures adjacent colors are evenly distributed on the hue wheel, avoiding color clustering.
+Saturation and lightness are fixed (70%/55%), only the hue rotates, suitable for use on dark backgrounds.
 
 #### Parameters
 
@@ -60,13 +60,13 @@
 
 `number`
 
-生成颜色数量
+Number of colors to generate
 
 #### Returns
 
 `string`[]
 
-HSL 颜色字符串数组，如 `["hsl(0, 70%, 55%)", "hsl(138, 70%, 55%)", ...]`
+HSL color string array, e.g. `["hsl(0, 70%, 55%)", "hsl(138, 70%, 55%)", ...]`
 
 #### Example
 
@@ -84,7 +84,7 @@ items.forEach((item, i) => {
 
 > **GenGuid**: () => `string`
 
-生成一个Guid
+Generates a Guid
 
 #### Returns
 
@@ -102,7 +102,7 @@ items.forEach((item, i) => {
 
 > **getComplementaryColor**: (`color`) => `Color`
 
-计算补色（h + 180°），并轻微提亮亮度。
+Calculates the complementary color (h + 180°) and slightly increases brightness.
 
 #### Parameters
 
@@ -208,9 +208,9 @@ items.forEach((item, i) => {
 
 > **hslToRgb**: (`hsl`) => `Color`
 
-HSL 转 RGB。
+HSL to RGB.
 
-- h: 角度制 0~360
+- h: angle in degrees 0~360
 - s/l/a: 0~1
 
 #### Parameters
@@ -277,7 +277,7 @@ HSL 转 RGB。
 
 > **maxDistancePosition**: (`startPosition`, `positions`) => `object`
 
-计算距离起始点到所有点之间的最大距离
+Calculates the maximum distance from the start point to all points
 
 #### Parameters
 
@@ -293,7 +293,7 @@ HSL 转 RGB。
 
 `object`
 
-position 最大距离的点 distance 最大距离
+position The point with the maximum distance distance The maximum distance
 
 ##### distance
 
@@ -307,7 +307,7 @@ position 最大距离的点 distance 最大距离
 
 > **removePolyline**: (`collection`, `polyline`) => `void`
 
-从 PolylineCollection 移除折线前，先摘掉原 material 引用，避免 remove 销毁共享材质。
+Before removing a polyline from PolylineCollection, detach the original material reference to prevent remove from destroying shared materials.
 
 #### Parameters
 
@@ -327,7 +327,7 @@ position 最大距离的点 distance 最大距离
 
 > **removePrimitive**: (`collection`, `primitive`) => `void`
 
-从空间渲染集合移除对象前，摘掉其外观材质引用。
+Before removing an object from a spatial rendering collection, detach its appearance material reference.
 
 #### Parameters
 
@@ -367,9 +367,9 @@ position 最大距离的点 distance 最大距离
 
 > **rgbToHsl**: (`color`) => [`HslColor`](../types/HslColor.md)
 
-RGB 转 HSL。
+RGB to HSL.
 
-- 输入与输出分量均为 0~1，h 为角度制 0~360
+- Input and output components are all 0~1, with h in degrees 0~360
 
 #### Parameters
 
@@ -471,11 +471,11 @@ RGB 转 HSL。
 
 > **toCesiumMaterial**: (`material`) => `Material` \| `undefined`
 
-将 Daisy 材质输入转换为内部渲染材质实例。
+Converts Daisy material input into an internal rendering material instance.
 
-- 字符串：作为图片 URL 创建图片材质
-- 材质实例：复制为独立实例，避免共享对象被销毁
-- Daisy 颜色对象：创建纯色材质
+- String: creates an image material from a URL
+- Material instance: duplicates it as an independent instance to prevent shared objects from being destroyed
+- Daisy color object: creates a solid color material
 
 #### Parameters
 
@@ -483,7 +483,7 @@ RGB 转 HSL。
 
 [`DMaterial`](../types/DMaterial.md) \| `undefined`
 
-材质描述
+Material description
 
 #### Returns
 
@@ -493,14 +493,14 @@ RGB 转 HSL。
 
 > **worldToDrawingBufferCoordinates**: `any`
 
-将世界坐标转换为 drawingBuffer 坐标（像素）。
+Converts world coordinates to drawingBuffer coordinates (pixels).
 
-将世界坐标转换为绘制缓冲区坐标，并兼容运行时不同版本的实现方法名。
+Converts world coordinates to drawing buffer coordinates, compatible with different implementation method names across runtime versions.
 
 ### worldToWindowCoordinate
 
 > **worldToWindowCoordinate**: `any`
 
-将世界坐标转换为窗口坐标（像素）。
+Converts world coordinates to window coordinates (pixels).
 
-将世界坐标转换为窗口坐标，并兼容运行时不同版本的实现方法名。
+Converts world coordinates to window coordinates, compatible with different implementation method names across runtime versions.

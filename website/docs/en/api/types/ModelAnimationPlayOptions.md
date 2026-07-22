@@ -8,7 +8,7 @@
 
 > **ModelAnimationPlayOptions** = `object`
 
-模型动画播放配置。
+Model animation playback configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **animationTime?**: [`ModelAnimationTimeCallback`](ModelAnimationTimeCallback.md)
 
-自定义动画时间映射函数。
+Custom animation time mapping function.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **delay?**: `number`
 
-动画延迟启动时间（单位：秒）。
+Animation delay before start (unit: seconds).
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **index?**: `number`
 
-动画索引（与 `name` 二选一）。
+Animation index (choose one from `name`).
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **loop?**: [`ModelAnimationLoop`](../enums/ModelAnimationLoop.md)
 
-循环模式。
+Loop mode.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **multiplier?**: `number`
 
-动画播放速率倍数。
+Animation playback rate multiplier.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **name?**: `string`
 
-动画名称（与 `index` 二选一）。
+Animation name (choose one from `index`).
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **removeOnStop?**: `boolean`
 
-停止时是否自动移除动画。
+Whether to automatically remove the animation when it stops.
 
 ***
 
@@ -72,7 +72,7 @@
 
 > `optional` **reverse?**: `boolean`
 
-是否反向播放。
+Whether to play in reverse.
 
 ***
 
@@ -80,7 +80,7 @@
 
 > `optional` **startTime?**: `Daisy.JulianDate`
 
-动画开始时间（仿真时间）。
+Animation start time (simulation time).
 
 ***
 
@@ -88,4 +88,4 @@
 
 > `optional` **stopTime?**: `Daisy.JulianDate`
 
-动画停止时间（仿真时间）。
+Animation stop time (simulation time).

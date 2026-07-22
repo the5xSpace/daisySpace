@@ -16,7 +16,7 @@
 
 > `optional` **color?**: [`DColor`](../types/DColor.md)
 
-颜色
+Color
 
 #### Default
 
@@ -34,7 +34,7 @@ AutoColor.LIGHTPINK.withAlpha(0.4)
 
 > `optional` **displayRadius?**: `number`
 
-显示裁剪尺度（单位：米）
+Display clip scale (unit: meters)
 
 ***
 
@@ -42,7 +42,7 @@ AutoColor.LIGHTPINK.withAlpha(0.4)
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离范围
+Display distance range
 
 #### Overrides
 
@@ -54,7 +54,7 @@ AutoColor.LIGHTPINK.withAlpha(0.4)
 
 > `optional` **gridStyle?**: [`PlaneGridStyle`](../types/Plane.PlaneGridStyle.md)
 
-网格样式。
+Grid style.
 
 #### Overrides
 
@@ -66,7 +66,7 @@ AutoColor.LIGHTPINK.withAlpha(0.4)
 
 > `optional` **id?**: `string`
 
-id 自动生成请不要传入
+ID is auto-generated, please do not pass it in
 
 #### Overrides
 
@@ -78,7 +78,7 @@ id 自动生成请不要传入
 
 > `optional` **material?**: [`DMaterial`](../types/DMaterial.md)
 
-材质
+Material
 
 ***
 
@@ -86,7 +86,7 @@ id 自动生成请不要传入
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-文字边框色
+Label border color
 
 ***
 
@@ -94,7 +94,7 @@ id 自动生成请不要传入
 
 > `optional` **outlineWidth?**: `number`
 
-文字外框宽度
+Label outline width
 
 ***
 
@@ -102,7 +102,7 @@ id 自动生成请不要传入
 
 > `optional` **planeAlpha?**: `number`
 
-平面填充透明度（0~1）。
+Plane fill opacity (0~1).
 
 #### Inherited from
 
@@ -120,9 +120,9 @@ id 自动生成请不要传入
 
 > `optional` **referenceRadius?**: `number`
 
-参考半径（单位：米）。
+Reference radius (unit: meters).
 
-具体含义由不同平面实现决定（如圆盘半径、网格半径等）。
+The exact meaning depends on the specific plane implementation (e.g., disk radius, grid radius, etc.).
 
 #### Default
 
@@ -140,7 +140,7 @@ id 自动生成请不要传入
 
 > `optional` **segments?**: `number`
 
-圆盘精度 默认64
+Disk precision, defaults to 64
 
 #### Overrides
 
@@ -152,7 +152,7 @@ id 自动生成请不要传入
 
 > `optional` **show?**: `boolean`
 
-是否显示
+Whether to show
 
 #### Default
 
@@ -170,7 +170,7 @@ true
 
 > `optional` **showLabel?**: `boolean`
 
-是否显示标签
+Whether to show label
 
 #### Default
 
@@ -184,7 +184,7 @@ true
 
 > `optional` **updateIntervalSeconds?**: `number`
 
-更新间隔（单位：秒）。
+Update interval (unit: seconds).
 
 #### Default
 
@@ -202,7 +202,7 @@ true
 
 > `optional` **width?**: `number`
 
-宽度
+Width
 
 #### Default
 

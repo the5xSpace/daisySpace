@@ -1,8 +1,8 @@
-# 波束投影计算
+# Beam Footprint Projection
 
-`Analysis.BeamProjector` 是覆盖分析的核心引擎，负责从卫星矩阵 + 传感器参数计算出波束在地面（或任意天体）的投影 footprint。
+`Analysis.BeamProjector` is the core engine for coverage analysis. It computes the beam footprint on the ground (or any celestial body) from the satellite matrix and sensor parameters.
 
-## 架构
+## Architecture
 
 ```
 BeamProjector（统一入口）
@@ -10,9 +10,9 @@ BeamProjector（统一入口）
   └── BeamProjectorGpuBackend（GPU 后端，异步，基于 gpu-io）
 ```
 
-`BeamProjector` 内部自动管理后端的初始化和降级：GPU 不可用时自动回退到 CPU，无需手动判断。
+`BeamProjector` internally manages backend initialization and auto-fallback: when GPU is unavailable it silently falls back to CPU with no manual intervention required.
 
-## 构造
+## Construction
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -24,32 +24,32 @@ const bp = new Daisy.Analysis.BeamProjector()
 const bp = new Daisy.Analysis.BeamProjector(Daisy.Analysis.BeamProjectorBackend.GPU)
 ```
 
-`BeamProjectorBackend` 枚举值：`CPU`（`"cpu"`）和 `GPU`（`"gpu"`）。
+The `BeamProjectorBackend` enum values are `CPU` (`"cpu"`) and `GPU` (`"gpu"`).
 
 ## projectFootprint()
 
-同步方法，返回单次波束投影的计算结果。
+Synchronous method; returns the result of a single beam footprint projection.
 
 ```typescript
 bp.projectFootprint(input: BeamProjectorInput): FootprintResult
 ```
 
-### 参数表（BeamProjectorInput）
+### Parameter Table (BeamProjectorInput)
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `entityId` | `string` | 实体标识，用于缓存去重 |
-| `entityMatrix` | `Matrix4` | 卫星 ECEF 世界矩阵（`sat.entity.getWorldMatrix(time)`） |
-| `beamAttitude` | `{ azimuthDeg, elevationDeg, rollDeg }` | 波束姿态角（度） |
-| `sensorType` | `SensorType` | 波束类型（`EllipticalCone` / `Cone` / `Pyramid` / `Cylinder`） |
-| `apertureDeg` | `{ xDeg, yDeg }` | X/Y 方向开角（度） |
-| `beamLength` | `number` | 波束长度（米） |
-| `emitDirection` | `EmitDirection` | 发射方向（`TO_GROUND` / `TO_BOTTOM` / `TO_UP` 等） |
-| `slices` | `number` | 圆周采样精度（默认 32，更高值更精确但更慢） |
-| `celestialEllipsoid` | `CelestialEllipsoid` | 目标天体椭球（`PW.CelestialEllipsoid.Earth()` 等） |
-| `time` | `JulianDate` | 计算时刻 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `entityId` | `string` | Entity identifier, used for cache deduplication |
+| `entityMatrix` | `Matrix4` | Satellite ECEF world matrix (`sat.entity.getWorldMatrix(time)`) |
+| `beamAttitude` | `{ azimuthDeg, elevationDeg, rollDeg }` | Beam attitude angles (degrees) |
+| `sensorType` | `SensorType` | Beam type (`EllipticalCone` / `Cone` / `Pyramid` / `Cylinder`) |
+| `apertureDeg` | `{ xDeg, yDeg }` | Aperture angle in the X/Y direction (degrees) |
+| `beamLength` | `number` | Beam length (meters) |
+| `emitDirection` | `EmitDirection` | Emission direction (`TO_GROUND` / `TO_BOTTOM` / `TO_UP`, etc.) |
+| `slices` | `number` | Circumferential sampling accuracy (default 32; higher values are more accurate but slower) |
+| `celestialEllipsoid` | `CelestialEllipsoid` | Target celestial ellipsoid (`PW.CelestialEllipsoid.Earth()`, etc.) |
+| `time` | `JulianDate` | Calculation instant |
 
-### 返回值（FootprintResult）
+### Return Value (FootprintResult)
 
 ```typescript
 interface FootprintResult {
@@ -62,11 +62,11 @@ interface FootprintResult {
 }
 ```
 
-`cartographic` 数组即为 footprint 的多边形轮廓点（按顺序排列）。
+The `cartographic` array holds the polygon contour points of the footprint (in order).
 
-## 异步 GPU 方法
+## Async GPU Methods
 
-当需要精确控制后端路径时，使用专门的异步方法：
+When you need precise control over the backend path, use the dedicated async methods:
 
 ```typescript
 // 异步 GPU 投影（如 GPU 不可用则降级 CPU）
@@ -76,9 +76,9 @@ const result: FootprintResult = await bp.projectFootprintGpu(input)
 const results: FootprintResult[] = await bp.projectFootprintBatchGpu(inputs)
 ```
 
-## 渲染覆盖足迹
+## Rendering the Footprint
 
-计算出的 footprint 通过 Sensor 的 `drawFootprint()` 渲染：
+The computed footprint is rendered via the Sensor's `drawFootprint()`:
 
 ```typescript
 sensor.drawFootprint({
@@ -98,9 +98,9 @@ sensor.drawFootprint({
 sensor.clearFootprintUnionRenderer?.()
 ```
 
-`drawFootprint()` 内部会自动调用 `BeamProjector` 在每个采样时刻计算 footprint，并通过 `ShaderPolygonFeature` 绘制多边形。
+`drawFootprint()` internally calls `BeamProjector` at each sample instant to compute the footprint, then draws the polygon via `ShaderPolygonFeature`.
 
-## 完整示例
+## Complete Example
 
 ```typescript
 const engine = await Daisy.Engine.create("container")
@@ -160,17 +160,17 @@ sensor.drawFootprint({
 
 ```
 
-## CPU vs GPU 后端选择
+## Choosing CPU vs GPU Backend
 
-| 场景 | 推荐后端 | 原因 |
-|------|----------|------|
-| 单次 / 少量投影 | CPU | GPU 初始化有额外开销，少量计算时 CPU 延迟更低 |
-| 大批量 / 星座覆盖 | GPU | GPU 并行计算可显著加速数千次投影 |
-| 浏览器不支持 WebGL2 | CPU（自动降级） | GPU 后端依赖 `GpuDeviceManager.isSupported()` |
-| 精确性敏感 | CPU（可回退比对） | GPU 端点精度受浮点纹理精度限制 |
+| Scenario | Recommended Backend | Reason |
+|----------|---------------------|-------|
+| Single / few projections | CPU | GPU initialization has overhead; CPU has lower latency for few calculations |
+| Large batch / constellation coverage | GPU | GPU parallel compute significantly accelerates thousands of projections |
+| Browser lacks WebGL2 | CPU (auto-fallback) | GPU backend depends on `GpuDeviceManager.isSupported()` |
+| Accuracy-critical | CPU (fallback for comparison) | GPU endpoint accuracy is limited by floating-point texture precision |
 
-> **提示**：构造时传 `GPU` 即可，内部会自动检测 GPU 可用性并在失败时降级为 CPU——无需手动判断。
+> **Tip**: Pass `GPU` at construction time; the system auto-detects GPU availability and falls back to CPU on failure — no manual branching needed.
 
 ---
 
-> **相关 API**：[PW.Sensor](/en/api/classes/PW.Sensor)
+> **Related API**: [PW.Sensor](/en/api/classes/PW.Sensor)

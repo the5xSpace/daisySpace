@@ -6,14 +6,14 @@
 
 # Interface: IWidget
 
-Daisy 统一 Widget 生命周期接口。
+Daisy unified Widget lifecycle interface.
 
-- register: 绑定到 Engine，并在其中完成资源创建
-- createIn2d: 在 2D 模式进入时执行一次创建逻辑
-- update: 在每个仿真帧中调用（可选实现）
-- refresh: 外部配置变化后同步刷新 UI（可选实现）
-- morphSwitchHandle: 响应场景切换
-- destroy: 释放资源、解绑监听与 DOM
+- register: Bind to Engine and complete resource creation within it
+- createIn2d: Execute creation logic once when entering 2D mode
+- update: Called on each simulation frame (optional implementation)
+- refresh: Synchronously refresh UI after external configuration changes (optional implementation)
+- morphSwitchHandle: Respond to scene switches
+- destroy: Release resources, unbind listeners and DOM
 
 ## Extended by
 
@@ -37,8 +37,8 @@ Daisy 统一 Widget 生命周期接口。
 
 > `optional` **isDestroyed?**: `boolean`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+The collection manager uses it to avoid destroyed singleton instances.
 
 ***
 
@@ -46,7 +46,7 @@ Daisy 统一 Widget 生命周期接口。
 
 > `optional` **key?**: `string`
 
-Widget 标识键（用于单例去重）。
+Widget identification key (for singleton deduplication).
 
 ***
 
@@ -60,8 +60,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **rebuildOnMorph?**: `boolean`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether destroy -> register rebuild is needed when scene morphs (2D/3D).
+Default true; UI class widgets should usually be set to false.
 
 ***
 
@@ -69,8 +69,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **singleton?**: `boolean`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether it is a singleton widget.
+- If true, only one instance with the same key is allowed within the Engine.
 
 ***
 
@@ -78,8 +78,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **zoomIgnored?**: `boolean`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore during camera aggregation observation.
+UI controller class widgets should be set to true.
 
 ## Methods
 
@@ -87,7 +87,7 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`engine`): `void`
 
-在 2D 模式下创建 Widget 资源。
+Create Widget resources in 2D mode.
 
 #### Parameters
 
@@ -95,7 +95,7 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](../classes/Engine.md)
 
-引擎实例
+Engine instance
 
 #### Returns
 
@@ -107,7 +107,7 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-销毁 Widget，释放资源并解除事件绑定。
+Destroy the Widget, release resources and unbind events.
 
 #### Returns
 
@@ -119,7 +119,7 @@ UI 控制器类 widget 应设为 true。
 
 > `optional` **getBoundingSphere**(`time?`): `BoundingSphere` \| `undefined`
 
-获取 Widget 的包围球（用于相机聚合观测）。
+Get the Widget's bounding sphere (for camera aggregation observation).
 
 #### Parameters
 
@@ -127,13 +127,13 @@ UI 控制器类 widget 应设为 true。
 
 `JulianDate`
 
-仿真时间（可选）
+Simulation time (optional)
 
 #### Returns
 
 `BoundingSphere` \| `undefined`
 
-包围球实例，若无则返回 undefined
+Bounding sphere instance, returns undefined if none
 
 ***
 
@@ -141,7 +141,7 @@ UI 控制器类 widget 应设为 true。
 
 > **morphSwitchHandle**(`mode`): `void`
 
-场景模式切换处理回调。
+Scene mode switch handling callback.
 
 #### Parameters
 
@@ -149,7 +149,7 @@ UI 控制器类 widget 应设为 true。
 
 `SceneMode`
 
-切换后的场景模式
+Scene mode after switch
 
 #### Returns
 
@@ -161,9 +161,9 @@ UI 控制器类 widget 应设为 true。
 
 > `optional` **refresh**(): `void`
 
-外部配置变化后同步刷新 Widget。
+Synchronously refresh Widget after external configuration changes.
 
-例如 Engine 级时间格式变化时，UI Widget 可在此重绘标题、刻度和当前时间。
+For example, when Engine-level time format changes, UI Widgets can repaint titles, ticks, and current time here.
 
 #### Returns
 
@@ -175,7 +175,7 @@ UI 控制器类 widget 应设为 true。
 
 > **register**(`engine`): `IWidget`
 
-注册 Widget 到引擎，完成初始化绑定与资源创建。
+Register the Widget to the engine, complete initialization binding and resource creation.
 
 #### Parameters
 
@@ -183,13 +183,13 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](../classes/Engine.md)
 
-目标引擎实例
+Target engine instance
 
 #### Returns
 
 `IWidget`
 
-当前 Widget 实例
+Current Widget instance
 
 ***
 
@@ -197,7 +197,7 @@ UI 控制器类 widget 应设为 true。
 
 > **update**(`time`): `void`
 
-每帧更新回调。
+Per-frame update callback.
 
 #### Parameters
 
@@ -205,7 +205,7 @@ UI 控制器类 widget 应设为 true。
 
 `JulianDate`
 
-当前仿真时间（JulianDate）
+Current simulation time (JulianDate)
 
 #### Returns
 

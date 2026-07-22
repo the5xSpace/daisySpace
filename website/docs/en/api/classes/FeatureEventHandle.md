@@ -6,11 +6,11 @@
 
 # Class: FeatureEventHandle
 
-统一的 Feature 交互事件句柄。
+Unified Feature interaction event handle.
 
-- 对外提供傻瓜式 API：onClick / onDblClick / onMouseEnter / onMouseLeave
-- 内部通过 ViewerEventHandle 的 SPACE_ENTITY_* 事件实现拾取分发
-- 可选：把 Feature 事件向上提交到所属 Entity（Feature.enableSubmitToEntity）
+- Provides a foolproof external API: onClick / onDblClick / onMouseEnter / onMouseLeave
+- Internally implements picking and dispatching through ViewerEventHandle SPACE_ENTITY_* events
+- Optional: submits Feature events up to the owning Entity (Feature.enableSubmitToEntity)
 
 ## Constructors
 
@@ -34,7 +34,7 @@
 
 > **destroy**(): `void`
 
-释放句柄并移除已安装的 ViewerEventHandle 监听。
+Release the handle and remove installed ViewerEventHandle listeners.
 
 #### Returns
 
@@ -48,9 +48,9 @@ void
 
 > **ensureInstalled**(): `void`
 
-确保事件监听已安装到 ViewerEventHandle。
+Ensure event listeners are installed on ViewerEventHandle.
 
-当 Feature 自身有事件监听，或启用了向上提交时，会自动安装。
+When the Feature itself has event listeners or has enabled upward submission, installation happens automatically.
 
 #### Returns
 
@@ -64,7 +64,7 @@ void
 
 > **offClick**(`handler?`): `void`
 
-取消监听 click 事件。
+Remove click event listener.
 
 #### Parameters
 
@@ -72,7 +72,7 @@ void
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; if not passed, removes all listeners for this event
 
 #### Returns
 
@@ -87,7 +87,7 @@ void
 
 > **offDblClick**(`handler?`): `void`
 
-取消监听 dblclick 事件。
+Remove dblclick event listener.
 
 #### Parameters
 
@@ -95,7 +95,7 @@ void
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; if not passed, removes all listeners for this event
 
 #### Returns
 
@@ -110,7 +110,7 @@ void
 
 > **offMouseEnter**(`handler?`): `void`
 
-取消监听 mouseenter 事件。
+Remove mouseenter event listener.
 
 #### Parameters
 
@@ -118,7 +118,7 @@ void
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; if not passed, removes all listeners for this event
 
 #### Returns
 
@@ -133,7 +133,7 @@ void
 
 > **offMouseLeave**(`handler?`): `void`
 
-取消监听 mouseleave 事件。
+Remove mouseleave event listener.
 
 #### Parameters
 
@@ -141,7 +141,7 @@ void
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; if not passed, removes all listeners for this event
 
 #### Returns
 
@@ -156,7 +156,7 @@ void
 
 > **onClick**(`handler`): `void`
 
-监听 click 事件。
+Listen for click event.
 
 #### Parameters
 
@@ -164,7 +164,7 @@ void
 
 (`e`) => `void`
 
-回调函数
+Callback function
 
 #### Returns
 
@@ -179,7 +179,7 @@ void
 
 > **onDblClick**(`handler`): `void`
 
-监听 dblclick 事件。
+Listen for dblclick event.
 
 #### Parameters
 
@@ -187,7 +187,7 @@ void
 
 (`e`) => `void`
 
-回调函数
+Callback function
 
 #### Returns
 
@@ -202,7 +202,7 @@ void
 
 > **onMouseEnter**(`handler`): `void`
 
-监听 mouseenter 事件。
+Listen for mouseenter event.
 
 #### Parameters
 
@@ -210,7 +210,7 @@ void
 
 (`e`) => `void`
 
-回调函数
+Callback function
 
 #### Returns
 
@@ -225,7 +225,7 @@ void
 
 > **onMouseLeave**(`handler`): `void`
 
-监听 mouseleave 事件。
+Listen for mouseleave event.
 
 #### Parameters
 
@@ -233,7 +233,7 @@ void
 
 (`e`) => `void`
 
-回调函数
+Callback function
 
 #### Returns
 

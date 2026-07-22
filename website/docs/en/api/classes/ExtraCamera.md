@@ -6,8 +6,8 @@
 
 # Class: ExtraCamera
 
-相机管理类
-用于管理场景中的相机操作，包括实体追踪、视锥显示等功能
+Camera management class.
+Used to manage camera operations in the scene, including entity tracking, frustum display, and other features.
 
 ## Example
 
@@ -25,7 +25,7 @@ const camera = new Camera(viewer);
 
 > **new ExtraCamera**(`viewer`, `options?`): `ExtraCamera`
 
-构造函数
+Constructor
 
 #### Parameters
 
@@ -33,17 +33,17 @@ const camera = new Camera(viewer);
 
 [`Engine`](Engine.md)
 
-引擎实例
+Engine instance
 
 ##### options?
 
-配置项
+Configuration options
 
 ###### camera?
 
 `Camera`
 
-指定使用的底层相机对象，不传则使用引擎默认相机
+Specify the underlying camera object to use; if not provided, the engine's default camera is used
 
 ###### id?
 
@@ -79,7 +79,7 @@ const camera = new Camera(viewer);
 
 > **viewer**: [`Engine`](Engine.md) \| `undefined`
 
-关联的引擎实例。
+The associated engine instance.
 
 #### Overrides
 
@@ -93,7 +93,7 @@ const camera = new Camera(viewer);
 
 > **get** **isMainCamera**(): `boolean`
 
-是否为主相机
+Whether this is the main camera
 
 ##### Returns
 
@@ -125,7 +125,7 @@ const camera = new Camera(viewer);
 
 > **cameraToWorldCoordinates**(`cartesian`, `result?`): `Cartesian4`
 
-将相机参考系中的向量/点变换到世界坐标系。
+Transform a vector/point from camera reference system to world coordinates.
 
 #### Parameters
 
@@ -133,19 +133,19 @@ const camera = new Camera(viewer);
 
 `Cartesian4`
 
-待变换的向量/点（Cartesian4）。
+The vector/point to transform (Cartesian4).
 
 ##### result?
 
 `Cartesian4`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Cartesian4`
 
-变换后的向量/点。
+The transformed vector/point.
 
 #### Inherited from
 
@@ -157,7 +157,7 @@ const camera = new Camera(viewer);
 
 > **cameraToWorldCoordinatesPoint**(`cartesian`, `result?`): `Cartesian3`
 
-将相机参考系中的点变换到世界坐标系。
+Transform a point from camera reference system to world coordinates.
 
 #### Parameters
 
@@ -165,19 +165,19 @@ const camera = new Camera(viewer);
 
 `Cartesian3`
 
-待变换的点（Cartesian3）。
+The point to transform (Cartesian3).
 
 ##### result?
 
 `Cartesian3`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Cartesian3`
 
-变换后的点。
+The transformed point.
 
 #### Inherited from
 
@@ -189,7 +189,7 @@ const camera = new Camera(viewer);
 
 > **cameraToWorldCoordinatesVector**(`cartesian`, `result?`): `Cartesian3`
 
-将相机参考系中的向量变换到世界坐标系。
+Transform a vector from camera reference system to world coordinates.
 
 #### Parameters
 
@@ -197,19 +197,19 @@ const camera = new Camera(viewer);
 
 `Cartesian3`
 
-待变换的向量（Cartesian3）。
+The vector to transform (Cartesian3).
 
 ##### result?
 
 `Cartesian3`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Cartesian3`
 
-变换后的向量。
+The transformed vector.
 
 #### Inherited from
 
@@ -221,7 +221,7 @@ const camera = new Camera(viewer);
 
 > **cancelFlight**(): `void`
 
-取消当前相机飞行，停在当前位置（若无飞行则无效果）。
+Cancel the current camera flight, stopping at the current position (no effect if no flight in progress).
 
 #### Returns
 
@@ -237,7 +237,7 @@ const camera = new Camera(viewer);
 
 > **closePiP**(): `void`
 
-关闭画中画
+Close picture-in-picture
 
 #### Returns
 
@@ -249,7 +249,7 @@ const camera = new Camera(viewer);
 
 > **completeFlight**(): `void`
 
-立即完成当前相机飞行，瞬移到飞行终点（若无飞行则无效果）。
+Immediately complete the current camera flight, teleporting to the flight destination (no effect if no flight in progress).
 
 #### Returns
 
@@ -265,7 +265,7 @@ const camera = new Camera(viewer);
 
 > **computeViewRectangle**(`ellipsoid?`, `result?`): `Rectangle` \| `undefined`
 
-计算椭球体上大致可见的矩形范围。
+Compute the approximate visible rectangle on the ellipsoid.
 
 #### Parameters
 
@@ -273,19 +273,19 @@ const camera = new Camera(viewer);
 
 `Ellipsoid`
 
-要计算可见区域的椭球体，默认 Ellipsoid.WGS84。
+The ellipsoid for which to compute the visible region, defaults to Ellipsoid.WGS84.
 
 ##### result?
 
 `Rectangle`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Rectangle` \| `undefined`
 
-可见矩形范围；若椭球不可见返回 undefined。
+The visible rectangle, or undefined if the ellipsoid is not visible.
 
 #### Inherited from
 
@@ -297,8 +297,8 @@ const camera = new Camera(viewer);
 
 > **destroy**(): `void`
 
-销毁相机管理对象
-清理所有追踪和可视化效果
+Destroy the camera management object.
+Clean up all tracking and visualization effects.
 
 #### Returns
 
@@ -320,7 +320,7 @@ camera.destroy();
 
 > **distanceToBoundingSphere**(`boundingSphere`): `number`
 
-获取相机到包围球前表面的距离。
+Get the distance from the camera to the front surface of the bounding sphere.
 
 #### Parameters
 
@@ -328,13 +328,13 @@ camera.destroy();
 
 `BoundingSphere`
 
-世界坐标系的包围球。
+The bounding sphere in world coordinates.
 
 #### Returns
 
 `number`
 
-距离值（米）。
+Distance value (meters).
 
 #### Inherited from
 
@@ -346,9 +346,9 @@ camera.destroy();
 
 > **flyHome**(`duration?`): `void`
 
-飞行到“主页视角”。
+Fly to the “home view”.
 
-3D 模式使用默认视域矩形；2D/哥伦布视图显示整张地图。
+In 3D mode, uses the default view rectangle; in 2D/Columbus view, displays the entire map.
 
 #### Parameters
 
@@ -356,7 +356,7 @@ camera.destroy();
 
 `number`
 
-飞行耗时（秒）。不传时会根据距离估算。
+Flight duration in seconds. If not provided, estimated based on distance.
 
 #### Returns
 
@@ -372,13 +372,13 @@ camera.destroy();
 
 > **flyTo**(`options`): `void`
 
-从当前位置飞行到新位置/矩形区域。
+Fly from the current position to a new position or rectangle area.
 
 #### Parameters
 
 ##### options
 
-飞行参数。
+Flight parameters.
 
 ###### cancel?
 
@@ -442,7 +442,7 @@ camera.destroy();
 
 > **flyToBoundingSphere**(`boundingSphere`, `options?`): `void`
 
-飞行到使当前视图包含指定包围球的位置。
+Fly to a position where the current view contains the specified bounding sphere.
 
 #### Parameters
 
@@ -450,11 +450,11 @@ camera.destroy();
 
 `BoundingSphere`
 
-世界坐标系包围球。
+The bounding sphere in world coordinates.
 
 ##### options?
 
-飞行参数。
+Flight parameters.
 
 ###### cancel?
 
@@ -510,13 +510,13 @@ camera.destroy();
 
 > **flyToTarget**(`target`, `options?`): `Promise`\<`boolean`\>
 
-相机飞行到目标（主相机调用引擎默认飞行逻辑；额外相机基于点集飞行）
+Fly the camera to a target (main camera uses engine default flight logic; extra cameras fly based on point set)
 
-支持 Daisy `Entity`、坐标对象、坐标集合与异步目标。
+Supports Daisy `Entity`, coordinate objects, coordinate arrays, and async targets.
 
-约定：
-- `[lon, lat, height]` 与 `{lon,lat,height?}`/`{lng,lat,alt?}`/`{longitude,latitude,height?}` 按“角度”解析
-- `Cartographic` 按“弧度”解析
+Conventions:
+- `[lon, lat, height]` and `{lon,lat,height?}`/`{lng,lat,alt?}`/`{longitude,latitude,height?}` are parsed as degrees
+- `Cartographic` is parsed as radians
 
 #### Parameters
 
@@ -524,19 +524,19 @@ camera.destroy();
 
 [`CameraViewTarget`](../types/CameraViewTarget.md)
 
-相机飞行目标
+Camera flight target
 
 ##### options?
 
 [`CameraFlyToTargetOptions`](../types/CameraFlyToTargetOptions.md) = `{}`
 
-相机飞行选项
+Camera flight options
 
 #### Returns
 
 `Promise`\<`boolean`\>
 
-相机飞行是否成功
+Whether the camera flight was successful
 
 #### Example
 
@@ -564,7 +564,7 @@ camera.flyTo(targetPromise);
 
 > **followTarget**(`entity`, `options?`): `void`
 
-设置相机跟踪的实体或物理对象。
+Set the entity or physical object for the camera to track.
 
 #### Parameters
 
@@ -572,13 +572,13 @@ camera.flyTo(targetPromise);
 
 [`FollowTarget`](../types/FollowTarget.md)
 
-要跟踪的实体或物理对象。
+The entity or physical object to track.
 
 ##### options?
 
 [`FollowTargetOptions`](../types/FollowTargetOptions.md) = `{}`
 
-跟踪视角、交互和渲染优化配置。
+Tracking view, interaction, and rendering optimization configuration.
 
 #### Returns
 
@@ -607,14 +607,14 @@ engine.camera.followTarget(entity, {
 
 > **getDirection**(): `Cartesian3`
 
-获取相机方向向量。
-返回 clone 副本。
+Get the camera direction vector.
+Returns a cloned copy.
 
 #### Returns
 
 `Cartesian3`
 
-相机方向向量（单位向量）。
+Camera direction vector (unit vector).
 
 #### Inherited from
 
@@ -656,15 +656,15 @@ engine.camera.followTarget(entity, {
 
 > **getMagnitude**(): `number`
 
-获取相机位置的“尺度”。
+Get the “magnitude” of the camera position.
 
-3D 为 position 向量模长；2D/哥伦布视图为相机到地图的距离。
+In 3D, the magnitude of the position vector; in 2D/Columbus view, the distance from camera to the map.
 
 #### Returns
 
 `number`
 
-相机位置尺度值。
+Camera position magnitude value.
 
 #### Inherited from
 
@@ -676,7 +676,7 @@ engine.camera.followTarget(entity, {
 
 > **getPickRay**(`windowPosition`, `result?`): `Ray` \| `undefined`
 
-从相机位置穿过屏幕像素生成拾取射线。
+Generate a pick ray from the camera position through a screen pixel.
 
 #### Parameters
 
@@ -684,19 +684,19 @@ engine.camera.followTarget(entity, {
 
 `Cartesian2`
 
-屏幕像素坐标。
+Screen pixel coordinates.
 
 ##### result?
 
 `Ray`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Ray` \| `undefined`
 
-射线（包含 origin 与 direction），无法计算时返回 undefined。
+Ray (containing origin and direction), returns undefined if it cannot be computed.
 
 #### Inherited from
 
@@ -726,7 +726,7 @@ engine.camera.followTarget(entity, {
 
 > **getPixelSize**(`boundingSphere`, `drawingBufferWidth`, `drawingBufferHeight`): `number`
 
-计算像素在世界中的尺寸（米）。
+Compute the pixel size in world units (meters).
 
 #### Parameters
 
@@ -734,25 +734,25 @@ engine.camera.followTarget(entity, {
 
 `BoundingSphere`
 
-世界坐标系包围球。
+The bounding sphere in world coordinates.
 
 ##### drawingBufferWidth
 
 `number`
 
-绘制缓冲区宽度。
+Drawing buffer width.
 
 ##### drawingBufferHeight
 
 `number`
 
-绘制缓冲区高度。
+Drawing buffer height.
 
 #### Returns
 
 `number`
 
-像素尺寸（米）。
+Pixel size (meters).
 
 #### Inherited from
 
@@ -764,14 +764,14 @@ engine.camera.followTarget(entity, {
 
 > **getPosition**(): `Cartesian3`
 
-获取相机世界坐标位置（防御式读取 positionWC ?? position）。
-返回 clone 副本，修改返回值不影响相机内部状态。
+Get the camera world position (defensive read of positionWC ?? position).
+Returns a cloned copy; modifying the return value does not affect the camera internal state.
 
 #### Returns
 
 `Cartesian3`
 
-相机世界坐标位置。
+Camera world position.
 
 #### Inherited from
 
@@ -783,7 +783,7 @@ engine.camera.followTarget(entity, {
 
 > **getRectangleCameraCoordinates**(`rectangle`, `result?`): `Cartesian3`
 
-计算“看见某个矩形区域”所需的相机位置。
+Compute the camera position needed to “see a given rectangle area”.
 
 #### Parameters
 
@@ -791,19 +791,19 @@ engine.camera.followTarget(entity, {
 
 `Rectangle`
 
-需要可见的矩形区域。
+The rectangle area that needs to be visible.
 
 ##### result?
 
 `Cartesian3`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Cartesian3`
 
-相机位置坐标（世界坐标系）。
+Camera position (world coordinates).
 
 #### Inherited from
 
@@ -815,14 +815,14 @@ engine.camera.followTarget(entity, {
 
 > **getRight**(): `Cartesian3`
 
-获取相机 right 向量。
-返回 clone 副本。
+Get the camera right vector.
+Returns a cloned copy.
 
 #### Returns
 
 `Cartesian3`
 
-相机 right 向量（单位向量）。
+Camera right vector (unit vector).
 
 #### Inherited from
 
@@ -834,14 +834,14 @@ engine.camera.followTarget(entity, {
 
 > **getUp**(): `Cartesian3`
 
-获取相机 up 向量。
-返回 clone 副本。
+Get the camera up vector.
+Returns a cloned copy.
 
 #### Returns
 
 `Cartesian3`
 
-相机 up 向量（单位向量）。
+Camera up vector (unit vector).
 
 #### Inherited from
 
@@ -881,7 +881,7 @@ engine.camera.followTarget(entity, {
 
 > **look**(`axis`, `angle?`): `void`
 
-围绕任意轴旋转相机的三个姿态向量（direction/up/right）。
+Rotate the camera’s three orientation vectors (direction/up/right) around an arbitrary axis.
 
 #### Parameters
 
@@ -889,13 +889,13 @@ engine.camera.followTarget(entity, {
 
 `Cartesian3`
 
-旋转轴。
+Rotation axis.
 
 ##### angle?
 
 `number`
 
-旋转角度（弧度），不传使用 defaultLookAmount。
+Rotation angle (radians), uses defaultLookAmount if not provided.
 
 #### Returns
 
@@ -911,7 +911,7 @@ engine.camera.followTarget(entity, {
 
 > **lookAt**(`target`, `offset`): `void`
 
-锁定相机视角到指定目标位置，使用偏移量确定相机姿态。
+Lock the camera view to a specified target position, using an offset to determine camera orientation.
 
 #### Parameters
 
@@ -919,13 +919,13 @@ engine.camera.followTarget(entity, {
 
 `Cartesian3`
 
-目标世界坐标位置。
+Target world position.
 
 ##### offset
 
 `Cartesian3` \| `HeadingPitchRange`
 
-相对目标的偏移量（HeadingPitchRange 或 Cartesian3）。
+Offset relative to the target (HeadingPitchRange or Cartesian3).
 
 #### Returns
 
@@ -941,7 +941,7 @@ engine.camera.followTarget(entity, {
 
 > **lookAtTransform**(`transform`, `offset?`): `void`
 
-以变换矩阵定义的参考系设置相机（目标为变换矩阵原点），并使用偏移量确定相机姿态。
+Set the camera in a reference frame defined by a transform matrix (target is the transform origin), using an offset for camera orientation.
 
 #### Parameters
 
@@ -949,13 +949,13 @@ engine.camera.followTarget(entity, {
 
 `Matrix4`
 
-定义参考系的变换矩阵。
+Transform matrix defining the reference frame.
 
 ##### offset?
 
 `Cartesian3` \| `HeadingPitchRange`
 
-相对目标的偏移量（Cartesian3 或 HeadingPitchRange）。
+Offset relative to the target (Cartesian3 or HeadingPitchRange).
 
 #### Returns
 
@@ -971,7 +971,7 @@ engine.camera.followTarget(entity, {
 
 > **lookDown**(`amount?`): `void`
 
-围绕 right 轴向下看（非 2D 模式生效）。
+Look downward around the right axis (effective in non-2D mode).
 
 #### Parameters
 
@@ -979,7 +979,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-旋转角度（弧度），不传使用 defaultLookAmount。
+Rotation angle (radians), uses defaultLookAmount if not provided.
 
 #### Returns
 
@@ -995,7 +995,7 @@ engine.camera.followTarget(entity, {
 
 > **lookLeft**(`amount?`): `void`
 
-围绕 up 轴向左看（非 2D 模式生效）。
+Look left around the up axis (effective in non-2D mode).
 
 #### Parameters
 
@@ -1003,7 +1003,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-旋转角度（弧度），不传使用 defaultLookAmount。
+Rotation angle (radians), uses defaultLookAmount if not provided.
 
 #### Returns
 
@@ -1019,7 +1019,7 @@ engine.camera.followTarget(entity, {
 
 > **lookRight**(`amount?`): `void`
 
-围绕 up 轴向右看（非 2D 模式生效）。
+Look right around the up axis (effective in non-2D mode).
 
 #### Parameters
 
@@ -1027,7 +1027,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-旋转角度（弧度），不传使用 defaultLookAmount。
+Rotation angle (radians), uses defaultLookAmount if not provided.
 
 #### Returns
 
@@ -1043,7 +1043,7 @@ engine.camera.followTarget(entity, {
 
 > **lookUp**(`amount?`): `void`
 
-围绕 right 轴向上看（非 2D 模式生效）。
+Look upward around the right axis (effective in non-2D mode).
 
 #### Parameters
 
@@ -1051,7 +1051,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-旋转角度（弧度），不传使用 defaultLookAmount。
+Rotation angle (radians), uses defaultLookAmount if not provided.
 
 #### Returns
 
@@ -1067,7 +1067,7 @@ engine.camera.followTarget(entity, {
 
 > **move**(`direction`, `amount?`): `void`
 
-沿指定方向平移相机位置。
+Translate the camera position along a specified direction.
 
 #### Parameters
 
@@ -1075,13 +1075,13 @@ engine.camera.followTarget(entity, {
 
 `Cartesian3`
 
-移动方向（单位向量，世界坐标系）。
+Move direction (unit vector, world coordinates).
 
 ##### amount?
 
 `number`
 
-移动距离（米），不传使用 defaultMoveAmount。
+Move distance (meters), uses defaultMoveAmount if not provided.
 
 #### Returns
 
@@ -1097,7 +1097,7 @@ engine.camera.followTarget(entity, {
 
 > **moveBackward**(`amount?`): `void`
 
-沿相机视线反方向平移（2D 模式会表现为缩放）。
+Translate opposite to the camera view direction (appears as zoom in 2D mode).
 
 #### Parameters
 
@@ -1105,7 +1105,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-移动距离（米），不传使用 defaultMoveAmount。
+Move distance (meters), uses defaultMoveAmount if not provided.
 
 #### Returns
 
@@ -1121,7 +1121,7 @@ engine.camera.followTarget(entity, {
 
 > **moveDown**(`amount?`): `void`
 
-沿相机上方向的反方向平移。
+Translate opposite to the camera up direction.
 
 #### Parameters
 
@@ -1129,7 +1129,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-移动距离（米），不传使用 defaultMoveAmount。
+Move distance (meters), uses defaultMoveAmount if not provided.
 
 #### Returns
 
@@ -1145,7 +1145,7 @@ engine.camera.followTarget(entity, {
 
 > **moveForward**(`amount?`): `void`
 
-沿相机视线方向平移（2D 模式会表现为缩放）。
+Translate along the camera view direction (appears as zoom in 2D mode).
 
 #### Parameters
 
@@ -1153,7 +1153,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-移动距离（米），不传使用 defaultMoveAmount。
+Move distance (meters), uses defaultMoveAmount if not provided.
 
 #### Returns
 
@@ -1169,7 +1169,7 @@ engine.camera.followTarget(entity, {
 
 > **moveLeft**(`amount?`): `void`
 
-沿相机右方向的反方向平移。
+Translate opposite to the camera right direction.
 
 #### Parameters
 
@@ -1177,7 +1177,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-移动距离（米），不传使用 defaultMoveAmount。
+Move distance (meters), uses defaultMoveAmount if not provided.
 
 #### Returns
 
@@ -1193,7 +1193,7 @@ engine.camera.followTarget(entity, {
 
 > **moveRight**(`amount?`): `void`
 
-沿相机右方向平移。
+Translate along the camera right direction.
 
 #### Parameters
 
@@ -1201,7 +1201,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-移动距离（米），不传使用 defaultMoveAmount。
+Move distance (meters), uses defaultMoveAmount if not provided.
 
 #### Returns
 
@@ -1217,7 +1217,7 @@ engine.camera.followTarget(entity, {
 
 > **moveUp**(`amount?`): `void`
 
-沿相机上方向平移。
+Translate along the camera up direction.
 
 #### Parameters
 
@@ -1225,7 +1225,7 @@ engine.camera.followTarget(entity, {
 
 `number`
 
-移动距离（米），不传使用 defaultMoveAmount。
+Move distance (meters), uses defaultMoveAmount if not provided.
 
 #### Returns
 
@@ -1241,7 +1241,7 @@ engine.camera.followTarget(entity, {
 
 > **onChanged**(`callback`): () => `void`
 
-订阅相机变化事件，返回取消订阅函数。
+Subscribe to camera change events, returns an unsubscribe function.
 
 #### Parameters
 
@@ -1249,11 +1249,11 @@ engine.camera.followTarget(entity, {
 
 () => `void`
 
-相机变化时的回调函数。
+Callback function for camera changes.
 
 #### Returns
 
-取消订阅函数，调用后移除监听。
+Unsubscribe function, removes the listener when called.
 
 () => `void`
 
@@ -1283,8 +1283,8 @@ engine.camera.followTarget(entity, {
 
 > **openPiP**(`options?`): `void`
 
-开启画中画 (PiP) 模式
-自动创建一个悬浮的视图窗口，同步显示当前相机的画面
+Open picture-in-picture (PiP) mode.
+Automatically creates a floating view window that synchronously displays the current camera view.
 
 #### Parameters
 
@@ -1292,7 +1292,7 @@ engine.camera.followTarget(entity, {
 
 `ExtraCameraPiPOptions` = `{}`
 
-配置选项
+Configuration options
 
 #### Returns
 
@@ -1304,7 +1304,7 @@ engine.camera.followTarget(entity, {
 
 > **pickEllipsoid**(`windowPosition`, `ellipsoid?`, `result?`): `Cartesian3` \| `undefined`
 
-从屏幕坐标拾取椭球/地图表面的点。
+Pick a point on the ellipsoid/map surface from screen coordinates.
 
 #### Parameters
 
@@ -1312,25 +1312,25 @@ engine.camera.followTarget(entity, {
 
 `Cartesian2`
 
-屏幕像素坐标。
+Screen pixel coordinates.
 
 ##### ellipsoid?
 
 `Ellipsoid`
 
-要拾取的椭球体，默认 Ellipsoid.WGS84。
+The ellipsoid to pick from, defaults to Ellipsoid.WGS84.
 
 ##### result?
 
 `Cartesian3`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Cartesian3` \| `undefined`
 
-拾取到的世界坐标点，未拾取到返回 undefined。
+The picked world coordinate point, returns undefined if nothing was picked.
 
 #### Inherited from
 
@@ -1342,7 +1342,7 @@ engine.camera.followTarget(entity, {
 
 > **removeFrustum**(): `void`
 
-移除视锥体显示
+Remove frustum display.
 
 #### Returns
 
@@ -1360,8 +1360,8 @@ camera.removeFrustum();
 
 > **removeTrackedDaisyEntity**(): `void`
 
-移除当前对实体的追踪
-解除锁定并恢复相机控制
+Remove the current entity tracking.
+Unlock and restore camera control.
 
 #### Returns
 
@@ -1383,7 +1383,7 @@ camera.removeTrackedDaisyEntity();
 
 > **rotate**(`axis`, `angle?`): `void`
 
-围绕世界坐标系的任意轴旋转相机，保持相机到参考系原点的距离不变。
+Rotate the camera around an arbitrary world axis, keeping the distance from camera to the reference frame origin constant.
 
 #### Parameters
 
@@ -1391,13 +1391,13 @@ camera.removeTrackedDaisyEntity();
 
 `Cartesian3`
 
-旋转轴（世界坐标系）。
+Rotation axis (world coordinates).
 
 ##### angle?
 
 `number`
 
-旋转角度（弧度），不传使用 defaultRotateAmount。
+Rotation angle (radians), uses defaultRotateAmount if not provided.
 
 #### Returns
 
@@ -1413,7 +1413,7 @@ camera.removeTrackedDaisyEntity();
 
 > **rotateDown**(`angle?`): `void`
 
-围绕相机参考系中心向下旋转。
+Rotate downward around the camera reference frame center.
 
 #### Parameters
 
@@ -1421,7 +1421,7 @@ camera.removeTrackedDaisyEntity();
 
 `number`
 
-旋转角度（弧度），不传使用 defaultRotateAmount。
+Rotation angle (radians), uses defaultRotateAmount if not provided.
 
 #### Returns
 
@@ -1437,7 +1437,7 @@ camera.removeTrackedDaisyEntity();
 
 > **rotateLeft**(`angle?`): `void`
 
-围绕相机参考系中心向左旋转。
+Rotate left around the camera reference frame center.
 
 #### Parameters
 
@@ -1445,7 +1445,7 @@ camera.removeTrackedDaisyEntity();
 
 `number`
 
-旋转角度（弧度），不传使用 defaultRotateAmount。
+Rotation angle (radians), uses defaultRotateAmount if not provided.
 
 #### Returns
 
@@ -1461,7 +1461,7 @@ camera.removeTrackedDaisyEntity();
 
 > **rotateRight**(`angle?`): `void`
 
-围绕相机参考系中心向右旋转。
+Rotate right around the camera reference frame center.
 
 #### Parameters
 
@@ -1469,7 +1469,7 @@ camera.removeTrackedDaisyEntity();
 
 `number`
 
-旋转角度（弧度），不传使用 defaultRotateAmount。
+Rotation angle (radians), uses defaultRotateAmount if not provided.
 
 #### Returns
 
@@ -1485,7 +1485,7 @@ camera.removeTrackedDaisyEntity();
 
 > **rotateUp**(`angle?`): `void`
 
-围绕相机参考系中心向上旋转。
+Rotate upward around the camera reference frame center.
 
 #### Parameters
 
@@ -1493,7 +1493,7 @@ camera.removeTrackedDaisyEntity();
 
 `number`
 
-旋转角度（弧度），不传使用 defaultRotateAmount。
+Rotation angle (radians), uses defaultRotateAmount if not provided.
 
 #### Returns
 
@@ -1509,8 +1509,8 @@ camera.removeTrackedDaisyEntity();
 
 > **setDirection**(`dir`): `void`
 
-直接设定相机方向向量。
-会先断开当前跟踪状态。
+Directly set the camera direction vector.
+Disconnects any current tracking state first.
 
 #### Parameters
 
@@ -1518,7 +1518,7 @@ camera.removeTrackedDaisyEntity();
 
 `Cartesian3`
 
-方向向量（世界坐标）。
+Direction vector (world coordinates).
 
 #### Returns
 
@@ -1534,7 +1534,7 @@ camera.removeTrackedDaisyEntity();
 
 > **setFrustumFar**(`far`): `void`
 
-设置相机远裁剪面距离。
+Set the camera far clipping plane distance.
 
 #### Parameters
 
@@ -1542,7 +1542,7 @@ camera.removeTrackedDaisyEntity();
 
 `number`
 
-远裁剪面距离（米）
+Far clipping plane distance (meters)
 
 #### Returns
 
@@ -1558,7 +1558,7 @@ camera.removeTrackedDaisyEntity();
 
 > **setFrustumNear**(`near`): `void`
 
-设置相机近裁剪面距离。
+Set the camera near clipping plane distance.
 
 #### Parameters
 
@@ -1566,7 +1566,7 @@ camera.removeTrackedDaisyEntity();
 
 `number`
 
-近裁剪面距离（米）
+Near clipping plane distance (meters)
 
 #### Returns
 
@@ -1582,8 +1582,8 @@ camera.removeTrackedDaisyEntity();
 
 > **setPosition**(`pos`): `void`
 
-直接设定相机世界坐标位置。
-会先断开当前跟踪状态。
+Directly set the camera world position.
+Disconnects any current tracking state first.
 
 #### Parameters
 
@@ -1591,7 +1591,7 @@ camera.removeTrackedDaisyEntity();
 
 `Cartesian3`
 
-目标位置（世界坐标）。
+Target position (world coordinates).
 
 #### Returns
 
@@ -1607,8 +1607,8 @@ camera.removeTrackedDaisyEntity();
 
 > **setUp**(`up`): `void`
 
-直接设定相机 up 向量。
-会先断开当前跟踪状态。
+Directly set the camera up vector.
+Disconnects any current tracking state first.
 
 #### Parameters
 
@@ -1616,7 +1616,7 @@ camera.removeTrackedDaisyEntity();
 
 `Cartesian3`
 
-up 向量（世界坐标）。
+Up vector (world coordinates).
 
 #### Returns
 
@@ -1632,13 +1632,13 @@ up 向量（世界坐标）。
 
 > **setView**(`options`): `void`
 
-设置相机视图到指定位置或区域，与cesium setView 方法一致
+Set the camera view to a specified position or area, consistent with Cesium setView.
 
 #### Parameters
 
 ##### options
 
-视图参数配置
+View parameter configuration
 
 ###### convert?
 
@@ -1710,32 +1710,32 @@ up 向量（世界坐标）。
 
 > **showFrustum**(`options?`): `void`
 
-显示相机视锥体
-可视化当前相机的视锥范围
+Display the camera frustum.
+Visualizes the frustum range of the current camera.
 
 #### Parameters
 
 ##### options?
 
-视锥显示配置
+Frustum display configuration
 
 ###### color?
 
 `Color`
 
-视锥线条颜色
+Frustum line color
 
 ###### outlineColor?
 
 `Color`
 
-轮廓颜色（暂未使用）
+Outline color (not yet used)
 
 ###### showCamera?
 
 `boolean`
 
-是否显示相机
+Whether to show the camera
 
 #### Returns
 
@@ -1760,7 +1760,7 @@ camera.showFrustum({
 
 > **switchToOrthographicFrustum**(): `void`
 
-切换为正交投影（2D 模式下无效果）。
+Switch to orthographic projection (no effect in 2D mode).
 
 #### Returns
 
@@ -1776,7 +1776,7 @@ camera.showFrustum({
 
 > **switchToPerspectiveFrustum**(): `void`
 
-切换为透视投影（2D 模式下无效果）。
+Switch to perspective projection (no effect in 2D mode).
 
 #### Returns
 
@@ -1792,7 +1792,7 @@ camera.showFrustum({
 
 > **twistLeft**(`amount?`): `void`
 
-围绕 direction 轴逆时针扭转（roll）。
+Twist counterclockwise around the direction axis (roll).
 
 #### Parameters
 
@@ -1800,7 +1800,7 @@ camera.showFrustum({
 
 `number`
 
-旋转角度（弧度），不传使用 defaultLookAmount。
+Rotation angle (radians), uses defaultLookAmount if not provided.
 
 #### Returns
 
@@ -1816,7 +1816,7 @@ camera.showFrustum({
 
 > **twistRight**(`amount?`): `void`
 
-围绕 direction 轴顺时针扭转（roll）。
+Twist clockwise around the direction axis (roll).
 
 #### Parameters
 
@@ -1824,7 +1824,7 @@ camera.showFrustum({
 
 `number`
 
-旋转角度（弧度），不传使用 defaultLookAmount。
+Rotation angle (radians), uses defaultLookAmount if not provided.
 
 #### Returns
 
@@ -1840,8 +1840,8 @@ camera.showFrustum({
 
 > **unlockView**(): `void`
 
-解除视角锁定，恢复相机到世界坐标系自由视角。
-等价于 lookAtTransform(Matrix4.IDENTITY) 的语义化封装。
+Unlock the view, restoring the camera to free world-coordinate view.
+Semantic wrapper equivalent to lookAtTransform(Matrix4.IDENTITY).
 
 #### Returns
 
@@ -1857,7 +1857,7 @@ camera.showFrustum({
 
 > **viewBoundingSphere**(`boundingSphere`, `offset?`): `void`
 
-设置相机，使当前视图包含指定包围球。
+Set the camera so the current view contains the specified bounding sphere.
 
 #### Parameters
 
@@ -1865,13 +1865,13 @@ camera.showFrustum({
 
 `BoundingSphere`
 
-世界坐标系包围球。
+The bounding sphere in world coordinates.
 
 ##### offset?
 
 `HeadingPitchRange`
 
-以包围球中心为原点的局部 ENU 坐标系下的 Heading/Pitch/Range。
+Heading/Pitch/Range in the local ENU coordinate system centered at the bounding sphere center.
 
 #### Returns
 
@@ -1887,7 +1887,7 @@ camera.showFrustum({
 
 > **worldToCameraCoordinates**(`cartesian`, `result?`): `Cartesian4`
 
-将世界坐标系中的向量/点变换到相机参考系。
+Transform a vector/point from world coordinates to the camera reference frame.
 
 #### Parameters
 
@@ -1895,19 +1895,19 @@ camera.showFrustum({
 
 `Cartesian4`
 
-待变换的向量/点（Cartesian4）。
+The vector/point to transform (Cartesian4).
 
 ##### result?
 
 `Cartesian4`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Cartesian4`
 
-变换后的向量/点。
+The transformed vector/point.
 
 #### Inherited from
 
@@ -1919,7 +1919,7 @@ camera.showFrustum({
 
 > **worldToCameraCoordinatesPoint**(`cartesian`, `result?`): `Cartesian3`
 
-将世界坐标系中的点变换到相机参考系。
+Transform a point from world coordinates to the camera reference frame.
 
 #### Parameters
 
@@ -1927,19 +1927,19 @@ camera.showFrustum({
 
 `Cartesian3`
 
-待变换的点（Cartesian3）。
+The point to transform (Cartesian3).
 
 ##### result?
 
 `Cartesian3`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Cartesian3`
 
-变换后的点。
+The transformed point.
 
 #### Inherited from
 
@@ -1951,7 +1951,7 @@ camera.showFrustum({
 
 > **worldToCameraCoordinatesVector**(`cartesian`, `result?`): `Cartesian3`
 
-将世界坐标系中的向量变换到相机参考系。
+Transform a vector from world coordinates to the camera reference frame.
 
 #### Parameters
 
@@ -1959,19 +1959,19 @@ camera.showFrustum({
 
 `Cartesian3`
 
-待变换的向量（Cartesian3）。
+The vector to transform (Cartesian3).
 
 ##### result?
 
 `Cartesian3`
 
-输出结果复用对象。
+Reusable output result object.
 
 #### Returns
 
 `Cartesian3`
 
-变换后的向量。
+The transformed vector.
 
 #### Inherited from
 
@@ -1983,16 +1983,16 @@ camera.showFrustum({
 
 > **zoom**(`target`, `offset?`): `Promise`\<`boolean`\>
 
-缩放到一个或多个目标。
+Zoom to one or more targets.
 
-这是新的聚合型入口，支持混合传入：
+This is a new aggregated entry point, supporting mixed inputs:
 - Daisy Entity / PhysicalWorld Object
-- 底层实体集合 / 数据源 / 可计算边界的对象
-- Widget / Layer（若其实现了 `getBoundingSphere()`）
-- Cartesian3 / Cartographic / 常见经纬度对象
-- 上述类型的数组
+- Underlying entity collections / data sources / objects with computable bounds
+- Widget / Layer (if they implement `getBoundingSphere()`)
+- Cartesian3 / Cartographic / common lat/lon objects
+- Arrays of the above types
 
-UI 类 widget 若设置了 `zoomIgnored = true` 会被自动忽略。
+UI widgets with `zoomIgnored = true` are automatically skipped.
 
 #### Parameters
 
@@ -2018,7 +2018,7 @@ UI 类 widget 若设置了 `zoomIgnored = true` 会被自动忽略。
 
 > **zoomAll**(`offset?`): `Promise`\<`boolean`\>
 
-缩放到当前 Engine 内的全部三维目标。
+Zoom to all 3D targets within the current Engine.
 
 #### Parameters
 
@@ -2040,7 +2040,7 @@ UI 类 widget 若设置了 `zoomIgnored = true` 会被自动忽略。
 
 > **zoomIn**(`amount?`): `void`
 
-沿视线方向缩放（zoom in）。
+Zoom in along the view direction.
 
 #### Parameters
 
@@ -2048,7 +2048,7 @@ UI 类 widget 若设置了 `zoomIgnored = true` 会被自动忽略。
 
 `number`
 
-缩放量，不传使用 defaultZoomAmount。
+Zoom amount, uses defaultZoomAmount if not provided.
 
 #### Returns
 
@@ -2064,7 +2064,7 @@ UI 类 widget 若设置了 `zoomIgnored = true` 会被自动忽略。
 
 > **zoomOut**(`amount?`): `void`
 
-沿视线反方向缩放（zoom out）。
+Zoom out along the opposite of the view direction.
 
 #### Parameters
 
@@ -2072,7 +2072,7 @@ UI 类 widget 若设置了 `zoomIgnored = true` 会被自动忽略。
 
 `number`
 
-缩放量，不传使用 defaultZoomAmount。
+Zoom amount, uses defaultZoomAmount if not provided.
 
 #### Returns
 
@@ -2088,13 +2088,13 @@ UI 类 widget 若设置了 `zoomIgnored = true` 会被自动忽略。
 
 > **zoomTo**(`target`, `offset?`): `Promise`\<`boolean`\>
 
-缩放/运镜到目标（主相机使用引擎默认运镜逻辑；额外相机基于点集飞行）
+Zoom/move camera to target (main camera uses engine default movement logic; extra cameras fly based on point set)
 
-支持 Daisy `Entity`、坐标对象、坐标集合与异步目标。
+Supports Daisy `Entity`, coordinate objects, coordinate arrays, and async targets.
 
-约定：
-- `[lon, lat, height]` 与 `{lon,lat,height?}`/`{lng,lat,alt?}`/`{longitude,latitude,height?}` 按“角度”解析
-- `Cartographic` 按“弧度”解析
+Conventions:
+- `[lon, lat, height]` and `{lon,lat,height?}`/`{lng,lat,alt?}`/`{longitude,latitude,height?}` are parsed as degrees
+- `Cartographic` is parsed as radians
 
 #### Parameters
 

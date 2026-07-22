@@ -1,8 +1,8 @@
-# CZML 数据导入
+# CZML Data Import
 
-CZML 是一种描述时间动态场景的 JSON 格式。`CzmlImporter` 将 CZML 文档解析为 Daisy Entity + Feature 管线，同时支持退回到原生 DataSource 渲染。
+CZML is a JSON format for describing time-dynamic scenes. `CzmlImporter` parses CZML documents into the Daisy Entity + Feature pipeline, with fallback support for native DataSource rendering.
 
-## 基本用法
+## Basic Usage
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -18,19 +18,19 @@ const importer = new Daisy.CzmlImporter(engine)
 const entities = importer.load(czmlPackets)
 ```
 
-`load()` 返回 `Entity[]`——CZML 中每个实体包被转换为一个 Daisy Entity，并自动挂载对应的 Feature。`position` 和 `orientation` 转换为 `TrajectorySample` 轨迹。
+`load()` returns `Entity[]` — each CZML entity packet is converted to a Daisy Entity with its corresponding Feature auto-mounted. `position` and `orientation` are converted to `TrajectorySample` trajectories.
 
-## CzmlImporter 构造函数
+## CzmlImporter Constructor
 
 ```typescript
 new Daisy.CzmlImporter(engine: Daisy.Engine)
 ```
 
-| 参数 | 类型 | 说明 |
+| Parameter | Type | Description |
 |------|------|------|
-| `engine` | `Engine` | Daisy 引擎实例，用于创建 Entity、同步时钟、管理生命周期 |
+| `engine` | `Engine` | Daisy engine instance; used to create Entity instances, synchronize the clock, and manage lifecycle |
 
-## CzmlImporter.load() 参数表
+## CzmlImporter.load() Parameter Table
 
 ```typescript
 importer.load(czml: any[]): Daisy.Entity[]
@@ -38,12 +38,12 @@ importer.load(czml: any[], mode: "daisy"): Daisy.Entity[]
 importer.load(czml: any[], mode: "cesium"): Promise<any>
 ```
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|:---:|------|
-| `czml` | `any[]` | — | CZML 包数组（含 `document` 包与实体包） |
-| `mode` | `"daisy"` \| `"cesium"` | `"daisy"` | 导入模式：`"daisy"` 走 Entity/Feature 管线，`"cesium"` 退回到原生 DataSource 渲染 |
+| `czml` | `any[]` | — | Array of CZML packets (including `document` and entity packets) |
+| `mode` | `"daisy"` \| `"cesium"` | `"daisy"` | Import mode: `"daisy"` uses the Entity/Feature pipeline; `"cesium"` falls back to native DataSource rendering |
 
-## 两种模式
+## Two Modes
 
 ```typescript
 // Daisy 模式（默认）——走完整 Feature 管线
@@ -56,36 +56,36 @@ const dataSource = await importer.load(czmlData, "cesium")
 // dataSource 可直接添加到 viewer 的 dataSources 中
 ```
 
-`"cesium"` 模式适用于需要兼容已有 CZML 数据、但不希望走 Daisy Feature 管线的场景。
+`"cesium"` mode is appropriate when you need compatibility with existing CZML data but prefer not to route through the Daisy Feature pipeline.
 
-## 支持的 CZML 元素
+## Supported CZML Elements
 
-16 种 CZML 图形元素自动映射为对应 Daisy Feature：
+16 CZML graphics elements are automatically mapped to their corresponding Daisy Features:
 
-| CZML 元素 | 转换目标 | 说明 |
-|-----------|----------|------|
-| `point` | `PointFeature` | 点标记 |
-| `billboard` | `BillboardFeature` | 公告板图标 |
-| `label` | `UI.LabelFeature` | 文字标签 |
-| `model` | `ModelFeature` | 3D 模型（glTF） |
-| `path` | `TrailPathFeature` | 尾迹轨迹 |
-| `polyline` | `PolylineFeature` | 折线 |
-| `polygon` | `PolygonFeature` | 多边形 |
-| `rectangle` | `RectangleFeature` | 矩形区域 |
-| `wall` | `WallFeature` | 立面墙体 |
-| `corridor` | `CorridorFeature` | 走廊几何体 |
-| `ellipse` | `EllipseFeature` | 椭圆区域 |
-| `ellipsoid` | `EllipsoidFeature` | 三轴椭球体 |
-| `box` | `BoxFeature` | 长方体 |
-| `cylinder` | `CylinderFeature` | 圆柱/圆台 |
-| `polylineVolume` | `PolylineVolumeFeature` | 管状体积 |
-| `tileset` | `TilesetFeature` | 3D Tiles 瓦片 |
+| CZML Element | Mapped To | Description |
+|--------------|-----------|-------------|
+| `point` | `PointFeature` | Point marker |
+| `billboard` | `BillboardFeature` | Billboard icon |
+| `label` | `UI.LabelFeature` | Text label |
+| `model` | `ModelFeature` | 3D model (glTF) |
+| `path` | `TrailPathFeature` | Trail path |
+| `polyline` | `PolylineFeature` | Polyline |
+| `polygon` | `PolygonFeature` | Polygon |
+| `rectangle` | `RectangleFeature` | Rectangle region |
+| `wall` | `WallFeature` | Wall |
+| `corridor` | `CorridorFeature` | Corridor geometry |
+| `ellipse` | `EllipseFeature` | Ellipse region |
+| `ellipsoid` | `EllipsoidFeature` | Triaxial ellipsoid |
+| `box` | `BoxFeature` | Box |
+| `cylinder` | `CylinderFeature` | Cylinder / frustum |
+| `polylineVolume` | `PolylineVolumeFeature` | Tubular volume |
+| `tileset` | `TilesetFeature` | 3D Tiles tile set |
 
-每条 CZML 元素中的 `position` 自动转换为 Feature 的位置引用，`orientation` 转换为姿态轨迹。
+The `position` field in each CZML element is automatically converted to a Feature position reference; `orientation` is converted to an attitude trajectory.
 
-## document 包与时钟同步
+## document Packet and Clock Synchronization
 
-CZML 的 `document` 包携带时钟信息（`clock` 字段），导入时自动同步 Engine 时钟：
+The CZML `document` packet carries clock information (the `clock` field), which is automatically synchronized to the Engine clock on import:
 
 ```json
 {
@@ -100,26 +100,26 @@ CZML 的 `document` 包携带时钟信息（`clock` 字段），导入时自动�
 }
 ```
 
-`CzmlImporter` 内部调用 `setClockFromDocument()`，自动完成以下同步：
+`CzmlImporter` internally calls `setClockFromDocument()`, which automatically performs the following synchronizations:
 
-| 字段 | Engine 操作 | 说明 |
-|------|------------|------|
-| `clock.interval` | `engine.setSceneTime(start, stop)` | 设置时间轴起止 |
-| `clock.currentTime` | `engine.setCurrentTime()` | 设置当前时间 |
-| `clock.multiplier` | `engine.setMultiplier()` | 时间倍速 |
-| `clock.range` | `engine.setLoop()` | 循环/单向模式 |
+| Field | Engine Operation | Description |
+|------|------|------|
+| `clock.interval` | `engine.setSceneTime(start, stop)` | Set the time-axis start and stop |
+| `clock.currentTime` | `engine.setCurrentTime()` | Set the current time |
+| `clock.multiplier` | `engine.setMultiplier()` | Time multiplier |
+| `clock.range` | `engine.setLoop()` | Loop / one-shot mode |
 
-## delete: true 处理
+## Handling 'delete: true'
 
-CZML 中的 `delete: true` 会从 Engine 移除对应实体：
+`delete: true` in a CZML packet causes the corresponding entity to be removed from the Engine:
 
 ```json
 { "id": "sat-01", "delete": true }
 ```
 
-导入器先遍历所有包处理 `delete: true`，再为非删除包创建 Feature。已存在同 ID 实体时走更新路径（追加/替换 Feature），不存在时自动创建。
+The importer first processes all `delete: true` packets, then creates Features for non-deleted packets. When an entity with the same ID already exists, it takes the update path (appending / replacing Features); otherwise the entity is created automatically.
 
-> **相关 API**：[CzmlImporter](/en/api/classes/CzmlImporter) · [CzmlPlusImporter](/en/api/classes/CzmlPlusImporter) · [Entity](/en/api/classes/Entity)
+> **Related API**: [CzmlImporter](/en/api/classes/CzmlImporter) · [CzmlPlusImporter](/en/api/classes/CzmlPlusImporter) · [Entity](/en/api/classes/Entity)
 
 ---
 

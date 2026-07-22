@@ -12,7 +12,7 @@
 
 > `optional` **color?**: `Color`
 
-颜色
+Color
 
 #### Default
 
@@ -26,7 +26,7 @@ AutoColor.LIGHTGREEN.withAlpha(0.5)
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
 #### Default
 
@@ -40,7 +40,7 @@ undefined
 
 > `optional` **followCamera?**: `boolean`
 
-标签是否跟随相机移动
+Whether labels follow camera movement
 
 #### Default
 
@@ -54,7 +54,7 @@ true
 
 > `optional` **id?**: `string`
 
-唯一标识。
+Unique identifier.
 
 #### Default
 
@@ -68,7 +68,7 @@ true
 
 > `optional` **labelOptions?**: [`LabelOptionsWithFormat`](../types/LabelOptionsWithFormat.md)
 
-标签参数
+Label options
 
 #### Default
 
@@ -82,7 +82,7 @@ undefined
 
 > `optional` **material?**: `Material`
 
-材质。
+Material.
 
 #### Default
 
@@ -96,7 +96,7 @@ undefined
 
 > **radius**: `number`
 
-天球网格的半径
+Celestial sphere grid radius
 
 #### Default
 
@@ -110,7 +110,7 @@ undefined
 
 > `optional` **show?**: `boolean`
 
-是否显示
+Whether to show
 
 #### Default
 
@@ -124,7 +124,7 @@ true
 
 > `optional` **showLabel?**: `boolean`
 
-显示标签
+Show labels
 
 #### Default
 
@@ -138,7 +138,7 @@ true
 
 > `optional` **width?**: `number`
 
-线宽
+Line width
 
 #### Default
 

@@ -6,9 +6,9 @@
 
 # Interface: EntityComOptions
 
-要素（Feature）在 Entity 上的通用配置。
+General configuration for Features on an Entity.
 
-该类型通常作为各具体 Feature 的 options 基类使用。
+This type is typically used as the base options class for specific Features.
 
 ## Extends
 
@@ -24,7 +24,7 @@
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
 ***
 
@@ -32,10 +32,10 @@
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-组件涉及贴地/射线求交等“天体椭球”相关计算时使用的椭球配置。
+Ellipsoid configuration used when the component involves ground-clamping, ray intersection, or other celestial ellipsoid calculations.
 
-注意：一旦该组件通过 Entity.addFeature() 添加到实体上，会被实体的 celestialEllipsoid 覆盖，
-组件将始终遵循实体的天体椭球配置。
+Note: Once the component is added to an entity via Entity.addFeature(), it will be overridden by the entity's celestialEllipsoid,
+and will always follow the entity's celestial ellipsoid configuration.
 
 ***
 
@@ -43,7 +43,7 @@
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom ID (for underlying render object identification/retrieval).
 
 #### Inherited from
 
@@ -55,9 +55,9 @@
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to participate in the bounding sphere aggregation of the owning Entity.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Suitable for Features that need to be framed by camera zoom/flyTo. Guidelines, temporary effects, etc. can be disabled.
 
 #### Inherited from
 
@@ -69,7 +69,7 @@
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name (can be used for display/debugging).
 
 #### Inherited from
 
@@ -81,7 +81,7 @@
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay render pass.
 
 #### Inherited from
 
@@ -93,7 +93,7 @@
 
 > `optional` **position?**: `Cartesian3`
 
-相对实体坐标系下的位置。
+Position relative to the entity's coordinate system.
 
 ***
 
@@ -101,7 +101,7 @@
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render order value (lower values render first).
 
 #### Inherited from
 
@@ -121,7 +121,7 @@
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 

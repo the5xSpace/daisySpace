@@ -6,13 +6,13 @@
 
 # Class: NightTileLayer
 
-仅在地球夜侧显示的瓦片图层。
+Tile layer shown only on the night side of the Earth.
 
 ## Remarks
 
-- 2D 与 3D 模式均可使用。
-- 图层只移除自身创建的影像，不会清空其他底图或叠加层。
-- 场景模式切换时可安全重复执行销毁和重新注册。
+- Usable in both 2D and 3D modes.
+- The layer only removes imagery it created itself; it does not clear other base maps or overlays.
+- Safe to repeatedly destroy and re-register when switching scene modes.
 
 ## Example
 
@@ -51,7 +51,7 @@ const nightTiles = engine.addWidget(new Daisy.NightTileLayer());
 
 > `optional` **engine?**: [`Engine`](Engine.md)
 
-引擎实例。
+Engine instance.
 
 #### Inherited from
 
@@ -63,7 +63,7 @@ const nightTiles = engine.addWidget(new Daisy.NightTileLayer());
 
 > `optional` **id?**: `string`
 
-图层唯一标识符。
+Layer unique identifier.
 
 #### Inherited from
 
@@ -75,8 +75,8 @@ const nightTiles = engine.addWidget(new Daisy.NightTileLayer());
 
 > `optional` **isDestroyed?**: `boolean` = `false`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+Used by the collection manager to avoid already-destroyed singleton instances.
 
 #### Inherited from
 
@@ -88,7 +88,7 @@ const nightTiles = engine.addWidget(new Daisy.NightTileLayer());
 
 > `readonly` **key**: `"daisy-night-tile-layer"` = `"daisy-night-tile-layer"`
 
-Widget 标识键（用于单例去重）。
+Widget identity key (for singleton deduplication).
 
 #### Overrides
 
@@ -100,7 +100,7 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **name?**: `string`
 
-图层名称。
+Layer name.
 
 #### Inherited from
 
@@ -112,8 +112,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **rebuildOnMorph?**: `boolean` = `true`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether to rebuild via destroy -> register on scene morph (2D/3D).
+Default true; UI-type widgets should generally be set to false.
 
 #### Inherited from
 
@@ -125,8 +125,8 @@ Widget 标识键（用于单例去重）。
 
 > `readonly` **singleton**: `true` = `true`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether it is a singleton widget.
+- If true, only one instance with the same key is allowed in the Engine.
 
 #### Overrides
 
@@ -138,8 +138,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **zoomIgnored?**: `boolean` = `false`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore when the camera aggregates observation.
+UI controller-type widgets should be set to true.
 
 #### Inherited from
 
@@ -153,7 +153,7 @@ UI 控制器类 widget 应设为 true。
 
 > **get** **show**(): `boolean`
 
-是否显示夜间瓦片。
+Whether to show the night tile.
 
 ##### Returns
 
@@ -179,7 +179,7 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`_`): `void`
 
-在2D空间创建图层。
+Create the layer in 2D space.
 
 #### Parameters
 
@@ -201,7 +201,7 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-销毁图层。
+Destroy the layer.
 
 #### Returns
 
@@ -217,7 +217,7 @@ UI 控制器类 widget 应设为 true。
 
 > **is3d**(): `boolean`
 
-判断是否是3d模式
+Determine whether it is 3D mode
 
 #### Returns
 
@@ -233,7 +233,7 @@ UI 控制器类 widget 应设为 true。
 
 > **morphSwitchHandle**(`_`): `void`
 
-处理场景模式切换事件。
+Handle scene mode switching events.
 
 #### Parameters
 
@@ -255,9 +255,9 @@ UI 控制器类 widget 应设为 true。
 
 > **refresh**(): `void`
 
-外部配置变化后的同步刷新入口。
+Entry point for syncing refresh after external configuration changes.
 
-子类可重写此方法刷新 DOM、Canvas 或缓存状态。
+Subclasses can override this method to refresh DOM, Canvas or cached state.
 
 #### Returns
 
@@ -273,7 +273,7 @@ UI 控制器类 widget 应设为 true。
 
 > **unregister**(): `void`
 
-解除注册并释放当前实例拥有的影像资源。
+Unregister and release the imagery resources owned by the current instance.
 
 #### Returns
 
@@ -285,7 +285,7 @@ UI 控制器类 widget 应设为 true。
 
 > **offMorphSwitch**(`callback`): `void`
 
-移除投影切换事件监听
+Remove projection switch event listener
 
 #### Parameters
 
@@ -309,7 +309,7 @@ MORPH_SWITCH
 
 > **onMorphSwitch**(`callback`): `void`
 
-监听投影切换事件
+Listen for projection switch events
 
 #### Parameters
 

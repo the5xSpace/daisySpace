@@ -6,7 +6,7 @@
 
 # Interface: BoundBoxOptions
 
-盒子数据
+Bound box data
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **collisionColor?**: `Color`
 
-激活状态颜色
+Active state color
 
 #### Default
 
@@ -28,11 +28,11 @@ Color.RED.withAlpha(0.5)
 
 > `optional` **collisionScale?**: `number`
 
-碰撞态可视壳缩放倍数，只影响渲染，不影响碰撞检测。
+Collision state visualization shell scale factor, only affects rendering, not collision detection.
 
 #### Remarks
 
-`collisionVisualScale` 的语义化别名；两者同时传入时以 `collisionVisualScale` 为准。
+Semantic alias of `collisionVisualScale`; when both are provided, `collisionVisualScale` takes precedence.
 
 ***
 
@@ -40,10 +40,10 @@ Color.RED.withAlpha(0.5)
 
 > `optional` **collisionVisualMode?**: `"none"` \| `"highlight"`
 
-碰撞状态可视化模式。
+Collision state visualization mode.
 
-- `none`：只触发碰撞事件，不改变外观
-- `highlight`：碰撞时使用 collisionColor 高亮，分离后恢复
+- `none`: Only trigger collision events without changing appearance
+- `highlight`: Use collisionColor to highlight on collision, restore after separation
 
 #### Default
 
@@ -57,7 +57,7 @@ Color.RED.withAlpha(0.5)
 
 > `optional` **collisionVisualScale?**: `number`
 
-碰撞态可视壳缩放倍数，只影响渲染，不影响碰撞检测。
+Collision state visualization shell scale factor, only affects rendering, not collision detection.
 
 #### Default
 
@@ -71,7 +71,7 @@ Color.RED.withAlpha(0.5)
 
 > `optional` **color?**: `Color`
 
-盒子颜色
+Box color
 
 #### Default
 
@@ -85,11 +85,11 @@ Color.GREEN.withAlpha(0.3)
 
 > `optional` **detectCollision?**: `boolean`
 
-是否参与碰撞检测。
+Whether to participate in collision detection.
 
 #### Remarks
 
-`enableCollision` 的语义化别名；两者同时传入时以 `enableCollision` 为准。
+Semantic alias of `enableCollision`; when both are provided, `enableCollision` takes precedence.
 
 ***
 
@@ -97,7 +97,7 @@ Color.GREEN.withAlpha(0.3)
 
 > **dimensions**: `Cartesian3`
 
-盒子尺寸（单位：米），长/宽/高。
+Box dimensions (in meters), length/width/height.
 
 #### Default
 
@@ -111,7 +111,7 @@ new Cartesian3(100, 100, 100)
 
 > `optional` **enableCollision?**: `boolean`
 
-启用碰撞检测
+Enable collision detection
 
 #### Default
 
@@ -125,7 +125,7 @@ false
 
 > `optional` **enableCollisionStateShow?**: `boolean`
 
-启用激活(碰撞过程)状态
+Enable active (collision process) state
 
 #### Default
 
@@ -139,7 +139,7 @@ false
 
 > `optional` **outlineColor?**: `Color`
 
-边框颜色
+Outline color
 
 #### Default
 
@@ -153,7 +153,7 @@ Color.BLACK
 
 > `optional` **outlineWidth?**: `number`
 
-边框宽度（像素）
+Outline width (pixels)
 
 #### Default
 
@@ -167,10 +167,10 @@ Color.BLACK
 
 > `optional` **shape?**: `"rect"` \| `"ball"`
 
-形状
+Shape
 
-- `rect`：盒体（BoxGeometry）
-- `ball`：球体（EllipsoidGeometry）
+- `rect`: Box body (BoxGeometry)
+- `ball`: Sphere (EllipsoidGeometry)
 
 #### Default
 
@@ -184,7 +184,7 @@ Color.BLACK
 
 > `optional` **show?**: `boolean`
 
-是否显示
+Whether to show
 
 #### Default
 
@@ -198,11 +198,11 @@ true
 
 > `optional` **visible?**: `boolean`
 
-是否显示碰撞壳。
+Whether to show the collision shell.
 
 #### Remarks
 
-`show` 的语义化别名；两者同时传入时以 `show` 为准，便于兼容旧代码。
+Semantic alias of `show`; when both are provided, `show` takes precedence for backward compatibility.
 
 ***
 
@@ -210,9 +210,9 @@ true
 
 > `optional` **visualScale?**: `number`
 
-可视壳缩放倍数，只影响渲染，不影响碰撞检测。
+Visualization shell scale factor, only affects rendering, not collision detection.
 
-当包围盒与被包裹实体尺寸完全一致时，略微放大可避免透明面和线框被实体表面覆盖。
+When the bounding box matches the enclosed entity's dimensions exactly, a slight enlargement prevents transparent faces and wireframes from being occluded by the entity surface.
 
 #### Default
 

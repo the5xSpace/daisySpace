@@ -8,15 +8,15 @@
 
 > **ModelExplosionOptions** = `object`
 
-模型爆炸图配置。
+Model explosion diagram configuration.
 
-爆炸图会把每个 glTF 节点沿“节点中心相对模型坐标中心”的方向外移：
-- `factor = 0` 表示无位移
-- `factor = 1` 表示使用一倍基础爆炸距离
-- 节点 index 越大，默认会沿同一方向套用更大的递进距离，形成爆炸图的分层曲线
+The explosion diagram displaces each glTF node outward along the direction from the node center relative to the model coordinate center:
+- `factor = 0` means no displacement
+- `factor = 1` means using one unit of base explosion distance
+- Nodes with higher index apply a larger progressive distance in the same direction by default, forming a layered curve in the explosion diagram
 
-SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读取节点 transform 原点；
-这样能覆盖“节点原点在模型中心，但几何体实际偏离中心”的常见建模方式。
+The SDK reads the mesh vertex bounding box to locate the part center by default, rather than only reading the node transform origin;
+this covers the common modeling scenario where the node origin is at the model center but the geometry is actually offset.
 
 ## Properties
 
@@ -24,7 +24,7 @@ SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读�
 
 > `optional` **center?**: `Daisy.Cartesian3`
 
-爆炸中心，使用模型本地坐标。默认模型坐标原点。
+Explosion center, using model local coordinates. Defaults to the model coordinate origin.
 
 ***
 
@@ -32,7 +32,7 @@ SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读�
 
 > `optional` **enabled?**: `boolean`
 
-是否启用爆炸图。默认 `true`。
+Whether to enable the explosion diagram. Defaults to `true`.
 
 ***
 
@@ -40,7 +40,7 @@ SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读�
 
 > `optional` **excludeNodeNames?**: `string`[]
 
-排除指定节点。
+Exclude specified nodes.
 
 ***
 
@@ -48,7 +48,7 @@ SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读�
 
 > `optional` **factor?**: `number`
 
-爆炸强度倍率。`0` 等价于关闭，默认 `1`。
+Explosion intensity multiplier. `0` is equivalent to disabled; default is `1`.
 
 ***
 
@@ -56,7 +56,7 @@ SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读�
 
 > `optional` **indexCurvePower?**: `number`
 
-节点 index 递进曲线幂指数。默认 `1.2`。
+Node index progression curve power exponent. Defaults to `1.2`.
 
 ***
 
@@ -64,10 +64,10 @@ SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读�
 
 > `optional` **indexDistanceFactor?**: `number`
 
-节点 index 递进距离系数。
+Node index progression distance factor.
 
-爆炸距离会乘以 `1 + indexDistanceFactor * index^indexCurvePower`；
-传 `0` 可关闭 index 递进，只保留基础径向爆炸。
+Explosion distance is multiplied by `1 + indexDistanceFactor * index^indexCurvePower`;
+pass `0` to disable index progression and keep only the base radial explosion.
 
 ***
 
@@ -75,9 +75,9 @@ SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读�
 
 > `optional` **minimumDistance?**: `number`
 
-最小爆炸位移，使用模型本地坐标单位。
+Minimum explosion displacement, using model local coordinate units.
 
-不传时使用 `minimumDistanceRatio` 自动按模型包围半径计算；传 `0` 可关闭最小位移。
+When not provided, uses `minimumDistanceRatio` to auto-calculate from the model bounding radius; pass `0` to disable minimum displacement.
 
 ***
 
@@ -85,7 +85,7 @@ SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读�
 
 > `optional` **minimumDistanceRatio?**: `number`
 
-自动最小位移占模型本地包围半径的比例。默认 `0.16`。
+Ratio of auto minimum displacement to the model local bounding radius. Defaults to `0.16`.
 
 ***
 
@@ -93,4 +93,4 @@ SDK 默认会读取 mesh 顶点包围盒来定位部件中心，而不是只读�
 
 > `optional` **nodeNames?**: `string`[]
 
-仅对指定节点启用爆炸；不传表示所有可定位节点。
+Enable explosion only for specified nodes; omit to include all localizable nodes.

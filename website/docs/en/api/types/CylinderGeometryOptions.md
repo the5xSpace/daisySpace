@@ -8,7 +8,7 @@
 
 > **CylinderGeometryOptions** = `object`
 
-圆锥体几何参数
+Cone geometry parameters
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **capBottom?**: `boolean`
 
-是否封底（底部）。
+Whether to cap the bottom.
 
 #### Default
 
@@ -30,7 +30,7 @@ true
 
 > `optional` **capTop?**: `boolean`
 
-是否封顶（顶部）。
+Whether to cap the top.
 
 #### Default
 
@@ -44,7 +44,7 @@ true
 
 > `optional` **height?**: `number`
 
-高度（单位：米）
+Height (in meters)
 
 ***
 
@@ -52,7 +52,7 @@ true
 
 > `optional` **radiusBottom?**: `number`
 
-底部半径（单位：米）
+Bottom radius (in meters)
 
 ***
 
@@ -60,7 +60,7 @@ true
 
 > `optional` **slices?**: `number`
 
-圆周切片数
+Number of circumferential slices
 
 ***
 
@@ -68,7 +68,7 @@ true
 
 > `optional` **topRadius?**: `number`
 
-顶面半径（单位：米）
+Top radius (in meters)
 
 ***
 
@@ -76,7 +76,7 @@ true
 
 > `optional` **vertexFormat?**: `Daisy.VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 

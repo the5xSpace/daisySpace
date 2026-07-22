@@ -6,10 +6,10 @@
 
 # Class: CelestialMarkerWidget
 
-标记 Widget。
+Marker Widget.
 
-在场景中为一组目标点绘制点标记和标签，支持按距离自动显示/隐藏。
-适用于标注关键位置（如地面站、卫星等）。
+Draws point markers and labels for a set of target points in the scene, with automatic distance-based show/hide.
+Suitable for marking key locations (e.g., ground stations, satellites, etc.).
 
 ## Extends
 
@@ -61,8 +61,8 @@
 
 > `optional` **isDestroyed?**: `boolean` = `false`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+The collection manager uses it to avoid destroyed singleton instances.
 
 #### Inherited from
 
@@ -74,7 +74,7 @@
 
 > **key**: `string` = `"daisy.celestial-marker"`
 
-Widget 标识键（用于单例去重）。
+Widget identification key (for singleton deduplication).
 
 #### Overrides
 
@@ -96,8 +96,8 @@ Widget 标识键（用于单例去重）。
 
 > **rebuildOnMorph**: `boolean` = `false`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether destroy -> register rebuild is needed when scene morphs (2D/3D).
+Default true; UI class widgets should usually be set to false.
 
 #### Inherited from
 
@@ -109,8 +109,8 @@ Widget 标识键（用于单例去重）。
 
 > **singleton**: `boolean` = `true`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether it is a singleton widget.
+- If true, only one instance with the same key is allowed within the Engine.
 
 #### Inherited from
 
@@ -122,8 +122,8 @@ Widget 标识键（用于单例去重）。
 
 > **zoomIgnored**: `boolean` = `true`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore during camera aggregation observation.
+UI controller class widgets should be set to true.
 
 #### Inherited from
 
@@ -135,8 +135,8 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`_`): `void`
 
-在 2D 模式下创建 Widget 资源。
-子类应重写此方法以实现 2D 模式特有的初始化逻辑（如添加 Billboard、Label 等）。
+Create Widget resources in 2D mode.
+Subclasses should override this method to implement 2D-specific initialization logic (e.g., adding Billboards, Labels, etc.).
 
 #### Parameters
 
@@ -144,7 +144,7 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](Engine.md)
 
-引擎实例
+Engine instance
 
 #### Returns
 
@@ -160,8 +160,8 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-销毁 Widget，释放资源并解除事件绑定。
-将移除 morph 切换监听并标记实例为已销毁。
+Destroy the Widget, release resources and unbind events.
+Removes morph switch listener and marks the instance as destroyed.
 
 #### Returns
 
@@ -177,13 +177,13 @@ UI 控制器类 widget 应设为 true。
 
 > **is3d**(): `boolean`
 
-判断当前场景是否处于 3D 模式。
+Determine whether the current scene is in 3D mode.
 
 #### Returns
 
 `boolean`
 
-若为 3D 模式返回 true，否则返回 false
+Returns true if in 3D mode, false otherwise
 
 #### Inherited from
 
@@ -195,8 +195,8 @@ UI 控制器类 widget 应设为 true。
 
 > **morphSwitchHandle**(`_`): `void`
 
-场景模式切换处理。
-当场景在 2D/3D 之间切换时由引擎回调触发，子类可重写以实现自适应逻辑。
+Scene mode switch handling.
+Triggered by the engine callback when the scene switches between 2D/3D; subclasses can override to implement adaptive logic.
 
 #### Parameters
 
@@ -204,7 +204,7 @@ UI 控制器类 widget 应设为 true。
 
 `SceneMode`
 
-切换后的场景模式
+Scene mode after switch
 
 #### Returns
 
@@ -220,7 +220,7 @@ UI 控制器类 widget 应设为 true。
 
 > **offMorphSwitch**(`callback`): `void`
 
-移除场景模式切换监听。
+Remove scene mode switch listener.
 
 #### Parameters
 
@@ -228,7 +228,7 @@ UI 控制器类 widget 应设为 true。
 
 (`mode`) => `void`
 
-需要移除的回调函数
+Callback function to remove
 
 #### Returns
 
@@ -244,7 +244,7 @@ UI 控制器类 widget 应设为 true。
 
 > **onMorphSwitch**(`callback`): `void`
 
-注册场景模式切换监听。
+Register scene mode switch listener.
 
 #### Parameters
 
@@ -252,7 +252,7 @@ UI 控制器类 widget 应设为 true。
 
 (`mode`) => `void`
 
-场景切换时的回调函数
+Callback function for scene switch
 
 #### Returns
 
@@ -268,9 +268,9 @@ UI 控制器类 widget 应设为 true。
 
 > **refresh**(): `void`
 
-外部配置变化后的同步刷新入口。
+Synchronous refresh entry after external configuration changes.
 
-子类可重写此方法刷新 DOM、Canvas 或缓存状态。
+Subclasses can override this method to refresh DOM, Canvas, or cached state.
 
 #### Returns
 
@@ -286,9 +286,9 @@ UI 控制器类 widget 应设为 true。
 
 > **register**(`engine`): `this`
 
-注册 Widget 到引擎，完成初始化绑定。
-将当前实例挂载到指定 Engine，重置销毁标记，并监听场景 morph 事件。
-若当前为 2D 模式，则立即调用 createIn2d 完成 2D 资源创建。
+Register the Widget to the engine, complete initialization binding.
+Mounts the current instance to the specified Engine, resets the destroyed flag, and listens for scene morph events.
+If currently in 2D mode, immediately calls createIn2d to complete 2D resource creation.
 
 #### Parameters
 
@@ -296,13 +296,13 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](Engine.md)
 
-目标引擎实例
+Target engine instance
 
 #### Returns
 
 `this`
 
-当前 Widget 实例（支持链式调用）
+Current Widget instance (supports chaining)
 
 #### Inherited from
 
@@ -314,8 +314,8 @@ UI 控制器类 widget 应设为 true。
 
 > **update**(`time`): `void`
 
-每帧更新回调。
-子类应重写此方法以实现逐帧驱动逻辑（如位置插值、状态同步等）。
+Per-frame update callback.
+Subclasses should override this method to implement frame-by-frame driving logic (e.g., position interpolation, state synchronization, etc.).
 
 #### Parameters
 

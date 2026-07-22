@@ -16,7 +16,7 @@
 
 > `optional` **color?**: `Color`
 
-颜色。
+Color.
 
 #### Default
 
@@ -34,7 +34,7 @@ Daisy.Color.WHITE.withAlpha(0.15)
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
 #### Overrides
 
@@ -46,7 +46,7 @@ Daisy.Color.WHITE.withAlpha(0.15)
 
 > `optional` **gridStyle?**: [`PlaneGridStyle`](../types/Plane.PlaneGridStyle.md)
 
-网格样式。
+Grid style.
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Daisy.Color.WHITE.withAlpha(0.15)
 
 > `optional` **id?**: `string`
 
-唯一标识。
+Unique identifier.
 
 #### Overrides
 
@@ -70,7 +70,7 @@ Daisy.Color.WHITE.withAlpha(0.15)
 
 > `optional` **planeAlpha?**: `number`
 
-平面透明度。
+Plane opacity.
 
 #### Default
 
@@ -88,7 +88,7 @@ Daisy.Color.WHITE.withAlpha(0.15)
 
 > `optional` **referenceRadius?**: `number`
 
-参考半径，用于控制矩形平面的半宽半高。
+Reference radius for controlling rectangle plane half-width and half-height.
 
 #### Default
 
@@ -106,7 +106,7 @@ Daisy.Color.WHITE.withAlpha(0.15)
 
 > `optional` **segments?**: `number`
 
-分段数（越大越圆滑，但几何更重）。
+Segment count (higher = smoother but heavier geometry).
 
 #### Inherited from
 
@@ -118,7 +118,7 @@ Daisy.Color.WHITE.withAlpha(0.15)
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -136,7 +136,7 @@ true
 
 > `optional` **updateIntervalSeconds?**: `number`
 
-更新间隔（单位：秒）。
+Update interval (in seconds).
 
 #### Default
 

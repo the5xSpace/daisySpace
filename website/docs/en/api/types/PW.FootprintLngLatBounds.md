@@ -8,7 +8,7 @@
 
 > **FootprintLngLatBounds** = `{ crossesAntiMeridian: boolean; east: number; north: number; south: number; west: number }`
 
-覆盖范围的经纬度包围盒。
+Coverage longitude/latitude bounding box.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > **crossesAntiMeridian**: `boolean`
 
-经度范围是否跨越正负 180 度边界。
+Whether the longitude range crosses the ±180 degree boundary.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > **east**: `number`
 
-东侧经度，单位为度。
+Eastern longitude, in degrees.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **maxHeight?**: `number`
 
-覆盖点最大高度，单位为米。
+Maximum coverage point height, in meters.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **minHeight?**: `number`
 
-覆盖点最小高度，单位为米。
+Minimum coverage point height, in meters.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > **north**: `number`
 
-北侧纬度，单位为度。
+Northern latitude, in degrees.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > **south**: `number`
 
-南侧纬度，单位为度。
+Southern latitude, in degrees.
 
 ***
 
@@ -64,4 +64,4 @@
 
 > **west**: `number`
 
-西侧经度，单位为度。
+Western longitude, in degrees.

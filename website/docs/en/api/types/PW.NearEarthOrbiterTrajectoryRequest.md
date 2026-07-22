@@ -8,11 +8,11 @@
 
 > **NearEarthOrbiterTrajectoryRequest** = `object`
 
-轨迹写入请求。
+Trajectory write request.
 
-这是更偏业务侧的简写入口：
-- `startTime/endTime` 可省略，会自动取当前场景时间
-- `stepSeconds` 默认 600
+A business-oriented shorthand entry point:
+- `startTime`/`endTime` can be omitted and will default to the current scene time
+- `stepSeconds` defaults to 600
 
 ## Properties
 
@@ -20,7 +20,7 @@
 
 > `optional` **endTime?**: `Daisy.JulianDate`
 
-采样结束时刻（仿真时间）；默认取场景结束时间
+Sampling end time (simulation time); defaults to scene end time
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `optional` **intervalSeconds?**: `number`
 
-旧参数名兼容：采样间隔（秒）
+Legacy parameter alias: sampling interval (in seconds)
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **observerLocation?**: \[`number`, `number`, `number`\]
 
-观测者位置（经/纬/高），单位：deg/deg/m；默认 [0,0,0]
+Observer position (lon/lat/alt), units: deg/deg/m; defaults to [0,0,0]
 
 ***
 
@@ -44,7 +44,7 @@
 
 > `optional` **setOrientation?**: `boolean`
 
-是否写入姿态；默认 true
+Whether to write orientation; defaults to true
 
 ***
 
@@ -52,7 +52,7 @@
 
 > `optional` **startTime?**: `Daisy.JulianDate`
 
-采样开始时刻（仿真时间）；默认取场景开始时间
+Sampling start time (simulation time); defaults to scene start time
 
 ***
 
@@ -60,7 +60,7 @@
 
 > `optional` **stepSeconds?**: `number`
 
-采样步长（秒）；默认 600
+Sampling step (in seconds); defaults to 600
 
 ***
 
@@ -68,4 +68,4 @@
 
 > `optional` **trajectoryOptions?**: [`NearEarthOrbiterTrajectoryOptions`](PW.NearEarthOrbiterTrajectoryOptions.md)
 
-插值参数
+Interpolation parameters

@@ -8,7 +8,7 @@
 
 > **TimeDynamicInterval**\<`T`\> = \{ `end?`: `never`; `start`: `JulianDate`; `stop`: `JulianDate`; `value`: `T`; \} \| \{ `end`: `JulianDate`; `start`: `JulianDate`; `stop?`: `never`; `value`: `T`; \}
 
-动态属性使用的单个闭区间时间片段；结束时刻可写为 `stop` 或 `end`。
+A single closed-interval time segment used by dynamic properties; the end time can be written as `stop` or `end`.
 
 ## Type Parameters
 
@@ -26,25 +26,25 @@
 
 > `optional` **end?**: `never`
 
-与 `stop` 互斥的兼容字段。
+Compatibility field mutually exclusive with `stop`.
 
 #### start
 
 > **start**: `JulianDate`
 
-区间开始时刻。
+Interval start time.
 
 #### stop
 
 > **stop**: `JulianDate`
 
-区间结束时刻。
+Interval end time.
 
 #### value
 
 > **value**: `T`
 
-区间命中时返回的值。
+Value returned when the interval is hit.
 
 ***
 
@@ -56,22 +56,22 @@
 
 > **end**: `JulianDate`
 
-区间结束时刻。
+Interval end time.
 
 #### start
 
 > **start**: `JulianDate`
 
-区间开始时刻。
+Interval start time.
 
 #### stop?
 
 > `optional` **stop?**: `never`
 
-与 `end` 互斥的兼容字段。
+Compatibility field mutually exclusive with `end`.
 
 #### value
 
 > **value**: `T`
 
-区间命中时返回的值。
+Value returned when the interval is hit.

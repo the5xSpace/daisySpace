@@ -6,10 +6,10 @@
 
 # Class: BoundBoxCollection
 
-BoundBoxCollection 负责管理所有 BoundBoxFeature，并提供碰撞检测与事件分发能力。
-- 只负责能力和事件分发，不主动调度。
-- 由外部（如 engine）决定何时调用 triggerCollisionEvents。
-- 可实现碰撞检测
+BoundBoxCollection manages all BoundBoxFeature instances and provides collision detection and event dispatching.
+- Only responsible for capability and event dispatching, not active scheduling.
+- External code (e.g., engine) decides when to call triggerCollisionEvents.
+- Supports collision detection
 
 ## Constructors
 
@@ -27,7 +27,7 @@ BoundBoxCollection 负责管理所有 BoundBoxFeature，并提供碰撞检测与
 
 > **enableBroadPhase**: `boolean` = `true`
 
-OBB/SAT 前的保守外接球预检测。只能筛掉确定不碰撞的对象对。
+Conservative bounding sphere pre-check before OBB/SAT. Only filters out pairs that are guaranteed not to collide.
 
 ***
 
@@ -35,7 +35,7 @@ OBB/SAT 前的保守外接球预检测。只能筛掉确定不碰撞的对象对
 
 > **enableCollisionDetection**: `boolean` = `true`
 
-碰撞检测开关
+Collision detection toggle
 
 ***
 
@@ -45,7 +45,7 @@ OBB/SAT 前的保守外接球预检测。只能筛掉确定不碰撞的对象对
 
 #### Deprecated
 
-OBB/SAT 作为准确性托底，不再按数量自动关闭。
+OBB/SAT serves as accuracy fallback and is no longer automatically disabled based on count.
 
 ***
 
@@ -53,7 +53,7 @@ OBB/SAT 作为准确性托底，不再按数量自动关闭。
 
 > **spatialHashThreshold**: `number` = `80`
 
-对象数量达到该值后，使用空间分桶减少候选 pair。
+When the number of objects reaches this threshold, spatial hashing is used to reduce candidate pairs.
 
 ***
 
@@ -61,12 +61,12 @@ OBB/SAT 作为准确性托底，不再按数量自动关闭。
 
 > **useObb**: `boolean` = `true`
 
-OBB/SAT 最终精确检测开关。
+OBB/SAT final precision detection toggle.
 
 #### Remarks
 
-为保证碰撞检测准确性，当前实现始终使用 OBB/SAT 作为托底。
-该字段保留用于兼容旧代码，设置为 false 不会关闭最终精检。
+To ensure collision detection accuracy, the current implementation always uses OBB/SAT as the fallback.
+This field is retained for backward compatibility; setting it to false will not disable the final precision check.
 
 ## Accessors
 
@@ -76,7 +76,7 @@ OBB/SAT 最终精确检测开关。
 
 > **get** **collisionDetectionFrequencyHz**(): `number`
 
-每秒碰撞检测次数。有效范围 1-10，超过 10 会按 10 处理。
+Collision detections per second. Valid range 1-10; values above 10 are clamped to 10.
 
 ##### Returns
 
@@ -104,7 +104,7 @@ OBB/SAT 最终精确检测开关。
 
 > **get** **maxCollisionDetectionInterval**(): `number`
 
-兼容旧配置：检测间隔不会低于 100ms，避免超过 10Hz。
+Backward-compatible: detection interval will not fall below 100ms to avoid exceeding 10Hz.
 
 ##### Returns
 
@@ -130,7 +130,7 @@ OBB/SAT 最终精确检测开关。
 
 > **addBox**(`box`): `void`
 
-添加 BoundBoxFeature 到集合
+Add a BoundBoxFeature to the collection
 
 #### Parameters
 
@@ -148,7 +148,7 @@ OBB/SAT 最终精确检测开关。
 
 > **checkCollisions**(): `void`
 
-检查所有盒子的两两碰撞，返回碰撞对列表
+Check pairwise collisions of all boxes and return the list of collision pairs
 
 #### Returns
 
@@ -160,7 +160,7 @@ OBB/SAT 最终精确检测开关。
 
 > **clear**(): `void`
 
-清空集合和事件
+Clear the collection and events
 
 #### Returns
 
@@ -172,9 +172,9 @@ OBB/SAT 最终精确检测开关。
 
 > **clearCollisionStates**(): `void`
 
-清空集合中所有包围盒的当前碰撞状态。
+Clear the current collision state of all bounding boxes in the collection.
 
-适用于批量启停、重建场景或压力测试切换数量时，避免旧 pair 状态污染下一轮检测。
+Useful for batch start/stop, rebuild scenarios, or stress test count switching to prevent stale pair states from contaminating the next detection round.
 
 #### Returns
 
@@ -196,7 +196,7 @@ OBB/SAT 最终精确检测开关。
 
 > **removeBox**(`box`): `void`
 
-从集合移除 BoundBoxFeature
+Remove a BoundBoxFeature from the collection
 
 #### Parameters
 

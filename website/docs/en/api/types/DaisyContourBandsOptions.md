@@ -8,7 +8,7 @@
 
 > **DaisyContourBandsOptions** = `object`
 
-Layered contour band material configuration.
+Contour bands material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@ Layered contour band material configuration.
 
 > `optional` **bandCount?**: `number`
 
-Number of color bands.
+Band count.
 
 ***
 
@@ -56,4 +56,4 @@ Overall opacity.
 
 > `optional` **slope?**: `number`
 
-Color band tilt offset.
+Band slope offset.

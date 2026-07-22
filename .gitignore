@@ -11,3 +11,4 @@ website/i18n/*.tmp-*
 .env
 .env.*
 playground/vite-*.log
+nul

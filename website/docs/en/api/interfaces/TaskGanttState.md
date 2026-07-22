@@ -6,10 +6,10 @@
 
 # Interface: TaskGanttState
 
-传给渲染函数的完整状态快照。
+Complete state snapshot passed to the render function.
 
-每次渲染时由 [TaskGanttWidget](../classes/TaskGanttWidget.md) 构建，包含场景时间范围、
-当前时间、所有任务条目、时间指针位置和时间轴刻度。
+Built by [TaskGanttWidget](../classes/TaskGanttWidget.md) on each render, containing the scene time range,
+current time, all task entries, time cursor position, and timeline ticks.
 
 ## Example
 
@@ -33,7 +33,7 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **axisHeight**: `number`
 
-底部轴区高度（px）
+Bottom axis area height (px)
 
 ***
 
@@ -41,7 +41,7 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **axisTicks**: [`TimeAxisTick`](TimeAxisTick.md)[]
 
-时间轴刻度列表
+List of timeline ticks
 
 ***
 
@@ -49,7 +49,7 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **currentTime**: `JulianDate`
 
-当前仿真时间（对应 engine.getCurrentTime()）
+Current simulation time (corresponds to engine.getCurrentTime())
 
 ***
 
@@ -57,8 +57,8 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **cursorPercent**: `number`
 
-当前时间在场景中的位置百分比 (0-100)。
-用于渲染时间指针（竖线）的水平位置。
+Current time position percentage within the scene (0-100).
+Used to render the horizontal position of the time cursor (vertical line).
 
 ***
 
@@ -66,7 +66,7 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **cursorPx**: `number`
 
-当前时间在时间轴内容区内的水平位置（px）
+Current time horizontal position within the timeline content area (px)
 
 ***
 
@@ -74,7 +74,7 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **followScroll**: `boolean`
 
-当前是否启用时间线跟随滚动
+Whether timeline follow-scroll is currently enabled
 
 ***
 
@@ -82,7 +82,7 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **sceneEnd**: `JulianDate`
 
-场景结束时间（对应 engine.getStopTime()）
+Scene end time (corresponds to engine.getStopTime())
 
 ***
 
@@ -90,7 +90,7 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **sceneStart**: `JulianDate`
 
-场景开始时间（对应 engine.getStartTime()）
+Scene start time (corresponds to engine.getStartTime())
 
 ***
 
@@ -98,7 +98,7 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **tasks**: [`TaskTimelineEntry`](TaskTimelineEntry.md)[]
 
-所有任务条目（已计算好布局百分比、进度和独立颜色）
+All task entries (with calculated layout percentages, progress, and individual colors)
 
 ***
 
@@ -106,7 +106,7 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **timelineContentWidth**: `number`
 
-时间轴刻度与任务条共用的横向内容宽度（px）
+Horizontal content width shared by timeline ticks and task bars (px)
 
 ***
 
@@ -114,4 +114,4 @@ const widget = new TaskGanttWidget(schedule, {
 
 > **trackContentHeight**: `number`
 
-任务轨道内容总高度（px），用于设置可滚动容器高度
+Total track content height (px), used to set the scrollable container height

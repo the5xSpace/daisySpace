@@ -6,7 +6,7 @@
 
 # Class: CelestialGeodeticGridLayers
 
-天体地理网格
+Celestial geodetic grid
 
 ## Example
 
@@ -72,7 +72,7 @@ viewer.addViewLayer(moonGrid);
 
 > `optional` **engine?**: [`Engine`](Engine.md)
 
-引擎实例。
+Engine instance.
 
 #### Inherited from
 
@@ -84,7 +84,7 @@ viewer.addViewLayer(moonGrid);
 
 > `optional` **id?**: `string`
 
-图层唯一标识符。
+Layer unique identifier.
 
 #### Inherited from
 
@@ -96,8 +96,8 @@ viewer.addViewLayer(moonGrid);
 
 > `optional` **isDestroyed?**: `boolean` = `false`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+Used by the collection manager to avoid already-destroyed singleton instances.
 
 #### Inherited from
 
@@ -109,7 +109,7 @@ viewer.addViewLayer(moonGrid);
 
 > `optional` **key?**: `string`
 
-Widget 标识键（用于单例去重）。
+Widget identity key (for singleton deduplication).
 
 #### Inherited from
 
@@ -121,7 +121,7 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **name?**: `string`
 
-图层名称。
+Layer name.
 
 #### Inherited from
 
@@ -139,8 +139,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **rebuildOnMorph?**: `boolean` = `true`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether to rebuild via destroy -> register on scene morph (2D/3D).
+Default true; UI-type widgets should generally be set to false.
 
 #### Inherited from
 
@@ -152,8 +152,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **singleton?**: `boolean`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether it is a singleton widget.
+- If true, only one instance with the same key is allowed in the Engine.
 
 #### Inherited from
 
@@ -165,8 +165,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **zoomIgnored?**: `boolean` = `false`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore when the camera aggregates observation.
+UI controller-type widgets should be set to true.
 
 #### Inherited from
 
@@ -214,7 +214,7 @@ UI 控制器类 widget 应设为 true。
 
 > **set** **suppressShow**(`value`): `void`
 
-临时隐藏网格（如相机过渡期间），不影响 options.show 配置
+Temporarily hide the grid (e.g. during camera transitions), does not affect options.show configuration
 
 ##### Parameters
 
@@ -232,7 +232,7 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`engine`): `void`
 
-在2D空间创建图层。
+Create the layer in 2D space.
 
 #### Parameters
 
@@ -240,7 +240,7 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](Engine.md)
 
-引擎实例。
+Engine instance.
 
 #### Returns
 
@@ -256,7 +256,7 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-销毁图层。
+Destroy the layer.
 
 #### Returns
 
@@ -288,7 +288,7 @@ UI 控制器类 widget 应设为 true。
 
 > **is3d**(): `boolean`
 
-判断是否是3d模式
+Determine whether it is 3D mode
 
 #### Returns
 
@@ -304,7 +304,7 @@ UI 控制器类 widget 应设为 true。
 
 > **morphSwitchHandle**(`mode`): `void`
 
-处理场景模式切换事件。
+Handle scene mode switching events.
 
 #### Parameters
 
@@ -312,7 +312,7 @@ UI 控制器类 widget 应设为 true。
 
 `SceneMode`
 
-当前场景模式。
+Current scene mode.
 
 #### Returns
 
@@ -328,9 +328,9 @@ UI 控制器类 widget 应设为 true。
 
 > **refresh**(): `void`
 
-外部配置变化后的同步刷新入口。
+Entry point for syncing refresh after external configuration changes.
 
-子类可重写此方法刷新 DOM、Canvas 或缓存状态。
+Subclasses can override this method to refresh DOM, Canvas or cached state.
 
 #### Returns
 
@@ -362,7 +362,7 @@ UI 控制器类 widget 应设为 true。
 
 > **offMorphSwitch**(`callback`): `void`
 
-移除投影切换事件监听
+Remove projection switch event listener
 
 #### Parameters
 
@@ -386,7 +386,7 @@ MORPH_SWITCH
 
 > **onMorphSwitch**(`callback`): `void`
 
-监听投影切换事件
+Listen for projection switch events
 
 #### Parameters
 

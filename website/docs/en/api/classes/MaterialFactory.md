@@ -6,10 +6,10 @@
 
 # Class: MaterialFactory
 
-统一材质工厂，提供稳定的内置材质、扩展特效材质和自定义 Shader 创建入口。
+Unified material factory providing stable built-in materials, extended effect materials, and custom Shader creation entry point.
 
-对普通几何优先使用返回 `DaisyMaterialDescriptor` 的 `Solid()`、`Builtin()` 或
-`Registered()`；需要即时编译自定义源码时使用 `Custom()`。
+For regular geometry, prefer using `Solid()`, `Builtin()`, or `Registered()` which return `DaisyMaterialDescriptor`;
+use `Custom()` for real-time compilation of custom shader source code.
 
 ## Constructors
 
@@ -27,37 +27,37 @@
 
 > `static` **AlphaMap**(`options`): `Material`
 
-创建Alpha贴图材质
+Create an Alpha map material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### channel?
 
 `string`
 
-通道 (默认 "a")
+Channel (default: "a")
 
 ###### image
 
 `string`
 
-图片路径
+Image path
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数
+Repeat count
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -73,7 +73,7 @@ const mat = Material.AlphaMap({
 
 > `static` **AspectRamp**(`image`): `Material`
 
-创建坡向渐变材质
+Create an aspect ramp material
 
 #### Parameters
 
@@ -81,13 +81,13 @@ const mat = Material.AlphaMap({
 
 `string` \| `HTMLCanvasElement`
 
-渐变图片 (路径或Canvas)
+Gradient image (path or Canvas)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -101,9 +101,9 @@ const mat = Material.AspectRamp('ramp.png');
 
 > `static` **Builtin**(`type`, `options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-Daisy 内置材质包装。
+Daisy built-in material wrapper.
 
-仅允许 Daisy 明确支持的材质类型，避免业务代码直接依赖底层材质类型字符串。
+Only allows material types explicitly supported by Daisy, preventing business code from directly depending on underlying material type strings.
 
 #### Parameters
 
@@ -134,43 +134,43 @@ const material = Daisy.MaterialFactory.Builtin("grid", {
 
 > `static` **BumpMap**(`options`): `Material`
 
-创建凹凸贴图材质
+Create bump map material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### channel?
 
 `string`
 
-通道 (默认 "r")
+Channel (default "r")
 
 ###### image
 
 `string`
 
-图片路径
+Image path
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数
+Repeat count
 
 ###### strength?
 
 `number`
 
-强度 (默认 0.5)
+Intensity (default 0.5)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -187,37 +187,37 @@ const mat = Material.BumpMap({
 
 > `static` **Checkerboard**(`options`): `Material`
 
-创建棋盘材质
+Create checkerboard material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### darkColor?
 
 [`DColor`](../types/DColor.md)
 
-暗色
+Dark color
 
 ###### lightColor?
 
 [`DColor`](../types/DColor.md)
 
-亮色
+Light color
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数
+Repeat count
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -235,7 +235,7 @@ const mat = Material.Checkerboard({
 
 > `static` **Color**(`color`): `Material`
 
-创建纯色材质
+Create solid color material
 
 #### Parameters
 
@@ -243,13 +243,13 @@ const mat = Material.Checkerboard({
 
 [`DColor`](../types/DColor.md)
 
-Daisy 颜色对象或 CSS 颜色字符串。
+Daisy color object or CSS color string.
 
 #### Returns
 
 `Material`
 
-Daisy 材质描述
+Daisy material descriptor
 
 #### Example
 
@@ -265,9 +265,9 @@ const mat = Material.Color('#ff0000');
 
 > `static` **Custom**(`type`, `uniforms`, `source`, `translucent?`): `Material`
 
-从 Daisy GLSL 源码创建自定义材质。
+Create custom material from Daisy GLSL source code.
 
-直接传入包含 `daisy_*` 标识符的字符串即可自动转换，无需预先调用包装函数。
+Directly pass a string containing `daisy_*` identifiers for automatic conversion, no need to call wrapper functions in advance.
 
 #### Parameters
 
@@ -275,25 +275,25 @@ const mat = Material.Color('#ff0000');
 
 `string`
 
-当前材质实例的类型标识。
+Current material instance type identifier.
 
 ##### uniforms
 
 `Uniforms`
 
-Shader 使用的 uniform 参数，可包含 `ShaderParams` 动态参数。
+Uniform parameters used by the Shader, can include `ShaderParams` dynamic parameters.
 
 ##### source
 
 [`MaterialShaderSource`](../types/MaterialShaderSource.md)
 
-Daisy GLSL 材质源码。
+Daisy GLSL material source code.
 
 ##### translucent?
 
 `boolean` = `true`
 
-是否按半透明材质处理。默认 `true`。
+Whether to treat as a translucent material. Default `true`.
 
 #### Returns
 
@@ -320,7 +320,7 @@ const material = Daisy.MaterialFactory.Custom("MissionSurface", {
 
 > `static` **DaisyAdvancedWater**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-创建高级水面材质
+Create advanced water surface material
 
 #### Parameters
 
@@ -328,7 +328,7 @@ const material = Daisy.MaterialFactory.Custom("MissionSurface", {
 
 [`DaisyAdvancedWaterOptions`](../types/DaisyAdvancedWaterOptions.md) = `{}`
 
-配置选项
+Configuration options
 
 #### Returns
 
@@ -352,7 +352,7 @@ const mat = Material.DaisyAdvancedWater({
 
 > `static` **DaisyAurora**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-极光帘幕材质。
+Aurora curtain material.
 
 #### Parameters
 
@@ -370,7 +370,7 @@ const mat = Material.DaisyAdvancedWater({
 
 > `static` **DaisyCellular**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-细胞/蜂窝边界材质。
+Cell/honeycomb boundary material.
 
 #### Parameters
 
@@ -388,7 +388,7 @@ const mat = Material.DaisyAdvancedWater({
 
 > `static` **DaisyCircuit**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-电路迹线材质。
+Circuit trace material.
 
 #### Parameters
 
@@ -406,7 +406,7 @@ const mat = Material.DaisyAdvancedWater({
 
 > `static` **DaisyContourBands**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-等值线分层材质。
+Contour layered material.
 
 #### Parameters
 
@@ -424,7 +424,7 @@ const mat = Material.DaisyAdvancedWater({
 
 > `static` **DaisyDitherFade**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-Bayer 点阵渐隐材质。
+Bayer dithering fade material.
 
 #### Parameters
 
@@ -442,7 +442,7 @@ Bayer 点阵渐隐材质。
 
 > `static` **DaisyGridGlow**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-发光网格材质。
+Glowing grid material.
 
 #### Parameters
 
@@ -460,7 +460,7 @@ Bayer 点阵渐隐材质。
 
 > `static` **DaisyHalftone**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-半调网点材质。
+Halftone dot material.
 
 #### Parameters
 
@@ -478,7 +478,7 @@ Bayer 点阵渐隐材质。
 
 > `static` **DaisyHeatmap**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-热力径向渐变材质。
+Thermal radial gradient material.
 
 #### Parameters
 
@@ -496,9 +496,9 @@ Bayer 点阵渐隐材质。
 
 > `static` **DaisyMarble**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-大理石/岩层纹理材质。
+Marble/stratum texture material.
 
-以噪声扰动正弦条带，适合抽象岩层、云纹或结构切片。
+Noise-perturbed sinusoidal stripes, suitable for abstract strata, moire patterns, or structural slices.
 
 #### Parameters
 
@@ -516,7 +516,7 @@ Bayer 点阵渐隐材质。
 
 > `static` **DaisyMatrixRain**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-矩阵雨/遥测码流材质。
+Matrix rain/telemetry stream material.
 
 #### Parameters
 
@@ -534,9 +534,9 @@ Bayer 点阵渐隐材质。
 
 > `static` **DaisyNoiseField**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-程序噪声场材质。
+Procedural noise field material.
 
-借鉴常见 value-noise/fbm 思路，用于云雾、能量面、信号扰动等非真实纹理表现。
+Drawing from common value-noise/fbm approaches, for non-realistic texture representations like clouds, energy surfaces, and signal perturbations.
 
 #### Parameters
 
@@ -554,7 +554,7 @@ Bayer 点阵渐隐材质。
 
 > `static` **DaisyScanline**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-扫描线材质。
+Scanline material.
 
 #### Parameters
 
@@ -572,7 +572,7 @@ Bayer 点阵渐隐材质。
 
 > `static` **DaisySdfRings**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-SDF 同心环材质。
+SDF concentric ring material.
 
 #### Parameters
 
@@ -590,7 +590,7 @@ SDF 同心环材质。
 
 > `static` **DaisyTopoRipple**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-地形等值线与雷达涟漪混合材质。
+Terrain contour and radar ripple blended material.
 
 #### Parameters
 
@@ -608,9 +608,9 @@ SDF 同心环材质。
 
 > `static` **DaisyTurbulence**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-湍流噪声材质。
+Turbulence noise material.
 
-用多层绝对值噪声表现能量云、气团、非均匀信号面。
+Uses multi-layer absolute value noise to represent energy clouds, air masses, and non-uniform signal surfaces.
 
 #### Parameters
 
@@ -628,7 +628,7 @@ SDF 同心环材质。
 
 > `static` **DaisyWarpedStripes**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-扭曲条纹材质。
+Distorted stripe material.
 
 #### Parameters
 
@@ -646,37 +646,37 @@ SDF 同心环材质。
 
 > `static` **DiffuseMap**(`options`): `Material`
 
-创建漫反射贴图材质
+Create diffuse map material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### channels?
 
 `string`
 
-通道 (默认 "rgb")
+Channel (default "rgb")
 
 ###### image
 
 `string`
 
-图片路径
+Image path
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数
+Repeat count
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -692,37 +692,37 @@ const mat = Material.DiffuseMap({
 
 > `static` **Dot**(`options`): `Material`
 
-创建点阵材质
+Create dot matrix material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### darkColor?
 
 [`DColor`](../types/DColor.md)
 
-暗色
+Dark color
 
 ###### lightColor?
 
 [`DColor`](../types/DColor.md)
 
-亮色
+Light color
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数
+Repeat count
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -740,56 +740,56 @@ const mat = Material.Dot({
 
 > `static` **DownEmitDiffuse**(`options`): `Material`
 
-创建向下发射漫射材质（原生材质）
-静态创建，无时间轴驱动
+Create downward emissive diffuse material (native material)
+Static creation, not time-driven
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### bottomColor?
 
 `string` \| `Color`
 
-底部颜色
+Bottom color
 
 ###### color?
 
 `string` \| `Color`
 
-基础颜色
+Base color
 
 ###### diffusionRadius?
 
 `number`
 
-扩散半径
+Diffusion radius
 
 ###### diffusionWidth?
 
 `number`
 
-扩散宽度
+Diffusion width
 
 ###### opacity?
 
 `number`
 
-透明度
+Opacity
 
 ###### speed?
 
 `number`
 
-速度
+Speed
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -807,31 +807,31 @@ const mat = Material.DownEmitDiffuse({
 
 > `static` **ElevationBand**(`options`): `Material`
 
-创建高程波段材质
+Create elevation band material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### colors
 
 `string` \| `HTMLCanvasElement`
 
-颜色分段 (图片或Canvas)
+Color ramp (image or Canvas)
 
 ###### heights
 
 `string` \| `HTMLCanvasElement`
 
-高度分段 (图片或Canvas)
+Height ramp (image or Canvas)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -848,19 +848,19 @@ const mat = Material.ElevationBand({
 
 > `static` **ElevationContour**(`options`): `Material`
 
-创建等高线材质
+Create contour line material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### alpha?
 
 `number`
 
-透明度
+Opacity
 
 ###### color?
 
@@ -870,31 +870,31 @@ const mat = Material.ElevationBand({
 
 `string` \| `Color`
 
-等高线颜色
+Contour line color
 
 ###### contourWidth?
 
 `number`
 
-等高线宽度
+Contour line width
 
 ###### spacing?
 
 `number`
 
-间距
+Spacing
 
 ###### width?
 
 `number`
 
-线宽
+Line width
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -912,7 +912,7 @@ const mat = Material.ElevationContour({
 
 > `static` **ElevationRamp**(`image`, `options?`): `Material`
 
-创建高程渐变材质
+Create elevation gradient material
 
 #### Parameters
 
@@ -920,7 +920,7 @@ const mat = Material.ElevationContour({
 
 `string` \| `HTMLCanvasElement`
 
-渐变图片 (路径或Canvas)
+Gradient image (path or Canvas)
 
 ##### options?
 
@@ -936,7 +936,7 @@ const mat = Material.ElevationContour({
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -950,37 +950,37 @@ const mat = Material.ElevationRamp('ramp.png');
 
 > `static` **EmissionMap**(`options`): `Material`
 
-创建自发光贴图材质
+Create emissive map material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### channels?
 
 `string`
 
-通道 (默认 "rgb")
+Channel (default "rgb")
 
 ###### image
 
 `string`
 
-图片路径
+Image path
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数
+Repeat count
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -996,55 +996,55 @@ const mat = Material.EmissionMap({
 
 > `static` **Fade**(`options`): `Material`
 
-创建渐变/消隐材质
+Create gradient/fade material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### fadeDirection?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-渐变方向
+Gradient direction
 
 ###### fadeInColor
 
 [`DColor`](../types/DColor.md)
 
-淡入颜色 (近处颜色)
+Fade-in color (near color)
 
 ###### fadeOutColor
 
 [`DColor`](../types/DColor.md)
 
-淡出颜色 (远处颜色)
+Fade-out color (far color)
 
 ###### maximumDistance
 
 `number`
 
-最大距离
+Maximum distance
 
 ###### repeat?
 
 `boolean`
 
-是否重复
+Whether to repeat
 
 ###### time?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-时间控制 (用于动态效果，可选)
+Time control (for dynamic effects, optional)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1063,49 +1063,49 @@ const mat = Material.Fade({
 
 > `static` **Grid**(`options`): `Material`
 
-创建网格材质
+Create grid material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### cellAlpha?
 
 `number`
 
-单元格透明度 (默认 0.1)
+Cell transparency (default 0.1)
 
 ###### color?
 
 [`DColor`](../types/DColor.md)
 
-颜色 (默认白色)
+Color (default white)
 
 ###### lineCount?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-线条数量 (默认 8x8)
+Line count (default 8x8)
 
 ###### lineOffset?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-线条偏移
+Line offset
 
 ###### lineThickness?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-线条粗细 (默认 1.0)
+Line thickness (default 1.0)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1123,37 +1123,37 @@ const mat = Material.Grid({
 
 > `static` **Image**(`options`): `Material`
 
-创建图片材质
+Create image material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### color?
 
 [`DColor`](../types/DColor.md)
 
-混合颜色 (默认白色)
+Blend color (default white)
 
 ###### image
 
 `string` \| `HTMLCanvasElement` \| `HTMLImageElement`
 
-图片路径、Image对象或Canvas对象
+Image path, Image object or Canvas object
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数 (默认 1.0, 1.0)
+Repeat count (default 1.0, 1.0)
 
 #### Returns
 
 `Material`
 
-Daisy 材质描述
+Daisy material descriptor
 
 #### Example
 
@@ -1170,55 +1170,55 @@ const mat = Material.Image({
 
 > `static` **NeonScan**(`options`): `Material`
 
-创建霓虹扫描材质
+Create neon scan material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### bandWidth?
 
 `number`
 
-波段宽度
+Band width
 
 ###### baseColor?
 
 `string` \| `Color`
 
-基础颜色
+Base color
 
 ###### glowSize?
 
 `number`
 
-光晕大小
+Glow size
 
 ###### neonColor?
 
 `string` \| `Color`
 
-霓虹颜色
+Neon color
 
 ###### opacity?
 
 `number`
 
-透明度
+Opacity
 
 ###### speed?
 
 `number`
 
-速度
+Speed
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1236,43 +1236,43 @@ const mat = Material.NeonScan({
 
 > `static` **NormalMap**(`options`): `Material`
 
-创建法线贴图材质
+Create normal map material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### channels?
 
 `string`
 
-通道 (默认 "rgb")
+Channel (default "rgb")
 
 ###### image
 
 `string`
 
-图片路径
+Image path
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数
+Repeat count
 
 ###### strength?
 
 `number`
 
-强度 (默认 0.5)
+Intensity (default 0.5)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1289,7 +1289,7 @@ const mat = Material.NormalMap({
 
 > `static` **PolylineArrow**(`options`): `Material`
 
-创建箭头线材质
+Create arrow line material
 
 #### Parameters
 
@@ -1297,7 +1297,7 @@ const mat = Material.NormalMap({
 
 [`DColor`](../types/DColor.md) \| \{ `arrowSize?`: `number`; `color?`: DColor \| undefined; `direction?`: `"forward"` \| `"backward"` \| `"both"`; `speed?`: `number`; \}
 
-配置选项
+Configuration options
 
 [`DColor`](../types/DColor.md)
 
@@ -1307,37 +1307,37 @@ const mat = Material.NormalMap({
 
 \{ `arrowSize?`: `number`; `color?`: DColor \| undefined; `direction?`: `"forward"` \| `"backward"` \| `"both"`; `speed?`: `number`; \}
 
-配置选项
+Configuration options
 
 ###### arrowSize?
 
 `number`
 
-箭头大小
+Arrow size
 
 ###### color?
 
 DColor \| undefined
 
-颜色
+Color
 
 ###### direction?
 
 `"forward"` \| `"backward"` \| `"both"`
 
-箭头方向 ('forward' | 'backward' | 'both')
+Arrow direction ('forward' | 'backward' | 'both')
 
 ###### speed?
 
 `number`
 
-流动速度 (大于0时开启流光效果)
+Flow speed (greater than 0 enables flowing light effect)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1362,56 +1362,56 @@ const mat2 = Material.PolylineArrow({
 
 > `static` **PolylineArrowPath**(`options`): `Material`
 
-创建箭头路径材质（重复的箭头沿线流动）
-适合表示路径规划、行进路线等
+Create arrow path material (repeating arrows flowing along the line)
+Suitable for path planning, route navigation, etc.
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### arrowSize?
 
 `number`
 
-箭头大小 (相对于间距的比例 %)
+Arrow size (percentage relative to spacing)
 
 ###### color?
 
 [`DColor`](../types/DColor.md)
 
-箭头颜色
+Arrow color
 
 ###### direction?
 
 `"forward"` \| `"backward"`
 
-流动方向
+Flow direction
 
 ###### glowColor?
 
 [`DColor`](../types/DColor.md)
 
-箭头内部流光颜色 (可选)
+Arrow inner flowing light color (optional)
 
 ###### spacing?
 
 `number`
 
-箭头间距
+Arrow spacing
 
 ###### speed?
 
 `number`
 
-流动速度
+Flow speed
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1429,55 +1429,55 @@ const mat = Material.PolylineArrowPath({
 
 > `static` **PolylineDash**(`options`): `Material`
 
-创建虚线材质
+Create dashed line material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### color?
 
 [`DColor`](../types/DColor.md)
 
-虚线颜色
+Dash color
 
 ###### dashLength?
 
 `number`
 
-虚线长度
+Dash length
 
 ###### dashPattern?
 
 `number`
 
-虚线样式 (位掩码)
+Dash style (bitmask)
 
 ###### flowColor?
 
 [`DColor`](../types/DColor.md)
 
-流动颜色 (仅动态模式有效)
+Flow color (only effective in dynamic mode)
 
 ###### gapColor?
 
 [`DColor`](../types/DColor.md)
 
-间隔颜色
+Interval color
 
 ###### speed?
 
 `number`
 
-流动速度 (大于0时开启流动效果)
+Flow speed (greater than 0 enables flowing effect)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1503,44 +1503,44 @@ const mat2 = Material.PolylineDash({
 
 > `static` **PolylineFlow**(`options`): `Material`
 
-创建贴图流动线材质（自定义）
-适合管线、道路流光等，使用图片作为纹理进行流动
+Create texture flowing line material (custom)
+Suitable for pipelines, road light flows, etc., using images as textures for flow
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### color?
 
 `string` \| `Color`
 
-混合颜色
+Blend color
 
 ###### image
 
 `string` \| `HTMLCanvasElement` \| `HTMLImageElement`
 
-图片路径
+Image path
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数 (可选)
+Repeat count (optional)
 
 ###### speed?
 
 `number`
 
-流动速度
+Flow speed
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1558,37 +1558,37 @@ const mat = Material.PolylineFlow({
 
 > `static` **PolylineGlow**(`options`): `Material`
 
-创建光晕线材质
+Create glow line material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### color?
 
 [`DColor`](../types/DColor.md)
 
-颜色
+Color
 
 ###### glowPower?
 
 `number`
 
-光晕强度
+Glow intensity
 
 ###### taperPower?
 
 `number`
 
-锥度
+Taper
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1606,37 +1606,37 @@ const mat = Material.PolylineGlow({
 
 > `static` **PolylineOutline**(`options`): `Material`
 
-创建轮廓线材质
+Create outline line material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### color?
 
 [`DColor`](../types/DColor.md)
 
-内部颜色
+Inner color
 
 ###### outlineColor?
 
 [`DColor`](../types/DColor.md)
 
-轮廓颜色
+Outline color
 
 ###### outlineWidth?
 
 `number`
 
-轮廓宽度
+Outline width
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1654,44 +1654,44 @@ const mat = Material.PolylineOutline({
 
 > `static` **PolylineTrail**(`options`): `Material`
 
-创建流光尾迹线材质（自定义）
-模拟光效沿线流动的效果
+Create flowing trail line material (custom)
+Simulates the effect of light flowing along the line
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### color?
 
 `string` \| `Color`
 
-基础色（背景色）
+Base color (background color)
 
 ###### speed?
 
 `number`
 
-流动速度
+Flow speed
 
 ###### trailColor?
 
 `string` \| `Color`
 
-尾迹颜色（高亮色）
+Trail color (highlight color)
 
 ###### trailLength?
 
 `number`
 
-尾迹长度 (对应 glowSize 0-1)
+Trail length (corresponds to glowSize 0-1)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1710,55 +1710,55 @@ const mat = Material.PolylineTrail({
 
 > `static` **RadialPulse**(`options`): `Material`
 
-创建径向脉冲材质
+Create radial pulse material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### center?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-中心点 (0.0 - 1.0)
+Center point (0.0 - 1.0)
 
 ###### color?
 
 `string` \| `Color`
 
-基础颜色
+Base color
 
 ###### opacity?
 
 `number`
 
-透明度
+Opacity
 
 ###### pulseColor?
 
 `string` \| `Color`
 
-脉冲颜色
+Pulse color
 
 ###### ringWidth?
 
 `number`
 
-环宽度
+Ring width
 
 ###### speed?
 
 `number`
 
-速度
+Speed
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1776,9 +1776,9 @@ const mat = Material.RadialPulse({
 
 > `static` **Registered**(`type`, `uniforms?`, `translucent?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-创建已注册材质类型的 Daisy 材质描述。
+Create Daisy material descriptor for a registered material type.
 
-适用于通过 `shaderManager.registerShader()` 注册过的自定义 Shader。
+Applicable to custom Shaders registered via `shaderManager.registerShader()`.
 
 #### Parameters
 
@@ -1786,19 +1786,19 @@ const mat = Material.RadialPulse({
 
 `string`
 
-已注册的全局材质类型标识。
+Registered global material type identifier.
 
 ##### uniforms?
 
 `Uniforms` = `{}`
 
-覆盖注册默认值的 uniform 参数。
+Uniform parameters that override registered defaults.
 
 ##### translucent?
 
 `boolean` = `true`
 
-是否按半透明材质处理。默认 `true`。
+Whether to treat as a translucent material. Default `true`.
 
 #### Returns
 
@@ -1810,37 +1810,37 @@ const mat = Material.RadialPulse({
 
 > `static` **RimLighting**(`options`): `Material`
 
-创建边缘光照材质
+Create rim light material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### color?
 
 [`DColor`](../types/DColor.md)
 
-基础颜色
+Base color
 
 ###### rimColor?
 
 [`DColor`](../types/DColor.md)
 
-边缘颜色
+Edge color
 
 ###### width?
 
 `number`
 
-边缘宽度 (0.0 - 1.0)
+Edge width (0.0 - 1.0)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1858,49 +1858,49 @@ const mat = Material.RimLighting({
 
 > `static` **RingSweep**(`options`): `Material`
 
-创建环形扫描材质
+Create ring scan material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### color?
 
 `string` \| `Color`
 
-基础颜色
+Base color
 
 ###### opacity?
 
 `number`
 
-透明度
+Opacity
 
 ###### speed?
 
 `number`
 
-速度
+Speed
 
 ###### sweepColor?
 
 `string` \| `Color`
 
-扫描颜色
+Scan color
 
 ###### width?
 
 `number`
 
-扫描宽度
+Scan width
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1918,7 +1918,7 @@ const mat = Material.RingSweep({
 
 > `static` **SlopeRamp**(`image`): `Material`
 
-创建坡度渐变材质
+Create slope gradient material
 
 #### Parameters
 
@@ -1926,13 +1926,13 @@ const mat = Material.RingSweep({
 
 `string` \| `HTMLCanvasElement`
 
-渐变图片 (路径或Canvas)
+Gradient image (path or Canvas)
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -1946,10 +1946,10 @@ const mat = Material.SlopeRamp('ramp.png');
 
 > `static` **Solid**(`options?`): [`DaisyMaterialDescriptor`](../types/DaisyMaterialDescriptor.md)
 
-创建普通实体材质。
+Create solid entity material.
 
-适合 Box/Cube/Cylinder/Ellipsoid 等立体几何，以及 Polygon/Ellipse/Rectangle 等面要素。
-这是 Daisy 的稳定包装入口，调用侧无需接触内部渲染材质。
+Suitable for Box/Cube/Cylinder/Ellipsoid solid geometries, and Polygon/Ellipse/Rectangle surface features.
+This is Daisy's stable wrapper entry point; the caller does not need to touch internal rendering materials.
 
 #### Parameters
 
@@ -1967,37 +1967,37 @@ const mat = Material.SlopeRamp('ramp.png');
 
 > `static` **SpecularMap**(`options`): `Material`
 
-创建高光贴图材质
+Create specular map material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### channel?
 
 `string`
 
-通道 (默认 "a")
+Channel (default: "a")
 
 ###### image
 
 `string`
 
-图片路径
+Image path
 
 ###### repeat?
 
 `number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
-重复次数
+Repeat count
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -2013,26 +2013,26 @@ const mat = Material.SpecularMap({
 
 > `static` **SpiralFlow**(`options`): `Material`
 
-创建螺旋流动材质（原生材质）
-静态创建，无时间轴驱动
+Create spiral flow material (native material)
+Static creation, not time-driven
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### color?
 
 `string` \| `Color`
 
-基础颜色
+Base color
 
 ###### count?
 
 `number`
 
-螺旋数量
+Spiral count
 
 ###### direction?
 
@@ -2042,31 +2042,31 @@ const mat = Material.SpecularMap({
 
 `number`
 
-透明度
+Opacity
 
 ###### speed?
 
 `number`
 
-速度
+Speed
 
 ###### spiralColor?
 
 `string` \| `Color`
 
-螺旋颜色
+Spiral color
 
 ###### thickness?
 
 `number`
 
-厚度
+Thickness
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -2085,49 +2085,49 @@ const mat = Material.SpiralFlow({
 
 > `static` **Stripe**(`options`): `Material`
 
-创建条纹材质
+Create stripe material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### evenColor?
 
 [`DColor`](../types/DColor.md)
 
-偶数条纹颜色
+Even stripe color
 
 ###### oddColor?
 
 [`DColor`](../types/DColor.md)
 
-奇数条纹颜色
+Odd stripe color
 
 ###### offset?
 
 `number`
 
-偏移量
+Offset
 
 ###### orientation?
 
 `StripeOrientation`
 
-方向 (水平/垂直)
+Direction (horizontal/vertical)
 
 ###### repeat?
 
 `number`
 
-重复次数
+Repeat count
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -2145,67 +2145,67 @@ const mat = Material.Stripe({
 
 > `static` **Water**(`options?`): `Material`
 
-创建水面材质
+Create water surface material
 
 #### Parameters
 
 ##### options?
 
-配置选项
+Configuration options
 
 ###### amplitude?
 
 `number`
 
-波浪振幅
+Wave amplitude
 
 ###### animationSpeed?
 
 `number`
 
-动画速度
+Animation speed
 
 ###### baseWaterColor?
 
 [`DColor`](../types/DColor.md)
 
-基础水色
+Base water color
 
 ###### blendColor?
 
 [`DColor`](../types/DColor.md)
 
-混合颜色
+Blend color
 
 ###### frequency?
 
 `number`
 
-波浪频率
+Wave frequency
 
 ###### normalMap?
 
 `string`
 
-法线贴图
+Normal map
 
 ###### specularIntensity?
 
 `number`
 
-高光强度
+Specular intensity
 
 ###### specularMap?
 
 `string`
 
-高光贴图
+Specular map
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 
@@ -2224,31 +2224,31 @@ const mat = Material.Water({
 
 > `static` **WaterMask**(`options`): `Material`
 
-创建水体掩膜材质
+Create water body mask material
 
 #### Parameters
 
 ##### options
 
-配置选项
+Configuration options
 
 ###### landColor?
 
 `string` \| `Color`
 
-陆地颜色
+Land color
 
 ###### waterColor?
 
 `string` \| `Color`
 
-水体颜色
+Water color
 
 #### Returns
 
 `Material`
 
-材质实例。
+Material instance.
 
 #### Example
 

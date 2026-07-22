@@ -21,7 +21,7 @@ engine.addWidget(new Daisy.SimulationTimeDisplayWidget({
 }))
 ```
 
-| 选项 | 类型 | 说明 |
+| Option | Type | Description |
 |------|------|------|
 | `preset` | string | Preset position, same as above |
 | `theme` | `"dark"` \| `"light"` | Theme color scheme |
@@ -46,13 +46,13 @@ sw.refresh()
 
 ## FrameRateWidget
 
-[FrameRateWidget](/en/api/classes/FrameRateWidget) 显示实时 FPS 计数器。
+[FrameRateWidget](/en/api/classes/FrameRateWidget) Displays a real-time FPS counter.
 
 ```typescript
 engine.addWidget(new Daisy.FrameRateWidget())
 ```
 
-| FPS | 颜色 | 标签 |
+| FPS | Color | Label |
 |---|---|---|
 | >50 | Green | Excellent |
 | >30 | Cyan | Good |

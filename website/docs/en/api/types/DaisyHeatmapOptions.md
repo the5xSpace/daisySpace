@@ -8,7 +8,7 @@
 
 > **DaisyHeatmapOptions** = `object`
 
-径向热力材质配置。
+Radial heatmap material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **center?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-归一化纹理坐标中的热区中心。
+Heatmap center in normalized texture coordinates.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **coldColor?**: [`DColor`](DColor.md)
 
-低值颜色。
+Low value color.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **gain?**: `number`
 
-热区增益。
+Heat zone gain.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **hotColor?**: [`DColor`](DColor.md)
 
-高值颜色。
+High value color.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **midColor?**: [`DColor`](DColor.md)
 
-中值颜色。
+Mid value color.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -64,4 +64,4 @@
 
 > `optional` **radius?**: `number`
 
-热区半径。
+Heat zone radius.

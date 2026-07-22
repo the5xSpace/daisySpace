@@ -8,9 +8,9 @@
 
 > **FootprintDrawOptions** = `{ begin: Daisy.JulianDate; end: Daisy.JulianDate }`
 
-footprint 绘制配置。
+Footprint draw configuration.
 
-用于一次性绘制指定时间区间内的覆盖结果，支持逐帧绘制和合并绘制两种模式。
+Used for one-time drawing of coverage results within a specified time interval, supporting both per-frame and merged draw modes.
 
 ## Properties
 
@@ -18,7 +18,7 @@ footprint 绘制配置。
 
 > **begin**: `Daisy.JulianDate`
 
-绘制开始时间。
+Draw start time.
 
 ***
 
@@ -26,7 +26,7 @@ footprint 绘制配置。
 
 > `optional` **debug?**: `boolean`
 
-是否启用调试绘制。
+Whether to enable debug drawing.
 
 ***
 
@@ -34,7 +34,7 @@ footprint 绘制配置。
 
 > `optional` **debugName?**: `string`
 
-调试绘制名称。
+Debug draw name.
 
 ***
 
@@ -42,7 +42,7 @@ footprint 绘制配置。
 
 > `optional` **debugWireframe?**: `boolean`
 
-是否启用调试线框。
+Whether to enable debug wireframe.
 
 ***
 
@@ -50,7 +50,7 @@ footprint 绘制配置。
 
 > **end**: `Daisy.JulianDate`
 
-绘制结束时间。
+Draw end time.
 
 ***
 
@@ -58,7 +58,7 @@ footprint 绘制配置。
 
 > `optional` **fillColor?**: [`DColor`](DColor.md)
 
-填充颜色。
+Fill color.
 
 ***
 
@@ -66,7 +66,7 @@ footprint 绘制配置。
 
 > `optional` **maxSampleCount?**: `number`
 
-覆盖采样数量上限。默认 1000，最大有效值 3000。
+Coverage sample count limit. Default 1000, maximum effective value 3000.
 
 ***
 
@@ -74,7 +74,7 @@ footprint 绘制配置。
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓。
+Whether to draw the outline.
 
 ***
 
@@ -82,7 +82,7 @@ footprint 绘制配置。
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色。
+Outline color.
 
 ***
 
@@ -90,7 +90,7 @@ footprint 绘制配置。
 
 > `optional` **outlineWidthPx?**: `number`
 
-轮廓宽度，单位为像素。
+Outline width, in pixels.
 
 ***
 
@@ -98,7 +98,7 @@ footprint 绘制配置。
 
 > `optional` **sampleStepSeconds?**: `number`
 
-采样步长，单位为秒。
+Sample step, in seconds.
 
 ***
 
@@ -106,7 +106,7 @@ footprint 绘制配置。
 
 > `optional` **show?**: `boolean`
 
-是否显示绘制结果。
+Whether to show the draw result.
 
 ***
 
@@ -114,4 +114,4 @@ footprint 绘制配置。
 
 > `optional` **union?**: `boolean`
 
-是否将多个采样 footprint 合并成一个结果。
+Whether to merge multiple sampled footprints into a single result.

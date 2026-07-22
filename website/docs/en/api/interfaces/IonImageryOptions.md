@@ -6,7 +6,7 @@
 
 # Interface: IonImageryOptions
 
-Ion 资产 影像资源配置。
+Ion asset imagery configuration.
 
 ## Extends
 
@@ -18,7 +18,7 @@ Ion 资产 影像资源配置。
 
 > `optional` **alpha?**: `number`
 
-图层透明度（0 ~ 1），默认 1
+Layer opacity (0 ~ 1), default 1
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Ion 资产 影像资源配置。
 
 > **assetId**: `number`
 
-Ion 资产 影像资产 ID，例如 `2` 表示 底层 World Imagery。
+Ion asset imagery asset ID, e.g. `2` for the base World Imagery.
 
 ***
 
@@ -38,7 +38,7 @@ Ion 资产 影像资产 ID，例如 `2` 表示 底层 World Imagery。
 
 > `optional` **brightness?**: `number`
 
-图层亮度，默认 1。
+Layer brightness, default 1.
 
 #### Inherited from
 
@@ -50,7 +50,7 @@ Ion 资产 影像资产 ID，例如 `2` 表示 底层 World Imagery。
 
 > `optional` **colorToAlpha?**: `Color`
 
-与该颜色接近的像素将变为透明，可用于去除带底色的叠加瓦片背景。
+Pixels close to this color become transparent, useful for removing background from overlaid tiles with a base color.
 
 #### Inherited from
 
@@ -62,7 +62,7 @@ Ion 资产 影像资产 ID，例如 `2` 表示 底层 World Imagery。
 
 > `optional` **colorToAlphaThreshold?**: `number`
 
-颜色转透明的 RGB 通道容差（0 ~ 1），默认 0.004。
+Color-to-alpha RGB channel tolerance (0 ~ 1), default 0.004.
 
 #### Inherited from
 
@@ -74,7 +74,7 @@ Ion 资产 影像资产 ID，例如 `2` 表示 底层 World Imagery。
 
 > `optional` **contrast?**: `number`
 
-图层对比度，默认 1。
+Layer contrast, default 1.
 
 #### Inherited from
 
@@ -86,7 +86,7 @@ Ion 资产 影像资产 ID，例如 `2` 表示 底层 World Imagery。
 
 > `optional` **dayAlpha?**: `number`
 
-白昼区域透明度（0 ~ 1）。启用地球光照时生效。
+Daytime region opacity (0 ~ 1). Takes effect when Earth lighting is enabled.
 
 #### Inherited from
 
@@ -98,7 +98,7 @@ Ion 资产 影像资产 ID，例如 `2` 表示 底层 World Imagery。
 
 > `optional` **nightAlpha?**: `number`
 
-夜间区域透明度（0 ~ 1）。启用地球光照时生效。
+Nighttime region opacity (0 ~ 1). Takes effect when Earth lighting is enabled.
 
 #### Inherited from
 
@@ -110,7 +110,7 @@ Ion 资产 影像资产 ID，例如 `2` 表示 底层 World Imagery。
 
 > `optional` **show?**: `boolean`
 
-是否显示该图层，默认 true
+Whether to show this layer, default true
 
 #### Inherited from
 
@@ -122,4 +122,4 @@ Ion 资产 影像资产 ID，例如 `2` 表示 底层 World Imagery。
 
 > **type**: [`Ion`](../enums/GeoImageryType.md#cesiumion)
 
-图层类型：Ion 资产。
+Layer type: Ion asset.

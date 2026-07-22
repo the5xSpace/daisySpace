@@ -6,7 +6,7 @@
 
 # Interface: FreeGeometryOptions
 
-FreeGeometryFeature 选项。
+FreeGeometryFeature options.
 
 ## Extends
 
@@ -18,7 +18,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **asynchronous?**: `boolean`
 
-异步创建几何，默认 false
+Create geometry asynchronously, default false
 
 ***
 
@@ -26,7 +26,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **autoNormals?**: [`AutoNormalsMode`](../types/AutoNormalsMode.md)
 
-法线自动计算模式，默认 "flat"
+Normal auto-computation mode, default "flat"
 
 ***
 
@@ -34,7 +34,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **closed?**: `boolean`
 
-几何体是否封闭实体（影响光照），默认 true
+Whether the geometry is a closed solid (affects lighting), default true
 
 ***
 
@@ -42,7 +42,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **doubleSided?**: `boolean`
 
-双面渲染（禁用背面剔除），默认 false
+Double-sided rendering (disables backface culling), default false
 
 ***
 
@@ -62,10 +62,10 @@ FreeGeometryFeature 选项。
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-组件涉及贴地/射线求交等“天体椭球”相关计算时使用的椭球配置。
+Ellipsoid configuration used for ground-clamping, ray intersection, and other "celestial ellipsoid" related calculations.
 
-注意：一旦该组件通过 Entity.addFeature() 添加到实体上，会被实体的 celestialEllipsoid 覆盖，
-组件将始终遵循实体的天体椭球配置。
+Note: Once this component is added to an entity via Entity.addFeature(), it will be overridden by the entity's celestialEllipsoid,
+and the component will always follow the entity's celestial ellipsoid configuration.
 
 #### Inherited from
 
@@ -77,7 +77,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **flat?**: `boolean`
 
-平面着色（非平滑着色），默认 false
+Flat shading (non-smooth shading), default false
 
 ***
 
@@ -85,7 +85,7 @@ FreeGeometryFeature 选项。
 
 > **geometry**: [`DaisyGeometryDescriptor`](DaisyGeometryDescriptor.md)
 
-几何描述（必填）
+Geometry descriptor (required)
 
 ***
 
@@ -93,7 +93,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom identifier (for underlying render object identification/retrieval).
 
 #### Inherited from
 
@@ -105,9 +105,9 @@ FreeGeometryFeature 选项。
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to participate in the bounding sphere aggregation of the parent Entity.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Suitable for Features that need to be included in camera zoom/flyTo framing. Helper lines, temporary effects, etc. can disable this.
 
 #### Inherited from
 
@@ -119,7 +119,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **material?**: [`DMaterial`](../types/DMaterial.md)
 
-材质，走 DMaterial 体系
+Material, using the DMaterial system
 
 ***
 
@@ -127,7 +127,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name (can be used for display/debugging).
 
 #### Inherited from
 
@@ -139,7 +139,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **outline?**: `boolean`
 
-显示轮廓，默认 false
+Show outline, default false
 
 ***
 
@@ -147,7 +147,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-轮廓颜色
+Outline color
 
 ***
 
@@ -155,7 +155,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay render pass.
 
 #### Inherited from
 
@@ -167,7 +167,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **position?**: `Cartesian3`
 
-相对实体坐标系下的位置。
+Position relative to the entity's coordinate system.
 
 #### Inherited from
 
@@ -179,7 +179,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render order value (smaller values render first).
 
 #### Inherited from
 
@@ -191,7 +191,7 @@ FreeGeometryFeature 选项。
 
 > **show**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Inherited from
 
@@ -203,7 +203,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **translucent?**: `boolean`
 
-半透明，默认由材质推断
+Translucent, default inferred from material
 
 ***
 
@@ -211,7 +211,7 @@ FreeGeometryFeature 选项。
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 
@@ -223,4 +223,4 @@ FreeGeometryFeature 选项。
 
 > `optional` **wireframe?**: `boolean`
 
-线框模式，默认 false
+Wireframe mode, default false

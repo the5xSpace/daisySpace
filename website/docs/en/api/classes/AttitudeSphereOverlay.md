@@ -6,12 +6,12 @@
 
 # Class: AttitudeSphereOverlay
 
-AttitudeSphereOverlay：2D Canvas 版本的姿态球（HUD）。
+AttitudeSphereOverlay: 2D Canvas version of the attitude sphere (HUD).
 
 ## Remarks
 
-- 适合放在主视图右上/左上角作为“相机朝向指示器”。
-- 该类只负责绘制，不会自动订阅 帧事件；需要业务侧自行在合适的时机调用 `renderFromCamera`。
+- Suitable for placing in the top-right/top-left corner of the main view as a "camera orientation indicator".
+- This class is only responsible for rendering; it does not automatically subscribe to frame events. The business side should call `renderFromCamera` at appropriate times.
 
 ## Constructors
 
@@ -19,7 +19,7 @@ AttitudeSphereOverlay：2D Canvas 版本的姿态球（HUD）。
 
 > **new AttitudeSphereOverlay**(`viewer`, `options?`): `AttitudeSphereOverlay`
 
-创建 overlay 并将 canvas 追加到容器中。
+Creates the overlay and appends the canvas to the container.
 
 #### Parameters
 
@@ -33,7 +33,7 @@ Daisy SDK Engine。
 
 [`AttitudeSphereOverlayOptions`](../types/AttitudeSphereOverlayOptions.md)
 
-overlay 参数。
+Overlay parameters.
 
 #### Returns
 
@@ -45,7 +45,7 @@ overlay 参数。
 
 > **destroy**(): `void`
 
-移除 canvas 并释放引用。
+Removes the canvas and releases references.
 
 #### Returns
 
@@ -57,7 +57,7 @@ overlay 参数。
 
 > **renderFromCamera**(`camera`): `void`
 
-根据相机姿态渲染姿态球到画布。
+Renders the attitude sphere to the canvas based on the camera orientation.
 
 #### Parameters
 
@@ -65,7 +65,7 @@ overlay 参数。
 
 `Camera`
 
- 相机。
+ Camera.
 
 #### Returns
 
@@ -73,5 +73,5 @@ overlay 参数。
 
 #### Remarks
 
-- 该方法是“即时绘制”：每次调用都会清空并重绘当前帧内容。
-- 建议在 的帧回调（如 `scene.postRender`）或相机变化回调中调用。
+- This method performs "immediate rendering": each call clears and redraws the current frame content.
+- It is recommended to call it in the frame callback (e.g. `scene.postRender`) or camera change callback.

@@ -6,13 +6,13 @@
 
 # Class: PolygonRenderable
 
-PolygonRenderable：用 Primitive 绘制多边形填充/轮廓的渲染封装。
+PolygonRenderable: A rendering wrapper for drawing polygon fill/outline using Primitive.
 
 ## Remarks
 
-- 填充部分使用 `PolygonGeometry` + `Daisy.MaterialAppearance`。
-- 轮廓部分（可选）使用 `PolygonOutlineGeometry` + `Daisy.PerInstanceColorAppearance`。
-- 底层 Primitive 使用 [SafePrimitive](file:///d:/work/logic/space/daisyview-sdk/sdk/src/sdk/renderables/SafePrimitive.ts)，以降低 2D/Morphing 状态下矩阵问题带来的风险。
+- Fill uses `PolygonGeometry` + `Daisy.MaterialAppearance`.
+- Outline (optional) uses `PolygonOutlineGeometry` + `Daisy.PerInstanceColorAppearance`.
+- The underlying Primitive uses [SafePrimitive](file:///d:/work/logic/space/daisyview-sdk/sdk/src/sdk/renderables/SafePrimitive.ts) to reduce risks from matrix issues in 2D/Morphing states.
 
 ## Constructors
 
@@ -20,7 +20,7 @@ PolygonRenderable：用 Primitive 绘制多边形填充/轮廓的渲染封装。
 
 > **new PolygonRenderable**(`viewer`, `options?`): `PolygonRenderable`
 
-创建一个 PolygonRenderable 并立即加入到 `viewer.collections.primitiveCollection`。
+Creates a PolygonRenderable and immediately adds it to `viewer.collections.primitiveCollection`.
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Daisy SDK Engine。
 
 [`PolygonPrimitiveOptions`](../types/PolygonPrimitiveOptions.md)
 
-多边形参数。
+Polygon options.
 
 #### Returns
 
@@ -46,7 +46,7 @@ Daisy SDK Engine。
 
 > **buildOutlineGeometry**(`positions`, `ellipsoid`): `PolygonOutlineGeometry` \| `undefined`
 
-构建多边形轮廓几何体（outline）。
+Builds the polygon outline geometry.
 
 #### Parameters
 
@@ -54,7 +54,7 @@ Daisy SDK Engine。
 
 `Cartesian3`[] \| [`Holes`](../types/Holes.md)
 
-顶点或带洞层级。
+Vertices or hierarchy with holes.
 
 ##### ellipsoid
 
@@ -64,7 +64,7 @@ Daisy SDK Engine。
 
 `PolygonOutlineGeometry` \| `undefined`
 
-可用于 Primitive 的 `Daisy.Geometry`。
+A `Daisy.Geometry` usable for Primitive.
 
 ***
 
@@ -72,7 +72,7 @@ Daisy SDK Engine。
 
 > **create**(`basePositions`): `void`
 
-创建/重建填充 Primitive。
+Creates/rebuilds the fill Primitive.
 
 #### Parameters
 
@@ -80,7 +80,7 @@ Daisy SDK Engine。
 
 `Cartesian3`[] \| [`Holes`](../types/Holes.md)
 
-已处理（可能已排序）的 positions。
+Processed (potentially sorted) positions.
 
 #### Returns
 
@@ -92,7 +92,7 @@ Daisy SDK Engine。
 
 > **createOutline**(`basePositions`): `void`
 
-根据当前 `options.outline` 创建/移除轮廓 Primitive。
+Creates/removes the outline Primitive based on the current `options.outline`.
 
 #### Parameters
 
@@ -100,7 +100,7 @@ Daisy SDK Engine。
 
 `Cartesian3`[] \| [`Holes`](../types/Holes.md)
 
-已处理（可能已排序）的 positions。
+Processed (potentially sorted) positions.
 
 #### Returns
 
@@ -112,7 +112,7 @@ Daisy SDK Engine。
 
 > **destroy**(): `void`
 
-从 `viewer.collections.primitiveCollection` 移除填充/轮廓并释放引用。
+Removes fill/outline from `viewer.collections.primitiveCollection` and releases references.
 
 #### Returns
 
@@ -156,7 +156,7 @@ Daisy SDK Engine。
 
 > **updatePositions**(`positions`): `void`
 
-更新多边形顶点并重建 Primitive（包含可选轮廓）。
+Updates polygon vertices and rebuilds the Primitive (including optional outline).
 
 #### Parameters
 
@@ -164,7 +164,7 @@ Daisy SDK Engine。
 
 `Cartesian3`[] \| `PolygonHierarchy` \| [`Holes`](../types/Holes.md)
 
-新的顶点或层级。
+New vertices or hierarchy.
 
 #### Returns
 

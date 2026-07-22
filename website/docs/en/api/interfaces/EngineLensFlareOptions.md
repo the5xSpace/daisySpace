@@ -6,7 +6,7 @@
 
 # Interface: EngineLensFlareOptions
 
-引擎镜头光晕效果配置。
+Engine lens flare effect configuration.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **dirtAmount?**: `number`
 
-镜头脏污纹理贡献量。默认 `0.4`。
+Lens dirt texture contribution. Default `0.4`.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **dispersion?**: `number`
 
-鬼影高光的颜色分离度。默认 `0.4`。
+Ghost highlight color dispersion. Default `0.4`.
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **distortion?**: `number`
 
-径向畸变强度。默认 `10`。
+Radial distortion intensity. Default `10`.
 
 ***
 
@@ -38,7 +38,7 @@
 
 > `optional` **earthRadius?**: `number`
 
-后处理阶段使用的场景天体半径，单位为米。默认使用地球平均尺度。
+Scene celestial body radius used in the post-processing stage, in meters. Defaults to Earth's mean radius.
 
 ***
 
@@ -46,7 +46,7 @@
 
 > `optional` **haloWidth?**: `number`
 
-光晕环尺寸。默认 `0.4`。
+Halo ring size. Default `0.4`.
 
 ***
 
@@ -54,7 +54,7 @@
 
 > `optional` **intensity?**: `number`
 
-光晕整体亮度。默认 `1`。
+Overall halo brightness. Default `1`.
 
 ***
 
@@ -62,4 +62,4 @@
 
 > `optional` **show?**: `boolean`
 
-是否显示镜头光晕效果。默认 `true`。
+Whether to show the lens flare effect. Default `true`.

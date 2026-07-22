@@ -6,7 +6,7 @@
 
 # Enumeration: EmitDirection
 
-预设发射方向（用于几何体/模型的放置对齐基准）。
+Preset emission direction (used as the placement alignment reference for geometries/models).
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@
 
 > **CENTER**: `0`
 
-中心对齐。
+Center alignment.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > **TO\_AFTER**: `5`
 
-向后方延伸（-X 方向）。
+Extends backward (-X direction).
 
 ***
 
@@ -30,7 +30,7 @@
 
 > **TO\_BOTTOM**: `2`
 
-向下延伸。
+Extends downward.
 
 ***
 
@@ -38,7 +38,7 @@
 
 > **TO\_FRONT**: `4`
 
-向前方延伸（+X 方向）。
+Extends forward (+X direction).
 
 ***
 
@@ -46,7 +46,7 @@
 
 > **TO\_GROUND**: `3`
 
-向地表方向延伸。
+Extends toward the ground.
 
 ***
 
@@ -54,7 +54,7 @@
 
 > **TO\_LEFT**: `6`
 
-向左延伸（+Y 方向）。
+Extends left (+Y direction).
 
 ***
 
@@ -62,7 +62,7 @@
 
 > **TO\_RIGHT**: `7`
 
-向右延伸（-Y 方向）。
+Extends right (-Y direction).
 
 ***
 
@@ -70,4 +70,4 @@
 
 > **TO\_UP**: `1`
 
-向上延伸。
+Extends upward.

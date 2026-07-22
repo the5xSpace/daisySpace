@@ -18,6 +18,49 @@ This document is an execution contract for Codex or another mature coding agent.
 
 Never implement or call a model provider inside this repository. Do not add API keys, model configuration, prompts, request batching, or an embedded translation agent.
 
+## Pre-flight: fix-all validation errors before any accept run
+
+`docs:accept` is an **all-or-nothing gate**: if ANY file has a validation error
+(structure mismatch, protected code block changed, protected literal missing),
+the entire accept run fails and **zero files are accepted**, even files that
+are already correct.
+
+This makes sequential "translate → accept → translate → accept" prohibitively
+slow. Use the **fix-all-then-accept** pattern instead.
+
+### Fix-all pattern (required)
+
+1. **Restore all code blocks** across every modified `en/` file so they are
+   byte-for-byte identical to their `_source/` counterparts. Code blocks are
+   protected literals and any deviation (including CRLF vs LF) causes a
+   validation failure. A single script can do this for all files at once.
+
+2. **Normalize LF** across all `en/` files. Windows Git checkout may re-
+   introduce CRLF; any CRLF in a code block will cause a hash mismatch.
+
+3. **Fix protected literals** — English words embedded in Chinese prose
+   (e.g. `Options`, `Feature`, `Widget`, `Shader`, `Alpha`) must appear
+   in the English translation with **exactly the same casing** as in the
+   source. If `docs:diff` reports "protected literal X is missing", restore
+   that exact word at that location and re-translate only the surrounding
+   prose.
+
+4. **Fix structure mismatches** — `docs:diff` reports the expected vs
+   received AST shape. Counts of `strong`, `emphasis`, `inlineCode`,
+   `links`, etc. must match exactly. The safest recovery is:
+   - Copy the `_source` file back to `en/`
+   - Re-translate only the prose paragraphs, table cells, and descriptions
+   - Do not add or remove any Markdown markup
+
+5. **Run `pnpm docs:diff -- --file <path>` on every modified file** and
+   confirm `status: "ready-to-accept"` and `validationError: null` before
+   running `docs:accept`.
+
+6. **Run `pnpm docs:accept --allow-pending` exactly once**, after every file
+   passes `docs:diff`. The `--allow-pending` flag allows acceptance of files
+   that still contain non-translatable blocks (code blocks, inline code,
+   generated identifiers that cannot be meaningfully translated).
+
 ## Final Working Method
 
 1. Read this file completely and inspect `git status`. Preserve unrelated user changes.
@@ -66,3 +109,19 @@ Never implement or call a model provider inside this repository. Do not add API 
 - If it reports a protected literal, restore the exact identifier, code, or link target and translate only surrounding prose.
 - If `docs:check` reports a hash mismatch, run `docs:diff`, inspect the actual edit, and run `docs:accept` again.
 - Never repair state by editing `manifest.json` manually.
+
+## Batch translation workflow (recommended for bulk updates)
+
+When translating many files at once:
+
+1. **Translate a batch** of files in parallel (5-10 files via sub-agent tasks).
+2. **Do NOT run `docs:accept` between files.** Accepting is deferred to the end.
+3. **After the batch is done**, run `pnpm docs:diff -- --file <path>` on every
+   translated file to catch validation errors early.
+4. **Fix all validation errors** across the entire batch before attempting accept.
+5. **Run `pnpm docs:accept --allow-pending` once** for the whole batch.
+6. If accept still fails, fix the reported error and re-run accept (do not
+   re-translate already-correct files).
+
+This pattern avoids the "one bad file blocks everything" trap and keeps the
+accept loop to a single run per batch.

@@ -8,7 +8,7 @@
 
 > **DaisyAdvancedWaterOptions** = `object`
 
-高级水面材质配置。
+Advanced water surface material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **baseColor?**: [`DColor`](DColor.md)
 
-深水基础颜色。
+Deep water base color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **fresnelPower?**: `number`
 
-掠射角反射强度指数。
+Grazing angle reflection intensity exponent.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **highlightColor?**: [`DColor`](DColor.md)
 
-高光颜色。
+Highlight color.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **specularPower?**: `number`
 
-镜面高光锐度指数。
+Specular highlight sharpness exponent.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **surfaceColor?**: [`DColor`](DColor.md)
 
-水面颜色。
+Water surface color.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **waveFrequency?**: `number`
 
-波浪频率。
+Wave frequency.
 
 ***
 
@@ -72,7 +72,7 @@
 
 > `optional` **waveHeight?**: `number`
 
-波浪高度。
+Wave height.
 
 ***
 
@@ -80,4 +80,4 @@
 
 > `optional` **waveSpeed?**: `number`
 
-波浪动画速度。
+Wave animation speed.

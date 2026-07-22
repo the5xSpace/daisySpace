@@ -6,7 +6,7 @@
 
 # Interface: ArcGisImageryOptions
 
-ArcGIS MapServer 影像配置
+ArcGIS MapServer imagery configuration
 
 ## Extends
 
@@ -18,7 +18,7 @@ ArcGIS MapServer 影像配置
 
 > `optional` **alpha?**: `number`
 
-图层透明度（0 ~ 1），默认 1
+Layer opacity (0 ~ 1), default 1
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ ArcGIS MapServer 影像配置
 
 > `optional` **brightness?**: `number`
 
-图层亮度，默认 1。
+Layer brightness, default 1.
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ ArcGIS MapServer 影像配置
 
 > `optional` **colorToAlpha?**: `Color`
 
-与该颜色接近的像素将变为透明，可用于去除带底色的叠加瓦片背景。
+Pixels close to this color will become transparent, useful for removing background from overlaid tiles with a base color.
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ ArcGIS MapServer 影像配置
 
 > `optional` **colorToAlphaThreshold?**: `number`
 
-颜色转透明的 RGB 通道容差（0 ~ 1），默认 0.004。
+RGB channel tolerance for color-to-alpha (0 ~ 1), default 0.004.
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ ArcGIS MapServer 影像配置
 
 > `optional` **contrast?**: `number`
 
-图层对比度，默认 1。
+Layer contrast, default 1.
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ ArcGIS MapServer 影像配置
 
 > `optional` **dayAlpha?**: `number`
 
-白昼区域透明度（0 ~ 1）。启用地球光照时生效。
+Daytime area opacity (0 ~ 1). Takes effect when Earth lighting is enabled.
 
 #### Inherited from
 
@@ -90,7 +90,7 @@ ArcGIS MapServer 影像配置
 
 > `optional` **nightAlpha?**: `number`
 
-夜间区域透明度（0 ~ 1）。启用地球光照时生效。
+Night area opacity (0 ~ 1). Takes effect when Earth lighting is enabled.
 
 #### Inherited from
 
@@ -102,7 +102,7 @@ ArcGIS MapServer 影像配置
 
 > `optional` **show?**: `boolean`
 
-是否显示该图层，默认 true
+Whether to show the layer, default true
 
 #### Inherited from
 
@@ -114,7 +114,7 @@ ArcGIS MapServer 影像配置
 
 > **type**: [`ArcGisMapServer`](../enums/GeoImageryType.md#arcgismapserver)
 
-图层类型：ArcGIS MapServer
+Layer type: ArcGIS MapServer
 
 ***
 
@@ -122,4 +122,4 @@ ArcGIS MapServer 影像配置
 
 > **url**: `string`
 
-ArcGIS MapServer 服务地址
+ArcGIS MapServer service URL

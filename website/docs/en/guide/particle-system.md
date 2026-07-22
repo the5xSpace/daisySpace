@@ -1,13 +1,13 @@
-# 粒子系统
+# Particle System
 
-Daisy 提供两类粒子能力：[ParticleFeature](/en/api/classes/ParticleFeature)（世界空间粒子，逐粒子物理积分）和 [CapsuleParticleFeature](/en/api/classes/CapsuleParticleFeature)（宿主绑定的预渲染画布面片）。
+Daisy provides two particle capabilities: [ParticleFeature](/api/classes/ParticleFeature) (world-space particles, per-particle physics integration) and [CapsuleParticleFeature](/api/classes/CapsuleParticleFeature) (host-bound pre-rendered canvas sprites).
 
-**选型指南：**
+**Selection Guide:**
 
 | 场景 | 用 |
 |------|----|
-| 雨、雪、烟雾、风尘、水流等自然粒子 | [ParticleFeature](/en/api/classes/ParticleFeature) |
-| 火箭喷焰、飞机尾焰、姿控喷口等强绑定宿主的效果 | [CapsuleParticleFeature](/en/api/classes/CapsuleParticleFeature) |
+| Rain, snow, smoke, dust, water flow and other natural particles | [ParticleFeature](/api/classes/ParticleFeature) |
+| Rocket plumes, aircraft contrails, attitude-control nozzles and other host-locked effects | [CapsuleParticleFeature](/api/classes/CapsuleParticleFeature) |
 
 ---
 
@@ -54,14 +54,14 @@ entity.addFeature(new Daisy.ParticleFeature({
 }))
 ```
 
-### 参数表
+### Parameter Table
 
 | 参数 | 类型 | 说明 |
 |------|------|------|
 | `image` | `string \| Canvas \| { image, x, y, width, height } \| { image, frameWidth, frameHeight, count, columns }` | 粒子贴图，支持图片裁切和序列帧 |
 | `preserveImageColor` | `boolean` | 保留贴图自身 RGB，仅用颜色控制 alpha |
 | `imageSize` | `Cartesian2` | 粒子尺寸（像素） |
-| `emitter` | [ParticleEmitterConfig](/en/api/types/ParticleEmitterConfig) | 发射器配置 |
+| `emitter` | [ParticleEmitterConfig](/api/types/ParticleEmitterConfig) | 发射器配置 |
 | `emitterModelMatrix` | `Matrix4` | 发射器变换矩阵 |
 | `emitterDirection` | `{ heading, pitch, roll }` | 发射朝向（度） |
 | `emissionRate` | `number` | 发射速率（粒子/秒） |
@@ -84,9 +84,9 @@ entity.addFeature(new Daisy.ParticleFeature({
 | `sizeInMeters` | `boolean` | 粒子尺寸使用米制 |
 | `distanceDisplayCondition` | `DistanceDisplayCondition` | 距离显示条件 |
 
-### 发射器类型
+### Emitter Types
 
-通过 `createParticleEmitter()` 创建，支持 17 种形状：
+Created via `createParticleEmitter()`, supports 17 shapes:
 
 | 类型 | 关键参数 |
 |------|----------|
@@ -108,9 +108,9 @@ entity.addFeature(new Daisy.ParticleFeature({
 | `"vibration"` | `amplitude`, `radius`, `axis`, `phase` |
 | `"orbit"` | `radius`, `height`, `phase`, `clockwise` |
 
-只有部分发射器支持 `emitFrom`（`"volume"` / `"shell"` / `"edge"`）；`direction` 也只适用于支持该字段的发射器。
+Only some emitters support `emitFrom` (`"volume"` / `"shell"` / `"edge"`); `direction` only applies to emitters that support that field.
 
-### 重力
+### Gravity
 
 ```typescript
 // 使用宿主天体表面重力
@@ -130,7 +130,7 @@ gravity: {
 }
 ```
 
-### 屏幕空间预算
+### Screen Space Budget
 
 ```typescript
 screenSpaceLimit: {
@@ -143,7 +143,7 @@ screenSpaceLimit: {
 }
 ```
 
-### 自定义贴图（Canvas）
+### Custom Texture (Canvas)
 
 ```typescript
 const canvas = document.createElement("canvas")
@@ -165,7 +165,7 @@ entity.addFeature(new Daisy.ParticleFeature({
 
 ## CapsuleParticleFeature
 
-胶囊粒子将整个粒子系统预渲染为一张 canvas，作为单个 Sprite 面片（Billboard）播放。适合需要强绑宿主、连续主体形态的效果。
+Capsule particles pre-render the entire particle system into a single canvas, played as a single Sprite billboard. Suited for effects that require tight host binding and a coherent main body form.
 
 ```typescript
 entity.addFeature(new Daisy.CapsuleParticleFeature({
@@ -204,7 +204,7 @@ entity.addFeature(new Daisy.CapsuleParticleFeature({
 }))
 ```
 
-### 预设
+### Presets
 
 | 预设 | 效果 |
 |------|------|
@@ -214,7 +214,7 @@ entity.addFeature(new Daisy.CapsuleParticleFeature({
 | `"soft-plume"` | 柔和尾烟 |
 | `"linear-streak"` | 线状拖尾 |
 
-### 参数表
+### Parameter Table
 
 | 参数 | 类型 | 说明 |
 |------|------|------|

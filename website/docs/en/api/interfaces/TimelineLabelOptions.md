@@ -6,7 +6,7 @@
 
 # Interface: TimelineLabelOptions
 
-时间轴刻度文本格式化配置。
+Timeline tick label formatting configuration.
 
 ## Extends
 
@@ -18,7 +18,7 @@
 
 > `optional` **format?**: `string`
 
-自定义 token 格式，优先级高于预设的默认格式。
+Custom token format, with higher priority than the default preset format.
 
 #### Inherited from
 
@@ -30,7 +30,7 @@
 
 > `optional` **formatter?**: [`TimeFormatCallback`](../types/TimeFormatCallback.md)
 
-自定义格式化函数（优先级最高，参数为 DateTime 对象）
+Custom formatting function (highest priority, parameter is a DateTime object)
 
 #### Overrides
 
@@ -42,7 +42,7 @@
 
 > `optional` **preset?**: [`TimeFormatPreset`](../types/TimeFormatPreset.md)
 
-使用内置格式预设
+Use a built-in format preset
 
 #### Overrides
 
@@ -54,7 +54,7 @@
 
 > `optional` **t0?**: [`TimeFormatInput`](../types/TimeFormatInput.md)
 
-`t0` 模式的参考时刻；未设置时相对秒数按 `0` 输出。
+Reference time for `t0` mode; when not set, relative seconds output as `0`.
 
 #### Inherited from
 
@@ -66,7 +66,7 @@
 
 > `optional` **t0Label?**: `string`
 
-`t0` 文本前缀。默认 `T`。
+`t0` text prefix. Default `T`.
 
 #### Inherited from
 
@@ -78,7 +78,7 @@
 
 > `optional` **t0ShowMilliseconds?**: `boolean`
 
-`t0` 累计秒是否保留三位小数。默认 `false`。
+Whether to keep three decimal places for `t0` cumulative seconds. Default `false`.
 
 #### Inherited from
 
@@ -90,7 +90,7 @@
 
 > `optional` **timezoneName?**: `string`
 
-`TZ` token 的显示名，例如 `BJT`。
+Display name for the `TZ` token, e.g., `BJT`.
 
 #### Inherited from
 
@@ -102,7 +102,7 @@
 
 > `optional` **utcOffsetHours?**: `number`
 
-相对 UTC 的时区偏移小时数，例如北京时间为 `8`。
+Time zone offset hours relative to UTC, e.g., Beijing time is `8`.
 
 #### Inherited from
 

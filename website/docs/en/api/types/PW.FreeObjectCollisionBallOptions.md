@@ -8,7 +8,7 @@
 
 > **FreeObjectCollisionBallOptions** = [`BaseObjectTransformTimeline`](PW.BaseObjectTransformTimeline.md) & `object`
 
-碰撞球配置（用于简单的可视化碰撞体与碰撞状态展示）。
+Collision ball configuration for simple visual collision body and collision state display.
 
 ## Type Declaration
 
@@ -16,19 +16,19 @@
 
 > `optional` **collisionColor?**: `Daisy.Color`
 
-碰撞状态颜色。
+Collision state color.
 
 ### color?
 
 > `optional` **color?**: `Daisy.Color`
 
-默认颜色（未碰撞）。
+Default color (no collision).
 
 ### enableCollision?
 
 > `optional` **enableCollision?**: `boolean`
 
-是否启用碰撞检测（依赖宿主实体的碰撞实现）。
+Whether to enable collision detection (depends on the host entity's collision implementation).
 
 #### Default
 
@@ -40,7 +40,7 @@ false
 
 > `optional` **enableCollisionStateShow?**: `boolean`
 
-是否根据碰撞状态自动切换颜色显示。
+Whether to automatically switch color display based on collision state.
 
 #### Default
 
@@ -52,25 +52,25 @@ false
 
 > `optional` **outlineColor?**: `Daisy.Color`
 
-轮廓颜色。
+Outline color.
 
 ### outlineWidth?
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓线宽（像素）。
+Outline width (pixels).
 
 ### radius
 
 > **radius**: `number`
 
-半径（米）。
+Radius (meters).
 
 ### show?
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 

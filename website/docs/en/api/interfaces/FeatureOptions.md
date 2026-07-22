@@ -6,9 +6,9 @@
 
 # Interface: FeatureOptions
 
-Feature 基础配置选项。
+Base configuration options for Feature.
 
-所有具体 Feature 的 Options 类型都继承自该接口。
+All concrete Feature Options types inherit from this interface.
 
 ## Extended by
 
@@ -32,7 +32,7 @@ Feature 基础配置选项。
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom identifier (used for underlying render object identification/retrieval).
 
 ***
 
@@ -40,9 +40,9 @@ Feature 基础配置选项。
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to participate in the bounding sphere aggregation of the parent Entity.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Suitable for Features that need to be included in camera zoom/flyTo framing. Auxiliary lines, temporary effects, etc. can disable this.
 
 ***
 
@@ -50,7 +50,7 @@ Feature 基础配置选项。
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name (can be used for display/debugging).
 
 ***
 
@@ -58,7 +58,7 @@ Feature 基础配置选项。
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay render pass.
 
 ***
 
@@ -66,7 +66,7 @@ Feature 基础配置选项。
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render order value (lower values render first).
 
 ***
 
@@ -74,4 +74,4 @@ Feature 基础配置选项。
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.

@@ -6,13 +6,13 @@
 
 # Class: NearEarthOrbiter
 
-NearEarthOrbiter：近地轨道目标（卫星/空间站/碎片等）。
+NearEarthOrbiter: Near-Earth orbit targets (satellites/space stations/debris, etc.).
 
-提供能力：
-- 按 NORAD Catalog Number 拉取 TLE（带缓存）
-- 接收通用轨道源输入（TLE / OMM XML / JSON GP）
-- 使用通用轨道源进行实时传播（可选）
-- 构建一段时间范围内的星历采样轨迹（TrajectorySample）
+Capabilities:
+- Fetch TLE by NORAD Catalog Number (with caching)
+- Accept general orbit source inputs (TLE / OMM XML / JSON GP)
+- Real-time propagation using general orbit sources (optional)
+- Build ephemeris sampling trajectories (TrajectorySample) over a time range
 
 ## Example
 
@@ -42,7 +42,7 @@ sat.bindViewer(viewer);
 
 > **new NearEarthOrbiter**(`options?`, `celestialEllipsoid?`): `NearEarthOrbiter`
 
-创建 NearEarthOrbiter。
+Creates a NearEarthOrbiter.
 
 #### Parameters
 
@@ -50,13 +50,13 @@ sat.bindViewer(viewer);
 
 [`NearEarthOrbiterConfig`](../types/PW.NearEarthOrbiterConfig.md)
 
-配置（含轨道源与传播策略）
+Configuration (including orbit source and propagation strategy)
 
 ##### celestialEllipsoid?
 
 [`CelestialEllipsoid`](PW.CelestialEllipsoid.md) = `...`
 
-所属天体（默认地球）
+Host celestial body (default: Earth)
 
 #### Returns
 
@@ -104,7 +104,7 @@ sat.bindViewer(viewer);
 
 > **get** **entity**(): [`Entity`](Entity.md) \| `CelestialEntity`
 
-获取宿主 Entity（用于挂载 Feature、交互事件、更新等）。
+Gets the host Entity (used for mounting Features, interaction events, updates, etc.).
 
 ##### Returns
 
@@ -122,9 +122,9 @@ sat.bindViewer(viewer);
 
 > **get** **options**(): [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
 
-对象创建/配置参数的原始快照（不同子类会扩展其结构）。
+Raw snapshot of object creation/configuration parameters (extended by different subclasses).
 
-注意：这是“语义配置”的来源，而不是渲染结果。渲染落地由 _applyConfig + Feature/Component 完成。
+Note: This is the source of "semantic configuration", not the rendered result. Rendering is completed by _applyConfig + Feature/Component.
 
 ##### Returns
 
@@ -150,7 +150,7 @@ sat.bindViewer(viewer);
 
 > **set** **orientation**(`value`): `void`
 
-便捷设置姿态（写入宿主 Entity.orientation）。
+Convenience setter for orientation (writes to host Entity.orientation).
 
 ##### Parameters
 
@@ -174,10 +174,10 @@ sat.bindViewer(viewer);
 
 > **get** **position**(): [`ObjectPositon`](../types/PW.ObjectPositon.md)
 
-设置对象位置（支持静态坐标或采样轨迹）。
+Sets object position (supports static coordinates or sampling trajectories).
 
-- 赋值后会同步写入宿主 entity.position
-- 对 CelestialEntity（非地球天体）不允许使用支持惯性系的 TrajectorySample
+- Synchronized to host entity.position after assignment
+- TrajectorySample with inertial frame support is not allowed for CelestialEntity (non-Earth celestial bodies)
 
 ##### Example
 
@@ -193,7 +193,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **set** **position**(`value`): `void`
 
-便捷设置位置（支持静态坐标或采样轨迹）。
+Convenience setter for position (supports static coordinates or sampling trajectories).
 
 ##### Parameters
 
@@ -215,9 +215,9 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **addComponent**\<`T`\>(`component`): `T`
 
-挂载一个 PhysicalWorld 组件到当前对象。
+Mounts a PhysicalWorld component to the current object.
 
-注意：Feature 仍应通过 Entity.addFeature() 的路径挂载；该方法仅面向 IComponent。
+Note: Features should still be mounted via Entity.addFeature(); this method is for IComponent only.
 
 #### Type Parameters
 
@@ -231,7 +231,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 `T`
 
-组件实例
+Component instance
 
 #### Returns
 
@@ -253,7 +253,7 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **addGroundTrack**(`options?`): [`GroundTrackComponent`](PW.GroundTrackComponent.md)
 
-添加真实星下点滚动轨迹组件。
+Adds a real ground-track scrolling trajectory component.
 
 #### Parameters
 
@@ -291,7 +291,7 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **addOrbitElementsView**(`options?`): [`OrbitElementsViewComponent`](PW.OrbitElementsViewComponent.md)
 
-添加轨道根数几何视图组件。
+Adds an orbit elements geometry view component.
 
 #### Parameters
 
@@ -335,7 +335,7 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **addRealtimeOrbit**(`options?`): [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
 
-添加实时轨道圈组件。
+Adds a real-time orbit ring component.
 
 #### Parameters
 
@@ -353,11 +353,11 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **addSensor**(`options?`): [`Sensor`](PW.Sensor.md)
 
-添加传感器。
+Adds a sensor.
 
-说明：
-- 轨道目标通常希望传感器“安装在机体坐标系原点”
-- 这里会注入一个默认 position，使传感器不受对象位置写入策略影响
+Notes:
+- Orbiting targets usually want sensors "mounted at the body frame origin"
+- A default position is injected here so the sensor is not affected by object position write strategies
 
 #### Parameters
 
@@ -379,7 +379,7 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **applyEphemerisTrajectory**(`params`): [`TrajectorySample`](TrajectorySample.md)
 
-旧名兼容入口。
+Legacy compatibility entry point.
 
 #### Parameters
 
@@ -403,11 +403,11 @@ sat.applyTrajectory({ stepSeconds: 30 });
 
 > **applyTrajectory**(`params?`): [`TrajectorySample`](TrajectorySample.md)
 
-写入轨迹采样的简写入口。
+Shorthand entry point for writing trajectory samples.
 
-默认行为：
-- 自动使用当前场景的开始/结束时间
-- `stepSeconds` 默认 600
+Default behavior:
+- Automatically uses the current scene's start/end time
+- `stepSeconds` defaults to 600
 
 #### Parameters
 
@@ -432,10 +432,10 @@ sat.applyTrajectory({ stepSeconds: 30 });
 
 > **bindEngine**(`engine`): `void`
 
-绑定到 Engine 并完成注册。
+Binds to the Engine and completes registration.
 
-额外行为：
-- 若未显式关闭自动轨迹，且已经有轨道源，会在绑定后自动执行一次 `applyTrajectory()`
+Additional behavior:
+- If automatic trajectory is not explicitly disabled and an orbit source already exists, executes `applyTrajectory()` once after binding
 
 #### Parameters
 
@@ -457,11 +457,11 @@ sat.applyTrajectory({ stepSeconds: 30 });
 
 > **buildEphemerisTrajectory**(`params`): [`TrajectorySample`](TrajectorySample.md)
 
-构建一段时间范围内的星历轨迹采样（TrajectorySample）。
+Builds ephemeris trajectory sampling (TrajectorySample) over a time range.
 
-说明：
-- 该方法用于“离线采样 + 插值”的方式驱动目标
-- 若你启用了实时传播，也可以不使用该方法
+Notes:
+- This method drives the target via "offline sampling + interpolation"
+- You can choose not to use this method if you have enabled real-time propagation
 
 #### Parameters
 
@@ -492,7 +492,7 @@ sat.orientation = traj.getVelocityOrientation() as any;
 
 > **calculateEphemeris**(`params`): `any`[]
 
-获取一段时间范围内的星历计算结果（不构建 TrajectorySample）。
+Gets ephemeris calculation results over a time range (without building TrajectorySample).
 
 #### Parameters
 
@@ -517,7 +517,7 @@ console.log(ephemeris[0]);
 
 > **clearEphemerisCache**(): `void`
 
-清空星历缓存。
+Clears the ephemeris cache.
 
 #### Returns
 
@@ -529,7 +529,7 @@ console.log(ephemeris[0]);
 
 > **destroy**(): `void`
 
-销毁对象（清理交互监听、销毁组件、销毁宿主实体并释放事件管理器）。
+Destroys the object (cleans up interaction listeners, destroys components, destroys the host entity, and releases the event manager).
 
 #### Returns
 
@@ -551,7 +551,7 @@ obj.destroy();
 
 > **getComponentById**(`id?`): [`Component`](../types/PW.Component.md)[]
 
-根据 id 获取组件列表（理论上 id 全局唯一，但保留返回数组以兼容历史逻辑）。
+Gets the component list by id (theoretically globally unique, but returns an array for backward compatibility).
 
 #### Parameters
 
@@ -559,7 +559,7 @@ obj.destroy();
 
 `string`
 
-组件 id
+Component ID
 
 #### Returns
 
@@ -575,7 +575,7 @@ obj.destroy();
 
 > **getComponentByName**(`name?`): [`Component`](../types/PW.Component.md)[]
 
-根据 name 获取组件列表。
+Gets the component list by name.
 
 #### Parameters
 
@@ -583,7 +583,7 @@ obj.destroy();
 
 `string`
 
-组件名称（component.name）
+Component name (component.name)
 
 #### Returns
 
@@ -599,7 +599,7 @@ obj.destroy();
 
 > **getComponents**(`type?`): [`Component`](../types/PW.Component.md)[]
 
-获取组件列表。
+Gets the component list.
 
 #### Parameters
 
@@ -607,7 +607,7 @@ obj.destroy();
 
 `string`
 
-组件类型（对应 component.type）；不传则返回全部
+Component type (corresponding to component.type); returns all if not provided
 
 #### Returns
 
@@ -623,7 +623,7 @@ obj.destroy();
 
 > **getCurrentOrbitState**(`options?`): [`NearEarthOrbiterState`](../types/PW.NearEarthOrbiterState.md) \| `null`
 
-获取当前仿真时刻的轨道状态。
+Gets the orbit state at the current simulation time.
 
 #### Parameters
 
@@ -631,7 +631,7 @@ obj.destroy();
 
 ###### observerLocation?
 
-\[`number`, `number`, `number`\]
+[`number`, `number`, `number`]
 
 ###### velocitySampleSeconds?
 
@@ -647,7 +647,7 @@ obj.destroy();
 
 > **getCurrentOrientation**(): [`Rotation`](../types/Rotation.md)
 
-获取当前仿真时刻的局部姿态。
+Gets the local orientation at the current simulation time.
 
 #### Returns
 
@@ -663,16 +663,15 @@ obj.destroy();
 
 > **getCurrentPosition**(): `Cartesian3` \| `undefined`
 
-获取当前仿真时间的实时位置。
+Gets the real-time position at the current simulation time.
 
-如果 position 是 TrajectorySample，会根据引擎当前时间求值；
-如果是静态 Cartesian3，直接返回。
+If position is a TrajectorySample, it evaluates based on the engine's current time; if it's a static Cartesian3, it returns directly.
 
 #### Returns
 
 `Cartesian3` \| `undefined`
 
-当前时刻的世界坐标，或 undefined（无法求值时）
+World coordinates at the current time, or undefined (when evaluation fails)
 
 #### Inherited from
 
@@ -684,9 +683,9 @@ obj.destroy();
 
 > **getEphemeris**(`params?`): `any`[] \| `undefined`
 
-获取当前已经计算并缓存的星历数据。
+Gets the currently calculated and cached ephemeris data.
 
-如果传入 params，则仅在与当前缓存参数一致时返回缓存结果，不会触发重算。
+If params are provided, returns cached results only if they match current cache parameters; does not trigger recalculation.
 
 #### Parameters
 
@@ -704,7 +703,7 @@ obj.destroy();
 
 > **getEphemerisCache**(): [`NearEarthOrbiterEphemerisCache`](../types/PW.NearEarthOrbiterEphemerisCache.md) \| `undefined`
 
-获取当前星历缓存元数据。
+Gets current ephemeris cache metadata.
 
 #### Returns
 
@@ -716,7 +715,7 @@ obj.destroy();
 
 > **getOrbitDefinition**(): `unknown`
 
-获取当前轨道定义。
+Gets the current orbit definition.
 
 #### Returns
 
@@ -728,7 +727,7 @@ obj.destroy();
 
 > **getOrbitElements**(): `OrbitElements`
 
-解析当前轨道定义的轨道根数。
+Parses the orbit elements of the current orbit definition.
 
 #### Returns
 
@@ -740,7 +739,7 @@ obj.destroy();
 
 > **getOrbitMetadata**(): `OrbitMetadata`
 
-解析当前轨道定义的元数据。
+Parses the metadata of the current orbit definition.
 
 #### Returns
 
@@ -752,7 +751,7 @@ obj.destroy();
 
 > **getOrbitStateAtTime**(`time`, `options?`): [`NearEarthOrbiterState`](../types/PW.NearEarthOrbiterState.md) \| `null`
 
-获取指定仿真时刻的轨道状态（位置/姿态/瞬时轨道根数）。
+Gets the orbit state (position/orientation/instantaneous orbit elements) at a specified simulation time.
 
 #### Parameters
 
@@ -764,7 +763,7 @@ obj.destroy();
 
 ###### observerLocation?
 
-\[`number`, `number`, `number`\]
+[`number`, `number`, `number`]
 
 ###### velocitySampleSeconds?
 
@@ -780,7 +779,7 @@ obj.destroy();
 
 > **getOrientationAtTime**(`timestamp`): [`Rotation`](../types/Rotation.md)
 
-获取指定仿真时刻的局部姿态。
+Gets the local orientation at a specified simulation time.
 
 #### Parameters
 
@@ -802,7 +801,7 @@ obj.destroy();
 
 > **getPosition**(`time`): `Cartesian3` \| `undefined`
 
-获取指定时刻的位置（委托给宿主 entity.getPosition）。
+Gets the position at a specified time (delegated to host entity.getPosition).
 
 #### Parameters
 
@@ -810,7 +809,7 @@ obj.destroy();
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
@@ -826,7 +825,7 @@ obj.destroy();
 
 > **getPositionAtTime**(`timestamp`): `Cartesian3` \| `undefined`
 
-获取指定仿真时刻的世界位置。
+Gets the world position at a specified simulation time.
 
 #### Parameters
 
@@ -882,7 +881,7 @@ obj.destroy();
 
 > **getTransformAtTime**(`timestamp`): `BaseObjectResolvedTransform`
 
-获取指定仿真时刻的局部姿态。
+Gets the local orientation at a specified simulation time.
 
 #### Parameters
 
@@ -904,7 +903,7 @@ obj.destroy();
 
 > **getTransformMatrixAtTime**(`timestamp`): `Matrix4`
 
-获取指定仿真时刻的局部变换矩阵。
+Gets the local transformation matrix at a specified simulation time.
 
 #### Parameters
 
@@ -926,9 +925,9 @@ obj.destroy();
 
 > **getTransits**(`params`): `any`[]
 
-计算卫星过境窗口（卫星自身能力，基于当前轨道源）。
+Calculates satellite transit windows (satellite's own capability, based on current orbit source).
 
-返回值中的 `start/end` 为毫秒时间戳，可直接转为 `Date` 或 `JulianDate` 使用。
+`start/end` in the return value are millisecond timestamps that can be directly converted to `Date` or `JulianDate`.
 
 #### Parameters
 
@@ -946,7 +945,7 @@ obj.destroy();
 
 > **getVisibilityWindows**(`params`): `number`[][]
 
-计算可见窗口（仅返回 [startMs, endMs] 列表）。
+Calculates visible windows (returns only [startMs, endMs] list).
 
 #### Parameters
 
@@ -964,7 +963,7 @@ obj.destroy();
 
 > **loadTleByNameFromGroup**(`params`): `Promise`\<`string` \| `undefined`\>
 
-在分组列表中按名称模糊匹配并写入当前对象。
+Fuzzy matches by name in the group list and writes to the current object.
 
 #### Parameters
 
@@ -992,7 +991,7 @@ obj.destroy();
 
 > **loadTleByNoradId**(`noradId`, `cacheLifeSeconds?`): `Promise`\<`string`\>
 
-根据 NORAD Catalog Number 拉取 TLE（带缓存）。
+Fetches TLE by NORAD Catalog Number (with caching).
 
 #### Parameters
 
@@ -1006,7 +1005,7 @@ NORAD Catalog Number
 
 `number`
 
-缓存时效（秒）
+Cache lifetime (seconds)
 
 #### Returns
 
@@ -1018,7 +1017,7 @@ NORAD Catalog Number
 
 > **loadTleGroup**(`groupName`, `cacheLifeSeconds?`): `Promise`\<`string`[]\>
 
-按分组拉取 TLE 列表（带缓存）。
+Fetches TLE list by group (with caching).
 
 #### Parameters
 
@@ -1040,7 +1039,7 @@ NORAD Catalog Number
 
 > **observeAtTime**(`time`, `observerLocation?`): `any`
 
-计算指定仿真时刻的单点观测结果。
+Calculates single-point observation results at a specified simulation time.
 
 #### Parameters
 
@@ -1050,7 +1049,7 @@ NORAD Catalog Number
 
 ##### observerLocation?
 
-\[`number`, `number`, `number`\]
+[`number`, `number`, `number`]
 
 #### Returns
 
@@ -1062,7 +1061,7 @@ NORAD Catalog Number
 
 > **register**(): `void`
 
-将宿主实体注册到 Daisy 管线中（触发 entity.reRegisterAll）。
+Registers the host entity into the Daisy pipeline (triggers entity.reRegisterAll).
 
 #### Returns
 
@@ -1084,7 +1083,7 @@ obj.register();
 
 > **removeComponentById**(`id`): `void`
 
-根据 id 移除组件（会先 destroy）。
+Removes component by id (will destroy first).
 
 #### Parameters
 
@@ -1092,7 +1091,7 @@ obj.register();
 
 `string`
 
-组件 id
+Component ID
 
 #### Returns
 
@@ -1108,7 +1107,7 @@ obj.register();
 
 > **removeComponentByName**(`name`): `void`
 
-根据 name 移除组件（会先 destroy）。
+Removes component by name (will destroy first).
 
 #### Parameters
 
@@ -1116,7 +1115,7 @@ obj.register();
 
 `string`
 
-组件名称
+Component name
 
 #### Returns
 
@@ -1152,10 +1151,9 @@ obj.register();
 
 > **resetTemporalState**(`time?`): `void`
 
-重置跨帧/跨时间循环的运行态。
+Resets runtime state across frames/time loops.
 
-Engine 在检测到仿真时间倒退时调用此方法。这里不销毁业务配置，只清理
-BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件。
+Engine calls this method when simulation time rewind is detected. This does not destroy business configuration; it only cleans up BaseObject's own time value cache and forwards reset to mounted components.
 
 #### Parameters
 
@@ -1177,7 +1175,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setOptions**(`config`): `void`
 
-更新配置（会按策略重建对应的 Feature）。
+Updates configuration (recreates corresponding Features according to strategy).
 
 #### Parameters
 
@@ -1185,7 +1183,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 [`VehicleConfig`](../types/PW.VehicleConfig.md)
 
-新配置
+New configuration
 
 #### Returns
 
@@ -1207,7 +1205,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **setOrbitDefinition**(`source`): `this`
 
-设置轨道定义（首选入口）。
+Sets orbit definition (preferred entry point).
 
 #### Parameters
 
@@ -1225,7 +1223,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **setOrbitSource**(`source`): `void`
 
-设置通用轨道源。
+Sets a general orbit source.
 
 #### Parameters
 
@@ -1243,7 +1241,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **setSpg4PropagationEnabled**(`enabled`): `void`
 
-启用/关闭实时传播。
+Enables/disables real-time propagation.
 
 #### Parameters
 
@@ -1261,7 +1259,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **setTle**(`tle`): `void`
 
-设置 TLE（legacy 兼容入口）。
+Sets TLE (legacy compatibility entry point).
 
 #### Parameters
 
@@ -1269,7 +1267,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 `string` \| `string`[]
 
-两行或三行 TLE（字符串或字符串数组）
+Two or three line TLE (string or string array)
 
 #### Returns
 
@@ -1281,7 +1279,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **unregister**(): `void`
 
-反注册：移除实体挂载的所有 Feature，并通知组件解除绑定。
+Unregisters: removes all Features mounted on the entity and notifies components to unbind.
 
 #### Returns
 
@@ -1303,9 +1301,9 @@ obj.unregister();
 
 > **update**(`time`): `void`
 
-每帧更新：
-- 可选实时传播：按仿真时间更新位置
-- 可选速度朝向：当 position 是轨迹采样时自动更新姿态
+Per-frame updates:
+- Optional real-time propagation: updates position by simulation time
+- Optional velocity orientation: automatically updates orientation when position is a trajectory sample
 
 #### Parameters
 
@@ -1327,7 +1325,7 @@ obj.unregister();
 
 > **offClick**(`handler?`): `void`
 
-取消监听对象点击事件。
+Unsubscribes from object click events.
  click
 
 #### Parameters
@@ -1350,7 +1348,7 @@ obj.unregister();
 
 > **offDblClick**(`handler?`): `void`
 
-取消监听对象双击事件。
+Unsubscribes from object double-click events.
  dblclick
 
 #### Parameters
@@ -1373,7 +1371,7 @@ obj.unregister();
 
 > **offMouseEnter**(`handler?`): `void`
 
-取消监听对象鼠标移入事件。
+Unsubscribes from object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -1396,7 +1394,7 @@ obj.unregister();
 
 > **offMouseLeave**(`handler?`): `void`
 
-取消监听对象鼠标移出事件。
+Unsubscribes from object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -1419,7 +1417,7 @@ obj.unregister();
 
 > **onBeforeDestroy**(`callback`): `void`
 
-监听销毁前事件。
+Listens for pre-destroy events.
  BEFORE_DESTROY
 
 #### Parameters
@@ -1442,7 +1440,7 @@ obj.unregister();
 
 > **onBeforeRegister**(`callback`): `void`
 
-监听注册前事件。
+Listens for pre-register events.
  BEFORE_REGISTER
 
 #### Parameters
@@ -1465,7 +1463,7 @@ obj.unregister();
 
 > **onBeforeUnregister**(`callback`): `void`
 
-监听卸载前事件。
+Listens for pre-unregister events.
  BEFORE_UNREGISTER
 
 #### Parameters
@@ -1488,7 +1486,7 @@ obj.unregister();
 
 > **onBeforeUpdate**(`callback`): `void`
 
-监听更新前事件。
+Listens for pre-update events.
  BEFORE_UPDATE
 
 #### Parameters
@@ -1511,7 +1509,7 @@ obj.unregister();
 
 > **onClick**(`handler`): `void`
 
-监听对象点击事件。
+Listens for object click events.
  click
 
 #### Parameters
@@ -1534,7 +1532,7 @@ obj.unregister();
 
 > **onDblClick**(`handler`): `void`
 
-监听对象双击事件。
+Listens for object double-click events.
  dblclick
 
 #### Parameters
@@ -1557,7 +1555,7 @@ obj.unregister();
 
 > **onDestroy**(`callback`): `void`
 
-监听销毁事件。
+Listens for destroy events.
  DESTROY
 
 #### Parameters
@@ -1580,7 +1578,7 @@ obj.unregister();
 
 > **onMouseEnter**(`handler`): `void`
 
-监听对象鼠标移入事件。
+Listens for object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -1603,7 +1601,7 @@ obj.unregister();
 
 > **onMouseLeave**(`handler`): `void`
 
-监听对象鼠标移出事件。
+Listens for object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -1626,7 +1624,7 @@ obj.unregister();
 
 > **onRegister**(`callback`): `void`
 
-监听注册完成事件。
+Listens for register completion events.
  REGISTER
 
 #### Parameters
@@ -1649,7 +1647,7 @@ obj.unregister();
 
 > **onUnregister**(`callback`): `void`
 
-监听卸载事件。
+Listens for unregister events.
  UNREGISTER
 
 #### Parameters
@@ -1672,7 +1670,7 @@ obj.unregister();
 
 > **onUpdate**(`callback`): `void`
 
-监听更新事件。
+Listens for update events.
  UPDATE
 
 #### Parameters

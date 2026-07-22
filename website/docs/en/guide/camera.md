@@ -1,10 +1,10 @@
-# 相机系统
+# Camera System
 
-Daisy 相机系统提供飞行、跟随、多机位和环绕旋转能力。
+The Daisy camera system provides fly-to, follow, multi-camera, and orbital-rotation capabilities.
 
-## 基本操作
+## Basic Operations
 
-相机通过 `engine.camera` 访问：
+Access the camera via `engine.camera`:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -31,21 +31,21 @@ engine.setMinZoomDistance(100)
 engine.setMaxZoomDistance(10_000_000)
 ```
 
-`flyToTarget` 的 `target` 支持：
-- `Entity` / `Entity[]` — 取实体当前位置
-- `Cartesian3` / `Cartesian3[]` — 世界坐标
-- `Cartographic` / `Cartographic[]` — 经纬度高程
-- `{ lon, lat, height }` — 经纬度对象
-- `[lon, lat, height]` — 坐标数组
+The `target` parameter of `flyToTarget` accepts:
+- `Entity` / `Entity[]` — uses the entity's current position
+- `Cartesian3` / `Cartesian3[]` — world coordinates
+- `Cartographic` / `Cartographic[]` — longitude, latitude, and height
+- `{ lon, lat, height }` — longitude / latitude object
+- `[lon, lat, height]` — coordinate array
 
-## 跟随目标
+## Follow Target
 
 ```typescript
 engine.followTarget(satellite)
 // 等价于 engine.camera.followTarget(satellite)
 ```
 
-`followTarget` 接收 `Entity` 或 `BaseObject`。相机自动跟踪目标运动，支持 ArcRotate 环绕控制：
+`followTarget` accepts an `Entity` or `BaseObject`. The camera automatically tracks the target's movement and supports ArcRotate orbital control:
 
 ```typescript
 engine.camera.followTarget(aircraft, {
@@ -60,9 +60,9 @@ engine.camera.followTarget(aircraft, {
 })
 ```
 
-## 环绕相机（ArcRotate）
+## Orbital Camera (ArcRotate)
 
-ArcRotate 模式通过鼠标拖拽控制相机围绕目标旋转：
+In ArcRotate mode the camera orbits the target under mouse-drag control:
 
 ```typescript
 // 切换到 ArcRotate 模式
@@ -74,15 +74,15 @@ engine.camera.followTarget(sat, {
 })
 ```
 
-| 参数 | 说明 |
-|------|------|
-| `targetFrameMode` | `"model"`（默认，继承目标姿态）/ `"enu"`（东北天参考系，不继承俯仰滚转） |
-| `enableGroundCollisionSlide` | 碰撞地面时自动滑移 |
-| `disableGroundCollisionSlideBelowTargetHeight` | 低于此高度关闭碰撞滑移 |
+| Parameter | Description |
+|-----------|-------------|
+| `targetFrameMode` | `"model"` (default, inherits target attitude) / `"enu"` (ENU reference frame, does not inherit pitch or roll) |
+| `enableGroundCollisionSlide` | Automatically slide along the ground on collision |
+| `disableGroundCollisionSlideBelowTargetHeight` | Disable ground-collision sliding below this height |
 
-## 多机位（ExtraCamera / PiP）
+## Multi-Camera (ExtraCamera / PiP)
 
-画中画多机位通过 `engine.createExtraCamera()` 创建：
+Picture-in-picture multi-camera views are created via `engine.createExtraCamera()`:
 
 ```typescript
 // 创建额外相机
@@ -117,20 +117,20 @@ engine.pushActiveRenderCameraId("sat-closeup")
 engine.popActiveRenderCameraId()
 ```
 
-### flyToTarget 完整参数
+### flyToTarget Full Parameters
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `offset` | `HeadingPitchRange \| Cartesian3` | 相机偏移量（航向/俯仰/距离） |
-| `duration` | `number` | 飞行耗时（秒），0 为瞬移 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `offset` | `HeadingPitchRange \| Cartesian3` | Camera offset (heading / pitch / range) |
+| `duration` | `number` | Flight duration (seconds); 0 = instant teleport |
 
-`target` 支持的输入形式：
+Accepted `target` input forms:
 - `Entity` / `Entity[]`
 - `Cartesian3` / `Cartesian3[]`
 - `Cartographic` / `Cartographic[]`
 - `{ lon, lat, height }` / `{ longitude, latitude, height }`
 - `[lon, lat]` / `[lon, lat, height]`
-- `Promise` — 异步解析后再执行
+- `Promise` — resolves asynchronously before executing
 
 ### flyHome
 
@@ -145,7 +145,7 @@ engine.camera.flyHome(duration)  // 飞回默认视角
 engine.camera.removeTrackedDaisyEntity()
 ```
 
-### ExtraCamera 高级能力
+### ExtraCamera Advanced Capabilities
 
 ```typescript
 const extra = engine.createExtraCamera({ id: "pip" })
@@ -172,17 +172,17 @@ extra.openPiP({
 extra.destroy()
 ```
 
-PiP 窗口支持的交互：拖拽移动、调整大小、最小化、最大化/还原。
+PiP window supports the following interactions: drag to move, resize, minimize, maximize / restore.
 
-### ArcRotate 碰撞处理
+### ArcRotate Collision Handling
 
-| 参数 | 说明 |
-|------|------|
-| `enableGroundCollisionSlide` | 碰撞地面时相机自动滑移 |
-| `disableGroundCollisionSlideBelowTargetHeight` | 低于目标此高度时关闭碰撞滑移 |
-| `targetFrameMode` | `"model"`（默认，继承目标姿态）/ `"enu"`（东北天参考系，不继承俯仰滚转） |
+| Parameter | Description |
+|-----------|-------------|
+| `enableGroundCollisionSlide` | Camera automatically slides along the ground on collision |
+| `disableGroundCollisionSlideBelowTargetHeight` | Disable ground-collision sliding below the target's current height |
+| `targetFrameMode` | `"model"` (default, inherits target attitude) / `"enu"` (ENU reference frame, does not inherit pitch or roll) |
 
-## 输入控制
+## Input Control
 
 ```typescript
 // 全局开关
@@ -199,7 +199,7 @@ restore()
 ```
 
 
-> **相关 API**：[Camera](/en/api/classes/Camera) · [ExtraCamera](/en/api/classes/ExtraCamera) · [Engine](/en/api/classes/Engine) · [Entity](/en/api/classes/Entity)
+> **Related API**: [Camera](/en/api/classes/Camera) · [ExtraCamera](/en/api/classes/ExtraCamera) · [Engine](/en/api/classes/Engine) · [Entity](/en/api/classes/Entity)
 
 ---
 

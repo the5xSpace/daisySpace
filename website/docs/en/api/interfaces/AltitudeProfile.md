@@ -6,23 +6,23 @@
 
 # Interface: AltitudeProfile
 
-PathBuilder - 路径构建器
+PathBuilder - Path builder
 
-从航点集合创建路径位置序列或带时间的仿真轨迹。
+Creates path position sequences or time-based simulation trajectories from a set of waypoints.
 
-两种产出模式：
- 1. buildPositions() → Cartesian3[] 纯位置集合（无时间，用于折线/几何）
- 2. buildTrajectory() → TrajectorySample 带时间的仿真采样（用于驱动实体运动）
+Two output modes:
+ 1. buildPositions() → Cartesian3[] pure position set (no time, for polylines/geometry)
+ 2. buildTrajectory() → TrajectorySample time-based simulation samples (for driving entity motion)
 
-用法示例：
+Usage example:
 
- // 纯贝塞尔曲线位置集合
+ // Pure Bezier curve position set
  const pts = new PathBuilder()
  .fromWaypoints([p1, p2, p3])
  .bezier(30, 30)
  .buildPositions();
 
- // 带高度剖面的仿真轨迹
+ // Simulation trajectory with altitude profile
  const traj = new PathBuilder()
  .fromWaypoints([p1, p2, p3])
  .bezier(30, 24)
@@ -32,7 +32,7 @@ PathBuilder - 路径构建器
  })
  .buildTrajectory(start, stop);
 
- // 闭合环形路径
+ // Closed loop path
  const ring = new PathBuilder()
  .fromWaypoints([p1, p2, p3, p4])
  .bezier(15, 20)
@@ -45,7 +45,7 @@ PathBuilder - 路径构建器
 
 > `optional` **climbRatio?**: `number`
 
-爬升阶段占比（0~1），默认 0.2
+Climb stage ratio (0~1), default 0.2
 
 ***
 
@@ -53,7 +53,7 @@ PathBuilder - 路径构建器
 
 > `optional` **descentRatio?**: `number`
 
-下降起始占比（0~1），默认 0.8
+Descent start ratio (0~1), default 0.8
 
 ***
 
@@ -61,7 +61,7 @@ PathBuilder - 路径构建器
 
 > `optional` **groundAltitude?**: `number`
 
-地面/起降高度（米），默认 0
+Ground/takeoff and landing altitude (meters), default 0
 
 ***
 
@@ -69,4 +69,4 @@ PathBuilder - 路径构建器
 
 > **segmentAltitudes**: `number`[]
 
-每段巡航高度（米）。段数 = 航点数 - 1
+Cruise altitude per segment (meters). Segment count = waypoint count - 1

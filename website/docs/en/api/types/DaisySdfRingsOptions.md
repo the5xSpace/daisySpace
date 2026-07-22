@@ -8,7 +8,7 @@
 
 > **DaisySdfRingsOptions** = `object`
 
-距离场环形材质配置。
+Distance field ring material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **aspect?**: `number`
 
-横纵比例修正系数。
+Aspect ratio correction factor.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **baseColor?**: [`DColor`](DColor.md)
 
-背景颜色。
+Background color.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **center?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-归一化纹理坐标中的环心。
+Ring center in normalized texture coordinates.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **count?**: `number`
 
-环形数量。
+Number of rings.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **intensity?**: `number`
 
-环线发光强度。
+Ring glow intensity.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **radius?**: `number`
 
-首个环的基础半径。
+Base radius of the first ring.
 
 ***
 
@@ -72,7 +72,7 @@
 
 > `optional` **ringColor?**: [`DColor`](DColor.md)
 
-环线颜色。
+Ring color.
 
 ***
 
@@ -80,7 +80,7 @@
 
 > `optional` **softness?**: `number`
 
-环线边缘柔化宽度。
+Ring edge softness width.
 
 ***
 
@@ -88,7 +88,7 @@
 
 > `optional` **speed?**: `number`
 
-动画速度。
+Animation speed.
 
 ***
 
@@ -96,4 +96,4 @@
 
 > `optional` **width?**: `number`
 
-环线宽度。
+Ring width.

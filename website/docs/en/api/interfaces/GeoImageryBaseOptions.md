@@ -6,7 +6,7 @@
 
 # Interface: GeoImageryBaseOptions
 
-影像通用参数。
+Common imagery parameters.
 
 ## Extended by
 
@@ -23,7 +23,7 @@
 
 > `optional` **alpha?**: `number`
 
-图层透明度（0 ~ 1），默认 1
+Layer opacity (0 ~ 1). Default 1
 
 ***
 
@@ -31,7 +31,7 @@
 
 > `optional` **brightness?**: `number`
 
-图层亮度，默认 1。
+Layer brightness. Default 1.
 
 ***
 
@@ -39,7 +39,7 @@
 
 > `optional` **colorToAlpha?**: `Color`
 
-与该颜色接近的像素将变为透明，可用于去除带底色的叠加瓦片背景。
+Pixels close to this color become transparent. Can be used to remove background from overlaid tiles with a base color.
 
 ***
 
@@ -47,7 +47,7 @@
 
 > `optional` **colorToAlphaThreshold?**: `number`
 
-颜色转透明的 RGB 通道容差（0 ~ 1），默认 0.004。
+RGB channel tolerance for color-to-alpha (0 ~ 1). Default 0.004.
 
 ***
 
@@ -55,7 +55,7 @@
 
 > `optional` **contrast?**: `number`
 
-图层对比度，默认 1。
+Layer contrast. Default 1.
 
 ***
 
@@ -63,7 +63,7 @@
 
 > `optional` **dayAlpha?**: `number`
 
-白昼区域透明度（0 ~ 1）。启用地球光照时生效。
+Daytime region opacity (0 ~ 1). Effective when Earth lighting is enabled.
 
 ***
 
@@ -71,7 +71,7 @@
 
 > `optional` **nightAlpha?**: `number`
 
-夜间区域透明度（0 ~ 1）。启用地球光照时生效。
+Nighttime region opacity (0 ~ 1). Effective when Earth lighting is enabled.
 
 ***
 
@@ -79,4 +79,4 @@
 
 > `optional` **show?**: `boolean`
 
-是否显示该图层，默认 true
+Whether to show this layer. Default true

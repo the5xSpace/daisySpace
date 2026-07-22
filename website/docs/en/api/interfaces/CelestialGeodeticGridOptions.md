@@ -16,7 +16,7 @@
 
 > `optional` **color?**: `Color`
 
-颜色。
+Color.
 
 #### Default
 
@@ -30,7 +30,7 @@ Color.LIGHTGREEN.withAlpha(0.5)
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
 ***
 
@@ -38,7 +38,7 @@ Color.LIGHTGREEN.withAlpha(0.5)
 
 > `optional` **distanceDisplayLevel?**: [`ViewDistanceLevel`](../enums/ViewDistanceLevel.md)
 
-视距等级（用于与 Engine 的视距策略结合）。
+View distance level (used with the Engine's view distance strategy).
 
 #### Default
 
@@ -52,7 +52,7 @@ ViewDistanceLevel.FAR
 
 > `optional` **followCamera?**: `boolean`
 
-标签是否跟随相机移动（屏幕空间稳定显示）。
+Whether the label follows the camera (stable display in screen space).
 
 #### Default
 
@@ -66,7 +66,7 @@ true
 
 > `optional` **id?**: `string`
 
-唯一标识。
+Unique ID.
 
 #### Default
 
@@ -80,7 +80,7 @@ true
 
 > `optional` **labelOptions?**: [`LabelOptionsWithFormat`](../types/LabelOptionsWithFormat.md)
 
-标签配置。
+Label configuration.
 
 ***
 
@@ -88,7 +88,7 @@ true
 
 > `optional` **material?**: `Material`
 
-材质。
+Material.
 
 ***
 
@@ -96,7 +96,7 @@ true
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -110,7 +110,7 @@ true
 
 > `optional` **showLabel?**: `boolean`
 
-是否显示标签。
+Whether to show label.
 
 #### Default
 
@@ -124,7 +124,7 @@ true
 
 > `optional` **step?**: `number`
 
-经纬网格步进（单位：度）。
+Longitude/latitude grid step (in degrees).
 
 #### Default
 
@@ -138,7 +138,7 @@ true
 
 > `optional` **width?**: `number`
 
-线宽（像素）。
+Line width (pixels).
 
 #### Default
 

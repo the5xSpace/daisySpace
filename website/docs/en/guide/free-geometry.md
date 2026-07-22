@@ -1,10 +1,10 @@
-# 自定义几何体
+# Custom Geometry
 
-`FreeGeometryFeature` 允许用户传入自定义顶点和索引数据，渲染任意三维几何体，不依赖内置几何类型。适用于数学多面体、自定义模型、程序化生成几何等场景。
+`FreeGeometryFeature` allows users to supply custom vertex and index data to render arbitrary 3D geometry without relying on built-in geometry types. Suitable for mathematical polyhedra, custom models, procedurally generated geometry, and similar scenarios.
 
-## 几何描述
+## Geometry Descriptor
 
-核心输入是 `DaisyGeometryDescriptor` 对象：
+The core input is a `DaisyGeometryDescriptor` object:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -19,18 +19,18 @@ interface DaisyGeometryDescriptor {
 }
 ```
 
-### 数据类型
+### Data Types
 
-| 字段 | 支持类型 |
-|------|----------|
+| Field | Supported Types |
+|-------|-----------------|
 | `positions` | `Cartesian3[]` \| `Float64Array` \| `Float32Array` \| `number[]` |
 | `indices` | `Uint16Array` \| `Uint32Array` \| `number[]` |
 | `normals` | `Cartesian3[]` \| `Float32Array` \| `number[]` |
 | `uvs` | `Cartesian2[]` \| `Float32Array` \| `number[]` |
 
-所有坐标均为**局部坐标系**（相对于 Entity 原点）。几何体随 Entity 移动、旋转和缩放。
+All coordinates use the **local coordinate system** (relative to the Entity origin). The geometry moves, rotates, and scales together with its Entity.
 
-## 基础用法
+## Basic Usage
 
 ```typescript
 const entity = engine.createEntity("demo")
@@ -49,35 +49,35 @@ const feature = new Daisy.FreeGeometryFeature({
 entity.addFeature(feature)
 ```
 
-## 参数表
+## Parameter Table
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `geometry` | `DaisyGeometryDescriptor` | **必填** | 几何描述 |
-| `material` | `DMaterial` | — | 材质（颜色/DMaterial/材质描述） |
-| `autoNormals` | `"flat"` \| `"smooth"` \| `false` | `"flat"` | 法线自动计算模式 |
-| `wireframe` | `boolean` | `false` | 线框模式（仅渲染三角形边） |
-| `doubleSided` | `boolean` | `false` | 双面渲染（禁用背面剔除） |
-| `closed` | `boolean` | `true` | 几何体是否封闭（影响光照） |
-| `flat` | `boolean` | `false` | 平面着色（非平滑着色） |
-| `translucent` | `boolean` | — | 半透明（默认由材质推断） |
-| `outline` | `boolean` | `false` | 轮廓线 |
-| `outlineColor` | `DColor` | — | 轮廓色 |
-| `asynchronous` | `boolean` | `false` | 异步创建几何 |
-| `show` | `boolean` | `true` | 可见性 |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | 视距显示条件 |
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `geometry` | `DaisyGeometryDescriptor` | **Required** | Geometry descriptor |
+| `material` | `DMaterial` | — | Material (color / DMaterial / material descriptor) |
+| `autoNormals` | `"flat"` \| `"smooth"` \| `false` | `"flat"` | Automatic normal computation mode |
+| `wireframe` | `boolean` | `false` | Wireframe mode (renders triangle edges only) |
+| `doubleSided` | `boolean` | `false` | Double-sided rendering (disables back-face culling) |
+| `closed` | `boolean` | `true` | Whether the geometry is closed (affects lighting) |
+| `flat` | `boolean` | `false` | Flat shading (not smooth shading) |
+| `translucent` | `boolean` | — | Translucent (inferred from material by default) |
+| `outline` | `boolean` | `false` | Outline |
+| `outlineColor` | `DColor` | — | Outline color |
+| `asynchronous` | `boolean` | `false` | Asynchronous geometry creation |
+| `show` | `boolean` | `true` | Visibility |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Distance-based display condition |
 
-### autoNormals 模式
+### autoNormals Modes
 
-| 模式 | 说明 |
-|------|------|
-| `"flat"` | 逐面法线（硬边效果，棱角分明） |
-| `"smooth"` | 平滑法线（基于邻接面平均，曲面效果） |
-| `false` | 不自动计算，使用 `geometry.normals` 原始数据 |
+| Mode | Description |
+|------|-------------|
+| `"flat"` | Per-face normals (hard-edge effect, sharp edges) |
+| `"smooth"` | Smooth normals (averaged over adjacent faces, curved-surface effect) |
+| `false` | No auto-computation; use raw `geometry.normals` data |
 
-## 自定义几何体示例
+## Custom Geometry Examples
 
-### 正二十面体
+### Regular Icosahedron
 
 ```typescript
 function generateIcosahedron(r: number) {
@@ -111,7 +111,7 @@ entity.addFeature(new Daisy.FreeGeometryFeature({
 }))
 ```
 
-### 钻石星（双锥体）
+### Diamond Star (Bipyramid)
 
 ```typescript
 function generateDiamond(r: number) {
@@ -139,7 +139,7 @@ entity.addFeature(new Daisy.FreeGeometryFeature({
 }))
 ```
 
-### UV 球体
+### UV Sphere
 
 ```typescript
 function uvSphere(cx: number, cy: number, cz: number, r: number, lat: number, lon: number) {
@@ -171,9 +171,9 @@ entity.addFeature(new Daisy.FreeGeometryFeature({
 }))
 ```
 
-## 线框模式切换
+## Toggling Wireframe Mode
 
-`wireframe` 为 `true` 时，几何体以线框模式渲染，仅显示三角形边线。可在运行时通过更新 `options` 并调用 `reCreate()` 切换：
+When `wireframe` is `true`, the geometry is rendered in wireframe mode, showing only triangle edges. Toggle it at runtime by updating `options` and calling `reCreate()`:
 
 ```typescript
 function toggleWireframe(feature: Daisy.FreeGeometryFeature, entity: Daisy.Entity) {
@@ -182,9 +182,9 @@ function toggleWireframe(feature: Daisy.FreeGeometryFeature, entity: Daisy.Entit
 }
 ```
 
-## 合并几何体
+## Merging Geometries
 
-多个几何体可通过偏移索引拼接为单一描述符，例如用 UV 球体组合成复合形状：
+Multiple geometries can be concatenated into a single descriptor by offsetting their indices — for example, combining UV spheres into a compound shape:
 
 ```typescript
 function mergeShapes(shapes: Array<{ positions: number[]; indices: number[] }>) {
@@ -202,4 +202,4 @@ function mergeShapes(shapes: Array<{ positions: number[]; indices: number[] }>) 
 
 ---
 
-> **相关 API**：[FreeGeometryFeature](/en/api/classes/FreeGeometryFeature)
+> **Related API**: [FreeGeometryFeature](/en/api/classes/FreeGeometryFeature)

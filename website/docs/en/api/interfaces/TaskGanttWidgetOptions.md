@@ -6,7 +6,7 @@
 
 # Interface: TaskGanttWidgetOptions
 
-TaskGanttWidget 配置项。
+TaskGanttWidget configuration options.
 
 ## Properties
 
@@ -14,7 +14,7 @@ TaskGanttWidget 配置项。
 
 > `optional` **axisTimeFormat?**: [`TimeFormatConfig`](../types/TimeFormatConfig.md)
 
-甘特图轴刻度时间格式。未设置时跟随 timeFormat / Engine 全局格式。
+Gantt chart axis tick time format. Falls back to timeFormat / Engine global format when not set.
 
 ***
 
@@ -22,7 +22,7 @@ TaskGanttWidget 配置项。
 
 > `optional` **bottom?**: `string` \| `number`
 
-初始底部位置，设置后可让面板按底部锚定。
+Initial bottom position; when set, anchors the panel to the bottom.
 
 ***
 
@@ -30,7 +30,7 @@ TaskGanttWidget 配置项。
 
 > `optional` **container?**: `HTMLElement`
 
-挂载容器，默认追加到 engine 容器
+Mount container, defaults to appending to the engine container
 
 ***
 
@@ -40,7 +40,7 @@ TaskGanttWidget 配置项。
 
 #### Deprecated
 
-请优先使用 timeFormat。该旧接口仍保留兼容。
+Please use timeFormat instead. This old interface is kept for compatibility.
 
 ***
 
@@ -48,7 +48,7 @@ TaskGanttWidget 配置项。
 
 > `optional` **height?**: `number`
 
-面板高度（px），默认 260
+Panel height (px), default 260
 
 ***
 
@@ -56,8 +56,8 @@ TaskGanttWidget 配置项。
 
 > `optional` **maxScrollHeight?**: `number`
 
-任务轨道最大滚动高度（px），默认 240。
-任务数量多时轨道可滚动，此值限制最大高度。
+Maximum scroll height for task tracks (px), default 240.
+The track becomes scrollable when there are many tasks; this value limits the maximum height.
 
 ***
 
@@ -65,7 +65,7 @@ TaskGanttWidget 配置项。
 
 > `optional` **minHeight?**: `number`
 
-最小高度（px），默认 180
+Minimum height (px), default 180
 
 ***
 
@@ -73,8 +73,8 @@ TaskGanttWidget 配置项。
 
 > `optional` **minPixelsPerMinute?**: `number`
 
-最小像素密度（px / 分钟），默认 1。
-低于这个值时会强制回退到该阈值，避免时间轴被压得过细。
+Minimum pixel density (px / minute), default 1.
+When below this value, it forcibly falls back to this threshold to prevent the timeline from being compressed too finely.
 
 ***
 
@@ -82,7 +82,7 @@ TaskGanttWidget 配置项。
 
 > `optional` **minWidth?**: `number`
 
-最小宽度（px），默认 480
+Minimum width (px), default 480
 
 ***
 
@@ -90,7 +90,7 @@ TaskGanttWidget 配置项。
 
 > `optional` **mode?**: `"lite"` \| `"standard"`
 
-显示模式：standard 为完整甘特图，lite 为窄版概览。
+Display mode: standard for full Gantt chart, lite for narrow overview.
 
 ***
 
@@ -98,8 +98,8 @@ TaskGanttWidget 配置项。
 
 > `optional` **pixelsPerMinute?**: `number`
 
-时间轴像素密度（px / 分钟），默认 18。
-场景时间过长时，右侧条块区域会出现横向滚动条，而不是继续压缩。
+Timeline pixel density (px / minute), default 18.
+When the scene time is too long, the right-side bar area shows a horizontal scrollbar instead of continuing to compress.
 
 ***
 
@@ -107,9 +107,9 @@ TaskGanttWidget 配置项。
 
 > `optional` **renderer?**: [`TaskGanttRenderer`](../types/TaskGanttRenderer.md)
 
-自定义渲染函数（可选）。
+Custom render function (optional).
 
-设置后会替换默认的 lit-html 模板渲染。
+When set, replaces the default lit-html template rendering.
 
 #### Example
 
@@ -133,7 +133,7 @@ new TaskGanttWidget(schedule, {
 
 > `optional` **right?**: `string` \| `number`
 
-初始右侧位置，设置后可让面板按右侧锚定。
+Initial right position; when set, anchors the panel to the right.
 
 ***
 
@@ -141,8 +141,8 @@ new TaskGanttWidget(schedule, {
 
 > `optional` **tickCount?**: `number`
 
-时间轴刻度数量（可选），默认 6。
-在时间轴上均匀生成 N 个刻度标签。
+Number of timeline tick marks (optional), default 6.
+Generates N evenly spaced tick labels on the timeline.
 
 ***
 
@@ -150,7 +150,7 @@ new TaskGanttWidget(schedule, {
 
 > `optional` **timeFormat?**: [`TimeFormatConfig`](../types/TimeFormatConfig.md)
 
-推荐的时间格式配置。未设置时使用 Engine 的全局 timeFormat。
+Recommended time format configuration. Uses Engine's global timeFormat when not set.
 
 ***
 
@@ -158,7 +158,7 @@ new TaskGanttWidget(schedule, {
 
 > `optional` **title?**: `string`
 
-面板标题，默认 "时间线"
+Panel title, default "Timeline"
 
 ***
 
@@ -166,8 +166,8 @@ new TaskGanttWidget(schedule, {
 
 > `optional` **width?**: `string` \| `number`
 
-面板宽度，默认 860。
-传数字视为 px，传字符串原样应用（如 "50%"、"860px"）。
+Panel width, default 860.
+Pass a number for px, pass a string as-is (e.g., "50%", "860px").
 
 ***
 
@@ -175,8 +175,8 @@ new TaskGanttWidget(schedule, {
 
 > `optional` **x?**: `number`
 
-初始水平位置（px），默认 auto（CSS 底部靠左）。
-设置后覆盖默认的 `left: 12px` 定位。
+Initial horizontal position (px), default auto (CSS bottom-left).
+When set, overrides the default `left: 12px` positioning.
 
 ***
 
@@ -184,5 +184,5 @@ new TaskGanttWidget(schedule, {
 
 > `optional` **y?**: `number`
 
-初始垂直位置（px），默认 auto（CSS 底部靠左）。
-设置后覆盖默认的 `bottom: 12px` 定位。
+Initial vertical position (px), default auto (CSS bottom-left).
+When set, overrides the default `bottom: 12px` positioning.

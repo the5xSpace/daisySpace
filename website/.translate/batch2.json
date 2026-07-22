@@ -1,0 +1,105 @@
+{
+  "api/types/CylinderGeometryOptions.md": [
+    ["圆锥体几何参数", "Cone geometry parameters"],
+    ["是否封底（底部）。", "Whether to cap the bottom."],
+    ["是否封顶（顶部）。", "Whether to cap the top."],
+    ["高度（单位：米）", "Height (in meters)"],
+    ["底部半径（单位：米）", "Bottom radius (in meters)"],
+    ["圆周切片数", "Number of circumferential slices"],
+    ["顶面半径（单位：米）", "Top radius (in meters)"],
+    ["顶点格式。", "Vertex format."]
+  ],
+  "api/types/DaisyAuroraOptions.md": [
+    ["极光带材质配置。", "Aurora material configuration."],
+    ["光带高值颜色。", "Aurora high value color."],
+    ["发光强度。", "Emission intensity."],
+    ["光带低值颜色。", "Aurora low value color."],
+    ["整体透明度。", "Overall opacity."],
+    ["动画速度。", "Animation speed."],
+    ["光带波动幅度。", "Aurora wave amplitude."],
+    ["光带宽度。", "Aurora band width."]
+  ],
+  "api/types/DaisyHalftoneOptions.md": [
+    ["半色调网点材质配置。", "Halftone dot material configuration."],
+    ["网点密度。", "Dot density."],
+    ["网点尺寸。", "Dot size."],
+    ["网点边缘柔化宽度。", "Dot edge softness width."],
+    ["网点油墨颜色。", "Dot ink color."],
+    ["网点噪声扰动量。", "Dot noise jitter amount."],
+    ["整体透明度。", "Overall opacity."],
+    ["纸张背景颜色。", "Paper background color."]
+  ],
+  "api/types/DaisyHeatmapOptions.md": [
+    ["径向热力材质配置。", "Radial heatmap material configuration."],
+    ["归一化纹理坐标中的热区中心。", "Hotspot center in normalized texture coordinates."],
+    ["低值颜色。", "Low value color."],
+    ["热区增益。", "Hotspot gain."],
+    ["高值颜色。", "High value color."],
+    ["中值颜色。", "Mid value color."],
+    ["整体透明度。", "Overall opacity."],
+    ["热区半径。", "Hotspot radius."]
+  ],
+  "api/types/DaisyMarbleOptions.md": [
+    ["大理石纹材质配置。", "Marble texture material configuration."],
+    ["石材底色。", "Stone base color."],
+    ["纹脉频率。", "Vein frequency."],
+    ["整体透明度。", "Overall opacity."],
+    ["纹理空间尺度。", "Texture spatial scale."],
+    ["动画速度。", "Animation speed."],
+    ["纹脉颜色。", "Vein color."],
+    ["纹脉扭曲强度。", "Vein warp intensity."]
+  ],
+  "api/types/FollowTargetOptions.md": [
+    ["相机跟踪目标配置。", "Camera follow target configuration."],
+    ["环绕跟踪交互配置。", "Orbit follow interaction configuration."],
+    ["低于该目标高度时关闭地面碰撞滑移，单位为米。", "Disables ground collision slide when the target is below this height, in meters."],
+    ["接近地面时是否沿地表滑移。", "Whether to slide along the terrain when near the ground."],
+    ["目标局部坐标系模式。", "Target local coordinate system mode."],
+    ["是否安装跟踪交互监听。默认 `true`。", "Whether to install follow interaction listeners. Default `true`."],
+    ["是否在跟踪时启用按需渲染优化。默认 `true`。", "Whether to enable on-demand rendering optimization while following. Default `true`."],
+    ["跟踪视角。", "Follow view."]
+  ],
+  "api/types/PW.FootprintLngLatBounds.md": [
+    ["覆盖范围的经纬度包围盒。", "Coverage longitude/latitude bounding box."],
+    ["经度范围是否跨越正负 180 度边界。", "Whether the longitude range crosses the ±180 degree boundary."],
+    ["东侧经度，单位为度。", "Eastern longitude, in degrees."],
+    ["覆盖点最大高度，单位为米。", "Maximum coverage point height, in meters."],
+    ["覆盖点最小高度，单位为米。", "Minimum coverage point height, in meters."],
+    ["北侧纬度，单位为度。", "Northern latitude, in degrees."],
+    ["南侧纬度，单位为度。", "Southern latitude, in degrees."],
+    ["西侧经度，单位为度。", "Western longitude, in degrees."]
+  ],
+  "api/types/PW.PropulsionParticleOptions.md": [
+    ["透明度覆盖，范围 0~1。", "Opacity override, range 0~1."],
+    ["统一火焰主色。传入后会派生 startColor/endColor。", "Uniform flame main color. After passing, startColor/endColor will be derived."],
+    ["发射率倍率。", "Emission rate scale."],
+    ["粒子速度/长度表现倍率。", "Particle speed/length scale."],
+    ["内置粒子预设。当前仅提供 rocket-flame，后续粒子库会继续扩展。", "Built-in particle preset. Currently only provides rocket-flame; more presets will be added in the future."],
+    ["喷焰渲染管线。", "Propulsion particle renderer."],
+    ["- `capsule-sprite`：宿主胶囊粒子，一张世界锚定 sprite 面片，适合火箭/飞机喷焰。", "- `capsule-sprite`: Host capsule particle, a world-anchored sprite patch, suitable for rocket/aircraft plumes."],
+    ["- `capsule-billboard`：旧配置兼容别名，内部同样走 `capsule-sprite`。", "- `capsule-billboard`: Legacy config compatibility alias; internally also maps to `capsule-sprite`."],
+    ["- `world-particle`：世界粒子，逐粒子积分，适合烟雾、雨雪、水流等离开宿主后的自然粒子。", "- `world-particle`: World particle, integrated per particle, suitable for natural particles like smoke, rain, snow, and water flow after leaving the host."],
+    ["粒子尺寸倍率。", "Particle size scale."]
+  ],
+  "api/classes/BuildModuleUrl.md": [
+    ["构建以 SDK 发布目录为基准的资源 URL。", "Builds resource URLs relative to the SDK distribution directory."],
+    ["用于在不同加载方式下自动推导 SDK 的 baseUrl，\n并将相对路径拼接成可用的资源地址。", "Automatically derives the SDK's baseUrl under different loading methods,\nand concatenates relative paths into usable resource addresses."],
+    ["获取当前 baseUrl。", "Gets the current baseUrl."],
+    ["首次访问时会自动探测：\n- 浏览器环境优先使用当前 script 标签的 `src`\n- 找不到 script 时回退到 `document.baseURI`", "On first access, it automatically detects:\n- In browser environments, it prefers the current script tag's `src`\n- Falls back to `document.baseURI` when no script is found"],
+    ["将资源相对路径转换为完整可用的 URL。", "Converts a relative resource path to a fully usable URL."],
+    ["资源路径；若为完整 URL（http/https/data/blob）会原样返回", "Resource path; returns as-is if it is a complete URL (http/https/data/blob)"],
+    ["手动指定 baseUrl。", "Manually sets the baseUrl."],
+    ["资源根路径，建议以 `/` 结尾，例如 `/sdk/dist/`", "Resource root path; it is recommended to end with `/`, e.g., `/sdk/dist/`"]
+  ],
+  "api/enums/EmitDirection.md": [
+    ["预设发射方向（用于几何体/模型的放置对齐基准）。", "Preset emission direction (used as the placement alignment reference for geometries/models)."],
+    ["中心对齐。", "Center alignment."],
+    ["向后方延伸（-X 方向）。", "Extends backward (-X direction)."],
+    ["向下延伸。", "Extends downward."],
+    ["向前方延伸（+X 方向）。", "Extends forward (+X direction)."],
+    ["向地表方向延伸。", "Extends toward the ground."],
+    ["向左延伸（+Y 方向）。", "Extends left (+Y direction)."],
+    ["向右延伸（-Y 方向）。", "Extends right (-Y direction)."],
+    ["向上延伸。", "Extends upward."]
+  ]
+}

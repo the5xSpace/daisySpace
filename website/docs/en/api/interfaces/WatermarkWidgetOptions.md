@@ -12,7 +12,7 @@
 
 > `optional` **color?**: `string`
 
-主文本颜色。
+Primary text color.
 
 ***
 
@@ -20,7 +20,7 @@
 
 > `optional` **driftX?**: `number`
 
-平铺横向漂移速度。
+Horizontal tiling drift speed.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `optional` **driftY?**: `number`
 
-平铺纵向漂移速度。
+Vertical tiling drift speed.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **fontFamily?**: `string`
 
-字体族。
+Font family.
 
 ***
 
@@ -44,7 +44,7 @@
 
 > `optional` **fontSize?**: `number`
 
-主文本字号。
+Primary text font size.
 
 ***
 
@@ -52,7 +52,7 @@
 
 > `optional` **fontWeight?**: `string` \| `number`
 
-主文本字重。
+Primary text font weight.
 
 ***
 
@@ -60,7 +60,7 @@
 
 > `optional` **gap?**: `number`
 
-平铺间距。
+Tiling gap.
 
 ***
 
@@ -68,7 +68,7 @@
 
 > `optional` **opacity?**: `number`
 
-水印整体透明度。
+Overall watermark opacity.
 
 ***
 
@@ -76,7 +76,7 @@
 
 > `optional` **rotateDeg?**: `number`
 
-水印旋转角度（度）。
+Watermark rotation angle (degrees).
 
 ***
 
@@ -84,7 +84,7 @@
 
 > `optional` **subColor?**: `string`
 
-副文本颜色。
+Sub-text color.
 
 ***
 
@@ -92,7 +92,7 @@
 
 > `optional` **subFontSize?**: `number`
 
-副文本字号。
+Sub-text font size.
 
 ***
 
@@ -100,7 +100,7 @@
 
 > `optional` **subText?**: `string`
 
-副文本。默认会自动拼出主机名、时间和会话标识。
+Sub-text. Automatically composes hostname, time, and session identifier by default.
 
 ***
 
@@ -108,4 +108,4 @@
 
 > `optional` **text?**: `string`
 
-主水印文本。默认 `DaisySpace`。
+Primary watermark text. Defaults to `DaisySpace`.

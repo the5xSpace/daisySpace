@@ -8,7 +8,7 @@
 
 > **DaisyMarbleOptions** = `object`
 
-大理石纹材质配置。
+Marble material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **baseColor?**: [`DColor`](DColor.md)
 
-石材底色。
+Stone base color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **frequency?**: `number`
 
-纹脉频率。
+Vein frequency.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **scale?**: `number`
 
-纹理空间尺度。
+Texture spatial scale.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **speed?**: `number`
 
-动画速度。
+Animation speed.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **veinColor?**: [`DColor`](DColor.md)
 
-纹脉颜色。
+Vein color.
 
 ***
 
@@ -64,4 +64,4 @@
 
 > `optional` **warp?**: `number`
 
-纹脉扭曲强度。
+Vein warp intensity.

@@ -6,9 +6,9 @@
 
 # Class: CzmlPlusImporter
 
-CZML+ 导入器。
+CZML+ importer.
 
-支持同一实体绑定多个同类 Feature（如多条 polyline）。
+Supports binding multiple identical Features (e.g., multiple polylines) to the same entity.
 
 ## Example
 
@@ -99,7 +99,7 @@ const entities = importer.load(czmlPackets);
 
 > **load**(`czml`): [`Entity`](Entity.md)[]
 
-导入 CZML/CZML+ 数据并创建/更新实体。
+Imports CZML/CZML+ data and creates/updates entities.
 
 ##### Parameters
 
@@ -107,13 +107,13 @@ const entities = importer.load(czmlPackets);
 
 `any`[]
 
-CZML 包数组（含 document 与实体包）
+Array of CZML packets (including document and entity packets)
 
 ##### Returns
 
 [`Entity`](Entity.md)[]
 
-创建或更新的实体列表
+List of created or updated entities
 
 ##### Example
 
@@ -126,7 +126,7 @@ const satellite = entities.find((e) => e.name === "sat");
 
 > **load**(`czml`, `mode`): [`Entity`](Entity.md)[]
 
-导入 CZML/CZML+ 数据并创建/更新实体。
+Imports CZML/CZML+ data and creates/updates entities.
 
 ##### Parameters
 
@@ -134,7 +134,7 @@ const satellite = entities.find((e) => e.name === "sat");
 
 `any`[]
 
-CZML 包数组（含 document 与实体包）
+Array of CZML packets (including document and entity packets)
 
 ###### mode
 
@@ -144,7 +144,7 @@ CZML 包数组（含 document 与实体包）
 
 [`Entity`](Entity.md)[]
 
-创建或更新的实体列表
+List of created or updated entities
 
 ##### Example
 
@@ -157,7 +157,7 @@ const satellite = entities.find((e) => e.name === "sat");
 
 > **load**(`czml`, `mode`): `Promise`\<`any`\>
 
-导入 CZML/CZML+ 数据并创建/更新实体。
+Imports CZML/CZML+ data and creates/updates entities.
 
 ##### Parameters
 
@@ -165,7 +165,7 @@ const satellite = entities.find((e) => e.name === "sat");
 
 `any`[]
 
-CZML 包数组（含 document 与实体包）
+Array of CZML packets (including document and entity packets)
 
 ###### mode
 
@@ -175,7 +175,7 @@ CZML 包数组（含 document 与实体包）
 
 `Promise`\<`any`\>
 
-创建或更新的实体列表
+List of created or updated entities
 
 ##### Example
 

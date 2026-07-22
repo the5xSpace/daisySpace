@@ -6,10 +6,10 @@
 
 # Class: CelestialAtmosphereFeature
 
-天体大气层渲染特性
+Celestial Atmosphere Rendering Feature
 
-- 绑定到 Engine 后，会创建半透明大气球体并在每帧更新太阳方向
-- 与 CelestialEllipsoid 和 Atmosphere 搭配使用
+- When bound to an Engine, creates a semi-transparent atmosphere sphere and updates the sun direction each frame
+- Used together with CelestialEllipsoid and Atmosphere
 
 ## Example
 
@@ -40,7 +40,7 @@ feature.bindViewer(viewer);
 
 > **new CelestialAtmosphereFeature**(`options`): `CelestialAtmosphereFeature`
 
-构造函数
+Constructor
 
 #### Parameters
 
@@ -48,7 +48,7 @@ feature.bindViewer(viewer);
 
 `Options`
 
-大气渲染配置
+Atmosphere rendering configuration
 
 #### Returns
 
@@ -70,7 +70,7 @@ const feature = new CelestialAtmosphereFeature({
 
 > **bindEngine**(`engine`): `void`
 
-绑定到 Engine 并创建渲染对象
+Binds to Engine and creates rendering objects
 
 #### Parameters
 
@@ -96,7 +96,7 @@ feature.bindEngine(engine);
 
 > **bindViewer**(`viewer`): `void`
 
-兼容旧名：绑定到 Engine 并创建渲染对象。
+Compatibility alias: binds to Engine and creates rendering objects.
 
 #### Parameters
 
@@ -110,7 +110,7 @@ feature.bindEngine(engine);
 
 #### Deprecated
 
-请使用 bindEngine
+Use bindEngine instead
 
 ***
 
@@ -118,7 +118,7 @@ feature.bindEngine(engine);
 
 > **destroy**(): `void`
 
-销毁并释放资源
+Destroys and releases resources
 
 #### Returns
 
@@ -136,7 +136,7 @@ feature.destroy();
 
 > **setShow**(`show`): `void`
 
-设置显示/隐藏
+Sets show/hide
 
 #### Parameters
 
@@ -144,7 +144,7 @@ feature.destroy();
 
 `boolean`
 
-是否显示
+Whether to show
 
 #### Returns
 

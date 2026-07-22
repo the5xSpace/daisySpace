@@ -8,13 +8,13 @@
 
 > **AttitudeSphereOptions** = `object`
 
-AttitudeSphereRenderable 创建参数。
+AttitudeSphereRenderable creation parameters.
 
 ## Remarks
 
-- 该可视化会在 `viewer.collections.primitiveCollection` 与 `polylineCollection/labelsCollection` 中创建对象。
-- `updateOrientation` 接收 `Daisy.Matrix3` 或 `Daisy.Matrix4`，表示姿态旋转（rotation）。
-- 默认 `axisLength = radius * 1.2`。
+- This visualization creates objects in `viewer.collections.primitiveCollection` and `polylineCollection/labelsCollection`.
+- `updateOrientation` accepts `Daisy.Matrix3` or `Daisy.Matrix4`, representing the attitude rotation.
+- Default `axisLength = radius * 1.2`.
 
 ## Example
 
@@ -39,7 +39,7 @@ sphere.destroy();
 
 > `optional` **axisLength?**: `number`
 
-轴线长度（世界单位）。未传入时自动使用 `radius * 1.2`。
+Axis length (world units). Uses `radius * 1.2` automatically when not provided.
 
 ***
 
@@ -47,7 +47,7 @@ sphere.destroy();
 
 > `optional` **axisWidth?**: `number`
 
-轴线宽度（像素）。
+Axis width (in pixels).
 
 #### Default
 
@@ -61,7 +61,7 @@ sphere.destroy();
 
 > `optional` **center?**: `Daisy.Cartesian3`
 
-球心（世界坐标）。
+Sphere center (world coordinates).
 
 #### Default
 
@@ -87,7 +87,7 @@ Daisy.Cartesian3.ZERO
 
 > `optional` **radius?**: `number`
 
-球半径（世界单位，通常为米）。
+Sphere radius (world units, typically meters).
 
 #### Default
 
@@ -101,7 +101,7 @@ Daisy.Cartesian3.ZERO
 
 > `optional` **showAxes?**: `boolean`
 
-是否绘制 XYZ 三轴箭头。
+Whether to draw XYZ axis arrows.
 
 #### Default
 
@@ -115,7 +115,7 @@ true
 
 > `optional` **showLabels?**: `boolean`
 
-是否绘制 XYZ 文字标签。
+Whether to draw XYZ text labels.
 
 #### Default
 
@@ -129,7 +129,7 @@ true
 
 > `optional` **showSphere?**: `boolean`
 
-是否绘制半透明球体。
+Whether to draw a translucent sphere.
 
 #### Default
 
@@ -143,7 +143,7 @@ true
 
 > `optional` **showWireframe?**: `boolean`
 
-是否绘制球体线框。
+Whether to draw the sphere wireframe.
 
 #### Default
 
@@ -157,7 +157,7 @@ true
 
 > `optional` **sphereMaterial?**: [`DMaterial`](DMaterial.md)
 
-球体材质。
+Sphere material.
 
 #### Default
 
@@ -171,7 +171,7 @@ Daisy.Color.GRAY.withAlpha(0.25)
 
 > `optional` **wireColor?**: [`DColor`](DColor.md)
 
-线框颜色。
+Wireframe color.
 
 #### Default
 
@@ -185,7 +185,7 @@ Daisy.Color.WHITE.withAlpha(0.8)
 
 > `optional` **xColor?**: [`DColor`](DColor.md)
 
-X 轴颜色。
+X-axis color.
 
 #### Default
 
@@ -199,7 +199,7 @@ Daisy.Color.RED
 
 > `optional` **yColor?**: [`DColor`](DColor.md)
 
-Y 轴颜色。
+Y-axis color.
 
 #### Default
 
@@ -213,7 +213,7 @@ Daisy.Color.GREEN
 
 > `optional` **zColor?**: [`DColor`](DColor.md)
 
-Z 轴颜色。
+Z-axis color.
 
 #### Default
 

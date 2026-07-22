@@ -8,7 +8,7 @@
 
 > **DaisyDitherFadeOptions** = `object`
 
-抖动淡变材质配置。
+Dither fade material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **center?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-归一化纹理坐标中的径向中心。
+Radial center in normalized texture coordinates.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **colorA?**: [`DColor`](DColor.md)
 
-淡变起始颜色。
+Fade start color.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **colorB?**: [`DColor`](DColor.md)
 
-淡变结束颜色。
+Fade end color.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **density?**: `number`
 
-抖动网格密度。
+Dither grid density.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **feather?**: `number`
 
-淡变边缘宽度。
+Fade edge width.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **glow?**: `number`
 
-发光强度。
+Glow intensity.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **offset?**: `number`
 
-淡变阈值偏移。
+Fade threshold offset.
 
 ***
 
@@ -72,7 +72,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -80,4 +80,4 @@
 
 > `optional` **radial?**: `number`
 
-径向距离对淡变的影响权重。
+Radial distance influence weight on fade.

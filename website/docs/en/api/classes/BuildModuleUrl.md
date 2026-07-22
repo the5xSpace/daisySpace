@@ -6,10 +6,10 @@
 
 # Class: BuildModuleUrl
 
-构建以 SDK 发布目录为基准的资源 URL。
+Builds resource URLs relative to the SDK distribution directory.
 
-用于在不同加载方式下自动推导 SDK 的 baseUrl，
-并将相对路径拼接成可用的资源地址。
+Automatically derives the SDK's baseUrl under different loading methods,
+and concatenates relative paths into usable resource addresses.
 
 ## Example
 
@@ -36,11 +36,11 @@ const wasmUrl = BuildModuleUrl.getUrl("wasm/release.wasm");
 
 > **get** `static` **baseUrl**(): `string`
 
-获取当前 baseUrl。
+Gets the current baseUrl.
 
-首次访问时会自动探测：
-- 浏览器环境优先使用当前 script 标签的 `src`
-- 找不到 script 时回退到 `document.baseURI`
+On first access, it automatically detects:
+- In browser environments, it prefers the current script tag's `src`
+- Falls back to `document.baseURI` when no script is found
 
 ##### Returns
 
@@ -52,7 +52,7 @@ const wasmUrl = BuildModuleUrl.getUrl("wasm/release.wasm");
 
 > `static` **getUrl**(`path`): `string`
 
-将资源相对路径转换为完整可用的 URL。
+Converts a relative resource path to a fully usable URL.
 
 #### Parameters
 
@@ -60,7 +60,7 @@ const wasmUrl = BuildModuleUrl.getUrl("wasm/release.wasm");
 
 `string`
 
-资源路径；若为完整 URL（http/https/data/blob）会原样返回
+Resource path; returns as-is if it is a complete URL (http/https/data/blob)
 
 #### Returns
 
@@ -72,7 +72,7 @@ const wasmUrl = BuildModuleUrl.getUrl("wasm/release.wasm");
 
 > `static` **setBaseUrl**(`baseUrl`): `void`
 
-手动指定 baseUrl。
+Manually sets the baseUrl.
 
 #### Parameters
 
@@ -80,7 +80,7 @@ const wasmUrl = BuildModuleUrl.getUrl("wasm/release.wasm");
 
 `string`
 
-资源根路径，建议以 `/` 结尾，例如 `/sdk/dist/`
+Resource root path; it is recommended to end with `/`, e.g., `/sdk/dist/`
 
 #### Returns
 

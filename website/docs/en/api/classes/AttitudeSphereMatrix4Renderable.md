@@ -6,19 +6,19 @@
 
 # Class: AttitudeSphereMatrix4Renderable
 
-AttitudeSphereRenderable：一个用于显示姿态参考的 3D 球体组件。
+AttitudeSphereRenderable: A 3D sphere component for displaying attitude reference.
 
-组件包含：
-- 半透明球体（可选）
-- 球体线框（可选）
-- XYZ 三轴箭头（可选）
-- yaw/pitch/roll 三个参考圆（可选）
-- XYZ 标签（可选）
+The component includes:
+- Semi-transparent sphere (optional)
+- Sphere wireframe (optional)
+- XYZ axis arrows (optional)
+- Yaw/pitch/roll reference circles (optional)
+- XYZ labels (optional)
 
 ## Remarks
 
-- 姿态更新通过 `updateOrientation` 完成；内部会更新各 Primitive/Polyline/Label 的位置与旋转。
-- 该类不自动订阅 帧回调；需要业务侧按需在相机/姿态变化时调用更新。
+- Attitude updates are done via `updateOrientation`; internally it updates the position and rotation of each Primitive/Polyline/Label.
+- This class does not automatically subscribe to frame callbacks; the business side should call updates on demand when camera/attitude changes.
 
 ## Extends
 
@@ -30,7 +30,7 @@ AttitudeSphereRenderable：一个用于显示姿态参考的 3D 球体组件。
 
 > **new AttitudeSphereMatrix4Renderable**(`viewer`, `options?`): `AttitudeSphereMatrix4Renderable`
 
-创建姿态球并立即加入到 viewer 的各类集合中。
+Creates an attitude sphere and immediately adds it to the viewer's collections.
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Daisy SDK Engine。
 
 [`AttitudeSphereOptions`](../types/AttitudeSphereOptions.md)
 
-创建参数。
+Creation options.
 
 #### Returns
 
@@ -60,7 +60,7 @@ Daisy SDK Engine。
 
 > **destroy**(): `void`
 
-从 viewer 的集合中移除所有创建的对象并释放引用。
+Removes all created objects from the viewer's collections and releases references.
 
 #### Returns
 
@@ -76,7 +76,7 @@ Daisy SDK Engine。
 
 > **setCenter**(`center`): `void`
 
-设置球心（世界坐标），并立即应用变换。
+Sets the sphere center (world coordinates) and immediately applies the transform.
 
 #### Parameters
 
@@ -84,7 +84,7 @@ Daisy SDK Engine。
 
 `Cartesian3`
 
-新球心坐标。
+The new sphere center coordinates.
 
 #### Returns
 
@@ -136,7 +136,7 @@ Daisy SDK Engine。
 
 > **setRadius**(`radius`): `void`
 
-设置球体半径，并立即应用变换（通过矩阵缩放，无几何重建）。
+Sets the sphere radius and immediately applies the transform (via matrix scaling, no geometry rebuild).
 
 #### Parameters
 
@@ -144,7 +144,7 @@ Daisy SDK Engine。
 
 `number`
 
-新半径（世界单位）。
+The new radius (world units).
 
 #### Returns
 
@@ -180,7 +180,7 @@ Daisy SDK Engine。
 
 > **updateOrientation**(`matrix`): `void`
 
-更新姿态旋转矩阵，并立即应用变换。
+Updates the attitude rotation matrix and immediately applies the transform.
 
 #### Parameters
 
@@ -188,7 +188,7 @@ Daisy SDK Engine。
 
 `Matrix4` \| `Matrix3`
 
-姿态矩阵（旋转）。
+The attitude matrix (rotation).
 
 #### Returns
 
@@ -196,7 +196,7 @@ Daisy SDK Engine。
 
 #### Remarks
 
-- 传入 `Matrix4` 时只取其旋转部分（Matrix3）。
+- When a `Matrix4` is passed, only its rotation part (Matrix3) is used.
 
 #### Overrides
 

@@ -8,9 +8,9 @@
 
 > **WallOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-WallFeature 配置。
+WallFeature configuration.
 
-用于在场景中绘制墙体几何体（如围栏、屏障、垂直面等）。
+Used to draw wall geometry in the scene (e.g., fences, barriers, vertical surfaces, etc.).
 
 ## Type Declaration
 
@@ -18,18 +18,18 @@ WallFeature 配置。
 
 > `optional` **distanceDisplayCondition?**: `Daisy.DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
-当相机距离超出该范围时会自动隐藏。
+When the camera distance exceeds this range, it is automatically hidden.
 
 ### ellipsoid?
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-贴地计算与天体跟随所使用的天体椭球。
+The celestial ellipsoid used for ground-clamping and celestial body following.
 
-注意：一旦该组件通过 Entity.addFeature() 添加到实体上，会被实体的 celestialEllipsoid 覆盖，
-组件将始终遵循实体的天体椭球配置。
+Note: Once this component is added to an entity via Entity.addFeature(), it will be overridden by the entity's celestialEllipsoid,
+and the component will always follow the entity's celestial ellipsoid configuration.
 
 #### Default
 
@@ -41,7 +41,7 @@ CelestialEllipsoid.Earth()
 
 > `optional` **fill?**: `boolean`
 
-是否填充面。
+Whether to fill the face.
 
 #### Default
 
@@ -53,7 +53,7 @@ true
 
 > `optional` **granularity?**: `number`
 
-采样粒度（单位：弧度）。
+Sampling granularity (in radians).
 
 #### Default
 
@@ -65,9 +65,9 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-墙体材质。
+Wall material.
 
-支持 `Daisy.Material` 或颜色（`DColor` / CSS 色值字符串）。
+Supports `Daisy.Material` or colors (`DColor` / CSS color string).
 
 #### Default
 
@@ -79,23 +79,23 @@ Color.BLUE.withAlpha(0.5)
 
 > `optional` **maximumHeights?**: `number`[]
 
-每个顶点的最大高度（单位：米）。
+Maximum height for each vertex (in meters).
 
-数组长度应与路径点数一致。
+Array length should match the number of path points.
 
 ### minimumHeights?
 
 > `optional` **minimumHeights?**: `number`[]
 
-每个顶点的最小高度（单位：米）。
+Minimum height for each vertex (in meters).
 
-数组长度应与路径点数一致。
+Array length should match the number of path points.
 
 ### outline?
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓线。
+Whether to draw outline.
 
 #### Default
 
@@ -107,7 +107,7 @@ false
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色。
+Outline color.
 
 #### Default
 
@@ -119,7 +119,7 @@ Color.BLACK
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度（单位：像素）。
+Outline width (in pixels).
 
 #### Default
 
@@ -131,15 +131,15 @@ Color.BLACK
 
 > **pathway**: [`Pathway`](Pathway.md)
 
-墙体路径。
+Wall pathway.
 
-支持点位、实体引用与父实体占位符。
+Supports points, entity references, and parent entity placeholders.
 
 ### show?
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -151,9 +151,9 @@ true
 
 > `optional` **updateThrottleMs?**: `number`
 
-更新节流时间（单位：毫秒）。
+Update throttle time (in milliseconds).
 
-适用于高频更新时降低重算开销。
+Suitable for reducing recalculation overhead during high-frequency updates.
 
 #### Default
 
@@ -165,7 +165,7 @@ true
 
 > `optional` **vertexFormat?**: `Daisy.VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 

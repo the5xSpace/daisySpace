@@ -6,10 +6,10 @@
 
 # Class: ZIndexManager
 
-统一的 z-index 管理层级管理器。
+A unified z-index management hierarchy manager.
 
-所有 UI Widget 通过该单例注册面板元素，自动分配递增值；
-点击或拖拽时调用 `elevate()` 将对应组件提升到最顶层。
+All UI Widgets register panel elements through this singleton, which automatically assigns incremental values;
+when clicking or dragging, call `elevate()` to bring the corresponding component to the topmost layer.
 
 ## Methods
 
@@ -17,9 +17,9 @@
 
 > **elevate**(`id`): `void`
 
-将指定 widget 的 z-index 提升到当前最高层级。
+Elevates the specified widget's z-index to the current highest level.
 
-适用于 mousedown / click / drag 等交互事件。
+Suitable for interaction events like mousedown / click / drag.
 
 #### Parameters
 
@@ -37,7 +37,7 @@
 
 > **getCurrentZIndex**(`id`): `number` \| `undefined`
 
-获取 widget 当前的 z-index（用于调试或特殊场景）。
+Gets the widget's current z-index (for debugging or special scenarios).
 
 #### Parameters
 
@@ -55,7 +55,7 @@
 
 > **register**(`id`, `panel`, `miniIcon?`): `number`
 
-注册一个 widget 的面板元素（及可选的最小化图标）。
+Registers a widget's panel element (and an optional minimized icon).
 
 #### Parameters
 
@@ -63,25 +63,25 @@
 
 `string`
 
-widget 唯一标识（推荐使用 `widget.key`）
+Unique widget identifier (recommended to use `widget.key`)
 
 ##### panel
 
 `HTMLElement`
 
-面板 DOM 元素
+Panel DOM element
 
 ##### miniIcon?
 
 `HTMLElement`
 
-最小化悬浮图标 DOM 元素（可选）
+Minimized floating icon DOM element (optional)
 
 #### Returns
 
 `number`
 
-分配的 z-index 值
+The assigned z-index value
 
 ***
 
@@ -89,7 +89,7 @@ widget 唯一标识（推荐使用 `widget.key`）
 
 > **unregister**(`id`): `void`
 
-注销 widget（销毁时调用）。
+Unregisters a widget (call on destroy).
 
 #### Parameters
 

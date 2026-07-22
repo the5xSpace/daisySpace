@@ -8,9 +8,9 @@
 
 > **LinkOptions** = `{ target: LinkEndpoint }`
 
-链路组件配置。
+Link component configuration.
 
-用于描述链路的目标端、显示计划以及传输线的基础表现。
+Describes the link's target endpoint, display schedule, and basic transmission line appearance.
 
 ## Example
 
@@ -32,7 +32,7 @@ site.addLink({
 
 > `optional` **arcType?**: `Daisy.ArcType`
 
-链路插值方式。默认使用直线连接。
+Link interpolation mode. Defaults to straight-line connection.
 
 ***
 
@@ -40,7 +40,7 @@ site.addLink({
 
 > `optional` **clampToGround?**: `boolean`
 
-是否将链路贴附到地表。默认 `false`。
+Whether to clamp the link to the ground. Defaults to `false`.
 
 ***
 
@@ -48,7 +48,7 @@ site.addLink({
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-链路线颜色。
+Link line color.
 
 ***
 
@@ -56,10 +56,10 @@ site.addLink({
 
 > `optional` **direction?**: [`LinkDirection`](PW.LinkDirection.md)
 
-传输箭头的流动方向。
+Transmission arrow flow direction.
 
-- `forward`：默认方向
-- `reverse`：反向
+- `forward`: default direction
+- `reverse`: reverse direction
 
 ***
 
@@ -67,13 +67,12 @@ site.addLink({
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-链路线材质，优先级高于 `color`、`speed` 和 `direction`。
+Link line material, with higher priority than `color`, `speed`, and `direction`.
 
-- 可传颜色字符串或 Daisy 颜色对象，作为纯色线材质
-- 可传自定义材质，例如 `MaterialFactory.PolylineArrow(...)`
-- 不传时使用默认回退：内部会基于 `color`、`speed`、`direction` 自动生成
- 箭头流动材质，通常已经足够适合常规链路展示，业务侧可以直接省略
- 这个字段
+- Can pass a color string or Daisy color object as a solid line material
+- Can pass a custom material, e.g., `MaterialFactory.PolylineArrow(...)`
+- When omitted, uses default fallback: internally generates
+ arrow flow material based on `color`, `speed`, and `direction`, which is typically sufficient for regular link display; business code can safely omit this field
 
 ***
 
@@ -81,7 +80,7 @@ site.addLink({
 
 > `optional` **name?**: `string`
 
-链路名称。
+Link name.
 
 ***
 
@@ -89,10 +88,10 @@ site.addLink({
 
 > `optional` **show?**: [`LinkSchedule`](PW.LinkSchedule.md)
 
-链路显示计划。
+Link display schedule.
 
-传入布尔值时表示始终显示或隐藏；
-传入时间区间或时间区间数组时，仅在命中区间内显示。
+When a boolean is passed, indicates always show or hide;
+when a time range or array of time ranges is passed, displays only during matching intervals.
 
 ***
 
@@ -100,10 +99,10 @@ site.addLink({
 
 > `optional` **speed?**: `number`
 
-传输箭头的流动速度。
+Transmission arrow flow speed.
 
-- 不传时默认 `0`
-- 传 `0` 时仍会显示默认材质，但不额外增加流动感
+- Defaults to `0` when omitted
+- When set to `0`, the default material is still displayed but without additional flow animation
 
 ***
 
@@ -111,10 +110,10 @@ site.addLink({
 
 > **target**: [`LinkEndpoint`](PW.LinkEndpoint.md)
 
-链路目标端。
+Link target endpoint.
 
-可传入物理对象、实体、可解析为实体的包装对象，
-也可直接传入固定点位。
+Can pass a physical object, entity, wrapper object that resolves to an entity,
+or directly pass a fixed position.
 
 ***
 
@@ -122,4 +121,4 @@ site.addLink({
 
 > `optional` **width?**: `number`
 
-链路线宽，单位为像素。默认 `2`。
+Link line width, in pixels. Defaults to `2`.

@@ -12,7 +12,7 @@
 
 > `optional` **enabled?**: `boolean`
 
-是否启用动力装置。
+Whether to enable the propulsion device.
 
 ***
 
@@ -20,7 +20,7 @@
 
 > `optional` **id?**: `string`
 
-动力装置 id。未传时由 BaseComponent 自动生成。
+Propulsion device id. Generated automatically by BaseComponent when not provided.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > `optional` **name?**: `string`
 
-动力装置名称，推荐作为业务检索 key。
+Propulsion device name, recommended as a business search key.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **particle?**: `false` \| [`PropulsionParticleOptions`](../types/PW.PropulsionParticleOptions.md)
 
-粒子喷焰配置。传 false 可关闭可视效果，仅保留状态组件。
+Particle plume configuration. Set to false to disable visual effects and keep only the state component.
 
 ***
 
@@ -44,7 +44,7 @@
 
 > `optional` **position?**: `Cartesian3`
 
-动力装置相对宿主实体局部坐标系的位置。
+Position of the propulsion device relative to the host entity's local coordinate system.
 
 ***
 
@@ -52,7 +52,7 @@
 
 > `optional` **power?**: `number`
 
-推力/喷发强度，范围 0~1。当前只影响可视化。
+Thrust/eruption intensity, range 0~1. Currently only affects visualization.
 
 ***
 
@@ -60,7 +60,7 @@
 
 > `optional` **rotation?**: [`Rotation`](../types/Rotation.md)
 
-动力装置相对宿主实体局部坐标系的安装姿态。
+Mounting orientation of the propulsion device relative to the host entity's local coordinate system.
 
 ***
 
@@ -68,4 +68,4 @@
 
 > `optional` **scale?**: `Cartesian3`
 
-动力装置局部缩放。
+Local scale of the propulsion device.

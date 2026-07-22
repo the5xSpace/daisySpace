@@ -8,9 +8,9 @@
 
 > **FootprintRangeRendererOptions** = `object`
 
-footprint 区间渲染器配置。
+Footprint range renderer configuration.
 
-用于持续展示某个时间范围内的覆盖结果。
+Used for continuous display of coverage results within a specified time range.
 
 ## Properties
 
@@ -18,7 +18,7 @@ footprint 区间渲染器配置。
 
 > `optional` **fillColor?**: [`DColor`](DColor.md)
 
-覆盖面的填充颜色。
+Fill color for the coverage area.
 
 ***
 
@@ -26,7 +26,7 @@ footprint 区间渲染器配置。
 
 > `optional` **footprintTimes?**: `Daisy.JulianDate` \| `Daisy.JulianDate`[] \| [`TimeRange`](PW.TimeRange.md) \| [`TimeRanges`](PW.TimeRanges.md)
 
-需要统计的 footprint 时间范围或时刻集合。
+Footprint time range or moment collection to be aggregated.
 
 ***
 
@@ -34,7 +34,7 @@ footprint 区间渲染器配置。
 
 > `optional` **maxSampleCount?**: `number`
 
-覆盖采样数量上限。默认 1000，最大有效值 3000。
+Coverage sample count limit. Default 1000, maximum effective value 3000.
 
 ***
 
@@ -42,7 +42,7 @@ footprint 区间渲染器配置。
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓。
+Whether to draw the outline.
 
 ***
 
@@ -50,7 +50,7 @@ footprint 区间渲染器配置。
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色。
+Outline color.
 
 ***
 
@@ -58,7 +58,7 @@ footprint 区间渲染器配置。
 
 > `optional` **outlineWidthPx?**: `number`
 
-轮廓宽度，单位为像素。
+Outline width, in pixels.
 
 ***
 
@@ -66,7 +66,7 @@ footprint 区间渲染器配置。
 
 > `optional` **sampleStepSeconds?**: `number`
 
-采样步长，单位为秒。
+Sample step, in seconds.
 
 ***
 
@@ -74,4 +74,4 @@ footprint 区间渲染器配置。
 
 > `optional` **show?**: `boolean`
 
-是否显示区间渲染结果。
+Whether to show the range render result.

@@ -8,13 +8,13 @@
 
 > **AttitudeSphereOverlayOptions** = `object`
 
-AttitudeSphereOverlay 创建参数。
+AttitudeSphereOverlay creation parameters.
 
 ## Remarks
 
-- 该 overlay 会在指定容器内创建一个 `canvas`（absolute 定位、pointer-events: none）。
-- 通过 `renderFromCamera(camera)` 把相机的 right/up/direction 投影到 2D 画布上进行可视化。
-- `container` 支持传入 HTMLElement 或选择器字符串（`#id` / `.class` / `id`）。
+- This overlay creates a `canvas` inside the specified container (absolute positioning, pointer-events: none).
+- Project the camera right/up/direction onto a 2D canvas via `renderFromCamera(camera)` for visualization.
+- `container` accepts an HTMLElement or selector string (`#id` / `.class` / `id`).
 
 ## Example
 
@@ -41,8 +41,8 @@ overlay.destroy();
 
 > `optional` **container?**: `HTMLElement` \| `string`
 
-容器：HTMLElement 或选择器字符串（`#id` / `.class` / `id`）。
-未提供时默认使用 底层渲染引擎 容器。
+Container: HTMLElement or selector string (`#id` / `.class` / `id`).
+Defaults to the underlying rendering engine container when not provided.
 
 ***
 
@@ -50,7 +50,7 @@ overlay.destroy();
 
 > `optional` **margin?**: `number`
 
-预留参数（当前实现中未使用）。
+Reserved parameter (not used in current implementation).
 
 #### Default
 
@@ -64,7 +64,7 @@ overlay.destroy();
 
 > `optional` **position?**: `object`
 
-画布在容器内的定位样式（CSS 字符串）。
+Canvas positioning style within the container (CSS string).
 
 #### bottom?
 
@@ -94,7 +94,7 @@ overlay.destroy();
 
 > `optional` **showAxes?**: `boolean`
 
-是否绘制 XYZ 三轴箭头。
+Whether to draw XYZ axis arrows.
 
 #### Default
 
@@ -108,7 +108,7 @@ true
 
 > `optional` **showLabels?**: `boolean`
 
-是否显示 XYZ 文本标签（绘制在轴箭头末端）。
+Whether to display XYZ text labels (drawn at the end of axis arrows).
 
 #### Default
 
@@ -122,7 +122,7 @@ false
 
 > `optional` **showSphere?**: `boolean`
 
-是否绘制半透明球体填充。
+Whether to draw a semi-transparent sphere fill.
 
 #### Default
 
@@ -136,7 +136,7 @@ true
 
 > `optional` **showWireframe?**: `boolean`
 
-是否绘制球体外圈线框。
+Whether to draw the sphere outer wireframe.
 
 #### Default
 
@@ -150,7 +150,7 @@ true
 
 > `optional` **showYawPitchRoll?**: `boolean`
 
-是否绘制 yaw/pitch/roll 三个参考圆。
+Whether to draw yaw/pitch/roll reference circles.
 
 #### Default
 
@@ -164,7 +164,7 @@ true
 
 > `optional` **size?**: `number`
 
-画布尺寸（像素）。最小值会被限制为 64。
+Canvas size (pixels). Minimum value is clamped to 64.
 
 #### Default
 
@@ -178,7 +178,7 @@ true
 
 > `optional` **xColor?**: `Daisy.Color` \| `string`
 
-X 轴颜色（Daisy.Color 或 css 颜色字符串）。
+X-axis color (Daisy.Color or CSS color string).
 
 #### Default
 
@@ -192,7 +192,7 @@ Daisy.Color.RED
 
 > `optional` **yColor?**: `Daisy.Color` \| `string`
 
-Y 轴颜色（Daisy.Color 或 css 颜色字符串）。
+Y-axis color (Daisy.Color or CSS color string).
 
 #### Default
 
@@ -206,7 +206,7 @@ Daisy.Color.GREEN
 
 > `optional` **zColor?**: `Daisy.Color` \| `string`
 
-Z 轴颜色（Daisy.Color 或 css 颜色字符串）。
+Z-axis color (Daisy.Color or CSS color string).
 
 #### Default
 

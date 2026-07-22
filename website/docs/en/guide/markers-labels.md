@@ -1,15 +1,15 @@
-# 标记系统
+# Marker System
 
-标记类 Feature 用于在场景中标定位置和显示信息，包括点标记、广告牌、文字标签和弹出框。
+Features are used to mark locations and display information in the scene, including point markers, billboards, text labels, and popovers.
 
-## Feature 选型
+## Feature Selection
 
-| 需求 | Feature | 说明 |
-|------|---------|------|
-| 简单圆点 | `PointFeature` | 像素点或米制圆点 |
-| 图片/图标 | `BillboardFeature` | 始终面向相机的广告牌 |
-| 文字标签 | `UI.LabelFeature` | 二维文字叠加层 |
-| HTML 弹出框 | `UI.PopoverFeature` | DOM Overlay |
+| Use Case | Feature | Description |
+|----------|---------|-------------|
+| Simple dot | `PointFeature` | Pixel or metric-sized dot |
+| Image / icon | `BillboardFeature` | Billboard always facing the camera |
+| Text label | `UI.LabelFeature` | 2D text overlay |
+| HTML popover | `UI.PopoverFeature` | DOM Overlay |
 
 ## PointFeature
 
@@ -32,15 +32,15 @@ entity.addFeature(new Daisy.PointFeature({
 }))
 ```
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `color` | `DColor` | 填充色 |
-| `size` | `number` | 米制尺寸 |
-| `sizePx` / `pixelSize` | `number` | 像素尺寸 |
-| `outlineColor` | `DColor` | 轮廓色 |
-| `outlineWidth` | `number` | 轮廓宽度（像素） |
-| `disableDepthTestDistance` | `number` | 关闭深度测试的距离（米） |
-| `position` | `Cartesian3` | 相对实体偏移 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `color` | `DColor` | Fill color |
+| `size` | `number` | Size in meters |
+| `sizePx` / `pixelSize` | `number` | Pixel size |
+| `outlineColor` | `DColor` | Outline color |
+| `outlineWidth` | `number` | Outline width (pixels) |
+| `disableDepthTestDistance` | `number` | Distance at which depth testing is disabled (meters) |
+| `position` | `Cartesian3` | Offset relative to the entity |
 
 ## BillboardFeature
 
@@ -54,15 +54,15 @@ entity.addFeature(new Daisy.BillboardFeature({
 }))
 ```
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `image` | `string \| Canvas \| Image` | 图片资源 |
-| `scale` | `number` | 缩放 |
-| `color` | `DColor` | 叠加色 |
-| `offsetPx` | `Cartesian2` | 像素偏移 |
-| `offsetMeters` | `Cartesian2` | 米偏移（优先级高于 offsetPx） |
-| `alignedAxis` | `Cartesian3` | 朝向轴 |
-| `disableDepthTestDistance` | `number` | 关闭深度测试 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `image` | `string \| Canvas \| Image` | Image resource |
+| `scale` | `number` | Scale |
+| `color` | `DColor` | Overlay color |
+| `offsetPx` | `Cartesian2` | Pixel offset |
+| `offsetMeters` | `Cartesian2` | Offset in meters (takes precedence over offsetPx) |
+| `alignedAxis` | `Cartesian3` | Alignment axis |
+| `disableDepthTestDistance` | `number` | Distance at which depth testing is disabled |
 
 ## UI.LabelFeature
 
@@ -82,24 +82,24 @@ entity.addFeature(new Daisy.UI.LabelFeature({
 }))
 ```
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `text` | `string` | 显示文本（支持 `\n` 换行） |
-| `font` | `string` | CSS 字体字符串 |
-| `fillColor` | `DColor` | 文字色 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `text` | `string` | Display text (supports `\n` for newlines) |
+| `font` | `string` | CSS font string |
+| `fillColor` | `DColor` | Text color |
 | `style` | `LabelStyle` | `FILL` / `OUTLINE` / `FILL_AND_OUTLINE` |
-| `outlineColor` | `DColor` | 轮廓色 |
-| `outlineWidth` | `number` | 轮廓宽度 |
-| `showBackground` | `boolean` | 背景矩形 |
-| `backgroundColor` | `DColor` | 背景色 |
-| `backgroundPadding` | `Cartesian2` | 背景内边距 |
-| `pixelOffset` / `offsetPx` | `Cartesian2` | 像素偏移 |
-| `offsetMeters` | `Cartesian2` | 米偏移 |
-| `disableDepthTestDistance` | `number` | 关闭深度测试 |
+| `outlineColor` | `DColor` | Outline color |
+| `outlineWidth` | `number` | Outline width |
+| `showBackground` | `boolean` | Show background rectangle |
+| `backgroundColor` | `DColor` | Background color |
+| `backgroundPadding` | `Cartesian2` | Background padding |
+| `pixelOffset` / `offsetPx` | `Cartesian2` | Pixel offset |
+| `offsetMeters` | `Cartesian2` | Offset in meters |
+| `disableDepthTestDistance` | `number` | Distance at which depth testing is disabled |
 
 ## UI.PopoverFeature
 
-Popover 是 DOM Overlay——它不在 WebGL 画布中渲染，而是将 HTML 元素投影到屏幕坐标系中实体对应的位置：
+A Popover is a DOM Overlay—it does not render inside the WebGL canvas; instead, it projects HTML elements to the screen-space coordinates corresponding to the entity's position:
 
 ```typescript
 entity.addFeature(new Daisy.UI.PopoverFeature({
@@ -110,15 +110,15 @@ entity.addFeature(new Daisy.UI.PopoverFeature({
 }))
 ```
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `element` | `string \| HTMLElement` | 绑定的 DOM |
-| `anchorPosition` | `PopoverAnchor` | 锚点方向 |
-| `trigger` | `PopoverTrigger` | 触发方式 |
-| `maxDistance` | `number` | 最大显示距离（米） |
-| `offsetPx` | `Cartesian2` | 像素偏移 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `element` | `string \| HTMLElement` | Bound DOM element |
+| `anchorPosition` | `PopoverAnchor` | Anchor direction |
+| `trigger` | `PopoverTrigger` | Trigger mode |
+| `maxDistance` | `number` | Maximum display distance (meters) |
+| `offsetPx` | `Cartesian2` | Pixel offset |
 
-Popover 在以下情况自动隐藏：实体被遮挡、实体离屏、距离超出 `maxDistance` 范围。传入的 `element` 必须已经存在于 DOM 中。
+The Popover automatically hides when the entity is occluded, off-screen, or the distance exceeds `maxDistance`. The provided `element` must already exist in the DOM.
 
 
 ---

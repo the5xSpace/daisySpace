@@ -8,7 +8,7 @@
 
 > **EllipticConeGeometryOptions** = `object`
 
-创建椭圆椎体
+Creates an elliptic cone
 
 ## Example
 
@@ -47,7 +47,7 @@ const ellipticCone = new EllipticConeGeometry({
 
 > `optional` **capBottom?**: `boolean`
 
-是否封底（底部）。
+Whether to cap the bottom.
 
 ***
 
@@ -55,7 +55,7 @@ const ellipticCone = new EllipticConeGeometry({
 
 > `optional` **capTop?**: `boolean`
 
-是否封顶（顶部）。
+Whether to cap the top.
 
 ***
 
@@ -63,7 +63,7 @@ const ellipticCone = new EllipticConeGeometry({
 
 > `optional` **height?**: `number`
 
-高度（单位：米）
+Height (in meters)
 
 ***
 
@@ -71,7 +71,7 @@ const ellipticCone = new EllipticConeGeometry({
 
 > `optional` **semiMajorAxisBottom?**: `number`
 
-底面 a（单位：米）
+Bottom semi-major axis (in meters)
 
 ***
 
@@ -79,7 +79,7 @@ const ellipticCone = new EllipticConeGeometry({
 
 > `optional` **semiMajorAxisTop?**: `number`
 
-顶面 a（单位：米）
+Top semi-major axis (in meters)
 
 ***
 
@@ -87,7 +87,7 @@ const ellipticCone = new EllipticConeGeometry({
 
 > `optional` **semiMinorAxisBottom?**: `number`
 
-底面 b（单位：米）
+Bottom semi-minor axis (in meters)
 
 ***
 
@@ -95,7 +95,7 @@ const ellipticCone = new EllipticConeGeometry({
 
 > `optional` **semiMinorAxisTop?**: `number`
 
-顶面 b（单位：米）
+Top semi-minor axis (in meters)
 
 ***
 
@@ -103,7 +103,7 @@ const ellipticCone = new EllipticConeGeometry({
 
 > `optional` **slices?**: `number`
 
-圆周切片数
+Circumferential slices count
 
 ***
 
@@ -111,7 +111,7 @@ const ellipticCone = new EllipticConeGeometry({
 
 > `optional` **vertexFormat?**: `Daisy.VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 

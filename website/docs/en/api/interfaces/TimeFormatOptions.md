@@ -16,7 +16,7 @@
 
 > `optional` **format?**: `string`
 
-自定义 token 格式，优先级高于预设的默认格式。
+Custom token format, takes precedence over default preset format.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **formatter?**: [`TimeFormatCallback`](../types/TimeFormatCallback.md)
 
-自定义格式化函数；设置后优先于 `preset` 和 `format`。
+Custom formatting function; takes precedence over `preset` and `format`.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **preset?**: [`TimeFormatPreset`](../types/TimeFormatPreset.md)
 
-使用内置预设。默认 `utc`。
+Uses built-in preset. Defaults to `utc`.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **t0?**: [`TimeFormatInput`](../types/TimeFormatInput.md)
 
-`t0` 模式的参考时刻；未设置时相对秒数按 `0` 输出。
+Reference time for `t0` mode; relative seconds output as `0` when not set.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **t0Label?**: `string`
 
-`t0` 文本前缀。默认 `T`。
+`t0` text prefix. Defaults to `T`.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **t0ShowMilliseconds?**: `boolean`
 
-`t0` 累计秒是否保留三位小数。默认 `false`。
+Whether `t0` cumulative seconds retain three decimal places. Defaults to `false`.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **timezoneName?**: `string`
 
-`TZ` token 的显示名，例如 `BJT`。
+Display name for the `TZ` token, e.g., `BJT`.
 
 ***
 
@@ -72,4 +72,4 @@
 
 > `optional` **utcOffsetHours?**: `number`
 
-相对 UTC 的时区偏移小时数，例如北京时间为 `8`。
+Timezone offset hours from UTC, e.g., Beijing time is `8`.

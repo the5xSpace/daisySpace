@@ -6,7 +6,7 @@
 
 # Interface: SunConeLayerOptions
 
-日锥图层配置。
+Sun cone layer configuration.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **body?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-遮挡天体，默认地球。
+Occulting celestial body, defaults to Earth.
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **id?**: `string`
 
-图层唯一标识。
+Unique layer ID.
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **name?**: `string`
 
-图层显示名称。默认 `Sun cone`。
+Layer display name. Defaults to `Sun cone`.
 
 ***
 
@@ -38,7 +38,7 @@
 
 > `optional` **penumbraColor?**: `Color`
 
-半影颜色。
+Penumbra color.
 
 ***
 
@@ -46,7 +46,7 @@
 
 > `optional` **segments?**: `number`
 
-圆周分段数，范围为 3 至 512。默认 64。
+Number of circumferential segments, range 3 to 512. Default 64.
 
 ***
 
@@ -62,7 +62,7 @@
 
 > `optional` **showPenumbra?**: `boolean`
 
-是否显示半影，默认 true。
+Whether to show penumbra, default true.
 
 ***
 
@@ -70,7 +70,7 @@
 
 > `optional` **showUmbra?**: `boolean`
 
-是否显示本影，默认 true。
+Whether to show umbra, default true.
 
 ***
 
@@ -78,7 +78,7 @@
 
 > `optional` **sun?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-光源天体，默认太阳。
+Light source celestial body, defaults to the Sun.
 
 ***
 
@@ -86,7 +86,7 @@
 
 > `optional` **umbraColor?**: `Color`
 
-本影颜色。
+Umbra color.
 
 ***
 
@@ -94,7 +94,7 @@
 
 > `optional` **updateIntervalSeconds?**: `number`
 
-按仿真时间更新空间形态的最小间隔，单位为秒；`0` 表示每帧更新。默认 30。
+Minimum interval for updating spatial form by simulation time, in seconds; `0` means update every frame. Default 30.
 
 ***
 
@@ -102,4 +102,4 @@
 
 > `optional` **visualLengthScale?**: `number`
 
-轴向显示长度相对物理本影长度的比例，必须大于 0。默认 0.12；遮挡判定不受影响。
+Ratio of axial display length to physical umbra length, must be greater than 0. Default 0.12; occlusion determination is unaffected.

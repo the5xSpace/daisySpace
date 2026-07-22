@@ -6,7 +6,7 @@
 
 # Interface: CoverageLabelOptions
 
-覆盖区域标签的显示样式配置。
+Display style configuration for coverage area labels.
 
 ## Properties
 
@@ -14,7 +14,7 @@
 
 > `optional` **fillColor?**: `string`
 
-文本填充色，默认 "#ffffff"
+Text fill color, defaults to "#ffffff"
 
 ***
 
@@ -22,7 +22,7 @@
 
 > `optional` **font?**: `string`
 
-字体 CSS 字符串，默认 "14px sans-serif"
+Font CSS string, defaults to "14px sans-serif"
 
 ***
 
@@ -30,7 +30,7 @@
 
 > `optional` **outlineColor?**: `string`
 
-文本描边颜色，默认 "#000000"
+Text outline color, defaults to "#000000"
 
 ***
 
@@ -38,7 +38,7 @@
 
 > `optional` **outlineWidth?**: `number`
 
-文本描边宽度（像素），默认 2
+Text outline width (pixels), defaults to 2
 
 ***
 
@@ -46,7 +46,7 @@
 
 > `optional` **pixelOffset?**: \[`number`, `number`\]
 
-屏幕像素偏移 [x, y]，默认 undefined
+Screen pixel offset [x, y], defaults to undefined
 
 ***
 
@@ -54,7 +54,7 @@
 
 > `optional` **show?**: `boolean`
 
-是否显示标签，默认 true
+Whether to show the label, defaults to true
 
 ***
 
@@ -62,4 +62,4 @@
 
 > `optional` **translucencyByDistance?**: \[`number`, `number`, `number`, `number`\]
 
-标签视距淡出 [near, nearAlpha, far, farAlpha]，默认 [1e5, 1, 5e6, 0]
+Label view distance fade [near, nearAlpha, far, farAlpha], defaults to [1e5, 1, 5e6, 0]

@@ -18,7 +18,7 @@
 
 > `optional` **color?**: [`DColor`](../types/DColor.md)
 
-颜色。
+Color.
 
 ***
 
@@ -26,7 +26,7 @@
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
 ***
 
@@ -34,7 +34,7 @@
 
 > `optional` **gridStyle?**: [`PlaneGridStyle`](../types/Plane.PlaneGridStyle.md)
 
-网格样式。
+Grid style.
 
 ***
 
@@ -42,7 +42,7 @@
 
 > `optional` **id?**: `string`
 
-唯一标识。
+Unique identifier.
 
 ***
 
@@ -50,7 +50,7 @@
 
 > `optional` **planeAlpha?**: `number`
 
-平面填充透明度（0~1）。
+Plane fill opacity (0~1).
 
 ***
 
@@ -58,9 +58,9 @@
 
 > `optional` **referenceRadius?**: `number`
 
-参考半径（单位：米）。
+Reference radius (in meters).
 
-具体含义由不同平面实现决定（如圆盘半径、网格半径等）。
+The exact meaning depends on the specific plane implementation (e.g., disk radius, grid radius, etc.).
 
 #### Default
 
@@ -74,7 +74,7 @@
 
 > `optional` **segments?**: `number`
 
-分段数（越大越圆滑，但几何更重）。
+Number of segments (higher values are smoother but more geometrically expensive).
 
 ***
 
@@ -82,7 +82,7 @@
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 ***
 
@@ -90,7 +90,7 @@
 
 > `optional` **updateIntervalSeconds?**: `number`
 
-更新间隔（单位：秒）。
+Update interval (in seconds).
 
 #### Default
 

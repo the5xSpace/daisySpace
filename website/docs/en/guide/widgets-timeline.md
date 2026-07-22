@@ -1,8 +1,8 @@
-# 时间轴
+# Timeline
 
-[TimelineWidget](/en/api/classes/TimelineWidget) 是一个完整的自定义时间条控件，替代底层原生时间轴。支持缩放、平移、时间刻度标签、轨道路径和区间高亮。
+[TimelineWidget](/en/api/classes/TimelineWidget) is a fully custom timeline widget that replaces the underlying native timeline. It supports zooming, panning, time tick labels, track paths, and interval highlighting.
 
-## 基本用法
+## Basic Usage
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -19,18 +19,18 @@ engine.addWidget(timeline)
 engine.play(1)
 ```
 
-TimelineWidget 固定锚定在容器底部。
+TimelineWidget is fixed and anchored at the bottom of the container.
 
-## 时间轴操作
+## Timeline Operations
 
-| 操作 | 行为 |
+| Action | Behavior |
 |------|------|
-| 鼠标左键拖拽 | 平移时间窗口 |
-| 鼠标滚轮 | 缩放时间窗口 |
-| 点击刻度区域 | 跳转到该时刻 |
-| 拖动指针 | 移动当前时间 |
+| Left mouse button drag | Pan the timeline |
+| Mouse wheel | Zoom the timeline |
+| Click tick area | Jump to that moment |
+| Drag the pointer | Move current time |
 
-## 缩放控制
+## Zoom Control
 
 ```typescript
 // 缩放到指定时间范围
@@ -40,7 +40,7 @@ timeline.zoomTo(startTime, stopTime)
 timeline.zoomFrom(0.5)
 ```
 
-## 轨道与高亮
+## Tracks and Highlighting
 
 ```typescript
 // 添加彩色轨道（在时间轴上叠加色条）
@@ -54,12 +54,12 @@ const track = timeline.addTrack(
 timeline.addHighlightRange("rgba(255, 255, 0, 0.3)", 12)
 ```
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `addTrack(interval, heightPx, color?, bgColor?)` | 添加轨道色条 |
-| `addHighlightRange(color, heightPx, base?)` | 添加高亮区间 |
+| `addTrack(interval, heightPx, color?, bgColor?)` | Add a track color bar |
+| `addHighlightRange(color, heightPx, base?)` | Add a highlight range |
 
-## 时间格式化
+## Time Formatting
 
 ```typescript
 // 运行时更换格式
@@ -69,6 +69,6 @@ timeline.configureLabel({ preset: "iso-ms" })
 const label = timeline.makeLabel(currentTime)
 ```
 
-详见 [时间格式化](/en/guide/time-format)。
+See [Time Formatting](/en/guide/time-format).
 
-> **相关 API**：[TimelineWidget](/en/api/classes/TimelineWidget) · [TimelineTrack](/en/api/classes/TimelineTrack) · [TimelineHighlightRange](/en/api/classes/TimelineHighlightRange)
+> **Related APIs**: [TimelineWidget](/en/api/classes/TimelineWidget) · [TimelineTrack](/en/api/classes/TimelineTrack) · [TimelineHighlightRange](/en/api/classes/TimelineHighlightRange)

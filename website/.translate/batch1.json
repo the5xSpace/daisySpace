@@ -1,0 +1,103 @@
+{
+  "api/classes/AttitudeSphereOverlay.md": [
+    ["AttitudeSphereOverlay：2D Canvas 版本的姿态球（HUD）。", "AttitudeSphereOverlay: 2D Canvas version of the attitude sphere (HUD)."],
+    ["- 适合放在主视图右上/左上角作为\"相机朝向指示器\"。\n- 该类只负责绘制，不会自动订阅 帧事件；需要业务侧自行在合适的时机调用 `renderFromCamera`。", "- Suitable for placing in the top-right/top-left corner of the main view as a \"camera orientation indicator\".\n- This class is only responsible for rendering; it does not automatically subscribe to frame events. The business side should call `renderFromCamera` at appropriate times."],
+    ["创建 overlay 并将 canvas 追加到容器中。", "Creates the overlay and appends the canvas to the container."],
+    ["Daisy SDK Engine。", "Daisy SDK Engine."],
+    ["overlay 参数。", "Overlay parameters."],
+    ["移除 canvas 并释放引用。", "Removes the canvas and releases references."],
+    ["根据相机姿态渲染姿态球到画布。", "Renders the attitude sphere to the canvas based on the camera orientation."],
+    [" 相机。", " Camera."],
+    ["- 该方法是\"即时绘制\"：每次调用都会清空并重绘当前帧内容。\n- 建议在 的帧回调（如 `scene.postRender`）或相机变化回调中调用。", "- This method performs \"immediate rendering\": each call clears and redraws the current frame content.\n- It is recommended to call it in the frame callback (e.g. `scene.postRender`) or camera change callback."]
+  ],
+  "api/classes/BodyTrackedCameraController.md": [
+    ["天体机体跟踪相机控制器。", "Celestial body tracked camera controller."],
+    ["启用后会接管 Camera 的部分状态更新，使相机在天体自转/姿态变化时保持\"相对机体坐标系\"的稳定观察。", "When enabled, it takes over partial state updates of the Camera, keeping the observation stable relative to the body coordinate system during celestial body rotation/attitude changes."],
+    ["当前跟踪状态；未启用时为 undefined。", "Current tracking state; undefined when not enabled."],
+    ["关闭机体跟踪，并恢复相机/控制器的默认行为。", "Disables body tracking and restores the default behavior of the camera/controller."],
+    ["启用机体跟踪。", "Enables body tracking."],
+    ["目标天体椭球体", "Target celestial ellipsoid"],
+    ["暂停跟踪（保留内部状态，仅移除 preRender 和输入监听）。\n用于 flyTo 动画期间，防止控制器覆盖动画。", "Pauses tracking (preserves internal state, only removes preRender and input listeners).\nUsed during flyTo animations to prevent the controller from overriding the animation."],
+    ["恢复跟踪（重新安装 preRender 和输入监听，不重新捕获状态）。", "Resumes tracking (reinstalls preRender and input listeners without recapturing state)."]
+  ],
+  "api/classes/TimeDynamicProperty.md": [
+    ["按仿真时刻解析值的通用动态属性。", "A generic dynamic property that resolves values by simulation time."],
+    ["区间按添加顺序匹配；多个区间重叠时返回第一个命中的值。", "Intervals are matched in order of addition; when multiple intervals overlap, the first matching value is returned."],
+    ["创建动态属性并复制初始区间。", "Creates a dynamic property and copies the initial interval."],
+    ["追加一个时间区间；区间顺序决定重叠时的匹配优先级。", "Appends a time interval; the interval order determines the matching priority when overlapping."],
+    ["获取当前默认值。", "Gets the current default value."],
+    ["获取时间区间数组的浅拷贝。", "Gets a shallow copy of the time interval array."],
+    ["获取指定时刻的第一个区间匹配值，未命中时返回默认值。", "Gets the first matching interval value at the specified time; returns the default value if no interval is hit."],
+    ["设置未命中任何区间时使用的默认值。", "Sets the default value used when no interval is matched."]
+  ],
+  "api/enums/ViewDistanceLevel.md": [
+    ["视距等级。", "View distance level."],
+    ["用于将\"相机到目标的距离\"映射到不同的 `DistanceDisplayCondition` 阈值区间，\n从而在不同观察尺度下控制要素显示/隐藏。", "Used to map the \"camera-to-target distance\" to different `DistanceDisplayCondition` threshold ranges,\nthereby controlling feature visibility at different observation scales."],
+    ["极远距离", "Extreme far distance"],
+    ["极近距离", "Extreme near distance"],
+    ["远距离", "Far distance"],
+    ["无限距离（不做上限裁剪）", "Infinite distance (no upper limit clipping)"],
+    ["中距离", "Medium distance"],
+    ["近距离", "Near distance"]
+  ],
+  "api/interfaces/CoverageLabelOptions.md": [
+    ["覆盖区域标签的显示样式配置。", "Display style configuration for coverage area labels."],
+    ["文本填充色，默认 \"#ffffff\"", "Text fill color, defaults to \"#ffffff\""],
+    ["字体 CSS 字符串，默认 \"14px sans-serif\"", "Font CSS string, defaults to \"14px sans-serif\""],
+    ["文本描边颜色，默认 \"#000000\"", "Text outline color, defaults to \"#000000\""],
+    ["文本描边宽度（像素），默认 2", "Text outline width (pixels), defaults to 2"],
+    ["屏幕像素偏移 [x, y]，默认 undefined", "Screen pixel offset [x, y], defaults to undefined"],
+    ["是否显示标签，默认 true", "Whether to show the label, defaults to true"],
+    ["标签视距淡出 [near, nearAlpha, far, farAlpha]，默认 [1e5, 1, 5e6, 0]", "Label view distance fade [near, nearAlpha, far, farAlpha], defaults to [1e5, 1, 5e6, 0]"]
+  ],
+  "api/interfaces/EngineLensFlareOptions.md": [
+    ["引擎镜头光晕效果配置。", "Engine lens flare effect configuration."],
+    ["镜头脏污纹理贡献量。默认 `0.4`。", "Lens dirt texture contribution. Default `0.4`."],
+    ["鬼影高光的颜色分离度。默认 `0.4`。", "Ghost highlight color dispersion. Default `0.4`."],
+    ["径向畸变强度。默认 `10`。", "Radial distortion intensity. Default `10`."],
+    ["后处理阶段使用的场景天体半径，单位为米。默认使用地球平均尺度。", "Scene celestial body radius used in the post-processing stage, in meters. Defaults to Earth's mean radius."],
+    ["光晕环尺寸。默认 `0.4`。", "Halo ring size. Default `0.4`."],
+    ["光晕整体亮度。默认 `1`。", "Overall halo brightness. Default `1`."],
+    ["是否显示镜头光晕效果。默认 `true`。", "Whether to show the lens flare effect. Default `true`."]
+  ],
+  "api/interfaces/PW.PropulsionOptions.md": [
+    ["是否启用动力装置。", "Whether to enable the propulsion device."],
+    ["动力装置 id。未传时由 BaseComponent 自动生成。", "Propulsion device id. Generated automatically by BaseComponent when not provided."],
+    ["动力装置名称，推荐作为业务检索 key。", "Propulsion device name, recommended as a business search key."],
+    ["粒子喷焰配置。传 false 可关闭可视效果，仅保留状态组件。", "Particle plume configuration. Set to false to disable visual effects and keep only the state component."],
+    ["动力装置相对宿主实体局部坐标系的位置。", "Position of the propulsion device relative to the host entity's local coordinate system."],
+    ["推力/喷发强度，范围 0~1。当前只影响可视化。", "Thrust/eruption intensity, range 0~1. Currently only affects visualization."],
+    ["动力装置相对宿主实体局部坐标系的安装姿态。", "Mounting orientation of the propulsion device relative to the host entity's local coordinate system."],
+    ["动力装置局部缩放。", "Local scale of the propulsion device."]
+  ],
+  "api/interfaces/TaskStepEntry.md": [
+    ["任务步骤列表中的单条渲染数据。", "A single render data entry in the task step list."],
+    ["分配给任务的 CSS 颜色字符串。", "CSS color string assigned to the task."],
+    ["任务计划结束时刻。", "Scheduled end time of the task."],
+    ["任务唯一标识。", "Unique identifier of the task."],
+    ["任务显示名称。", "Display name of the task."],
+    ["当前进度百分比，范围为 0 至 100。", "Current progress percentage, range 0 to 100."],
+    ["任务计划开始时刻。", "Scheduled start time of the task."],
+    ["当前任务状态。", "Current task status."]
+  ],
+  "api/interfaces/TimeFormatOptions.md": [
+    ["自定义 token 格式，优先级高于预设的默认格式。", "Custom token format, takes priority over the default preset format."],
+    ["自定义格式化函数；设置后优先于 `preset` 和 `format`。", "Custom formatting function; takes priority over `preset` and `format` when set."],
+    ["使用内置预设。默认 `utc`。", "Use a built-in preset. Defaults to `utc`."],
+    ["`t0` 模式的参考时刻；未设置时相对秒数按 `0` 输出。", "Reference time for `t0` mode; relative seconds are output as `0` when not set."],
+    ["`t0` 文本前缀。默认 `T`。", "`t0` text prefix. Defaults to `T`."],
+    ["`t0` 累计秒是否保留三位小数。默认 `false`。", "Whether to keep three decimal places for `t0` accumulated seconds. Defaults to `false`."],
+    ["`TZ` token 的显示名，例如 `BJT`。", "Display name for the `TZ` token, e.g. `BJT`."],
+    ["相对 UTC 的时区偏移小时数，例如北京时间为 `8`。", "Timezone offset hours relative to UTC, e.g., Beijing time is `8`."]
+  ],
+  "api/interfaces/TimeFormatParts.md": [
+    ["目标时区下拆分后的日期时间字段。", "Date-time fields split under the target timezone."],
+    ["月内日期，范围为 1 至 31。", "Day of the month, range 1 to 31."],
+    ["小时，范围为 0 至 23。", "Hour, range 0 to 23."],
+    ["毫秒，范围为 0 至 999。", "Millisecond, range 0 to 999."],
+    ["分钟，范围为 0 至 59。", "Minute, range 0 to 59."],
+    ["月份，范围为 1 至 12。", "Month, range 1 to 12."],
+    ["秒，范围为 0 至 59。", "Second, range 0 to 59."],
+    ["四位年份。", "Four-digit year."]
+  ]
+}

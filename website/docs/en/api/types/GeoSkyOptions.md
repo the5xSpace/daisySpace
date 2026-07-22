@@ -8,7 +8,7 @@
 
 > **GeoSkyOptions** = \{ `type`: [`Default`](../enums/GeoSkyType.md#default); \} \| \{ `type`: [``](../enums/GeoSkyType.md#cesium); \} \| \{ `type`: [`None`](../enums/GeoSkyType.md#none); \} \| \{ `sources`: \{ `negativeX`: `string`; `negativeY`: `string`; `negativeZ`: `string`; `positiveX`: `string`; `positiveY`: `string`; `positiveZ`: `string`; \}; `type`: [`SkyBox`](../enums/GeoSkyType.md#skybox); \}
 
-天空效果配置
+Sky effect configuration
 
 ## Union Members
 
@@ -20,7 +20,7 @@
 
 > **type**: [`Default`](../enums/GeoSkyType.md#default)
 
-天空类型：默认天空
+Sky type: default sky
 
 ***
 
@@ -32,7 +32,7 @@
 
 > **type**: [``](../enums/GeoSkyType.md#cesium)
 
-天空类型： 天空盒
+Sky type: skybox
 
 ***
 
@@ -44,7 +44,7 @@
 
 > **type**: [`None`](../enums/GeoSkyType.md#none)
 
-天空类型：关闭天空
+Sky type: no sky
 
 ***
 
@@ -56,46 +56,46 @@
 
 > **sources**: `object`
 
-SkyBox 六面贴图资源
+SkyBox six-face texture resources
 
 ##### sources.negativeX
 
 > **negativeX**: `string`
 
-左侧贴图
+Left face texture
 
 ##### sources.negativeY
 
 > **negativeY**: `string`
 
-下侧贴图
+Bottom face texture
 
 ##### sources.negativeZ
 
 > **negativeZ**: `string`
 
-后侧贴图
+Back face texture
 
 ##### sources.positiveX
 
 > **positiveX**: `string`
 
-右侧贴图
+Right face texture
 
 ##### sources.positiveY
 
 > **positiveY**: `string`
 
-上侧贴图
+Top face texture
 
 ##### sources.positiveZ
 
 > **positiveZ**: `string`
 
-前侧贴图
+Front face texture
 
 #### type
 
 > **type**: [`SkyBox`](../enums/GeoSkyType.md#skybox)
 
-天空类型：自定义天空盒
+Sky type: custom skybox

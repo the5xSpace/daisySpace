@@ -6,10 +6,10 @@
 
 # Enumeration: ViewDistanceLevel
 
-视距等级。
+View distance level.
 
-用于将“相机到目标的距离”映射到不同的 `DistanceDisplayCondition` 阈值区间，
-从而在不同观察尺度下控制要素显示/隐藏。
+Used to map the "camera-to-target distance" to different `DistanceDisplayCondition` threshold ranges,
+thereby controlling feature visibility at different observation scales.
 
 ## Enumeration Members
 
@@ -17,7 +17,7 @@
 
 > **EXTREME\_FAR**: `"EXTREME_FAR"`
 
-极远距离
+Extreme far distance
 
 ***
 
@@ -25,7 +25,7 @@
 
 > **EXTREME\_NEAR**: `"EXTREME_NEAR"`
 
-极近距离
+Extreme near distance
 
 ***
 
@@ -33,7 +33,7 @@
 
 > **FAR**: `"FAR"`
 
-远距离
+Far distance
 
 ***
 
@@ -41,7 +41,7 @@
 
 > **INFINITE**: `"INFINITE"`
 
-无限距离（不做上限裁剪）
+Infinite distance (no upper limit clipping)
 
 ***
 
@@ -49,7 +49,7 @@
 
 > **MEDIUM**: `"MEDIUM"`
 
-中距离
+Medium distance
 
 ***
 
@@ -57,4 +57,4 @@
 
 > **NEAR**: `"NEAR"`
 
-近距离
+Near distance

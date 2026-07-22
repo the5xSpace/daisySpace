@@ -6,11 +6,11 @@
 
 # Class: Entity
 
-Daisy 实体。
+Daisy Entity.
 
-- Feature 生命周期管理（注册/卸载）
-- 轨迹、朝向、遮挡/视锥判断等运行时状态
-- 与 Daisy Engine 的交互事件对接
+- Feature lifecycle management (registration/unregistration)
+- Runtime state: trajectory, orientation, occlusion/frustum checks
+- Interaction event integration with Daisy Engine
 
 ## Constructors
 
@@ -18,7 +18,7 @@ Daisy 实体。
 
 > **new Entity**(`name?`, `options?`): `Entity`
 
-创建一个 Daisy 实体。
+Create a Daisy Entity.
 
 #### Parameters
 
@@ -26,17 +26,17 @@ Daisy 实体。
 
 `string` = `""`
 
-实体名称，默认为空字符串
+Entity name, defaults to empty string
 
 ##### options?
 
-可选配置项
+Optional configuration
 
 ###### id?
 
 `string`
 
-自定义实体 id，不传则自动生成 GUID
+Custom entity id, auto-generates GUID if not provided
 
 #### Returns
 
@@ -61,7 +61,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **isBehindCamera**: `boolean` = `false`
 
-是否在相机背后
+Whether behind the camera
 
 ***
 
@@ -69,7 +69,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **isInCameraCullingVolume**: `boolean` = `false`
 
-是否在相机视锥内
+Whether within the camera view frustum
 
 ***
 
@@ -77,7 +77,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **isOccludedByEarth**: `boolean` = `false`
 
-是否被地球遮挡
+Whether occluded by the Earth
 
 ***
 
@@ -127,11 +127,11 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **viewer**: [`Engine`](Engine.md) \| `undefined`
 
-兼容旧命名：建议改用 `engine`。
+Compatible with old naming: use `engine` instead.
 
 #### Deprecated
 
-请使用 engine
+Use engine instead
 
 ***
 
@@ -147,7 +147,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **activated**(): `boolean`
 
-获取是否处于激活状态。
+Get whether in active state.
 
 ##### Returns
 
@@ -157,7 +157,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **activated**(`value`): `void`
 
-设置是否处于激活状态。
+Set whether in active state.
 
 ##### Parameters
 
@@ -177,7 +177,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **bodyAxis**(): `BodyAxis` \| `undefined`
 
-获取体轴调试对象（仅在开启并处于 3D 模式时存在）。
+Get the body axis debug object (only exists when enabled and in 3D mode).
 
 ##### Returns
 
@@ -191,7 +191,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **bodyAxisVectors**(): `object`
 
-获取实体体轴向量（归一化后的 x/y/z）。
+Get the entity body axis vectors (normalized x/y/z).
 
 ##### Returns
 
@@ -217,7 +217,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **boundingSphereRadius**(): `number`
 
-获取包围球半径。
+Get bounding sphere radius.
 
 ##### Returns
 
@@ -231,7 +231,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **customProperties**(): `Record`\<`string`, `any`\> \| `undefined`
 
-获取自定义属性。
+Get custom attributes.
 
 ##### Returns
 
@@ -241,7 +241,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **customProperties**(`value`): `void`
 
-设置实体自定义属性。
+Set entity custom attributes.
 
 ##### Parameters
 
@@ -261,7 +261,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **description**(): `string` \| `undefined`
 
-获取描述信息。
+Get description.
 
 ##### Returns
 
@@ -271,7 +271,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **description**(`value`): `void`
 
-设置实体描述信息。
+Set entity description.
 
 ##### Parameters
 
@@ -291,7 +291,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **engine**(): [`Engine`](Engine.md) \| `undefined`
 
-新命名别名：与 `viewer` 同步，优先用于新代码。
+New naming alias: synchronized with `viewer`, preferred for new code.
 
 ##### Returns
 
@@ -319,7 +319,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **hovered**(): `boolean`
 
-获取是否处于悬停状态。
+Get whether in hover state.
 
 ##### Returns
 
@@ -329,7 +329,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **hovered**(`value`): `void`
 
-设置是否处于悬停状态。
+Set whether in hover state.
 
 ##### Parameters
 
@@ -349,7 +349,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **interaction**(): `InteractionComponent`
 
-获取交互组件（用于拾取、悬停、点击等状态管理）。
+Get the interaction component (for picking, hover, click, and other state management).
 
 ##### Returns
 
@@ -363,7 +363,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **name**(): `string`
 
-获取实体名称。
+Get entity name.
 
 ##### Returns
 
@@ -373,7 +373,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **name**(`value`): `void`
 
-设置实体名称。
+Set entity name.
 
 ##### Parameters
 
@@ -393,7 +393,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **orientation**(): `Property` \| `Quaternion` \| `undefined`
 
-获取实体方向属性
+Get entity orientation property
 
 ##### Returns
 
@@ -403,7 +403,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **orientation**(`value`): `void`
 
-设置实体方向属性
+Set entity orientation property
 
 ##### Parameters
 
@@ -423,7 +423,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **parentId**(): `string` \| `undefined`
 
-获取父实体 id。
+Get parent entity id.
 
 ##### Returns
 
@@ -433,7 +433,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **parentId**(`value`): `void`
 
-设置父实体 id（会触发父子关系同步）。
+Set parent entity id (triggers parent-child relationship synchronization).
 
 ##### Parameters
 
@@ -453,7 +453,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **position**(): `EntityPositions`
 
-获取实体位置属性，非实时位置
+Get entity position property (not real-time position)
 
 ##### Returns
 
@@ -463,7 +463,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **position**(`position`): `void`
 
-设置实体位置属性，一般为TrajectorySample或Cartesian3 ，这个属性是仿真场景的关键属性，用于更新实体位置
+Set entity position property, typically a TrajectorySample or Cartesian3. This is the key property for simulation scenes, used to update entity position.
 
 ##### Parameters
 
@@ -471,7 +471,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 `EntityPositions`
 
-实体位置属性，一般为TrajectorySample或Cartesian3
+Entity position property, typically a TrajectorySample or Cartesian3
 
 ##### Returns
 
@@ -485,7 +485,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **show**(): `boolean`
 
-获取实体显示属性，一般为boolean ，这个属性是仿真场景的关键属性，用于控制实体是否显示
+Get entity display property, typically a boolean. This is a key property for simulation scenes, used to control whether the entity is visible.
 
 ##### Returns
 
@@ -495,7 +495,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **show**(`value`): `void`
 
-设置实体显示属性，一般为boolean ，这个属性是仿真场景的关键属性，用于控制实体是否显示
+Set entity display property, typically a boolean. This is a key property for simulation scenes, used to control whether the entity is visible.
 
 ##### Parameters
 
@@ -515,7 +515,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **viewDistanceConst**(): [`ViewDistanceTemplate`](../types/ViewDistanceTemplate.md)
 
-获取视距配置
+Get the view distance configuration
 
 ##### Returns
 
@@ -529,7 +529,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **viewFrom**(): `Cartesian3` \| `undefined`
 
-获取相机跟随视角偏移
+Get camera follow view offset
 
 ##### Returns
 
@@ -539,7 +539,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **set** **viewFrom**(`value`): `void`
 
-设置相机跟随视角偏移
+Set camera follow view offset
 
 ##### Parameters
 
@@ -559,7 +559,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **get** **worldMatrix**(): `Matrix4`
 
-获取当前世界矩阵（优先使用缓存的 currentMatrix）。
+Get the current world matrix (prefer using cached currentMatrix).
 
 ##### Returns
 
@@ -571,7 +571,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **\_hasContinuousUpdateDemandAt**(`time`): `boolean`
 
-判断当前时刻是否存在命中的内部连续更新需求。
+Determine if there is a hit internal continuous update requirement at the current time.
 
 #### Parameters
 
@@ -579,7 +579,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 `JulianDate`
 
-当前仿真时间
+Current simulation time
 
 #### Returns
 
@@ -591,11 +591,11 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **\_registerContinuousUpdateDemand**(`demand`, `token?`): `string`
 
-注册“本帧必须更新实体”的内部调度需求。
+Register an internal scheduling demand that "this frame must update the entity".
 
-说明：
-- 这是给组件/特征使用的内部优先级钩子，不面向常规业务 API
-- 当任一 demand 在当前时刻返回 true 时，调度器会跳过常规位移节流，直接执行实体更新
+Description:
+- This is an internal priority hook for components/features, not a regular business API
+- When any demand returns true at the current time, the scheduler skips regular displacement throttling and directly executes the entity update
 
 #### Parameters
 
@@ -603,19 +603,19 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 `EntityContinuousUpdateDemand`
 
-给定当前仿真时间，返回本帧是否必须更新
+Given the current simulation time, returns whether this frame must be updated
 
 ##### token?
 
 `string`
 
-可选稳定标识；不传时自动生成
+Optional stable identifier; auto-generated if not provided
 
 #### Returns
 
 `string`
 
-实际写入的 token
+The actually written token
 
 ***
 
@@ -623,7 +623,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **\_unregisterContinuousUpdateDemand**(`token?`): `void`
 
-取消内部调度需求注册。
+Cancel internal scheduling demand registration.
 
 #### Parameters
 
@@ -631,7 +631,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 `string`
 
-注册时返回的 demand token
+The demand token returned during registration
 
 #### Returns
 
@@ -643,7 +643,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **activateForValidTime**(): `void`
 
-时间有效：重建场景运行态并恢复 Feature 注册。
+Time valid: rebuild the scene runtime and restore Feature registration.
 
 #### Returns
 
@@ -671,7 +671,7 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 > **addFeature**(`feature`): [`Feature`](Feature.md)
 
-添加组件
+Add component
 
 #### Parameters
 
@@ -679,13 +679,13 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 [`Feature`](Feature.md)
 
-要添加的 Feature 实例
+Feature instance to add
 
 #### Returns
 
 [`Feature`](Feature.md)
 
-已添加（或已存在）的 Feature 实例
+Added (or already existing) Feature instance
 
 #### Example
 
@@ -700,7 +700,7 @@ entity.addFeature(feature);
 
 > **bindEngine**(`engine`): `Entity`
 
-绑定到 Engine 并完成注册。
+Bind to Engine and complete registration.
 
 #### Parameters
 
@@ -718,7 +718,7 @@ entity.addFeature(feature);
 
 > **bindViewer**(`viewer`): `Entity`
 
-兼容旧名：绑定到 Engine 并完成注册。
+Compatible with old naming: bind to Engine and complete registration.
 
 #### Parameters
 
@@ -732,7 +732,7 @@ entity.addFeature(feature);
 
 #### Deprecated
 
-请使用 bindEngine
+Use bindEngine instead
 
 ***
 
@@ -740,7 +740,7 @@ entity.addFeature(feature);
 
 > **checkIsBehindCamera**(`satPos`, `camera?`): `boolean`
 
-检查是否在相机背后
+Whether behind the camera
 
 #### Parameters
 
@@ -762,7 +762,7 @@ entity.addFeature(feature);
 
 > **checkTimeValid**(`time`): `boolean`
 
-检查实体在指定时间是否在有效时间区间内。
+Check if the entity is within the valid time range at the specified time.
 
 #### Parameters
 
@@ -770,13 +770,13 @@ entity.addFeature(feature);
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
 `boolean`
 
-时间有效返回 true，超出可用区间返回 false
+Returns true if time is valid, false if outside available range
 
 ***
 
@@ -794,7 +794,7 @@ entity.addFeature(feature);
 
 > **computeModelMatrix**(`state`): `Matrix4`
 
-计算模型矩阵
+Calculate model matrix
 
 #### Parameters
 
@@ -812,7 +812,7 @@ entity.addFeature(feature);
 
 > **deactivateForInvalidTime**(): `void`
 
-时间无效时释放当前场景运行态，但保留业务实体对象和 Feature 配置。
+When time is invalid, release the current scene runtime but preserve business entity objects and Feature configuration.
 
 #### Returns
 
@@ -824,7 +824,7 @@ entity.addFeature(feature);
 
 > **destroy**(): `void`
 
-实体销毁
+Entity destruction
 
 #### Returns
 
@@ -858,7 +858,7 @@ entity.addFeature(feature);
 
 #### Deprecated
 
-请使用 [Entity.getOrCreateBoundBoxFeature](#getorcreateboundboxfeature)。
+Please use [Entity.getOrCreateBoundBoxFeature](#getorcreateboundboxfeature).
 
 ***
 
@@ -866,7 +866,7 @@ entity.addFeature(feature);
 
 > **getBoundingSphere**(`time?`): `BoundingSphere`
 
-获取指定时间的包围球（中心优先使用帧相关位置）。
+Get the bounding sphere at the specified time (center prefers frame-correlated position).
 
 #### Parameters
 
@@ -874,7 +874,7 @@ entity.addFeature(feature);
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
@@ -886,7 +886,7 @@ entity.addFeature(feature);
 
 > **getBoundingSphereRadius**(): `number`
 
-获取包围球半径（基于 BoundBoxFeature 计算）。
+Get bounding sphere radius (calculated based on BoundBoxFeature).
 
 #### Returns
 
@@ -898,13 +898,13 @@ entity.addFeature(feature);
 
 > **getCurrentMatrix**(): `Matrix4` \| `undefined`
 
-获取当前帧的模型矩阵（优先使用渲染缓存）。
+Get the current frame's model matrix (prefer using render cache).
 
 #### Returns
 
 `Matrix4` \| `undefined`
 
-当前帧的 4x4 模型矩阵，缓存不可用时返回 undefined
+The 4x4 model matrix for the current frame, returns undefined if cache is unavailable
 
 ***
 
@@ -912,13 +912,13 @@ entity.addFeature(feature);
 
 > **getCurrentPosition**(): `Cartesian3` \| `undefined`
 
-获取当前帧的实体位置（ECEF 坐标）。
+Get the current frame's entity position (ECEF coordinates).
 
 #### Returns
 
 `Cartesian3` \| `undefined`
 
-当前帧的位置坐标，若无有效状态则返回 undefined
+The current frame's position, returns undefined if no valid state
 
 ***
 
@@ -926,13 +926,13 @@ entity.addFeature(feature);
 
 > **getCurrentPositionECEF**(): `Cartesian3` \| `undefined`
 
-获取当前帧的实体 ECEF（地球固定坐标系）位置。
+Get the current frame's entity ECEF (Earth-Centered, Earth-Fixed) position.
 
 #### Returns
 
 `Cartesian3` \| `undefined`
 
-当前帧的 ECEF 位置坐标，若无有效状态则返回 undefined
+The current frame's ECEF position, returns undefined if no valid state
 
 ***
 
@@ -940,7 +940,7 @@ entity.addFeature(feature);
 
 > **getCurrentState**(): [`EntityTimeState`](../interfaces/EntityTimeState.md)
 
-获取当前状态
+Get current state
 
 #### Returns
 
@@ -952,7 +952,7 @@ entity.addFeature(feature);
 
 > **getCurrentTime**(): `JulianDate`
 
-获取当前时间
+Get current time
 
 #### Returns
 
@@ -1022,13 +1022,13 @@ entity.addFeature(feature);
 
 > **getId**(): `string`
 
-获取实体唯一标识 id。
+Get the entity unique identifier id.
 
 #### Returns
 
 `string`
 
-实体 id 字符串
+Entity id string
 
 ***
 
@@ -1036,13 +1036,13 @@ entity.addFeature(feature);
 
 > **getMatrix**(): `Matrix4`
 
-获取实体的仿真变换矩阵（由 Transformer 驱动，被动响应变换）。
+Get the entity simulation Transform matrix (driven by Transformer, passively responding to transformations).
 
 #### Returns
 
 `Matrix4`
 
-当前应用的 4x4 模型矩阵，无 Transformer 时返回单位矩阵
+The currently applied 4x4 model matrix, returns identity matrix when no Transformer is present
 
 ***
 
@@ -1050,10 +1050,10 @@ entity.addFeature(feature);
 
 > **getOrCreateBoundBoxFeature**(`options?`): [`BoundBoxFeature`](BoundBoxFeature.md)
 
-获取或创建与当前 Entity 强绑定的 BoundBoxFeature（单实例）。
+Get or create a BoundBoxFeature strongly bound to the current Entity (singleton).
 
-- Entity 内部会按需自动创建；外部不允许手动 add/remove BoundBoxFeature
-- 返回同一个实例，保证全局单例语义
+- Entity automatically creates it on demand internally; external manual add/remove of BoundBoxFeature is not allowed
+- Returns the same instance, ensuring global singleton semantics
 
 #### Parameters
 
@@ -1061,13 +1061,13 @@ entity.addFeature(feature);
 
 `Partial`\<[`BoundBoxOptions`](../interfaces/BoundBoxOptions.md)\>
 
-可选：创建/更新时要合并的参数
+Optional: parameters to merge when creating/updating
 
 #### Returns
 
 [`BoundBoxFeature`](BoundBoxFeature.md)
 
-BoundBoxFeature 实例
+BoundBoxFeature instance
 
 #### Example
 
@@ -1085,7 +1085,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **getParent**(): `Entity` \| `undefined`
 
-获取父实体（若可解析）。
+Get parent entity (if resolvable).
 
 #### Returns
 
@@ -1097,7 +1097,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **getPosition**(`time`): `Cartesian3` \| `undefined`
 
-获取指定时间的实体位置（笛卡尔坐标）。
+Get entity position at the specified time (Cartesian coordinates).
 
 #### Parameters
 
@@ -1105,13 +1105,13 @@ box.onClick(() => console.log("bound box clicked"));
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
 `Cartesian3` \| `undefined`
 
-指定时间的实体位置坐标，若无法解析则返回 undefined
+Entity position at the specified time, returns undefined if not resolvable
 
 ***
 
@@ -1151,7 +1151,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **getShowValue**(`time?`, `visitedIds?`): `boolean`
 
-获取指定时间的显示值（考虑父子链与可用时间区间）。
+Get the display value at the specified time (considering parent-child chain and available time range).
 
 #### Parameters
 
@@ -1159,7 +1159,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 `JulianDate`
 
-仿真时间（缺省时使用当前时间）
+Simulation time (defaults to current time if omitted)
 
 ##### visitedIds?
 
@@ -1175,7 +1175,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **getTimes**(): `JulianDate`[]
 
-获取 Daisy 轨迹采样对象中的时间集合；静态位置返回空数组。
+Get the time collection from the Daisy trajectory sample object; static position returns empty array.
 
 #### Returns
 
@@ -1187,7 +1187,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **getWorldMatrix**(`time?`): `Matrix4`
 
-获取指定时间的世界矩阵。
+Get the world matrix at the specified time.
 
 #### Parameters
 
@@ -1195,7 +1195,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
@@ -1207,7 +1207,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **hasUnthrottleableFeature**(): `boolean`
 
-判断实体当前是否包含至少一个不可截流的 Feature。
+Determine if the entity currently contains at least one non-throttleable Feature.
 
 #### Returns
 
@@ -1243,7 +1243,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **isOccludedEllipsoid**(`positionECEF`, `ellipsoid?`, `camera?`): `boolean`
 
-检测是否被椭球遮挡
+Check if occluded by ellipsoid
 
 #### Parameters
 
@@ -1269,7 +1269,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **isTrajectorySample**(): `boolean`
 
-判断实体位置是否为轨迹样本，一般不需要调用，内部使用
+Determine if the entity position is a trajectory sample, generally not needed externally, for internal use
 
 #### Returns
 
@@ -1281,7 +1281,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **isTrajectorySampleBodyFixed**(): `boolean`
 
-判断实体位置是否为天体固定坐标系下的轨迹采样。
+Determine if the entity position is a trajectory sample in the celestial body fixed coordinate system.
 
 #### Returns
 
@@ -1349,7 +1349,7 @@ box.onClick(() => console.log("bound box clicked"));
 
 > **LODInCameraCullingVolume**(`positionECEF`): `boolean`
 
-LOD检测是否在相机视锥内
+LOD check whether within the camera view frustum
 
 #### Parameters
 
@@ -1367,7 +1367,7 @@ LOD检测是否在相机视锥内
 
 > **LODIsOccludedEarth**(`positionECEF`): `boolean`
 
-LOD检测是否被地球遮挡
+LOD check whether occluded by the Earth
 
 #### Parameters
 
@@ -1385,10 +1385,10 @@ LOD检测是否被地球遮挡
 
 > **receiveFeatureEvent**(`event`, `payload?`): `void`
 
-接收来自 Feature 的“向上提交”交互事件，并转换为 Entity 自身事件触发。
+Receive "upward submission" interaction events from Features and convert them to Entity's own events.
 
-通常不需要手动调用；当 Feature 启用 `enableSubmitToEntity(true)` 后，
-Feature 的 click/dblclick/mouseenter/mouseleave 会自动提交到这里。
+Normally does not need to be called manually; when a Feature enables `enableSubmitToEntity(true)`,
+Feature's click/dblclick/mouseenter/mouseleave events are automatically submitted here.
 
 #### Parameters
 
@@ -1396,13 +1396,13 @@ Feature 的 click/dblclick/mouseenter/mouseleave 会自动提交到这里。
 
 `string`
 
-事件名（如 "click" / "dblclick" / "mouseenter" / "mouseleave"）
+Event name (e.g., "click" / "dblclick" / "mouseenter" / "mouseleave")
 
 ##### payload?
 
 `any`
 
-事件负载，通常来自场景交互拾取结果。
+Event payload, usually from scene interaction picking results.
 
 #### Returns
 
@@ -1426,7 +1426,7 @@ feature.enableSubmitToEntity(true);
 
 > **removeFeature**(`feature`): `void`
 
-移除组件
+Remove component
 
 #### Parameters
 
@@ -1434,7 +1434,7 @@ feature.enableSubmitToEntity(true);
 
 [`Feature`](Feature.md)
 
-要移除的 Feature 实例
+Feature instance to remove
 
 #### Returns
 
@@ -1485,7 +1485,7 @@ if (feature) entity.removeFeature(feature as any);
 
 > **removePath**(): `void`
 
-移除快速路径，仅在TrajectorySample位置模式下生效
+Remove fast path, only effective in TrajectorySample position mode
 
 #### Returns
 
@@ -1529,7 +1529,7 @@ if (feature) entity.removeFeature(feature as any);
 
 > **setBodyAxis**(`options`): `void`
 
-设置实体体轴,仅在3D模式下生效，仅用于调试
+Set entity body axis, only effective in 3D mode, for debugging only
 
 #### Parameters
 
@@ -1547,13 +1547,13 @@ if (feature) entity.removeFeature(feature as any);
 
 > **setBodyAxisVectors**(`value`): `void`
 
-设置实体体轴向量（会对输入向量进行归一化）。
+Set entity body axis vectors (input vectors will be normalized).
 
 #### Parameters
 
 ##### value
 
-x/y/z 轴向量
+x/y/z axis vectors
 
 ###### x
 
@@ -1577,7 +1577,7 @@ x/y/z 轴向量
 
 > **setBoundBoxDebugVisible**(`visible`): [`BoundBoxFeature`](BoundBoxFeature.md)
 
-设置 BoundBoxFeature 的 debug 可视状态（显示/隐藏）。
+Set BoundBoxFeature debug visualization state (show/hide).
 
 #### Parameters
 
@@ -1585,13 +1585,13 @@ x/y/z 轴向量
 
 `boolean`
 
-true 显示；false 隐藏
+true to show; false to hide
 
 #### Returns
 
 [`BoundBoxFeature`](BoundBoxFeature.md)
 
-BoundBoxFeature 实例
+BoundBoxFeature instance
 
 #### Example
 
@@ -1605,7 +1605,7 @@ entity.setBoundBoxDebugVisible(true);
 
 > **setParent**(`parent?`): `this`
 
-设置父实体（Entity 或 id）。
+Set parent entity (Entity or id).
 
 #### Parameters
 
@@ -1613,7 +1613,7 @@ entity.setBoundBoxDebugVisible(true);
 
 `string` \| `Entity`
 
-父实体或父实体 id
+Parent entity or parent entity id
 
 #### Returns
 
@@ -1625,9 +1625,9 @@ entity.setBoundBoxDebugVisible(true);
 
 > **setPath**(`path`): `void`
 
-为轨迹采样位置设置快速轨迹线。
+Set a fast trajectory line for the trajectory sample position.
 
-自动优化默认开启，会结合实体数量、速度和相机尺度调整采样间隔与点数上限。
+Auto-optimization is enabled by default, adjusting sampling interval and point count based on entity count, speed, and camera scale.
 
 #### Parameters
 
@@ -1657,7 +1657,7 @@ entity.setPath({
 
 > **setShowProperty**(`showProperty`): `void`
 
-设置显示属性，可传布尔值或实现 `getValue(time)` 的动态属性。
+Set display property, can pass a boolean or a dynamic property implementing `getValue(time)`.
 
 #### Parameters
 
@@ -1665,7 +1665,7 @@ entity.setPath({
 
 `any`
 
-显示属性
+Display property
 
 #### Returns
 
@@ -1677,7 +1677,7 @@ entity.setPath({
 
 > **supportsInertialSample**(): `boolean`
 
-是否支持关心坐标系
+Whether coordinate system is supported
 
 #### Returns
 
@@ -1691,7 +1691,7 @@ boolean
 
 > **tryGetWorldMatrix**(`time`): `Matrix4` \| `undefined`
 
-尝试获取指定时间的世界矩阵（缺少必要状态时返回 undefined）。
+Attempt to get the world matrix at the specified time (returns undefined if necessary state is missing).
 
 #### Parameters
 
@@ -1699,7 +1699,7 @@ boolean
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
@@ -1711,7 +1711,7 @@ boolean
 
 > **offClick**(`handler?`): `this`
 
-取消监听 Entity 点击事件。
+Unlisten to Entity click event.
 
 #### Parameters
 
@@ -1719,7 +1719,7 @@ boolean
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; if not provided, removes all listeners for this event.
 
 #### Returns
 
@@ -1734,7 +1734,7 @@ this
 
 > **offDblClick**(`handler?`): `this`
 
-取消监听 Entity 双击事件。
+Unlisten to Entity double-click event.
 
 #### Parameters
 
@@ -1742,7 +1742,7 @@ this
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; if not provided, removes all listeners for this event.
 
 #### Returns
 
@@ -1757,7 +1757,7 @@ this
 
 > **offMouseEnter**(`handler?`): `this`
 
-取消监听 Entity 鼠标移入事件。
+Unlisten to Entity mouse enter event.
 
 #### Parameters
 
@@ -1765,7 +1765,7 @@ this
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; if not provided, removes all listeners for this event.
 
 #### Returns
 
@@ -1780,7 +1780,7 @@ this
 
 > **offMouseLeave**(`handler?`): `this`
 
-取消监听 Entity 鼠标移出事件。
+Unlisten to Entity mouse leave event.
 
 #### Parameters
 
@@ -1788,7 +1788,7 @@ this
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; if not provided, removes all listeners for this event.
 
 #### Returns
 
@@ -1803,7 +1803,7 @@ this
 
 > **onBeforeDestory**(`callback`): `void`
 
-onBeforeDestroy 的历史别名（拼写保留兼容）。
+Historical alias of onBeforeDestroy (spelling preserved for compatibility).
  BEFORE_DESTROY
 
 #### Parameters
@@ -1818,7 +1818,7 @@ onBeforeDestroy 的历史别名（拼写保留兼容）。
 
 #### Deprecated
 
-请使用 onBeforeDestroy
+Use onBeforeDestroy instead
 
 ***
 
@@ -1826,7 +1826,7 @@ onBeforeDestroy 的历史别名（拼写保留兼容）。
 
 > **onBeforeDestroy**(`callback`): `void`
 
-监听销毁前回调。
+Listen for pre-destroy callback.
  BEFORE_DESTROY
 
 #### Parameters
@@ -1845,7 +1845,7 @@ onBeforeDestroy 的历史别名（拼写保留兼容）。
 
 > **onBeforeRegister**(`callback`): `void`
 
-监听注册前回调。
+Listen for pre-registration callback.
  BEFORE_REGISTER
 
 #### Parameters
@@ -1864,7 +1864,7 @@ onBeforeDestroy 的历史别名（拼写保留兼容）。
 
 > **onBeforeUpdate**(`callback`): `void`
 
-监听更新前回调。
+Listen for pre-update callback.
  BEFORE_UPDATE
 
 #### Parameters
@@ -1883,10 +1883,10 @@ onBeforeDestroy 的历史别名（拼写保留兼容）。
 
 > **onClick**(`handler`): `this`
 
-监听 Entity 点击事件。
+Listen to Entity click event.
 
-- 既可来自实体自身（comType === "Entity"）的拾取
-- 也可来自 Feature 的向上事件提交（Feature.enableSubmitToEntity）
+- Can come from picking the entity itself (comType === "Entity")
+- Can also come from Feature's upward event submission (Feature.enableSubmitToEntity)
 
 #### Parameters
 
@@ -1894,7 +1894,7 @@ onBeforeDestroy 的历史别名（拼写保留兼容）。
 
 (`e`) => `void`
 
-回调函数
+Callback function
 
 #### Returns
 
@@ -1917,7 +1917,7 @@ entity.onClick((e) => {
 
 > **onDblClick**(`handler`): `this`
 
-监听 Entity 双击事件。
+Listen to Entity double-click event.
 
 #### Parameters
 
@@ -1925,7 +1925,7 @@ entity.onClick((e) => {
 
 (`e`) => `void`
 
-回调函数
+Callback function
 
 #### Returns
 
@@ -1940,7 +1940,7 @@ this
 
 > **onDestory**(`callback`): `void`
 
-onDestroy 的历史别名（拼写保留兼容）。
+Historical alias of onDestroy (spelling preserved for compatibility).
  DESTROY
 
 #### Parameters
@@ -1955,7 +1955,7 @@ onDestroy 的历史别名（拼写保留兼容）。
 
 #### Deprecated
 
-请使用 onDestroy
+Use onDestroy instead
 
 ***
 
@@ -1963,7 +1963,7 @@ onDestroy 的历史别名（拼写保留兼容）。
 
 > **onDestroy**(`callback`): `void`
 
-监听销毁回调。
+Listen for destroy callback.
  DESTROY
 
 #### Parameters
@@ -1982,7 +1982,7 @@ onDestroy 的历史别名（拼写保留兼容）。
 
 > **onMouseEnter**(`handler`): `this`
 
-监听 Entity 鼠标移入事件。
+Listen to Entity mouse enter event.
 
 #### Parameters
 
@@ -1990,7 +1990,7 @@ onDestroy 的历史别名（拼写保留兼容）。
 
 (`e`) => `void`
 
-回调函数
+Callback function
 
 #### Returns
 
@@ -2005,7 +2005,7 @@ this
 
 > **onMouseLeave**(`handler`): `this`
 
-监听 Entity 鼠标移出事件。
+Listen to Entity mouse leave event.
 
 #### Parameters
 
@@ -2013,7 +2013,7 @@ this
 
 (`e`) => `void`
 
-回调函数
+Callback function
 
 #### Returns
 
@@ -2028,7 +2028,7 @@ this
 
 > **onRegister**(`callback`): `void`
 
-监听注册回调。
+Listen to registration callback.
  REGISTER
 
 #### Parameters
@@ -2047,7 +2047,7 @@ this
 
 > **onSelected**(`callback`): `void`
 
-选择事件
+Selection event
 
 #### Parameters
 
@@ -2067,7 +2067,7 @@ selected
 
 > **onUnSelected**(`callback`): `void`
 
-取消选择事件
+Deselection event
 
 #### Parameters
 
@@ -2087,7 +2087,7 @@ unSelected
 
 > **onUpdate**(`callback`): `void`
 
-监听更新回调。
+Listen for update callback.
  UPDATE
 
 #### Parameters

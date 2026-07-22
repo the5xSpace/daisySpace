@@ -8,11 +8,11 @@
 
 > **TilesetOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-TilesetFeature 配置。
+TilesetFeature configuration.
 
-用于加载和渲染 3D Tiles 数据集（如建筑物模型、点云、倾斜摄影等）。
+Used for loading and rendering 3D Tiles datasets (e.g., building models, point clouds, oblique photography, etc.).
 
-`url` 与 `ionAssetId` 二选一：优先使用 `url`。
+Either `url` or `ionAssetId`: `url` takes priority.
 
 ## Type Declaration
 
@@ -20,51 +20,51 @@ TilesetFeature 配置。
 
 > `optional` **dynamicScreenSpaceError?**: `boolean`
 
-是否启用动态屏幕空间误差。
+Whether to enable dynamic screen space error.
 
-启用后会根据帧率自适应调整渲染质量。
+When enabled, rendering quality adapts based on frame rate.
 
 ### id?
 
 > `optional` **id?**: `string`
 
-自定义标识。
+Custom identifier.
 
 ### ionAssetId?
 
 > `optional` **ionAssetId?**: `number`
 
-Ion 资产 资源 ID。
+Ion asset resource ID.
 
-与 `url` 二选一；使用时会从 Ion 资产 拉取对应资源。
+Mutually exclusive with `url`; when used, the corresponding resource is fetched from Ion assets.
 
 ### maximumMemoryUsage?
 
 > `optional` **maximumMemoryUsage?**: `number`
 
-最大内存使用量（单位：MB）。
+Maximum memory usage (unit: MB).
 
 ### maximumScreenSpaceError?
 
 > `optional` **maximumScreenSpaceError?**: `number`
 
-最大屏幕空间误差（单位：像素）。
+Maximum screen space error (unit: pixels).
 
-值越小渲染质量越高，但性能开销更大。
+Smaller values yield higher rendering quality but incur greater performance cost.
 
 ### modelMatrix?
 
 > `optional` **modelMatrix?**: `Daisy.Matrix4`
 
-模型变换矩阵。
+Model transformation matrix.
 
-用于对 3D Tiles 整体进行平移/旋转/缩放变换。
+Used for translating/rotating/scaling the 3D Tiles as a whole.
 
 ### show?
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -76,6 +76,6 @@ true
 
 > `optional` **url?**: `string`
 
-3D Tiles 数据集的 URL 地址。
+URL of the 3D Tiles dataset.
 
-与 `ionAssetId` 二选一；同时提供时优先使用 `url`。
+Mutually exclusive with `ionAssetId`; when both are provided, `url` takes priority.

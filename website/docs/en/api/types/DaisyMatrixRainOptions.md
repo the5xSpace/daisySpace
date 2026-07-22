@@ -8,7 +8,7 @@
 
 > **DaisyMatrixRainOptions** = `object`
 
-字符雨材质配置。
+Matrix rain material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **baseColor?**: [`DColor`](DColor.md)
 
-背景颜色。
+Background color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **columns?**: `number`
 
-字符列数。
+Number of character columns.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **glow?**: `number`
 
-发光强度。
+Glow intensity.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **rainColor?**: [`DColor`](DColor.md)
 
-字符雨颜色。
+Rain character color.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **rows?**: `number`
 
-字符行数。
+Number of character rows.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **speed?**: `number`
 
-下落速度。
+Fall speed.
 
 ***
 
@@ -72,4 +72,4 @@
 
 > `optional` **trailLength?**: `number`
 
-拖尾长度。
+Trail length.

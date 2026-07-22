@@ -32,7 +32,7 @@ Noise high value color.
 
 > `optional` **contrast?**: `number`
 
-Contrast, range 0 to 1.
+Brightness contrast, range 0 to 1.
 
 ***
 

@@ -6,9 +6,9 @@
 
 # Class: BodyTrackedCameraController
 
-天体机体跟踪相机控制器。
+Celestial body tracked camera controller.
 
-启用后会接管 Camera 的部分状态更新，使相机在天体自转/姿态变化时保持“相对机体坐标系”的稳定观察。
+When enabled, it takes over partial state updates of the Camera, keeping the observation stable relative to the body coordinate system during celestial body rotation/attitude changes.
 
 ## Accessors
 
@@ -18,7 +18,7 @@
 
 > **get** **state**(): [`BodyTrackedCameraState`](../interfaces/BodyTrackedCameraState.md) \| `undefined`
 
-当前跟踪状态；未启用时为 undefined。
+Current tracking state; undefined when not enabled.
 
 ##### Returns
 
@@ -30,7 +30,7 @@
 
 > **disable**(): `void`
 
-关闭机体跟踪，并恢复相机/控制器的默认行为。
+Disables body tracking and restores the default behavior of the camera/controller.
 
 #### Returns
 
@@ -42,7 +42,7 @@
 
 > **enable**(`body`, `options?`): `void`
 
-启用机体跟踪。
+Enables body tracking.
 
 #### Parameters
 
@@ -50,7 +50,7 @@
 
 [`CelestialEllipsoid`](PW.CelestialEllipsoid.md)
 
-目标天体椭球体
+Target celestial ellipsoid
 
 ##### options?
 
@@ -68,8 +68,8 @@
 
 > **pause**(): `void`
 
-暂停跟踪（保留内部状态，仅移除 preRender 和输入监听）。
-用于 flyTo 动画期间，防止控制器覆盖动画。
+Pauses tracking (preserves internal state, only removes preRender and input listeners).
+Used during flyTo animations to prevent the controller from overriding the animation.
 
 #### Returns
 
@@ -81,7 +81,7 @@
 
 > **resume**(): `void`
 
-恢复跟踪（重新安装 preRender 和输入监听，不重新捕获状态）。
+Resumes tracking (reinstalls preRender and input listeners without recapturing state).
 
 #### Returns
 

@@ -24,7 +24,7 @@ Grid background color.
 
 > `optional` **cellCount?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-Number of horizontal and vertical grid cells.
+Horizontal and vertical grid count.
 
 ***
 

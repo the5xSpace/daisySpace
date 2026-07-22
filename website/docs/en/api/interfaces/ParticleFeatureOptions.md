@@ -6,9 +6,9 @@
 
 # Interface: ParticleFeatureOptions
 
-Feature 基础配置选项。
+Feature base configuration options.
 
-所有具体 Feature 的 Options 类型都继承自该接口。
+All concrete Feature Options types inherit from this interface.
 
 ## Extends
 
@@ -50,7 +50,7 @@ Feature 基础配置选项。
 
 > `optional` **emitterDirection?**: `ParticleEmitterAttitude`
 
-发射器局部三轴姿态（heading / pitch / roll，单位：度），默认 `{ heading: 0, pitch: 0, roll: 0 }`（+Z 方向）。
+Emitter local three-axis attitude (heading / pitch / roll, unit: degrees), defaults to `{ heading: 0, pitch: 0, roll: 0 }` (+Z direction).
 
 ***
 
@@ -76,8 +76,8 @@ Feature 基础配置选项。
 
 > `optional` **followEntity?**: `boolean`
 
-为 true 时，已发射粒子以宿主本地坐标保存位置/速度，
-每帧再投回当前宿主矩阵，避免高速宿主把存活粒子甩到世界坐标中。
+When true, emitted particles store position/velocity in host local coordinates,
+and are transformed back into the current host matrix each frame, preventing a fast-moving host from leaving alive particles behind in world space.
 
 ***
 
@@ -85,13 +85,13 @@ Feature 基础配置选项。
 
 > `optional` **gravity?**: `number` \| `boolean` \| `Cartesian3` \| \{ `acceleration?`: `number`; `enabled?`: `boolean`; `vector?`: `Cartesian3`; \}
 
-粒子重力设置。
+Particle gravity settings.
 
-- `false`/未设置：关闭重力，保持 默认粒子行为
-- `true`：使用宿主 Entity 所属 `CelestialEllipsoid.surfaceGravity`
-- `number`：按宿主天体局部 -Up 方向施加指定 m/s²
-- `Cartesian3`：直接作为世界坐标加速度向量，单位 m/s²
-- object：可覆盖加速度大小、方向或启停
+- `false`/unset: disables gravity, keeps default particle behavior
+- `true`: uses the host Entity's `CelestialEllipsoid.surfaceGravity`
+- `number`: applies the specified m/s² along the host celestial body's local -Up direction
+- `Cartesian3`: directly used as a world-space acceleration vector in m/s²
+- object: can override acceleration magnitude, direction, or toggle
 
 ***
 
@@ -99,7 +99,7 @@ Feature 基础配置选项。
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom identifier (for underlying render object identification/retrieval).
 
 #### Inherited from
 
@@ -111,10 +111,10 @@ Feature 基础配置选项。
 
 > `optional` **image?**: [`ImageAssetSource`](../types/ImageAssetSource.md)
 
-粒子图片。支持：
-- 原始 URL / Canvas / Image（向后兼容）
-- 图片裁切 `{ image, x, y, width, height }`
-- 序列帧 `{ image, frameWidth, frameHeight, count, columns }`
+Particle image. Supports:
+- Raw URL / Canvas / Image (backward compatible)
+- Image crop `{ image, x, y, width, height }`
+- Sprite sheet `{ image, frameWidth, frameHeight, count, columns }`
 
 ***
 
@@ -128,9 +128,9 @@ Feature 基础配置选项。
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to participate in the bounding sphere aggregation of the parent Entity.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Suitable for Features that need to be included in camera zoom/flyTo framing. Guidelines, temporary effects, etc. can be disabled.
 
 #### Inherited from
 
@@ -208,7 +208,7 @@ Feature 基础配置选项。
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name (used for display/debugging).
 
 #### Inherited from
 
@@ -220,7 +220,7 @@ Feature 基础配置选项。
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay render pass.
 
 #### Inherited from
 
@@ -244,8 +244,8 @@ Feature 基础配置选项。
 
 > `optional` **preserveImageColor?**: `boolean`
 
-为 true 时保留贴图自身 RGB，仅使用 startColor/endColor 的 alpha 控制淡入淡出。
-图片裁切和序列帧默认启用，纯 canvas/image/URL 默认保留原有染色行为。
+When true, preserves the texture's own RGB and only uses startColor/endColor alpha for fade in/out.
+Image crop and sprite sheet modes enable this by default; plain canvas/image/URL retains original tinting behavior.
 
 ***
 
@@ -253,7 +253,7 @@ Feature 基础配置选项。
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render order value (lower values render first).
 
 #### Inherited from
 
@@ -271,7 +271,7 @@ Feature 基础配置选项。
 
 > `optional` **screenSpaceLimit?**: `boolean` \| [`ParticleScreenSpaceLimitOptions`](ParticleScreenSpaceLimitOptions.md)
 
-屏幕空间预算。用于喷焰等效果在相机抵近或拉远时保持合理的像素长度、密度和尺寸。
+Screen space budget. Used for effects like jet exhaust to maintain reasonable pixel length, density, and size as the camera moves closer or farther away.
 
 ***
 
@@ -315,7 +315,7 @@ Feature 基础配置选项。
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 

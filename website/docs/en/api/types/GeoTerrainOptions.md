@@ -8,7 +8,7 @@
 
 > **GeoTerrainOptions** = \{ `type`: [`Ellipsoid`](../enums/GeoTerrainType.md#ellipsoid); \} \| \{ `assetId?`: `number`; `requestVertexNormals?`: `boolean`; `requestWaterMask?`: `boolean`; `type`: [`Ion`](../enums/GeoTerrainType.md#cesiumion); \} \| \{ `type`: [`ArcGis`](../enums/GeoTerrainType.md#arcgis); \} \| \{ `provider`: `any`; `type`: [`Custom`](../enums/GeoTerrainType.md#custom); \}
 
-地形资源配置。
+Terrain resource configuration.
 
 ## Union Members
 
@@ -20,7 +20,7 @@
 
 > **type**: [`Ellipsoid`](../enums/GeoTerrainType.md#ellipsoid)
 
-地形类型：无高程的椭球体。
+Terrain type: ellipsoid without elevation.
 
 ***
 
@@ -32,25 +32,25 @@
 
 > `optional` **assetId?**: `number`
 
-Ion 资产 地形资产 ID。默认 `1`。
+Cesium Ion terrain asset ID. Default `1`.
 
 #### requestVertexNormals?
 
 > `optional` **requestVertexNormals?**: `boolean`
 
-是否请求地形顶点法线。坡度、坡向等地形材质依赖该数据。默认 `true`。
+Whether to request terrain vertex normals. Terrain materials such as slope and aspect depend on this data. Default `true`.
 
 #### requestWaterMask?
 
 > `optional` **requestWaterMask?**: `boolean`
 
-是否请求水陆遮罩。默认 `false`。
+Whether to request water mask. Default `false`.
 
 #### type
 
 > **type**: [`Ion`](../enums/GeoTerrainType.md#cesiumion)
 
-地形类型：Ion 资产。
+Terrain type: Cesium Ion asset.
 
 ***
 
@@ -62,7 +62,7 @@ Ion 资产 地形资产 ID。默认 `1`。
 
 > **type**: [`ArcGis`](../enums/GeoTerrainType.md#arcgis)
 
-地形类型：ArcGIS
+Terrain type: ArcGIS
 
 ***
 
@@ -74,10 +74,10 @@ Ion 资产 地形资产 ID。默认 `1`。
 
 > **provider**: `any`
 
-自定义地形数据源实例，仅建议高级用户使用。
+Custom terrain data source instance. Recommended for advanced users only.
 
 #### type
 
 > **type**: [`Custom`](../enums/GeoTerrainType.md#custom)
 
-地形类型：自定义
+Terrain type: Custom

@@ -8,7 +8,7 @@
 
 > **ArrowPointerOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-ArrowPointerFeature 配置。
+ArrowPointerFeature configuration.
 
 ## Type Declaration
 
@@ -16,7 +16,7 @@ ArrowPointerFeature 配置。
 
 > `optional` **arrowSize?**: `number`
 
-箭头纹理大小（像素）。
+Arrow texture size (in pixels).
 
 #### Default
 
@@ -28,7 +28,7 @@ ArrowPointerFeature 配置。
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-箭头颜色。
+Arrow color.
 
 #### Default
 
@@ -40,31 +40,31 @@ Color.WHITE
 
 > `optional` **distanceDisplayCondition?**: `Daisy.DistanceDisplayCondition`
 
-显示距离条件。
+Display distance condition.
 
-若不设置，内部会按视距策略使用默认值（通常为 NEAR）。
+If not set, the internal default is used per the view-distance strategy (typically NEAR).
 
 ### label?
 
 > `optional` **label?**: [`ArrowPointerLabelOptions`](ArrowPointerLabelOptions.md)
 
-箭头前端 label 配置。
+Label configuration at the arrow tip.
 
-可传 `ArrowPointerLabelOptions` 或直接传字符串（作为文本内容）。
+Accepts either `ArrowPointerLabelOptions` or a plain string (used as text content).
 
 ### length?
 
 > `optional` **length?**: `number`
 
-箭头长度（单位：米）。
+Arrow length (in meters).
 
-若设置该值，则优先使用“米长度”；否则使用 `lengthPx` 并依据当前视角换算米/像素。
+If set, "meters" mode takes priority; otherwise `lengthPx` is used and converted to meters/pixels based on the current view.
 
 ### lengthPx?
 
 > `optional` **lengthPx?**: `number`
 
-箭头长度（单位：屏幕像素）。
+Arrow length (in screen pixels).
 
 #### Default
 
@@ -76,7 +76,7 @@ Color.WHITE
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -88,17 +88,17 @@ true
 
 > **target**: [`ArrowPointerTarget`](ArrowPointerTarget.md)
 
-指向目标。
+Pointing target.
 
-支持坐标点、Daisy 实体、目标回调或内置目标名（sun/moon/mars/earthCenter）。
+Supports coordinate points, Daisy entities, target callbacks, or built-in target names (sun/moon/mars/earthCenter).
 
 ### width?
 
 > `optional` **width?**: `number`
 
-线宽（像素）。
+Line width (in pixels).
 
-最小为 1。
+Minimum value is 1.
 
 #### Default
 

@@ -8,11 +8,11 @@
 
 > **AtmosphereOptions** = `{ atmosphereRadius: number; mieAnisotropy: number; mieScaleHeight: number; mieScattering: Daisy.Cartesian3; planetRadius: number; rayleighScaleHeight: number; rayleighScattering: Daisy.Cartesian3 }`
 
-大气物理参数集合
+Collection of atmospheric physical parameters
 
-- 所有长度单位均为米
-- 散射与吸收系数为每通道的系数向量
-- mieAnisotropy 取值范围 [-1, 1]，常用 0.7~0.9
+- All length units are in meters
+- Scattering and absorption coefficients are per-channel coefficient vectors
+- mieAnisotropy range is [-1, 1]; commonly 0.7–0.9
 
 ## Properties
 
@@ -20,7 +20,7 @@
 
 > `optional` **absorption?**: `Daisy.Cartesian3`
 
-吸收系数（RGB 通道系数），可选，默认全 0
+Absorption coefficient (RGB channel coefficients). Optional; defaults to all zeros.
 
 ***
 
@@ -28,7 +28,7 @@
 
 > **atmosphereRadius**: `number`
 
-大气层外半径（米），决定遮罩范围
+Outer radius of the atmosphere layer (meters). Determines the mask extent.
 
 ***
 
@@ -36,7 +36,7 @@
 
 > `optional` **intensity?**: `number`
 
-强度偏移，负值减弱、正值增强，常用范围 [-1,1]
+Intensity offset. Negative values weaken, positive values strengthen; commonly in the range [-1, 1].
 
 ***
 
@@ -44,7 +44,7 @@
 
 > **mieAnisotropy**: `number`
 
-米氏相函数各向异性系数 g，[-1,1]，接近 1 表示明显前向散射
+Mie phase function anisotropy coefficient g. Range [-1, 1]; values closer to 1 indicate strong forward scattering.
 
 ***
 
@@ -52,7 +52,7 @@
 
 > **mieScaleHeight**: `number`
 
-米氏散射尺度高度 Hm（米），影响前向散射随高度衰减速率
+Mie scattering scale height Hm (meters). Affects the rate at which forward scattering decays with altitude.
 
 ***
 
@@ -60,7 +60,7 @@
 
 > **mieScattering**: `Daisy.Cartesian3`
 
-米氏散射系数（RGB 通道系数）
+Mie scattering coefficient (RGB channel coefficients).
 
 ***
 
@@ -68,7 +68,7 @@
 
 > **planetRadius**: `number`
 
-行星半径（米），用于确定地表位置
+Planet radius (meters). Used to determine the surface position.
 
 ***
 
@@ -76,7 +76,7 @@
 
 > **rayleighScaleHeight**: `number`
 
-瑞利散射尺度高度 Hr（米），影响蓝色散射强度随高度衰减速率
+Rayleigh scattering scale height Hr (meters). Affects the rate at which blue scattering intensity decays with altitude.
 
 ***
 
@@ -84,7 +84,7 @@
 
 > **rayleighScattering**: `Daisy.Cartesian3`
 
-瑞利散射系数（RGB 通道系数）
+Rayleigh scattering coefficient (RGB channel coefficients).
 
 ***
 
@@ -92,4 +92,4 @@
 
 > `optional` **steps?**: `number`
 
-采样步数（整数，>=1），影响视觉质量与性能，默认 12
+Sampling step count (integer, ≥ 1). Affects visual quality and performance. Defaults to 12.

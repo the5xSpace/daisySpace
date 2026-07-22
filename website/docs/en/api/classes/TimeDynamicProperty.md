@@ -6,9 +6,9 @@
 
 # Class: TimeDynamicProperty\<T\>
 
-按仿真时刻解析值的通用动态属性。
+A generic dynamic property that resolves values by simulation time.
 
-区间按添加顺序匹配；多个区间重叠时返回第一个命中的值。
+Intervals are matched in order of addition; when multiple intervals overlap, the first matching value is returned.
 
 ## Example
 
@@ -30,7 +30,7 @@ const valueAtNow = opacity.getValue(now);
 
 > **new TimeDynamicProperty**\<`T`\>(`options?`): `TimeDynamicProperty`\<`T`\>
 
-创建动态属性并复制初始区间。
+Creates a dynamic property and copies the initial interval.
 
 #### Parameters
 
@@ -48,7 +48,7 @@ const valueAtNow = opacity.getValue(now);
 
 > **addInterval**(`interval`): `void`
 
-追加一个时间区间；区间顺序决定重叠时的匹配优先级。
+Appends a time interval; the interval order determines the matching priority when overlapping.
 
 #### Parameters
 
@@ -66,7 +66,7 @@ const valueAtNow = opacity.getValue(now);
 
 > **getDefaultValue**(): `T` \| `undefined`
 
-获取当前默认值。
+Gets the current default value.
 
 #### Returns
 
@@ -78,7 +78,7 @@ const valueAtNow = opacity.getValue(now);
 
 > **getIntervals**(): [`TimeDynamicInterval`](../types/TimeDynamicInterval.md)\<`T`\>[]
 
-获取时间区间数组的浅拷贝。
+Gets a shallow copy of the time interval array.
 
 #### Returns
 
@@ -90,7 +90,7 @@ const valueAtNow = opacity.getValue(now);
 
 > **getValue**(`time`): `T` \| `undefined`
 
-获取指定时刻的第一个区间匹配值，未命中时返回默认值。
+Gets the first matching interval value at the specified time; returns the default value if no interval is hit.
 
 #### Parameters
 
@@ -108,7 +108,7 @@ const valueAtNow = opacity.getValue(now);
 
 > **setDefaultValue**(`value`): `void`
 
-设置未命中任何区间时使用的默认值。
+Sets the default value used when no interval is matched.
 
 #### Parameters
 

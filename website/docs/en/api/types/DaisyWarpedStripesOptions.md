@@ -8,7 +8,7 @@
 
 > **DaisyWarpedStripesOptions** = `object`
 
-扭曲条纹材质配置。
+Warped stripes material configuration.
 
 ## Properties
 
@@ -16,7 +16,7 @@
 
 > `optional` **colorA?**: [`DColor`](DColor.md)
 
-第一条纹颜色。
+First stripe color.
 
 ***
 
@@ -24,7 +24,7 @@
 
 > `optional` **colorB?**: [`DColor`](DColor.md)
 
-第二条纹颜色。
+Second stripe color.
 
 ***
 
@@ -32,7 +32,7 @@
 
 > `optional` **edge?**: `number`
 
-条纹边缘宽度。
+Stripe edge width.
 
 ***
 
@@ -40,7 +40,7 @@
 
 > `optional` **frequency?**: `number`
 
-条纹频率。
+Stripe frequency.
 
 ***
 
@@ -48,7 +48,7 @@
 
 > `optional` **glow?**: `number`
 
-发光强度。
+Glow intensity.
 
 ***
 
@@ -56,7 +56,7 @@
 
 > `optional` **opacity?**: `number`
 
-整体透明度。
+Overall opacity.
 
 ***
 
@@ -64,7 +64,7 @@
 
 > `optional` **scale?**: `number`
 
-条纹空间尺度。
+Stripe spatial scale.
 
 ***
 
@@ -72,7 +72,7 @@
 
 > `optional` **slant?**: `number`
 
-条纹倾斜量。
+Stripe slant amount.
 
 ***
 
@@ -80,7 +80,7 @@
 
 > `optional` **speed?**: `number`
 
-动画速度。
+Animation speed.
 
 ***
 
@@ -88,4 +88,4 @@
 
 > `optional` **warpStrength?**: `number`
 
-条纹扭曲强度。
+Stripe warp strength.

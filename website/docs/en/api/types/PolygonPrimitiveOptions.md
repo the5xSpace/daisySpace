@@ -8,16 +8,16 @@
 
 > **PolygonPrimitiveOptions** = `object`
 
-PolygonRenderable 创建参数。
+PolygonRenderable creation parameters.
 
 ## Remarks
 
-- `positions` 支持两种形态：
- - `Daisy.Cartesian3[]`：简单多边形顶点序列；
- - `Holes`：带洞多边形（外环 + 若干内环）。
-- 当传入 `Daisy.Cartesian3[]` 时，构造函数会在本地 ENU 平面上按角度排序顶点，
- 以降低“顶点顺序不正确导致自交/剖分异常”的概率。
-- `outline=true` 时，会额外创建一个 `PolygonOutlineGeometry` 的图元用于描边显示。
+- `positions` supports two forms:
+ - `Daisy.Cartesian3[]`: simple polygon vertex sequence;
+ - `Holes`: polygon with holes (outer ring + inner rings).
+- When passing `Daisy.Cartesian3[]`, the constructor sorts vertices by angle on the local ENU plane,
+  to reduce the probability of "self-intersection/tessellation errors caused by incorrect vertex order".
+- When `outline=true`, an additional `PolygonOutlineGeometry` primitive is created for outline display.
 
 ## Example
 
@@ -58,7 +58,7 @@ polygon.destroy();
 
 > `optional` **arcType?**: `Daisy.ArcType`
 
-弧线类型（大地线/等高线等）。
+Arc type (geodesic/rhumb line, etc.).
 
 #### Default
 
@@ -78,7 +78,7 @@ Daisy.ArcType.GEODESIC
 
 > `optional` **clampToGround?**: `boolean`
 
-是否贴地。
+Whether to clamp to ground.
 
 #### Default
 
@@ -92,7 +92,7 @@ false
 
 > `optional` **closeBottom?**: `boolean`
 
-是否封底（拉伸时有效）。
+Whether to close the bottom (effective when extruded).
 
 #### Default
 
@@ -106,7 +106,7 @@ true
 
 > `optional` **closeTop?**: `boolean`
 
-是否封顶（拉伸时有效）。
+Whether to close the top (effective when extruded).
 
 #### Default
 
@@ -126,7 +126,7 @@ true
 
 > `optional` **ellipsoid?**: `Daisy.Ellipsoid` \| [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-计算与投影使用的椭球体。
+Ellipsoid used for computation and projection.
 
 #### Default
 
@@ -140,7 +140,7 @@ CelestialEllipsoid.Earth()
 
 > `optional` **extrudedHeight?**: `number`
 
-拉伸高度（形成柱体），单位与 `height` 一致。
+Extruded height (forms a column), unit is the same as `height`.
 
 ***
 
@@ -154,7 +154,7 @@ CelestialEllipsoid.Earth()
 
 > `optional` **granularity?**: `number`
 
-角度粒度（弧度）。
+Angular granularity (radians).
 
 #### Default
 
@@ -168,7 +168,7 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **height?**: `number`
 
-多边形高度（相对椭球体）。
+Polygon height (relative to the ellipsoid).
 
 ***
 
@@ -176,7 +176,7 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-填充材质。
+Fill material.
 
 #### Default
 
@@ -190,7 +190,7 @@ Daisy.Color.YELLOW
 
 > `optional` **name?**: `string`
 
-调试/标识名称。
+Debug/identifier name.
 
 ***
 
@@ -198,7 +198,7 @@ Daisy.Color.YELLOW
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓线。
+Whether to draw outline.
 
 #### Default
 
@@ -212,7 +212,7 @@ false
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色
+Outline color
 
 ***
 
@@ -220,7 +220,7 @@ false
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度
+Outline width
 
 #### Default
 
@@ -234,7 +234,7 @@ false
 
 > `optional` **perPositionHeight?**: `boolean`
 
-是否使用每点高度（positions 的 z 分量）。
+Whether to use per-vertex height (z-component of positions).
 
 #### Default
 
@@ -248,7 +248,7 @@ false
 
 > `optional` **positions?**: `Daisy.Cartesian3`[] \| [`Holes`](Holes.md) \| `Daisy.PolygonHierarchy`
 
-多边形顶点或带洞层级。
+Polygon vertices or hierarchy with holes.
 
 #### Default
 
@@ -268,7 +268,7 @@ false
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -282,7 +282,7 @@ true
 
 > `optional` **stRotation?**: `number`
 
-纹理坐标旋转角（弧度）。
+Texture coordinate rotation angle (radians).
 
 #### Default
 
@@ -296,7 +296,7 @@ true
 
 > `optional` **textureCoordinates?**: `Daisy.Cartesian2`[] \| `TextureCoordinatesHoles` \| `Daisy.PolygonHierarchy`
 
-纹理坐标（与 positions 一一对应）。
+Texture coordinates (one-to-one with positions).
 
 ***
 
@@ -304,7 +304,7 @@ true
 
 > `optional` **vertexFormat?**: `Daisy.VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 

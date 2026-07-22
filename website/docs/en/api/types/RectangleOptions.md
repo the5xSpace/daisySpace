@@ -8,9 +8,9 @@
 
 > **RectangleOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-RectangleFeature 配置。
+RectangleFeature configuration.
 
-用于在场景中绘制矩形几何体（如区域覆盖、地面标记等）。
+Used to draw rectangular geometry in the scene (e.g., area overlays, ground markers, etc.).
 
 ## Type Declaration
 
@@ -18,18 +18,18 @@ RectangleFeature 配置。
 
 > `optional` **distanceDisplayCondition?**: `Daisy.DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
-当相机距离超出该范围时会自动隐藏。
+When the camera distance exceeds this range, it is automatically hidden.
 
 ### ellipsoid?
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-贴地计算与天体跟随所使用的天体椭球。
+The celestial ellipsoid used for ground-clamping and celestial body following.
 
-注意：一旦该组件通过 Entity.addFeature() 添加到实体上，会被实体的 celestialEllipsoid 覆盖，
-组件将始终遵循实体的天体椭球配置。
+Note: Once this component is added to an entity via Entity.addFeature(), it will be overridden by the entity's celestialEllipsoid,
+and the component will always follow the entity's celestial ellipsoid configuration.
 
 #### Default
 
@@ -41,15 +41,15 @@ CelestialEllipsoid.Earth()
 
 > `optional` **extrudedHeight?**: `number`
 
-挤出高度（单位：米）。
+Extruded height (in meters).
 
-设置后矩形会从地面挤出到指定高度，形成立体效果。
+When set, the rectangle extrudes from the ground to the specified height, creating a 3D effect.
 
 ### fill?
 
 > `optional` **fill?**: `boolean`
 
-是否填充面。
+Whether to fill the face.
 
 #### Default
 
@@ -61,7 +61,7 @@ true
 
 > `optional` **granularity?**: `number`
 
-采样粒度（单位：弧度）。
+Sampling granularity (in radians).
 
 #### Default
 
@@ -73,7 +73,7 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **height?**: `number`
 
-矩形高度（单位：米）。
+Rectangle height (in meters).
 
 #### Default
 
@@ -85,9 +85,9 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-矩形材质。
+Rectangle material.
 
-支持 `Daisy.Material` 或颜色（`DColor` / CSS 色值字符串）。
+Supports `Daisy.Material` or colors (`DColor` / CSS color string).
 
 #### Default
 
@@ -99,7 +99,7 @@ Color.BLUE.withAlpha(0.5)
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓线。
+Whether to draw outline.
 
 #### Default
 
@@ -111,7 +111,7 @@ false
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色。
+Outline color.
 
 #### Default
 
@@ -123,7 +123,7 @@ Color.BLACK
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度（单位：像素）。
+Outline width (in pixels).
 
 #### Default
 
@@ -135,15 +135,15 @@ Color.BLACK
 
 > `optional` **rectangle?**: `Daisy.Rectangle`
 
-矩形区域（西/南/东/北，单位：弧度）。
+Rectangle area (west/south/east/north, in radians).
 
-不传时默认使用父实体位置附近的极小矩形。
+When not set, defaults to a tiny rectangle near the parent entity's position.
 
 ### rotation?
 
 > `optional` **rotation?**: `number`
 
-矩形旋转角（单位：弧度）。
+Rectangle rotation angle (in radians).
 
 #### Default
 
@@ -155,7 +155,7 @@ Color.BLACK
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -167,7 +167,7 @@ true
 
 > `optional` **stRotation?**: `number`
 
-纹理旋转角（单位：弧度）。
+Texture rotation angle (in radians).
 
 #### Default
 
@@ -179,9 +179,9 @@ true
 
 > `optional` **updateThrottleMs?**: `number`
 
-更新节流时间（单位：毫秒）。
+Update throttle time (in milliseconds).
 
-适用于高频更新时降低重算开销。
+Suitable for reducing recalculation overhead during high-frequency updates.
 
 #### Default
 
@@ -193,7 +193,7 @@ true
 
 > `optional` **vertexFormat?**: `Daisy.VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 

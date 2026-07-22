@@ -1,0 +1,564 @@
+[
+  {
+    "id": 1,
+    "files": [
+      "api/classes/MaterialFactory.md"
+    ],
+    "blocks": 262
+  },
+  {
+    "id": 2,
+    "files": [
+      "api/classes/ExtraCamera.md"
+    ],
+    "blocks": 179
+  },
+  {
+    "id": 3,
+    "files": [
+      "api/classes/Camera.md"
+    ],
+    "blocks": 166
+  },
+  {
+    "id": 4,
+    "files": [
+      "api/classes/Entity.md"
+    ],
+    "blocks": 149
+  },
+  {
+    "id": 5,
+    "files": [
+      "api/classes/EllipticalConeFeature.md"
+    ],
+    "blocks": 117
+  },
+  {
+    "id": 6,
+    "files": [
+      "api/classes/CylinderFeature.md"
+    ],
+    "blocks": 112
+  },
+  {
+    "id": 7,
+    "files": [
+      "api/classes/CubeFeature.md"
+    ],
+    "blocks": 111
+  },
+  {
+    "id": 8,
+    "files": [
+      "api/classes/EllipsoidFeature.md"
+    ],
+    "blocks": 109
+  },
+  {
+    "id": 9,
+    "files": [
+      "api/classes/ModelFeature.md"
+    ],
+    "blocks": 105
+  },
+  {
+    "id": 10,
+    "files": [
+      "api/classes/BoundBoxFeature.md"
+    ],
+    "blocks": 103
+  },
+  {
+    "id": 11,
+    "files": [
+      "api/classes/PW.NearEarthOrbiter.md",
+      "api/classes/BillboardFeature.md",
+      "api/classes/PW.Satellite.md",
+      "api/classes/TrailPathFeature.md"
+    ],
+    "blocks": 391
+  },
+  {
+    "id": 12,
+    "files": [
+      "api/classes/PolylineFeature.md",
+      "api/classes/UI.PopoverFeature.md",
+      "api/classes/FreeGeometryFeature.md",
+      "api/classes/ArrowPointerFeature.md"
+    ],
+    "blocks": 365
+  },
+  {
+    "id": 13,
+    "files": [
+      "api/classes/CapsuleParticleFeature.md",
+      "api/classes/ParticleFeature.md",
+      "api/classes/TilesetFeature.md",
+      "api/classes/CorridorFeature.md"
+    ],
+    "blocks": 355
+  },
+  {
+    "id": 14,
+    "files": [
+      "api/classes/CoverageAreaFeature.md",
+      "api/classes/EllipseFeature.md",
+      "api/classes/PolygonFeature.md",
+      "api/classes/PolylineVolumeFeature.md"
+    ],
+    "blocks": 352
+  },
+  {
+    "id": 15,
+    "files": [
+      "api/classes/RectangleFeature.md",
+      "api/classes/ShaderPolygonFeature.md",
+      "api/classes/UI.LabelFeature.md",
+      "api/classes/WallFeature.md"
+    ],
+    "blocks": 352
+  },
+  {
+    "id": 16,
+    "files": [
+      "api/classes/Feature.md",
+      "api/classes/GeoJsonFeature.md",
+      "api/classes/PointFeature.md",
+      "api/classes/SphereFeature.md"
+    ],
+    "blocks": 348
+  },
+  {
+    "id": 17,
+    "files": [
+      "api/classes/BoxFeature.md",
+      "api/classes/HeatmapFeature.md",
+      "api/classes/PW.Sensor.md",
+      "api/classes/PW.CelestialBody.md"
+    ],
+    "blocks": 326
+  },
+  {
+    "id": 18,
+    "files": [
+      "api/classes/PW.Mars.md",
+      "api/classes/PW.Moon.md",
+      "api/classes/PW.GroundStation.md",
+      "api/classes/PW.Rocket.md"
+    ],
+    "blocks": 276
+  },
+  {
+    "id": 19,
+    "files": [
+      "api/classes/PW.Aircraft.md",
+      "api/classes/PW.Vehicle.md",
+      "api/classes/PW.CelestialEllipsoid.md",
+      "api/classes/PW.Vessel.md"
+    ],
+    "blocks": 257
+  },
+  {
+    "id": 20,
+    "files": [
+      "guide/feature.md",
+      "api/classes/PW.FreeObject.md",
+      "api/classes/Engine.md",
+      "api/classes/PW.BaseObject.md"
+    ],
+    "blocks": 238
+  },
+  {
+    "id": 21,
+    "files": [
+      "guide/rocket.md",
+      "api/classes/TrajectorySample.md",
+      "api/interfaces/ModelOptions.md",
+      "api/classes/TrajectorySampleBodyFixed.md"
+    ],
+    "blocks": 208
+  },
+  {
+    "id": 22,
+    "files": [
+      "api/interfaces/CapsuleParticleOptions.md",
+      "guide/coverage-features.md",
+      "guide/satellite.md",
+      "guide/entity.md",
+      "guide/materials.md",
+      "api/types/DaisyBuiltinMaterialOptions.md"
+    ],
+    "blocks": 290
+  },
+  {
+    "id": 23,
+    "files": [
+      "api/types/BillboardOptions.md",
+      "api/types/PW.SensorOptions.md",
+      "guide/popover.md",
+      "api/interfaces/UI.LabelOptions.md",
+      "guide/sensor.md",
+      "api/classes/TimelineWidget.md"
+    ],
+    "blocks": 238
+  },
+  {
+    "id": 24,
+    "files": [
+      "api/interfaces/UI.PopoverOptions.md",
+      "guide/event-system.md",
+      "guide/layers-reference.md",
+      "api/interfaces/Plane.EclipticPlaneOptions.md",
+      "api/classes/TimeSchedule.md",
+      "api/interfaces/EllipticalConeOptions.md"
+    ],
+    "blocks": 222
+  },
+  {
+    "id": 25,
+    "files": [
+      "api/classes/TaskGanttWidget.md",
+      "guide/celestial-bodies.md",
+      "guide/engine.md",
+      "api/interfaces/CylinderOptions.md",
+      "guide/builtin-assets.md",
+      "api/interfaces/CubeOptions.md"
+    ],
+    "blocks": 199
+  },
+  {
+    "id": 26,
+    "files": [
+      "api/classes/PW.Link.md",
+      "api/interfaces/PathComponentOptions.md",
+      "api/types/EllipseOptions.md",
+      "guide/collision-detection.md",
+      "guide/constellation-coverage.md",
+      "api/classes/SunConeLayer.md"
+    ],
+    "blocks": 171
+  },
+  {
+    "id": 27,
+    "files": [
+      "api/classes/ViewDistanceStrategy.md",
+      "api/interfaces/DaisyLabelOptions.md",
+      "api/types/CorridorOptions.md",
+      "api/types/PW.FreeObjectConfig.md",
+      "guide/layers.md",
+      "guide/time-schedule.md"
+    ],
+    "blocks": 162
+  },
+  {
+    "id": 28,
+    "files": [
+      "api/classes/ControlPanelWidget.md",
+      "api/interfaces/ILayer.md",
+      "api/types/PolygonOptions.md",
+      "api/types/PolylineOptions.md",
+      "guide/elliptical-cone.md",
+      "guide/view-distance.md"
+    ],
+    "blocks": 156
+  },
+  {
+    "id": 29,
+    "files": [
+      "api/classes/ArcRotateCameraMaintainer.md",
+      "api/classes/CelestialMarkerWidget.md",
+      "api/classes/FrameRateWidget.md",
+      "api/classes/MarkerWidget.md",
+      "api/classes/SimulationTimeDisplayWidget.md",
+      "api/classes/TaskTimeLineWidget.md"
+    ],
+    "blocks": 150
+  },
+  {
+    "id": 30,
+    "files": [
+      "api/classes/WatermarkWidget.md",
+      "api/classes/Widget.md",
+      "api/variables/Utils.md",
+      "guide/custom-shader-material.md",
+      "guide/ground-station.md",
+      "guide/shader-polygon.md"
+    ],
+    "blocks": 150
+  },
+  {
+    "id": 31,
+    "files": [
+      "api/interfaces/FreeGeometryOptions.md",
+      "api/types/RectangleOptions.md",
+      "guide/line-features.md",
+      "api/classes/Layer.md",
+      "api/interfaces/IWidget.md",
+      "api/interfaces/PointComOptions.md"
+    ],
+    "blocks": 141
+  },
+  {
+    "id": 32,
+    "files": [
+      "api/types/WallOptions.md",
+      "guide/camera.md",
+      "guide/solid-geometry.md",
+      "api/classes/GeoLayerManager.md",
+      "api/classes/PW.OrbitElementsViewComponent.md",
+      "api/classes/PW.RouteComponent.md"
+    ],
+    "blocks": 135
+  },
+  {
+    "id": 33,
+    "files": [
+      "api/interfaces/BoundBoxOptions.md",
+      "api/types/PolylineVolumeOptions.md",
+      "guide/czml.md",
+      "api/classes/CelestialGeodeticGridLayers.md",
+      "api/classes/CelestialSphereGridLayers.md",
+      "api/classes/EarthGridLayers.md"
+    ],
+    "blocks": 129
+  },
+  {
+    "id": 34,
+    "files": [
+      "api/classes/FeatureEventHandle.md",
+      "api/classes/NightTileLayer.md",
+      "api/classes/Plane.EclipticReferencePlaneLayers.md",
+      "api/classes/TimeTask.md",
+      "api/interfaces/EllipsoidOptions.md",
+      "api/interfaces/PW.IComponent.md"
+    ],
+    "blocks": 126
+  },
+  {
+    "id": 35,
+    "files": [
+      "api/interfaces/SphereOptions.md",
+      "api/interfaces/TaskGanttWidgetOptions.md",
+      "api/types/PolygonPrimitiveOptions.md",
+      "guide/beam-projector.md",
+      "guide/free-geometry.md",
+      "guide/gpu-compute.md"
+    ],
+    "blocks": 126
+  },
+  {
+    "id": 36,
+    "files": [
+      "guide/trail-path.md"
+    ],
+    "blocks": 21
+  },
+  {
+    "id": 37,
+    "files": [
+      "api/classes/Plane.EclipticPlaneLayers.md",
+      "api/classes/Plane.PlaneLayer.md",
+      "api/classes/PW.BaseComponent.md",
+      "api/classes/PW.GroundTrackComponent.md",
+      "api/interfaces/GeoGlobeOptions.md",
+      "api/interfaces/PW.RouteComponentOptions.md",
+      "api/classes/Plane.EquatorialPlaneLayers.md",
+      "api/classes/PW.CameraWeatherParticleComponent.md"
+    ],
+    "blocks": 158
+  },
+  {
+    "id": 38,
+    "files": [
+      "api/classes/PW.RealtimeOrbitComponent.md",
+      "api/classes/PW.WeatherParticleComponent.md",
+      "api/interfaces/TimeFormatDateTime.md",
+      "api/types/SimulationTimeWidgetOptions.md",
+      "guide/constellation.md",
+      "guide/index.md",
+      "guide/route-aircraft.md",
+      "api/classes/PW.JetEngine.md"
+    ],
+    "blocks": 151
+  },
+  {
+    "id": 39,
+    "files": [
+      "api/classes/PW.PropulsionComponent.md",
+      "api/interfaces/BoxComponentEntityComOptions.md",
+      "api/interfaces/WmtsImageryOptions.md",
+      "api/types/PW.NearEarthOrbiterConfig.md",
+      "guide/particle-system.md",
+      "guide/performance.md",
+      "api/interfaces/ParticleFeatureOptions.md",
+      "api/interfaces/TaskTimeLineWidgetOptions.md"
+    ],
+    "blocks": 142
+  },
+  {
+    "id": 40,
+    "files": [
+      "api/types/PW.LinkOptions.md",
+      "guide/model-tileset.md",
+      "guide/time-format.md",
+      "api/classes/BoundBoxCollection.md",
+      "api/interfaces/Plane.EquatorialPlaneOptions.md",
+      "api/interfaces/WmsImageryOptions.md",
+      "api/types/PW.SensorFlowConfigDetail.md",
+      "api/types/TilesetOptions.md"
+    ],
+    "blocks": 131
+  },
+  {
+    "id": 41,
+    "files": [
+      "guide/installation.md",
+      "guide/link.md",
+      "api/interfaces/TaskTimelineEntry.md",
+      "api/types/ArrowPointerOptions.md",
+      "api/types/AttitudeSphereOptions.md",
+      "api/types/DaisyTopoRippleOptions.md",
+      "api/types/ModelExplosionOptions.md",
+      "api/types/PW.FootprintDrawOptions.md"
+    ],
+    "blocks": 122
+  },
+  {
+    "id": 42,
+    "files": [
+      "api/classes/AttitudeSphereMatrix4Renderable.md",
+      "api/classes/AttitudeSphereRenderable.md",
+      "api/classes/PolygonRenderable.md",
+      "api/interfaces/EntityComOptions.md",
+      "api/interfaces/XYZImageryOptions.md",
+      "api/types/AttitudeSphereOverlayOptions.md",
+      "guide/area-features.md",
+      "api/classes/TimePointTask.md"
+    ],
+    "blocks": 111
+  },
+  {
+    "id": 43,
+    "files": [
+      "api/interfaces/SunConeLayerOptions.md",
+      "api/interfaces/TaskGanttState.md",
+      "api/interfaces/WatermarkWidgetOptions.md",
+      "api/types/PolylineGroundOptions.md",
+      "api/interfaces/AltitudeProfile.md",
+      "api/types/DaisySdfRingsOptions.md",
+      "api/types/GeoSkyOptions.md",
+      "api/types/PW.AtmosphereOptions.md"
+    ],
+    "blocks": 100
+  },
+  {
+    "id": 44,
+    "files": [
+      "api/types/PW.AtmosphereUniforms.md",
+      "guide/widgets-task.md",
+      "guide/widgets-timeline.md",
+      "api/classes/CzmlImporter.md",
+      "api/classes/CzmlPlusImporter.md",
+      "api/classes/ZIndexManager.md",
+      "api/interfaces/ArcGisImageryOptions.md",
+      "api/interfaces/CapsuleParticleEmitter2DOptions.md"
+    ],
+    "blocks": 91
+  },
+  {
+    "id": 45,
+    "files": [
+      "api/interfaces/CelestialGeodeticGridOptions.md",
+      "api/interfaces/earthGridOptions.md",
+      "api/interfaces/IonImageryOptions.md",
+      "api/interfaces/NightTileLayerOptions.md",
+      "api/interfaces/OsmImageryOptions.md",
+      "api/types/DaisyWarpedStripesOptions.md",
+      "api/types/ModelAnimationPlayOptions.md",
+      "api/types/PW.BeamFootprint.md"
+    ],
+    "blocks": 88
+  },
+  {
+    "id": 46,
+    "files": [
+      "api/types/PW.CelestialBodyConfig.md",
+      "guide/widgets-control-panel.md"
+    ],
+    "blocks": 22
+  },
+  {
+    "id": 47,
+    "files": [
+      "api/classes/PolylineGroundRenderable.md",
+      "api/classes/PW.CelestialAtmosphereFeature.md",
+      "api/interfaces/CelestialSphereGridOptions.md",
+      "api/interfaces/Plane.PlaneLayerOptions.md",
+      "api/types/DaisyAdvancedWaterOptions.md",
+      "api/types/DaisyDitherFadeOptions.md",
+      "api/types/EllipticConeGeometryOptions.md",
+      "api/types/PW.FootprintRangeRendererOptions.md",
+      "api/types/PW.NearEarthOrbiterTrajectoryRequest.md",
+      "guide/markers-labels.md"
+    ],
+    "blocks": 100
+  },
+  {
+    "id": 48,
+    "files": [
+      "api/classes/BuildModuleUrl.md",
+      "api/enums/EmitDirection.md",
+      "api/interfaces/CoverageAreaOptions.md",
+      "api/interfaces/FeatureOptions.md",
+      "api/interfaces/GeoImageryBaseOptions.md",
+      "api/interfaces/GeoJsonFeatureOptions.md",
+      "api/interfaces/Plane.EclipticReferencePlaneOptions.md",
+      "api/interfaces/TimelineLabelOptions.md",
+      "api/types/ActiveModelAnimationInfo.md",
+      "api/types/DaisyCircuitOptions.md"
+    ],
+    "blocks": 90
+  },
+  {
+    "id": 49,
+    "files": [
+      "api/types/DaisyMatrixRainOptions.md",
+      "api/types/GeoTerrainOptions.md",
+      "api/types/PW.FreeObjectCollisionBallOptions.md",
+      "api/types/TimeDynamicInterval.md",
+      "guide/widgets-celestial-marker.md",
+      "api/classes/AttitudeSphereOverlay.md",
+      "api/classes/BodyTrackedCameraController.md",
+      "api/classes/TimeDynamicProperty.md",
+      "api/enums/ViewDistanceLevel.md",
+      "api/interfaces/CoverageLabelOptions.md"
+    ],
+    "blocks": 85
+  },
+  {
+    "id": 50,
+    "files": [
+      "api/interfaces/EngineLensFlareOptions.md",
+      "api/interfaces/PW.PropulsionOptions.md",
+      "api/interfaces/TaskStepEntry.md",
+      "api/interfaces/TimeFormatOptions.md",
+      "api/interfaces/TimeFormatParts.md",
+      "api/types/CylinderGeometryOptions.md",
+      "api/types/DaisyAuroraOptions.md",
+      "api/types/DaisyHalftoneOptions.md",
+      "api/types/DaisyHeatmapOptions.md",
+      "api/types/DaisyMarbleOptions.md"
+    ],
+    "blocks": 80
+  },
+  {
+    "id": 51,
+    "files": [
+      "api/types/FollowTargetOptions.md",
+      "api/types/PW.FootprintLngLatBounds.md",
+      "api/types/PW.PropulsionParticleOptions.md"
+    ],
+    "blocks": 24
+  }
+]

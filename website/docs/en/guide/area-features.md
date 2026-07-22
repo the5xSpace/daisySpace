@@ -1,10 +1,10 @@
-# 面要素
+# Area Features
 
-面要素（Area Features）在场景中绘制填充多边形、椭圆和矩形几何体，支持贴地、挤出和轮廓线。
+Area Features draw filled polygon, ellipse, and rectangle geometries in the scene, supporting ground-clamp, extrusion, and outline.
 
 ## PolygonFeature
 
-`PolygonFeature` 绘制填充多边形，支持孔洞（hole）递归结构，可贴地拉伸为立体建筑体块。
+`PolygonFeature` draws filled polygons, supports recursive hole structures, and can extrude upward into solid building volumes.
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -43,47 +43,47 @@ entity.addFeature(new Daisy.PolygonFeature({
 }))
 ```
 
-`pathway` 支持三种输入形式：
+`pathway` supports three input forms:
 
-| 形式 | 说明 |
-|------|------|
-| `Cartesian3[]` | 简单点列 |
-| `Holes` | `{ positions, holes? }` 递归结构，支持孔洞 |
-| `PolygonHierarchy` | 多边形层级结构 |
+| Form | Description |
+|------|-------------|
+| `Cartesian3[]` | Simple point list |
+| `Holes` | `{ positions, holes? }` recursive structure, supports holes |
+| `PolygonHierarchy` | Polygon hierarchy structure |
 
-### 参数表
+### Parameters
 
-| 参数 | 类型 | 默认 | 说明 |
-|------|------|:---:|------|
-| `pathway` | `Pathway \| Holes \| PolygonHierarchy` | — | 顶点/孔洞输入 |
-| `show` | `boolean` | true | 显隐 |
-| `name` | `string` | — | 名称 |
-| `material` | `DMaterial` | — | 材质 |
-| `height` | `number` | 0.1 | 高度（米） |
-| `extrudedHeight` | `number` | — | 挤出高度（米） |
-| `vertexFormat` | `VertexFormat` | `DEFAULT` | 顶点格式 |
-| `stRotation` | `number` | 0 | 纹理旋转（弧度） |
-| `granularity` | `number` | `RADIANS_PER_DEGREE` | 采样粒度（弧度） |
-| `perPositionHeight` | `boolean` | false | 是否每个点独立高度 |
-| `closeTop` | `boolean` | true | 挤出时顶部是否闭合 |
-| `closeBottom` | `boolean` | true | 挤出时底部是否闭合 |
-| `clampToGround` | `boolean` | false | 是否贴地 |
-| `depthWriteEnabled` | `boolean` | false | 是否写深度 |
-| `outline` | `boolean` | false | 是否绘制轮廓线 |
-| `outlineColor` | `DColor` | — | 轮廓颜色 |
-| `outlineWidth` | `number` | 1 | 轮廓宽度（像素） |
-| `fill` | `boolean` | — | 是否填充面 |
-| `arcType` | `ArcType` | `GEODESIC` | 连线弧线类型 |
-| `textureCoordinates` | `Cartesian2[] \| TextureCoordinatesHoles` | — | 纹理坐标输入 |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | 显示距离条件 |
-| `ellipsoid` | `CelestialEllipsoid` | `Earth()` | 天体椭球 |
-| `updateThrottleMs` | `number` | 400 | 更新节流时间（毫秒） |
-| `autoSortPositions` | `boolean` | — | 是否自动排序（避免自交） |
-| `rebuildThrottleMs` | `number` | — | 重建节流时间（毫秒） |
+| Parameter | Type | Default | Description |
+|-----------|------|:-------:|-------------|
+| `pathway` | `Pathway \| Holes \| PolygonHierarchy` | — | Vertex/hole input |
+| `show` | `boolean` | true | Visibility |
+| `name` | `string` | — | Name |
+| `material` | `DMaterial` | — | Material |
+| `height` | `number` | 0.1 | Height (m) |
+| `extrudedHeight` | `number` | — | Extrusion height (m) |
+| `vertexFormat` | `VertexFormat` | `DEFAULT` | Vertex format |
+| `stRotation` | `number` | 0 | Texture rotation (radians) |
+| `granularity` | `number` | `RADIANS_PER_DEGREE` | Sample granularity (radians) |
+| `perPositionHeight` | `boolean` | false | Whether each point has independent height |
+| `closeTop` | `boolean` | true | Close top when extruding |
+| `closeBottom` | `boolean` | true | Close bottom when extruding |
+| `clampToGround` | `boolean` | false | Whether to clamp to ground |
+| `depthWriteEnabled` | `boolean` | false | Whether to write depth |
+| `outline` | `boolean` | false | Whether to draw outline |
+| `outlineColor` | `DColor` | — | Outline color |
+| `outlineWidth` | `number` | 1 | Outline width (pixels) |
+| `fill` | `boolean` | — | Whether to fill the face |
+| `arcType` | `ArcType` | `GEODESIC` | Connection arc type |
+| `textureCoordinates` | `Cartesian2[] \| TextureCoordinatesHoles` | — | Texture coordinate input |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Display distance condition |
+| `ellipsoid` | `CelestialEllipsoid` | `Earth()` | Celestial ellipsoid |
+| `updateThrottleMs` | `number` | 400 | Update throttle time (ms) |
+| `autoSortPositions` | `boolean` | — | Whether to auto-sort (avoid self-intersection) |
+| `rebuildThrottleMs` | `number` | — | Rebuild throttle time (ms) |
 
 ## EllipseFeature
 
-`EllipseFeature` 以指定中心点和半轴长度绘制椭圆，适合表示覆盖区域、轨道投影等。
+`EllipseFeature` draws an ellipse centered at a specified point with given semi-axis lengths. Suitable for coverage areas, orbit projections, etc.
 
 ```typescript
 // 以父实体位置为中心的椭圆
@@ -108,34 +108,34 @@ entity.addFeature(new Daisy.EllipseFeature({
 }))
 ```
 
-### 参数表
+### Parameters
 
-| 参数 | 类型 | 默认 | 说明 |
-|------|------|:---:|------|
-| `center` | `Cartesian3 \| Entity \| REF` | `REF.PARENT_ENTITY` | 椭圆中心点 |
-| `semiMajorAxis` | `number` | 1000 | 长半轴长度（米） |
-| `semiMinorAxis` | `number` | 500 | 短半轴长度（米） |
-| `height` | `number` | 0.1 | 椭圆高度（米） |
-| `extrudedHeight` | `number` | — | 挤出高度（米） |
-| `rotation` | `number` | 0 | 椭圆旋转角（弧度） |
-| `stRotation` | `number` | 0 | 纹理旋转角（弧度） |
-| `granularity` | `number` | `RADIANS_PER_DEGREE` | 采样粒度（弧度） |
-| `vertexFormat` | `VertexFormat` | `POSITION_AND_NORMAL` | 顶点格式 |
-| `material` | `DMaterial` | `BLUE.alpha(0.5)` | 椭圆材质 |
-| `outline` | `boolean` | false | 是否绘制轮廓线 |
-| `outlineColor` | `DColor` | `BLACK` | 轮廓颜色 |
-| `outlineWidth` | `number` | 1 | 轮廓宽度（像素） |
-| `show` | `boolean` | true | 显隐 |
-| `fill` | `boolean` | true | 是否填充面 |
-| `clampToGround` | `boolean` | false | 是否贴地 |
-| `classificationType` | `ClassificationType` | `BOTH` | 贴地分类目标 |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | 显示距离条件 |
-| `ellipsoid` | `CelestialEllipsoid` | `Earth()` | 天体椭球 |
-| `updateThrottleMs` | `number` | 400 | 更新节流时间（毫秒） |
+| Parameter | Type | Default | Description |
+|-----------|------|:-------:|-------------|
+| `center` | `Cartesian3 \| Entity \| REF` | `REF.PARENT_ENTITY` | Ellipse center point |
+| `semiMajorAxis` | `number` | 1000 | Semi-major axis length (m) |
+| `semiMinorAxis` | `number` | 500 | Semi-minor axis length (m) |
+| `height` | `number` | 0.1 | Ellipse height (m) |
+| `extrudedHeight` | `number` | — | Extrusion height (m) |
+| `rotation` | `number` | 0 | Ellipse rotation angle (radians) |
+| `stRotation` | `number` | 0 | Texture rotation angle (radians) |
+| `granularity` | `number` | `RADIANS_PER_DEGREE` | Sample granularity (radians) |
+| `vertexFormat` | `VertexFormat` | `POSITION_AND_NORMAL` | Vertex format |
+| `material` | `DMaterial` | `BLUE.alpha(0.5)` | Ellipse material |
+| `outline` | `boolean` | false | Whether to draw outline |
+| `outlineColor` | `DColor` | `BLACK` | Outline color |
+| `outlineWidth` | `number` | 1 | Outline width (pixels) |
+| `show` | `boolean` | true | Visibility |
+| `fill` | `boolean` | true | Whether to fill face |
+| `clampToGround` | `boolean` | false | Whether to clamp to ground |
+| `classificationType` | `ClassificationType` | `BOTH` | Ground-clamp classification target |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Display distance condition |
+| `ellipsoid` | `CelestialEllipsoid` | `Earth()` | Celestial ellipsoid |
+| `updateThrottleMs` | `number` | 400 | Update throttle time (ms) |
 
 ## RectangleFeature
 
-`RectangleFeature` 以地理矩形（西/南/东/北弧度坐标）绘制矩形几何体。
+`RectangleFeature` draws rectangle geometry from a geographic rectangle (west/south/east/north in radians).
 
 ```typescript
 // 地理矩形（西/南/东/北，单位：弧度）
@@ -152,31 +152,31 @@ entity.addFeature(new Daisy.RectangleFeature({
 }))
 ```
 
-### 参数表
+### Parameters
 
-| 参数 | 类型 | 默认 | 说明 |
-|------|------|:---:|------|
-| `rectangle` | `Rectangle` | — | 矩形区域（西/南/东/北，弧度） |
-| `height` | `number` | 0.1 | 矩形高度（米） |
-| `extrudedHeight` | `number` | — | 挤出高度（米） |
-| `rotation` | `number` | 0 | 矩形旋转角（弧度） |
-| `stRotation` | `number` | 0 | 纹理旋转角（弧度） |
-| `granularity` | `number` | `RADIANS_PER_DEGREE` | 采样粒度（弧度） |
-| `vertexFormat` | `VertexFormat` | `POSITION_AND_NORMAL` | 顶点格式 |
-| `material` | `DMaterial` | `BLUE.alpha(0.5)` | 矩形材质 |
-| `outline` | `boolean` | false | 是否绘制轮廓线 |
-| `outlineColor` | `DColor` | `BLACK` | 轮廓颜色 |
-| `outlineWidth` | `number` | 1 | 轮廓宽度（像素） |
-| `show` | `boolean` | true | 显隐 |
-| `fill` | `boolean` | true | 是否填充面 |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | 显示距离条件 |
-| `ellipsoid` | `CelestialEllipsoid` | `Earth()` | 天体椭球 |
-| `updateThrottleMs` | `number` | 400 | 更新节流时间（毫秒） |
+| Parameter | Type | Default | Description |
+|-----------|------|:-------:|-------------|
+| `rectangle` | `Rectangle` | — | Rectangle region (west/south/east/north, radians) |
+| `height` | `number` | 0.1 | Rectangle height (m) |
+| `extrudedHeight` | `number` | — | Extrusion height (m) |
+| `rotation` | `number` | 0 | Rectangle rotation angle (radians) |
+| `stRotation` | `number` | 0 | Texture rotation angle (radians) |
+| `granularity` | `number` | `RADIANS_PER_DEGREE` | Sample granularity (radians) |
+| `vertexFormat` | `VertexFormat` | `POSITION_AND_NORMAL` | Vertex format |
+| `material` | `DMaterial` | `BLUE.alpha(0.5)` | Rectangle material |
+| `outline` | `boolean` | false | Whether to draw outline |
+| `outlineColor` | `DColor` | `BLACK` | Outline color |
+| `outlineWidth` | `number` | 1 | Outline width (pixels) |
+| `show` | `boolean` | true | Visibility |
+| `fill` | `boolean` | true | Whether to fill face |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Display distance condition |
+| `ellipsoid` | `CelestialEllipsoid` | `Earth()` | Celestial ellipsoid |
+| `updateThrottleMs` | `number` | 400 | Update throttle time (ms) |
 
-> **相关 API**：[PolygonFeature](/en/api/classes/PolygonFeature) · [EllipseFeature](/en/api/classes/EllipseFeature) · [RectangleFeature](/en/api/classes/RectangleFeature)
+> **相关 API**：[PolygonFeature](/api/classes/PolygonFeature) · [EllipseFeature](/api/classes/EllipseFeature) · [RectangleFeature](/api/classes/RectangleFeature)
 
 ---
 
 <!--
-  示例参考: [Area feature demos](https://github.com/the5xSpace/daisySpace/tree/main/playground/src/demos/features)
+   Example reference: [Area feature demos](https://github.com/the5xSpace/daisySpace/tree/main/playground/src/demos/features)
 -->
