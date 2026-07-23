@@ -1,6 +1,6 @@
-# Celestial Marker
+# Celestial Markers
 
-[CelestialMarkerWidget](/en/api/classes/CelestialMarkerWidget) draws point markers and text labels for celestial bodies (Earth, Moon, Sun, Mars) in the 3D scene. Inherits from [MarkerWidget](/en/api/classes/MarkerWidget).
+[CelestialMarkerWidget](/en/api/classes/CelestialMarkerWidget) draws point markers and text labels for celestial bodies (Earth, Moon, Sun, and Mars) in a 3D scene. It extends [MarkerWidget](/en/api/classes/MarkerWidget).
 
 ## Basic Usage
 
@@ -22,19 +22,19 @@ engine.addWidget(new Daisy.CelestialMarkerWidget({
 
 | Option | Type | Default | Description |
 |------|------|:---:|------|
-| `earth` | boolean | `false` | Whether to show Earth marker |
-| `moon` | boolean | `false` | Whether to show Moon marker |
-| `sun` | boolean | `false` | Whether to show Sun marker |
-| `mars` | boolean | `false` | Whether to show Mars marker |
-| `showDistance` | number | `90000000` | Maximum camera distance for marker visibility (meters) |
-| `pointSize` | number | `8` | Marker point pixel size |
+| `earth` | boolean | `false` | Whether to display the Earth marker |
+| `moon` | boolean | `false` | Whether to display the Moon marker |
+| `sun` | boolean | `false` | Whether to display the Sun marker |
+| `mars` | boolean | `false` | Whether to display the Mars marker |
+| `showDistance` | number | `90000000` | Maximum camera distance at which markers are visible, in meters |
+| `pointSize` | number | `8` | Marker point size in pixels |
 | `font` | string | `"14px sans-serif"` | Label font |
 
-Marker targets are determined at Widget construction; to change targets at runtime, destroy the old Widget and create a new one.
+Marker targets are determined when the Widget is constructed. To change targets at runtime, destroy the old Widget and create a new one.
 
 ## Custom Targets
 
-`CelestialMarkerWidget` supports arbitrary marker targets via the `custom` field:
+`CelestialMarkerWidget` supports arbitrary marker targets through the `custom` field:
 
 ```typescript
 new Daisy.CelestialMarkerWidget({
@@ -50,6 +50,6 @@ new Daisy.CelestialMarkerWidget({
 })
 ```
 
-Each [MarkerTarget](/en/api/interfaces/MarkerTarget) contains `label`, `color`, `getPosition(time)`.
+Each [MarkerTarget](/en/api/interfaces/MarkerTarget) contains `label`, `color`, and `getPosition(time)`.
 
 > **Related API**: [CelestialMarkerWidget](/en/api/classes/CelestialMarkerWidget) · [MarkerWidget](/en/api/classes/MarkerWidget)

@@ -136,6 +136,7 @@
 | `HemisphereEmitter` | [HemisphereEmitter](HemisphereEmitter.md) |
 | `ImageAsset` | [ImageAsset](ImageAsset.md) |
 | `KeyboardControl` | [KeyboardControl](KeyboardControl.md) |
+| `LabelFeature` | [LabelFeature](LabelFeature.md) |
 | `Layer` | [Layer](Layer.md) |
 | `LineEmitter` | [LineEmitter](LineEmitter.md) |
 | `LiteController` | [LiteController](LiteController.md) |
@@ -229,7 +230,6 @@
 | `TrajectorySample` | [TrajectorySample](TrajectorySample.md) |
 | `TrajectorySampleBodyFixed` | [TrajectorySampleBodyFixed](TrajectorySampleBodyFixed.md) |
 | `TrajectoryWebGpuBackend` | [TrajectoryWebGpuBackend](TrajectoryWebGpuBackend.md) |
-| `LabelFeature` | [LabelFeature](UI.LabelFeature.md) |
 | `PopoverFeature` | [PopoverFeature](UI.PopoverFeature.md) |
 | `VibrationEmitter` | [VibrationEmitter](VibrationEmitter.md) |
 | `ViewDistanceStrategy` | [ViewDistanceStrategy](ViewDistanceStrategy.md) |

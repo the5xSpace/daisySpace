@@ -106,6 +106,22 @@
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`CameraWeatherParticleComponent`](PW.CameraWeatherParticleComponent.md).[`isDestroyed`](PW.CameraWeatherParticleComponent.md#isdestroyed)
+
+***
+
 ### name
 
 #### Get Signature

@@ -56,6 +56,18 @@ PhysicalWorld 基础对象（语义对象）。
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+***
+
 ### options
 
 #### Get Signature

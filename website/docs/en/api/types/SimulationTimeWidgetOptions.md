@@ -8,7 +8,7 @@
 
 > **SimulationTimeWidgetOptions** = `object`
 
-仿真时间显示控件配置项。
+Configuration options for the simulation-time display widget.
 
 ## Example
 
@@ -31,7 +31,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **backgroundOpacity?**: `number`
 
-背景透明度，范围建议为 0 至 1。
+Background opacity; a range from 0 to 1 is recommended.
 
 ***
 
@@ -39,7 +39,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **border?**: `boolean`
 
-是否显示边框。默认 `true`。
+Whether to show the border. Defaults to `true`.
 
 ***
 
@@ -47,7 +47,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **borderOpacity?**: `number`
 
-边框透明度，范围建议为 0 至 1。
+Border opacity; a range from 0 to 1 is recommended.
 
 ***
 
@@ -55,7 +55,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **className?**: `string`
 
-追加到控件根节点的 CSS 类名。
+CSS class name appended to the widget root node.
 
 ***
 
@@ -63,7 +63,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **offset?**: `object`
 
-相对预设位置的像素偏移；默认 x 为 12、y 为 20。
+Pixel offset relative to the preset position; x defaults to 12 and y to 20.
 
 #### x?
 
@@ -79,37 +79,37 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **position?**: `object`
 
-自定义 CSS 定位；设置后忽略 `preset` 和 `offset`。
+Custom CSS positioning; when set, `preset` and `offset` are ignored.
 
 #### bottom?
 
 > `optional` **bottom?**: `number` \| `string`
 
-底部距离；数字按像素解释。
+Distance from the bottom; numeric values are interpreted as pixels.
 
 #### left?
 
 > `optional` **left?**: `number` \| `string`
 
-左侧距离；数字按像素解释。
+Distance from the left; numeric values are interpreted as pixels.
 
 #### right?
 
 > `optional` **right?**: `number` \| `string`
 
-右侧距离；数字按像素解释。
+Distance from the right; numeric values are interpreted as pixels.
 
 #### top?
 
 > `optional` **top?**: `number` \| `string`
 
-顶部距离；数字按像素解释。
+Distance from the top; numeric values are interpreted as pixels.
 
 #### transform?
 
 > `optional` **transform?**: `string`
 
-额外 CSS transform。
+Additional CSS transform.
 
 ***
 
@@ -117,7 +117,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **preset?**: [`PanelPreset`](PanelPreset.md)
 
-预设位置。默认 `rightBottom`。
+Preset position. Defaults to `rightBottom`.
 
 ***
 
@@ -125,7 +125,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **radius?**: [`SimulationTimeWidgetRadius`](SimulationTimeWidgetRadius.md)
 
-圆角预设。默认 `xl`。
+Corner-radius preset. Defaults to `xl`.
 
 ***
 
@@ -133,7 +133,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **theme?**: [`SimulationTimeWidgetTheme`](SimulationTimeWidgetTheme.md)
 
-明暗主题。默认 `dark`。
+Light or dark theme. Defaults to `dark`.
 
 ***
 
@@ -141,7 +141,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **timeClassName?**: `string`
 
-追加到时间文本节点的 CSS 类名。
+CSS class name appended to the time-text node.
 
 ***
 
@@ -149,7 +149,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **timeLabel?**: [`TimelineLabelOptions`](../interfaces/TimelineLabelOptions.md)
 
-局部时间格式；未设置时使用引擎全局时间格式。
+Local time format; when unset, the Engine's global time format is used.
 
 ***
 
@@ -157,7 +157,7 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **title?**: `string`
 
-标题文本；空字符串不显示标题。
+Title text; an empty string hides the title.
 
 ***
 
@@ -165,4 +165,4 @@ if (ui) new Daisy.SimulationTimeWidget(ui, ui.overlay, {
 
 > `optional` **titleClassName?**: `string`
 
-追加到标题节点的 CSS 类名。
+CSS class name appended to the title node.

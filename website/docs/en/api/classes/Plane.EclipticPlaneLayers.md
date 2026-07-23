@@ -6,12 +6,12 @@
 
 # Class: EclipticPlaneLayers
 
-黄道面（地心视角下的黄道平面）。
+Ecliptic plane, viewed from the geocentric perspective.
 
-特性：
-- 黄道面圆盘：使用“单位圆几何 + modelMatrix 缩放/旋转/平移”，避免 AU 量级带来的精度问题
-- 黄道面边线：地心为锚点，半径默认为实时日地距离（可用 options.radius 覆盖）
-- 月度辅助：可选显示每月连线/日期标签/点位（日期格式：YYYY/MM/DD）
+Features:
+- Ecliptic-plane disk: uses unit-circle geometry with modelMatrix scaling, rotation, and translation to avoid precision issues at AU scale
+- Ecliptic-plane boundary: anchored at the geocenter, with the radius defaulting to the real-time Sun-Earth distance (can be overridden by options.radius)
+- Monthly helpers: optionally display monthly lines, date labels, and points (date format: YYYY/MM/DD)
 
 ## Example
 
@@ -73,7 +73,7 @@ viewer.addViewLayer(new Daisy.EclipticPlaneLayers({
 
 > `optional` **engine?**: [`Engine`](Engine.md)
 
-引擎实例。
+Engine instance.
 
 #### Inherited from
 
@@ -95,7 +95,7 @@ viewer.addViewLayer(new Daisy.EclipticPlaneLayers({
 
 > `optional` **id?**: `string`
 
-图层唯一标识符。
+Unique layer identifier.
 
 #### Inherited from
 
@@ -107,8 +107,8 @@ viewer.addViewLayer(new Daisy.EclipticPlaneLayers({
 
 > `optional` **isDestroyed?**: `boolean` = `false`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+The collection manager uses this to skip destroyed singleton instances.
 
 #### Inherited from
 
@@ -120,7 +120,7 @@ viewer.addViewLayer(new Daisy.EclipticPlaneLayers({
 
 > `optional` **key?**: `string`
 
-Widget 标识键（用于单例去重）。
+Widget key (used for singleton deduplication).
 
 #### Inherited from
 
@@ -156,7 +156,7 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **name?**: `string`
 
-图层名称。
+Layer name.
 
 #### Inherited from
 
@@ -184,8 +184,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **rebuildOnMorph?**: `boolean` = `true`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether to rebuild through destroy -> register during scene morphing (2D/3D).
+Defaults to true; UI Widgets should generally set this to false.
 
 #### Inherited from
 
@@ -207,8 +207,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **singleton?**: `boolean`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether this is a singleton Widget.
+- If true, only one instance with the same key is allowed within an Engine.
 
 #### Inherited from
 
@@ -226,8 +226,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **zoomIgnored?**: `boolean` = `false`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore this Widget during camera aggregation.
+UI controller Widgets should set this to true.
 
 #### Inherited from
 
@@ -269,7 +269,7 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`engine`): `void`
 
-在2D空间创建图层。
+Creates the layer in 2D space.
 
 #### Parameters
 
@@ -277,7 +277,7 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](Engine.md)
 
-引擎实例。
+Engine instance.
 
 #### Returns
 
@@ -293,7 +293,7 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-销毁 一般不需要手动调用
+Destroys the layer; manual invocation is usually unnecessary.
 
 #### Returns
 
@@ -329,7 +329,7 @@ UI 控制器类 widget 应设为 true。
 
 > **is3d**(): `boolean`
 
-判断是否是3d模式
+Checks whether the current mode is 3D.
 
 #### Returns
 
@@ -345,9 +345,9 @@ UI 控制器类 widget 应设为 true。
 
 > **refresh**(): `void`
 
-外部配置变化后的同步刷新入口。
+Entry point for synchronized refreshes after external configuration changes.
 
-子类可重写此方法刷新 DOM、Canvas 或缓存状态。
+Subclasses can override this method to refresh the DOM, Canvas, or cached state.
 
 #### Returns
 
@@ -363,7 +363,7 @@ UI 控制器类 widget 应设为 true。
 
 > **offMorphSwitch**(`callback`): `void`
 
-移除投影切换事件监听
+Removes the projection-switch event listener.
 
 #### Parameters
 
@@ -387,7 +387,7 @@ MORPH_SWITCH
 
 > **onMorphSwitch**(`callback`): `void`
 
-监听投影切换事件
+Listens for projection-switch events.
 
 #### Parameters
 

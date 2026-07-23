@@ -17,9 +17,13 @@ const credit = new Daisy.Credit('<a href="https://cesium.com/" target="_blank"><
 
 ## Param
 
+**html**
+
 An string representing an html code snippet
 
 ## Param
+
+**showOnScreen**
 
 If true, the credit will be visible in the main credit container. Otherwise, it will appear in a popover. All credits are displayed `inline`, if you have an image we recommend sizing it correctly to match the text or use css to `vertical-align` it.
 

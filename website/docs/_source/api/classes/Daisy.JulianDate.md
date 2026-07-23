@@ -14,13 +14,19 @@ TimeStandard.TAI.
 
 ## Param
 
+**julianDayNumber**
+
 The Julian Day Number representing the number of whole days. Fractional days will also be handled correctly.
 
 ## Param
 
+**secondsOfDay**
+
 The number of seconds into the current Julian Day Number. Fractional seconds, negative seconds and seconds greater than a day will be handled correctly.
 
 ## Param
+
+**timeStandard**
 
 The time standard in which the first two parameters are defined.
 

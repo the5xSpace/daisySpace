@@ -54,7 +54,7 @@ Number of circumferential segments, range 3 to 512. Default 64.
 
 > `optional` **show?**: `boolean`
 
-是否显示，默认 true。
+Whether to show the layer; defaults to true.
 
 ***
 

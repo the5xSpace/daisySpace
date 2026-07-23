@@ -6,13 +6,13 @@
 
 # Class: NearEarthOrbiter
 
-NearEarthOrbiter: Near-Earth orbit targets (satellites/space stations/debris, etc.).
+NearEarthOrbiter: Low-Earth orbit target (satellites, space stations, debris, etc.).
 
-Capabilities:
+Provides:
 - Fetch TLE by NORAD Catalog Number (with caching)
-- Accept general orbit source inputs (TLE / OMM XML / JSON GP)
-- Real-time propagation using general orbit sources (optional)
-- Build ephemeris sampling trajectories (TrajectorySample) over a time range
+- Accept general orbit source input (TLE / OMM XML / JSON GP)
+- Real-time propagation using general orbit source (optional)
+- Build ephemeris sampled trajectory (TrajectorySample) over a time range
 
 ## Example
 
@@ -50,13 +50,13 @@ Creates a NearEarthOrbiter.
 
 [`NearEarthOrbiterConfig`](../types/PW.NearEarthOrbiterConfig.md)
 
-Configuration (including orbit source and propagation strategy)
+Configuration (includes orbit source and propagation strategy)
 
 ##### celestialEllipsoid?
 
 [`CelestialEllipsoid`](PW.CelestialEllipsoid.md) = `...`
 
-Host celestial body (default: Earth)
+Parent celestial body (default Earth)
 
 #### Returns
 
@@ -104,7 +104,7 @@ Host celestial body (default: Earth)
 
 > **get** **entity**(): [`Entity`](Entity.md) \| `CelestialEntity`
 
-Gets the host Entity (used for mounting Features, interaction events, updates, etc.).
+Gets the host Entity (for mounting Features, interaction events, updates, etc.).
 
 ##### Returns
 
@@ -122,9 +122,9 @@ Gets the host Entity (used for mounting Features, interaction events, updates, e
 
 > **get** **options**(): [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
 
-Raw snapshot of object creation/configuration parameters (extended by different subclasses).
+Raw snapshot of object creation/configuration parameters (subclasses extend the structure).
 
-Note: This is the source of "semantic configuration", not the rendered result. Rendering is completed by _applyConfig + Feature/Component.
+Note: this is the source of the "semantic configuration", not the rendered result. Rendering is realized through _applyConfig + Feature/Component.
 
 ##### Returns
 
@@ -150,7 +150,7 @@ Note: This is the source of "semantic configuration", not the rendered result. R
 
 > **set** **orientation**(`value`): `void`
 
-Convenience setter for orientation (writes to host Entity.orientation).
+Convenient orientation setter (writes to host Entity.orientation).
 
 ##### Parameters
 
@@ -174,10 +174,10 @@ Convenience setter for orientation (writes to host Entity.orientation).
 
 > **get** **position**(): [`ObjectPositon`](../types/PW.ObjectPositon.md)
 
-Sets object position (supports static coordinates or sampling trajectories).
+Sets the object position (supports static coordinates or sampled trajectories).
 
-- Synchronized to host entity.position after assignment
-- TrajectorySample with inertial frame support is not allowed for CelestialEntity (non-Earth celestial bodies)
+- Writes to host entity.position after assignment
+- CelestialEntity (non-Earth bodies) does not allow TrajectorySample in inertial frame
 
 ##### Example
 
@@ -193,7 +193,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **set** **position**(`value`): `void`
 
-Convenience setter for position (supports static coordinates or sampling trajectories).
+Convenient position setter (supports static coordinates or sampled trajectories).
 
 ##### Parameters
 
@@ -253,7 +253,7 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **addGroundTrack**(`options?`): [`GroundTrackComponent`](PW.GroundTrackComponent.md)
 
-Adds a real ground-track scrolling trajectory component.
+Adds a real-time ground track component.
 
 #### Parameters
 
@@ -291,7 +291,7 @@ Adds a real ground-track scrolling trajectory component.
 
 > **addOrbitElementsView**(`options?`): [`OrbitElementsViewComponent`](PW.OrbitElementsViewComponent.md)
 
-Adds an orbit elements geometry view component.
+Adds an orbital elements view component.
 
 #### Parameters
 
@@ -335,7 +335,7 @@ Adds an orbit elements geometry view component.
 
 > **addRealtimeOrbit**(`options?`): [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
 
-Adds a real-time orbit ring component.
+Adds a real-time orbit component.
 
 #### Parameters
 
@@ -356,8 +356,8 @@ Adds a real-time orbit ring component.
 Adds a sensor.
 
 Notes:
-- Orbiting targets usually want sensors "mounted at the body frame origin"
-- A default position is injected here so the sensor is not affected by object position write strategies
+- Orbital targets typically expect the sensor to be "installed at the origin of the body coordinate system".
+- Injects a default position so the sensor is unaffected by object position write strategies
 
 #### Parameters
 
@@ -379,7 +379,7 @@ Notes:
 
 > **applyEphemerisTrajectory**(`params`): [`TrajectorySample`](TrajectorySample.md)
 
-Legacy compatibility entry point.
+Legacy name compatibility entry.
 
 #### Parameters
 
@@ -403,7 +403,7 @@ sat.applyTrajectory({ stepSeconds: 30 });
 
 > **applyTrajectory**(`params?`): [`TrajectorySample`](TrajectorySample.md)
 
-Shorthand entry point for writing trajectory samples.
+Shortcut entry for writing trajectory samples.
 
 Default behavior:
 - Automatically uses the current scene's start/end time
@@ -432,10 +432,10 @@ sat.applyTrajectory({ stepSeconds: 30 });
 
 > **bindEngine**(`engine`): `void`
 
-Binds to the Engine and completes registration.
+Binds to Engine and completes registration.
 
 Additional behavior:
-- If automatic trajectory is not explicitly disabled and an orbit source already exists, executes `applyTrajectory()` once after binding
+- If auto-trajectory is not disabled and an orbit source exists, automatically executes `applyTrajectory()` after binding
 
 #### Parameters
 
@@ -457,11 +457,11 @@ Additional behavior:
 
 > **buildEphemerisTrajectory**(`params`): [`TrajectorySample`](TrajectorySample.md)
 
-Builds ephemeris trajectory sampling (TrajectorySample) over a time range.
+Builds ephemeris trajectory samples (TrajectorySample) over a time range.
 
 Notes:
-- This method drives the target via "offline sampling + interpolation"
-- You can choose not to use this method if you have enabled real-time propagation
+- This method drives the target through "offline sampling + interpolation".
+- If real-time propagation is enabled, this method is optional
 
 #### Parameters
 
@@ -529,7 +529,7 @@ Clears the ephemeris cache.
 
 > **destroy**(): `void`
 
-Destroys the object (cleans up interaction listeners, destroys components, destroys the host entity, and releases the event manager).
+Destroys the object (cleans up interaction listeners, destroys components, destroys host entity, releases event manager).
 
 #### Returns
 
@@ -551,7 +551,7 @@ obj.destroy();
 
 > **getComponentById**(`id?`): [`Component`](../types/PW.Component.md)[]
 
-Gets the component list by id (theoretically globally unique, but returns an array for backward compatibility).
+Gets component list by id (theoretically globally unique, but returns an array for historical compatibility).
 
 #### Parameters
 
@@ -559,7 +559,7 @@ Gets the component list by id (theoretically globally unique, but returns an arr
 
 `string`
 
-Component ID
+Component id
 
 #### Returns
 
@@ -575,7 +575,7 @@ Component ID
 
 > **getComponentByName**(`name?`): [`Component`](../types/PW.Component.md)[]
 
-Gets the component list by name.
+Gets component list by name.
 
 #### Parameters
 
@@ -607,7 +607,7 @@ Gets the component list.
 
 `string`
 
-Component type (corresponding to component.type); returns all if not provided
+Component type (corresponds to component.type); if not passed, returns all.
 
 #### Returns
 
@@ -623,7 +623,7 @@ Component type (corresponding to component.type); returns all if not provided
 
 > **getCurrentOrbitState**(`options?`): [`NearEarthOrbiterState`](../types/PW.NearEarthOrbiterState.md) \| `null`
 
-Gets the orbit state at the current simulation time.
+Gets the orbital state at the current simulation time.
 
 #### Parameters
 
@@ -665,13 +665,14 @@ Gets the local orientation at the current simulation time.
 
 Gets the real-time position at the current simulation time.
 
-If position is a TrajectorySample, it evaluates based on the engine's current time; if it's a static Cartesian3, it returns directly.
+If position is a TrajectorySample, evaluates at the engine's current time;
+If it's a static Cartesian3, returns directly.
 
 #### Returns
 
 `Cartesian3` \| `undefined`
 
-World coordinates at the current time, or undefined (when evaluation fails)
+World coordinates at the current time, or undefined (if evaluation fails)
 
 #### Inherited from
 
@@ -683,9 +684,9 @@ World coordinates at the current time, or undefined (when evaluation fails)
 
 > **getEphemeris**(`params?`): `any`[] \| `undefined`
 
-Gets the currently calculated and cached ephemeris data.
+Gets the currently computed and cached ephemeris data.
 
-If params are provided, returns cached results only if they match current cache parameters; does not trigger recalculation.
+If params are provided, returns cached result only if consistent with current cache parameters; does not trigger recalculation.
 
 #### Parameters
 
@@ -703,7 +704,7 @@ If params are provided, returns cached results only if they match current cache 
 
 > **getEphemerisCache**(): [`NearEarthOrbiterEphemerisCache`](../types/PW.NearEarthOrbiterEphemerisCache.md) \| `undefined`
 
-Gets current ephemeris cache metadata.
+Gets the current ephemeris cache metadata.
 
 #### Returns
 
@@ -727,7 +728,7 @@ Gets the current orbit definition.
 
 > **getOrbitElements**(): `OrbitElements`
 
-Parses the orbit elements of the current orbit definition.
+Parses the orbital elements of the current orbit definition.
 
 #### Returns
 
@@ -751,7 +752,7 @@ Parses the metadata of the current orbit definition.
 
 > **getOrbitStateAtTime**(`time`, `options?`): [`NearEarthOrbiterState`](../types/PW.NearEarthOrbiterState.md) \| `null`
 
-Gets the orbit state (position/orientation/instantaneous orbit elements) at a specified simulation time.
+Gets the orbital state at a specified simulation time (position/orientation/instantaneous orbital elements).
 
 #### Parameters
 
@@ -801,7 +802,7 @@ Gets the local orientation at a specified simulation time.
 
 > **getPosition**(`time`): `Cartesian3` \| `undefined`
 
-Gets the position at a specified time (delegated to host entity.getPosition).
+Gets the position at a specified time (delegates to host entity.getPosition).
 
 #### Parameters
 
@@ -925,9 +926,9 @@ Gets the local transformation matrix at a specified simulation time.
 
 > **getTransits**(`params`): `any`[]
 
-Calculates satellite transit windows (satellite's own capability, based on current orbit source).
+Computes satellite transit windows (based on current orbit source).
 
-`start/end` in the return value are millisecond timestamps that can be directly converted to `Date` or `JulianDate`.
+The `start/end` in the return value are millisecond timestamps, usable directly as `Date` or `JulianDate`.
 
 #### Parameters
 
@@ -945,7 +946,7 @@ Calculates satellite transit windows (satellite's own capability, based on curre
 
 > **getVisibilityWindows**(`params`): `number`[][]
 
-Calculates visible windows (returns only [startMs, endMs] list).
+Computes visibility windows (returns [startMs, endMs] list only).
 
 #### Parameters
 
@@ -963,7 +964,7 @@ Calculates visible windows (returns only [startMs, endMs] list).
 
 > **loadTleByNameFromGroup**(`params`): `Promise`\<`string` \| `undefined`\>
 
-Fuzzy matches by name in the group list and writes to the current object.
+Fuzzy-matches by name in the group list and writes to the current object.
 
 #### Parameters
 
@@ -1017,7 +1018,7 @@ Cache lifetime (seconds)
 
 > **loadTleGroup**(`groupName`, `cacheLifeSeconds?`): `Promise`\<`string`[]\>
 
-Fetches TLE list by group (with caching).
+Fetches a TLE list by group (with caching).
 
 #### Parameters
 
@@ -1039,7 +1040,7 @@ Fetches TLE list by group (with caching).
 
 > **observeAtTime**(`time`, `observerLocation?`): `any`
 
-Calculates single-point observation results at a specified simulation time.
+Computes single-point observation result at a specified simulation time.
 
 #### Parameters
 
@@ -1083,7 +1084,7 @@ obj.register();
 
 > **removeComponentById**(`id`): `void`
 
-Removes component by id (will destroy first).
+Removes component by id (calls destroy first).
 
 #### Parameters
 
@@ -1091,7 +1092,7 @@ Removes component by id (will destroy first).
 
 `string`
 
-Component ID
+Component id
 
 #### Returns
 
@@ -1107,7 +1108,7 @@ Component ID
 
 > **removeComponentByName**(`name`): `void`
 
-Removes component by name (will destroy first).
+Removes component by name (calls destroy first).
 
 #### Parameters
 
@@ -1151,9 +1152,10 @@ Component name
 
 > **resetTemporalState**(`time?`): `void`
 
-Resets runtime state across frames/time loops.
+Resets cross-frame/cross-time-loop runtime state.
 
-Engine calls this method when simulation time rewind is detected. This does not destroy business configuration; it only cleans up BaseObject's own time value cache and forwards reset to mounted components.
+Engine calls this method when detecting simulation time going backward. It does not destroy business configuration, only
+BaseObject's own time value cache, and propagates reset to mounted components.
 
 #### Parameters
 
@@ -1175,7 +1177,7 @@ Engine calls this method when simulation time rewind is detected. This does not 
 
 > **setOptions**(`config`): `void`
 
-Updates configuration (recreates corresponding Features according to strategy).
+Updates configuration (rebuilds corresponding Features per strategy).
 
 #### Parameters
 
@@ -1205,7 +1207,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **setOrbitDefinition**(`source`): `this`
 
-Sets orbit definition (preferred entry point).
+Sets the orbit definition (preferred entry).
 
 #### Parameters
 
@@ -1259,7 +1261,7 @@ Enables/disables real-time propagation.
 
 > **setTle**(`tle`): `void`
 
-Sets TLE (legacy compatibility entry point).
+Sets TLE (legacy compatibility entry).
 
 #### Parameters
 
@@ -1267,7 +1269,7 @@ Sets TLE (legacy compatibility entry point).
 
 `string` \| `string`[]
 
-Two or three line TLE (string or string array)
+Two-line or three-line TLE (string or string array)
 
 #### Returns
 
@@ -1301,9 +1303,9 @@ obj.unregister();
 
 > **update**(`time`): `void`
 
-Per-frame updates:
+Per-frame update:
 - Optional real-time propagation: updates position by simulation time
-- Optional velocity orientation: automatically updates orientation when position is a trajectory sample
+- Optional velocity orientation: auto-updates orientation when position is a trajectory sample
 
 #### Parameters
 
@@ -1325,7 +1327,7 @@ Per-frame updates:
 
 > **offClick**(`handler?`): `void`
 
-Unsubscribes from object click events.
+Removes the object click event listener.
  click
 
 #### Parameters
@@ -1348,7 +1350,7 @@ Unsubscribes from object click events.
 
 > **offDblClick**(`handler?`): `void`
 
-Unsubscribes from object double-click events.
+Removes the object double-click event listener.
  dblclick
 
 #### Parameters
@@ -1371,7 +1373,7 @@ Unsubscribes from object double-click events.
 
 > **offMouseEnter**(`handler?`): `void`
 
-Unsubscribes from object mouse-enter events.
+Removes the object mouse enter event listener.
  mouseenter
 
 #### Parameters
@@ -1394,7 +1396,7 @@ Unsubscribes from object mouse-enter events.
 
 > **offMouseLeave**(`handler?`): `void`
 
-Unsubscribes from object mouse-leave events.
+Removes the object mouse leave event listener.
  mouseleave
 
 #### Parameters
@@ -1417,7 +1419,7 @@ Unsubscribes from object mouse-leave events.
 
 > **onBeforeDestroy**(`callback`): `void`
 
-Listens for pre-destroy events.
+Listens for the pre-destruction event.
  BEFORE_DESTROY
 
 #### Parameters
@@ -1440,7 +1442,7 @@ Listens for pre-destroy events.
 
 > **onBeforeRegister**(`callback`): `void`
 
-Listens for pre-register events.
+Listens for the pre-registration event.
  BEFORE_REGISTER
 
 #### Parameters
@@ -1463,7 +1465,7 @@ Listens for pre-register events.
 
 > **onBeforeUnregister**(`callback`): `void`
 
-Listens for pre-unregister events.
+Listens for the pre-unregistration event.
  BEFORE_UNREGISTER
 
 #### Parameters
@@ -1486,7 +1488,7 @@ Listens for pre-unregister events.
 
 > **onBeforeUpdate**(`callback`): `void`
 
-Listens for pre-update events.
+Listens for the pre-update event.
  BEFORE_UPDATE
 
 #### Parameters
@@ -1509,7 +1511,7 @@ Listens for pre-update events.
 
 > **onClick**(`handler`): `void`
 
-Listens for object click events.
+Listens for the object click event.
  click
 
 #### Parameters
@@ -1532,7 +1534,7 @@ Listens for object click events.
 
 > **onDblClick**(`handler`): `void`
 
-Listens for object double-click events.
+Listens for the object double-click event.
  dblclick
 
 #### Parameters
@@ -1555,7 +1557,7 @@ Listens for object double-click events.
 
 > **onDestroy**(`callback`): `void`
 
-Listens for destroy events.
+Listens for the destruction event.
  DESTROY
 
 #### Parameters
@@ -1578,7 +1580,7 @@ Listens for destroy events.
 
 > **onMouseEnter**(`handler`): `void`
 
-Listens for object mouse-enter events.
+Listens for the object mouse enter event.
  mouseenter
 
 #### Parameters
@@ -1601,7 +1603,7 @@ Listens for object mouse-enter events.
 
 > **onMouseLeave**(`handler`): `void`
 
-Listens for object mouse-leave events.
+Listens for the object mouse leave event.
  mouseleave
 
 #### Parameters
@@ -1624,7 +1626,7 @@ Listens for object mouse-leave events.
 
 > **onRegister**(`callback`): `void`
 
-Listens for register completion events.
+Listens for the registration completion event.
  REGISTER
 
 #### Parameters
@@ -1647,7 +1649,7 @@ Listens for register completion events.
 
 > **onUnregister**(`callback`): `void`
 
-Listens for unregister events.
+Listens for the unregistration event.
  UNREGISTER
 
 #### Parameters
@@ -1670,7 +1672,7 @@ Listens for unregister events.
 
 > **onUpdate**(`callback`): `void`
 
-Listens for update events.
+Listens for the update event.
  UPDATE
 
 #### Parameters

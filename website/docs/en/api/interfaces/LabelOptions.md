@@ -2,7 +2,7 @@
 
 ***
 
-[daisy-space-sdk](../README.md) / [UI](../modules/UI.md) / LabelOptions
+[daisy-space-sdk](../README.md) / LabelOptions
 
 # Interface: LabelOptions
 

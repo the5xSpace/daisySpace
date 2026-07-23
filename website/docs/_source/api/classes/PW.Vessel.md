@@ -103,6 +103,22 @@ vessel.addSensor({ apertureDeg: { xDeg: 6, yDeg: 3 }, beamLength: 80_000 });
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`id`](PW.Vehicle.md#id)
+
+***
+
 ### options
 
 #### Get Signature

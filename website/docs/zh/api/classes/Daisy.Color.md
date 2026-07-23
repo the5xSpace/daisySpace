@@ -11,17 +11,25 @@ which range from `0` (no intensity) to `1.0` (full intensity).
 
 ## Param
 
+**red**
+
 The red component.
 
 ## Param
+
+**green**
 
 The green component.
 
 ## Param
 
+**blue**
+
 The blue component.
 
 ## Param
+
+**alpha**
 
 The alpha component.
 

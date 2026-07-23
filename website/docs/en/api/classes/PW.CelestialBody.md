@@ -6,13 +6,13 @@
 
 # Abstract Class: CelestialBody
 
-天体行星对象基类（抽象）。
+Abstract base class for celestial planetary objects.
 
-从 Moon / Mars 提取公共实现，子类只需实现各自的抽象方法：
-- Ellipsoid 材质与着色器
-- CelestialEllipsoid 构造参数
-- lockCamera 相机初始化逻辑
-- 子类专属特性（如大气、晨昏线淡入淡出）
+Common implementation extracted from Moon and Mars. Subclasses only need to implement their abstract methods:
+- Ellipsoid material and shader
+- CelestialEllipsoid constructor parameters
+- lockCamera camera-initialization logic
+- subclass-specific features, such as atmosphere and terminator fade-in/fade-out
 
 ## Example
 
@@ -70,7 +70,7 @@ class MyBody extends CelestialBody {
 
 > **get** **bodyEllipsoid**(): [`CelestialEllipsoid`](PW.CelestialEllipsoid.md)
 
-暴露给外部：获取天体 Ellipsoid（`bindEngine` 之后才可用）。
+Exposes the celestial Ellipsoid for external use (available only after `bindEngine`).
 
 ##### Returns
 
@@ -84,7 +84,7 @@ class MyBody extends CelestialBody {
 
 > **get** **celestialBodyOptions**(): [`CelestialBodyConfig`](../types/PW.CelestialBodyConfig.md)
 
-获取子类配置快照（用于基类内部访问子类配置）。
+Get a snapshot of the subclass configuration for internal access by the base class.
 
 ##### Returns
 
@@ -98,7 +98,7 @@ class MyBody extends CelestialBody {
 
 > **get** **entity**(): [`Entity`](Entity.md) \| `CelestialEntity`
 
-获取宿主 Entity（用于挂载 Feature、交互事件、更新等）。
+Get the host Entity, used for attaching Features, interaction events, updates, and more.
 
 ##### Returns
 
@@ -116,9 +116,9 @@ class MyBody extends CelestialBody {
 
 > **get** **options**(): `any`
 
-对象创建/配置参数的原始快照（不同子类会扩展其结构）。
+The original snapshot of the object creation and configuration parameters. Different subclasses may extend its structure.
 
-注意：这是“语义配置”的来源，而不是渲染结果。渲染落地由 _applyConfig + Feature/Component 完成。
+Note: this is the source of the semantic configuration, not the rendered result. Rendering is applied by _applyConfig together with Features and Components.
 
 ##### Returns
 
@@ -144,10 +144,10 @@ class MyBody extends CelestialBody {
 
 > **set** **position**(`value`): `void`
 
-设置对象位置（支持静态坐标或采样轨迹）。
+Set the object position, supporting static coordinates or sampled trajectories.
 
-- 赋值后会同步写入宿主 entity.position
-- 对 CelestialEntity（非地球天体）不允许使用支持惯性系的 TrajectorySample
+- The value is synchronized to the host entity.position after assignment.
+- For a CelestialEntity (a non-Earth celestial body), TrajectorySample values that use an inertial frame are not supported.
 
 ##### Example
 
@@ -175,7 +175,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > `abstract` **\_createCelestialEllipsoid**(`engine`): [`CelestialEllipsoid`](PW.CelestialEllipsoid.md)
 
-构造并返回此天体的 CelestialEllipsoid（含位置/朝向/重力等参数）
+Create and return this body's CelestialEllipsoid, including position, orientation, gravity, and other parameters.
 
 #### Parameters
 
@@ -193,7 +193,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > `abstract` **\_createEllipsoidMaterial**(`config`): `Material`
 
-构建椭球体的自定义材质（含 shader + uniforms）
+Build the custom ellipsoid material, including the shader and uniforms.
 
 #### Parameters
 
@@ -221,7 +221,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > `abstract` **\_getBodyLabelPrefix**(): `string`
 
-获取体轴标签前缀（如 "月固系"）
+Get the body-axis label prefix, such as "Moon-fixed frame".
 
 #### Returns
 
@@ -233,7 +233,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > `abstract` **\_getDefaultGridId**(): `string`
 
-获取经纬网格默认 ID
+Get the default latitude-longitude grid ID.
 
 #### Returns
 
@@ -245,7 +245,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > `abstract` **\_getDefaultName**(): `string`
 
-获取天体名称
+Get the celestial body name.
 
 #### Returns
 
@@ -257,7 +257,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > `abstract` **\_getEllipsoid**(): `Ellipsoid`
 
-获取天体椭球常量
+Get the celestial body ellipsoid constant.
 
 #### Returns
 
@@ -269,7 +269,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > `abstract` **\_getLockCameraAltitudeMultiplier**(): `number`
 
-获取 lockCamera 的相机高度倍数（相对 maxRadius）
+Get the lockCamera camera altitude multiplier relative to maxRadius.
 
 #### Returns
 
@@ -281,7 +281,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > `abstract` **\_getSurfaceGravity**(): `number`
 
-获取表面重力 (m/s²)
+Get the surface gravity (m/s²).
 
 #### Returns
 
@@ -293,7 +293,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **\_isBoundCelestial**(`target`): `boolean`
 
-判断给定目标是否为当前天体（用于 lockCamera 的 currentCelestial 检查）。
+Determine whether the given target is the current celestial body, for the currentCelestial check in lockCamera.
 
 #### Parameters
 
@@ -311,7 +311,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > `abstract` **\_tryInitCameraForLock**(`engine`, `time`): `boolean`
 
-lockCamera 相机初始化逻辑（定位+朝向+旋转），不同天体差异较大
+lockCamera camera-initialization logic (positioning, orientation, and rotation), which varies significantly between celestial bodies.
 
 #### Parameters
 
@@ -333,9 +333,9 @@ lockCamera 相机初始化逻辑（定位+朝向+旋转），不同天体差异�
 
 > **addComponent**\<`T`\>(`component`): `T`
 
-挂载一个 PhysicalWorld 组件到当前对象。
+Attach a PhysicalWorld component to the current object.
 
-注意：Feature 仍应通过 Entity.addFeature() 的路径挂载；该方法仅面向 IComponent。
+Note: Features should still be attached through Entity.addFeature(); this method is intended only for IComponent.
 
 #### Type Parameters
 
@@ -349,7 +349,7 @@ lockCamera 相机初始化逻辑（定位+朝向+旋转），不同天体差异�
 
 `T`
 
-组件实例
+Component instance.
 
 #### Returns
 
@@ -391,14 +391,14 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **bindEngine**(`engine`): `void`
 
-基类 bindEngine：统一公共流程。
-调用顺序：
-1. `_createCelestialEllipsoid` → 设置天体椭球
-2. `super.bindEngine` → 注册实体
-3. `_setupGrid` → 经纬网格
-4. `_setupSunDirectionObserver` → 光照方向
-5. `_bindEngineExtras` → 子类扩展
-6. `_setupLockCamera` → 相机锁定
+Base-class bindEngine: the unified common flow.
+Call order:
+1. `_createCelestialEllipsoid` → set the celestial ellipsoid
+2. `super.bindEngine` → register the entity
+3. `_setupGrid` → configure the latitude-longitude grid
+4. `_setupSunDirectionObserver` → configure the lighting direction
+5. `_bindEngineExtras` → apply subclass extensions
+6. `_setupLockCamera` → configure camera locking
 
 #### Parameters
 
@@ -420,7 +420,7 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **bindViewer**(`viewer`): `void`
 
-兼容旧名：绑定到 Engine。
+Legacy alias: bind to the Engine.
 
 #### Parameters
 
@@ -434,7 +434,7 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 #### Deprecated
 
-请使用 bindEngine
+Use bindEngine instead.
 
 ***
 
@@ -442,7 +442,7 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **destroy**(): `void`
 
-销毁对象（清理交互监听、销毁组件、销毁宿主实体并释放事件管理器）。
+Destroy the object by removing interaction listeners, destroying components, destroying the host entity, and releasing the event manager.
 
 #### Returns
 
@@ -464,7 +464,7 @@ obj.destroy();
 
 > **getComponentById**(`id?`): [`Component`](../types/PW.Component.md)[]
 
-根据 id 获取组件列表（理论上 id 全局唯一，但保留返回数组以兼容历史逻辑）。
+Get components by ID. The ID is theoretically globally unique, but an array is returned for compatibility with legacy logic.
 
 #### Parameters
 
@@ -472,7 +472,7 @@ obj.destroy();
 
 `string`
 
-组件 id
+Component ID.
 
 #### Returns
 
@@ -488,7 +488,7 @@ obj.destroy();
 
 > **getComponentByName**(`name?`): [`Component`](../types/PW.Component.md)[]
 
-根据 name 获取组件列表。
+Get components by name.
 
 #### Parameters
 
@@ -496,7 +496,7 @@ obj.destroy();
 
 `string`
 
-组件名称（component.name）
+Component name (component.name).
 
 #### Returns
 
@@ -512,7 +512,7 @@ obj.destroy();
 
 > **getComponents**(`type?`): [`Component`](../types/PW.Component.md)[]
 
-获取组件列表。
+Get the component list.
 
 #### Parameters
 
@@ -520,7 +520,7 @@ obj.destroy();
 
 `string`
 
-组件类型（对应 component.type）；不传则返回全部
+Component type, corresponding to component.type; omit it to return all components.
 
 #### Returns
 
@@ -536,7 +536,7 @@ obj.destroy();
 
 > **getCurrentOrientation**(): [`Rotation`](../types/Rotation.md)
 
-获取当前仿真时刻的局部姿态。
+Get the local orientation at the current simulation time.
 
 #### Returns
 
@@ -552,7 +552,7 @@ obj.destroy();
 
 > **getCurrentPosition**(): `Cartesian3` \| `undefined`
 
-获取当前仿真时刻的世界位置。
+Get the world position at the current simulation time.
 
 #### Returns
 
@@ -568,7 +568,7 @@ obj.destroy();
 
 > **getOrientationAtTime**(`timestamp`): [`Rotation`](../types/Rotation.md)
 
-获取指定仿真时刻的局部姿态。
+Get the local orientation at the specified simulation time.
 
 #### Parameters
 
@@ -590,7 +590,7 @@ obj.destroy();
 
 > **getPosition**(`time`): `Cartesian3` \| `undefined`
 
-获取指定时刻的位置（委托给宿主 entity.getPosition）。
+Get the position at the specified time by delegating to the host entity.getPosition.
 
 #### Parameters
 
@@ -598,7 +598,7 @@ obj.destroy();
 
 `JulianDate`
 
-仿真时间
+Simulation time.
 
 #### Returns
 
@@ -614,7 +614,7 @@ obj.destroy();
 
 > **getPositionAtTime**(`timestamp`): `Cartesian3` \| `undefined`
 
-获取指定仿真时刻的世界位置。
+Get the world position at the specified simulation time.
 
 #### Parameters
 
@@ -636,7 +636,7 @@ obj.destroy();
 
 > **getTransformAtTime**(`timestamp`): `BaseObjectResolvedTransform`
 
-获取指定仿真时刻的局部姿态。
+Get the local orientation at the specified simulation time.
 
 #### Parameters
 
@@ -658,7 +658,7 @@ obj.destroy();
 
 > **getTransformMatrixAtTime**(`timestamp`): `Matrix4`
 
-获取指定仿真时刻的局部变换矩阵。
+Get the local transformation matrix at the specified simulation time.
 
 #### Parameters
 
@@ -680,7 +680,7 @@ obj.destroy();
 
 > **register**(): `void`
 
-将宿主实体注册到 Daisy 管线中（触发 entity.reRegisterAll）。
+Register the host entity with the Daisy pipeline, triggering entity.reRegisterAll.
 
 #### Returns
 
@@ -702,7 +702,7 @@ obj.register();
 
 > **removeComponentById**(`id`): `void`
 
-根据 id 移除组件（会先 destroy）。
+Remove a component by ID, destroying it first.
 
 #### Parameters
 
@@ -710,7 +710,7 @@ obj.register();
 
 `string`
 
-组件 id
+Component ID.
 
 #### Returns
 
@@ -726,7 +726,7 @@ obj.register();
 
 > **removeComponentByName**(`name`): `void`
 
-根据 name 移除组件（会先 destroy）。
+Remove a component by name, destroying it first.
 
 #### Parameters
 
@@ -734,7 +734,7 @@ obj.register();
 
 `string`
 
-组件名称
+Component name.
 
 #### Returns
 
@@ -750,10 +750,10 @@ obj.register();
 
 > **resetTemporalState**(`time?`): `void`
 
-重置跨帧/跨时间循环的运行态。
+Reset runtime state across frames and time loops.
 
-Engine 在检测到仿真时间倒退时调用此方法。这里不销毁业务配置，只清理
-BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件。
+Engine calls this method when it detects that simulation time has moved backward. It does not destroy business configuration; it only clears the
+BaseObject time-value cache and propagates the reset to attached components.
 
 #### Parameters
 
@@ -775,7 +775,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **resumeCameraLock**(): `void`
 
-恢复相机跟踪控制器（flyTo 动画结束后调用）。
+Restore the camera tracking controller, called after a flyTo animation ends.
 
 #### Returns
 
@@ -787,7 +787,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setCameraLockInitialized**(`value`): `void`
 
-兼容旧名
+Legacy alias.
 
 #### Parameters
 
@@ -805,7 +805,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setCameraLockIntialized**(`value`): `void`
 
-手动标记相机锁定已初始化（跳过重定位，仅修正 up 方向）。
+Manually mark camera locking as initialized. This skips repositioning and only corrects the up direction.
 
 #### Parameters
 
@@ -823,7 +823,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setGridSuppressShow**(`value`): `void`
 
-临时隐藏/显示经纬网格（如相机过渡期间），不影响 grid 配置。
+Temporarily hide or show the latitude-longitude grid, such as during a camera transition, without affecting the grid configuration.
 
 #### Parameters
 
@@ -841,7 +841,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setSuppressLock**(`value`): `void`
 
-设置 lockCamera 的 suppress 状态（如 flyTo 动画期间暂停锁定）。
+Set the suppress state for lockCamera, such as pausing locking during a flyTo animation.
 
 #### Parameters
 
@@ -859,7 +859,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **unregister**(): `void`
 
-反注册：移除实体挂载的所有 Feature，并通知组件解除绑定。
+Unregister the object by removing all Features attached to the entity and notifying components to detach.
 
 #### Returns
 
@@ -881,7 +881,7 @@ obj.unregister();
 
 > **update**(`time`): `void`
 
-每帧更新（驱动 entity.update，并同步驱动挂载组件的 update）。
+Update every frame, driving entity.update and synchronously updating attached components.
 
 #### Parameters
 
@@ -889,7 +889,7 @@ obj.unregister();
 
 `JulianDate`
 
-仿真时间
+Simulation time.
 
 #### Returns
 
@@ -905,7 +905,7 @@ obj.unregister();
 
 > **offClick**(`handler?`): `void`
 
-取消监听对象点击事件。
+Stop listening for object click events.
  click
 
 #### Parameters
@@ -928,7 +928,7 @@ obj.unregister();
 
 > **offDblClick**(`handler?`): `void`
 
-取消监听对象双击事件。
+Stop listening for object double-click events.
  dblclick
 
 #### Parameters
@@ -951,7 +951,7 @@ obj.unregister();
 
 > **offMouseEnter**(`handler?`): `void`
 
-取消监听对象鼠标移入事件。
+Stop listening for object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -974,7 +974,7 @@ obj.unregister();
 
 > **offMouseLeave**(`handler?`): `void`
 
-取消监听对象鼠标移出事件。
+Stop listening for object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -997,7 +997,7 @@ obj.unregister();
 
 > **onBeforeDestroy**(`callback`): `void`
 
-监听销毁前事件。
+Listen for the event before destruction.
  BEFORE_DESTROY
 
 #### Parameters
@@ -1020,7 +1020,7 @@ obj.unregister();
 
 > **onBeforeRegister**(`callback`): `void`
 
-监听注册前事件。
+Listen for the event before registration.
  BEFORE_REGISTER
 
 #### Parameters
@@ -1043,7 +1043,7 @@ obj.unregister();
 
 > **onBeforeUnregister**(`callback`): `void`
 
-监听卸载前事件。
+Listen for the event before unregistration.
  BEFORE_UNREGISTER
 
 #### Parameters
@@ -1066,7 +1066,7 @@ obj.unregister();
 
 > **onBeforeUpdate**(`callback`): `void`
 
-监听更新前事件。
+Listen for the event before an update.
  BEFORE_UPDATE
 
 #### Parameters
@@ -1089,7 +1089,7 @@ obj.unregister();
 
 > **onClick**(`handler`): `void`
 
-监听对象点击事件。
+Listen for object click events.
  click
 
 #### Parameters
@@ -1112,7 +1112,7 @@ obj.unregister();
 
 > **onDblClick**(`handler`): `void`
 
-监听对象双击事件。
+Listen for object double-click events.
  dblclick
 
 #### Parameters
@@ -1135,7 +1135,7 @@ obj.unregister();
 
 > **onDestroy**(`callback`): `void`
 
-监听销毁事件。
+Listen for destruction events.
  DESTROY
 
 #### Parameters
@@ -1158,7 +1158,7 @@ obj.unregister();
 
 > **onMouseEnter**(`handler`): `void`
 
-监听对象鼠标移入事件。
+Listen for object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -1181,7 +1181,7 @@ obj.unregister();
 
 > **onMouseLeave**(`handler`): `void`
 
-监听对象鼠标移出事件。
+Listen for object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -1204,7 +1204,7 @@ obj.unregister();
 
 > **onRegister**(`callback`): `void`
 
-监听注册完成事件。
+Listen for registration-complete events.
  REGISTER
 
 #### Parameters
@@ -1227,7 +1227,7 @@ obj.unregister();
 
 > **onUnregister**(`callback`): `void`
 
-监听卸载事件。
+Listen for unregistration events.
  UNREGISTER
 
 #### Parameters
@@ -1250,7 +1250,7 @@ obj.unregister();
 
 > **onUpdate**(`callback`): `void`
 
-监听更新事件。
+Listen for update events.
  UPDATE
 
 #### Parameters

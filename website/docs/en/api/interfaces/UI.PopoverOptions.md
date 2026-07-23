@@ -7,7 +7,7 @@
 # Interface: PopoverOptions
 
 DOM Overlay Feature Options
-配置选项接口
+Configuration options interface.
 
 ## Extends
 
@@ -20,7 +20,7 @@ DOM Overlay Feature Options
 > `optional` **anchorPosition?**: [`PopoverAnchor`](../types/UI.PopoverAnchor.md)
 
 Position relative to the entity.
-相对于实体的定位锚点
+Positioning anchor relative to the entity.
 
 #### Default
 
@@ -35,7 +35,7 @@ Position relative to the entity.
 > `optional` **backgroundColor?**: [`DColor`](../types/DColor.md)
 
 Background color of the overlay.
-弹窗背景颜色
+Popover background color.
 
 #### Default
 
@@ -50,7 +50,7 @@ Background color of the overlay.
 > `optional` **backgroundOpacity?**: `number`
 
 Background opacity override.
-背景透明度覆盖值；设置后会覆盖 `backgroundColor` 自身的 alpha。
+Background opacity override; when set, it overrides the alpha of `backgroundColor`.
 
 ***
 
@@ -58,8 +58,8 @@ Background opacity override.
 
 > `optional` **closeOnEsc?**: `boolean`
 
-是否按 ESC 关闭（仅在 `trigger !== 'always'` 时生效）。
-`always` 模式不会安装 ESC 关闭监听；如需关闭请调用 `hide()`。
+Whether to close on ESC (effective only when `trigger !== 'always'`).
+The `always` mode does not install an ESC close listener; call `hide()` to close it.
 
 #### Default
 
@@ -73,8 +73,8 @@ trigger !== 'always'
 
 > `optional` **closeOnOutsideClick?**: `boolean`
 
-是否在点击弹窗外部时关闭（仅在 `trigger !== 'always'` 时生效）。
-`always` 模式不会安装外部点击关闭监听；如需关闭请调用 `hide()`。
+Whether to close when clicking outside the popover (effective only when `trigger !== 'always'`).
+The `always` mode does not install an outside-click close listener; call `hide()` to close it.
 
 #### Default
 
@@ -89,7 +89,7 @@ trigger !== 'always'
 > `optional` **color?**: `string`
 
 Text color (if applicable).
-文本颜色
+Text color.
 
 #### Default
 
@@ -105,8 +105,8 @@ Text color (if applicable).
 
 Whether to destroy the bound DOM element when this feature is destroyed.
 If false, the element will be hidden (display: none) and appended to the body (or left where it is but hidden).
-销毁时是否移除绑定的 DOM 元素。
-若为 false，则仅隐藏并将元素移回 body；若为 true，则从 DOM 树中彻底移除。
+Whether to remove the bound DOM element when destroyed.
+If false, it is only hidden and moved back to body; if true, it is completely removed from the DOM tree.
 
 #### Default
 
@@ -121,7 +121,7 @@ false
 > **element**: `string` \| `HTMLElement`
 
 The DOM element to bind. Can be a CSS selector string or an HTMLElement.
-绑定的 DOM 元素，支持 CSS 选择器或直接传入 HTMLElement 对象
+Bound DOM element; supports a CSS selector or a directly supplied HTMLElement object.
 
 ***
 
@@ -130,7 +130,7 @@ The DOM element to bind. Can be a CSS selector string or an HTMLElement.
 > `optional` **fixedHeight?**: `string` \| `number`
 
 Fixed height of the content area.
-内容区域固定高度
+Fixed height of the content area.
 
 ***
 
@@ -139,7 +139,7 @@ Fixed height of the content area.
 > `optional` **fixedWidth?**: `string` \| `number`
 
 Fixed width of the content area.
-内容区域固定宽度
+Fixed width of the content area.
 
 ***
 
@@ -148,10 +148,10 @@ Fixed width of the content area.
 > `optional` **frame?**: `boolean`
 
 Whether to show the default frame (background, padding, border-radius) on the content wrapper.
-是否显示默认外框（背景色、内边距、圆角）。
+Whether to display the default frame (background color, padding, and rounded corners).
 Set to `false` when your custom element has its own styling and you don't want
 the built-in dark frame to interfere.
-当自定义元素自带样式、不希望内置深色框体干扰时设为 false。
+Set to false when the custom element has its own styling and the built-in dark frame is undesirable.
 
 #### Default
 
@@ -166,12 +166,12 @@ true
 > `optional` **gap?**: `number`
 
 Distance from the anchor point (gap).
-箭头尖端距离目标点的间隙距离（像素）。
-会根据 anchorPosition 自动调整方向：
-- top: 向上偏移
-- bottom: 向下偏移
-- left: 向左偏移
-- right: 向右偏移
+Gap between the arrow tip and the target point, in pixels.
+The direction is adjusted automatically according to anchorPosition:
+- top: offset upward
+- bottom: offset downward
+- left: offset to the left
+- right: offset to the right
 
 #### Default
 
@@ -186,9 +186,9 @@ Distance from the anchor point (gap).
 > `optional` **gapMeters?**: `number`
 
 Distance from the anchor point (gap).
-箭头尖端距离目标点的间隙距离（单位：米）。
+Gap between the arrow tip and the target point, in meters.
 
-与 `gapPx` 二选一；若同时设置则优先使用米。
+Choose this or `gapPx`; if both are set, the meter-based value takes precedence.
 
 ***
 
@@ -197,9 +197,9 @@ Distance from the anchor point (gap).
 > `optional` **gapPx?**: `number`
 
 Distance from the anchor point (gap).
-箭头尖端距离目标点的间隙距离（单位：像素）。
+Gap between the arrow tip and the target point, in pixels.
 
-与 `gapMeters` 同时设置时，以 `gapMeters` 为准。
+When set together with `gapMeters`, `gapMeters` takes precedence.
 
 ***
 
@@ -207,7 +207,7 @@ Distance from the anchor point (gap).
 
 > `optional` **hoverDelayMs?**: `number`
 
-hover 模式下的隐藏延迟（毫秒）。
+Hide delay in hover mode, in milliseconds.
 
 #### Default
 
@@ -221,7 +221,7 @@ hover 模式下的隐藏延迟（毫秒）。
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom identifier used to identify or look up the underlying rendering object.
 
 #### Inherited from
 
@@ -233,9 +233,9 @@ hover 模式下的隐藏延迟（毫秒）。
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to participate in the bounding-sphere aggregation of the owning Entity.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Useful for Features that should be included when the camera uses zoom/flyTo. Auxiliary lines and temporary effects can disable this.
 
 #### Inherited from
 
@@ -248,8 +248,8 @@ hover 模式下的隐藏延迟（毫秒）。
 > `optional` **maxDistance?**: `number`
 
 Max visibility distance in meters.
-最大显示距离（米）。
-超过此距离将自动隐藏。
+Maximum display distance, in meters.
+Automatically hidden beyond this distance.
 
 ***
 
@@ -257,7 +257,7 @@ Max visibility distance in meters.
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name, which can be used for display or debugging.
 
 #### Inherited from
 
@@ -270,11 +270,11 @@ Max visibility distance in meters.
 > `optional` **offset?**: `object`
 
 Offset in screen pixels.
-屏幕像素偏移量 (X, Y)（单位：像素）
+Screen pixel offset (X, Y), in pixels.
 
-与 `offsetMeters` 同时设置时，以 `offsetMeters` 为准。
+When set together with `offsetMeters`, `offsetMeters` takes precedence.
 
-兼容字段：等同 `offsetPx`。
+Compatibility field equivalent to `offsetPx`.
 
 #### x
 
@@ -291,9 +291,9 @@ Offset in screen pixels.
 > `optional` **offsetMeters?**: `object`
 
 Offset in meters.
-屏幕偏移量 (X, Y)（单位：米）
+Screen offset (X, Y), in meters.
 
-与 `offsetPx` 二选一；若同时设置则优先使用米。
+Choose this or `offsetPx`; if both are set, the meter-based value takes precedence.
 
 #### x
 
@@ -310,9 +310,9 @@ Offset in meters.
 > `optional` **offsetPx?**: `object`
 
 Offset in screen pixels.
-屏幕像素偏移量 (X, Y)（单位：像素）
+Screen pixel offset (X, Y), in pixels.
 
-与 `offsetMeters` 同时设置时，以 `offsetMeters` 为准。
+When set together with `offsetMeters`, `offsetMeters` takes precedence.
 
 #### x
 
@@ -328,7 +328,7 @@ Offset in screen pixels.
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay rendering pass.
 
 #### Inherited from
 
@@ -340,7 +340,7 @@ Offset in screen pixels.
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Rendering order value; smaller values are rendered first.
 
 #### Inherited from
 
@@ -353,7 +353,7 @@ Offset in screen pixels.
 > `optional` **show?**: `boolean`
 
 Initial visibility.
-初始显示状态
+Initial display state.
 
 #### Default
 
@@ -368,7 +368,7 @@ true
 > `optional` **snapToPixel?**: `boolean`
 
 Snap DOM position to integer CSS pixels.
-将 DOM 位置吸附到整像素，减少亚像素抗锯齿造成的文字抖动。
+Snaps the DOM position to whole pixels to reduce text jitter caused by subpixel antialiasing.
 
 #### Default
 
@@ -382,11 +382,11 @@ true
 
 > `optional` **trigger?**: [`PopoverTrigger`](../types/UI.PopoverTrigger.md)
 
-触发方式。
+Trigger mode.
 
-- `always`：始终显示（默认）
-- `click`：点击实体显示，取消选择隐藏
-- `hover`：悬停实体显示，移出后延迟隐藏
+- `always`：always visible (default)
+- `click`：visible when the entity is clicked, hidden when deselected
+- `hover`：visible while hovering over the entity, then hidden after a delay
 
 #### Default
 
@@ -400,7 +400,7 @@ true
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 

@@ -10,17 +10,25 @@ A set of 4-dimensional coordinates used to represent rotation in 3-dimensional s
 
 ## Param
 
+**x**
+
 The X component.
 
 ## Param
+
+**y**
 
 The Y component.
 
 ## Param
 
+**z**
+
 The Z component.
 
 ## Param
+
+**w**
 
 The W component.
 

@@ -10,41 +10,61 @@ Stores information for making a request. In general this does not need to be con
 
 ## Param
 
+**options**
+
 An object with the following properties:
 
 ## Param
+
+**options.url**
 
 The url to request.
 
 ## Param
 
+**options.requestFunction**
+
 The function that makes the actual data request.
 
 ## Param
+
+**options.cancelFunction**
 
 The function that is called when the request is cancelled.
 
 ## Param
 
+**options.priorityFunction**
+
 The function that is called to update the request's priority, which occurs once per frame.
 
 ## Param
+
+**options.priority**
 
 The initial priority of the request.
 
 ## Param
 
+**options.throttle**
+
 Whether to throttle and prioritize the request. If false, the request will be sent immediately. If true, the request will be throttled and sent based on priority.
 
 ## Param
+
+**options.throttleByServer**
 
 Whether to throttle the request by server.
 
 ## Param
 
+**options.type**
+
 The type of request.
 
 ## Param
+
+**options.serverKey**
 
 A key used to identify the server that a request is going to.
 

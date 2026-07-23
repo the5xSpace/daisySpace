@@ -6,7 +6,7 @@
 
 # Interface: PathComponentOptions
 
-TrailPathFeature 配置。
+Configuration for TrailPathFeature.
 
 ## Extends
 
@@ -18,11 +18,11 @@ TrailPathFeature 配置。
 
 > `optional` **afterSecond?**: `number`
 
-futureSecond 的兼容别名（不推荐继续使用）。
+Compatibility alias for futureSecond (continued use is not recommended).
 
 #### Deprecated
 
-请使用 futureSecond
+Use futureSecond instead.
 
 ***
 
@@ -30,10 +30,10 @@ futureSecond 的兼容别名（不推荐继续使用）。
 
 > `optional` **autoOptimize?**: `boolean`
 
-是否启用自动优化。
+Whether to enable automatic optimization.
 
-- 开启：系统会结合相机尺度/实体速度/实体数量自适应采样密度。
-- 关闭：严格按用户给定的 resolutionSecond/maxDirectionInterpolationCount 采样。
+- Enabled: the system adaptively adjusts sampling density based on camera scale, entity speed, and entity count.
+- Disabled: samples strictly according to the user-provided resolutionSecond/maxDirectionInterpolationCount.
 
 #### Default
 
@@ -47,11 +47,11 @@ true
 
 > `optional` **beforeSecond?**: `number`
 
-historySecond 的兼容别名（不推荐继续使用）。
+Compatibility alias for historySecond (continued use is not recommended).
 
 #### Deprecated
 
-请使用 historySecond
+Use historySecond instead.
 
 ***
 
@@ -59,7 +59,7 @@ historySecond 的兼容别名（不推荐继续使用）。
 
 > `optional` **color?**: [`DColor`](../types/DColor.md)
 
-轨迹线颜色（当前帧对应位置处的颜色）。
+Trail line color at the position corresponding to the current frame.
 
 #### Default
 
@@ -73,7 +73,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Display distance condition.
 
 ***
 
@@ -81,7 +81,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **futureColor?**: [`DColor`](../types/DColor.md)
 
-未来轨迹颜色。
+Future trail color.
 
 #### Default
 
@@ -95,7 +95,7 @@ Color.PURPLE.withAlpha(0.35)
 
 > `optional` **futureMaterial?**: [`DMaterial`](../types/DMaterial.md)
 
-未来轨迹材质（优先级高于 futureColor）。
+Future trail material, which takes precedence over futureColor.
 
 ***
 
@@ -103,7 +103,7 @@ Color.PURPLE.withAlpha(0.35)
 
 > `optional` **futureSecond?**: `number`
 
-向后（未来）显示的时间跨度（单位：秒）。
+The time span displayed backward toward the future, in seconds.
 
 #### Default
 
@@ -117,7 +117,7 @@ Color.PURPLE.withAlpha(0.35)
 
 > `optional` **historyColor?**: [`DColor`](../types/DColor.md)
 
-历史轨迹颜色。
+Historical trail color.
 
 #### Default
 
@@ -131,7 +131,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **historyMaterial?**: [`DMaterial`](../types/DMaterial.md)
 
-历史轨迹材质（优先级高于 historyColor）。
+Historical trail material, which takes precedence over historyColor.
 
 ***
 
@@ -139,7 +139,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **historySecond?**: `number`
 
-向前（历史）显示的时间跨度（单位：秒）。
+The time span displayed forward toward the past, in seconds.
 
 #### Default
 
@@ -153,7 +153,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **id?**: `string`
 
-自定义标识，用于轨迹渲染对象检索。
+Custom identifier used to look up the trail rendering object.
 
 #### Overrides
 
@@ -165,9 +165,9 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to participate in the bounding-sphere aggregation of the owning Entity.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Useful for Features that should be included when the camera uses zoom/flyTo. Auxiliary lines and temporary effects can disable this.
 
 #### Inherited from
 
@@ -179,7 +179,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **materialAppearance?**: `MaterialAppearance`
 
-线材质的渲染外观（高级用法）。
+Rendering appearance of the line material (advanced use).
 
 ***
 
@@ -187,9 +187,9 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **maxDirectionInterpolationCount?**: `number`
 
-按“运行方向向量”进行插值的次数上限。
+Maximum number of interpolations using the "motion direction vector".
 
-用于对方向变化较大的轨迹做更平滑的插值；值越大越平滑，但开销更高。
+Used to smooth interpolation for trails with large direction changes; larger values are smoother but more expensive.
 
 #### Default
 
@@ -203,7 +203,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name, which can be used for display or debugging.
 
 #### Inherited from
 
@@ -215,7 +215,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay rendering pass.
 
 #### Inherited from
 
@@ -227,7 +227,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Rendering order value; smaller values are rendered first.
 
 #### Inherited from
 
@@ -239,7 +239,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **resolutionSecond?**: `number`
 
-轨迹采样分辨率（单位：秒）。
+Trail sampling resolution, in seconds.
 
 #### Default
 
@@ -253,7 +253,7 @@ Color.PURPLE.withAlpha(0.8)
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to display the trail.
 
 #### Default
 
@@ -267,7 +267,7 @@ true
 
 > `optional` **updateIntervalSecond?**: `number`
 
-数据刷新间隔（单位：秒）。
+Data refresh interval, in seconds.
 
 #### Default
 
@@ -281,7 +281,7 @@ true
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 
@@ -293,7 +293,7 @@ true
 
 > `optional` **width?**: `number`
 
-线宽（像素）。
+Line width in pixels.
 
 #### Default
 

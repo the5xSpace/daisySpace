@@ -30,21 +30,31 @@ const viewer = new Daisy.Viewer("cesiumContainer", {
 
 ## Param
 
+**options**
+
 Object with the following properties:
 
 ## Param
+
+**options.callback**
 
 The callback function for requesting tile geometry.
 
 ## Param
 
+**options.width**
+
 The number of columns per heightmap tile.
 
 ## Param
 
+**options.height**
+
 The number of rows per heightmap tile.
 
 ## Param
+
+**options.tilingScheme**
 
 The tiling scheme specifying how the ellipsoidal
 surface is broken into tiles. If this parameter is not provided, a GeographicTilingScheme
@@ -52,11 +62,15 @@ is used.
 
 ## Param
 
+**options.ellipsoid**
+
 The ellipsoid. If the tilingScheme is specified,
 this parameter is ignored and the tiling scheme's ellipsoid is used instead. If neither
 parameter is specified, the default ellipsoid is used.
 
 ## Param
+
+**options.credit**
 
 A credit for the data source, which is displayed on the canvas.
 

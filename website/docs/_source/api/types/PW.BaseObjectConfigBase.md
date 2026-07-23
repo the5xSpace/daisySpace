@@ -12,6 +12,10 @@ BaseObject 级别的通用配置。
 
 ## Type Declaration
 
+### id?
+
+> `optional` **id?**: `string`
+
 ### modelDistanceFallbackPoint?
 
 > `optional` **modelDistanceFallbackPoint?**: `boolean` \| [`BaseObjectModelDistanceFallbackPointOptions`](PW.BaseObjectModelDistanceFallbackPointOptions.md)

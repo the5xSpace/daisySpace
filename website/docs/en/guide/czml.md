@@ -1,6 +1,6 @@
 # CZML Data Import
 
-CZML is a JSON format for describing time-dynamic scenes. `CzmlImporter` parses CZML documents into the Daisy Entity + Feature pipeline, with fallback support for native DataSource rendering.
+CZML is a JSON format for describing time-dynamic scenes. `CzmlImporter` parses CZML documents into the Daisy Entity + Feature pipeline and can also fall back to native DataSource rendering.
 
 ## Basic Usage
 
@@ -18,7 +18,7 @@ const importer = new Daisy.CzmlImporter(engine)
 const entities = importer.load(czmlPackets)
 ```
 
-`load()` returns `Entity[]` — each CZML entity packet is converted to a Daisy Entity with its corresponding Feature auto-mounted. `position` and `orientation` are converted to `TrajectorySample` trajectories.
+`load()` returns `Entity[]`. Each entity packet in the CZML is converted into a Daisy Entity with the corresponding Feature mounted automatically. `position` and `orientation` are converted into a `TrajectorySample` trajectory.
 
 ## CzmlImporter Constructor
 
@@ -28,7 +28,7 @@ new Daisy.CzmlImporter(engine: Daisy.Engine)
 
 | Parameter | Type | Description |
 |------|------|------|
-| `engine` | `Engine` | Daisy engine instance; used to create Entity instances, synchronize the clock, and manage lifecycle |
+| `engine` | `Engine` | Daisy Engine instance used to create Entity, synchronize the clock, and manage lifecycles |
 
 ## CzmlImporter.load() Parameter Table
 
@@ -40,8 +40,8 @@ importer.load(czml: any[], mode: "cesium"): Promise<any>
 
 | Parameter | Type | Default | Description |
 |------|------|:---:|------|
-| `czml` | `any[]` | — | Array of CZML packets (including `document` and entity packets) |
-| `mode` | `"daisy"` \| `"cesium"` | `"daisy"` | Import mode: `"daisy"` uses the Entity/Feature pipeline; `"cesium"` falls back to native DataSource rendering |
+| `czml` | `any[]` | — | CZML packet array, including the `document` packet and entity packets |
+| `mode` | `"daisy"` \| `"cesium"` | `"daisy"` | Import mode: `"daisy"` uses the Entity/Feature pipeline, while `"cesium"` falls back to native DataSource rendering |
 
 ## Two Modes
 
@@ -56,14 +56,14 @@ const dataSource = await importer.load(czmlData, "cesium")
 // dataSource 可直接添加到 viewer 的 dataSources 中
 ```
 
-`"cesium"` mode is appropriate when you need compatibility with existing CZML data but prefer not to route through the Daisy Feature pipeline.
+The `"cesium"` mode is useful when existing CZML data must remain compatible without using the Daisy Feature pipeline.
 
 ## Supported CZML Elements
 
-16 CZML graphics elements are automatically mapped to their corresponding Daisy Features:
+Sixteen CZML graphic elements are mapped automatically to the corresponding Daisy Features:
 
-| CZML Element | Mapped To | Description |
-|--------------|-----------|-------------|
+| CZML Element | Conversion target | Description |
+|-----------|----------|------|
 | `point` | `PointFeature` | Point marker |
 | `billboard` | `BillboardFeature` | Billboard icon |
 | `label` | `UI.LabelFeature` | Text label |
@@ -71,21 +71,21 @@ const dataSource = await importer.load(czmlData, "cesium")
 | `path` | `TrailPathFeature` | Trail path |
 | `polyline` | `PolylineFeature` | Polyline |
 | `polygon` | `PolygonFeature` | Polygon |
-| `rectangle` | `RectangleFeature` | Rectangle region |
-| `wall` | `WallFeature` | Wall |
+| `rectangle` | `RectangleFeature` | Rectangular area |
+| `wall` | `WallFeature` | Vertical wall geometry |
 | `corridor` | `CorridorFeature` | Corridor geometry |
-| `ellipse` | `EllipseFeature` | Ellipse region |
+| `ellipse` | `EllipseFeature` | Elliptical area |
 | `ellipsoid` | `EllipsoidFeature` | Triaxial ellipsoid |
 | `box` | `BoxFeature` | Box |
-| `cylinder` | `CylinderFeature` | Cylinder / frustum |
+| `cylinder` | `CylinderFeature` | Cylinder/cone |
 | `polylineVolume` | `PolylineVolumeFeature` | Tubular volume |
-| `tileset` | `TilesetFeature` | 3D Tiles tile set |
+| `tileset` | `TilesetFeature` | 3D Tiles tileset |
 
-The `position` field in each CZML element is automatically converted to a Feature position reference; `orientation` is converted to an attitude trajectory.
+The `position` in each CZML element is converted automatically into a Feature position reference, while `orientation` is converted into an attitude trajectory.
 
-## document Packet and Clock Synchronization
+## Document Packets and Clock Synchronization
 
-The CZML `document` packet carries clock information (the `clock` field), which is automatically synchronized to the Engine clock on import:
+The CZML `document` packet carries clock information in the `clock` field, which is synchronized to the Engine clock during import:
 
 ```json
 {
@@ -100,24 +100,24 @@ The CZML `document` packet carries clock information (the `clock` field), which 
 }
 ```
 
-`CzmlImporter` internally calls `setClockFromDocument()`, which automatically performs the following synchronizations:
+`CzmlImporter` calls `setClockFromDocument()` internally to perform the following synchronization:
 
-| Field | Engine Operation | Description |
-|------|------|------|
-| `clock.interval` | `engine.setSceneTime(start, stop)` | Set the time-axis start and stop |
-| `clock.currentTime` | `engine.setCurrentTime()` | Set the current time |
+| Field | Engine operation | Description |
+|------|------------|------|
+| `clock.interval` | `engine.setSceneTime(start, stop)` | Sets the timeline start and stop |
+| `clock.currentTime` | `engine.setCurrentTime()` | Sets the current time |
 | `clock.multiplier` | `engine.setMultiplier()` | Time multiplier |
-| `clock.range` | `engine.setLoop()` | Loop / one-shot mode |
+| `clock.range` | `engine.setLoop()` | Loop or one-way mode |
 
-## Handling 'delete: true'
+## Handling delete: true
 
-`delete: true` in a CZML packet causes the corresponding entity to be removed from the Engine:
+`delete: true` in CZML removes the corresponding Entity from the Engine:
 
 ```json
 { "id": "sat-01", "delete": true }
 ```
 
-The importer first processes all `delete: true` packets, then creates Features for non-deleted packets. When an entity with the same ID already exists, it takes the update path (appending / replacing Features); otherwise the entity is created automatically.
+The importer first processes `delete: true` across all packets, then creates Features for non-deletion packets. When an Entity with the same ID already exists, it follows the update path (appending or replacing Features); otherwise, it creates the Entity automatically.
 
 > **Related API**: [CzmlImporter](/en/api/classes/CzmlImporter) · [CzmlPlusImporter](/en/api/classes/CzmlPlusImporter) · [Entity](/en/api/classes/Entity)
 

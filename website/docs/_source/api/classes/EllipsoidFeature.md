@@ -233,6 +233,22 @@ Feature 的唯一标识。
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+`BaseSolidFeature.isDestroyed`
+
+***
+
 ### lodMode
 
 #### Get Signature

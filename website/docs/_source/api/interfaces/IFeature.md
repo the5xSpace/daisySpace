@@ -18,6 +18,12 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 
 ***
 
+### isDestroyed
+
+> `readonly` **isDestroyed**: `boolean`
+
+***
+
 ### options
 
 > **options**: `any`

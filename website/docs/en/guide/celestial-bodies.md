@@ -1,10 +1,10 @@
-# 天体系统
+# Celestial Bodies
 
-> **实验性质**：天体系统模块目前处于实验阶段，API 和渲染效果可能在未来版本中发生变动。生产环境请谨慎使用。
+> **Experimental**: The celestial-body module is currently experimental, and its API and rendering behavior may change in future versions. Use it with caution in production.
 
-DaisySpace-Sdk 支持将仿真场景切换到地球以外的天体（月球、火星等），并提供完整的天体椭球渲染、经纬网格和坐标变换能力。
+DaisySpace-Sdk can switch a simulation scene to celestial bodies other than Earth, such as the Moon and Mars. It provides celestial-ellipsoid rendering, latitude/longitude grids, and coordinate transformations.
 
-## 架构
+## Architecture
 
 ```
 CelestialBody（抽象基类）
@@ -12,11 +12,11 @@ CelestialBody（抽象基类）
   └── Mars   ── 火星表面材质 + 大气层渲染
 ```
 
-每个天体由 `CelestialBody` 子类管理，底层通过 `CelestialEllipsoid` 提供椭球几何体、坐标变换和射线求交。
+Each body is managed by a `CelestialBody` subclass, while `CelestialEllipsoid` provides ellipsoid geometry, coordinate transformations, and ray intersections.
 
-## PW.Moon — 月球
+## PW.Moon — Moon
 
-创建月球椭球体并切换到月球场景：
+Create a lunar ellipsoid and switch to a Moon scene:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -31,29 +31,29 @@ engine.switchToCelestial(moon)
 moon.bindEngine(engine)
 ```
 
-`switchToCelestial()` 将引擎的主天体切换为月球，后续添加的实体将以月球为参考系。
+`switchToCelestial()` switches the engine's primary celestial body to the Moon. Entities added afterward use the Moon as their reference frame.
 
-### 月球独有特性
+### Moon-Specific Features
 
-- **表面重力**：1.62 m/s²
-- **椭球坐标系**：`ELLIPSOID.MOON`，支持经纬度到月心坐标的转换
-- **晨昏线 shader**：`terminator` 选项启用后，根据太阳方向在月面材质上渲染明暗过渡
-- **相机跟踪**：`lockCamera: true` 时相机始终跟随月球，`BodyTrackedCameraController` 按帧修正视角
-- **经纬网格**：`grid` 选项控制坐标网格显示
+- **Surface gravity**: 1.62 m/s²
+- **Ellipsoid coordinate system**: `ELLIPSOID.MOON` supports conversion from latitude/longitude to selenocentric coordinates.
+- **Terminator shader**: When `terminator` is enabled, renders the light transition on the lunar material according to the Sun direction.
+- **Camera tracking**: With `lockCamera: true`, the camera follows the Moon and `BodyTrackedCameraController` corrects the view each frame.
+- **Latitude/longitude grid**: The `grid` option controls coordinate-grid display.
 
-### Moon 构造函数参数
+### Moon Constructor Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|:---:|------|
-| `name` | `string` | `"Moon"` | 天体名称 |
-| `lockCamera` | `boolean` | — | 是否锁定相机到月球 |
-| `ellipsoid` | `false` \| `{ show?, terminator?, shadows? }` | — | 椭球配置，`false` 禁用 |
-| `grid` | `false` \| `GridConfig` | — | 经纬网格配置，`false` 禁用 |
-| `bodyAxis` | `boolean` \| `BodyAxisOptions` | — | 体轴显示 |
-| `arrowPointers` | `ArrowPointerOptions[]` | — | 指向箭头列表 |
-| `track` | `boolean` | — | 是否启用相机跟踪 |
+| `name` | `string` | `"Moon"` | Body name |
+| `lockCamera` | `boolean` | — | Whether to lock the camera to the Moon |
+| `ellipsoid` | `false` \| `{ show?, terminator?, shadows? }` | — | Ellipsoid configuration; `false` disables it |
+| `grid` | `false` \| `GridConfig` | — | Latitude/longitude grid configuration; `false` disables it |
+| `bodyAxis` | `boolean` \| `BodyAxisOptions` | — | Body-axis display |
+| `arrowPointers` | `ArrowPointerOptions[]` | — | List of direction arrows |
+| `track` | `boolean` | — | Whether to enable camera tracking |
 
-## PW.Mars — 火星
+## PW.Mars — Mars
 
 ```typescript
 const mars = new Daisy.PW.Mars({
@@ -66,28 +66,28 @@ engine.switchToCelestial(mars)
 mars.bindEngine(engine)
 ```
 
-### 火星独有特性
+### Mars-Specific Features
 
-- **表面重力**：3.71 m/s²
-- **大气层渲染**：通过 `CelestialAtmosphereFeature` 实现，支持 Rayleigh/Mie 散射参数
-- **大气配置**：`atmosphere` 可为布尔值或详细参数对象，`intensity` 控制大气强度
+- **Surface gravity**: 3.71 m/s²
+- **Atmosphere rendering**: Implemented through `CelestialAtmosphereFeature`, with Rayleigh/Mie scattering parameters.
+- **Atmosphere configuration**: `atmosphere` can be a boolean or detailed options object; `intensity` controls atmospheric strength.
 
-### Mars 构造函数参数
+### Mars Constructor Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|:---:|------|
-| `name` | `string` | `"Mars"` | 天体名称 |
-| `lockCamera` | `boolean` | — | 是否锁定相机到火星 |
-| `atmosphere` | `boolean` \| `{ show?, intensity? }` | — | 大气层开关与强度 |
-| `ellipsoid` | `false` \| `{ show?, terminator?, shadows? }` | — | 椭球配置 |
-| `grid` | `false` \| `GridConfig` | — | 经纬网格配置 |
-| `bodyAxis` | `boolean` \| `BodyAxisOptions` | — | 体轴显示 |
-| `arrowPointers` | `ArrowPointerOptions[]` | — | 指向箭头列表 |
-| `track` | `boolean` | — | 是否启用相机跟踪 |
+| `name` | `string` | `"Mars"` | Body name |
+| `lockCamera` | `boolean` | — | Whether to lock the camera to Mars |
+| `atmosphere` | `boolean` \| `{ show?, intensity? }` | — | Atmosphere switch and intensity |
+| `ellipsoid` | `false` \| `{ show?, terminator?, shadows? }` | — | Ellipsoid configuration |
+| `grid` | `false` \| `GridConfig` | — | Latitude/longitude grid configuration |
+| `bodyAxis` | `boolean` \| `BodyAxisOptions` | — | Body-axis display |
+| `arrowPointers` | `ArrowPointerOptions[]` | — | List of direction arrows |
+| `track` | `boolean` | — | Whether to enable camera tracking |
 
-## CelestialEllipsoid — 天体椭球工具
+## CelestialEllipsoid — Celestial Ellipsoid Utility
 
-`CelestialEllipsoid` 封装天体椭球几何体及坐标变换。通过静态工厂方法获取预配置的天体实例：
+`CelestialEllipsoid` encapsulates celestial-ellipsoid geometry and coordinate transformations. Use its static factory methods to obtain preconfigured body instances:
 
 ```typescript
 // 工厂方法
@@ -102,22 +102,22 @@ const mars = Daisy.PW.CelestialEllipsoid.create({    // 动态火星位置
 })
 ```
 
-### 核心方法
+### Core Methods
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `getPositionECEF(time?)` | 获取天体中心的 ECEF 坐标 |
-| `getBodyToWorldRotation(time?)` | 获取天体自转到世界的旋转矩阵 |
-| `localToWorldPoint(local, time?)` | 局部坐标 → ECEF 世界坐标 |
-| `worldToLocalPoint(ecef, time?)` | ECEF 世界坐标 → 局部坐标 |
-| `rayIntersection(ray, time?)` | 射线与天体椭球求交 |
-| `cartesianToCartographic(ecef)` | ECEF → 经纬度（Cartographic） |
-| `cartographicToCartesian(carto)` | 经纬度 → ECEF |
-| `cameraHeightMeters(camPos, time?)` | 相机距天体表面高度 |
-| `isEarth()` | 判断当前椭球是否为地球 |
-| `getSurfaceGravity()` | 获取表面重力常量（m/s²） |
+| `getPositionECEF(time?)` | Get the body's center in ECEF coordinates |
+| `getBodyToWorldRotation(time?)` | Get the rotation matrix from body-fixed to world coordinates |
+| `localToWorldPoint(local, time?)` | Convert local coordinates to ECEF world coordinates |
+| `worldToLocalPoint(ecef, time?)` | Convert ECEF world coordinates to local coordinates |
+| `rayIntersection(ray, time?)` | Intersect a ray with the celestial ellipsoid |
+| `cartesianToCartographic(ecef)` | Convert ECEF to latitude/longitude (Cartographic) |
+| `cartographicToCartesian(carto)` | Convert latitude/longitude to ECEF |
+| `cameraHeightMeters(camPos, time?)` | Get camera height above the body surface |
+| `isEarth()` | Determine whether the current ellipsoid is Earth |
+| `getSurfaceGravity()` | Get the surface-gravity constant in m/s² |
 
-### 自定义天体椭球
+### Custom Celestial Ellipsoid
 
 ```typescript
 const custom = Daisy.PW.CelestialEllipsoid.create({
@@ -128,29 +128,29 @@ const custom = Daisy.PW.CelestialEllipsoid.create({
 })
 ```
 
-## 引擎场景切换
+## Switch Engine Scenes
 
-`Engine` 提供两个方法管理当前天体场景：
+`Engine` provides two methods for managing the current celestial scene:
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `engine.switchToCelestial(body)` | 切换到指定天体场景 |
-| `engine.removeCelestial(body)` | 从场景移除天体 |
+| `engine.switchToCelestial(body)` | Switch to the specified celestial scene |
+| `engine.removeCelestial(body)` | Remove the body from the scene |
 
-切换后引擎将以新天体为中心，后续 `entity.position` 及相关计算将以该天体为参考系。
+After switching, the engine uses the new body as its center, and subsequent `entity.position` values and related calculations use that body as the reference frame.
 
-## lockCamera — 相机锁定
+## lockCamera — Camera Lock
 
-当 `lockCamera: true` 时，相机自动切换到天体相对坐标系：
+When `lockCamera: true`, the camera automatically switches to the body-relative coordinate system:
 
-- Moon：相机定位在赤道上方，自旋轴向上
-- Mars：0° 经度/0° 纬度上空，Gram-Schmidt 修正 up 方向
+- Moon: The camera is positioned above the equator with the spin axis upward.
+- Mars: Above 0° longitude and 0° latitude, with the up direction corrected by Gram-Schmidt.
 
-锁定后可通过 `setSuppressLock(true)` 临时暂停（如 flyTo 动画期间），`resumeCameraLock()` 恢复。
+After locking, use `setSuppressLock(true)` to pause it temporarily, such as during a flyTo animation, and `resumeCameraLock()` to restore it.
 
-## 网格抑制
+## Grid Suppression
 
-通过 `setGridSuppressShow(value)` 临时隐藏/显示经纬网格，适用于相机过渡动画：
+Use `setGridSuppressShow(value)` to temporarily hide or show the latitude/longitude grid during camera transitions:
 
 ```typescript
 moon.setGridSuppressShow(true)  // 隐藏网格
@@ -158,7 +158,7 @@ moon.setGridSuppressShow(true)  // 隐藏网格
 moon.setGridSuppressShow(false) // 恢复
 ```
 
-## 完整示例
+## Complete Example
 
 ```typescript
 // 1. 创建月球场景
@@ -193,4 +193,4 @@ engine.removeCelestial(moon)
 
 ---
 
-> **相关 API**：[PW.Moon](/en/api/classes/PW.Moon) · [PW.Mars](/en/api/classes/PW.Mars) · [PW.CelestialEllipsoid](/en/api/classes/PW.CelestialEllipsoid) · [Engine](/en/api/classes/Engine)
+> **Related API**: [PW.Moon](/en/api/classes/PW.Moon) · [PW.Mars](/en/api/classes/PW.Mars) · [PW.CelestialEllipsoid](/en/api/classes/PW.CelestialEllipsoid) · [Engine](/en/api/classes/Engine)

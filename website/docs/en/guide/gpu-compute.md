@@ -1,6 +1,6 @@
-# GPU General-Purpose Computing
+# General-Purpose GPU Computing
 
-DaisySpace-Sdk ships a built-in WebGL2-based GPGPU pipeline. It performs general-purpose GPU computation via an off-screen WebGL context and shaders, with no WebGPU dependency.
+DaisySpace-Sdk includes a WebGL2-based GPGPU pipeline that performs general-purpose GPU computing through an offscreen WebGL context and shaders, without requiring WebGPU.
 
 ## Architecture
 
@@ -12,11 +12,11 @@ GpuDeviceManager（设备管理器，单例）
         └── step({ program, input, output })（执行计算）
 ```
 
-The underlying layer is the [gpu-io](https://github.com/amandaghassaei/gpu-io) library. It encodes `Float32Array` data as WebGL textures, runs parallel computation in a fragment shader, then reads results back to the CPU.
+The pipeline is based on the [gpu-io](https://github.com/amandaghassaei/gpu-io) library. It encodes `Float32Array` data as WebGL textures, performs parallel computation with a fragment shader, and then reads the results back to the CPU.
 
 ## GpuDeviceManager
 
-[GpuDeviceManager](/en/api/classes/GpuDeviceManager) is the device-level manager, exposing static methods:
+[GpuDeviceManager](/en/api/classes/GpuDeviceManager) manages the device and provides static methods:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -41,7 +41,7 @@ Daisy.GpuDeviceManager.destroy()
 
 ## GPUComposer
 
-`GPUComposer` is the compute-scheduling core. Because it is already managed by `GpuDeviceManager`, direct instantiation is usually unnecessary. Create one manually only when an isolated context is needed:
+`GPUComposer` is the core computation scheduler. Because it is managed by `GpuDeviceManager`, it usually does not need to be created directly. Create one manually for an independent-context scene:
 
 ```typescript
 import { GPUComposer } from "gpu-io"
@@ -53,7 +53,7 @@ const composer = new GPUComposer({ canvas })
 
 ## GPUProgram
 
-`GPUProgram` compiles a fragment shader and manages uniform variables:
+`GPUProgram` compiles the fragment shader and manages uniform variables:
 
 ```typescript
 import { GPUProgram, FLOAT } from "gpu-io"
@@ -82,16 +82,16 @@ const program = new GPUProgram(composer, {
 program.setUniform("u_scale", 2.5, FLOAT)
 ```
 
-### Built-in Texture Naming Convention
+### Built-In Texture Naming Convention
 
-The input/output `GPULayer` objects passed to GPUComposer `step()` are auto-bound in order:
-- The 0th input layer is bound as `u_input` (alias when there is a single input) or is determined by its `name` property
-- Access it in the shader via `texture(layerSamplerName, v_uv)`
-- The output layer writes to `out_result` (`out vec4`)
+The input/output `GPULayer` instances passed to `step()` by GPUComposer are bound automatically in order:
+- The first input layer is bound to `u_input` (the single-input alias) or determined by its `name` property.
+- It can be accessed in the shader through `texture(layerSamplerName, v_uv)`.
+- The output layer is written to `out_result` (`out vec4`).
 
 ## GPULayer
 
-`GPULayer` wraps a JavaScript typed array as a GPU texture:
+`GPULayer` wraps a JavaScript array as a GPU texture:
 
 ```typescript
 import { GPULayer, FLOAT, NEAREST, CLAMP_TO_EDGE } from "gpu-io"
@@ -126,10 +126,10 @@ const outputLayer = new GPULayer(composer, {
 ### Key Parameters
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| `name` | `string` | Layer name (corresponds to the sampler uniform name in the shader) |
+|------|------|------|
+| `name` | `string` | Layer name, corresponding to the sampler uniform name in the shader |
 | `type` | GPULayerType | Data type (`FLOAT` / `BYTE` / `UNSIGNED_BYTE`, etc.) |
-| `numComponents` | `number` | Components per pixel (1 / 2 / 3 / 4) |
+| `numComponents` | `number` | Number of components per pixel (1/2/3/4) |
 | `dimensions` | `[number, number]` | Texture width and height |
 | `array` | TypedArray | Input data (omit for output layers) |
 | `filter` | FilterMode | `NEAREST` (exact) or `LINEAR` (interpolated) |
@@ -150,9 +150,9 @@ const raw = await outputLayer.getValuesAsync()
 const resultArray = new Float32Array(raw.buffer ?? raw)
 ```
 
-`step()` is synchronous (submits a GPU command), while `getValuesAsync()` is asynchronous (requires `gl.readPixels`).
+`step()` is synchronous (it submits GPU commands), while `getValuesAsync()` is asynchronous (and requires `gl.readPixels`).
 
-## Complete Example: GPU Parallel Vector Operations
+## Complete Example: Parallel GPU Vector Operation
 
 ```typescript
 import { GPUComposer, GPULayer, GPUProgram, FLOAT, NEAREST, CLAMP_TO_EDGE } from "gpu-io"
@@ -221,16 +221,16 @@ const result = await gpuVectorAdd(3.0,
 // result = [18.0, 24.0, 30.0, 36.0] = 3 × [6, 8, 10, 12]
 ```
 
-## Suitable Scenarios
+## Suitable Scenes
 
-| Scenario | Advantage |
-|----------|------------|
-| Constellation coverage analysis | Parallelize footprint computation for thousands of satellites |
-| Particle simulation | Large-scale particle position / velocity updates |
-| Terrain analysis | Raster operations such as elevation queries and slope computation |
-| General-purpose vector operations | Element-wise add / subtract / multiply / divide on large arrays |
+| Scene | Benefit |
+|------|------|
+| Constellation coverage analysis | Parallelizes footprint calculations for thousands of satellites |
+| Particle simulation | Updates positions and velocities for large numbers of particles |
+| Terrain analysis | Raster operations such as elevation queries and slope calculations |
+| General vector operations | Element-wise addition, subtraction, multiplication, and division on large arrays |
 
-> **Note**: GPU compute is best for highly data-parallel tasks. For small datasets (< a few hundred elements), use the CPU directly — GPU upload / read-back overhead may exceed the computation benefit.
+> **Note**: GPU computing is suitable for highly data-parallel tasks. For small datasets (fewer than a few hundred elements), use the CPU directly because GPU upload/readback overhead may exceed the computational benefit.
 
 ---
 

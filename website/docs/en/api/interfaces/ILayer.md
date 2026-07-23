@@ -6,14 +6,14 @@
 
 # Interface: ILayer
 
-Daisy 统一 Widget 生命周期接口。
+Daisy's unified Widget lifecycle interface.
 
-- register: 绑定到 Engine，并在其中完成资源创建
-- createIn2d: 在 2D 模式进入时执行一次创建逻辑
-- update: 在每个仿真帧中调用（可选实现）
-- refresh: 外部配置变化后同步刷新 UI（可选实现）
-- morphSwitchHandle: 响应场景切换
-- destroy: 释放资源、解绑监听与 DOM
+- register: bind to an Engine and create resources within it
+- createIn2d: run creation logic once when entering 2D mode
+- update: called on each simulation frame (optional implementation)
+- refresh: synchronize and refresh the UI after external configuration changes (optional implementation)
+- morphSwitchHandle: respond to scene-mode changes
+- destroy: release resources and detach listeners and DOM elements
 
 ## Extends
 
@@ -25,7 +25,7 @@ Daisy 统一 Widget 生命周期接口。
 
 > `optional` **engine?**: [`Engine`](../classes/Engine.md)
 
-引擎实例。
+Engine instance.
 
 #### Overrides
 
@@ -37,7 +37,7 @@ Daisy 统一 Widget 生命周期接口。
 
 > `optional` **id?**: `string`
 
-图层唯一标识符。
+Unique layer identifier.
 
 #### Overrides
 
@@ -49,8 +49,8 @@ Daisy 统一 Widget 生命周期接口。
 
 > `optional` **isDestroyed?**: `boolean`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+The collection manager uses this to skip destroyed singleton instances.
 
 #### Inherited from
 
@@ -62,7 +62,7 @@ Daisy 统一 Widget 生命周期接口。
 
 > `optional` **key?**: `string`
 
-Widget 标识键（用于单例去重）。
+Widget key (used for singleton deduplication).
 
 #### Inherited from
 
@@ -74,7 +74,7 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **name?**: `string`
 
-图层名称。
+Layer name.
 
 #### Overrides
 
@@ -86,8 +86,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **rebuildOnMorph?**: `boolean`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether to rebuild through destroy -> register during scene morphing (2D/3D).
+Defaults to true; UI Widgets should generally set this to false.
 
 #### Inherited from
 
@@ -99,8 +99,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **singleton?**: `boolean`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether this is a singleton Widget.
+- If true, only one instance with the same key is allowed within an Engine.
 
 #### Inherited from
 
@@ -112,8 +112,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **zoomIgnored?**: `boolean`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore this Widget during camera aggregation.
+UI controller Widgets should set this to true.
 
 #### Inherited from
 
@@ -125,7 +125,7 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`engine`): `void`
 
-在2D空间创建图层。
+Creates the layer in 2D space.
 
 #### Parameters
 
@@ -133,7 +133,7 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](../classes/Engine.md)
 
-引擎实例。
+Engine instance.
 
 #### Returns
 
@@ -149,7 +149,7 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-销毁图层。
+Destroys the layer.
 
 #### Returns
 
@@ -165,7 +165,7 @@ UI 控制器类 widget 应设为 true。
 
 > `optional` **getBoundingSphere**(`time?`): `BoundingSphere` \| `undefined`
 
-获取 Widget 的包围球（用于相机聚合观测）。
+Gets the Widget's bounding sphere for camera aggregation.
 
 #### Parameters
 
@@ -173,13 +173,13 @@ UI 控制器类 widget 应设为 true。
 
 `JulianDate`
 
-仿真时间（可选）
+Simulation time (optional)
 
 #### Returns
 
 `BoundingSphere` \| `undefined`
 
-包围球实例，若无则返回 undefined
+Bounding-sphere instance, or undefined when unavailable
 
 #### Inherited from
 
@@ -191,7 +191,7 @@ UI 控制器类 widget 应设为 true。
 
 > **morphSwitchHandle**(`mode`): `void`
 
-处理场景模式切换事件。
+Handles a scene-mode change event.
 
 #### Parameters
 
@@ -199,7 +199,7 @@ UI 控制器类 widget 应设为 true。
 
 `SceneMode`
 
-当前场景模式。
+Current scene mode.
 
 #### Returns
 
@@ -215,9 +215,9 @@ UI 控制器类 widget 应设为 true。
 
 > `optional` **refresh**(): `void`
 
-外部配置变化后同步刷新 Widget。
+Synchronizes and refreshes the Widget after external configuration changes.
 
-例如 Engine 级时间格式变化时，UI Widget 可在此重绘标题、刻度和当前时间。
+For example, when the Engine-level time format changes, a UI Widget can redraw the title, ticks, and current time here.
 
 #### Returns
 
@@ -233,7 +233,7 @@ UI 控制器类 widget 应设为 true。
 
 > **register**(`engine`): [`Layer`](../classes/Layer.md)
 
-注册图层到引擎。
+Registers the layer with the Engine.
 
 #### Parameters
 
@@ -241,13 +241,13 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](../classes/Engine.md)
 
-引擎实例。
+Engine instance.
 
 #### Returns
 
 [`Layer`](../classes/Layer.md)
 
-已注册的图层实例。
+Registered layer instance.
 
 #### Overrides
 
@@ -259,7 +259,7 @@ UI 控制器类 widget 应设为 true。
 
 > **update**(`time`): `void`
 
-更新图层数据。
+Updates layer data.
 
 #### Parameters
 
@@ -267,7 +267,7 @@ UI 控制器类 widget 应设为 true。
 
 `JulianDate`
 
-当前时间（JulianDate 格式）。
+Current time in JulianDate format.
 
 #### Returns
 

@@ -2,7 +2,7 @@
 
 ***
 
-[daisy-space-sdk](../README.md) / [UI](../modules/UI.md) / LabelFeature
+[daisy-space-sdk](../README.md) / LabelFeature
 
 # Class: LabelFeature
 
@@ -32,7 +32,7 @@ entity.addFeature(label);
 
 ##### options
 
-[`LabelOptions`](../interfaces/UI.LabelOptions.md)
+[`LabelOptions`](../interfaces/LabelOptions.md)
 
 #### Returns
 
@@ -209,6 +209,22 @@ Feature 的唯一标识。
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`isDestroyed`](Feature.md#isdestroyed)
+
+***
+
 ### lodMode
 
 #### Get Signature
@@ -293,7 +309,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Get Signature
 
-> **get** **options**(): [`LabelOptions`](../interfaces/UI.LabelOptions.md)
+> **get** **options**(): [`LabelOptions`](../interfaces/LabelOptions.md)
 
 获取组件配置（EntityComOptions）。
 
@@ -301,7 +317,7 @@ Feature 的显示名称（业务自定义）。
 
 ##### Returns
 
-[`LabelOptions`](../interfaces/UI.LabelOptions.md)
+[`LabelOptions`](../interfaces/LabelOptions.md)
 
 组件配置
 
@@ -317,7 +333,7 @@ Feature 的显示名称（业务自定义）。
 
 ###### value
 
-[`LabelOptions`](../interfaces/UI.LabelOptions.md)
+[`LabelOptions`](../interfaces/LabelOptions.md)
 
 ##### Returns
 

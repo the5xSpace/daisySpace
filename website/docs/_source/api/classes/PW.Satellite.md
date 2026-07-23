@@ -105,6 +105,22 @@ sat.bindViewer(viewer);
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`id`](PW.NearEarthOrbiter.md#id)
+
+***
+
 ### options
 
 #### Get Signature

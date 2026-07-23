@@ -1,8 +1,8 @@
-# 火箭与推进动力学
+# Rocket and Propulsion Dynamics
 
-[PW.Rocket](/en/api/classes/PW.Rocket) 封装了火箭发射仿真的完整流程：配置发射场与多级推进参数 → 内置 RK4 积分器自动计算上升轨迹 → 输出位置序列、飞行事件与飞行摘要。同时提供发动机粒子视觉、本体坐标系调试轴和自动朝向对齐。
+[PW.Rocket](/en/api/classes/PW.Rocket) wraps the complete rocket-launch simulation workflow: configure the launch site and multistage propulsion parameters, use the built-in RK4 integrator to calculate the ascent trajectory, and output position samples, flight events, and a flight summary. It also provides engine-particle visuals, body-axis debugging, and automatic attitude alignment.
 
-## 最小示例
+## Minimal Example
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -37,7 +37,7 @@ engine.flyTo(rocket, { duration: 3 })
 engine.play(10)
 ```
 
-## 类层次
+## Class Hierarchy
 
 ```
 BaseObject
@@ -46,25 +46,25 @@ BaseObject
            └── Rocket   上升轨迹 + 自动朝向 + 火焰控制
 ```
 
-## 构造配置
+## Constructor Configuration
 
-[Rocket](/en/api/classes/PW.Rocket) 继承 [Vehicle](/en/api/classes/PW.Vehicle) 的所有配置，加上火箭专属参数：
+[Rocket](/en/api/classes/PW.Rocket) inherits all configuration from [Vehicle](/en/api/classes/PW.Vehicle) and adds rocket-specific parameters:
 
-| 参数 | 类型 | 说明 |
+| Parameter | Type | Description |
 |------|------|------|
-| `model` | `ModelFeatureOptions` | 3D 模型（glTF / GLB） |
-| `label` | `LabelFeatureOptions` | 文字标签 |
-| `ascent` | `AscentTrajectoryOptions` | 上升轨迹配置（可在构造时直接传入） |
-| `epoch` | `JulianDate` | 轨迹起始时间 |
-| `autoOrientationByVelocity` | `boolean` | 自动按速度方向旋转（默认 `true`） |
-| `autoAlignVerticalModelToFlight` | `boolean` | 模型 Z-up → X-forward 自动对齐（默认 `true`） |
-| `bodyAxis` | `boolean \| BodyAxisOptions` | 显示本体坐标系调试轴 |
+| `model` | `ModelFeatureOptions` | 3D model (glTF / GLB) |
+| `label` | `LabelFeatureOptions` | Text label |
+| `ascent` | `AscentTrajectoryOptions` | Ascent trajectory configuration, which can be passed directly to the constructor |
+| `epoch` | `JulianDate` | Trajectory start time |
+| `autoOrientationByVelocity` | `boolean` | Rotate automatically along the velocity direction (default `true`) |
+| `autoAlignVerticalModelToFlight` | `boolean` | Automatically align model Z-up to X-forward (default `true`) |
+| `bodyAxis` | `boolean \| BodyAxisOptions` | Show body-coordinate debugging axes |
 
-## 推进系统
+## Propulsion System
 
 ### PropulsionComponent / JetEngine
 
-[JetEngine](/en/api/classes/PW.JetEngine) 是 [PropulsionComponent](/en/api/classes/PW.PropulsionComponent) 的语义子类，控制粒子火焰的视觉效果。**当前阶段火焰不影响轨迹物理计算。**
+[JetEngine](/en/api/classes/PW.JetEngine) is a semantic subclass of [PropulsionComponent](/en/api/classes/PW.PropulsionComponent) that controls the visual effect of particle flames. **At this stage, flames do not affect trajectory physics.**
 
 ```typescript
 const engine = rocket.addPropulsion(new Daisy.PW.JetEngine({
@@ -85,22 +85,22 @@ const engine = rocket.addPropulsion(new Daisy.PW.JetEngine({
 }))
 ```
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `engine.start(power?)` | 点火（`power` 0~1） |
-| `engine.stop()` | 关机 |
-| `engine.setPower(n)` | 调节推力（0~1，仅视觉效果） |
-| `engine.enabled` | 是否启用 |
+| `engine.start(power?)` | Ignite (`power` from 0 to 1) |
+| `engine.stop()` | Shut down |
+| `engine.setPower(n)` | Adjust thrust from 0 to 1 (visual effect only) |
+| `engine.enabled` | Whether the engine is enabled |
 
-`Rocket` 自带一个默认 `"main-engine"` 推进组件，可通过 `rocket.ignite(power)` / `rocket.shutdown()` / `rocket.setThrottle(power)` 直接控制。
+`Rocket` includes a default `"main-engine"` propulsion component, which can be controlled directly with `rocket.ignite(power)` / `rocket.shutdown()` / `rocket.setThrottle(power)`.
 
-## 上升轨迹
+## Ascent Trajectory
 
-内置 2D RK4 积分器在轨道面内模拟主动段动力学：推力、重力、气动阻力随时间变化，质量随推进剂消耗递减。输入发射场参数和级数配置后，积分器从发射时刻起按固定步长推进，输出 ECEF 位置采样序列（[TrajectorySample](/en/api/classes/TrajectorySample)），可用于快速推算主动段的轨道采样。
+The built-in 2D RK4 integrator simulates powered-flight dynamics in the orbital plane: thrust, gravity, and aerodynamic drag vary over time while mass decreases as propellant is consumed. After launch-site parameters and stage configuration are provided, the integrator advances from launch time at a fixed step and outputs an ECEF position-sample sequence ([TrajectorySample](/en/api/classes/TrajectorySample)) for quickly estimating powered-flight orbit samples.
 
 ### AscentTrajectoryOptions
 
-调用 `applyAscentTrajectory()` 传入的参数对象，驱动内置的 2D RK4 积分器：
+The parameter object passed to `applyAscentTrajectory()` drives the built-in 2D RK4 integrator:
 
 ```typescript
 rocket.applyAscentTrajectory(epoch, {
@@ -113,60 +113,60 @@ rocket.applyAscentTrajectory(epoch, {
 })
 ```
 
-### 发射场
+### Launch Site
 
-| 参数 | 类型 | 说明 |
+| Parameter | Type | Description |
 |------|------|------|
-| `latitude` | `number` | 纬度（度） |
-| `longitude` | `number` | 经度（度） |
-| `altitude` | `number` | 发射场海拔（米） |
-| `azimuth` | `number` | 发射方位角（度，0=正北，90=正东） |
+| `latitude` | `number` | Latitude in degrees |
+| `longitude` | `number` | Longitude in degrees |
+| `altitude` | `number` | Launch-site altitude in meters |
+| `azimuth` | `number` | Launch azimuth in degrees (0 = north, 90 = east) |
 
-### 火箭级数
+### Rocket Stages
 
-| 参数 | 类型 | 说明 |
+| Parameter | Type | Description |
 |------|------|------|
-| `thrust` | `number` | 推力（牛顿，N） |
-| `isp` | `number` | 比冲（秒） |
-| `propellantMass` | `number` | 推进剂质量（kg） |
-| `dryMass` | `number` | 干重（kg，燃尽后剩余质量） |
+| `thrust` | `number` | Thrust in newtons (N) |
+| `isp` | `number` | Specific impulse in seconds |
+| `propellantMass` | `number` | Propellant mass in kg |
+| `dryMass` | `number` | Dry mass in kg (mass remaining after burnout) |
 
-积分器自动处理级间分离：上一级燃尽后抛离，下一级点火。最终 payload 留在弹道飞行。
+The integrator handles stage separation automatically: the upper stage is discarded after burnout and the next stage ignites. The final payload remains in ballistic flight.
 
-### 俯仰程序
+### Pitch Program
 
-| 参数 | 类型 | 说明 |
+| Parameter | Type | Description |
 |------|------|------|
-| `startTime` | `number` | 俯仰开始时间（发射后秒数） |
-| `pitchRate` | `number` | 俯仰角变化率（度/秒） |
-| `endAngle` | `number` | 最终俯仰角（度，0=水平，90=垂直） |
+| `startTime` | `number` | Pitch start time in seconds after launch |
+| `pitchRate` | `number` | Pitch-angle rate in degrees per second |
+| `endAngle` | `number` | Final pitch angle in degrees (0 = horizontal, 90 = vertical) |
 
-典型参数：发射后 10~15 秒开始俯仰，以约 0.3~0.5 度/秒的速率从 90°（垂直）逐渐转向水平，最终角通常 5~15°。
+Typical values start the pitch maneuver 10 to 15 seconds after launch, gradually turning from 90° (vertical) toward horizontal at about 0.3 to 0.5 degrees per second. The final angle is usually 5 to 15°.
 
-### 气动阻力
+### Aerodynamic Drag
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|:---:|------|
-| `enabled` | `boolean` | `false` | 是否启用大气阻力 |
-| `dragCoeff` | `number` | — | 阻力系数（无量纲） |
-| `area` | `number` | — | 参考面积（m²） |
+| `enabled` | `boolean` | `false` | Whether to enable atmospheric drag |
+| `dragCoeff` | `number` | — | Drag coefficient (dimensionless) |
+| `area` | `number` | — | Reference area (m²) |
 
-阻力模型使用 ISA-1976 标准大气密度，随海拔指数衰减。
+The drag model uses the ISA-1976 standard atmospheric density, which decays exponentially with altitude.
 
-### 飞行阶段
+### Flight Phases
 
-积分器自动划分四个阶段：
+The integrator divides the flight into four phases automatically:
 
-| 阶段 | 触发条件 | 行为 |
+| Phase | Trigger | Behavior |
 |------|----------|------|
-| `VERTICAL` | 发射开始 | 垂直上升，无水平速度 |
-| `PITCHOVER` | 俯仰程序触发 | 按 `pitchRate` 逐渐压低俯仰角 |
-| `GRAVITY_TURN` | 俯仰角到达 `endAngle` | 速度方向与推力方向对齐，重力自然弯曲轨迹 |
-| `BALLISTIC` | 末级燃尽 | 仅受重力 + 阻力，无推力 |
+| `VERTICAL` | Launch begins | Vertical ascent with no horizontal velocity |
+| `PITCHOVER` | Pitch program triggers | Gradually lower the pitch angle at `pitchRate` |
+| `GRAVITY_TURN` | Pitch reaches `endAngle` | Align velocity with thrust; gravity naturally bends the trajectory |
+| `BALLISTIC` | Final-stage burnout | Gravity and drag only, with no thrust |
 
-## 读取结果
+## Read Results
 
-`applyAscentTrajectory()` 调用后，[Rocket](/en/api/classes/PW.Rocket) 自动填充以下只读属性：
+After `applyAscentTrajectory()` is called, [Rocket](/en/api/classes/PW.Rocket) automatically fills the following read-only properties:
 
 ```typescript
 const events  = rocket.events     // AscentEvent[]
@@ -176,27 +176,27 @@ const traj    = rocket.trajectory // TrajectorySample | undefined
 
 ### AscentEvent
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| `time` | `number` | 事件时间（发射后秒数） |
-| `type` | `"liftoff" \| "pitchover" \| "staging" \| "burnout" \| "apogee"` | 事件类型 |
-| `altitude` | `number` | 当前海拔（米） |
-| `velocity` | `number` | 当前速率（m/s） |
+| `time` | `number` | Event time in seconds after launch |
+| `type` | `"liftoff" \| "pitchover" \| "staging" \| "burnout" \| "apogee"` | Event type |
+| `altitude` | `number` | Current altitude in meters |
+| `velocity` | `number` | Current speed in m/s |
 
 ### AscentSummary
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| `maxAltitude` | `number` | 最大海拔（米） |
-| `maxVelocity` | `number` | 最大速率（m/s） |
-| `maxAcceleration` | `number` | 最大加速度（m/s²） |
-| `totalDeltaV` | `number` | 总 ΔV（m/s） |
-| `apogeeAltitude` | `number` | 远地点海拔（米） |
-| `events` | `AscentEvent[]` | 完整事件列表 |
+| `maxAltitude` | `number` | Maximum altitude in meters |
+| `maxVelocity` | `number` | Maximum speed in m/s |
+| `maxAcceleration` | `number` | Maximum acceleration in m/s² |
+| `totalDeltaV` | `number` | Total ΔV in m/s |
+| `apogeeAltitude` | `number` | Apogee altitude in meters |
+| `events` | `AscentEvent[]` | Complete event list |
 
-### 实时遥测
+### Real-Time Telemetry
 
-通过 `getFlightStateAtTime()` 查询任意时刻的飞行状态：
+Query the flight state at any time with `getFlightStateAtTime()`:
 
 ```typescript
 engine.onPreRender((time) => {
@@ -205,9 +205,9 @@ engine.onPreRender((time) => {
 })
 ```
 
-## 使用预计算轨迹采样
+## Use Precomputed Trajectory Samples
 
-当用户已有外部工具（定制上升仿真、外部弹道解算）计算的轨迹采样点时，可直接构建 [TrajectorySample](/en/api/classes/TrajectorySample) 并注入火箭，跳过内置 RK4 积分器：
+When trajectory samples have already been calculated by an external tool such as a custom ascent simulation or ballistic solver, build a [TrajectorySample](/en/api/classes/TrajectorySample) directly and inject it into the rocket to bypass the built-in RK4 integrator:
 
 ```typescript
 // 1. 创建火箭（不调用 applyAscentTrajectory）
@@ -230,9 +230,9 @@ traj.pushData([
 rocket.position = traj
 ```
 
-## 实时数据注入（Live 模式）
+## Real-Time Data Injection (Live Mode)
 
-从遥测流等实时数据源持续接收火箭位置时，先创建空 [TrajectorySample](/en/api/classes/TrajectorySample) 并挂载到火箭，后续逐帧追加数据：
+When receiving rocket positions continuously from a real-time source such as a telemetry stream, create an empty [TrajectorySample](/en/api/classes/TrajectorySample), attach it to the rocket, and append data frame by frame:
 
 ```typescript
 // 1. 创建火箭，挂载空轨迹
@@ -251,13 +251,13 @@ telemetryStream.on("data", (packet) => {
 })
 ```
 
-## 模型与朝向
+## Model and Attitude
 
-默认行为：
-- `autoOrientationByVelocity: true` — 实体始终朝向速度方向
-- `autoAlignVerticalModelToFlight: true` — 模型 Z-up → 飞行 X-forward 自动旋转
+Default behavior:
+- `autoOrientationByVelocity: true` — The entity always faces the velocity direction
+- `autoAlignVerticalModelToFlight: true` — Automatically rotate the model from Z-up to flight X-forward
 
-如果模型在发射台上本身就是竖直的（如 Saturn V），应在构造时关闭自动对齐：
+If the model is already vertical on the launch pad, such as Saturn V, disable automatic alignment in the constructor:
 
 ```typescript
 new Daisy.PW.Rocket({
@@ -266,7 +266,7 @@ new Daisy.PW.Rocket({
 })
 ```
 
-## 完整工作流
+## Complete Workflow
 
 ```typescript
 // 1. 创建
@@ -302,24 +302,24 @@ console.log("远地点:", rocket.summary?.apogeeAltitude, "m")
 console.log("总 ΔV:", rocket.summary?.totalDeltaV, "m/s")
 ```
 
-## 事件
+## Events
 
-[PW.Rocket](/en/api/classes/PW.Rocket) 继承自 [BaseObject](/en/api/classes/PW.BaseObject)，提供以下事件：
+[PW.Rocket](/en/api/classes/PW.Rocket) inherits from [BaseObject](/en/api/classes/PW.BaseObject) and provides the following events:
 
-### 生命周期
+### Lifecycle
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `rocket.onBeforeRegister(callback)` | 注册前回调 |
-| `rocket.onRegister(callback)` | 注册后回调 |
-| `rocket.onBeforeUpdate(callback)` | 每帧更新前，参数 `(time)` |
-| `rocket.onUpdate(callback)` | 每帧更新后，参数 `(time)` |
-| `rocket.onBeforeDestroy(callback)` | 销毁前回调 |
-| `rocket.onDestroy(callback)` | 销毁后回调 |
+| `rocket.onBeforeRegister(callback)` | Callback before registration |
+| `rocket.onRegister(callback)` | Callback after registration |
+| `rocket.onBeforeUpdate(callback)` | Callback before each frame update, with `(time)` |
+| `rocket.onUpdate(callback)` | Callback after each frame update, with `(time)` |
+| `rocket.onBeforeDestroy(callback)` | Callback before destruction |
+| `rocket.onDestroy(callback)` | Callback after destruction |
 
-### 交互事件
+### Interaction Events
 
-交互事件桥接到底层 Entity，payload 自动注入 `spaceObject` 字段指向当前对象：
+Interaction events are bridged to the underlying Entity. The payload automatically receives a `spaceObject` field pointing to the current object:
 
 ```typescript
 rocket.onClick((e) => {
@@ -327,21 +327,21 @@ rocket.onClick((e) => {
 })
 ```
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `rocket.onClick(handler)` | 单击 |
-| `rocket.offClick(handler?)` | 移除 |
-| `rocket.onDblClick(handler)` | 双击 |
-| `rocket.offDblClick(handler?)` | 移除 |
-| `rocket.onMouseEnter(handler)` | 鼠标进入 |
-| `rocket.offMouseEnter(handler?)` | 移除 |
-| `rocket.onMouseLeave(handler)` | 鼠标离开 |
-| `rocket.offMouseLeave(handler?)` | 移除 |
+| `rocket.onClick(handler)` | Click |
+| `rocket.offClick(handler?)` | Remove listener |
+| `rocket.onDblClick(handler)` | Double-click |
+| `rocket.offDblClick(handler?)` | Remove listener |
+| `rocket.onMouseEnter(handler)` | Mouse enter |
+| `rocket.offMouseEnter(handler?)` | Remove listener |
+| `rocket.onMouseLeave(handler)` | Mouse leave |
+| `rocket.offMouseLeave(handler?)` | Remove listener |
 
 
-## 进阶：直接使用 AscentTrajectoryBuilder
+## Advanced: Use AscentTrajectoryBuilder Directly
 
-如果不需要 [Rocket](/en/api/classes/PW.Rocket) 封装的自动可视化，可直接使用 [AscentTrajectoryBuilder](/en/api/classes/AscentTrajectoryBuilder) 生成原始轨迹：
+If the automatic visualization wrapped by [Rocket](/en/api/classes/PW.Rocket) is not needed, use [AscentTrajectoryBuilder](/en/api/classes/AscentTrajectoryBuilder) directly to generate a raw trajectory:
 
 ```typescript
 const builder = new Daisy.PW.AscentTrajectoryBuilder()
@@ -361,4 +361,4 @@ const summary = builder.getSummary()
 entity.position = trajectory
 ```
 
-> **相关 API**：[PW.Rocket](/en/api/classes/PW.Rocket) · [PW.Vehicle](/en/api/classes/PW.Vehicle) · [PW.JetEngine](/en/api/classes/PW.JetEngine) · [PW.PropulsionComponent](/en/api/classes/PW.PropulsionComponent) · [AscentTrajectoryBuilder](/en/api/classes/AscentTrajectoryBuilder) · [TrajectorySample](/en/api/classes/TrajectorySample)
+> **Related APIs**: [PW.Rocket](/en/api/classes/PW.Rocket) · [PW.Vehicle](/en/api/classes/PW.Vehicle) · [PW.JetEngine](/en/api/classes/PW.JetEngine) · [PW.PropulsionComponent](/en/api/classes/PW.PropulsionComponent) · [AscentTrajectoryBuilder](/en/api/classes/AscentTrajectoryBuilder) · [TrajectorySample](/en/api/classes/TrajectorySample)

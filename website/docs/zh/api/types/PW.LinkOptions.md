@@ -63,6 +63,14 @@ site.addLink({
 
 ***
 
+### id?
+
+> `optional` **id?**: `string`
+
+注册前可提供的稳定业务 ID。
+
+***
+
 ### material?
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)

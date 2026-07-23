@@ -11,6 +11,8 @@ Particles will be positioned randomly within the sphere and have initial velocit
 
 ## Param
 
+**radius**
+
 The radius of the sphere in meters.
 
 ## Constructors

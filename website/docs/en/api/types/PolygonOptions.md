@@ -8,7 +8,7 @@
 
 > **PolygonOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-PolygonFeature 配置。
+PolygonFeature configuration.
 
 ## Type Declaration
 
@@ -16,7 +16,7 @@ PolygonFeature 配置。
 
 > `optional` **arcType?**: `Daisy.ArcType`
 
-连线弧线类型。
+Arc type for connecting edges.
 
 #### Default
 
@@ -28,7 +28,7 @@ Daisy.ArcType.GEODESIC
 
 > `optional` **autoSortPositions?**: `boolean`
 
-是否自动对输入点排序（避免自交等问题）。
+Whether to automatically sort input positions to avoid self-intersections and similar issues.
 
 ### clampToGround?
 
@@ -38,7 +38,7 @@ Daisy.ArcType.GEODESIC
 
 > `optional` **closeBottom?**: `boolean`
 
-是否封底（挤出时底部是否闭合）。
+Whether to close the bottom when extruding.
 
 #### Default
 
@@ -50,7 +50,7 @@ true
 
 > `optional` **closeTop?**: `boolean`
 
-是否封顶（挤出时顶部是否闭合）。
+Whether to close the top when extruding.
 
 #### Default
 
@@ -66,22 +66,22 @@ true
 
 > `optional` **distanceDisplayCondition?**: `Daisy.DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
 ### ellipsoid?
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-贴地计算与“天体跟随”使用的天体椭球。
+Celestial ellipsoid used for ground calculations and celestial-body following.
 
-注意：一旦该组件通过 Entity.addFeature() 添加到实体上，会被实体的 celestialEllipsoid 覆盖，
-组件将始终遵循实体的天体椭球配置。
+Note: once this component is added to an Entity through Entity.addFeature(), it is overridden by the Entity's celestialEllipsoid.
+The component always follows the Entity's celestial-ellipsoid configuration.
 
 ### extrudedHeight?
 
 > `optional` **extrudedHeight?**: `number`
 
-挤出高度（单位：米）。
+Extruded height in meters.
 
 ### fill?
 
@@ -91,7 +91,7 @@ true
 
 > `optional` **granularity?**: `number`
 
-采样粒度（弧度）。
+Sampling granularity in radians.
 
 #### Default
 
@@ -103,19 +103,19 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **height?**: `number`
 
-高度（单位：米）。
+Height in meters.
 
 ### material?
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-材质。
+Material.
 
 ### name?
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name (for display or debugging).
 
 ### outline?
 
@@ -125,13 +125,13 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色
+Outline color.
 
 ### outlineWidth?
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度
+Outline width.
 
 #### Default
 
@@ -143,30 +143,30 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > **pathway**: [`Pathway`](Pathway.md) \| [`Holes`](Holes.md) \| `Daisy.PolygonHierarchy`
 
-多边形顶点/孔洞输入。
+Polygon vertex and hole input.
 
-支持：
-- `Pathway`：点位/Entity 引用序列
-- `Holes`：positions + holes 递归结构
+Supports:
+- `Pathway`: sequence of positions or Entity references
+- `Holes`: recursive positions + holes structure
 - `Daisy.PolygonHierarchy`
 
 ### perPositionHeight?
 
 > `optional` **perPositionHeight?**: `boolean`
 
-是否按每个点单独指定高度（与贴地/挤出等设置存在组合限制，遵循默认规则）。
+Whether to specify the height independently for each position (subject to combination limits with ground clamping, extrusion, and related settings).
 
 ### rebuildThrottleMs?
 
 > `optional` **rebuildThrottleMs?**: `number`
 
-重建节流时间（毫秒）。
+Rebuild throttle interval in milliseconds.
 
 ### show?
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show the polygon.
 
 #### Default
 
@@ -178,7 +178,7 @@ true
 
 > `optional` **stRotation?**: `number`
 
-纹理旋转（弧度）。
+Texture rotation in radians.
 
 #### Default
 
@@ -190,21 +190,21 @@ true
 
 > `optional` **textureCoordinates?**: `Daisy.Cartesian2`[] \| [`TextureCoordinatesHoles`](TextureCoordinatesHoles.md) \| `Daisy.PolygonHierarchy`
 
-纹理坐标输入。
+Texture-coordinate input.
 
 ### updateThrottleMs?
 
 > `optional` **updateThrottleMs?**: `number`
 
-更新节流时间（毫秒）。
+Update throttle interval in milliseconds.
 
-适用于高频更新时降低重算开销。
+Useful for reducing recalculation overhead during high-frequency updates.
 
 ### vertexFormat?
 
 > `optional` **vertexFormat?**: `Daisy.VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 

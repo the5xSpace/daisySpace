@@ -1,6 +1,6 @@
-# Beam Footprint Projection
+# Beam Projection Computation
 
-`Analysis.BeamProjector` is the core engine for coverage analysis. It computes the beam footprint on the ground (or any celestial body) from the satellite matrix and sensor parameters.
+`Analysis.BeamProjector` is the core engine for coverage analysis. It computes a beam's projected footprint on the ground or any celestial body from a satellite matrix and sensor parameters.
 
 ## Architecture
 
@@ -10,7 +10,7 @@ BeamProjector（统一入口）
   └── BeamProjectorGpuBackend（GPU 后端，异步，基于 gpu-io）
 ```
 
-`BeamProjector` internally manages backend initialization and auto-fallback: when GPU is unavailable it silently falls back to CPU with no manual intervention required.
+`BeamProjector` manages backend initialization and fallback automatically. When the GPU is unavailable, it falls back to the CPU without manual checks.
 
 ## Construction
 
@@ -28,26 +28,26 @@ The `BeamProjectorBackend` enum values are `CPU` (`"cpu"`) and `GPU` (`"gpu"`).
 
 ## projectFootprint()
 
-Synchronous method; returns the result of a single beam footprint projection.
+Synchronous method that returns the result of a single beam projection.
 
 ```typescript
 bp.projectFootprint(input: BeamProjectorInput): FootprintResult
 ```
 
-### Parameter Table (BeamProjectorInput)
+### Parameters (BeamProjectorInput)
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| `entityId` | `string` | Entity identifier, used for cache deduplication |
+|------|------|------|
+| `entityId` | `string` | Entity identifier used for cache deduplication |
 | `entityMatrix` | `Matrix4` | Satellite ECEF world matrix (`sat.entity.getWorldMatrix(time)`) |
-| `beamAttitude` | `{ azimuthDeg, elevationDeg, rollDeg }` | Beam attitude angles (degrees) |
+| `beamAttitude` | `{ azimuthDeg, elevationDeg, rollDeg }` | Beam attitude angles, in degrees |
 | `sensorType` | `SensorType` | Beam type (`EllipticalCone` / `Cone` / `Pyramid` / `Cylinder`) |
-| `apertureDeg` | `{ xDeg, yDeg }` | Aperture angle in the X/Y direction (degrees) |
-| `beamLength` | `number` | Beam length (meters) |
+| `apertureDeg` | `{ xDeg, yDeg }` | Opening angles along X/Y, in degrees |
+| `beamLength` | `number` | Beam length, in meters |
 | `emitDirection` | `EmitDirection` | Emission direction (`TO_GROUND` / `TO_BOTTOM` / `TO_UP`, etc.) |
-| `slices` | `number` | Circumferential sampling accuracy (default 32; higher values are more accurate but slower) |
+| `slices` | `number` | Circumferential sampling resolution (default 32; higher values are more accurate but slower) |
 | `celestialEllipsoid` | `CelestialEllipsoid` | Target celestial ellipsoid (`PW.CelestialEllipsoid.Earth()`, etc.) |
-| `time` | `JulianDate` | Calculation instant |
+| `time` | `JulianDate` | Time of computation |
 
 ### Return Value (FootprintResult)
 
@@ -62,11 +62,11 @@ interface FootprintResult {
 }
 ```
 
-The `cartographic` array holds the polygon contour points of the footprint (in order).
+The `cartographic` array contains the ordered polygon outline points of the footprint.
 
-## Async GPU Methods
+## Asynchronous GPU Methods
 
-When you need precise control over the backend path, use the dedicated async methods:
+Use the dedicated asynchronous methods when precise control over the backend path is required:
 
 ```typescript
 // 异步 GPU 投影（如 GPU 不可用则降级 CPU）
@@ -76,9 +76,9 @@ const result: FootprintResult = await bp.projectFootprintGpu(input)
 const results: FootprintResult[] = await bp.projectFootprintBatchGpu(inputs)
 ```
 
-## Rendering the Footprint
+## Rendering Coverage Footprints
 
-The computed footprint is rendered via the Sensor's `drawFootprint()`:
+The computed footprint is rendered through the Sensor's `drawFootprint()` method:
 
 ```typescript
 sensor.drawFootprint({
@@ -98,7 +98,7 @@ sensor.drawFootprint({
 sensor.clearFootprintUnionRenderer?.()
 ```
 
-`drawFootprint()` internally calls `BeamProjector` at each sample instant to compute the footprint, then draws the polygon via `ShaderPolygonFeature`.
+`drawFootprint()` automatically calls `BeamProjector` to compute the footprint at each sample time and draws the polygon through `ShaderPolygonFeature`.
 
 ## Complete Example
 
@@ -160,16 +160,16 @@ sensor.drawFootprint({
 
 ```
 
-## Choosing CPU vs GPU Backend
+## Choosing the CPU vs. GPU Backend
 
-| Scenario | Recommended Backend | Reason |
-|----------|---------------------|-------|
-| Single / few projections | CPU | GPU initialization has overhead; CPU has lower latency for few calculations |
-| Large batch / constellation coverage | GPU | GPU parallel compute significantly accelerates thousands of projections |
-| Browser lacks WebGL2 | CPU (auto-fallback) | GPU backend depends on `GpuDeviceManager.isSupported()` |
-| Accuracy-critical | CPU (fallback for comparison) | GPU endpoint accuracy is limited by floating-point texture precision |
+| Scene | Recommended backend | Reason |
+|------|----------|------|
+| Single / small number of projections | CPU | GPU initialization has overhead, so CPU latency is lower for small computations |
+| Large batches / constellation coverage | GPU | Parallel GPU computation can significantly accelerate thousands of projections |
+| Browser does not support WebGL2 | CPU (automatic fallback) | The GPU backend depends on `GpuDeviceManager.isSupported()` |
+| Precision-sensitive | CPU (fallback comparison available) | GPU endpoint precision is limited by floating-point texture precision |
 
-> **Tip**: Pass `GPU` at construction time; the system auto-detects GPU availability and falls back to CPU on failure — no manual branching needed.
+> **Tip**: Pass `GPU` to the constructor. The implementation automatically detects GPU availability and falls back to the CPU on failure, so no manual check is required.
 
 ---
 

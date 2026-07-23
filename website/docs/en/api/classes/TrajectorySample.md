@@ -6,12 +6,12 @@
 
 # Class: TrajectorySample
 
-轨迹点采样与插值工具。
+Trajectory-point sampling and interpolation utility.
 
-内部使用 `SampledPositionProperty` 保存时序位置点，并提供：
-- 插值后的实时位置查询
-- 速度方向/ENU 旋转矩阵计算
-- 轨迹范围采样、动态路径回调等能力
+Internally, `SampledPositionProperty` stores time-dependent positions and provides:
+- Real-time position queries after interpolation
+- Velocity-direction and ENU rotation-matrix calculations
+- Trajectory-range sampling and dynamic path callbacks
 
 ## Extended by
 
@@ -23,7 +23,7 @@
 
 > **new TrajectorySample**(`referenceFrame?`, `options?`): `TrajectorySample`
 
-轨迹点采样对象（静态）
+Trajectory-point sampling object (static)
 
 #### Parameters
 
@@ -31,7 +31,7 @@
 
 `ReferenceFrame` = `Daisy.ReferenceFrame.FIXED`
 
-参考系；默认 `ReferenceFrame.FIXED`
+Reference frame; defaults to `ReferenceFrame.FIXED`
 
 ##### options?
 
@@ -65,7 +65,7 @@
 
 > **endTime**(): `JulianDate` \| `undefined`
 
-轨迹结束时刻（最后一个采样点）。
+Trajectory end time (the last sample).
 
 #### Returns
 
@@ -77,7 +77,7 @@
 
 > **evaluate**(`time`): `Cartesian3` \| `undefined`
 
-获取指定时间点的轨迹点
+Get the trajectory point at the specified time.
 
 #### Parameters
 
@@ -85,7 +85,7 @@
 
 `JulianDate`
 
-目标时刻
+Target time
 
 #### Returns
 
@@ -97,9 +97,9 @@
 
 > **evaluateECEF**(`time`, `result?`): `Cartesian3` \| `undefined`
 
-获取指定时刻的 ECEF（地固系）坐标。
+Get the ECEF (Earth-fixed) coordinates at the specified time.
 
-当内部采样属性为 `INERTIAL` 参考系时，会自动将 TEME/ICRF 结果转换到 FIXED。
+When the internal sampled property uses the `INERTIAL` reference frame, TEME/ICRF results are automatically converted to FIXED.
 
 #### Parameters
 
@@ -107,13 +107,13 @@
 
 `JulianDate`
 
-目标时刻
+Target time
 
 ##### result?
 
 `Cartesian3`
 
-结果复用对象（可选）
+Reusable result object (optional)
 
 #### Returns
 
@@ -125,7 +125,7 @@
 
 > **evaluateEcefAtAbsSecondsInto**(`absSecondsList`, `out`, `valid?`): `void`
 
-批量按绝对秒取 ECEF 位置。
+Get ECEF positions in batches using absolute seconds.
 
 #### Parameters
 
@@ -151,7 +151,7 @@
 
 > **evaluateInReferenceFrame**(`time`, `referenceFrame?`): `Cartesian3` \| `undefined`
 
-获取指定时间点的轨迹点
+Get the trajectory point at the specified time.
 
 #### Parameters
 
@@ -159,13 +159,13 @@
 
 `JulianDate`
 
-目标时刻
+Target time
 
 ##### referenceFrame?
 
 `ReferenceFrame` = `Daisy.ReferenceFrame.FIXED`
 
-参考系；默认 `ReferenceFrame.FIXED`
+Reference frame; defaults to `ReferenceFrame.FIXED`
 
 #### Returns
 
@@ -177,12 +177,12 @@
 
 > **evaluateInReferenceFrameAtAbsSecondsGpu**(`absSecondsList`, `referenceFrame`, `out`, `valid?`): `Promise`\<`boolean`\>
 
-批量 GPU Catmull-Rom 插值求位置（异步）。
+Compute positions in batches with GPU Catmull-Rom interpolation (asynchronous).
 
-仅在 computeBackend=webgpu/auto 且 GPU 后端就绪时有效；
-否则返回 undefined，调用方应降级到 evaluateInReferenceFrameAtAbsSecondsInto。
+Valid only when computeBackend=webgpu/auto and the GPU backend is ready;
+otherwise it returns undefined, and callers should fall back to evaluateInReferenceFrameAtAbsSecondsInto.
 
-约束：referenceFrame 必须与 trajectory 的 referenceFrame 一致（GPU 不做系转换）。
+Constraint: referenceFrame must match the trajectory referenceFrame (the GPU path does not perform frame conversion).
 
 #### Parameters
 
@@ -212,11 +212,11 @@
 
 > **evaluateInReferenceFrameAtAbsSecondsInto**(`absSecondsList`, `referenceFrame`, `out`, `valid?`): `void`
 
-批量按绝对秒取指定参考系位置（同步 CPU 路径）。
+Get positions in the specified reference frame by absolute seconds (synchronous CPU path).
 
-若 GPU 后端就绪且参考系匹配，委托给 evaluateInReferenceFrameAtAbsSecondsGpu
-——但此处保持同步，GPU 结果通过 fire-and-forget 异步获取；调用方如需确保 GPU 执行，
-应直接调用 evaluateInReferenceFrameAtAbsSecondsGpu 并 await。
+When the GPU backend is ready and the reference frames match, this delegates to evaluateInReferenceFrameAtAbsSecondsGpu
+—but this method remains synchronous and obtains the GPU result asynchronously in a fire-and-forget manner. Callers that need to ensure GPU execution
+should call evaluateInReferenceFrameAtAbsSecondsGpu directly and await it.
 
 #### Parameters
 
@@ -246,7 +246,7 @@
 
 > **evaluateInReferenceFrameInto**(`time`, `referenceFrame?`, `result`): `Cartesian3` \| `undefined`
 
-获取指定参考系位置并写入 result。供批量热路径复用对象。
+Get the position in the specified reference frame and write it to result. Intended for object reuse on batch hot paths.
 
 #### Parameters
 
@@ -298,7 +298,7 @@
 
 > **getDuration**(): `number`
 
-获取轨迹总时长（秒）。
+Get the total trajectory duration in seconds.
 
 #### Returns
 
@@ -310,7 +310,7 @@
 
 > **getEnuRotation**(`startPos`, `endPos`, `enuMatrix4`): `Matrix3`
 
-计算从 `startPos` 指向 `endPos` 的 ENU 旋转矩阵（3x3）。
+Compute the ENU rotation matrix (3x3) from `startPos` toward `endPos`.
 
 #### Parameters
 
@@ -318,19 +318,19 @@
 
 `Cartesian3`
 
-起点坐标
+Start coordinate
 
 ##### endPos
 
 `Cartesian3`
 
-终点坐标
+End coordinate
 
 ##### enuMatrix4
 
 `Matrix4`
 
-`eastNorthUpToFixedFrame(startPos)` 计算得到的矩阵
+Matrix computed by `eastNorthUpToFixedFrame(startPos)`
 
 #### Returns
 
@@ -360,9 +360,9 @@
 
 > **getMatrix4**(`time`, `nextTime`, `startPos`): `Matrix4`
 
-计算实体在 `time` 的模型矩阵（4x4）。
+Compute the model matrix (4x4) of the object at `time`.
 
-通常用于将模型“朝向运动方向”对齐：内部取 `nextTime` 的位置作为前向方向估计。
+Usually used to align the model “toward the direction of motion”; the position at `nextTime` is used internally to estimate the forward direction.
 
 #### Parameters
 
@@ -370,19 +370,19 @@
 
 `JulianDate`
 
-当前时刻
+Current time
 
 ##### nextTime
 
 `JulianDate`
 
-用于估计前向方向的下一时刻
+Next time used to estimate the forward direction
 
 ##### startPos
 
 `Cartesian3`
 
-当前时刻的位置
+Position at the current time
 
 #### Returns
 
@@ -394,7 +394,7 @@
 
 > **getOrientation**(`time`): `Matrix4`
 
-获取指定时刻的 ENU 姿态矩阵（4x4）。
+Get the ENU attitude matrix (4x4) at the specified time.
 
 #### Parameters
 
@@ -402,7 +402,7 @@
 
 `JulianDate`
 
-目标时刻
+Target time
 
 #### Returns
 
@@ -414,11 +414,11 @@
 
 > **getOrientationMatrix4**(`time`, `startPos?`, `fallbackNextTime?`): `Matrix4`
 
-基于位置采样序列计算连续方向矩阵。
+Compute a continuous orientation matrix from the position sample sequence.
 
-与 `getMatrix4(time, nextTime, startPos)` 不同，本方法不依赖渲染帧的
-nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中心差分，
-让方向成为由 Daisy 位置采样派生出的对等连续采样。
+Unlike `getMatrix4(time, nextTime, startPos)`, this method does not depend on the render frame's
+nextFrameTime. It uses positions at `time ± step` within the current sample interval for a central difference,
+making the orientation an equivalent continuous sample derived from Daisy position samples.
 
 #### Parameters
 
@@ -444,7 +444,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **getPackedSamples**(): [`TrajectoryPackedSamples`](../interfaces/TrajectoryPackedSamples.md)
 
-获取 GPU/Worker 友好的紧凑采样数据。
+Get compact sample data suitable for GPU/Worker use.
 
 #### Returns
 
@@ -456,7 +456,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **getPositionsProperty**(): `SampledPositionProperty`
 
-获取实时位置属性
+Get the real-time position property.
 
 #### Returns
 
@@ -508,7 +508,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **getVelocityOrientation**(): `Property`
 
-获取全程方向属性采样
+Get orientation-property samples for the entire trajectory.
 
 #### Returns
 
@@ -520,7 +520,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **inTheTimeRange**(`time`): `boolean`
 
-判断 time 是否在 [startTime, endTime] 区间内（包含边界）
+Check whether time is within the [startTime, endTime] interval, including the boundaries.
 
 #### Parameters
 
@@ -538,7 +538,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **pushData**(`timeWithPositionArray`): `void`
 
-批量添加轨迹点
+Add trajectory points in batches.
 
 #### Parameters
 
@@ -546,7 +546,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 \{ `position`: `Cartesian3` \| `Cartographic`; `time`: `JulianDate`; \} \| `object`[]
 
-轨迹点数组或单个轨迹点
+Array of trajectory points or a single trajectory point
 
 #### Returns
 
@@ -558,7 +558,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **removeSample**(`time`): `void`
 
-删除指定时间点的轨迹点
+Delete the trajectory point at the specified time.
 
 #### Parameters
 
@@ -566,7 +566,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 `JulianDate`
 
-目标时刻
+Target time
 
 #### Returns
 
@@ -578,7 +578,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **removeSamples**(`time`): `void`
 
-删除指定时间段的轨迹点
+Delete trajectory points in the specified time interval.
 
 #### Parameters
 
@@ -586,7 +586,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 `TimeInterval`
 
-目标时间段
+Target time interval
 
 #### Returns
 
@@ -598,7 +598,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **resetTemporalState**(): `void`
 
-重置跨周期的临时运动状态。
+Reset temporary motion state across cycles.
 
 #### Returns
 
@@ -610,7 +610,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **sampleRange**(`start`, `end`, `stepSecond`): `Cartesian3`[]
 
-获取一段时间内的轨迹点
+Get trajectory points over a time interval.
 
 #### Parameters
 
@@ -618,19 +618,19 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 `JulianDate`
 
-起始时刻
+Start time
 
 ##### end
 
 `JulianDate`
 
-结束时刻
+End time
 
 ##### stepSecond
 
 `number`
 
-采样步长（秒）
+Sampling step in seconds
 
 #### Returns
 
@@ -674,7 +674,7 @@ nextFrameTime，而是在当前采样区间内用 `time ± step` 的位置做中
 
 > **startTime**(): `JulianDate` \| `undefined`
 
-轨迹起始时刻（首个采样点）。
+Trajectory start time (the first sample).
 
 #### Returns
 

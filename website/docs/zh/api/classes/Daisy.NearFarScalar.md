@@ -10,17 +10,25 @@ Represents a scalar value's lower and upper bound at a near distance and far dis
 
 ## Param
 
+**near**
+
 The lower bound of the camera range.
 
 ## Param
+
+**nearValue**
 
 The value at the lower bound of the camera range.
 
 ## Param
 
+**far**
+
 The upper bound of the camera range.
 
 ## Param
+
+**farValue**
 
 The value at the upper bound of the camera range.
 

@@ -26,17 +26,25 @@ const instance = new Daisy.GeometryInstance({
 
 ## Param
 
+**red**
+
 The red component.
 
 ## Param
+
+**green**
 
 The green component.
 
 ## Param
 
+**blue**
+
 The blue component.
 
 ## Param
+
+**alpha**
 
 The alpha component.
 

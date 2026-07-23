@@ -6,8 +6,7 @@
 
 # Interface: BoxComponentEntityComOptions
 
-盒子组件属性
- BoxComponentEntityComOptions
+Box component properties for BoxComponentEntityComOptions.
 
 ## Extends
 
@@ -19,7 +18,7 @@
 
 > `optional` **dimensions?**: `Cartesian3`
 
-盒子尺寸（单位：米），分别对应 X/Y/Z 三个方向的边长。
+Box dimensions in meters, corresponding to the lengths along the X, Y, and Z axes.
 
 #### Default
 
@@ -33,9 +32,9 @@ new Cartesian3(100, 100, 100)
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Display distance condition.
 
-当相机距离超出该范围时会自动隐藏。
+The component is hidden automatically when the camera distance falls outside this range.
 
 #### Default
 
@@ -49,7 +48,7 @@ viewDistanceConst.FAR
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom identifier, used to identify or look up the underlying render object.
 
 #### Inherited from
 
@@ -61,9 +60,9 @@ viewDistanceConst.FAR
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to include this component in its owning Entity's bounding-sphere aggregation.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Useful for Features that should be included in the camera's zoom/flyTo view. It can be disabled for guides and temporary effects.
 
 #### Inherited from
 
@@ -75,9 +74,9 @@ viewDistanceConst.FAR
 
 > `optional` **material?**: [`DMaterial`](../types/DMaterial.md)
 
-盒子材质。
+Box material.
 
-支持 `Daisy.Material` 或颜色（`DColor` / CSS 色值字符串）。
+Accepts `Daisy.Material` or a color (`DColor` / CSS color string).
 
 #### Default
 
@@ -91,7 +90,7 @@ Color.BLUE.withAlpha(0.6)
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name, which can be used for display or debugging.
 
 #### Inherited from
 
@@ -103,7 +102,7 @@ Color.BLUE.withAlpha(0.6)
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓线。
+Whether to draw the outline.
 
 #### Default
 
@@ -117,7 +116,7 @@ true
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-轮廓颜色。
+Outline color.
 
 #### Default
 
@@ -131,7 +130,7 @@ Color.BLACK
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度（像素）。
+Outline width in pixels.
 
 #### Default
 
@@ -145,7 +144,7 @@ Color.BLACK
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay render pass.
 
 #### Inherited from
 
@@ -157,7 +156,7 @@ Color.BLACK
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render order value; smaller values render first.
 
 #### Inherited from
 
@@ -169,7 +168,7 @@ Color.BLACK
 
 > `optional` **shadows?**: `ShadowMode`
 
-阴影模式。
+Shadow mode.
 
 #### Default
 
@@ -183,7 +182,7 @@ ShadowMode.DISABLED
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show the component.
 
 #### Default
 
@@ -197,7 +196,7 @@ true
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 

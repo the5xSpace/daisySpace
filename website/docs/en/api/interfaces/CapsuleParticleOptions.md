@@ -6,9 +6,9 @@
 
 # Interface: CapsuleParticleOptions
 
-Feature 基础配置选项。
+Base configuration options for a Feature.
 
-所有具体 Feature 的 Options 类型都继承自该接口。
+The Options type for every concrete Feature extends this interface.
 
 ## Extends
 
@@ -26,9 +26,9 @@ Feature 基础配置选项。
 
 > `optional` **anchorRatio?**: `number`
 
-兼容旧版 billboard 的中心锚点比例。
+Center anchor ratio retained for compatibility with the legacy billboard implementation.
 
-世界锚定渲染中喷口就是贴图片面的局部原点，该字段不再参与主路径偏移。
+In world-anchored rendering, the nozzle is the local origin of the textured plane, so this field no longer affects the main-path offset.
 
 ***
 
@@ -60,11 +60,11 @@ Feature 基础配置选项。
 
 > `optional` **emitter?**: [`ParticleEmitterConfig`](../types/ParticleEmitterConfig.md)
 
-复用粒子发射器语义描述喷口截面和扩散趋势。
+Reuses particle-emitter semantics to describe the nozzle cross-section and expansion trend.
 
-注意：胶囊粒子不会创建 ParticleSystem，也不会逐粒子积分。
-这里的 emitter 只作为“形态描述”参与动画帧生成，例如 cone.angle
-控制火焰边缘扩散，radius 控制根部半径。
+Note: capsule particles do not create a ParticleSystem or integrate individual particles.
+Here, emitter participates in animation-frame generation only as a shape description;
+for example, cone.angle controls flame-edge expansion and radius controls the root radius.
 
 ***
 
@@ -72,12 +72,13 @@ Feature 基础配置选项。
 
 > `optional` **emitter2D?**: [`CapsuleParticleEmitter2DOptions`](CapsuleParticleEmitter2DOptions.md)
 
-胶囊动画内部的 2D 粒子发射器。
+The internal 2D particle emitter used by the capsule animation.
 
-CapsuleParticleFeature 仍然只向场景提交一个宿主绑定的贴图片面；
-emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编码的“子弹形”
-或固定椭圆背景。它借鉴 city41/particle.js / Cocos2D 的参数模型，
-适合火焰、喷流、能量束这类需要连续形体但又要有真实粒子流动感的效果。
+CapsuleParticleFeature still submits only one host-bound textured plane to the scene;
+emitter2D runs only while animation frames are pre-generated on an offscreen canvas,
+replacing a hard-coded bullet shape or fixed ellipse background. It borrows the
+parameter model of city41/particle.js / Cocos2D and suits flames, jets, and energy
+beams that need a continuous shape with a genuine particle-flow feel.
 
 ***
 
@@ -85,7 +86,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **emitterDirection?**: `ParticleEmitterAttitude`
 
-对局部发射方向的姿态修正，单位为度。
+Attitude correction for the local emission direction, in degrees.
 
 ***
 
@@ -93,10 +94,11 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **emitterPreset?**: [`CapsuleParticleEmitterPreset`](../types/CapsuleParticleEmitterPreset.md)
 
-内置 2D 发射器预设。
+Built-in 2D emitter preset.
 
-它不是最终贴图，也不只是几何形状；它会一起决定粒子出生区域、发射方向、
-速度、寿命、力场、颜色随机和混合模式。
+It is neither the final texture nor merely a geometric shape; it jointly determines
+the particle birth region, emission direction, speed, lifetime, force fields, color
+randomization, and blend mode.
 
 ***
 
@@ -104,7 +106,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **frameCount?**: `number`
 
-预生成动画帧数量。帧数越多越平滑，但会占用更多纹理图集空间。
+Number of pre-generated animation frames. More frames produce smoother motion but use more texture-atlas space.
 
 ***
 
@@ -118,7 +120,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom identifier, used to identify or look up the underlying render object.
 
 #### Inherited from
 
@@ -130,9 +132,9 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to include this Feature in its owning Entity's bounding-sphere aggregation.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Useful for Features that should be included in the camera's zoom/flyTo view. It can be disabled for guides and temporary effects.
 
 #### Inherited from
 
@@ -144,7 +146,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **length?**: `number`
 
-胶囊主体长度，单位：米。
+Length of the capsule body, in meters.
 
 ***
 
@@ -152,9 +154,9 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **localDirection?**: `Cartesian3`
 
-胶囊长轴方向，位于宿主实体局部坐标系。
+Direction of the capsule's major axis in the host Entity's local coordinate system.
 
-火箭/飞机等 Vehicle 约定 +X 为前向，因此喷焰默认沿 -X 延伸。
+Vehicles such as rockets and aircraft conventionally use +X as forward, so the exhaust extends along -X by default.
 
 ***
 
@@ -162,10 +164,11 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **maxLength?**: `number`
 
-胶囊最终显示长度上限，单位：米。
+Maximum final display length of the capsule, in meters.
 
-胶囊粒子默认使用世界锚定尺寸；当业务显式启用 `visualScaleMode: "match-model"`
-时，这里可作为最终尺寸保险丝，避免贴图片面被模型像素缩放放成巨大色块。
+Capsule particles use world-anchored sizing by default. When the application explicitly enables
+`visualScaleMode: "match-model"`, this acts as a final size safeguard against the textured plane
+being enlarged into a huge block by model pixel scaling.
 
 ***
 
@@ -173,7 +176,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **maxLengthPx?**: `number`
 
-屏幕空间长度上限，单位：px。
+Maximum screen-space length, in px.
 
 ***
 
@@ -181,7 +184,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **maxRadius?**: `number`
 
-胶囊最终显示半径上限，单位：米。用途同 maxLength。
+Maximum final display radius of the capsule, in meters. The purpose is the same as maxLength.
 
 ***
 
@@ -189,7 +192,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **maxRadiusPx?**: `number`
 
-屏幕空间半径上限，单位：px。
+Maximum screen-space radius, in px.
 
 ***
 
@@ -203,7 +206,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **minLengthPx?**: `number`
 
-屏幕空间长度下限，单位：px。
+Minimum screen-space length, in px.
 
 ***
 
@@ -211,7 +214,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **minRadiusPx?**: `number`
 
-屏幕空间半径下限，单位：px。
+Minimum screen-space radius, in px.
 
 ***
 
@@ -225,7 +228,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **modelLengthRatio?**: `number`
 
-喷焰长度相对宿主模型视觉直径的下限比例。
+Minimum exhaust length as a ratio of the host model's apparent diameter.
 
 ***
 
@@ -233,7 +236,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **modelMaxLengthRatio?**: `number`
 
-喷焰长度相对宿主模型视觉直径的上限比例。
+Maximum exhaust length as a ratio of the host model's apparent diameter.
 
 ***
 
@@ -241,7 +244,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **modelMaxRadiusRatio?**: `number`
 
-喷焰半径相对宿主模型视觉直径的上限比例。
+Maximum exhaust radius as a ratio of the host model's apparent diameter.
 
 ***
 
@@ -249,7 +252,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **modelRadiusRatio?**: `number`
 
-喷焰半径相对宿主模型视觉直径的下限比例。
+Minimum exhaust radius as a ratio of the host model's apparent diameter.
 
 ***
 
@@ -257,11 +260,12 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **modelRelativeSizing?**: `boolean`
 
-是否按宿主模型的当前屏幕视觉尺寸抬高像素约束。
+Whether to raise the pixel constraints according to the host model's current apparent screen size.
 
-仅在 screenSpaceSizing=true 且模型被 minimumPixelSize 视觉放大时生效。
-这不是把模型缩放直接乘到世界尺寸，而是在像素夹取阶段复用 Model
-的 minimumPixelSize / maximumScale 结果，让喷焰与宿主模型保持同一视觉比例尺。
+Effective only when screenSpaceSizing=true and the model is visually enlarged by minimumPixelSize.
+This does not multiply model scaling directly into world size; it reuses the Model's
+minimumPixelSize / maximumScale results during pixel clamping so the exhaust and host model
+retain the same visual scale.
 
 ***
 
@@ -269,7 +273,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name, which can be used for display or debugging.
 
 #### Inherited from
 
@@ -281,7 +285,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay render pass.
 
 #### Inherited from
 
@@ -293,10 +297,11 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **particleImage?**: [`CapsuleParticleImageSource`](../types/CapsuleParticleImageSource.md)
 
-单颗粒子图片/贴图源。
+Image or texture source for an individual particle.
 
-注意：这里的图片不是最终静态胶囊贴片，而是参与每一帧生成的单颗粒子图章。
-胶囊粒子仍会预生成动画帧，避免切换图片后退化成一张不会动的平面图。
+Note: this image is not the final static capsule texture; it is the single-particle stamp
+used to generate each frame. Capsule particles still pre-generate animation frames so that
+switching the image does not degrade the effect into a motionless plane.
 
 ***
 
@@ -304,7 +309,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **position?**: `Cartesian3`
 
-胶囊粒子挂点的局部偏移，通常等于发动机喷口位置。
+Local offset of the capsule particle anchor, usually the engine nozzle position.
 
 ***
 
@@ -312,7 +317,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **power?**: `number`
 
-视觉功率，范围 0~1。频繁变化时只影响尺寸、透明度和播放速度，不重新生成动画帧。
+Visual power, in the range 0-1. Frequent changes affect only size, opacity, and playback speed; animation frames are not regenerated.
 
 ***
 
@@ -320,7 +325,7 @@ emitter2D 只在离屏 canvas 预生成动画帧时运行，用来替代硬编�
 
 > `optional` **powerAffectsAlpha?**: `boolean`
 
-power 是否参与透明度。
+Whether power contributes to opacity.
 
 ***
 
@@ -328,7 +333,7 @@ power 是否参与透明度。
 
 > `optional` **powerAffectsPlayback?**: `boolean`
 
-power 是否参与帧播放速度。
+Whether power contributes to frame playback speed.
 
 ***
 
@@ -336,7 +341,7 @@ power 是否参与帧播放速度。
 
 > `optional` **powerAffectsSize?**: `boolean`
 
-power 是否参与长度/半径缩放。通用胶囊粒子可关闭，避免把“方向/形态”绑死到动力语义。
+Whether power contributes to length/radius scaling. Generic capsule particles can disable this to avoid tying direction or shape to power semantics.
 
 ***
 
@@ -344,7 +349,7 @@ power 是否参与长度/半径缩放。通用胶囊粒子可关闭，避免把�
 
 > `optional` **powerAffectsVisibility?**: `boolean`
 
-power 是否参与可见性。默认 true，保持喷焰“停机即隐藏”的旧行为。
+Whether power contributes to visibility. Defaults to true, preserving the legacy behavior of hiding exhaust when stopped.
 
 ***
 
@@ -358,7 +363,7 @@ power 是否参与可见性。默认 true，保持喷焰“停机即隐藏”的
 
 > `optional` **radius?**: `number`
 
-胶囊根部半径，单位：米。
+Root radius of the capsule, in meters.
 
 ***
 
@@ -366,7 +371,7 @@ power 是否参与可见性。默认 true，保持喷焰“停机即隐藏”的
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render order value; smaller values render first.
 
 #### Inherited from
 
@@ -378,7 +383,7 @@ power 是否参与可见性。默认 true，保持喷焰“停机即隐藏”的
 
 > `optional` **rotation?**: `number`
 
-兼容旧版 billboard 的屏幕旋转字段。世界锚定主路径不使用该字段。
+Screen rotation field retained for compatibility with the legacy billboard implementation. The world-anchored main path does not use this field.
 
 ***
 
@@ -386,10 +391,10 @@ power 是否参与可见性。默认 true，保持喷焰“停机即隐藏”的
 
 > `optional` **screenSpaceSizing?**: `boolean`
 
-启用像素约束尺寸。
+Enable pixel-constrained sizing.
 
-当前胶囊粒子仍是世界锚定贴图面片；该开关只把长度/半径限制在指定像素区间，
-不使用 billboard 的屏幕偏移，也不会改变喷口锚点。
+Capsule particles remain world-anchored textured planes; this switch only constrains length/radius
+to the specified pixel range. It does not use billboard screen offsets or change the nozzle anchor.
 
 ***
 
@@ -421,7 +426,7 @@ power 是否参与可见性。默认 true，保持喷焰“停机即隐藏”的
 
 > `optional` **turbulence?**: `number`
 
-噪声强度，只在生成动画帧时生效。
+Noise intensity, effective only while generating animation frames.
 
 ***
 
@@ -429,7 +434,7 @@ power 是否参与可见性。默认 true，保持喷焰“停机即隐藏”的
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 
@@ -441,7 +446,7 @@ power 是否参与可见性。默认 true，保持喷焰“停机即隐藏”的
 
 > `optional` **visualScaleMode?**: [`CapsuleParticleVisualScaleMode`](../types/CapsuleParticleVisualScaleMode.md)
 
-是否按宿主模型的 minimumPixelSize 视觉缩放同步放大/缩小。
+Whether to synchronize scaling with the host model's minimumPixelSize visual scale.
 
-默认值为 `none`。火箭/飞机喷焰通常应使用 screenSpaceSizing 做像素约束，
-不应把模型的 minimumPixelSize 缩放直接传给世界尺寸。
+The default is `none`. Rocket and aircraft exhaust should usually use screenSpaceSizing
+for pixel constraints; model minimumPixelSize scaling should not be passed directly to world size.

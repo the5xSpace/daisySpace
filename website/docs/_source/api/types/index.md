@@ -1,6 +1,6 @@
 # Type Aliases
 
-共 266 个 types。
+共 267 个 types。
 
 | 名称 | 链接 |
 |------|------|
@@ -149,6 +149,7 @@
 | `CelestialEllipsoidPositionECEF` | [CelestialEllipsoidPositionECEF](PW.CelestialEllipsoidPositionECEF.md) |
 | `CelestialRayLike` | [CelestialRayLike](PW.CelestialRayLike.md) |
 | `Component` | [Component](PW.Component.md) |
+| `ComponentIdentityOptions` | [ComponentIdentityOptions](PW.ComponentIdentityOptions.md) |
 | `FootprintAtTimeDrawOptions` | [FootprintAtTimeDrawOptions](PW.FootprintAtTimeDrawOptions.md) |
 | `FootprintDrawOptions` | [FootprintDrawOptions](PW.FootprintDrawOptions.md) |
 | `FootprintLngLatBounds` | [FootprintLngLatBounds](PW.FootprintLngLatBounds.md) |

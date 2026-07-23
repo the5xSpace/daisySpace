@@ -116,6 +116,22 @@ vehicle.bindViewer(viewer);
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`FreeObject`](PW.FreeObject.md).[`id`](PW.FreeObject.md#id)
+
+***
+
 ### options
 
 #### Get Signature

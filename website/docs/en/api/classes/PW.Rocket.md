@@ -6,10 +6,10 @@
 
 # Class: Rocket
 
-Rocket：火箭主动段物理对象。
+Rocket: a powered-flight rocket physical object.
 
-该对象把 ascent 动力学、TrajectorySample、姿态和默认可视 Feature 收束到 PW 层，
-demo/业务侧不需要直接拼 Entity + AscentTrajectoryBuilder。
+This object consolidates ascent dynamics, TrajectorySample, attitude, and default visual Features into the PW layer,
+so demos/applications do not need to assemble Entity + AscentTrajectoryBuilder directly.
 
 ## Extends
 
@@ -89,7 +89,7 @@ demo/业务侧不需要直接拼 Entity + AscentTrajectoryBuilder。
 
 > **get** **entity**(): [`Entity`](Entity.md) \| `CelestialEntity`
 
-获取宿主 Entity（用于挂载 Feature、交互事件、更新等）。
+Get the host Entity, used for attaching Features, interaction events, updates, and more.
 
 ##### Returns
 
@@ -119,9 +119,9 @@ demo/业务侧不需要直接拼 Entity + AscentTrajectoryBuilder。
 
 > **get** **options**(): [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
 
-对象创建/配置参数的原始快照（不同子类会扩展其结构）。
+The original snapshot of the object creation and configuration parameters. Different subclasses may extend its structure.
 
-注意：这是“语义配置”的来源，而不是渲染结果。渲染落地由 _applyConfig + Feature/Component 完成。
+Note: this is the source of the semantic configuration, not the rendered result. Rendering is applied by _applyConfig together with Features and Components.
 
 ##### Returns
 
@@ -147,7 +147,7 @@ demo/业务侧不需要直接拼 Entity + AscentTrajectoryBuilder。
 
 > **set** **orientation**(`value`): `void`
 
-便捷设置姿态（写入宿主 Entity.orientation）。
+Conveniently set orientation by writing the host Entity.orientation.
 
 ##### Parameters
 
@@ -171,10 +171,10 @@ demo/业务侧不需要直接拼 Entity + AscentTrajectoryBuilder。
 
 > **get** **position**(): [`ObjectPositon`](../types/PW.ObjectPositon.md)
 
-设置对象位置（支持静态坐标或采样轨迹）。
+Set the object position, supporting static coordinates or sampled trajectories.
 
-- 赋值后会同步写入宿主 entity.position
-- 对 CelestialEntity（非地球天体）不允许使用支持惯性系的 TrajectorySample
+- The value is synchronized to the host entity.position after assignment.
+- For a CelestialEntity (a non-Earth celestial body), TrajectorySample values that use an inertial frame are not supported.
 
 ##### Example
 
@@ -190,7 +190,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **set** **position**(`value`): `void`
 
-便捷设置位置（支持静态坐标或采样轨迹）。
+Conveniently set position, supporting static coordinates or sampled trajectories.
 
 ##### Parameters
 
@@ -260,9 +260,9 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **addComponent**\<`T`\>(`component`): `T`
 
-挂载一个 PhysicalWorld 组件到当前对象。
+Attach a PhysicalWorld component to the current object.
 
-注意：Feature 仍应通过 Entity.addFeature() 的路径挂载；该方法仅面向 IComponent。
+Note: Features should still be attached through Entity.addFeature(); this method is intended only for IComponent.
 
 #### Type Parameters
 
@@ -276,7 +276,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 `T`
 
-组件实例
+Component instance.
 
 #### Returns
 
@@ -344,10 +344,10 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **addSensor**(`options?`): [`Sensor`](PW.Sensor.md)
 
-添加一个物理传感器组件。
+Add a physical sensor component.
 
-Vehicle 传感器位置默认 TO_FRONT。
-业务侧可通过 `emitDirection` 覆盖安装方向。
+Vehicle sensors default to TO_FRONT.
+Applications can override the mount direction with `emitDirection`.
 
 #### Parameters
 
@@ -384,7 +384,7 @@ vehicle.addSensor({ emitDirection: Daisy.EmitDirection.TO_UP, apertureDeg: 10, b
 
 > **applyAscentTrajectory**(`epoch?`, `ascent?`): [`TrajectorySample`](TrajectorySample.md)
 
-生成并写入主动段轨迹。
+Generate and write the powered-flight trajectory.
 
 #### Parameters
 
@@ -406,7 +406,7 @@ vehicle.addSensor({ emitDirection: Daisy.EmitDirection.TO_UP, apertureDeg: 10, b
 
 > **bindEngine**(`engine`): `void`
 
-绑定 Engine 后，若尚未生成 trajectory，则用场景当前时间作为 epoch 自动生成。
+After binding the Engine, if no trajectory has been generated yet, one is created automatically with the scene current time as the epoch.
 
 #### Parameters
 
@@ -428,7 +428,7 @@ vehicle.addSensor({ emitDirection: Daisy.EmitDirection.TO_UP, apertureDeg: 10, b
 
 > **destroy**(): `void`
 
-销毁对象（清理交互监听、销毁组件、销毁宿主实体并释放事件管理器）。
+Destroy the object by removing interaction listeners, destroying components, destroying the host entity, and releasing the event manager.
 
 #### Returns
 
@@ -450,7 +450,7 @@ obj.destroy();
 
 > **getComponentById**(`id?`): [`Component`](../types/PW.Component.md)[]
 
-根据 id 获取组件列表（理论上 id 全局唯一，但保留返回数组以兼容历史逻辑）。
+Get components by ID. The ID is theoretically globally unique, but an array is returned for compatibility with legacy logic.
 
 #### Parameters
 
@@ -458,7 +458,7 @@ obj.destroy();
 
 `string`
 
-组件 id
+Component ID.
 
 #### Returns
 
@@ -474,7 +474,7 @@ obj.destroy();
 
 > **getComponentByName**(`name?`): [`Component`](../types/PW.Component.md)[]
 
-根据 name 获取组件列表。
+Get components by name.
 
 #### Parameters
 
@@ -482,7 +482,7 @@ obj.destroy();
 
 `string`
 
-组件名称（component.name）
+Component name (component.name).
 
 #### Returns
 
@@ -498,7 +498,7 @@ obj.destroy();
 
 > **getComponents**(`type?`): [`Component`](../types/PW.Component.md)[]
 
-获取组件列表。
+Get the component list.
 
 #### Parameters
 
@@ -506,7 +506,7 @@ obj.destroy();
 
 `string`
 
-组件类型（对应 component.type）；不传则返回全部
+Component type, corresponding to component.type; omit it to return all components.
 
 #### Returns
 
@@ -522,7 +522,7 @@ obj.destroy();
 
 > **getCurrentOrientation**(): [`Rotation`](../types/Rotation.md)
 
-获取当前仿真时刻的局部姿态。
+Get the local orientation at the current simulation time.
 
 #### Returns
 
@@ -538,16 +538,16 @@ obj.destroy();
 
 > **getCurrentPosition**(): `Cartesian3` \| `undefined`
 
-获取当前仿真时间的实时位置。
+Get the real-time position at the current simulation time.
 
-如果 position 是 TrajectorySample，会根据引擎当前时间求值；
-如果是静态 Cartesian3，直接返回。
+If position is a TrajectorySample, it is evaluated at the engine current time;
+if it is a static Cartesian3, it is returned directly.
 
 #### Returns
 
 `Cartesian3` \| `undefined`
 
-当前时刻的世界坐标，或 undefined（无法求值时）
+World coordinates at the current time, or undefined when evaluation is not possible.
 
 #### Inherited from
 
@@ -559,7 +559,7 @@ obj.destroy();
 
 > **getFlightStateAtTime**(`time?`): `object`
 
-当前/指定时刻的主动段状态，便于面板读取。
+Powered-flight state at the current or specified time, for panel readout.
 
 #### Parameters
 
@@ -597,7 +597,7 @@ obj.destroy();
 
 > **getOrientationAtTime**(`timestamp`): [`Rotation`](../types/Rotation.md)
 
-获取指定仿真时刻的局部姿态。
+Get the local orientation at the specified simulation time.
 
 #### Parameters
 
@@ -619,7 +619,7 @@ obj.destroy();
 
 > **getPosition**(`time`): `Cartesian3` \| `undefined`
 
-获取指定时刻的位置（委托给宿主 entity.getPosition）。
+Get the position at the specified time by delegating to the host entity.getPosition.
 
 #### Parameters
 
@@ -627,7 +627,7 @@ obj.destroy();
 
 `JulianDate`
 
-仿真时间
+Simulation time.
 
 #### Returns
 
@@ -643,7 +643,7 @@ obj.destroy();
 
 > **getPositionAtTime**(`timestamp`): `Cartesian3` \| `undefined`
 
-获取指定仿真时刻的世界位置。
+Get the world position at the specified simulation time.
 
 #### Parameters
 
@@ -699,7 +699,7 @@ obj.destroy();
 
 > **getTransformAtTime**(`timestamp`): `BaseObjectResolvedTransform`
 
-获取指定仿真时刻的局部姿态。
+Get the local orientation at the specified simulation time.
 
 #### Parameters
 
@@ -721,7 +721,7 @@ obj.destroy();
 
 > **getTransformMatrixAtTime**(`timestamp`): `Matrix4`
 
-获取指定仿真时刻的局部变换矩阵。
+Get the local transformation matrix at the specified simulation time.
 
 #### Parameters
 
@@ -743,7 +743,7 @@ obj.destroy();
 
 > **ignite**(`power?`): [`PropulsionComponent`](PW.PropulsionComponent.md)
 
-点火：打开默认主发动机喷焰。当前只控制可视化动力模块，不改变轨迹积分。
+Ignite: enable the default main-engine plume. Currently this only controls the visual propulsion module and does not change trajectory integration.
 
 #### Parameters
 
@@ -761,7 +761,7 @@ obj.destroy();
 
 > **register**(): `void`
 
-将宿主实体注册到 Daisy 管线中（触发 entity.reRegisterAll）。
+Register the host entity with the Daisy pipeline, triggering entity.reRegisterAll.
 
 #### Returns
 
@@ -783,7 +783,7 @@ obj.register();
 
 > **removeComponentById**(`id`): `void`
 
-根据 id 移除组件（会先 destroy）。
+Remove a component by ID, destroying it first.
 
 #### Parameters
 
@@ -791,7 +791,7 @@ obj.register();
 
 `string`
 
-组件 id
+Component ID.
 
 #### Returns
 
@@ -807,7 +807,7 @@ obj.register();
 
 > **removeComponentByName**(`name`): `void`
 
-根据 name 移除组件（会先 destroy）。
+Remove a component by name, destroying it first.
 
 #### Parameters
 
@@ -815,7 +815,7 @@ obj.register();
 
 `string`
 
-组件名称
+Component name.
 
 #### Returns
 
@@ -851,10 +851,10 @@ obj.register();
 
 > **resetTemporalState**(`time?`): `void`
 
-重置跨帧/跨时间循环的运行态。
+Reset runtime state across frames and time loops.
 
-Engine 在检测到仿真时间倒退时调用此方法。这里不销毁业务配置，只清理
-BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件。
+Engine calls this method when it detects that simulation time has moved backward. It does not destroy business configuration; it only clears the
+BaseObject time-value cache and propagates the reset to attached components.
 
 #### Parameters
 
@@ -876,7 +876,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setAutoAlignVerticalModelToFlight**(`enabled`): `void`
 
-开关竖直火箭模型到飞行前向的自动安装姿态。
+Toggle the automatic mount orientation from a vertical rocket model to the flight-forward frame.
 
 #### Parameters
 
@@ -894,7 +894,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setBodyAxis**(`options?`): `void`
 
-打开或更新火箭机体坐标轴，用于排查主动段姿态与局部坐标系。
+Open or update the rocket body axis for inspecting powered-flight attitude and the local frame.
 
 #### Parameters
 
@@ -912,7 +912,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setOptions**(`config`): `void`
 
-更新配置（会按策略重建对应的 Feature）。
+Update configuration and rebuild the corresponding Feature according to policy.
 
 #### Parameters
 
@@ -920,7 +920,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 [`BaseObjectTransformTimeline`](../types/PW.BaseObjectTransformTimeline.md) & `object` & `object` & `Partial`\<[`RocketConfig`](../types/PW.RocketConfig.md)\>
 
-新配置
+New configuration.
 
 #### Returns
 
@@ -942,7 +942,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **setThrottle**(`power`): [`PropulsionComponent`](PW.PropulsionComponent.md)
 
-设置默认主发动机节流。当前只影响喷焰强度。
+Set the default main-engine throttle. Currently this only affects plume intensity.
 
 #### Parameters
 
@@ -960,7 +960,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **shutdown**(): `void`
 
-停机：关闭默认主发动机喷焰。
+Shut down: turn off the default main-engine plume.
 
 #### Returns
 
@@ -972,7 +972,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **unregister**(): `void`
 
-反注册：移除实体挂载的所有 Feature，并通知组件解除绑定。
+Unregister the object by removing all Features attached to the entity and notifying components to detach.
 
 #### Returns
 
@@ -994,7 +994,7 @@ obj.unregister();
 
 > **update**(`time`): `void`
 
-每帧更新（驱动 entity.update，并同步驱动挂载组件的 update）。
+Update every frame, driving entity.update and synchronously updating attached components.
 
 #### Parameters
 
@@ -1002,7 +1002,7 @@ obj.unregister();
 
 `JulianDate`
 
-仿真时间
+Simulation time.
 
 #### Returns
 
@@ -1018,7 +1018,7 @@ obj.unregister();
 
 > **offClick**(`handler?`): `void`
 
-取消监听对象点击事件。
+Stop listening for object click events.
  click
 
 #### Parameters
@@ -1041,7 +1041,7 @@ obj.unregister();
 
 > **offDblClick**(`handler?`): `void`
 
-取消监听对象双击事件。
+Stop listening for object double-click events.
  dblclick
 
 #### Parameters
@@ -1064,7 +1064,7 @@ obj.unregister();
 
 > **offMouseEnter**(`handler?`): `void`
 
-取消监听对象鼠标移入事件。
+Stop listening for object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -1087,7 +1087,7 @@ obj.unregister();
 
 > **offMouseLeave**(`handler?`): `void`
 
-取消监听对象鼠标移出事件。
+Stop listening for object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -1110,7 +1110,7 @@ obj.unregister();
 
 > **onBeforeDestroy**(`callback`): `void`
 
-监听销毁前事件。
+Listen for the event before destruction.
  BEFORE_DESTROY
 
 #### Parameters
@@ -1133,7 +1133,7 @@ obj.unregister();
 
 > **onBeforeRegister**(`callback`): `void`
 
-监听注册前事件。
+Listen for the event before registration.
  BEFORE_REGISTER
 
 #### Parameters
@@ -1156,7 +1156,7 @@ obj.unregister();
 
 > **onBeforeUnregister**(`callback`): `void`
 
-监听卸载前事件。
+Listen for the event before unregistration.
  BEFORE_UNREGISTER
 
 #### Parameters
@@ -1179,7 +1179,7 @@ obj.unregister();
 
 > **onBeforeUpdate**(`callback`): `void`
 
-监听更新前事件。
+Listen for the event before an update.
  BEFORE_UPDATE
 
 #### Parameters
@@ -1202,7 +1202,7 @@ obj.unregister();
 
 > **onClick**(`handler`): `void`
 
-监听对象点击事件。
+Listen for object click events.
  click
 
 #### Parameters
@@ -1225,7 +1225,7 @@ obj.unregister();
 
 > **onDblClick**(`handler`): `void`
 
-监听对象双击事件。
+Listen for object double-click events.
  dblclick
 
 #### Parameters
@@ -1248,7 +1248,7 @@ obj.unregister();
 
 > **onDestroy**(`callback`): `void`
 
-监听销毁事件。
+Listen for destruction events.
  DESTROY
 
 #### Parameters
@@ -1271,7 +1271,7 @@ obj.unregister();
 
 > **onMouseEnter**(`handler`): `void`
 
-监听对象鼠标移入事件。
+Listen for object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -1294,7 +1294,7 @@ obj.unregister();
 
 > **onMouseLeave**(`handler`): `void`
 
-监听对象鼠标移出事件。
+Listen for object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -1317,7 +1317,7 @@ obj.unregister();
 
 > **onRegister**(`callback`): `void`
 
-监听注册完成事件。
+Listen for registration-complete events.
  REGISTER
 
 #### Parameters
@@ -1340,7 +1340,7 @@ obj.unregister();
 
 > **onUnregister**(`callback`): `void`
 
-监听卸载事件。
+Listen for unregistration events.
  UNREGISTER
 
 #### Parameters
@@ -1363,7 +1363,7 @@ obj.unregister();
 
 > **onUpdate**(`callback`): `void`
 
-监听更新事件。
+Listen for update events.
  UPDATE
 
 #### Parameters

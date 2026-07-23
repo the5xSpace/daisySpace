@@ -10,9 +10,13 @@ A bounding sphere with a center and a radius.
 
 ## Param
 
+**center**
+
 The center of the bounding sphere.
 
 ## Param
+
+**radius**
 
 The radius of the bounding sphere.
 

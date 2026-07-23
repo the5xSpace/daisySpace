@@ -6,7 +6,7 @@
 
 # Interface: DaisyLabelOptions
 
-Daisy 标签配置，用于在实体附近创建文本标签节点。
+Daisy label configuration for creating a text label node near an Entity.
 
 ## Properties
 
@@ -14,7 +14,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **backgroundColor?**: [`DColor`](../types/DColor.md)
 
-背景颜色。
+Background color.
 
 ***
 
@@ -22,7 +22,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **backgroundPadding?**: `Cartesian2`
 
-背景内边距。
+Background padding.
 
 ***
 
@@ -30,7 +30,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **disableDepthTestDistance?**: `number`
 
-关闭深度检测的距离阈值（单位：米）。
+Distance threshold, in meters, beyond which depth testing is disabled.
 
 ***
 
@@ -38,7 +38,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件。
+Display distance condition.
 
 ***
 
@@ -46,7 +46,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **eyeOffset?**: `Cartesian3`
 
-视点偏移（单位：米）。
+Eye offset in meters.
 
 ***
 
@@ -54,7 +54,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **fillColor?**: [`DColor`](../types/DColor.md)
 
-文本填充色。
+Text fill color.
 
 ***
 
@@ -62,7 +62,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **font?**: `string`
 
-字体，如 `"16px sans-serif"`。
+Font, such as `"16px sans-serif"`.
 
 ***
 
@@ -70,7 +70,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **heightReference?**: `HeightReference`
 
-高程参考。
+Height reference.
 
 ***
 
@@ -78,7 +78,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **horizontalOrigin?**: `HorizontalOrigin`
 
-水平对齐方式。
+Horizontal alignment.
 
 ***
 
@@ -86,7 +86,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **id?**: `string`
 
-自定义标识。
+Custom identifier.
 
 ***
 
@@ -94,7 +94,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **offsetMeters?**: `Cartesian2`
 
-屏幕偏移（单位：米）。与 `offsetPx` 二选一；若同时设置则优先使用米。
+Screen offset in meters. Use it instead of `offsetPx`; when both are set, the meter value takes precedence.
 
 ***
 
@@ -102,7 +102,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **offsetPx?**: `Cartesian2`
 
-屏幕像素偏移（单位：像素）。与 `offsetMeters` 同时设置时，以 `offsetMeters` 为准。
+Screen pixel offset. When set together with `offsetMeters`, `offsetMeters` takes precedence.
 
 ***
 
@@ -110,7 +110,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-文本描边颜色。
+Text outline color.
 
 ***
 
@@ -118,7 +118,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **outlineWidth?**: `number`
 
-文本描边宽度（单位：像素）。
+Text outline width in pixels.
 
 ***
 
@@ -126,7 +126,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **pixelOffset?**: `Cartesian2`
 
-兼容字段：等同 `offsetPx`（单位：像素）。
+Compatibility field equivalent to `offsetPx`.
 
 ***
 
@@ -134,7 +134,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **pixelOffsetMeters?**: `Cartesian2`
 
-兼容字段：等同 `offsetMeters`（单位：米）。
+Compatibility field equivalent to `offsetMeters`.
 
 ***
 
@@ -142,7 +142,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **pixelOffsetScaleByDistance?**: `NearFarScalar`
 
-像素偏移随距离缩放。
+Whether the pixel offset scales with distance.
 
 ***
 
@@ -150,7 +150,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **position?**: `Cartesian3`
 
-相对实体坐标系下的位置。
+Position in the Entity-relative coordinate system.
 
 ***
 
@@ -158,7 +158,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **scale?**: `number`
 
-缩放比例。
+Scale factor.
 
 ***
 
@@ -166,7 +166,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **scaleByDistance?**: `NearFarScalar`
 
-缩放随距离变化。
+Whether the scale changes with distance.
 
 ***
 
@@ -174,7 +174,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show the label.
 
 ***
 
@@ -182,7 +182,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **showBackground?**: `boolean`
 
-是否显示背景。
+Whether to show the background.
 
 ***
 
@@ -190,7 +190,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **style?**: `LabelStyle`
 
-标签样式（填充/描边/填充加描边）。
+Label style: fill, outline, or fill with outline.
 
 ***
 
@@ -198,7 +198,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **text?**: `string`
 
-显示的文本内容。
+Text content to display.
 
 ***
 
@@ -206,7 +206,7 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **translucencyByDistance?**: `NearFarScalar`
 
-透明度随距离变化。
+Whether opacity changes with distance.
 
 ***
 
@@ -214,4 +214,4 @@ Daisy 标签配置，用于在实体附近创建文本标签节点。
 
 > `optional` **verticalOrigin?**: `VerticalOrigin`
 
-垂直对齐方式。
+Vertical alignment.

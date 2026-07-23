@@ -1,11 +1,11 @@
-# Task Board
+# Task Dashboard
 
-The Task Board widget visualizes [TimeTask](/en/api/classes/TimeTask) and [TimePointTask](/en/api/classes/TimePointTask) from [TimeSchedule](/en/api/classes/TimeSchedule). It provides two views:
+Task dashboard widgets visualize the [TimeTask](/en/api/classes/TimeTask) and [TimePointTask](/en/api/classes/TimePointTask) instances in [TimeSchedule](/en/api/classes/TimeSchedule). They provide two views:
 
-| Component | View | Use Case |
+| Component | View | Suitable scene |
 |------|------|----------|
-| [TaskGanttWidget](/en/api/classes/TaskGanttWidget) | Gantt chart (bars + timeline) | Time interval tasks |
-| [TaskTimeLineWidget](/en/api/classes/TaskTimeLineWidget) | Step list (status + progress) | Time point tasks / sequential steps |
+| [TaskGanttWidget](/en/api/classes/TaskGanttWidget) | Gantt chart (bars + timeline) | Interval tasks |
+| [TaskTimeLineWidget](/en/api/classes/TaskTimeLineWidget) | Step list (status + progress) | Point-in-time tasks / sequential steps |
 
 ## TaskGanttWidget
 
@@ -48,15 +48,15 @@ engine.addWidget(gantt)
 
 | Option | Type | Default | Description |
 |------|------|:---:|------|
-| `mode` | `"standard"` \| `"lite"` | `"standard"` | 标准甘特图 / 精简列表 |
-| `title` | string | `"时间线"` | 面板标题 |
-| `width` | number | 680 | 面板宽度（px） |
-| `height` | number | 190 | 面板高度（px） |
-| `pixelsPerMinute` | number | 18 | 时间轴像素密度 |
-| `tickCount` | number | 6 | 时间轴刻度数 |
-| `timeFormat` | TimeFormatConfig | — | 任务标签时间格式，[Time Formatting](/en/guide/time-format) |
-| `axisTimeFormat` | TimeFormatConfig | — | 独立的时间轴刻度格式（不传则复用 timeFormat） |
-| `x` / `y` / `right` / `bottom` | number | — | 面板位置 |
+| `mode` | `"standard"` \| `"lite"` | `"standard"` | Standard Gantt chart / compact list |
+| `title` | string | `"时间线"` | Panel title |
+| `width` | number | 680 | Panel width (px) |
+| `height` | number | 190 | Panel height (px) |
+| `pixelsPerMinute` | number | 18 | Timeline pixel density |
+| `tickCount` | number | 6 | Number of timeline ticks |
+| `timeFormat` | TimeFormatConfig | — | Task-label time format, see [Time Formatting](/en/guide/time-format) |
+| `axisTimeFormat` | TimeFormatConfig | — | Independent timeline tick format; reuses timeFormat when omitted |
+| `x` / `y` / `right` / `bottom` | number | — | Panel position |
 
 ### Runtime Methods
 
@@ -67,7 +67,7 @@ gantt.refresh()
 
 ## TaskTimeLineWidget
 
-Step list view, displaying task status and progress in a vertical list:
+The step-list view displays task status and progress in a vertical list:
 
 ```typescript
 const stepList = new Daisy.TaskTimeLineWidget(engine.timeSchedule, {
@@ -85,19 +85,19 @@ engine.addWidget(stepList)
 
 | Option | Type | Default | Description |
 |------|------|:---:|------|
-| `mode` | `"standard"` \| `"lite"` | `"standard"` | 标准详情 / 精简列表 |
-| `title` | string | `"任务进度"` | 面板标题 |
-| `width` | number | 320 | 面板宽度（px） |
-| `height` | number | 180 | 面板高度（px） |
-| `timeFormat` | TimeFormatConfig | — | 步骤时间格式 |
-| `onStepClick` | `(task: TimeTask) => void` | — | 点击步骤回调 |
+| `mode` | `"standard"` \| `"lite"` | `"standard"` | Standard details / compact list |
+| `title` | string | `"任务进度"` | Panel title |
+| `width` | number | 320 | Panel width (px) |
+| `height` | number | 180 | Panel height (px) |
+| `timeFormat` | TimeFormatConfig | — | Step time format |
+| `onStepClick` | `(task: TimeTask) => void` | — | Callback when a step is clicked |
 
 ### Task Status
 
 | Status | Description |
 |------|------|
 | idle | Not started |
-| entered | Entered time range |
+| entered | Entered the time interval |
 | active | Currently executing |
 | finished | Completed |
 

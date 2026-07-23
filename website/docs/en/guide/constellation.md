@@ -1,6 +1,6 @@
 # Constellation
 
-Constellation is a container for a collection of satellites, providing batch management, unified binding, and analysis integration capabilities.
+Constellation is a container for satellite collections, providing bulk management, unified binding, and analysis integration.
 
 ## Architecture
 
@@ -12,7 +12,7 @@ Constellation
   └── Satellite[N]  ── Entity ── Sensor/Path/Label ...
 ```
 
-## Creating and Adding Satellites
+## Create and Add Satellites
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -42,28 +42,28 @@ for (const data of tleList) {
 con.bindEngine(engine)
 ```
 
-`bindEngine()` iterates over all added satellites, calling `sat.bindEngine(engine)` one by one for satellites that have not yet been bound to an Engine.
+`bindEngine()` iterates over all added satellites and calls `sat.bindEngine(engine)` for each satellite that has not yet been bound to an Engine.
 
 ## Member Management
 
 | Method | Description |
-|--------|-------------|
-| `addSatellite(sat)` | Adds a satellite (auto-binds if already bindEngine) |
-| `removeSatellite(sat)` | Removes a satellite |
-| `getSatelliteByName(name)` | Finds a satellite by name |
-| `getSatellites()` | Gets a read-only satellite array |
-| `satelliteCount` | Member count |
-| `forEach(fn)` | Iterates over each satellite |
-| `map(fn)` | Maps to an array |
-| `filter(fn)` | Filters returning a subset |
+|------|-------------|
+| `addSatellite(sat)` | Add a satellite; automatically bind it if bindEngine has already been called |
+| `removeSatellite(sat)` | Remove a satellite |
+| `getSatelliteByName(name)` | Find a satellite by name |
+| `getSatellites()` | Return a read-only satellite array |
+| `satelliteCount` | Number of members |
+| `forEach(fn)` | Iterate over each satellite |
+| `map(fn)` | Map to an array |
+| `filter(fn)` | Filter and return a subset |
 
-## Aggregate Properties
+## Aggregated Properties
 
 | Property | Type | Description |
-|----------|------|-------------|
-| `allSensors` | `Sensor[]` | Sensor list of all member satellites |
+|------|------|-------------|
+| `allSensors` | `Sensor[]` | Sensor list for all member satellites |
 | `allPositions` | `TrajectorySample[]` | TrajectorySample positions of all member satellites |
-| `allTles` | `Spg4Tle[]` | TLE data of all member satellites |
+| `allTles` | `Spg4Tle[]` | TLE data for all member satellites |
 
 ```typescript
 console.log(`总卫星数: ${con.satelliteCount}`)
@@ -72,7 +72,7 @@ console.log(`总传感器数: ${con.allSensors.length}`)
 
 ## Walker Topology
 
-The constructor accepts an optional `WalkerTopology` parameter for recording Walker constellation topology; member satellites are still created by the business side and added via `addSatellite()`:
+The constructor accepts an optional `WalkerTopology` parameter to describe the Walker constellation topology; member satellites are still created by application code and added through `addSatellite()`:
 
 ```typescript
 const topology = {
@@ -87,7 +87,7 @@ const con = new Daisy.PW.Constellation(topology)
 // ... 后续业务侧根据拓扑参数逐颗创建并 addSatellite
 ```
 
-The `topology` property can be read at any time to retrieve the registered topology configuration.
+The `topology` property can be read at any time to inspect the registered topology configuration.
 
 ## Integration with Coverage Analysis
 
@@ -101,7 +101,7 @@ const analysis = new Daisy.Analysis.ConstellationCoverageAnalysis({
 // 详见「星座覆盖分析」文档
 ```
 
-## Resource Cleanup
+## Cleanup
 
 ```typescript
 con.destroy()
@@ -140,8 +140,8 @@ console.log(`星座已就绪: ${con.satelliteCount} 颗卫星`)
 ## Constructor Parameters
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| `topology` | `WalkerTopology` | Walker constellation topology parameters (optional) |
+|------|------|-------------|
+| `topology` | `WalkerTopology` | Optional Walker constellation topology |
 
 ---
 

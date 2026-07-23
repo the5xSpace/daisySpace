@@ -170,6 +170,18 @@ Daisy 仿真引擎主入口。
 
 [`Entity`](Entity.md)[]
 
+***
+
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
 ## Methods
 
 ### \_shouldRunUpdateThisFrame()

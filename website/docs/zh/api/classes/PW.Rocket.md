@@ -113,6 +113,22 @@ demo/业务侧不需要直接拼 Entity + AscentTrajectoryBuilder。
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`id`](PW.Vehicle.md#id)
+
+***
+
 ### options
 
 #### Get Signature

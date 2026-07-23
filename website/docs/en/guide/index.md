@@ -1,14 +1,14 @@
 ---
-title: Quick Start
+title: Getting Started
 ---
 
-# Quick Start
+# Getting Started
 
-本页帮助你在 5 分钟内跑通 DaisySpace-Sdk：从Install SDK、初始化引擎，到创建实体、挂载 Feature、驱动相机，最后用 `PW` 命名空间发射一颗卫星。
+This page helps you get DaisySpace-Sdk running in 5 minutes: install the SDK, initialize the Engine, create an Entity, attach a Feature, drive the camera, and finally launch a satellite with the `PW` namespace.
 
-## 一、SDK 安装
+## 1. SDK Installation
 
-DaisySpace-Sdk 作为 npm 包发布，支持 `npm` / `pnpm` / `yarn` 任意包管理器安装：
+DaisySpace-Sdk is published as an npm package and can be installed with `npm` / `pnpm` / `yarn`:
 
 ```bash
 # npm
@@ -21,11 +21,11 @@ pnpm add daisy-space-sdk
 yarn add daisy-space-sdk
 ```
 
-> SDK 内部已锁定底层渲染引擎版本，无需在项目中重复声明依赖。详细环境要求见 [安装指南](/en/guide/installation)。
+> The SDK already pins the underlying rendering engine version, so you do not need to declare that dependency again in your project. See the [Installation Guide](/en/guide/installation) for detailed environment requirements.
 
-## 二、最小可运行示例
+## 2. Minimal Runnable Example
 
-下面这段代码完整覆盖了引擎的典型生命周期：创建 → 时间配置 → 播放 → 实体/Feature → 相机 → 物理对象绑定。
+The following code covers the typical Engine lifecycle end to end: create → configure time → play → Entity/Feature → camera → physical object binding.
 
 ```typescript
 import * as Daisy from 'daisy-space-sdk'
@@ -73,21 +73,21 @@ const sat = new Daisy.PW.Satellite({ name: 'SAT-1', tle: tleText })
 sat.bindEngine(engine)
 ```
 
-### 关键说明
+### Key Notes
 
-| 步骤 | API | 说明 |
+| Step | API | Description |
 |------|-----|------|
-| 1 | `Engine.create(container)` | 异步初始化，返回引擎实例；container 可为 id 字符串或 HTMLElement |
-| 2 | `setSceneTime` / `setMultiplier` / `play` | 时间系统三件套，引擎只有在 `play()` 后才会推进仿真时间 |
-| 3 | `createEntity` + `addFeature` | Entity 只持有位置/朝向，可视化完全由 Feature 决定 |
-| 4 | `flyTo(target, options)` | 等价于 `engine.camera.flyToTarget`，target 可为 Entity / 坐标 / 数组 |
-| 5 | `PW.Satellite.bindEngine(engine)` | 物理对象绑定引擎后会自动挂载实体并注册，进入仿真循环 |
+| 1 | `Engine.create(container)` | Initializes asynchronously and returns an Engine instance; container can be an id string or an HTMLElement |
+| 2 | `setSceneTime` / `setMultiplier` / `play` | The three core time APIs; the Engine advances simulation time only after `play()` |
+| 3 | `createEntity` + `addFeature` | An Entity holds only position/orientation; visualization is entirely driven by Features |
+| 4 | `flyTo(target, options)` | Equivalent to `engine.camera.flyToTarget`; target can be an Entity / coordinate / array |
+| 5 | `PW.Satellite.bindEngine(engine)` | After binding to the Engine, the physical object automatically mounts its Entity, registers, and enters the simulation loop |
 
-> Playground 中已有等价 Demo：[EngineCreate.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/EngineCreate.svelte)，可对照运行。
+> An equivalent Demo already exists in Playground: [EngineCreate.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/EngineCreate.svelte). You can run it side by side.
 
-## 三、核心架构概览
+## 3. Core Architecture Overview
 
-DaisySpace-Sdk 采用四层分层：`PW` 命名空间在顶层组合高层物理对象，`Entity` 承载位置与交互，`Feature` 负责具体可视化，`Engine` 提供渲染循环、相机、时间与图层基础设施。
+DaisySpace-Sdk uses a four-layer architecture: the `PW` namespace composes high-level physical objects at the top, `Entity` carries position and interaction, `Feature` handles concrete visualization, and `Engine` provides the rendering loop, camera, time, and layer infrastructure.
 
 ```
 ┌─────────────────────────────────┐
@@ -107,21 +107,21 @@ DaisySpace-Sdk 采用四层分层：`PW` 命名空间在顶层组合高层物理
 └─────────────────────────────────┘
 ```
 
-**设计要点：**
+**Design Highlights:**
 
-- **PW 命名空间**：`physicalWorld` 模块通过 `export * as PW` 暴露，封装卫星、飞行器、站点、传感器、链路、星座等业务级物理对象。它们内部仍由 Entity + Feature 组合实现，但对外屏蔽了底层细节。
-- **Entity**：独立实体类，只持有 `position` / `orientation` 与一组 Feature，是位置与交互的容器。
-- **Feature**：所有可视化都由 Feature 承担（点、线、面、模型、标签、传感器锥、链路等 30 余种）。新增 Feature 必须实现 `IFeature` 完整生命周期。
-- **Engine**：渲染循环、相机、时间调度、图层管理的统一入口，屏蔽底层实现细节，对外只暴露 Daisy 自己的 API。
+- **PW Namespace**: The `physicalWorld` module is exposed via `export * as PW` and wraps business-level physical objects such as satellites, aircraft, sites, sensors, links, and constellations. Internally they are still implemented as Entity + Feature combinations, but the low-level details are hidden from the public API.
+- **Entity**: A standalone entity class that only holds `position` / `orientation` and a set of Features. It is the container for position and interaction.
+- **Feature**: All visualization is handled by Features (points, lines, surfaces, models, labels, sensor cones, links, and 30+ other types). New Features must implement the full `IFeature` lifecycle.
+- **Engine**: The unified entry point for the rendering loop, camera, time scheduling, and layer management. It hides low-level implementation details and exposes only Daisy's own API.
 
-## 四、Next Steps学习路径
+## 4. Next Learning Path
 
-按"入门 → 核心概念 → 实战"三列推进，建议先打通第一列，再按业务需要跳读。
+Follow the three columns from "Getting Started → Core Concepts → Hands-on". We recommend finishing the first column before jumping to other topics as needed.
 
-| 入门 | 核心概念 | 实战 |
+| Getting Started | Core Concepts | Hands-on |
 |------|----------|------|
-| [Engine](/en/guide/engine) | [Entity](/en/guide/entity) | [卫星](/en/guide/satellite) |
-| [安装](/en/guide/installation) | [Feature](/en/guide/feature) | [传感器](/en/guide/sensor) |
-|  | [事件系统](/en/guide/event-system) | [链路通信](/en/guide/link) |
+| [Engine](/en/guide/engine) | [Entity](/en/guide/entity) | [Satellite](/en/guide/satellite) |
+| [Installation](/en/guide/installation) | [Feature](/en/guide/feature) | [Sensor](/en/guide/sensor) |
+|  | [Event System](/en/guide/event-system) | [Link Communication](/en/guide/link) |
 
-更多专题指南（相机、图层、材质、CZML 导入、覆盖分析、星座、GPU 计算等）见左侧导航。
+For more topic guides (camera, layers, materials, CZML import, coverage analysis, constellations, GPU computing, and more), see the left navigation.

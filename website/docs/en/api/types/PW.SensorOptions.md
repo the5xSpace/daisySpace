@@ -8,11 +8,11 @@
 
 > **SensorOptions** = `object`
 
-传感器组件配置（所有角度为 deg，距离为 m）。
+Sensor-component configuration (all angles are in degrees and distances are in meters).
 
-说明：
-- 角度/量程等支持 `TimeValue<T>`，可随仿真时间动态变化
-- footprint 仅在 `emitDirection === TO_GROUND` 时可生成
+Notes:
+- Angles, ranges, and similar values support `TimeValue<T>` and can change dynamically with simulation time.
+- A footprint can be generated only when `emitDirection === TO_GROUND`.
 
 ## Properties
 
@@ -20,12 +20,12 @@
 
 > `optional` **apertureDeg?**: [`SensorApertureDeg`](PW.SensorApertureDeg.md)
 
-传感器 aperture（角度制，支持随时间变化）。
+Sensor aperture in degrees, supporting time-varying values.
 
-支持三种输入方式：
-- 常量：直接给一个角度值
-- 回调：按仿真时间动态返回角度值
-- 时间采样：给定一组离散采样点（可配置插值方式）
+Supports three input forms:
+- Constant: provide an angle value directly
+- Callback: return an angle value dynamically from simulation time
+- Time samples: provide discrete sample points with an optional interpolation method
 
 #### Example
 
@@ -60,12 +60,12 @@ apertureDeg: {
 
 > `optional` **beamAttitudeDeg?**: [`TimeValue`](TimeValue.md)\<[`SensorBeamAttitudeDeg`](PW.SensorBeamAttitudeDeg.md)\>
 
-波束姿态（角度制，支持随时间变化）。
+Beam attitude in degrees, supporting time-varying values.
 
-支持三种输入方式：
-- 常量：直接给一个姿态值
-- 回调：按仿真时间动态返回姿态值
-- 时间采样：给定一组离散采样点（可配置插值方式）
+Supports three input forms:
+- Constant: provide an attitude value directly
+- Callback: return an attitude value dynamically from simulation time
+- Time samples: provide discrete sample points with an optional interpolation method
 
 #### Example
 
@@ -99,12 +99,12 @@ beamAttitudeDeg: {
 
 > `optional` **beamLength?**: [`TimeValue`](TimeValue.md)\<`number`\>
 
-波束长度（米，支持随时间变化）。
+Beam length in meters, supporting time-varying values.
 
-支持三种输入方式：
-- 常量：直接给一个数值
-- 回调：按仿真时间动态返回数值
-- 时间采样：给定一组离散采样点（可配置插值方式）
+Supports three input forms:
+- Constant: provide a numeric value directly
+- Callback: return a numeric value dynamically from simulation time
+- Time samples: provide discrete sample points with an optional interpolation method
 
 #### Example
 
@@ -147,12 +147,12 @@ viewer.timeSchedule.add(new TimeTask({
 
 > `optional` **beamShow?**: [`TimeValue`](TimeValue.md)\<`boolean`\>
 
-是否显示波束本体（支持随时间变化）。
+Whether to show the beam body, supporting time-varying values.
 
-语义：
-- 仅控制传感器体积/波束绘制
-- 不影响 footprint、range renderer 等附属绘制
-- 若 `show=false`，仍视为整个传感器关闭
+Semantics:
+- Controls only sensor-volume and beam rendering
+- Does not affect auxiliary rendering such as the footprint or range renderer
+- When `show=false`, the entire sensor is still considered disabled
 
 #### Default
 
@@ -166,7 +166,7 @@ true
 
 > `optional` **celestialEllipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-传感器所在的天体椭球体（默认地球）。
+Celestial ellipsoid containing the sensor (Earth by default).
 
 ***
 
@@ -174,7 +174,7 @@ true
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-颜色（当 material 未提供时作为默认材质来源）。
+Color, used as the default material source when material is not provided.
 
 #### Default
 
@@ -188,9 +188,9 @@ Daisy.Color.CYAN.withAlpha(0.25)
 
 > `optional` **debugAutoLength?**: `boolean` \| `number` \| \{ `throttleMs?`: `number`; \}
 
-自动长度调试开关。
+Automatic-length debugging switch.
 
-可传布尔值快速开启，也可传节流配置控制调试输出频率。
+Accepts a boolean for quick activation or a throttle configuration to control debug-output frequency.
 
 ***
 
@@ -198,11 +198,11 @@ Daisy.Color.CYAN.withAlpha(0.25)
 
 > `optional` **emitDirection?**: [`EmitDirection`](../enums/EmitDirection.md)
 
-安装方向。
-CENTER 基于对象中心点旋转，中部两端发射
-TOP_CENTER 基于对象顶部中心点旋转 顶部作为发射点
-BOTTOM_CENTER 基于对象底部中心点旋转,底部作为发射点
-TO_GROUND 基于对象顶部中心点旋转，顶部发射至椭球，并自动转化GNU参考系，初始方向指向椭球表面，忽略对象长度，自动计算为椭球相交高度（地球可理解为离地高度）
+Mounting direction.
+CENTER rotates around the object center and emits from both sides of the middle.
+TOP_CENTER rotates around the top-center point and uses the top as the emission point.
+BOTTOM_CENTER rotates around the bottom-center point and uses the bottom as the emission point.
+TO_GROUND rotates around the top-center point, emits from the top toward the ellipsoid, converts automatically to the GNU reference frame, points initially toward the ellipsoid surface, ignores object length, and computes the ellipsoid-intersection height automatically (for Earth, this can be understood as altitude above ground).
 
 #### Default
 
@@ -216,9 +216,9 @@ TO_GROUND 基于对象顶部中心点旋转，顶部发射至椭球，并自动�
 
 > `optional` **footPrint?**: [`BeamFootprint`](PW.BeamFootprint.md) \| `false`
 
-波束 footprint 实时绘制配置。
+Real-time beam-footprint rendering configuration.
 
-传 `false` 时表示关闭 footprint 绘制。
+Passing `false` disables footprint rendering.
 
 ***
 
@@ -226,13 +226,13 @@ TO_GROUND 基于对象顶部中心点旋转，顶部发射至椭球，并自动�
 
 > `optional` **link?**: [`SensorLinkOptions`](PW.SensorLinkOptions.md)
 
-链路组合配置。
+Link-combination configuration.
 
-语义：
-- `link.track`：按时间段切换跟踪目标
-- `link.flow`：控制波束流动材质效果
+Semantics:
+- `link.track`: switches tracking targets by time interval
+- `link.flow`: controls the beam's flowing-material effect
 
-示例：
+Example:
 ```ts
 link: {
  track: [
@@ -253,7 +253,7 @@ link: {
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-材质（优先级高于 color）。
+Material (takes precedence over color).
 
 ***
 
@@ -261,10 +261,10 @@ link: {
 
 > `optional` **name?**: `string`
 
-名称（可选）。
+Name (optional).
 
-- 会同步写入 component.name
-- 可用于调试与按名称查找组件
+- Also written to component.name
+- Can be used for debugging and name-based component lookup
 
 ***
 
@@ -272,7 +272,7 @@ link: {
 
 > `optional` **outline?**: `boolean`
 
-是否显示轮廓线。
+Whether to show the outline.
 
 #### Default
 
@@ -286,7 +286,7 @@ true
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色。
+Outline color.
 
 #### Default
 
@@ -300,7 +300,7 @@ Daisy.Color.WHITE.withAlpha(0.5)
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓线宽（像素，最终会被 clamp 到设备支持范围）。
+Outline width in pixels; the final value is clamped to the range supported by the device.
 
 #### Default
 
@@ -314,11 +314,11 @@ Daisy.Color.WHITE.withAlpha(0.5)
 
 > `optional` **show?**: [`TimeValue`](TimeValue.md)\<`boolean`\>
 
-是否显示（支持随仿真时间变化）。
+Whether to show, supporting changes with simulation time.
 
-约定：
-- 当 show 在当前时刻解析为 false 时，本传感器会停止计算（包括跟踪/对地投影等）
-- 恢复为 true 后按当前配置继续工作
+Convention:
+- When show resolves to false at the current time, this sensor stops calculating, including tracking and ground projection.
+- After it resolves to true again, it continues working with the current configuration.
 
 #### Example
 
@@ -346,7 +346,7 @@ true
 
 > `optional` **slices?**: `number`
 
-切片数量（越大越平滑，但开销更高）。
+Number of slices; larger values produce smoother geometry at a higher cost.
 
 ***
 
@@ -354,14 +354,14 @@ true
 
 > `optional` **throughGround?**: `boolean`
 
-是否禁用“穿透地面/天体椭球”。
+Whether to disable penetration through the ground or celestial ellipsoid.
 
-语义：
-- true：禁止穿透（默认）。当波束朝向椭球并会与椭球相交时，波束长度会被限制到最近交点处
-- false：允许穿透。波束长度按用户 `beamLength`（或跟踪目标距离）表达
+Semantics:
+- true: prevent penetration (default). When the beam points toward and intersects the ellipsoid, its length is limited to the nearest intersection.
+- false: allow penetration. Beam length follows the user's `beamLength` or the tracking-target distance.
 
-说明：
-该选项会强制启用 emitDirection = EmitDirection.TO_GROUND
+Note:
+This option forces emitDirection = EmitDirection.TO_GROUND.
 
 #### Default
 
@@ -375,7 +375,7 @@ true
 
 > `optional` **type?**: [`SensorType`](../enums/PW.SensorType.md)
 
-体积类型。
+Volume type.
 
 #### Default
 

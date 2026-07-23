@@ -50,6 +50,16 @@ const sourceFiles = markdownFiles(path.join(docsRoot, "_source"));
 let chineseReady = sourceFiles.length > 0;
 const englishManifestReady = manifest.glossaryHash === hashText(readFileSync(glossaryFile, "utf8"));
 const englishReadyFiles = new Set<string>();
+const localSearchOptions = {
+  miniSearch: {
+    options: {
+      tokenize: (text: string) =>
+        (text.toLowerCase().match(/[\u4e00-\u9fff]|[\w]+/g) || []) as string[],
+      processTerm: (term: string) =>
+        (term.match(/[\u4e00-\u9fff]|[\w]+/g) || []) as string[],
+    },
+  },
+};
 
 for (const file of sourceFiles) {
   const source = readFileSync(path.join(docsRoot, "_source", file), "utf8");
@@ -83,6 +93,7 @@ export default defineConfig({
   description: "航天可视化仿真 SDK - 卫星轨道传播、传感器波束覆盖、链路通信、天体系统",
   cleanUrls: true,
   lastUpdated: true,
+  themeConfig: createThemeConfig("zh", undefined, localSearchOptions),
   ignoreDeadLinks: true,
   srcExclude: [
     "_source/**",
@@ -95,7 +106,7 @@ export default defineConfig({
       lang: "zh-CN",
       title: "Daisy Space SDK",
       description: "航天可视化仿真 SDK - 卫星轨道传播、传感器波束覆盖、链路通信、天体系统",
-      themeConfig: createThemeConfig("zh"),
+      themeConfig: createThemeConfig("zh", undefined, localSearchOptions),
     },
     ...(englishLocaleReady ? {
       en: {
@@ -104,7 +115,7 @@ export default defineConfig({
         link: "/en/",
         title: "Daisy Space SDK",
         description: "Space visualization and simulation SDK for orbits, sensors, links, and celestial systems",
-        themeConfig: createThemeConfig("en", englishReadyFiles),
+        themeConfig: createThemeConfig("en", englishReadyFiles, localSearchOptions),
       },
     } : {}),
   },

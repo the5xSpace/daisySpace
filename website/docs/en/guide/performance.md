@@ -2,13 +2,13 @@
 
 ## High-Performance Mode
 
-Enable when the scene contains a large number of entities (hundreds to tens of thousands). Core strategies:
+Enable this mode when the number of entities in a scene is large, typically from hundreds to tens of thousands. The core strategy is:
 
-**Entity update grouping**: Entities are hashed by ID into N groups; only one group is updated per frame (reduces CPU traversal overhead).
+**Entity update grouping**: Hash entities by ID into N groups and update only one group per frame, reducing CPU traversal cost.
 
-**Update frequency throttling**: Active entities (hovered/selected/tracked) update at high frequency; inactive entities update at low frequency.
+**Update frequency throttling**: Active entities (hovered, selected, or tracked) update frequently, while inactive entities update less often.
 
-**Feature type culling**: Inactive entities retain only whitelisted Feature types (e.g., Point, Label, Billboard), skipping expensive rendering Feature like models and trajectories.
+**Feature type pruning**: Inactive entities keep only whitelisted Feature types such as Point, Label, and Billboard, skipping expensive rendering Features like models and trajectories.
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -40,19 +40,19 @@ engine.setHighPerformanceMode({
 
 The following compute-intensive tasks are automatically offloaded to Web Workers:
 
-- Trajectory path sampling (TrailPathFeature pre-computation)
-- Sensor coverage area merging (WASM boolean operations)
+- Trajectory path sampling (TrailPathFeature precomputation)
+- Sensor coverage region merging (WASM boolean operations)
 - Shader polygon mesh construction (ShaderPolygonFeature)
 
-Workers are loaded as ES Modules via `import.meta.url` — no user configuration required.
+Workers load ES Module through `import.meta.url`, so no user configuration is required.
 
 ## WASM Acceleration
 
-Self-compiled AssemblyScript modules are used for the following core computations:
+Self-compiled AssemblyScript modules are used for the following core calculations:
 
-- **SGP4 orbit propagation** — `HighPrecisionSGP4Analyzer` uses wasm-sgp4 for high-precision orbit computation
-- **Occlusion detection** — `isOccludedByEllipsoid` uses WASM for ray-ellipsoid intersection
-- **Coverage merging** — Boolean merging of multiple sensor footprints
+- **SGP4 orbit propagation** - `HighPrecisionSGP4Analyzer` uses wasm-sgp4 for high-precision orbit computation
+- **Occlusion detection** - `isOccludedByEllipsoid` uses WASM for ray-ellipsoid intersection
+- **Coverage merging** - Boolean merging of multiple sensor footprints
 
 ## FPS Control
 
@@ -72,7 +72,7 @@ engine.stopAutoRender()   // 按需渲染（省电）
 engine.startAutoRender()  // 恢复自动渲染
 ```
 
-## 2D / 3D Mode
+## 2D / 3D mode
 
 ```typescript
 engine.morphTo(Daisy.SceneMode.SCENE3D)
@@ -84,11 +84,11 @@ engine.isMorphing
 engine.onMorphSwitch((mode) => { /* ... */ })
 ```
 
-On mode switch, all Feature `morphSwitchHandle()` methods are called. In 2D mode, ExtraCamera is automatically paused and tracked entities are released (restored on switch back to 3D).
+When switching modes, all Feature `morphSwitchHandle()` methods are called. In 2D mode, ExtraCamera is automatically paused and tracked entities are released (restored when switching back to 3D).
 
 ## Large Constellation Scene Recommendations
 
-- Enable high-performance mode; `entityUpdateGroups` should be set to roughly 1/4 ~ 1/2 of sqrt(entity count)
+- Enable high-performance mode; `entityUpdateGroups` should be roughly 1/4 to 1/2 of the square root of the entity count
 - When ground clipping is not needed, set `throughGround: false` on satellite sensors and let them extend directly by `beamLength`
 - Disable trail paths on non-hovered satellites (`path: { show: false }`)
 - Use `ResolutionSecond` to control TrailPathFeature sampling density

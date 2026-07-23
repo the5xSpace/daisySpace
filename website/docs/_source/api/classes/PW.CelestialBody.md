@@ -110,6 +110,22 @@ class MyBody extends CelestialBody {
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`BaseObject`](PW.BaseObject.md).[`id`](PW.BaseObject.md#id)
+
+***
+
 ### options
 
 #### Get Signature

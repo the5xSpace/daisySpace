@@ -6,7 +6,7 @@
 
 # Interface: CylinderOptions
 
-CylinderFeature 配置。
+CylinderFeature configuration.
 
 ## Extends
 
@@ -18,9 +18,9 @@ CylinderFeature 配置。
 
 > `optional` **autoLength?**: `boolean`
 
-是否启用自动长度（动态计算 height）。
+Whether to enable automatic length (dynamically computes height).
 
-当为 true 时，会根据运行态（如地表/射线求交）动态更新高度，可能覆盖输入的 `height`。
+When true, the height is updated dynamically from runtime conditions such as ground or ray intersections, which may override the input `height`.
 
 #### Default
 
@@ -34,7 +34,7 @@ false
 
 > `optional` **bottomRadius?**: `number`
 
-底部半径（单位：米）。
+Bottom radius in meters.
 
 #### Default
 
@@ -48,7 +48,7 @@ false
 
 > `optional` **capBottom?**: `boolean`
 
-是否封底（底部）。
+Whether to cap the bottom.
 
 #### Default
 
@@ -62,7 +62,7 @@ true
 
 > `optional` **capTop?**: `boolean`
 
-是否封顶（顶部）。
+Whether to cap the top.
 
 #### Default
 
@@ -76,7 +76,7 @@ true
 
 > `optional` **color?**: [`DColor`](../types/DColor.md)
 
-颜色（当未指定 `material` 时，通常会以该颜色构建默认材质）。
+Color (when `material` is not specified, a default material is usually created from this color).
 
 #### Default
 
@@ -90,7 +90,7 @@ Color.BLUE.withAlpha(0.5)
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件
+Distance display condition.
 
 ***
 
@@ -98,10 +98,10 @@ Color.BLUE.withAlpha(0.5)
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-贴地/射线求交等“天体椭球”相关计算时使用的椭球配置。
+Ellipsoid configuration used for celestial-ellipsoid calculations such as ground clamping and ray intersections.
 
-注意：一旦该组件通过 Entity.addFeature() 添加到实体上，会被实体的 celestialEllipsoid 覆盖，
-组件将始终遵循实体的天体椭球配置。
+Note: once this component is added to an Entity through Entity.addFeature(), it is overridden by the Entity's celestialEllipsoid.
+The component always follows the Entity's celestial-ellipsoid configuration.
 
 ***
 
@@ -109,12 +109,12 @@ Color.BLUE.withAlpha(0.5)
 
 > `optional` **emitDirection?**: [`EmitDirection`](../enums/EmitDirection.md)
 
-发射方向/对齐基准。
+Emission direction and alignment reference.
 
-- `TOP_CENTER`：以顶部为基准对齐
-- `BOTTOM_CENTER`：以底部为基准对齐
-- `CENTER`：以中心为基准对齐
-- `TO_GROUND`：向地表方向延伸（通常配合 `autoLength` 使用）
+- `TOP_CENTER`: align using the top as the reference
+- `BOTTOM_CENTER`: align using the bottom as the reference
+- `CENTER`: align using the center as the reference
+- `TO_GROUND`: extend toward the ground (usually used with `autoLength`)
 
 #### Default
 
@@ -128,7 +128,7 @@ EmitDirection.TOP_CENTER
 
 > `optional` **fill?**: `boolean`
 
-是否填充面。
+Whether to fill the faces.
 
 #### Default
 
@@ -142,7 +142,7 @@ true
 
 > `optional` **height?**: `number`
 
-高度（单位：米）。
+Height in meters.
 
 #### Default
 
@@ -156,7 +156,7 @@ true
 
 > `optional` **id?**: `string`
 
-自定义标识（用于底层渲染对象标识/检索）。
+Custom identifier for identifying or retrieving the underlying render object.
 
 #### Inherited from
 
@@ -168,9 +168,9 @@ true
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to participate in the bounding-sphere aggregation of the owning Entity.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Useful for Features that should be included in camera zoom/flyTo framing. Auxiliary lines and temporary effects can disable it.
 
 #### Inherited from
 
@@ -182,9 +182,9 @@ true
 
 > `optional` **material?**: [`DMaterial`](../types/DMaterial.md)
 
-材质。
+Material.
 
-支持 `Daisy.Material` 或颜色（`DColor` / CSS 色值字符串）。
+Supports `Daisy.Material` or a color (`DColor` / CSS color string).
 
 ***
 
@@ -192,7 +192,7 @@ true
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name (for display or debugging).
 
 #### Inherited from
 
@@ -204,7 +204,7 @@ true
 
 > `optional` **numberOfVerticalLines?**: `number`
 
-垂直线条数量（用于线框/轮廓辅助）。
+Number of vertical lines for wireframe or outline assistance.
 
 #### Default
 
@@ -218,7 +218,7 @@ true
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓线。
+Whether to draw the outline.
 
 #### Default
 
@@ -232,7 +232,7 @@ false
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-轮廓颜色
+Outline color.
 
 ***
 
@@ -240,7 +240,7 @@ false
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度
+Outline width.
 
 #### Default
 
@@ -254,7 +254,7 @@ false
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay render pass.
 
 #### Inherited from
 
@@ -266,7 +266,7 @@ false
 
 > `optional` **position?**: `Cartesian3`
 
-相对实体坐标系下的位置
+Position in the Entity's local coordinate system.
 
 ***
 
@@ -274,7 +274,7 @@ false
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render-order value (lower values render first).
 
 #### Inherited from
 
@@ -286,7 +286,7 @@ false
 
 > `optional` **shadows?**: `ShadowMode`
 
-阴影模式。
+Shadow mode.
 
 ***
 
@@ -294,7 +294,7 @@ false
 
 > `optional` **show?**: `boolean`
 
-显示
+Whether to show.
 
 #### Default
 
@@ -308,7 +308,7 @@ true
 
 > `optional` **slices?**: `number`
 
-切分片数（越大越圆滑，但开销更高）。
+Number of slices (larger values produce smoother geometry at a higher cost).
 
 #### Default
 
@@ -322,7 +322,7 @@ true
 
 > `optional` **topRadius?**: `number`
 
-顶面半径（单位：米）。
+Top radius in meters.
 
 #### Default
 
@@ -336,7 +336,7 @@ true
 
 > `optional` **vertexFormat?**: `VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 
@@ -350,7 +350,7 @@ VertexFormat.POSITION_AND_NORMAL
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 

@@ -6,9 +6,9 @@
 
 # Class: GeoJsonFeature
 
-Daisy Feature 抽象能力接口。
+Daisy Feature abstract capability interface.
 
-Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模型、点、线、面、UI 覆盖层等）。
+A Feature attaches renderable or interactive capabilities to a Daisy.Entity, such as models, points, lines, polygons, and UI overlays.
 
 ## Extends
 
@@ -44,9 +44,9 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 
 > **handle**: (`mode`) => `void`
 
-场景模式切换时的默认处理。
+Default handling when the scene mode changes.
 
-2D/非 3D 模式下，默认销毁机体坐标轴以避免异常显示。
+In 2D or non-3D modes, the body axis is destroyed by default to avoid abnormal display.
 
 #### Parameters
 
@@ -138,7 +138,7 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 
 > **get** **id**(): `string`
 
-Feature 的唯一标识。
+The unique identifier of the Feature.
 
 ##### Default
 
@@ -152,10 +152,10 @@ Feature 的唯一标识。
 
 > **set** **id**(`value`): `void`
 
-Feature 的唯一标识。
+The unique identifier of the Feature.
 
-通常由基类在构造时自动生成：`${type}__${GenGuid()}`。
-子类也可以在注册前手动覆盖。
+Usually generated automatically by the base class during construction: `${type}__${GenGuid()}`.
+Subclasses may also override it manually before registration.
 
 ##### Default
 
@@ -187,9 +187,9 @@ Feature 的唯一标识。
 
 > **get** **includeInBoundingSphere**(): `boolean`
 
-当前 Feature 是否参与 Entity 的包围球聚合。
+Whether the current Feature participates in the Entity bounding-sphere aggregation.
 
-默认值为 `true`。辅助线、粒子等不希望影响相机取景的 Feature 可以关闭。
+The default is `true`. Features such as helper lines and particles that should not affect the camera framing can disable it.
 
 ##### Returns
 
@@ -199,7 +199,7 @@ Feature 的唯一标识。
 
 > **set** **includeInBoundingSphere**(`value`): `void`
 
-设置当前 Feature 是否参与 Entity 的包围球聚合。
+Set whether the current Feature participates in the Entity bounding-sphere aggregation.
 
 ##### Parameters
 
@@ -227,7 +227,7 @@ Feature 的唯一标识。
 
 > **get** **lodMode**(): `"none"`
 
-获取当前 Feature 的 LOD 模式。
+Get the LOD mode of the current Feature.
 
 ##### Returns
 
@@ -245,7 +245,7 @@ Feature 的唯一标识。
 
 > **get** **name**(): `string`
 
-Feature 的显示名称（业务自定义）。
+The display name of the Feature (customized by the application).
 
 ##### Default
 
@@ -261,7 +261,7 @@ Feature 的显示名称（业务自定义）。
 
 > **set** **name**(`value`): `void`
 
-Feature 的显示名称（业务自定义）。
+The display name of the Feature (customized by the application).
 
 ##### Default
 
@@ -295,23 +295,23 @@ Feature 的显示名称（业务自定义）。
 
 > **get** **options**(): `any`
 
-获取组件配置（EntityComOptions）。
+Get the component configuration (EntityComOptions).
 
-子类通常会读取该对象中的 show / distanceDisplayCondition / height 等配置。
+Subclasses usually read settings such as show, distanceDisplayCondition, and height from this object.
 
 ##### Returns
 
 `any`
 
-组件配置
+Component configuration.
 
 #### Set Signature
 
 > **set** **options**(`value`): `void`
 
-合并更新组件配置（EntityComOptions）。
+Merge and update the component configuration (EntityComOptions).
 
-注意：会保留旧配置并覆盖新字段；并同步 LOD 记忆的 show 状态。
+Note: existing configuration is preserved while new fields are overwritten, and the LOD-remembered show state is synchronized.
 
 ##### Parameters
 
@@ -339,16 +339,16 @@ Feature 的显示名称（业务自定义）。
 
 > **get** **requiresEntityModelMatrix**(): `boolean`
 
-默认保守：大多数 Feature 需要 Entity 模型矩阵。
+Conservative default: most Features require the Entity model matrix.
 
 ##### Returns
 
 `boolean`
 
-当前 Feature 是否需要 Entity 在每帧预先计算模型矩阵。
+Whether the current Feature requires the Entity to precompute the model matrix every frame.
 
-点、标签、广告牌这类只依赖实体位置的 Feature 可以返回 false，
-从而让海量目标场景跳过不必要的姿态/矩阵计算。
+Features such as points, labels, and billboards that only depend on the entity position can return false,
+allowing scenes with many targets to skip unnecessary orientation and matrix calculations.
 
 #### Implementation of
 
@@ -366,7 +366,7 @@ Feature 的显示名称（业务自定义）。
 
 > **get** **throttleable**(): `boolean`
 
-获取当前 Feature 是否允许被截流。
+Get whether the current Feature can be culled.
 
 ##### Returns
 
@@ -376,9 +376,9 @@ Feature 的显示名称（业务自定义）。
 
 > **set** **throttleable**(`value`): `void`
 
-设置当前 Feature 是否允许被截流。
+Set whether the current Feature can be culled.
 
-当值变化时，会尝试通知所属 Entity 重新聚合其 feature-level 调度状态。
+When the value changes, the owning Entity is notified to reaggregate its feature-level scheduling state when possible.
 
 ##### Parameters
 
@@ -422,7 +422,7 @@ Feature 的显示名称（业务自定义）。
 
 > **get** **useLod**(): `boolean`
 
-是否启用 LOD（由外部策略驱动决定是否显示）。
+Whether LOD is enabled; an external policy determines visibility.
 
 ##### Returns
 
@@ -432,7 +432,7 @@ Feature 的显示名称（业务自定义）。
 
 > **set** **useLod**(`use`): `void`
 
-是否启用 LOD（由外部策略驱动决定是否显示）。
+Whether LOD is enabled; an external policy determines visibility.
 
 ##### Parameters
 
@@ -460,7 +460,7 @@ Feature 的显示名称（业务自定义）。
 
 > **get** **viewDistanceConst**(): [`ViewDistanceTemplate`](../types/ViewDistanceTemplate.md)
 
-获取视距配置
+Get the distance-display configuration.
 
 ##### Returns
 
@@ -492,9 +492,9 @@ Feature 的显示名称（业务自定义）。
 
 > **beforeRegister**(`entity`): `void`
 
-注册前置逻辑（子类可覆盖）。
+Pre-registration logic, which subclasses can override.
 
-默认行为：记录所属 Entity 引用。
+Default behavior: record the owning Entity reference.
 
 #### Parameters
 
@@ -516,9 +516,9 @@ Feature 的显示名称（业务自定义）。
 
 > **destroy**(): `void`
 
-销毁 Feature。
+Destroy the Feature.
 
-会解除 morph 监听、销毁事件桥接与坐标轴，并清理内部 EventManager。
+This removes morph listeners, destroys the event bridge and body axis, and clears the internal EventManager.
 
 #### Returns
 
@@ -538,7 +538,7 @@ Feature 的显示名称（业务自定义）。
 
 > **disableTracking**(): `void`
 
-关闭“追踪”能力（保留 trackingTarget 配置）。
+Disable tracking while preserving the trackingTarget configuration.
 
 #### Returns
 
@@ -554,10 +554,10 @@ Feature 的显示名称（业务自定义）。
 
 > **enableTracking**(`options`): `void`
 
-启用“追踪”能力。
+Enable tracking.
 
-追踪目标可为 Entity / Cartographic / Cartesian3；子类可在 update 中使用
-`_getTrackTargetBPosition` 获取目标位置并做朝向、连线等行为。
+The tracking target can be an Entity, Cartographic, or Cartesian3. Subclasses can use
+`_getTrackTargetBPosition` in update to obtain the target position and perform orientation, line, or related behavior.
 
 #### Parameters
 
@@ -565,7 +565,7 @@ Feature 的显示名称（业务自定义）。
 
 [`TrackingOptions`](../interfaces/TrackingOptions.md)
 
-配置项
+Configuration item.
 
 #### Returns
 
@@ -581,10 +581,10 @@ Feature 的显示名称（业务自定义）。
 
 > **forceFlush**(): `void`
 
-强制刷新 Feature 的表现。
+Force-refresh the Feature appearance.
 
-用于某些需要“重建节点”的 Feature（如底层 底层 Primitive 无法增量更新时）。
-默认调用 `reCreate`，具体行为由子类实现。
+Used by Features that need to rebuild nodes, such as when an underlying Primitive cannot be incrementally updated.
+Calls `reCreate` by default; subclasses provide the specific behavior.
 
 #### Returns
 
@@ -604,7 +604,7 @@ Feature 的显示名称（业务自定义）。
 
 > **getCurrentPosition**(): `Cartesian3` \| `undefined`
 
-获取所属 Entity 的当前位置（与 Entity.getCurrentPosition 一致）。
+Get the current position of the owning Entity, consistent with Entity.getCurrentPosition.
 
 #### Returns
 
@@ -620,7 +620,7 @@ Feature 的显示名称（业务自定义）。
 
 > **getEngine**(): [`Engine`](Engine.md) \| `undefined`
 
-获取所属 Engine（如果已注册到 Entity）。
+Get the owning Engine, if the Feature has been registered with an Entity.
 
 #### Returns
 
@@ -636,15 +636,15 @@ Feature 的显示名称（业务自定义）。
 
 > **getMatrix**(): `Matrix4`
 
-获取当前 Feature 的变换矩阵。
+Get the transformation matrix of the current Feature.
 
-若未设置 transformer 的应用矩阵，则返回单位矩阵。
+Returns the identity matrix if no application matrix is set on transformer.
 
 #### Returns
 
 `Matrix4`
 
-变换矩阵
+Transformation matrix.
 
 #### Inherited from
 
@@ -656,7 +656,7 @@ Feature 的显示名称（业务自定义）。
 
 > **is3d**(): `boolean`
 
-当前 Engine 是否处于 3D 模式。
+Whether the current Engine is in 3D mode.
 
 #### Returns
 
@@ -672,7 +672,7 @@ Feature 的显示名称（业务自定义）。
 
 > **loadFromGeoJson**(`geoJson`, `callback?`): `void`
 
-直接传入已解析的 GeoJSON 对象并渲染
+Pass an already-parsed GeoJSON object and render it.
 
 #### Parameters
 
@@ -694,7 +694,7 @@ Feature 的显示名称（业务自定义）。
 
 > **loadFromUrl**(`url`, `callback?`): `Promise`\<`void`\>
 
-从 URL 加载 GeoJSON 并渲染
+Load GeoJSON from a URL and render it.
 
 #### Parameters
 
@@ -716,9 +716,9 @@ Feature 的显示名称（业务自定义）。
 
 > **morphSwitchHandle**(`_mode`): `void`
 
-场景模式切换时的默认处理。
+Default handling when the scene mode changes.
 
-2D/非 3D 模式下，默认销毁机体坐标轴以避免异常显示。
+In 2D or non-3D modes, the body axis is destroyed by default to avoid abnormal display.
 
 #### Parameters
 
@@ -772,10 +772,10 @@ Feature 的显示名称（业务自定义）。
 
 > **register**(`entity`): [`IFeature`](../interfaces/IFeature.md)
 
-将 Feature 注册到指定 Entity 上。
+Register the Feature with the specified Entity.
 
-会触发 BEFORE_REGISTER/AFTER_REGISTER/REGISTER，并安装交互事件桥接（若已启用）。
-同时会补齐默认 distanceDisplayCondition（若用户未配置）。
+Triggers BEFORE_REGISTER/AFTER_REGISTER/REGISTER and installs the interaction event bridge when enabled.
+It also fills in the default distanceDisplayCondition when not configured by the user.
 
 #### Parameters
 
@@ -801,9 +801,9 @@ Feature 的显示名称（业务自定义）。
 
 > **resetTemporalState**(`_time?`): `void`
 
-重置与时间连续性相关的内部状态。
+Reset internal state related to time continuity.
 
-默认实现为空，供需要处理 seek / rewind / 暂停拖拽 的 Feature 覆盖。
+The default implementation is empty and can be overridden by Features that need to handle seek, rewind, or paused dragging.
 
 #### Parameters
 
@@ -825,9 +825,9 @@ Feature 的显示名称（业务自定义）。
 
 > **setBodyAxis**(`options`): `void`
 
-配置机体坐标轴（BodyAxis）。
+Configure the body axis (BodyAxis).
 
-调用后会在 update 周期内按需创建/更新坐标轴（仅 3D 模式可用）。
+After this call, the axis is created or updated as needed during the update cycle; this is available only in 3D mode.
 
 #### Parameters
 
@@ -855,7 +855,7 @@ undefined 配置项
 
 > **setIncludeInBoundingSphere**(`value`): `this`
 
-设置当前 Feature 是否参与 Entity 的包围球聚合。
+Set whether the current Feature participates in the Entity bounding-sphere aggregation.
 
 #### Parameters
 
@@ -863,13 +863,13 @@ undefined 配置项
 
 `boolean`
 
-是否参与包围球聚合。
+Whether to participate in bounding-sphere aggregation.
 
 #### Returns
 
 `this`
 
-当前 Feature，便于链式调用。
+The current Feature, for method chaining.
 
 #### Implementation of
 
@@ -937,7 +937,7 @@ undefined 配置项
 
 > **unregister**(): `void`
 
-取消注册（等价于 destroy）。
+Unregister the Feature, equivalent to destroy.
 
 #### Returns
 
@@ -985,7 +985,7 @@ undefined 配置项
 
 > **offClick**(`handler?`): `this`
 
-取消监听 Feature 的点击事件。
+Stop listening for Feature click events.
 
 #### Parameters
 
@@ -993,7 +993,7 @@ undefined 配置项
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; omit it to remove all listeners for the event.
 
 #### Returns
 
@@ -1012,7 +1012,7 @@ this
 
 > **offDblClick**(`handler?`): `this`
 
-取消监听 Feature 的双击事件。
+Stop listening for Feature double-click events.
 
 #### Parameters
 
@@ -1020,7 +1020,7 @@ this
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; omit it to remove all listeners for the event.
 
 #### Returns
 
@@ -1039,7 +1039,7 @@ this
 
 > **offMorphSwitch**(`callback`): `void`
 
-取消监听场景模式切换。
+Stop listening for scene mode changes.
 
 #### Parameters
 
@@ -1047,7 +1047,7 @@ this
 
 (`mode`) => `void`
 
-回调函数
+Callback function.
  MORPH_SWITCH
 
 #### Returns
@@ -1064,7 +1064,7 @@ this
 
 > **offMouseEnter**(`handler?`): `this`
 
-取消监听 Feature 的鼠标移入事件。
+Stop listening for Feature mouse-enter events.
 
 #### Parameters
 
@@ -1072,7 +1072,7 @@ this
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; omit it to remove all listeners for the event.
 
 #### Returns
 
@@ -1091,7 +1091,7 @@ this
 
 > **offMouseLeave**(`handler?`): `this`
 
-取消监听 Feature 的鼠标移出事件。
+Stop listening for Feature mouse-leave events.
 
 #### Parameters
 
@@ -1099,7 +1099,7 @@ this
 
 (`e`) => `void`
 
-可选：指定要移除的回调；不传则移除该事件下的全部监听
+Optional: specify the callback to remove; omit it to remove all listeners for the event.
 
 #### Returns
 
@@ -1118,9 +1118,9 @@ this
 
 > **onAfterRegister**(`callback`): `void`
 
-监听注册后回调。
+Listen for the post-registration callback.
 
-在此阶段会同步 LOD 的 show 初始值。
+The initial LOD show value is synchronized at this stage.
  AFTER_REGISTER
 
 #### Parameters
@@ -1147,7 +1147,7 @@ this
 
 > **onBeforeDestroy**(`callback`): `void`
 
-监听销毁前回调。
+Listen for the pre-destruction callback.
  BEFORE_DESTROY
 
 #### Parameters
@@ -1174,9 +1174,9 @@ this
 
 > **onBeforeRegister**(`callback`): `void`
 
-监听注册前回调。
+Listen for the pre-registration callback.
 
-该回调不带参数；若需要 Entity 参数请使用 onRegister。
+This callback has no parameters; use onRegister if an Entity parameter is needed.
  BEFORE_REGISTER
 
 #### Parameters
@@ -1203,7 +1203,7 @@ this
 
 > **onBeforeUpdate**(`callback`): `void`
 
-监听更新前回调。
+Listen for the pre-update callback.
 
 #### Parameters
 
@@ -1232,7 +1232,7 @@ this
 
 > **onClick**(`handler`): `this`
 
-监听 Feature 的点击事件。
+Listen for Feature click events.
 
 #### Parameters
 
@@ -1240,7 +1240,7 @@ this
 
 (`e`) => `void`
 
-事件回调
+Event callback.
 
 #### Returns
 
@@ -1267,7 +1267,7 @@ feature.onClick((e) => {
 
 > **onDblClick**(`handler`): `this`
 
-监听 Feature 的双击事件。
+Listen for Feature double-click events.
 
 #### Parameters
 
@@ -1275,7 +1275,7 @@ feature.onClick((e) => {
 
 (`e`) => `void`
 
-事件回调
+Event callback.
 
 #### Returns
 
@@ -1294,7 +1294,7 @@ this
 
 > **onDestroy**(`callback`): `void`
 
-监听销毁回调。
+Listen for the destruction callback.
  DESTROY
 
 #### Parameters
@@ -1321,7 +1321,7 @@ this
 
 > **onMorphSwitch**(`callback`): `void`
 
-监听场景模式切换。
+Listen for scene mode changes.
 
 #### Parameters
 
@@ -1329,7 +1329,7 @@ this
 
 (`mode`) => `void`
 
-回调函数
+Callback function.
  MORPH_SWITCH
 
 #### Returns
@@ -1346,7 +1346,7 @@ this
 
 > **onMouseEnter**(`handler`): `this`
 
-监听 Feature 的鼠标移入事件。
+Listen for Feature mouse-enter events.
 
 #### Parameters
 
@@ -1354,7 +1354,7 @@ this
 
 (`e`) => `void`
 
-事件回调
+Event callback.
 
 #### Returns
 
@@ -1373,7 +1373,7 @@ this
 
 > **onMouseLeave**(`handler`): `this`
 
-监听 Feature 的鼠标移出事件。
+Listen for Feature mouse-leave events.
 
 #### Parameters
 
@@ -1381,7 +1381,7 @@ this
 
 (`e`) => `void`
 
-事件回调
+Event callback.
 
 #### Returns
 
@@ -1400,7 +1400,7 @@ this
 
 > **onRegister**(`callback`): `void`
 
-监听注册完成事件。
+Listen for registration-complete events.
 
 #### Parameters
 
@@ -1408,7 +1408,7 @@ this
 
 (`spaceObject`) => `void`
 
-回调参数为所属 Entity
+The callback parameter is the owning Entity.
  REGISTER
 
 #### Returns
@@ -1429,7 +1429,7 @@ this
 
 > **onUpdate**(`callback`): `void`
 
-监听更新回调。
+Listen for the update callback.
 
 #### Parameters
 

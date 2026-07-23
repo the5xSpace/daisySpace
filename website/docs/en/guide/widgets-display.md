@@ -2,7 +2,7 @@
 
 ## SimulationTimeDisplayWidget
 
-[SimulationTimeDisplayWidget](/en/api/classes/SimulationTimeDisplayWidget) Displays the current simulation time on screen.
+[SimulationTimeDisplayWidget](/en/api/classes/SimulationTimeDisplayWidget) displays the current simulation time on the screen.
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -23,15 +23,15 @@ engine.addWidget(new Daisy.SimulationTimeDisplayWidget({
 
 | Option | Type | Description |
 |------|------|------|
-| `preset` | string | Preset position, same as above |
-| `theme` | `"dark"` \| `"light"` | Theme color scheme |
+| `preset` | string | Preset position, as above |
+| `theme` | `"dark"` \| `"light"` | Theme colors |
 | `title` | string | Title text |
-| `border` | boolean | Whether to show the border |
+| `border` | boolean | Whether to display a border |
 | `radius` | string | Corner radius: `"md"` / `"lg"` / `"full"` |
-| `backgroundOpacity` | number | Background opacity (0~1) |
-| `timeLabel` | `TimelineLabelOptions` | Time format override; see [Time Formatting](/en/guide/time-format) |
+| `backgroundOpacity` | number | Background opacity (0 to 1) |
+| `timeLabel` | `TimelineLabelOptions` | Time-format override; see [Time Formatting](/en/guide/time-format) |
 
-### Dynamic Update
+### Dynamic Updates
 
 ```typescript
 const sw = new Daisy.SimulationTimeDisplayWidget({ widgetOptions: { title: "SIM TIME" } })
@@ -46,7 +46,7 @@ sw.refresh()
 
 ## FrameRateWidget
 
-[FrameRateWidget](/en/api/classes/FrameRateWidget) Displays a real-time FPS counter.
+[FrameRateWidget](/en/api/classes/FrameRateWidget) displays a real-time FPS counter.
 
 ```typescript
 engine.addWidget(new Daisy.FrameRateWidget())
@@ -55,9 +55,9 @@ engine.addWidget(new Daisy.FrameRateWidget())
 | FPS | Color | Label |
 |---|---|---|
 | >50 | Green | Excellent |
-| >30 | Cyan | Good |
+| >30 | Cyan | Very good |
 | >20 | Blue | Smooth |
-| >10 | Yellow | Average |
+| >10 | Yellow | Fair |
 | ≤10 | Red | Poor |
 
 > **Related API**: [SimulationTimeDisplayWidget](/en/api/classes/SimulationTimeDisplayWidget) · [FrameRateWidget](/en/api/classes/FrameRateWidget) · [SimulationTimeWidget](/en/api/classes/SimulationTimeWidget)

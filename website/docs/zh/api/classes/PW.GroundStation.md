@@ -103,6 +103,22 @@ station.addSensor({ apertureDeg: 12, beamLength: 200_000 });
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`id`](PW.Vehicle.md#id)
+
+***
+
 ### options
 
 #### Get Signature

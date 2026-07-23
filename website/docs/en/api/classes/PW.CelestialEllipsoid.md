@@ -6,25 +6,24 @@
 
 # Class: CelestialEllipsoid
 
-天体椭球（带世界位置偏移）
+Celestial ellipsoid with a world-position offset.
 
-用途：在地球固定系（ECEF）场景中，将一个“局部椭球”（radii 与 Ellipsoid 一致）
-放置到某个世界坐标位置（ECEF），并提供：
-- “射线-椭球”交点计算
-- 世界坐标 <-> 天体局部坐标（以天体中心为原点）的变换
-- 动态天体（如月球/太阳）在每一帧根据时间更新其平移/旋转矩阵
+Purpose: in an Earth-fixed (ECEF) scene, place a "local ellipsoid" (with radii matching Ellipsoid)
+at a world-coordinate position (ECEF), and provide:
+- ray-ellipsoid intersection calculations
+- world coordinates <-> celestial-body local coordinates transformations, with the body center as the origin
+- per-frame updates of the translation and rotation matrices for dynamic bodies such as the Moon and Sun
 
-坐标系约定：
-- 场景默认使用地球固定系 ECEF，地心为 (0,0,0)
-- `position` 必须是天体中心在 ECEF 下的世界坐标
-- `orientation`（可选）用于把“天体局部坐标系”旋转到 ECEF（例如：让某天体的经纬度系在 ECEF 中保持自洽）
-- `ray.origin` 与 `ray.direction` 必须是 ECEF 世界坐标；本类会把射线变换到天体局部坐标系再求交点
+Coordinate-system conventions:
+- The scene uses the Earth-fixed ECEF frame by default, with the Earth's center at (0,0,0).
+- `position` must be the celestial body's world coordinate in ECEF.
+- `orientation` (optional) rotates the celestial body's local coordinate system into ECEF, for example to keep a body's longitude-latitude frame consistent in ECEF.
+- `ray.origin` and `ray.direction` must be ECEF world coordinates; this class transforms the ray into the body's local coordinate system before computing the intersection.
 
-动态位置：
-- 对于非地球天体（例如月球/太阳），天体中心在 ECEF 下随时间变化
-- 可通过 `time` 提供当前时间，并让 `position(time)` 与 `orientation(time)` 依赖该时间
-- 这样 `getLocalToWorldMatrix()` 会在每一帧返回新的矩阵；绘制对象（polygon/polyline/primitive 等）
- 若以天体局部坐标定义，必须在每帧将点位乘上该矩阵（或设置 primitive.modelMatrix），否则会出现“贴地失败/位置漂移”
+Dynamic position:
+- For non-Earth bodies such as the Moon and Sun, the body center changes over time in ECEF.
+- The current time can be provided through `time`, with `position(time)` and `orientation(time)` depending on it.
+- `getLocalToWorldMatrix()` then returns a new matrix every frame. If drawn objects such as polygons, polylines, or primitives are defined in body-local coordinates, their points must be multiplied by this matrix every frame (or primitive.modelMatrix must be set); otherwise, ground clamping may fail or positions may drift.
 
 ## Example
 
@@ -57,13 +56,13 @@ const worldPoint = moon.localToWorldPoint(localOnMoon);
 
 > **new CelestialEllipsoid**(`options`): `CelestialEllipsoid`
 
-构造函数
+Constructor.
 
 #### Parameters
 
 ##### options
 
-天体椭球参数
+Celestial ellipsoid parameters.
 
 ###### ellipsoid
 
@@ -106,10 +105,10 @@ const moon = new CelestialEllipsoid({
 
 > **ellipsoid**: `Ellipsoid`
 
-天体椭球几何参数（radii 等）。
+Celestial ellipsoid geometry parameters, such as radii.
 
-注意：该椭球本身始终以“天体局部坐标系（以天体中心为原点）”定义；
-天体中心在世界坐标系（ECEF）中的平移/旋转由 `position/orientation` 决定。
+Note: the ellipsoid itself is always defined in the "celestial-body local coordinate system (with the body center as the origin)";
+the translation and rotation of the body center in the world ECEF coordinate system are determined by `position/orientation`.
 
 ***
 
@@ -117,10 +116,10 @@ const moon = new CelestialEllipsoid({
 
 > **orientation**: [`CelestialEllipsoidOrientation`](../types/PW.CelestialEllipsoidOrientation.md) \| `undefined`
 
-天体局部坐标系到 ECEF 的姿态来源（可选）。
+Source of the orientation from the celestial-body local coordinate system to ECEF (optional).
 
-- 未提供时视为单位旋转
-- 对动态天体可传入函数按时间返回矩阵/四元数
+- If omitted, an identity rotation is used.
+- For dynamic bodies, a function can be provided to return a matrix or quaternion for a given time.
 
 ***
 
@@ -128,10 +127,10 @@ const moon = new CelestialEllipsoid({
 
 > **position**: [`CelestialEllipsoidPositionECEF`](../types/PW.CelestialEllipsoidPositionECEF.md)
 
-天体中心在 ECEF 下的位置来源。
+Source of the celestial body's center position in ECEF.
 
-- 传入固定 Cartesian3：表示天体中心固定不动
-- 传入函数：表示天体中心随时间变化（每帧可更新）
+- A fixed Cartesian3 means that the body center is stationary.
+- A function means that the body center changes over time and can be updated every frame.
 
 ***
 
@@ -139,9 +138,9 @@ const moon = new CelestialEllipsoid({
 
 > **surfaceGravity**: `number`
 
-天体表面附近的重力加速度常量，单位 m/s²。
+Constant gravitational acceleration near the celestial body's surface, in m/s².
 
-这是给视觉粒子、贴地局部动力学等短时效果使用的近似值；轨道动力学仍应使用专门的轨道/引力模型。
+This approximate value is intended for short-lived effects such as visual particles and local ground-based dynamics; orbital dynamics should still use dedicated orbital or gravity models.
 
 ## Methods
 
@@ -149,7 +148,7 @@ const moon = new CelestialEllipsoid({
 
 > **cameraHeightMeters**(`cameraPositionECEF`, `time?`): `number` \| `null`
 
-获取相机在天体表面的高度（米）
+Get the camera altitude above the celestial body's surface, in meters.
 
 #### Parameters
 
@@ -177,7 +176,7 @@ const h = celestial.cameraHeightMeters(viewer.camera.positionWC);
 
 > **cartesianToCartographic**(`cartesianECEF`): `Cartographic` \| `null`
 
-将 ECEF 世界坐标转换为经纬度（Cartographic）
+Convert ECEF world coordinates to longitude and latitude (Cartographic).
 
 #### Parameters
 
@@ -201,7 +200,7 @@ const carto = celestial.cartesianToCartographic(viewer.camera.positionWC);
 
 > **cartographicToCartesian**(`cartographic`): `Cartesian3` \| `null`
 
-将经纬度（Cartographic）转换为 ECEF 世界坐标
+Convert longitude and latitude (Cartographic) to ECEF world coordinates.
 
 #### Parameters
 
@@ -226,7 +225,7 @@ const world = celestial.cartographicToCartesian(carto);
 
 > **computeGroundPositions**(`positions`, `options?`): `Cartesian3`[]
 
-计算贴地路径采样点（可选闭合、排序与贴地）
+Compute ground-clamped path sample points, optionally closing, sorting, and clamping the path.
 
 #### Parameters
 
@@ -234,35 +233,35 @@ const world = celestial.cartographicToCartesian(carto);
 
 `Cartesian3`[]
 
-路径点（ECEF 世界坐标）
+Path points in ECEF world coordinates.
 
 ##### options?
 
-采样配置
+Sampling configuration.
 
 ###### clampToGround?
 
 `boolean`
 
-是否贴地插值，默认 false
+Whether to interpolate along the ground; defaults to false.
 
 ###### loop?
 
 `boolean`
 
-是否闭合路径，默认 false
+Whether to close the path; defaults to false.
 
 ###### sampleCount?
 
 `number`
 
-每段插值采样数（整数，>=1），默认 32
+The number of interpolation samples per segment (integer, >=1); defaults to 32.
 
 ###### sortBefore?
 
 `boolean`
 
-是否在采样前按环绕角排序，默认 true
+Whether to sort by wrap angle before sampling; defaults to true.
 
 ###### time?
 
@@ -287,9 +286,9 @@ const sampled = celestial.computeGroundPositions(path, {
 
 > **computeRayEllipsoidGrazingPoint**(`origin`, `direction`, `time?`): `Cartesian3` \| `null`
 
-计算射线相对椭球的掠地切点（grazing point）。
+Compute the grazing point of a ray relative to the ellipsoid (grazing point).
 
-当射线不直接命中椭球时，可用于构造与地平线连续的闭环弧段。
+When a ray does not directly hit the ellipsoid, this can be used to construct a closed arc continuous with the horizon.
 
 #### Parameters
 
@@ -315,7 +314,7 @@ const sampled = celestial.computeGroundPositions(path, {
 
 > **computeRayEllipsoidIntersection**(`origin`, `direction`): `Cartesian3` \| `null`
 
-计算射线与天体椭球交点（简化调用）
+Compute the intersection of a ray with the celestial ellipsoid (simplified call).
 
 #### Parameters
 
@@ -343,11 +342,11 @@ const hit = celestial.computeRayEllipsoidIntersection(origin, direction);
 
 > **distanceBetweenECEFPointsStable**(`aECEF`, `bECEF`, `time?`): `number` \| `null`
 
-计算两个 ECEF 点之间的距离（数值更稳定，适用于非地球天体偏移场景）。
+Compute the distance between two ECEF points. This is more numerically stable for offset non-Earth bodies.
 
-说明：
-- 先将 ECEF 点变换到“天体局部坐标系”（以天体中心为原点），再计算欧氏距离
-- 相比直接在 ECEF 上做 distance，在天体中心远离地心的情况下更不易出现精度问题
+Explanation:
+- First transform the ECEF points to the "celestial-body local coordinate system" with the body center as the origin, then compute the Euclidean distance.
+- Compared with calculating distance directly in ECEF, this is less prone to precision issues when the body center is far from the Earth's center.
 
 #### Parameters
 
@@ -355,19 +354,19 @@ const hit = celestial.computeRayEllipsoidIntersection(origin, direction);
 
 `Cartesian3`
 
-点 A（ECEF）
+Point A (ECEF).
 
 ##### bECEF
 
 `Cartesian3`
 
-点 B（ECEF）
+Point B (ECEF).
 
 ##### time?
 
 `JulianDate`
 
-仿真时间（可选，默认取内部 timeProvider）
+Simulation time (optional; defaults to the internal timeProvider).
 
 #### Returns
 
@@ -403,7 +402,7 @@ const hit = celestial.computeRayEllipsoidIntersection(origin, direction);
 
 > **getBodyToWorldRotation**(`time?`, `result?`): `Matrix3`
 
-获取天体自转到世界坐标的旋转矩阵
+Get the rotation matrix from the celestial body's rotation to world coordinates.
 
 #### Parameters
 
@@ -431,7 +430,7 @@ const rot = celestial.getBodyToWorldRotation(viewer.clock.currentTime);
 
 > **getLocalToWorldMatrix**(`time?`, `result?`): `Matrix4` \| `null`
 
-获取天体局部坐标到世界坐标的矩阵
+Get the matrix from celestial-body local coordinates to world coordinates.
 
 #### Parameters
 
@@ -459,7 +458,7 @@ const localToWorld = celestial.getLocalToWorldMatrix();
 
 > **getPositionECEF**(`time?`): `Cartesian3` \| `undefined`
 
-获取天体中心的 ECEF 坐标
+Get the ECEF coordinates of the celestial body's center.
 
 #### Parameters
 
@@ -483,7 +482,7 @@ const center = celestial.getPositionECEF(viewer.clock.currentTime);
 
 > **getSurfaceGravity**(): `number`
 
-获取天体表面附近的重力加速度常量，单位 m/s²。
+Get the constant gravitational acceleration near the celestial body's surface, in m/s².
 
 #### Returns
 
@@ -495,7 +494,7 @@ const center = celestial.getPositionECEF(viewer.clock.currentTime);
 
 > **getTrajectorySample**(`centerTime`, `rangeSeconds?`, `stepSeconds?`, `referenceFrame?`): [`TrajectorySample`](TrajectorySample.md)
 
-获取指定时间范围内的稀疏轨迹样本
+Get sparse trajectory samples within the specified time range.
 
 #### Parameters
 
@@ -503,25 +502,25 @@ const center = celestial.getPositionECEF(viewer.clock.currentTime);
 
 `JulianDate`
 
-中心时间
+Center time.
 
 ##### rangeSeconds?
 
 `number` = `...`
 
-前后范围（秒），默认 100 天 (86400 * 100)
+Range before and after the center time (seconds); defaults to 100 days (86400 * 100).
 
 ##### stepSeconds?
 
 `number` = `86400`
 
-采样步长（秒），默认 1 天 (86400)
+Sampling interval (seconds); defaults to 1 day (86400).
 
 ##### referenceFrame?
 
 `ReferenceFrame` = `Daisy.ReferenceFrame.INERTIAL`
 
-参考系，默认 INERTIAL (ICRF)
+Reference frame; defaults to INERTIAL (ICRF).
 
 #### Returns
 
@@ -543,7 +542,7 @@ const sample = celestial.getTrajectorySample(
 
 > **getWorldToLocalMatrix**(`time?`, `result?`): `Matrix4` \| `null`
 
-获取世界坐标到天体局部坐标矩阵
+Get the matrix from world coordinates to celestial-body local coordinates.
 
 #### Parameters
 
@@ -571,25 +570,25 @@ const worldToLocal = celestial.getWorldToLocalMatrix();
 
 > **isEarth**(`options?`): `boolean`
 
-判断当前椭球是否为地球（位置接近原点且半径接近 WGS84）
+Determine whether the current ellipsoid represents Earth, based on its position being near the origin and its radii being near WGS84.
 
 #### Parameters
 
 ##### options?
 
-判断条件
+Check conditions.
 
 ###### positionToleranceMeters?
 
 `number`
 
-位置容差（米），默认 1e-3
+Position tolerance (meters); defaults to 1e-3.
 
 ###### radiiToleranceMeters?
 
 `number`
 
-半径容差（米），默认 1e-3
+Radii tolerance (meters); defaults to 1e-3.
 
 ###### time?
 
@@ -611,7 +610,7 @@ const isEarth = celestial.isEarth();
 
 > **localToWorldPoint**(`cartesianLocal`, `time?`, `result?`): `Cartesian3` \| `null`
 
-将天体局部坐标转换为 ECEF 世界坐标
+Convert celestial-body local coordinates to ECEF world coordinates.
 
 #### Parameters
 
@@ -644,10 +643,10 @@ const world = celestial.localToWorldPoint(local);
 
 > **rayIntersection**(`ray`, `time?`): `Cartesian3` \| `null`
 
-计算射线与天体椭球的交点（返回最近的有效交点）。
+Compute the intersection of a ray with the celestial ellipsoid and return the nearest valid intersection.
 
-- 返回值坐标为 ECEF 世界坐标
-- 未命中或位置无效时返回 `null`
+- The returned coordinates are ECEF world coordinates.
+- Returns `null` when there is no hit or the position is invalid.
 
 #### Parameters
 
@@ -696,7 +695,7 @@ const hit = celestial.rayIntersection(ray);
 
 > **worldToLocalPoint**(`cartesianECEF`, `time?`, `result?`): `Cartesian3` \| `null`
 
-将 ECEF 世界坐标转换为天体局部坐标
+Convert ECEF world coordinates to celestial-body local coordinates.
 
 #### Parameters
 
@@ -728,7 +727,7 @@ const local = celestial.worldToLocalPoint(viewer.camera.positionWC);
 
 > `static` **create**(`options`): `CelestialEllipsoid`
 
-创建天体椭球实例
+Create a celestial ellipsoid instance.
 
 #### Parameters
 
@@ -774,9 +773,9 @@ const mars = CelestialEllipsoid.create({
 
 > `static` **Earth**(`options?`): `CelestialEllipsoid`
 
-创建地球椭球（ECEF 原点即地心）。
+Create the Earth ellipsoid, with the ECEF origin at the Earth's center.
 
-约定：在 Daisy 的 Fixed/ECEF 坐标系下，地球中心点就是 (0, 0, 0)。
+Convention: in Daisy's Fixed/ECEF coordinate system, the Earth's center is (0, 0, 0).
 
 #### Parameters
 
@@ -802,7 +801,7 @@ const earth = CelestialEllipsoid.Earth();
 
 > `static` **Moon**(`options?`): `CelestialEllipsoid`
 
-创建月球椭球：月心位置使用 Daisy 内置的 Simon1994 行星历计算（先得惯性系，再转 ECEF）。
+Create the Moon ellipsoid. The lunar-center position is calculated using Daisy's built-in Simon1994 planetary ephemeris, first in the inertial frame and then converted to ECEF.
 
 #### Parameters
 
@@ -836,9 +835,9 @@ const moon = CelestialEllipsoid.Moon({
 
 > `static` **setActiveCamerasProvider**(`provider?`): `void`
 
-注册活动相机提供器
+Register the active camera provider.
 
-- 用于位置缓存策略判断“相机是否靠近天体”
+- Used by the position-cache strategy to determine whether a camera is near the celestial body.
 
 #### Parameters
 
@@ -862,9 +861,9 @@ CelestialEllipsoid.setActiveCamerasProvider(() => viewer.getAllCesiumCameras());
 
 > `static` **setClockMultiplierProvider**(`provider?`): `void`
 
-注册时钟倍速提供器
+Register the clock multiplier provider.
 
-- 用于在高倍速时降低缓存时效
+- Used to reduce cache freshness at high time multipliers.
 
 #### Parameters
 
@@ -888,9 +887,9 @@ CelestialEllipsoid.setClockMultiplierProvider(() => viewer.clock.multiplier);
 
 > `static` **Sun**(`options?`): `CelestialEllipsoid`
 
-创建太阳椭球：太阳中心位置使用 内置的 Simon1994 行星历计算（先得惯性系，再转 ECEF）。
+Create the Sun ellipsoid. The solar-center position is calculated using the built-in Simon1994 planetary ephemeris, first in the inertial frame and then converted to ECEF.
 
-说明： 未内置 Sun Ellipsoid，这里默认以太阳平均半径构造球形椭球。
+Note: a Sun Ellipsoid is not built in, so a spherical ellipsoid with the Sun's mean radius is used by default.
 
 #### Parameters
 

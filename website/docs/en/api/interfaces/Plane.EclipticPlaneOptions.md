@@ -16,7 +16,7 @@
 
 > `optional` **color?**: [`DColor`](../types/DColor.md)
 
-颜色
+Color.
 
 #### Default
 
@@ -34,7 +34,7 @@ Color.LIGHTGREEN.withAlpha(0.5)
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示范围
+Display range.
 
 #### Default
 
@@ -52,7 +52,7 @@ new Daisy.DistanceDisplayCondition(0, 1.5e+8)
 
 > `optional` **gridCellPixelSize?**: `number`
 
-目标网格单元的屏幕像素尺寸（仅 gridFollowCamera=true 生效）。
+Target screen-pixel size of grid cells; effective only when gridFollowCamera=true.
 
 #### Default
 
@@ -66,7 +66,7 @@ new Daisy.DistanceDisplayCondition(0, 1.5e+8)
 
 > `optional` **gridFollowCamera?**: `boolean`
 
-是否根据相机距离自动调整网格密度，使屏幕上网格视觉密度更稳定。
+Whether to automatically adjust grid density based on camera distance for a more consistent visual density on screen.
 
 #### Default
 
@@ -80,7 +80,7 @@ true
 
 > `optional` **gridLinePixelWidth?**: `number`
 
-目标网格线宽的屏幕像素尺寸（仅 gridFollowCamera=true 生效）。
+Target screen-pixel width of grid lines; effective only when gridFollowCamera=true.
 
 #### Default
 
@@ -94,7 +94,7 @@ true
 
 > `optional` **gridMaxCellSizeMeters?**: `number`
 
-网格单元最大尺寸（米），用于限制过稀（仅 gridFollowCamera=true 生效）。
+Maximum grid-cell size in meters, used to prevent the grid from becoming too sparse; effective only when gridFollowCamera=true.
 
 #### Default
 
@@ -108,7 +108,7 @@ true
 
 > `optional` **gridMinCellSizeMeters?**: `number`
 
-网格单元最小尺寸（米），用于限制过密导致闪烁（仅 gridFollowCamera=true 生效）。
+Minimum grid-cell size in meters, used to prevent flickering caused by an overly dense grid; effective only when gridFollowCamera=true.
 
 #### Default
 
@@ -122,7 +122,7 @@ true
 
 > `optional` **gridStyle?**: [`PlaneGridStyle`](../types/Plane.PlaneGridStyle.md)
 
-网格样式。
+Grid style.
 
 #### Overrides
 
@@ -146,7 +146,7 @@ id
 
 > `optional` **material?**: [`DMaterial`](../types/DMaterial.md)
 
-材质
+Material.
 
 ***
 
@@ -154,7 +154,7 @@ id
 
 > `optional` **monthlyLabelFillColor?**: [`DColor`](../types/DColor.md)
 
-月度标签填充颜色
+Monthly label fill color.
 
 #### Default
 
@@ -168,7 +168,7 @@ Color.WHITE
 
 > `optional` **monthlyLabelFont?**: `string`
 
-月度标签字体
+Monthly label font.
 
 #### Default
 
@@ -182,7 +182,7 @@ Color.WHITE
 
 > `optional` **monthlyLabelOutlineColor?**: [`DColor`](../types/DColor.md)
 
-月度标签描边颜色
+Monthly label outline color.
 
 #### Default
 
@@ -196,7 +196,7 @@ Color.BLACK
 
 > `optional` **monthlyLabelOutlineWidth?**: `number`
 
-月度标签描边宽度
+Monthly label outline width.
 
 #### Default
 
@@ -210,7 +210,7 @@ Color.BLACK
 
 > `optional` **monthlyLineColor?**: [`DColor`](../types/DColor.md)
 
-月度连线颜色
+Monthly connector line color.
 
 #### Default
 
@@ -224,7 +224,7 @@ Color.WHITE.withAlpha(0.35)
 
 > `optional` **monthlyLineWidth?**: `number`
 
-月度连线线宽
+Monthly connector line width.
 
 #### Default
 
@@ -238,7 +238,7 @@ Color.WHITE.withAlpha(0.35)
 
 > `optional` **monthlyPointColor?**: [`DColor`](../types/DColor.md)
 
-月度点位颜色
+Monthly point color.
 
 #### Default
 
@@ -252,7 +252,7 @@ Color.WHITE
 
 > `optional` **monthlyPointSize?**: `number`
 
-月度点位像素大小
+Monthly point size in pixels.
 
 #### Default
 
@@ -266,7 +266,7 @@ Color.WHITE
 
 > `optional` **orbitColor?**: [`DColor`](../types/DColor.md)
 
-边线颜色
+Boundary color.
 
 #### Default
 
@@ -280,7 +280,7 @@ Color.WHITE
 
 > `optional` **orbitSegments?**: `number`
 
-边线分段数（越大越圆，但每帧更新更重）。
+Number of boundary segments; larger values produce a rounder boundary but make each frame more expensive.
 
 #### Default
 
@@ -294,7 +294,7 @@ Color.WHITE
 
 > `optional` **orbitWidth?**: `number`
 
-边线线宽
+Boundary line width.
 
 #### Default
 
@@ -308,7 +308,7 @@ Color.WHITE
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-标签颜色
+Label color.
 
 #### Default
 
@@ -322,7 +322,7 @@ Color.YELLOW.withAlpha(0.5)
 
 > `optional` **outlineWidth?**: `number`
 
-标签线宽
+Label line width.
 
 #### Default
 
@@ -336,7 +336,7 @@ Color.YELLOW.withAlpha(0.5)
 
 > `optional` **planeAlpha?**: `number`
 
-平面填充透明度（0~1）。
+Plane fill opacity (0 to 1).
 
 #### Overrides
 
@@ -348,10 +348,10 @@ Color.YELLOW.withAlpha(0.5)
 
 > `optional` **radius?**: `number`
 
-黄道面圆盘的半径（单位：米）。
+Radius of the ecliptic-plane disk, in meters.
 
-- 不传时：使用当前时刻日地距离（约 1 AU）。
-- 传入时：同时影响黄道面圆盘大小，以及“地球公转轨道圆”的半径。
+- If omitted: uses the Sun-Earth distance at the current time (approximately 1 AU).
+- If provided: affects both the ecliptic-plane disk size and the radius of the "Earth orbit circle".
 
 ***
 
@@ -359,9 +359,9 @@ Color.YELLOW.withAlpha(0.5)
 
 > `optional` **referenceRadius?**: `number`
 
-参考半径（单位：米）。
+Reference radius, in meters.
 
-具体含义由不同平面实现决定（如圆盘半径、网格半径等）。
+The specific meaning depends on the plane implementation, such as disk radius or grid radius.
 
 #### Default
 
@@ -379,7 +379,7 @@ Color.YELLOW.withAlpha(0.5)
 
 > `optional` **segments?**: `number`
 
-黄道面圆盘边界采样点数（越大越圆，但几何更重）。
+Number of sampling points on the ecliptic-plane disk boundary; larger values produce a rounder boundary but heavier geometry.
 
 #### Default
 
@@ -397,7 +397,7 @@ Color.YELLOW.withAlpha(0.5)
 
 > `optional` **show?**: `boolean`
 
-显示
+Display.
 
 #### Default
 
@@ -415,7 +415,7 @@ true
 
 > `optional` **showLabel?**: `boolean`
 
-显示标签
+Display labels.
 
 #### Default
 
@@ -429,7 +429,7 @@ true
 
 > `optional` **showMonthlyLabels?**: `boolean`
 
-是否显示每月日期标签（需 showMonthlyLines=true）。
+Whether to display monthly date labels; requires showMonthlyLines=true.
 
 #### Default
 
@@ -443,7 +443,7 @@ true
 
 > `optional` **showMonthlyLines?**: `boolean`
 
-是否显示每月连线（太阳 -> 地球在该月的公转位置）。
+Whether to display monthly connector lines (from the Sun to Earth's orbital position for that month).
 
 #### Default
 
@@ -457,7 +457,7 @@ false
 
 > `optional` **showMonthlyPoints?**: `boolean`
 
-是否显示每月点位（需 showMonthlyLines=true）。
+Whether to display monthly points; requires showMonthlyLines=true.
 
 #### Default
 
@@ -471,7 +471,7 @@ true
 
 > `optional` **showOrbit?**: `boolean`
 
-是否显示黄道面边线。
+Whether to display the ecliptic-plane boundary.
 
 #### Default
 
@@ -485,7 +485,7 @@ true
 
 > `optional` **showSunEarthLine?**: `boolean`
 
-是否显示“日-地”连线（太阳 -> 地心）。
+Whether to display the Sun-Earth line (from the Sun to the Earth's center).
 
 #### Default
 
@@ -499,7 +499,7 @@ true
 
 > `optional` **updateIntervalSeconds?**: `number`
 
-更新间隔（单位：秒）。
+Update interval, in seconds.
 
 #### Default
 
@@ -517,7 +517,7 @@ true
 
 > `optional` **width?**: `number`
 
-宽度
+Width.
 
 #### Default
 

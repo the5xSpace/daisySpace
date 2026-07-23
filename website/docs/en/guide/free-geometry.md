@@ -1,8 +1,8 @@
 # Custom Geometry
 
-`FreeGeometryFeature` allows users to supply custom vertex and index data to render arbitrary 3D geometry without relying on built-in geometry types. Suitable for mathematical polyhedra, custom models, procedurally generated geometry, and similar scenarios.
+`FreeGeometryFeature` lets you provide custom vertex and index data to render arbitrary 3D geometry without relying on built-in geometry types. It is suitable for mathematical polyhedra, custom models, and procedurally generated geometry scenes.
 
-## Geometry Descriptor
+## Geometry Description
 
 The core input is a `DaisyGeometryDescriptor` object:
 
@@ -21,14 +21,14 @@ interface DaisyGeometryDescriptor {
 
 ### Data Types
 
-| Field | Supported Types |
-|-------|-----------------|
+| Field | Supported types |
+|------|----------|
 | `positions` | `Cartesian3[]` \| `Float64Array` \| `Float32Array` \| `number[]` |
 | `indices` | `Uint16Array` \| `Uint32Array` \| `number[]` |
 | `normals` | `Cartesian3[]` \| `Float32Array` \| `number[]` |
 | `uvs` | `Cartesian2[]` \| `Float32Array` \| `number[]` |
 
-All coordinates use the **local coordinate system** (relative to the Entity origin). The geometry moves, rotates, and scales together with its Entity.
+All coordinates use the **local coordinate system** relative to the Entity origin. The geometry moves, rotates, and scales with the Entity.
 
 ## Basic Usage
 
@@ -52,32 +52,32 @@ entity.addFeature(feature)
 ## Parameter Table
 
 | Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `geometry` | `DaisyGeometryDescriptor` | **Required** | Geometry descriptor |
-| `material` | `DMaterial` | — | Material (color / DMaterial / material descriptor) |
-| `autoNormals` | `"flat"` \| `"smooth"` \| `false` | `"flat"` | Automatic normal computation mode |
+|------|------|--------|------|
+| `geometry` | `DaisyGeometryDescriptor` | **Required** | Geometry description |
+| `material` | `DMaterial` | — | Material (color, DMaterial, or material description) |
+| `autoNormals` | `"flat"` \| `"smooth"` \| `false` | `"flat"` | Automatic normal-generation mode |
 | `wireframe` | `boolean` | `false` | Wireframe mode (renders triangle edges only) |
 | `doubleSided` | `boolean` | `false` | Double-sided rendering (disables back-face culling) |
 | `closed` | `boolean` | `true` | Whether the geometry is closed (affects lighting) |
-| `flat` | `boolean` | `false` | Flat shading (not smooth shading) |
-| `translucent` | `boolean` | — | Translucent (inferred from material by default) |
+| `flat` | `boolean` | `false` | Flat shading (non-smooth shading) |
+| `translucent` | `boolean` | — | Transparency (inferred from the material by default) |
 | `outline` | `boolean` | `false` | Outline |
 | `outlineColor` | `DColor` | — | Outline color |
-| `asynchronous` | `boolean` | `false` | Asynchronous geometry creation |
+| `asynchronous` | `boolean` | `false` | Create geometry asynchronously |
 | `show` | `boolean` | `true` | Visibility |
 | `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Distance-based display condition |
 
-### autoNormals Modes
+### autoNormals Mode
 
 | Mode | Description |
-|------|-------------|
-| `"flat"` | Per-face normals (hard-edge effect, sharp edges) |
-| `"smooth"` | Smooth normals (averaged over adjacent faces, curved-surface effect) |
-| `false` | No auto-computation; use raw `geometry.normals` data |
+|------|------|
+| `"flat"` | Per-face normals (hard edges and sharp corners) |
+| `"smooth"` | Smooth normals (averaged from adjacent faces for a curved appearance) |
+| `false` | Do not calculate automatically; use the original `geometry.normals` data |
 
 ## Custom Geometry Examples
 
-### Regular Icosahedron
+### Icosahedron
 
 ```typescript
 function generateIcosahedron(r: number) {
@@ -171,9 +171,9 @@ entity.addFeature(new Daisy.FreeGeometryFeature({
 }))
 ```
 
-## Toggling Wireframe Mode
+## Wireframe Mode Switching
 
-When `wireframe` is `true`, the geometry is rendered in wireframe mode, showing only triangle edges. Toggle it at runtime by updating `options` and calling `reCreate()`:
+When `wireframe` is `true`, the geometry is rendered in wireframe mode, showing only triangle edges. At runtime, update `options` and call `reCreate()` to switch:
 
 ```typescript
 function toggleWireframe(feature: Daisy.FreeGeometryFeature, entity: Daisy.Entity) {
@@ -182,9 +182,9 @@ function toggleWireframe(feature: Daisy.FreeGeometryFeature, entity: Daisy.Entit
 }
 ```
 
-## Merging Geometries
+## Merging Geometry
 
-Multiple geometries can be concatenated into a single descriptor by offsetting their indices — for example, combining UV spheres into a compound shape:
+Multiple geometries can be concatenated into a single descriptor by offsetting their indices, for example to combine UV spheres into a composite shape:
 
 ```typescript
 function mergeShapes(shapes: Array<{ positions: number[]; indices: number[] }>) {

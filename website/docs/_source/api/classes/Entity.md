@@ -65,6 +65,12 @@ const entity2 = new Entity("卫星B", { id: "sat-b" });
 
 ***
 
+### isDestroyed
+
+> **isDestroyed**: `boolean` = `false`
+
+***
+
 ### isInCameraCullingVolume
 
 > **isInCameraCullingVolume**: `boolean` = `false`

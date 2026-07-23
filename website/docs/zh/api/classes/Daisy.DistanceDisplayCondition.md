@@ -17,9 +17,13 @@ billboard.distanceDisplayCondition = new Daisy.DistanceDisplayCondition(10.0, 20
 
 ## Param
 
+**near**
+
 The smallest distance in the interval where the object is visible.
 
 ## Param
+
+**far**
 
 The largest distance in the interval where the object is visible.
 

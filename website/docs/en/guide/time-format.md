@@ -1,6 +1,6 @@
 # Time Formatting
 
-All time-related components (simulation time display, timeline ticks, Gantt chart labels, etc.) share the same formatting system. The engine maintains a global default format, and each component can override it independently.
+All time-related components, including simulation time display, timeline ticks, and Gantt chart labels, share the same formatting system. The engine maintains a global default format, and each component can override it independently.
 
 ## Global Settings
 
@@ -27,7 +27,7 @@ const fmt = engine.getTimeFormat()
 
 ### Presets
 
-| Preset | Output Example |
+| Preset | Example output |
 |------|----------|
 | `"utc"` | `2026-07-01 00:00:00 UTC` |
 | `"bjt"` | `2026-07-01 08:00:00 BJT` |
@@ -38,12 +38,12 @@ const fmt = engine.getTimeFormat()
 | `"time-ms"` | `00:00:00.000` |
 | `"date-time"` | `2026-07-01 00:00:00 UTC` |
 | `"date-time-ms"` | `2026-07-01 00:00:00.000 UTC` |
-| `"t0"` | `T+123.0s` (requires `t0` reference time) |
-| `"cesium"` | `Jul 01 2026 00:00:00 UTC` (compatible format) |
+| `"t0"` | `T+123.0s` (requires a `t0` reference time) |
+| `"cesium"` | `Jul 01 2026 00:00:00 UTC` (compatibility format) |
 
-## Component-level Override
+## Component-Level Overrides
 
-Pass `timeFormat` (or equivalent field) during component construction to override the global format. Override logic: passing a function or string **fully replaces** the global format; passing an object **shallow-merges** with the global format.
+Passing `timeFormat` (or an equivalent field) when constructing a component overrides the global format. Functions and strings **fully replace** the global format, while objects **shallow-merge** with it.
 
 ### SimulationTimeWidget
 
@@ -80,9 +80,9 @@ engine.addWidget(new Daisy.TaskTimeLineWidget(schedule, {
 }))
 ```
 
-## Custom Format Generator
+## Custom Formatter
 
-Register a fully custom formatting function via `TimeFormatters.custom()`:
+Use `TimeFormatters.custom()` to register a fully custom formatter:
 
 ```typescript
 engine.setTimeFormat(Daisy.TimeFormatters.custom(
@@ -96,31 +96,31 @@ engine.setTimeFormat(Daisy.TimeFormatters.custom(
 // 输出: "2026 Q3 01日"
 ```
 
-`dt` object ([TimeFormatDateTime](/en/api/interfaces/TimeFormatDateTime)) provides full time fields and helper methods:
+The `dt` object ([TimeFormatDateTime](/en/api/interfaces/TimeFormatDateTime)) provides all time fields and helper methods:
 
 | Field | Description |
 |------|------|
-| `dt.date` | JS Date (already shifted to timezone) |
+| `dt.date` | JS Date adjusted to the configured timezone |
 | `dt.utcDate` | Original UTC Date |
 | `dt.relativeSeconds` | Seconds relative to T0 |
-| `dt.timestampMs` | Millisecond timestamp |
-| `dt.format(pattern)` | Secondary format using token template |
+| `dt.timestampMs` | Timestamp in milliseconds |
+| `dt.format(pattern)` | Apply a token template for secondary formatting |
 | `dt.toISOString()` | ISO 8601 string |
 
-## Format 令牌
+## Format Tokens
 
-The following tokens are available when constructing a custom `format` string:
+The following tokens are available when customizing a `format` string:
 
 | Token | Description | Example |
 |------|------|------|
-| `YYYY` | 4-digit year | `2026` |
-| `MM` | 2-digit month | `07` |
+| `YYYY` | Four-digit year | `2026` |
+| `MM` | Two-digit month | `07` |
 | `MMM` | English month abbreviation | `Jul` |
-| `DD` | 2-digit day | `01` |
-| `HH` | 2-digit hour (24h) | `14` |
-| `mm` | 2-digit minute | `30` |
-| `ss` | 2-digit second | `45` |
-| `SSS` | 3-digit millisecond | `123` |
+| `DD` | Two-digit day | `01` |
+| `HH` | Two-digit hour, 24-hour clock | `14` |
+| `mm` | Two-digit minute | `30` |
+| `ss` | Two-digit second | `45` |
+| `SSS` | Three-digit millisecond | `123` |
 | `TZ` | Timezone name | `UTC` / `BJT` / `UTC+08` |
 | `Z` | Timezone offset | `Z` / `+08:00` |
 
@@ -136,7 +136,7 @@ engine.setTimeFormat({
 
 ## Direct Formatting
 
-When not modifying the global format, call `engine.formatTime()` for one-time formatting:
+When you do not want to modify the global format, call `engine.formatTime()` for a one-off format:
 
 ```typescript
 const label = engine.formatTime(currentTime, { preset: "t0", t0: launchEpoch })

@@ -1,8 +1,8 @@
-# 卫星与轨道力学
+# Satellites and Orbital Mechanics
 
-卫星仿真是 DaisySpace-Sdk 物理世界的核心能力。本章覆盖 TLE 解析、SGP4 轨道传播、星历采样和卫星对象创建。
+Satellite simulation is a core capability of the DaisySpace-Sdk physical world. This chapter covers TLE parsing, SGP4 propagation, ephemeris sampling, and satellite-object creation.
 
-## 对象层次
+## Object Hierarchy
 
 ```
 BaseObject（抽象基类）
@@ -13,11 +13,11 @@ BaseObject（抽象基类）
                           └── Satellite      ← 语义别名
 ```
 
-`Satellite` 是 `NearEarthOrbiter` 的语义别名——两者 API 完全相同，卫星从语义上更清晰。
+`Satellite` is a semantic alias for `NearEarthOrbiter`; the two APIs are identical, while Satellite is clearer semantically.
 
-## PW 命名空间
+## PW Namespace
 
-所有物理世界类通过 `PW` 命名空间访问：
+All physical-world classes are accessed through the `PW` namespace:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -25,22 +25,22 @@ import * as Daisy from "daisy-space-sdk"
 const sat = new Daisy.PW.Satellite({ name: "STARLINK-1008" })
 ```
 
-## BaseObject 基础范式
+## BaseObject Pattern
 
-所有物理对象在进入仿真前都需要绑定 Engine：
+All physical objects must be bound to an Engine before entering the simulation:
 
 ```typescript
 const sat = new Daisy.PW.Satellite({ name: "MySat" })
 sat.bindEngine(engine)   // 挂载 Entity，并自动完成注册
 ```
 
-`bindEngine()` 会将宿主 Entity 添加到 Engine，并触发对象注册。通常不需要再手动调用 `register()`。
+`bindEngine()` adds the host Entity to the Engine and triggers object registration. You usually do not need to call `register()` manually afterward.
 
-> **建议**：需要渲染或进入每帧更新前调用 `bindEngine()`。传感器、组件和可视化配置既可在绑定前声明，也可在绑定后追加。
+> **Recommendation**: call `bindEngine()` before rendering or per-frame updates begin. Sensors, components, and visualization options can be declared before binding or added afterward.
 
-## TLE 解析（Spg4Tle）
+## TLE Parsing (Spg4Tle)
 
-`Spg4Tle` 处理两行轨道根数（TLE）的解析和元数据提取：
+`Spg4Tle` parses two-line element sets (TLEs) and extracts metadata:
 
 ```typescript
 const tle = new Daisy.Spg4Tle(`STARLINK-1008
@@ -66,11 +66,11 @@ const conjunction = tle.estimateConjunctionWith(otherTle)
 const tle = await Daisy.Spg4Tle.fetchTleFromCatalog(noradId)
 ```
 
-## SGP4 轨道计算（SPG4）
+## SGP4 Orbit Computation (SPG4)
 
-`SPG4` 类提供静态方法，**无需** Engine 上下文即可进行轨道计算：
+The `SPG4` class provides static methods for orbit computation **without** an Engine context:
 
-### 解析
+### Parsing
 
 ```typescript
 // 解析轨道元数据
@@ -87,7 +87,7 @@ const elems = Daisy.Spg4.parseOrbitElements(tleText)
 const normalized = Daisy.Spg4.parseTle(tleText)
 ```
 
-### 外推（observeAt）
+### Propagation (observeAt)
 
 ```typescript
 const date = new Date("2026-04-20T12:00:00Z")
@@ -106,7 +106,7 @@ const obs = Daisy.Spg4.observeAt(tleText, [39.9, 116.4, 50], date)
 // obs.azimuth, obs.elevation, obs.rangeSat, obs.footprint
 ```
 
-### 过境预报（findTransits）
+### Transit Prediction (findTransits)
 
 ```typescript
 const transits = Daisy.Spg4.findTransits(
@@ -123,7 +123,7 @@ for (const t of transits) {
 }
 ```
 
-### 可见窗口
+### Visibility Windows
 
 ```typescript
 const windows = Daisy.Spg4.visibilityWindows(
@@ -135,9 +135,9 @@ const windows = Daisy.Spg4.visibilityWindows(
 // 返回 [[startMs, endMs], [startMs, endMs], ...]
 ```
 
-## 卫星对象（Satellite/NearEarthOrbiter）
+## Satellite Objects (Satellite/NearEarthOrbiter)
 
-### 创建与轨道设置
+### Creation and Orbit Setup
 
 ```typescript
 const sat = new Daisy.PW.Satellite({
@@ -154,11 +154,11 @@ const tle = await sat.loadTleByNoradId(44714, 6 * 3600)  // 缓存 6 小时
 sat.bindEngine(engine)
 ```
 
-`setTle()` 只负责写入轨道源。是否每帧实时传播由 `enableSpg4Propagation` 控制；默认场景更常用预计算轨迹，绑定后会按 `trajectory` 配置自动执行一次 `applyTrajectory()`。
+`setTle()` only writes the orbit source. Whether to propagate in real time each frame is controlled by `enableSpg4Propagation`. Precomputed trajectories are more common by default, and `applyTrajectory()` runs automatically after binding according to the `trajectory` configuration.
 
-### 构造器一站式配置
+### All-in-One Constructor Configuration
 
-`Satellite` 构造器接受一个完整配置对象，可在一步内完成卫星创建、轨迹、点标记、标签、路径和星下点轨迹的全部配置：
+The `Satellite` constructor accepts a complete configuration object, allowing satellite creation, trajectory, point marker, label, path, and ground-track configuration in one step:
 
 ```typescript
 const sat = new Daisy.PW.Satellite({
@@ -196,14 +196,14 @@ const sat = new Daisy.PW.Satellite({
 sat.bindEngine(engine)
 ```
 
-> 构造器配置与 `setTle()` 互斥：传入 `tle` 后无需再调用 `setTle()`。`model` / `point` / `label` / `path` / `groundTrack` 均会在 `bindEngine()` 阶段自动创建对应 Feature。
+> Constructor configuration and `setTle()` are mutually exclusive: after passing `tle`, you do not need to call `setTle()`. `model` / `point` / `label` / `path` / `groundTrack` automatically create the corresponding Features during `bindEngine()`.
 
 ### enableSpg4Propagation
 
-控制卫星是否每帧实时计算 SGP4 轨道位置：
+Controls whether the satellite computes its SGP4 position in real time every frame:
 
-- **`true`**：每帧调用 SGP4 实时外推。动态精确但 CPU 开销高，适合少量卫星
-- **`false`**：使用 `trajectory.stepSeconds` 预计算轨迹并写入 Entity position，渲染时直接插值。适合大型星座
+- **`true`**: propagates with SGP4 every frame. It is dynamically accurate but CPU-intensive and suitable for a small number of satellites.
+- **`false`**: precomputes a trajectory using `trajectory.stepSeconds` and writes it to the Entity position, which is interpolated directly during rendering. Suitable for large constellations.
 
 ```typescript
 // 大量卫星场景推荐预计算模式
@@ -213,9 +213,9 @@ const sat = new Daisy.PW.Satellite({
 })
 ```
 
-### Spg4.ephemeris — 星历表采样
+### Spg4.ephemeris - Ephemeris Sampling
 
-`Spg4.ephemeris` 是 `Spg4` 的静态方法，对时间范围做等间隔采样，返回观测结果的数组：
+`Spg4.ephemeris` is a static method of `Spg4` that samples a time range at regular intervals and returns an array of observations:
 
 ```typescript
 const samples = Daisy.Spg4.ephemeris(
@@ -231,9 +231,9 @@ for (const s of samples) {
 }
 ```
 
-每个 `s` 为一次观测结果，包含星下点经纬高、轨道状态，以及观测者视角的方位角、仰角和距离。
+Each `s` is an observation containing sub-satellite longitude/latitude/height, orbital state, and the observer's azimuth, elevation, and distance.
 
-### 星历采样与轨迹写入
+### Sampling Ephemeris and Writing a Trajectory
 
 ```typescript
 // 获取星历结果数组（不构建 TrajectorySample）
@@ -253,9 +253,9 @@ const trajectory = sat.applyTrajectory({
 })
 ```
 
-### 使用外部轨道采样数据
+### Using External Orbit Samples
 
-当用户已有外部工具（GMAT、STK、自定义外推）计算的轨道采样点时，可直接构建 [TrajectorySample](/en/api/classes/TrajectorySample) 并注入卫星，无需经过 SGP4：
+When orbit samples have already been calculated by an external tool such as GMAT, STK, or a custom propagator, build a [TrajectorySample](/en/api/classes/TrajectorySample) directly and inject it into the satellite without using SGP4:
 
 ```typescript
 // 1. 创建 TrajectorySample，指定参考系和插值方式
@@ -282,15 +282,15 @@ sat.bindEngine(engine)
 sat.position = traj
 ```
 
-| 参数 | 类型 | 说明 |
+| Parameter | Type | Description |
 |------|------|------|
-| `referenceFrame` | `ReferenceFrame` | 参考系：`FIXED`（地固）或 `INERTIAL`（惯性） |
-| `interpolationAlgorithm` | `"LINEAR" \| "LAGRANGE" \| "HERMITE"` | 插值算法，默认 `"LAGRANGE"` |
-| `interpolationDegree` | `number` | 插值阶数，默认 3 |
+| `referenceFrame` | `ReferenceFrame` | Reference frame: `FIXED` (Earth-fixed) or `INERTIAL` |
+| `interpolationAlgorithm` | `"LINEAR" \| "LAGRANGE" \| "HERMITE"` | Interpolation algorithm, default `"LAGRANGE"` |
+| `interpolationDegree` | `number` | Interpolation degree, default 3 |
 
-### 实时数据注入（Live 模式）
+### Real-Time Data Injection (Live Mode)
 
-从 WebSocket 等实时数据源持续接收轨道位置时，先创建空 [TrajectorySample](/en/api/classes/TrajectorySample) 并挂载到卫星，后续逐帧追加数据。内部自动每帧插值当前时间对应的位置，无需手动 update：
+When receiving orbit positions continuously from a real-time source such as WebSocket, create an empty [TrajectorySample](/en/api/classes/TrajectorySample) and attach it to the satellite, then append data frame by frame. The current-time position is interpolated automatically each frame, so no manual update is needed:
 
 ```typescript
 // 1. 创建空 TrajectorySample，先挂载到卫星
@@ -312,7 +312,7 @@ webSocket.on("message", (data) => {
 })
 ```
 
-### 过境搜索（对象实例方法）
+### Transit Search (Object Instance Method)
 
 ```typescript
 const transits = sat.getTransits({
@@ -324,7 +324,7 @@ const transits = sat.getTransits({
 })
 ```
 
-### 挂载传感器
+### Mounting Sensors
 
 ```typescript
 const sensor = sat.addSensor({
@@ -336,9 +336,9 @@ const sensor = sat.addSensor({
 })
 ```
 
-详见 [传感器](/en/guide/sensor)。
+See [Sensors](/en/guide/sensor) for details.
 
-### 轨道可视化组件
+### Orbit Visualization Components
 
 ```typescript
 // 轨道圈（轨道根数几何体）
@@ -358,7 +358,7 @@ sat.addComponent(new Daisy.PW.RealtimeOrbitComponent({
 }))
 ```
 
-## 星座批量创建
+## Batch-Creating a Constellation
 
 ```typescript
 // 从压缩星历文本批量创建
@@ -371,9 +371,9 @@ const sats = tleList.map((tleText, i) => {
 })
 ```
 
-对于大规模星座（数千至上万颗卫星），建议使用预计算轨迹，并在不需要地面裁剪时设置 `throughGround: false`，减少对地求交带来的额外开销。
+For large constellations with thousands to tens of thousands of satellites, use precomputed trajectories. When ground clipping is unnecessary, set `throughGround: false` to reduce the overhead of ground intersections.
 
-## 完整示例
+## Complete Example
 
 ```typescript
 const engine = await Daisy.Engine.create("container")
@@ -408,24 +408,24 @@ sat.addComponent(new Daisy.PW.OrbitElementsViewComponent({
 // 步骤 5: 飞向目标
 engine.flyTo(sat.entity, { duration: 2 })
 ```
-## 事件
+## Events
 
-[PW.Satellite](/en/api/classes/PW.Satellite) 继承自 [BaseObject](/en/api/classes/PW.BaseObject)，提供以下事件：
+[PW.Satellite](/en/api/classes/PW.Satellite) inherits from [BaseObject](/en/api/classes/PW.BaseObject) and provides the following events:
 
-### 生命周期
+### Lifecycle
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `sat.onBeforeRegister(callback)` | 注册前回调 |
-| `sat.onRegister(callback)` | 注册后回调 |
-| `sat.onBeforeUpdate(callback)` | 每帧更新前，参数 `(time)` |
-| `sat.onUpdate(callback)` | 每帧更新后，参数 `(time)` |
-| `sat.onBeforeDestroy(callback)` | 销毁前回调 |
-| `sat.onDestroy(callback)` | 销毁后回调 |
+| `sat.onBeforeRegister(callback)` | Callback before registration |
+| `sat.onRegister(callback)` | Callback after registration |
+| `sat.onBeforeUpdate(callback)` | Callback before each frame update, with `(time)` |
+| `sat.onUpdate(callback)` | Callback after each frame update, with `(time)` |
+| `sat.onBeforeDestroy(callback)` | Callback before destruction |
+| `sat.onDestroy(callback)` | Callback after destruction |
 
-### 交互事件
+### Interaction Events
 
-交互事件桥接到底层 Entity，payload 自动注入 `spaceObject` 字段指向当前对象：
+Interaction events are bridged to the underlying Entity, and the payload automatically receives a `spaceObject` field pointing to the current object:
 
 ```typescript
 sat.onClick((e) => {
@@ -433,19 +433,19 @@ sat.onClick((e) => {
 })
 ```
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `sat.onClick(handler)` | 单击 |
-| `sat.offClick(handler?)` | 移除 |
-| `sat.onDblClick(handler)` | 双击 |
-| `sat.offDblClick(handler?)` | 移除 |
-| `sat.onMouseEnter(handler)` | 鼠标进入 |
-| `sat.offMouseEnter(handler?)` | 移除 |
-| `sat.onMouseLeave(handler)` | 鼠标离开 |
-| `sat.offMouseLeave(handler?)` | 移除 |
+| `sat.onClick(handler)` | Single click |
+| `sat.offClick(handler?)` | Remove listener |
+| `sat.onDblClick(handler)` | Double click |
+| `sat.offDblClick(handler?)` | Remove listener |
+| `sat.onMouseEnter(handler)` | Mouse enters |
+| `sat.offMouseEnter(handler?)` | Remove listener |
+| `sat.onMouseLeave(handler)` | Mouse leaves |
+| `sat.offMouseLeave(handler?)` | Remove listener |
 
 
-> **相关 API**：[PW.Satellite](/en/api/classes/PW.Satellite) · [TrajectorySample](/en/api/classes/TrajectorySample) · [Spg4](/en/api/variables/Spg4) · [Spg4Tle](/en/api/classes/Spg4Tle)
+> **Related APIs**: [PW.Satellite](/en/api/classes/PW.Satellite) · [TrajectorySample](/en/api/classes/TrajectorySample) · [Spg4](/en/api/variables/Spg4) · [Spg4Tle](/en/api/classes/Spg4Tle)
 ---
 
 <!--

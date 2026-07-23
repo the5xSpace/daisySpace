@@ -6,10 +6,10 @@
 
 # Class: FreeObject
 
-FreeObject：通用物理语义对象（可挂载一组常用 Feature）。
+FreeObject: a general-purpose physical semantic object that can attach a set of common Features.
 
-- 地球天体：使用 Entity
-- 非地球天体：使用 CelestialEntity（支持天体偏移/旋转）
+- Earth body: uses Entity
+- Non-Earth body: uses CelestialEntity (supports celestial offsets and rotation)
 
 ## Example
 
@@ -37,7 +37,7 @@ obj.bindViewer(viewer);
 
 > **new FreeObject**(`options?`, `celestialEllipsoid?`): `FreeObject`
 
-创建 FreeObject。
+Create a FreeObject.
 
 #### Parameters
 
@@ -45,13 +45,13 @@ obj.bindViewer(viewer);
 
 [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
 
-FreeObject 配置
+FreeObject configuration
 
 ##### celestialEllipsoid?
 
 [`CelestialEllipsoid`](PW.CelestialEllipsoid.md)
 
-所属天体（默认地球）
+Owning celestial body (Earth by default)
 
 #### Returns
 
@@ -99,7 +99,7 @@ FreeObject 配置
 
 > **get** **entity**(): [`Entity`](Entity.md) \| `CelestialEntity`
 
-获取宿主 Entity（用于挂载 Feature、交互事件、更新等）。
+Get the host Entity, used for attaching Features, interaction events, updates, and more.
 
 ##### Returns
 
@@ -117,9 +117,9 @@ FreeObject 配置
 
 > **get** **options**(): [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
 
-对象创建/配置参数的原始快照（不同子类会扩展其结构）。
+Original snapshot of object creation/configuration parameters; subclasses may extend its structure.
 
-注意：这是“语义配置”的来源，而不是渲染结果。渲染落地由 _applyConfig + Feature/Component 完成。
+Note: This is the source of the “semantic configuration”, not the rendered result. Rendering is completed by _applyConfig + Feature/Component.
 
 ##### Returns
 
@@ -145,10 +145,10 @@ FreeObject 配置
 
 > **set** **position**(`value`): `void`
 
-设置对象位置（支持静态坐标或采样轨迹）。
+Set the object position (supports static coordinates or sampled trajectories).
 
-- 赋值后会同步写入宿主 entity.position
-- 对 CelestialEntity（非地球天体）不允许使用支持惯性系的 TrajectorySample
+- The value is also written to the host entity.position
+- CelestialEntity objects (non-Earth bodies) do not support TrajectorySample values using an inertial frame
 
 ##### Example
 
@@ -176,9 +176,9 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **addComponent**\<`T`\>(`component`): `T`
 
-挂载一个 PhysicalWorld 组件到当前对象。
+Attach a PhysicalWorld component to the current object.
 
-注意：Feature 仍应通过 Entity.addFeature() 的路径挂载；该方法仅面向 IComponent。
+Note: Features should still be attached through Entity.addFeature(); this method is intended only for IComponent.
 
 #### Type Parameters
 
@@ -192,7 +192,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 `T`
 
-组件实例
+Component instance
 
 #### Returns
 
@@ -234,11 +234,11 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **addSensor**(`options?`): [`Sensor`](PW.Sensor.md)
 
-添加一个物理传感器组件（通用实现）。
+Add a physical sensor component (general implementation).
 
-设计目标：
-- 把“添加传感器”的基础能力收敛到 FreeObject（适配更多物理对象类别）
-- 由各个子类仅提供“默认安装方向”的语义差异
+Design goals:
+- Centralize the basic “add sensor” capability in FreeObject to support more physical-object categories
+- Let subclasses provide only the semantic difference in their “default mounting direction”
 
 #### Parameters
 
@@ -271,10 +271,10 @@ obj.addSensor({ emitDirection: Daisy.EmitDirection.TO_FRONT, apertureDeg: 6, bea
 
 > **bindEngine**(`engine`): `void`
 
-绑定到 Engine 并完成注册。
+Bind to Engine and complete registration.
 
-- 若 Engine 中不存在同 id 的实体，会自动 addEntity
-- 随后会触发 register()
+- If Engine does not contain an entity with the same id, addEntity is called automatically
+- register() is then triggered
 
 #### Parameters
 
@@ -304,7 +304,7 @@ obj.bindEngine(engine);
 
 > **destroy**(): `void`
 
-销毁对象（清理交互监听、销毁组件、销毁宿主实体并释放事件管理器）。
+Destroy the object (remove interaction listeners, destroy components, destroy the host entity, and release the event manager).
 
 #### Returns
 
@@ -326,7 +326,7 @@ obj.destroy();
 
 > **getComponentById**(`id?`): [`Component`](../types/PW.Component.md)[]
 
-根据 id 获取组件列表（理论上 id 全局唯一，但保留返回数组以兼容历史逻辑）。
+Get components by id. The id is theoretically globally unique, but an array is returned for compatibility with legacy logic.
 
 #### Parameters
 
@@ -334,7 +334,7 @@ obj.destroy();
 
 `string`
 
-组件 id
+Component id
 
 #### Returns
 
@@ -350,7 +350,7 @@ obj.destroy();
 
 > **getComponentByName**(`name?`): [`Component`](../types/PW.Component.md)[]
 
-根据 name 获取组件列表。
+Get components by name.
 
 #### Parameters
 
@@ -358,7 +358,7 @@ obj.destroy();
 
 `string`
 
-组件名称（component.name）
+Component name (component.name)
 
 #### Returns
 
@@ -374,7 +374,7 @@ obj.destroy();
 
 > **getComponents**(`type?`): [`Component`](../types/PW.Component.md)[]
 
-获取组件列表。
+Get the component list.
 
 #### Parameters
 
@@ -382,7 +382,7 @@ obj.destroy();
 
 `string`
 
-组件类型（对应 component.type）；不传则返回全部
+Component type (corresponding to component.type); omit it to return all components.
 
 #### Returns
 
@@ -398,7 +398,7 @@ obj.destroy();
 
 > **getCurrentOrientation**(): [`Rotation`](../types/Rotation.md)
 
-获取当前仿真时刻的局部姿态。
+Get the local attitude at the current simulation time.
 
 #### Returns
 
@@ -414,7 +414,7 @@ obj.destroy();
 
 > **getCurrentPosition**(): `Cartesian3` \| `undefined`
 
-获取当前仿真时刻的世界位置。
+Get the world position at the current simulation time.
 
 #### Returns
 
@@ -430,7 +430,7 @@ obj.destroy();
 
 > **getOrientationAtTime**(`timestamp`): [`Rotation`](../types/Rotation.md)
 
-获取指定仿真时刻的局部姿态。
+Get the local attitude at the specified simulation time.
 
 #### Parameters
 
@@ -452,7 +452,7 @@ obj.destroy();
 
 > **getPosition**(`time`): `Cartesian3` \| `undefined`
 
-获取指定时刻的位置（委托给宿主 entity.getPosition）。
+Get the position at the specified time (delegates to the host entity.getPosition).
 
 #### Parameters
 
@@ -460,7 +460,7 @@ obj.destroy();
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
@@ -476,7 +476,7 @@ obj.destroy();
 
 > **getPositionAtTime**(`timestamp`): `Cartesian3` \| `undefined`
 
-获取指定仿真时刻的世界位置。
+Get the world position at the specified simulation time.
 
 #### Parameters
 
@@ -498,7 +498,7 @@ obj.destroy();
 
 > **getTransformAtTime**(`timestamp`): `BaseObjectResolvedTransform`
 
-获取指定仿真时刻的局部姿态。
+Get the local attitude at the specified simulation time.
 
 #### Parameters
 
@@ -520,7 +520,7 @@ obj.destroy();
 
 > **getTransformMatrixAtTime**(`timestamp`): `Matrix4`
 
-获取指定仿真时刻的局部变换矩阵。
+Get the local transform matrix at the specified simulation time.
 
 #### Parameters
 
@@ -542,7 +542,7 @@ obj.destroy();
 
 > **register**(): `void`
 
-将宿主实体注册到 Daisy 管线中（触发 entity.reRegisterAll）。
+Register the host entity with the Daisy pipeline (triggers entity.reRegisterAll).
 
 #### Returns
 
@@ -564,7 +564,7 @@ obj.register();
 
 > **removeComponentById**(`id`): `void`
 
-根据 id 移除组件（会先 destroy）。
+Remove components by id (calls destroy first).
 
 #### Parameters
 
@@ -572,7 +572,7 @@ obj.register();
 
 `string`
 
-组件 id
+Component id
 
 #### Returns
 
@@ -588,7 +588,7 @@ obj.register();
 
 > **removeComponentByName**(`name`): `void`
 
-根据 name 移除组件（会先 destroy）。
+Remove components by name (calls destroy first).
 
 #### Parameters
 
@@ -596,7 +596,7 @@ obj.register();
 
 `string`
 
-组件名称
+Component name
 
 #### Returns
 
@@ -612,10 +612,10 @@ obj.register();
 
 > **resetTemporalState**(`time?`): `void`
 
-重置跨帧/跨时间循环的运行态。
+Reset runtime state across frames and time loops.
 
-Engine 在检测到仿真时间倒退时调用此方法。这里不销毁业务配置，只清理
-BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件。
+Engine calls this method when it detects that simulation time moved backward. It does not destroy business configuration; it only clears
+BaseObject time-value caches and forwards the reset to attached components.
 
 #### Parameters
 
@@ -637,7 +637,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setOptions**(`config`): `void`
 
-更新配置（会按策略重建对应的 Feature）。
+Update configuration (rebuilds the corresponding Features according to policy).
 
 #### Parameters
 
@@ -645,7 +645,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
 
-新配置
+New configuration
 
 #### Returns
 
@@ -663,7 +663,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **unregister**(): `void`
 
-反注册：移除实体挂载的所有 Feature，并通知组件解除绑定。
+Unregister: remove all Features attached to the entity and notify components to unbind.
 
 #### Returns
 
@@ -685,7 +685,7 @@ obj.unregister();
 
 > **update**(`time`): `void`
 
-每帧更新（驱动 entity.update，并同步驱动挂载组件的 update）。
+Update every frame (drives entity.update and synchronously updates attached components).
 
 #### Parameters
 
@@ -693,7 +693,7 @@ obj.unregister();
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
@@ -709,7 +709,7 @@ obj.unregister();
 
 > **offClick**(`handler?`): `void`
 
-取消监听对象点击事件。
+Stop listening for object click events.
  click
 
 #### Parameters
@@ -732,7 +732,7 @@ obj.unregister();
 
 > **offDblClick**(`handler?`): `void`
 
-取消监听对象双击事件。
+Stop listening for object double-click events.
  dblclick
 
 #### Parameters
@@ -755,7 +755,7 @@ obj.unregister();
 
 > **offMouseEnter**(`handler?`): `void`
 
-取消监听对象鼠标移入事件。
+Stop listening for object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -778,7 +778,7 @@ obj.unregister();
 
 > **offMouseLeave**(`handler?`): `void`
 
-取消监听对象鼠标移出事件。
+Stop listening for object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -801,7 +801,7 @@ obj.unregister();
 
 > **onBeforeDestroy**(`callback`): `void`
 
-监听销毁前事件。
+Listen for the before-destroy event.
  BEFORE_DESTROY
 
 #### Parameters
@@ -824,7 +824,7 @@ obj.unregister();
 
 > **onBeforeRegister**(`callback`): `void`
 
-监听注册前事件。
+Listen for the before-register event.
  BEFORE_REGISTER
 
 #### Parameters
@@ -847,7 +847,7 @@ obj.unregister();
 
 > **onBeforeUnregister**(`callback`): `void`
 
-监听卸载前事件。
+Listen for the before-unregister event.
  BEFORE_UNREGISTER
 
 #### Parameters
@@ -870,7 +870,7 @@ obj.unregister();
 
 > **onBeforeUpdate**(`callback`): `void`
 
-监听更新前事件。
+Listen for the before-update event.
  BEFORE_UPDATE
 
 #### Parameters
@@ -893,7 +893,7 @@ obj.unregister();
 
 > **onClick**(`handler`): `void`
 
-监听对象点击事件。
+Listen for object click events.
  click
 
 #### Parameters
@@ -916,7 +916,7 @@ obj.unregister();
 
 > **onDblClick**(`handler`): `void`
 
-监听对象双击事件。
+Listen for object double-click events.
  dblclick
 
 #### Parameters
@@ -939,7 +939,7 @@ obj.unregister();
 
 > **onDestroy**(`callback`): `void`
 
-监听销毁事件。
+Listen for destroy events.
  DESTROY
 
 #### Parameters
@@ -962,7 +962,7 @@ obj.unregister();
 
 > **onMouseEnter**(`handler`): `void`
 
-监听对象鼠标移入事件。
+Listen for object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -985,7 +985,7 @@ obj.unregister();
 
 > **onMouseLeave**(`handler`): `void`
 
-监听对象鼠标移出事件。
+Listen for object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -1008,7 +1008,7 @@ obj.unregister();
 
 > **onRegister**(`callback`): `void`
 
-监听注册完成事件。
+Listen for completed-register events.
  REGISTER
 
 #### Parameters
@@ -1031,7 +1031,7 @@ obj.unregister();
 
 > **onUnregister**(`callback`): `void`
 
-监听卸载事件。
+Listen for unregister events.
  UNREGISTER
 
 #### Parameters
@@ -1054,7 +1054,7 @@ obj.unregister();
 
 > **onUpdate**(`callback`): `void`
 
-监听更新事件。
+Listen for update events.
  UPDATE
 
 #### Parameters

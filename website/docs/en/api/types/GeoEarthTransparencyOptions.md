@@ -14,7 +14,7 @@
 
 > `optional` **alpha?**: `number`
 
-Uniform opacity; 0 is fully transparent, 1 is fully opaque.
+Uniform opacity, 0 is fully transparent and 1 is fully opaque.
 
 ***
 
@@ -22,7 +22,7 @@ Uniform opacity; 0 is fully transparent, 1 is fully opaque.
 
 > `optional` **backFaceAlpha?**: `number`
 
-Back face opacity.
+Back-face opacity.
 
 ***
 
@@ -30,7 +30,7 @@ Back face opacity.
 
 > `optional` **backFaceAlphaByDistance?**: `Daisy.NearFarScalar`
 
-Back face opacity varies with camera distance.
+Back-face opacity varies with camera distance.
 
 ***
 
@@ -46,7 +46,7 @@ Whether to enable semi-transparent Earth.
 
 > `optional` **frontFaceAlpha?**: `number`
 
-Front face opacity.
+Front-face opacity.
 
 ***
 
@@ -54,7 +54,7 @@ Front face opacity.
 
 > `optional` **frontFaceAlphaByDistance?**: `Daisy.NearFarScalar`
 
-Front face opacity varies with camera distance.
+Front-face opacity varies with camera distance.
 
 ***
 

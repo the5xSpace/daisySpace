@@ -8,12 +8,12 @@
 
 > **FreeObjectConfig** = [`BaseObjectConfigBase`](PW.BaseObjectConfigBase.md) & `object`
 
-FreeObject 配置（语义层）。
+FreeObject configuration at the semantic layer.
 
-特点：
-- 以“可选 Feature”形式组织：model/label/billboard/path 等
-- 每个字段可传 `false` 表示禁用/移除该类 Feature
-- 部分字段支持数组：用于一次挂载多个同类 Feature（如多块 billboard、多条 polyline）
+Features:
+- Organized as optional Features such as model, label, billboard, and path.
+- Pass `false` to any field to disable or remove that Feature type.
+- Some fields accept arrays to mount multiple Features of the same type at once, such as multiple billboards or polylines.
 
 ## Type Declaration
 
@@ -21,83 +21,83 @@ FreeObject 配置（语义层）。
 
 > `optional` **arrowPoint?**: [`ArrowPointerOptions`](ArrowPointerOptions.md) \| [`ArrowPointerOptions`](ArrowPointerOptions.md)[] \| `false`
 
-箭头指示器配置（单个或多个）。
-- `false`：移除箭头指示器
+Arrow-pointer configuration, either one item or multiple items.
+- `false`: removes the arrow pointer.
 
 ### billboard?
 
 > `optional` **billboard?**: [`BillboardOptions`](BillboardOptions.md) \| [`BillboardOptions`](BillboardOptions.md)[] \| `false`
 
-广告牌配置（单个或多个）。
-- `false`：移除广告牌
+Billboard configuration, either one item or multiple items.
+- `false`: removes the billboard.
 
 ### collisionBall?
 
 > `optional` **collisionBall?**: [`FreeObjectCollisionBallOptions`](PW.FreeObjectCollisionBallOptions.md) \| `false`
 
-碰撞球配置。
-- `false`：移除碰撞球
+Collision-ball configuration.
+- `false`: removes the collision ball.
 
 ### cube?
 
 > `optional` **cube?**: [`CubeOptions`](../interfaces/CubeOptions.md) \| [`CubeOptions`](../interfaces/CubeOptions.md)[] \| `false`
 
-立方体配置（单个或多个）。
-- `false`：移除立方体
+Cube configuration, either one item or multiple items.
+- `false`: removes the cube.
 
 ### label?
 
 > `optional` **label?**: [`LabelOptions`](../interfaces/UI.LabelOptions.md) \| [`LabelOptions`](../interfaces/UI.LabelOptions.md)[] \| `false`
 
-Label 配置（单个或多个）。
-- `false`：移除 label
+Label configuration, either one item or multiple items.
+- `false`: removes the label.
 
 ### model?
 
 > `optional` **model?**: [`ModelOptions`](../interfaces/ModelOptions.md) \| `false`
 
-模型配置。
-- `false`：移除模型
+Model configuration.
+- `false`: removes the model.
 
 ### name?
 
 > `optional` **name?**: `string`
 
-对象名称（会写入宿主 Entity name）。
+Object name, written to the host Entity name.
 
 ### path?
 
 > `optional` **path?**: `Parameters`\<[`Entity`](../classes/Entity.md)\[`"setPath"`\]\>\[`0`\] \| `false`
 
-轨迹线配置（对应 Entity.setPath）。
-- `false`：移除轨迹线
+Path configuration, corresponding to Entity.setPath.
+- `false`: removes the path.
 
 ### point?
 
 > `optional` **point?**: [`PointComOptions`](../interfaces/PointComOptions.md) \| [`PointComOptions`](../interfaces/PointComOptions.md)[] \| `false`
 
-点要素配置（单个或多个）。
-- `false`：移除点要素
+Point-feature configuration, either one item or multiple items.
+- `false`: removes the point Feature.
 
 ### polyline?
 
 > `optional` **polyline?**: [`PolylineOptions`](PolylineOptions.md) \| [`PolylineOptions`](PolylineOptions.md)[] \| `false`
 
-折线要素配置（单个或多个）。
-- `false`：移除折线
+Polyline-feature configuration, either one item or multiple items.
+- `false`: removes the polyline.
 
 ### popover?
 
 > `optional` **popover?**: [`PopoverOptions`](../interfaces/UI.PopoverOptions.md) \| `false`
 
-Popover 配置（悬浮信息框）。
-- `false`：移除 popover
+Popover configuration for a floating information panel.
+- `false`: removes the popover.
 
 ### position?
 
 > `optional` **position?**: [`ObjectPositon`](PW.ObjectPositon.md)
 
-初始位置。
+Initial position.
 
 #### Default
 
@@ -109,6 +109,6 @@ Daisy.Cartesian3.ZERO
 
 > `optional` **sensor?**: \[\]
 
-传感器配置（预留）。
+Sensor configuration, reserved for future use.
 
-当前 FreeObject 不直接处理该字段，推荐使用 Vehicle/Aircraft 的 addSensor API。
+FreeObject does not process this field directly. Use the Vehicle/Aircraft addSensor API instead.

@@ -8,9 +8,9 @@
 
 > **EllipseOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-EllipseFeature 配置。
+EllipseFeature configuration.
 
-用于在场景中绘制椭圆几何体（如覆盖区域、轨道投影等）。
+Used to draw ellipse geometry in the scene, such as coverage areas and orbit projections.
 
 ## Type Declaration
 
@@ -18,9 +18,9 @@ EllipseFeature 配置。
 
 > `optional` **center?**: `Daisy.Cartesian3` \| [`Entity`](../classes/Entity.md) \| [`REF`](../enums/REF.md)
 
-椭圆中心点。
+Ellipse center.
 
-支持坐标点（`Cartesian3`）、实体引用（`Entity`）或父实体占位符（`REF`）。
+Supports a coordinate point (`Cartesian3`), an Entity reference (`Entity`), or a parent-entity placeholder (`REF`).
 
 #### Default
 
@@ -32,7 +32,7 @@ REF.PARENT_ENTITY
 
 > `optional` **clampToGround?**: `boolean`
 
-是否贴地。
+Whether to clamp to the ground.
 
 #### Default
 
@@ -44,9 +44,9 @@ false
 
 > `optional` **classificationType?**: `Daisy.ClassificationType`
 
-贴地分类目标。
+Classification target for ground clamping.
 
-仅在 `clampToGround=true` 且底层使用 GroundPrimitive 时生效。
+Effective only when `clampToGround=true` and the underlying implementation uses GroundPrimitive.
 
 #### Default
 
@@ -58,18 +58,18 @@ Daisy.ClassificationType.BOTH
 
 > `optional` **distanceDisplayCondition?**: `Daisy.DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
-当相机距离超出该范围时会自动隐藏。
+The ellipse is hidden automatically when the camera distance is outside this range.
 
 ### ellipsoid?
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-贴地计算与天体跟随所使用的天体椭球。
+Celestial ellipsoid used for ground calculations and celestial-body following.
 
-注意：一旦该组件通过 Entity.addFeature() 添加到实体上，会被实体的 celestialEllipsoid 覆盖，
-组件将始终遵循实体的天体椭球配置。
+Note: once this component is added to an Entity through Entity.addFeature(), it is overridden by the Entity's celestialEllipsoid.
+The component always follows the Entity's celestial-ellipsoid configuration.
 
 #### Default
 
@@ -81,15 +81,15 @@ CelestialEllipsoid.Earth()
 
 > `optional` **extrudedHeight?**: `number`
 
-挤出高度（单位：米）。
+Extruded height in meters.
 
-设置后椭圆会从地面挤出到指定高度，形成立体效果。
+When set, the ellipse is extruded from the ground to the specified height to create a 3D effect.
 
 ### fill?
 
 > `optional` **fill?**: `boolean`
 
-是否填充面。
+Whether to fill the area.
 
 #### Default
 
@@ -101,7 +101,7 @@ true
 
 > `optional` **granularity?**: `number`
 
-采样粒度（单位：弧度）。
+Sampling granularity in radians.
 
 #### Default
 
@@ -113,7 +113,7 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **height?**: `number`
 
-椭圆高度（单位：米）。
+Ellipse height in meters.
 
 #### Default
 
@@ -125,9 +125,9 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-椭圆材质。
+Ellipse material.
 
-支持 `Daisy.Material` 或颜色（`DColor` / CSS 色值字符串）。
+Supports `Daisy.Material` or a color (`DColor` / CSS color string).
 
 #### Default
 
@@ -139,7 +139,7 @@ Color.BLUE.withAlpha(0.5)
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓线。
+Whether to draw the outline.
 
 #### Default
 
@@ -151,7 +151,7 @@ false
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色。
+Outline color.
 
 #### Default
 
@@ -163,7 +163,7 @@ Color.BLACK
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度（单位：像素）。
+Outline width in pixels.
 
 #### Default
 
@@ -175,7 +175,7 @@ Color.BLACK
 
 > `optional` **rotation?**: `number`
 
-椭圆旋转角（单位：弧度）。
+Ellipse rotation angle in radians.
 
 #### Default
 
@@ -187,7 +187,7 @@ Color.BLACK
 
 > `optional` **semiMajorAxis?**: `number`
 
-长半轴长度（单位：米）。
+Semi-major axis length in meters.
 
 #### Default
 
@@ -199,7 +199,7 @@ Color.BLACK
 
 > `optional` **semiMinorAxis?**: `number`
 
-短半轴长度（单位：米）。
+Semi-minor axis length in meters.
 
 #### Default
 
@@ -211,7 +211,7 @@ Color.BLACK
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show the ellipse.
 
 #### Default
 
@@ -223,7 +223,7 @@ true
 
 > `optional` **stRotation?**: `number`
 
-纹理旋转角（单位：弧度）。
+Texture rotation angle in radians.
 
 #### Default
 
@@ -235,9 +235,9 @@ true
 
 > `optional` **updateThrottleMs?**: `number`
 
-更新节流时间（单位：毫秒）。
+Update throttle interval in milliseconds.
 
-适用于高频更新时降低重算开销。
+Useful for reducing recalculation overhead during high-frequency updates.
 
 #### Default
 
@@ -249,7 +249,7 @@ true
 
 > `optional` **vertexFormat?**: `Daisy.VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 

@@ -1,8 +1,8 @@
-# Feature 可视化组件
+# Feature Visualization Components
 
-Feature 是 DaisySpace-Sdk 中渲染能力的原子单元。每个 Feature 封装一种可视化形式——点、线、面、模型、标签、粒子等——通过挂载到 Entity 上来赋予实体可渲染的外观。
+Feature is the atomic unit of rendering capability in DaisySpace-Sdk. Each Feature encapsulates one visual form, such as a point, line, surface, model, label, or particle, and gives an Entity a renderable appearance when attached to it.
 
-## 核心设计
+## Core Design
 
 ```
 Entity ─── 挂载 ───→ Feature (点/线/面/模型/标签/粒子 ...)
@@ -12,7 +12,7 @@ Entity ─── 挂载 ───→ Feature (点/线/面/模型/标签/粒子 .
                       └── visibility 策略（normal/hover/click）
 ```
 
-Entity 与 Feature 是**组合关系**，不是继承关系。一个 Entity 可以同时挂载多个 Feature：
+Entity and Feature have a **composition relationship**, not an inheritance relationship. One Entity can attach multiple Features at the same time:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -24,9 +24,9 @@ entity.addFeature(new Daisy.UI.LabelFeature({ text: "SAT-01" }))           // �
 entity.addFeature(new Daisy.TrailPathFeature({ /* ... */ }))               // 轨迹尾迹
 ```
 
-## IFeature 接口
+## IFeature Interface
 
-所有 Feature 必须实现 SDK 暴露的 `IFeature` 接口：
+Every Feature must implement the `IFeature` interface exposed by the SDK:
 
 ```typescript
 interface IFeature {
@@ -46,92 +46,92 @@ interface IFeature {
 }
 ```
 
-## Feature 基类能力
+## Feature Base-Class Capabilities
 
-`Feature` 抽象基类提供了所有子类共用的基础能力：
+The `Feature` abstract base class provides capabilities shared by all subclasses:
 
-| 能力 | 说明 |
+| Capability | Description |
 |------|------|
-| **生命周期事件** | `onBeforeRegister` / `onRegister` / `onAfterRegister` / `onBeforeUpdate` / `onUpdate` / `onBeforeDestroy` / `onDestroy` |
-| **交互事件** | `onClick` / `onDblClick` / `onMouseEnter` / `onMouseLeave`（含 `off*` 取消） |
-| **交互上报** | `enableSubmitToEntity(true)` — 将 Feature 的交互事件冒泡给所属 Entity |
-| **Transformer** | `transformer` — 独立的局部变换矩阵，叠加到 Entity 的世界矩阵 |
-| **LOD 模式** | `lodMode: "entity" \| "self" \| "none"` — 决定 LOD 判定策略 |
-| **截流** | `throttleable` — 是否允许调度器在高性能模式下跳过更新 |
-| **追踪** | `enableTracking({ trackingTarget })` — 动态追踪目标位置 |
-| **可见性策略** | `visibility: { mode: "normal" \| "hover" \| "click" }` — 控制仅在悬停/选中时显示 |
-| **距离显示条件** | `distanceDisplayCondition` — 自动按 NEAR/MEDIUM/FAR 视距分级 |
-| **体轴调试** | `setBodyAxis(options)` — 显示局部坐标轴（仅 3D） |
+| **Lifecycle events** | `onBeforeRegister` / `onRegister` / `onAfterRegister` / `onBeforeUpdate` / `onUpdate` / `onBeforeDestroy` / `onDestroy` |
+| **Interaction events** | `onClick` / `onDblClick` / `onMouseEnter` / `onMouseLeave` (with `off*` removal methods) |
+| **Interaction submission** | `enableSubmitToEntity(true)` — bubbles Feature interaction events to its Entity |
+| **Transformer** | `transformer` — independent local transform matrix added to the Entity world matrix |
+| **LOD mode** | `lodMode: "entity" \| "self" \| "none"` — selects the LOD strategy |
+| **Throttling** | `throttleable` — allows the scheduler to skip updates in high-performance mode |
+| **Tracking** | `enableTracking({ trackingTarget })` — dynamically tracks a target position |
+| **Visibility strategy** | `visibility: { mode: "normal" \| "hover" \| "click" }` — shows only when hovered or selected |
+| **Distance display condition** | `distanceDisplayCondition` — automatically groups visibility by NEAR/MEDIUM/FAR distance |
+| **Body-axis debugging** | `setBodyAxis(options)` — displays local axes in 3D mode only |
 
-## Feature 种类速查表
+## Feature Quick Reference
 
-共 **29 种 Feature**（含 `UI` 下的标签/弹出框和 Entity 内部包围盒），按渲染类型分类：
+There are **29 Feature types**, including labels/popovers under `UI` and the Entity-internal bounding box, grouped by rendering type:
 
-### 标记类（Marker）
+### Markers
 
-| Feature | 说明 | 关键参数 |
+| Feature | Description | Key parameters |
 |---------|------|----------|
-| `PointFeature` | 点标记（size/color/outline） | `size`, `color`, `outlineColor`, `outlineWidth` |
-| `BillboardFeature` | 广告牌/图标 | `image`, `scale`, `color`, `alignedAxis` |
-| `UI.LabelFeature` | 文字标签（CSS 样式字体系列） | `text`, `font`, `fillColor`, `style`, `pixelOffset` |
-| `UI.PopoverFeature` | 弹出框（DOM Overlay） | `element`, `anchorPosition`, `trigger` |
+| `PointFeature` | Point marker (size/color/outline) | `size`, `color`, `outlineColor`, `outlineWidth` |
+| `BillboardFeature` | Billboard/icon | `image`, `scale`, `color`, `alignedAxis` |
+| `UI.LabelFeature` | Text label (CSS-styled font family) | `text`, `font`, `fillColor`, `style`, `pixelOffset` |
+| `UI.PopoverFeature` | Popover (DOM Overlay) | `element`, `anchorPosition`, `trigger` |
 
-### 线性图形（Line / Path）
+### Lines and Paths
 
-| Feature | 说明 | 关键参数 |
+| Feature | Description | Key parameters |
 |---------|------|----------|
-| `PolylineFeature` | 折线/多段线 | `positions`, `width`, `material`, `clampToGround` |
-| `TrailPathFeature` | 轨迹尾迹（历史+未来路径） | `historySecond`, `futureSecond`, `resolutionSecond` |
-| `CorridorFeature` | 带状走廊（沿路径等宽区域） | `positions`, `width`, `material` |
-| `WallFeature` | 立面墙 | `positions`, `minimumHeights`, `maximumHeights` |
-| `PolylineVolumeFeature` | 管状体/截面多段线体积 | `positions`, `shape`, `material` |
+| `PolylineFeature` | Polyline | `positions`, `width`, `material`, `clampToGround` |
+| `TrailPathFeature` | Trail path (past and future path) | `historySecond`, `futureSecond`, `resolutionSecond` |
+| `CorridorFeature` | Corridor (constant-width region along a path) | `positions`, `width`, `material` |
+| `WallFeature` | Vertical wall | `positions`, `minimumHeights`, `maximumHeights` |
+| `PolylineVolumeFeature` | Tubular or cross-section polyline volume | `positions`, `shape`, `material` |
 
-### 面状图形（Area）
+### Areas
 
-| Feature | 说明 | 关键参数 |
+| Feature | Description | Key parameters |
 |---------|------|----------|
-| `PolygonFeature` | 填充多边形 | `hierarchy`, `material`, `height`, `extrudedHeight` |
-| `EllipseFeature` | 椭圆 | `center`, `semiMajorAxis`, `semiMinorAxis`, `material` |
-| `RectangleFeature` | 矩形（地理坐标） | `coordinates`, `material`, `height` |
-| `ShaderPolygonFeature` | 着色器驱动多边形 | `hierarchy`, `shaderUniforms`, `vertexShader`/`fragmentShader` |
-| `CoverageAreaFeature` | 多色地面覆盖（硬件加速） | `polygons`, `colorList` |
-| `HeatmapFeature` | 热力覆盖图 | `grid`, `colorScale`, `intensity` |
-| `GeoJsonFeature` | GeoJSON 加载 | `data`, `callback`, `style` |
+| `PolygonFeature` | Filled polygon | `hierarchy`, `material`, `height`, `extrudedHeight` |
+| `EllipseFeature` | Ellipse | `center`, `semiMajorAxis`, `semiMinorAxis`, `material` |
+| `RectangleFeature` | Rectangle (geographic coordinates) | `coordinates`, `material`, `height` |
+| `ShaderPolygonFeature` | Shader-driven polygon | `hierarchy`, `shaderUniforms`, `vertexShader`/`fragmentShader` |
+| `CoverageAreaFeature` | Multicolor ground coverage (hardware accelerated) | `polygons`, `colorList` |
+| `HeatmapFeature` | Heatmap overlay | `grid`, `colorScale`, `intensity` |
+| `GeoJsonFeature` | GeoJSON loading | `data`, `callback`, `style` |
 
-### 立体图形（Solid Geometry）
+### Solid Geometry
 
-| Feature | 说明 | 关键参数 |
+| Feature | Description | Key parameters |
 |---------|------|----------|
-| `BoxFeature` | 长方体 | `dimensions`, `material`, `outline` |
-| `CubeFeature` | 正方体 | `length`, `material` |
-| `CylinderFeature` | 圆柱体 | `length`, `topRadius`, `bottomRadius`, `material` |
-| `EllipsoidFeature` | 椭球体 | `radii`, `material`, `outline` |
-| `SphereFeature` | 球体 | `radius`, `material`, `outline`, `texture` |
-| `EllipticalConeFeature` | 椭圆锥体（传感器锥体） | `length`, `topRadius`, `bottomRadiusX/Y`, `material` |
-| `FreeGeometryFeature` | 自定义几何体 | `positions`, `indices`, `normals`, `st`, `material` |
+| `BoxFeature` | Box | `dimensions`, `material`, `outline` |
+| `CubeFeature` | Cube | `length`, `material` |
+| `CylinderFeature` | Cylinder | `length`, `topRadius`, `bottomRadius`, `material` |
+| `EllipsoidFeature` | Ellipsoid | `radii`, `material`, `outline` |
+| `SphereFeature` | Sphere | `radius`, `material`, `outline`, `texture` |
+| `EllipticalConeFeature` | Elliptical cone (sensor cone) | `length`, `topRadius`, `bottomRadiusX/Y`, `material` |
+| `FreeGeometryFeature` | Custom geometry | `positions`, `indices`, `normals`, `st`, `material` |
 
-### 模型与场景（Model / Scene）
+### Models and Scenes
 
-| Feature | 说明 | 关键参数 |
+| Feature | Description | Key parameters |
 |---------|------|----------|
-| `ModelFeature` | glTF/GLB 3D 模型 | `url`, `scale`, `minimumPixelSize`, `nodeTransform` |
-| `TilesetFeature` | 3D Tiles 切片集 | `url`, `style`, `show` |
+| `ModelFeature` | glTF/GLB 3D model | `url`, `scale`, `minimumPixelSize`, `nodeTransform` |
+| `TilesetFeature` | 3D Tiles tileset | `url`, `style`, `show` |
 
-### 特效（Effect）
+### Effects
 
-| Feature | 说明 | 关键参数 |
+| Feature | Description | Key parameters |
 |---------|------|----------|
-| `ParticleFeature` | 粒子系统 | `emitter`, `lifetime`, `speed`, `gravity` |
-| `CapsuleParticleFeature` | 胶囊粒子（宿主绑定） | `preset`, `emitterPreset`, `particleImage` |
-| `ArrowPointerFeature` | 指向箭头 | `target`, `length`, `color`, `headWidth` |
+| `ParticleFeature` | Particle system | `emitter`, `lifetime`, `speed`, `gravity` |
+| `CapsuleParticleFeature` | Capsule particles (host-bound) | `preset`, `emitterPreset`, `particleImage` |
+| `ArrowPointerFeature` | Direction arrow | `target`, `length`, `color`, `headWidth` |
 
-### 辅助（Helper）
+### Helpers
 
-| Feature | 说明 | 关键参数 |
+| Feature | Description | Key parameters |
 |---------|------|----------|
-| `BoundBoxFeature` | 包围盒（Entity 内部单例） | `color`, `show` |
+| `BoundBoxFeature` | Bounding box (Entity-internal singleton) | `color`, `show` |
 
-## 生命周期详解
+## Lifecycle in Detail
 
 ```
 new XxxFeature(options)
@@ -145,65 +145,65 @@ entity.removeFeature(feature)
 feature.destroy()             ← 析构 morph 监听、交互桥接、EventManager
 ```
 
-### register() 做了哪些事
+### What register() Does
 
-1. 触发 `BEFORE_REGISTER` 事件
-2. 移除旧的 morph 监听，重新绑定到当前 Engine
-3. 调用 `beforeRegister(entity)`（子类可覆盖）
-4. 安装 morph 切换回调
-5. 安装交互事件桥接（若已 `enableSubmitToEntity(true)`）
-6. 触发 `AFTER_REGISTER` 事件
-7. 自动补全 `distanceDisplayCondition`（若用户未配置，按视距策略取默认值）
-8. 设置 `registered = true`
-9. 触发 `REGISTER` 事件
+1. Trigger the `BEFORE_REGISTER` event
+2. Remove the old morph listener and rebind it to the current Engine
+3. Call `beforeRegister(entity)`, which subclasses can override
+4. Install the morph-switch callback
+5. Install the interaction bridge when `enableSubmitToEntity(true)` is enabled
+6. Trigger the `AFTER_REGISTER` event
+7. Fill in `distanceDisplayCondition` automatically when it is not configured, using the distance strategy default
+8. Set `registered = true`
+9. Trigger the `REGISTER` event
 
-### update() 流程
+### update() Flow
 
-基类 `update()` 每帧执行：
+The base-class `update()` performs the following steps each frame:
 
-1. 触发 `BEFORE_UPDATE` 事件
-2. 调用 `preUpdate(entity, time)`（子类可覆盖）
-3. 计算可见性：`options.show && entity.getShowValue(time)`
-4. 应用 `visibility` 策略（normal/hover/click）
-5. 更新 `node.position`（若 `lodMode ≠ "none"` 且 Entity 位置有效）
-6. 触发 `UPDATE` 事件
+1. Trigger the `BEFORE_UPDATE` event
+2. Call `preUpdate(entity, time)`, which subclasses can override
+3. Compute visibility: `options.show && entity.getShowValue(time)`
+4. Apply the `visibility` strategy (normal/hover/click)
+5. Update `node.position` when `lodMode ≠ "none"` and the Entity position is valid
+6. Trigger the `UPDATE` event
 
-> **子类通常覆盖 `preUpdate()` 而非 `update()`**，以保留基类的可见性管理逻辑。
+> **Subclasses should generally override `preUpdate()` rather than `update()`** to preserve the base-class visibility management logic.
 
-### destroy() 流程
+### destroy() Flow
 
-1. 设置 `registered = false`
-2. 触发 `BEFORE_DESTROY` 事件
-3. 解除 morph 监听
-4. 销毁交互事件桥接（`FeatureEventHandle`）
-5. 销毁体轴（`BodyAxis`）
-6. 触发 `DESTROY` 事件
-7. 销毁内部 `EventManager`
+1. Set `registered = false`
+2. Trigger the `BEFORE_DESTROY` event
+3. Remove the morph listener
+4. Destroy the interaction bridge (`FeatureEventHandle`)
+5. Destroy the body axis (`BodyAxis`)
+6. Trigger the `DESTROY` event
+7. Destroy the internal `EventManager`
 
-> `unregister()` 等价于 `destroy()` + 重置 `registered = false`。
+> `unregister()` is equivalent to `destroy()` plus resetting `registered = false`.
 
-## LOD 模式
+## LOD Modes
 
-Feature 提供三种 LOD 模式，通过 `lodMode` 控制：
+Feature provides three LOD modes controlled by `lodMode`:
 
-| 模式 | 行为 | 适用场景 |
+| Mode | Behavior | Use case |
 |------|------|----------|
-| `"entity"`（默认） | 跟随所属 Entity 的视距 LOD 判定 | 大多数 Feature |
-| `"self"` | Feature 自行在 update 中判断 LOD | ShaderPolygon 等独立性强的 Feature |
-| `"none"` | 忽略 LOD，始终按 show 状态渲染 | 必须始终可见的辅助元素 |
+| `"entity"` (default) | Follows the owning Entity's distance-based LOD decision | Most Features |
+| `"self"` | Feature evaluates LOD itself in update | Independent Features such as ShaderPolygon |
+| `"none"` | Ignores LOD and always renders according to show | Helper elements that must always be visible |
 
-> **高性能模式裁剪**：当 Entity 处于非活跃状态且 Feature 类型不在 `keepFeatureTypes` 白名单中时，不会触发 `update()`。
+> **High-performance culling**: When an Entity is inactive and the Feature type is not in the `keepFeatureTypes` allowlist, `update()` is not triggered.
 
-## 交互事件与上报
+## Interaction Events and Submission
 
-Feature 独立拥有一套交互事件系统：
+Feature has its own interaction event system:
 
 ```typescript
 feature.onClick((e) => { console.log("clicked", e.comId) })
 feature.onMouseEnter((e) => { /* ... */ })
 ```
 
-通过 `enableSubmitToEntity(true)` 可将 Feature 事件冒泡到 Entity：
+Use `enableSubmitToEntity(true)` to bubble Feature events to Entity:
 
 ```typescript
 feature.enableSubmitToEntity(true)
@@ -217,7 +217,7 @@ entity.onClick((e) => {
 
 ## Transformer
 
-Feature 拥有独立的 `transformer`（类型 `Transformer`），提供三个变换通道：
+Feature has an independent `transformer` of type `Transformer` with three transform channels:
 
 ```typescript
 feature.transformer.setTranslation(new Daisy.Cartesian3(100, 0, 0))
@@ -228,9 +228,9 @@ feature.transformer.setScale(new Daisy.Cartesian3(2, 2, 2))
 const matrix = feature.getMatrix()
 ```
 
-Feature 的 Transformer 叠加在 Entity 的世界矩阵之上，实现相对实体的局部变换。
+The Feature Transformer is applied on top of the Entity world matrix to provide a local transform relative to the Entity.
 
-## 可见性策略
+## Visibility Strategy
 
 ```typescript
 new Daisy.PointFeature({
@@ -239,17 +239,17 @@ new Daisy.PointFeature({
 })
 ```
 
-| 模式 | 行为 |
+| Mode | Behavior |
 |------|------|
-| `"normal"` | 始终可见（默认） |
-| `"hover"` | 仅在 mouseenter 时显示 |
-| `"click"` | 仅在选中时显示 |
+| `"normal"` | Always visible (default) |
+| `"hover"` | Visible only on mouseenter |
+| `"click"` | Visible only when selected |
 
-> **注意**：visibility 策略在 `updateByInteraction()` 中处理，该方法是 `IFeature` 的可选方法（`updateByInteraction?`），由 Entity 在每帧交互状态变化时主动调用。
+> **Note:** The visibility strategy is handled by `updateByInteraction()`. This is an optional `IFeature` method (`updateByInteraction?`) that Entity calls when interaction state changes during a frame.
 
-## 追踪能力
+## Tracking
 
-部分 Feature（如 PolylineFeature、ArrowPointerFeature）支持动态追踪目标：
+Some Features, such as PolylineFeature and ArrowPointerFeature, support dynamic target tracking:
 
 ```typescript
 polylineFeature.enableTracking({
@@ -258,46 +258,46 @@ polylineFeature.enableTracking({
 })
 ```
 
-- `trackingTarget` 支持 `Entity` / `Cartographic` / `Cartesian3`
-- 子类通过 `_getTrackTargetBPosition()` 获取目标当前位置
+- `trackingTarget` supports `Entity` / `Cartographic` / `Cartesian3`
+- Subclasses use `_getTrackTargetBPosition()` to obtain the target's current position
 
-## SafePrimitive 规范
+## SafePrimitive Rule
 
-> 所有几何体创建必须通过 `SafePrimitive`，**不能**直接使用底层裸 API。`SafePrimitive` 在 2D / 变形状态下不会崩溃。
+> All geometry must be created through `SafePrimitive`; **do not** call the underlying raw API directly. `SafePrimitive` does not crash in 2D or morphing states.
 
-这是 Feature 内部实现层面的约束，用户无需感知，但理解它有助于排查 2D 模式下的渲染异常。
+This is an internal Feature implementation constraint. Users normally do not need to know it, but understanding it helps diagnose rendering issues in 2D mode.
 
 
-## 事件系统
+## Event System
 
-### 生命周期事件
+### Lifecycle Events
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `feature.onBeforeRegister(callback)` | 注册前回调 |
-| `feature.onAfterRegister(callback)` | 注册后回调（Feature 已被添加到 Entity） |
-| `feature.onRegister(callback)` | 注册时回调，参数 `(spaceObject: Entity)` |
-| `feature.onBeforeUpdate(callback)` | 每帧更新前，参数 `(spaceObject, time)` |
-| `feature.onUpdate(callback)` | 每帧更新后，参数 `(spaceObject, time)` |
-| `feature.onBeforeDestroy(callback)` | 销毁前回调 |
-| `feature.onDestroy(callback)` | 销毁后回调 |
+| `feature.onBeforeRegister(callback)` | Callback before registration |
+| `feature.onAfterRegister(callback)` | Callback after registration, when the Feature has been added to Entity |
+| `feature.onRegister(callback)` | Registration callback, with `(spaceObject: Entity)` |
+| `feature.onBeforeUpdate(callback)` | Callback before each frame update, with `(spaceObject, time)` |
+| `feature.onUpdate(callback)` | Callback after each frame update, with `(spaceObject, time)` |
+| `feature.onBeforeDestroy(callback)` | Callback before destruction |
+| `feature.onDestroy(callback)` | Callback after destruction |
 
-> Feature 的生命周期事件与 Entity 的生命周期独立运行。
+> Feature lifecycle events run independently from Entity lifecycle events.
 
-### 交互事件
+### Interaction Events
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `feature.onClick(handler)` | 拾取命中该 Feature 时触发 |
-| `feature.offClick(handler?)` | 移除 |
-| `feature.onDblClick(handler)` | 双击 |
-| `feature.offDblClick(handler?)` | 移除 |
-| `feature.onMouseEnter(handler)` | 鼠标进入 |
-| `feature.offMouseEnter(handler?)` | 移除 |
-| `feature.onMouseLeave(handler)` | 鼠标离开 |
-| `feature.offMouseLeave(handler?)` | 移除 |
+| `feature.onClick(handler)` | Fires when this Feature is picked |
+| `feature.offClick(handler?)` | Remove listener |
+| `feature.onDblClick(handler)` | Double-click |
+| `feature.offDblClick(handler?)` | Remove listener |
+| `feature.onMouseEnter(handler)` | Mouse enter |
+| `feature.offMouseEnter(handler?)` | Remove listener |
+| `feature.onMouseLeave(handler)` | Mouse leave |
+| `feature.offMouseLeave(handler?)` | Remove listener |
 
-Handler 参数类型为 `FeaturePickedEvent`（继承自 `ClickSpaceEntityResult`），包含 `entityId`、`featureType`、`entity` 等字段，支持 `stopPropagation()` 阻止冒泡。
+Handler parameter is a `FeaturePickedEvent` (derived from `ClickSpaceEntityResult`) containing fields such as `entityId`, `featureType`, and `entity`. Call `stopPropagation()` to stop bubbling.
 
 ```typescript
 feature.onClick((e) => {
@@ -306,14 +306,14 @@ feature.onClick((e) => {
 })
 ```
 
-### 事件冒泡
+### Event Bubbling
 
 ```typescript
 // 启用 Feature 交互事件向上提交到所属 Entity
 feature.enableSubmitToEntity(true)
 ```
 
-启用后，Feature 的 click/dblclick/mouseenter/mouseleave 事件会自动冒泡到所属 Entity 的 `receiveFeatureEvent`，Entity 收到后会以同一事件名触发自身 `_eventManager`。
+After enabling it, Feature click/dblclick/mouseenter/mouseleave events automatically bubble to the owning Entity's `receiveFeatureEvent`. Entity then triggers its own `_eventManager` with the same event name.
 
 ---
 

@@ -21,6 +21,8 @@ viewer.imageryLayers.add(imageryLayer);
 
 ## Param
 
+**options**
+
 Object describing initialization options
 
 ## Constructors

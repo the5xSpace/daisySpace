@@ -1,6 +1,6 @@
 # Control Panel
 
-[ControlPanelWidget](/en/api/classes/ControlPanelWidget) wraps play/pause/speed controls and keyboard shortcuts, and supports three modes.
+[ControlPanelWidget](/en/api/classes/ControlPanelWidget) bundles play/pause, speed-control, and keyboard controls, with three modes.
 
 ## Basic Usage
 
@@ -12,13 +12,13 @@ const engine = await Daisy.Engine.create("daisyContainer")
 engine.addWidget(new Daisy.ControlPanelWidget({ mode: "standard" }))
 ```
 
-## Modes
+## mode
 
 | Mode | Description |
-|------|-------------|
-| `"lite"` | Floating control panel only, without keyboard shortcuts |
-| `"standard"` | Floating panel + keyboard shortcuts (Space for play/pause) |
-| `"customize"` | Custom button list, specified via `panelOptions.customize` |
+|---|---|
+| `"lite"` | Floating control panel only, without keyboard controls |
+| `"standard"` | Floating panel + keyboard controls (Space plays/pauses) |
+| `"customize"` | Custom button list specified through `panelOptions.customize` |
 
 ## Panel Options
 
@@ -38,7 +38,7 @@ engine.addWidget(new Daisy.ControlPanelWidget({
 |------|------|------|
 | `preset` | string | Preset position: `"leftTop"` / `"rightTop"` / `"leftBottom"` / `"rightBottom"` |
 | `layout` | `"row"` \| `"column"` | Button arrangement direction |
-| `draggable` | `boolean` | Whether draggable |
+| `draggable` | `boolean` | Whether the panel can be dragged |
 | `customize` | `string[]` | List of button IDs to display |
 
 ### Available Button IDs
@@ -47,7 +47,7 @@ engine.addWidget(new Daisy.ControlPanelWidget({
 
 ## Standalone Controllers
 
-The `ControlPanelWidget` internally uses the following components, and can also be created directly without a Widget:
+`ControlPanelWidget` uses the following components internally; they can also be created directly without a Widget:
 
 ```typescript
 // 精简版（仅浮动面板）

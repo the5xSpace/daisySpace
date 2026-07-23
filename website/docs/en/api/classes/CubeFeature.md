@@ -162,9 +162,7 @@ Unique identifier for the Feature.
 
 ##### Default
 
-```ts
-""
-```
+`${type}__${GenGuid()}`
 
 ##### Returns
 
@@ -181,9 +179,7 @@ Subclasses can also manually override before registration.
 
 ##### Default
 
-```ts
-""
-```
+`${type}__${GenGuid()}`
 
 ##### Parameters
 
@@ -1006,7 +1002,7 @@ After calling, creates/updates axis on demand during the update cycle (only avai
 #### Default
 
 ```ts
-undefined Configuration options
+undefined 配置项
 ```
 
 #### Inherited from
@@ -1060,7 +1056,7 @@ Input support:
 
 ##### scale
 
-`number` \| `Cartesian2` \| { `x`: `number`; `y`: `number`; }
+`number` \| `Cartesian2` \| \{ `x`: `number`; `y`: `number`; \}
 
 ##### y?
 

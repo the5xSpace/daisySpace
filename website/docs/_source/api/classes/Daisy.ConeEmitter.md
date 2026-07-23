@@ -11,6 +11,8 @@ Particles will be positioned at the tip of the cone and have initial velocities 
 
 ## Param
 
+**angle**
+
 The angle of the cone in radians.
 
 ## Constructors

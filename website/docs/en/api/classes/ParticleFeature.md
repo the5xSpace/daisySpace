@@ -9,7 +9,7 @@
 World particle Feature.
 
 ParticleFeature is based on ParticleSystem, where each particle has independent position, velocity,
-lifecycle, and billboard. It is suitable for natural particle effects such as rain, snow, fog, dust, water flow, and debris diffusion — effects that “still belong to the physical world after leaving their host.”
+and lifetime, plus a billboard. It is suitable for natural particle effects such as rain, snow, fog, smoke, water flow, and debris dispersion that "remain in the physical world after leaving the host".
 
 If the effect is strongly bound to the host, highly focused, and requires a stable continuous body (e.g., rocket exhaust,
 aircraft afterburner, attitude control nozzle), prefer CapsuleParticleFeature. Capsule particles use a single world-anchored
@@ -904,8 +904,8 @@ Unregisters (equivalent to destroy).
 
 > `static` **preloadImages**(`sources?`): `Promise`\<`void`\>
 
-Preloads particle images into cache to avoid first-frame flickering.
-Calling before `register()` ensures images are ready when the particle system is created.
+Preloads particle images into the cache to avoid first-frame flicker.
+Calling this before `register()` ensures the image is ready when the particle system is created.
 
 #### Parameters
 

@@ -3,6 +3,7 @@ import type { DefaultTheme } from "vitepress";
 type Locale = "zh" | "en";
 type Label = { zh: string; en: string };
 export type DaisyThemeConfig = DefaultTheme.Config & { englishGuideReady: boolean };
+type SearchOptions = NonNullable<DefaultTheme.Config["search"]>["options"];
 
 const label = (zh: string, en: string): Label => ({ zh, en });
 
@@ -131,12 +132,13 @@ function translatedSidebar(
 export function createThemeConfig(
   locale: Locale,
   englishFiles?: ReadonlySet<string>,
+  searchOptions?: SearchOptions,
 ): DaisyThemeConfig {
   const en = locale === "en";
   const guide = route(locale, "/guide/");
   const api = route(locale, "/api/");
   const guideReady = available(locale, "/guide/", englishFiles);
-  const apiReady = available(locale, "/api/", englishFiles);
+  const apiReady = en ? true : available(locale, "/api/", englishFiles);
   const pricingReady = available(locale, "/pricing/", englishFiles);
   return {
     englishGuideReady: !en || guideReady,
@@ -171,16 +173,7 @@ export function createThemeConfig(
     },
     search: {
       provider: "local",
-      options: en ? undefined : {
-        miniSearch: {
-          options: {
-            tokenize: (text: string) =>
-              (text.toLowerCase().match(/[\u4e00-\u9fff]|[\w]+/g) || []) as string[],
-            processTerm: (term: string) =>
-              (term.match(/[\u4e00-\u9fff]|[\w]+/g) || []) as string[],
-          },
-        },
-      },
+      options: searchOptions,
     },
     socialLinks: [{ icon: "github", link: "https://github.com/the5xSpace/daisySpace" }],
     footer: {

@@ -6,9 +6,9 @@
 
 # Class: TimelineWidget
 
-展示仿真时间范围，并支持拖动当前时刻、平移和缩放可见区间。
+Displays the simulation time range and supports dragging the current time, panning, and zooming the visible interval.
 
-通常由引擎界面配置自动创建；需要独立配置时可手动添加。
+Usually created automatically by the engine UI configuration; add it manually when an independent configuration is required.
 
 ## Example
 
@@ -30,7 +30,7 @@ timeline.zoomTo(engine.getStartTime(), engine.getStopTime());
 
 > **new TimelineWidget**(`options?`): `TimelineWidget`
 
-创建时间轴控件；调用 `engine.addWidget()` 后才会挂载。
+Creates the timeline widget; it is mounted only after calling `engine.addWidget()`.
 
 #### Parameters
 
@@ -72,8 +72,8 @@ timeline.zoomTo(engine.getStartTime(), engine.getStopTime());
 
 > `optional` **isDestroyed?**: `boolean` = `false`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+The collection manager uses this to avoid destroyed singleton instances.
 
 #### Inherited from
 
@@ -85,7 +85,7 @@ timeline.zoomTo(engine.getStartTime(), engine.getStopTime());
 
 > **key**: `string` = `"daisy.timeline"`
 
-Widget 标识键（用于单例去重）。
+Widget identifier key, used for singleton deduplication.
 
 #### Overrides
 
@@ -107,8 +107,8 @@ Widget 标识键（用于单例去重）。
 
 > **rebuildOnMorph**: `boolean` = `false`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether to rebuild with destroy -> register when the scene morphs (2D/3D).
+The default is true; UI widgets should usually set this to false.
 
 #### Overrides
 
@@ -120,8 +120,8 @@ Widget 标识键（用于单例去重）。
 
 > **singleton**: `boolean` = `true`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether this is a singleton widget.
+- If true, only one instance with the same key can exist in the Engine.
 
 #### Overrides
 
@@ -133,8 +133,8 @@ Widget 标识键（用于单例去重）。
 
 > **zoomIgnored**: `boolean` = `true`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore this widget during camera aggregate observation.
+UI controller widgets should set this to true.
 
 #### Overrides
 
@@ -146,9 +146,9 @@ UI 控制器类 widget 应设为 true。
 
 > **addHighlightRange**(`color`, `heightInPx`, `base?`): [`TimelineHighlightRange`](TimelineHighlightRange.md)
 
-添加覆盖在刻度条上的高亮区间描述。
+Adds a description of a highlighted interval over the time bar.
 
-返回对象后可继续设置其起止时刻。
+After the object is returned, its start and stop times can be configured.
 
 #### Parameters
 
@@ -174,13 +174,13 @@ UI 控制器类 widget 应设为 true。
 
 > **addTrack**(`interval`, `heightInPx`, `color?`, `backgroundColor?`): [`TimelineTrack`](TimelineTrack.md)
 
-添加一个时间区间轨道。
+Adds a time interval track.
 
 #### Parameters
 
 ##### interval
 
-轨道覆盖的起止时刻。
+The start and stop times covered by the track.
 
 ###### start
 
@@ -194,19 +194,19 @@ UI 控制器类 widget 应设为 true。
 
 `number`
 
-轨道高度，单位为像素。
+Track height in pixels.
 
 ##### color?
 
 `Color`
 
-区间颜色。
+Interval color.
 
 ##### backgroundColor?
 
 `Color`
 
-轨道背景颜色。
+Track background color.
 
 #### Returns
 
@@ -218,7 +218,7 @@ UI 控制器类 widget 应设为 true。
 
 > **configureLabel**(`timeFormat?`): `this`
 
-更新局部时间标签格式并立即重绘刻度。
+Updates the local time label format and immediately redraws the ticks.
 
 #### Parameters
 
@@ -236,8 +236,8 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`_`): `void`
 
-在 2D 模式下创建 Widget 资源。
-子类应重写此方法以实现 2D 模式特有的初始化逻辑（如添加 Billboard、Label 等）。
+Creates Widget resources in 2D mode.
+Subclasses should override this method to implement 2D-specific initialization logic, such as adding a Billboard or Label.
 
 #### Parameters
 
@@ -245,7 +245,7 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](Engine.md)
 
-引擎实例
+The engine instance.
 
 #### Returns
 
@@ -261,7 +261,7 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-解除时钟与交互事件，移除时间轴节点和轨道数据。
+Unregisters clock and interaction events, and removes the timeline node and track data.
 
 #### Returns
 
@@ -277,13 +277,13 @@ UI 控制器类 widget 应设为 true。
 
 > **is3d**(): `boolean`
 
-判断当前场景是否处于 3D 模式。
+Determines whether the current scene is in 3D mode.
 
 #### Returns
 
 `boolean`
 
-若为 3D 模式返回 true，否则返回 false
+Returns true for 3D mode and false otherwise.
 
 #### Inherited from
 
@@ -295,7 +295,7 @@ UI 控制器类 widget 应设为 true。
 
 > **makeLabel**(`time`): `string`
 
-将指定仿真时刻格式化为时间轴标签。
+Formats the specified simulation time as a timeline label.
 
 #### Parameters
 
@@ -313,8 +313,8 @@ UI 控制器类 widget 应设为 true。
 
 > **morphSwitchHandle**(`_`): `void`
 
-场景模式切换处理。
-当场景在 2D/3D 之间切换时由引擎回调触发，子类可重写以实现自适应逻辑。
+Handles scene mode changes.
+Triggered by an engine callback when the scene switches between 2D and 3D; subclasses can override it to implement adaptive behavior.
 
 #### Parameters
 
@@ -322,7 +322,7 @@ UI 控制器类 widget 应设为 true。
 
 `SceneMode`
 
-切换后的场景模式
+The scene mode after switching.
 
 #### Returns
 
@@ -338,7 +338,7 @@ UI 控制器类 widget 应设为 true。
 
 > **offMorphSwitch**(`callback`): `void`
 
-移除场景模式切换监听。
+Removes the scene mode change listener.
 
 #### Parameters
 
@@ -346,7 +346,7 @@ UI 控制器类 widget 应设为 true。
 
 (`mode`) => `void`
 
-需要移除的回调函数
+The callback to remove.
 
 #### Returns
 
@@ -362,7 +362,7 @@ UI 控制器类 widget 应设为 true。
 
 > **onMorphSwitch**(`callback`): `void`
 
-注册场景模式切换监听。
+Registers a scene mode change listener.
 
 #### Parameters
 
@@ -370,7 +370,7 @@ UI 控制器类 widget 应设为 true。
 
 (`mode`) => `void`
 
-场景切换时的回调函数
+The callback invoked when the scene changes.
 
 #### Returns
 
@@ -386,7 +386,7 @@ UI 控制器类 widget 应设为 true。
 
 > **refresh**(): `void`
 
-刷新时间刻度与当前时刻指针。
+Refreshes the time ticks and current-time indicator.
 
 #### Returns
 
@@ -402,7 +402,7 @@ UI 控制器类 widget 应设为 true。
 
 > **refreshLabels**(): `void`
 
-按当前格式重新生成时间刻度标签。
+Regenerates the time tick labels using the current format.
 
 #### Returns
 
@@ -414,7 +414,7 @@ UI 控制器类 widget 应设为 true。
 
 > **register**(`engine`): `this`
 
-将时间轴挂载到引擎视图，并同步引擎时钟。
+Mounts the timeline in the engine view and synchronizes the engine clock.
 
 #### Parameters
 
@@ -436,7 +436,7 @@ UI 控制器类 widget 应设为 true。
 
 > **resize**(): `void`
 
-根据容器尺寸和轨道总高度重新布局时间轴。
+Relayouts the timeline based on the container size and total track height.
 
 #### Returns
 
@@ -448,8 +448,8 @@ UI 控制器类 widget 应设为 true。
 
 > **update**(`_`): `void`
 
-每帧更新回调。
-子类应重写此方法以实现逐帧驱动逻辑（如位置插值、状态同步等）。
+Per-frame update callback.
+Subclasses should override this method to implement frame-driven logic, such as position interpolation or state synchronization.
 
 #### Parameters
 
@@ -457,7 +457,7 @@ UI 控制器类 widget 应设为 true。
 
 `JulianDate`
 
-当前仿真时间（JulianDate）
+The current simulation time (JulianDate).
 
 #### Returns
 
@@ -473,7 +473,7 @@ UI 控制器类 widget 应设为 true。
 
 > **updateFromClock**(): `void`
 
-从引擎时钟同步当前时刻指针和拖动状态。
+Synchronizes the current-time indicator and drag state from the engine clock.
 
 #### Returns
 
@@ -485,7 +485,7 @@ UI 控制器类 widget 应设为 true。
 
 > **zoomFrom**(`amount`): `void`
 
-按当前游标位置缩放可见区间；大于 1 放大时间跨度，小于 1 缩小。
+Zooms the visible interval around the current cursor position; values greater than 1 expand the time span, while values less than 1 shrink it.
 
 #### Parameters
 
@@ -503,7 +503,7 @@ UI 控制器类 widget 应设为 true。
 
 > **zoomTo**(`startTime`, `stopTime`): `void`
 
-将可见时间范围调整为指定起止时刻。
+Adjusts the visible time range to the specified start and stop times.
 
 #### Parameters
 

@@ -6,10 +6,9 @@
 
 # Class: RealtimeOrbitComponent
 
-绘制当前时刻的瞬时轨道圈。
+Renders the instantaneous orbit at the current time.
 
-这个组件不同于 `path` 尾迹：它不显示历史/未来时间窗，而是根据当前
-位置与速度估算 osculating orbit，并绘制完整闭合的轨道面椭圆。
+Unlike the `path` trail, this component does not display a historical or future time window. It estimates the osculating orbit from the current position and velocity, then renders a complete closed ellipse in the orbital plane.
 
 ## Extends
 
@@ -41,9 +40,9 @@
 
 > **transformer**: `Transformer` \| `undefined` = `undefined`
 
-组件级 Transformer（可选）。
+Component-level Transformer (optional).
 
-建议用来表示“安装/物理基准”变换，而不是去污染 Entity.transformer。
+Recommended for representing installation or physical-reference transforms instead of modifying Entity.transformer.
 
 #### Inherited from
 
@@ -55,7 +54,7 @@
 
 > `readonly` **type**: `string` = `"RealtimeOrbitComponent"`
 
-组件类型标识。子类需要覆写。
+Component type identifier. Subclasses must override it.
 
 #### Overrides
 
@@ -69,10 +68,10 @@
 
 > **get** **id**(): `string`
 
-设置组件 id（全局唯一标识）。
+Sets the component id (globally unique identifier).
 
-- 通常由 BaseComponent.register() 自动生成
-- 也允许业务侧手动指定以便对齐外部系统 id
+- Usually generated automatically by BaseComponent.register()
+- Can also be specified manually to align with an external system id
 
 ##### Returns
 
@@ -82,10 +81,10 @@
 
 > **set** **id**(`value`): `void`
 
-设置组件 id（全局唯一标识）。
+Sets the component id (globally unique identifier).
 
-- 通常由 BaseComponent.register() 自动生成
-- 也允许业务侧手动指定以便对齐外部系统 id
+- Usually generated automatically by BaseComponent.register()
+- Can also be specified manually to align with an external system id
 
 ##### Parameters
 
@@ -109,7 +108,7 @@
 
 > **get** **name**(): `string`
 
-设置组件名称（用于按名称检索/管理）。
+Sets the component name for lookup and management by name.
 
 ##### Returns
 
@@ -119,7 +118,7 @@
 
 > **set** **name**(`value`): `void`
 
-设置组件名称（用于按名称检索/管理）。
+Sets the component name for lookup and management by name.
 
 ##### Parameters
 
@@ -157,7 +156,7 @@
 
 > **destroy**(): `void`
 
-销毁组件及其内部资源。
+Destroys the component and its internal resources.
 
 #### Returns
 
@@ -173,7 +172,7 @@
 
 > **getDebugAngles**(`time?`): \{ `inclinationDeg`: `number`; `raanDeg`: `number`; \} \| `undefined`
 
-便于外部调试时读取近似六根数角度。
+Reads approximate orbital-element angles for external debugging.
 
 #### Parameters
 
@@ -211,9 +210,9 @@
 
 > **register**(`object`): `RealtimeOrbitComponent`
 
-将组件注册到物理对象上。
+Registers the component with a physical object.
 
-子类通常在这里创建/绑定内部渲染适配层（Feature）或初始化资源。
+Subclasses typically create or bind an internal rendering adapter (Feature) or initialize resources here.
 
 #### Parameters
 
@@ -235,9 +234,9 @@
 
 > **resetTemporalState**(): `void`
 
-重置跨时间循环保留的临时状态。
+Resets temporary state preserved across time cycles.
 
-当仿真时间倒退或循环回起点时，宿主对象会调用该方法，让组件清理跨帧缓存。
+When simulation time moves backward or loops to its start, the host object calls this method so the component can clear cross-frame caches.
 
 #### Returns
 
@@ -253,7 +252,7 @@
 
 > **unregister**(): `void`
 
-从物理对象卸载组件，但不销毁组件实例（可用于临时禁用）。
+Unloads the component from the physical object without destroying the component instance, which can be used for temporary disabling.
 
 #### Returns
 
@@ -269,7 +268,7 @@
 
 > **update**(`spaceObject`, `time`): `void`
 
-每帧更新（仿真时间驱动）。
+Updates every frame, driven by simulation time.
 
 #### Parameters
 

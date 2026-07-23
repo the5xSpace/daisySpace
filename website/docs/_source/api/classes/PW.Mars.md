@@ -131,6 +131,22 @@ engine.switchToCelestial(mars);
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`CelestialBody`](PW.CelestialBody.md).[`id`](PW.CelestialBody.md#id)
+
+***
+
 ### options
 
 #### Get Signature

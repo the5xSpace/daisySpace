@@ -11,6 +11,8 @@ Particles will be positioned randomly within the box and have initial velocities
 
 ## Param
 
+**dimensions**
+
 The width, height and depth dimensions of the box.
 
 ## Constructors

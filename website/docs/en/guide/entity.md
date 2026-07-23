@@ -1,10 +1,10 @@
-# Entity 实体
+# Entity
 
-[Entity](/en/api/classes/Entity) 是 DaisySpace-Sdk 中场景对象的抽象载体。它本身不负责渲染，而是通过挂载 Feature 组件来获得可视化能力。
+[Entity](/en/api/classes/Entity) is the abstract container for scene objects in DaisySpace-Sdk. It does not render anything by itself; instead, it gains visualization capabilities by attaching Feature components.
 
-## 核心概念
+## Core Concept
 
-Entity 本身不渲染任何东西。它通过**挂载 Feature 组件**来获得可视化能力：
+Entity does not render anything by itself. It gains visualization capabilities by **attaching Feature components**:
 
 ```
 Entity（空壳） + PointFeature → 可渲染的点
@@ -12,9 +12,9 @@ Entity（空壳） + ModelFeature → 3D 模型
 Entity（空壳） + PointFeature + LabelFeature + TrailPathFeature → 组合效果
 ```
 
-这种"组合优于继承"的设计是理解 Entity 的关键。
+This "composition over inheritance" design is the key to understanding Entity.
 
-## 创建与注册
+## Creation and Registration
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -38,25 +38,25 @@ engine.getEntityById("custom-id")
 engine.getEntityByName("MyEntity")
 ```
 
-`bindEngine()` 是必须的——没有绑定引擎，Entity 不参与渲染循环，`getCurrentPosition()` 等方法返回 `undefined`。
+`bindEngine()` is required. Without an engine binding, Entity does not participate in the render loop and methods such as `getCurrentPosition()` return `undefined`.
 
-## 位置系统
+## Position System
 
-`entity.position` 接受三种类型，对应三种位置语义：
+`entity.position` accepts three types with different position semantics:
 
-| 类型 | 参考系 | 适用场景 |
+| Type | Reference frame | Use case |
 |------|--------|----------|
-| `Cartesian3` | ECEF | 固定点位（地面站、静态标记） |
-| `TrajectorySample` | 惯性系（可指定） | 轨道物体（卫星、天体） |
-| `TrajectorySampleBodyFixed` | ECEF | 地表运动物体（飞行器、船舶） |
+| `Cartesian3` | ECEF | Fixed locations (ground stations, static markers) |
+| `TrajectorySample` | Inertial frame (configurable) | Orbital objects (satellites, celestial bodies) |
+| `TrajectorySampleBodyFixed` | ECEF | Objects moving over the surface (aircraft, vessels) |
 
-### 静态位置
+### Static Position
 
 ```typescript
 entity.position = Daisy.Cartesian3.fromDegrees(116.4, 39.9, 500_000)
 ```
 
-### 时序轨迹（TrajectorySample）
+### Time-Dependent Trajectory (TrajectorySample)
 
 ```typescript
 const traj = new Daisy.TrajectorySample(Daisy.ReferenceFrame.INERTIAL, {
@@ -73,9 +73,9 @@ traj.pushData({ time: /* t + 60s */, position: Daisy.Cartesian3.fromDegrees(120.
 entity.position = traj
 ```
 
-`TrajectorySample` 支持三种插值算法：`"LAGRANGE"`（默认）、`"LINEAR"`、`"HERMITE"`。
+`TrajectorySample` supports three interpolation algorithms: `"LAGRANGE"` (default), `"LINEAR"`, and `"HERMITE"`.
 
-### 体固坐标系轨迹（TrajectorySampleBodyFixed）
+### Body-Fixed Trajectory (TrajectorySampleBodyFixed)
 
 ```typescript
 const traj = new Daisy.TrajectorySampleBodyFixed()
@@ -83,9 +83,9 @@ traj.pushData({ time, position: fixedPositionECEF })
 entity.position = traj
 ```
 
-强制使用 `ReferenceFrame.FIXED`，`evaluateECEF()` 始终返回 ECEF 坐标。
+It always uses `ReferenceFrame.FIXED`, and `evaluateECEF()` always returns ECEF coordinates.
 
-### 运行时位置查询
+### Runtime Position Queries
 
 ```typescript
 // 按指定时间查询
@@ -111,7 +111,7 @@ entity.isTrajectorySampleBodyFixed() // TrajectorySampleBodyFixed?
 entity.supportsInertialSample()
 ```
 
-## Feature 管理
+## Feature Management
 
 ```typescript
 // 挂载 Feature
@@ -124,16 +124,16 @@ entity.removeFeatureById("id")    // 按 ID 移除
 entity.removeFeatureByName("name") // 按名称移除
 ```
 
-`addFeature()` 会：
-1. 将 `entity.celestialEllipsoid` 写入 `feature.options.ellipsoid`
-2. 检查当前时间是否在实体有效区间内，是则立即调用 `feature.register(this)`
-3. 将 Feature 加入内部 Map
+`addFeature()` does the following:
+1. Write `entity.celestialEllipsoid` to `feature.options.ellipsoid`
+2. Check whether the current time is within the entity's validity interval, and call `feature.register(this)` immediately when it is
+3. Add the Feature to the internal Map
 
-> **注意**：`BoundBoxFeature` 通过 `addFeature()` 添加会抛出异常。包围盒是 Entity 的内部单例，需通过 `entity.getOrCreateBoundBoxFeature()` 获取。
+> **Note:** Adding `BoundBoxFeature` through `addFeature()` throws an exception. The bounding box is an internal Entity singleton and must be obtained through `entity.getOrCreateBoundBoxFeature()`.
 
-## 交互事件
+## Interaction Events
 
-Entity 提供鼠标交互事件链，事件从 Feature 向上冒泡到 Entity：
+Entity provides a mouse interaction event chain. Events bubble from Features up to Entity:
 
 ```typescript
 entity.onClick((e) => {
@@ -150,7 +150,7 @@ entity.offClick(handler)    // 移除指定 handler
 entity.offClick()           // 移除全部 click handler
 ```
 
-交互状态（用于 LOD 和 UI 判断）：
+Interaction state, used for LOD and UI decisions:
 
 ```typescript
 entity.activated          // 是否被选中
@@ -158,9 +158,9 @@ entity.hovered            // 是否被悬停
 entity.interaction        // InteractionComponent 对象（读写 pick/hover/click 状态）
 ```
 
-## 变换与矩阵
+## Transforms and Matrices
 
-Entity 拥有独立的 `transformer`，叠加平移、旋转、缩放后合成世界矩阵：
+Entity has an independent `transformer`; translation, rotation, and scale are combined into the world matrix:
 
 ```typescript
 // 访问 Transformer
@@ -179,7 +179,7 @@ entity.getCurrentMatrix()       // 当前仿真时间的矩阵
 // 最终矩阵 = baseMatrix × initTransform × transform × preset × scale
 ```
 
-## 显示与可见性
+## Display and Visibility
 
 ```typescript
 entity.show = true          // 基础显隐开关
@@ -189,9 +189,9 @@ entity.getShowValue(time)   // 获取某时刻的显隐状态（考虑父子链 
 entity.setShowProperty(someTimeVaryingProperty)
 ```
 
-`getShowValue()` 会递归检查：`自己的 show 值 & 时间有效性 & 父实体的 show 值`。
+`getShowValue()` recursively checks `自己的 show 值 & 时间有效性 & 父实体的 show 值`.
 
-## 包围盒与碰撞
+## Bounding Box and Collision
 
 ```typescript
 // 获取/创建包围盒
@@ -202,9 +202,9 @@ const bbox = entity.getOrCreateBoundBoxFeature({
 bbox.isColliding(otherEntity.getOrCreateBoundBoxFeature())  // OBB 碰撞检测
 ```
 
-Entity 内部持有包围盒单例，所有挂载的 Feature 的包围球会自动合并。
+Entity owns a bounding-box singleton internally, and the bounding spheres of all attached Features are merged automatically.
 
-## 体轴调试
+## Body-Axis Debugging
 
 ```typescript
 // 仅在 3D 模式下生效，显示 X/Y/Z 坐标轴
@@ -212,7 +212,7 @@ entity.setBodyAxis({ length: 1000000, width: 2 })
 entity.bodyAxisVectors  // { x, y, z } 三个方向向量
 ```
 
-## 父子关系
+## Parent-Child Relationships
 
 ```typescript
 entity.setParent(parentEntity)
@@ -222,11 +222,11 @@ entity.parentId = "parent-id"
 entity.getParent()   // 解析后的父实体
 ```
 
-父子关系影响显隐状态（子实体的 `getShowValue()` 会检查父实体的 show）。
+Parent-child relationships affect visibility; a child entity's `getShowValue()` checks the parent's show value.
 
-## LOD 判定
+## LOD Checks
 
-框架在每帧渲染前自动执行以下判定（结果写入实体属性）：
+Before each frame, the framework automatically performs the following checks and writes the results to entity properties:
 
 ```typescript
 entity.isBehindCamera         // 是否在相机背后
@@ -239,9 +239,9 @@ entity.LODAnyCameraWithinMaxDistance(positionECEF, maxDistance)
 entity.isOccludedEllipsoid(positionECEF, ellipsoid, camera?)
 ```
 
-> **注意**：这些属性是框架自动赋值的只读快照，不应手动写入。
+> **Note:** These properties are read-only snapshots assigned by the framework and should not be written manually.
 
-## 生命周期
+## Lifecycle
 
 ```
 new Entity() → bindEngine() → addEntity() → addFeature() → [帧循环 update]
@@ -260,7 +260,7 @@ entity.onDestroy(() => { /* 释放引用 */ })
 entity.destroy()
 ```
 
-## 自定义属性
+## Custom Properties
 
 ```typescript
 // 挂载任意键值对
@@ -270,40 +270,40 @@ entity.customProperties = { category: "satellite", priority: 1 }
 entity.description = "通信卫星 ST-001"
 ```
 
-## 事件系统
+## Event System
 
-### 生命周期事件
+### Lifecycle Events
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `entity.onBeforeRegister(callback)` | 注册前回调 |
-| `entity.onRegister(callback)` | 注册后回调，参数 `(spaceObject: Entity)` |
-| `entity.onBeforeUpdate(callback)` | 每帧更新前，参数 `(spaceObject, time)` |
-| `entity.onUpdate(callback)` | 每帧更新后，参数 `(spaceObject, time)` |
-| `entity.onBeforeDestroy(callback)` | 销毁前回调 |
-| `entity.onDestroy(callback)` | 销毁后回调 |
+| `entity.onBeforeRegister(callback)` | Callback before registration |
+| `entity.onRegister(callback)` | Callback after registration, with `(spaceObject: Entity)` |
+| `entity.onBeforeUpdate(callback)` | Callback before each frame update, with `(spaceObject, time)` |
+| `entity.onUpdate(callback)` | Callback after each frame update, with `(spaceObject, time)` |
+| `entity.onBeforeDestroy(callback)` | Callback before destruction |
+| `entity.onDestroy(callback)` | Callback after destruction |
 
-### 选择事件
+### Selection Events
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `entity.onSelected(callback)` | 单击拾取到该实体时触发 |
-| `entity.onUnSelected(callback)` | 失去选中状态时触发 |
+| `entity.onSelected(callback)` | Fires when the entity is picked by a click |
+| `entity.onUnSelected(callback)` | Fires when the entity loses its selected state |
 
-`activated` 属性可在回调中读取当前选中状态。
+Read the current selection state from the `activated` property inside callbacks.
 
-### 交互事件
+### Interaction Events
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `entity.onClick(handler)` | 单击 |
-| `entity.offClick(handler?)` | 移除 |
-| `entity.onDblClick(handler)` | 双击 |
-| `entity.offDblClick(handler?)` | 移除 |
-| `entity.onMouseEnter(handler)` | 鼠标进入 |
-| `entity.offMouseEnter(handler?)` | 移除 |
-| `entity.onMouseLeave(handler)` | 鼠标离开 |
-| `entity.offMouseLeave(handler?)` | 移除 |
+| `entity.onClick(handler)` | Click |
+| `entity.offClick(handler?)` | Remove listener |
+| `entity.onDblClick(handler)` | Double-click |
+| `entity.offDblClick(handler?)` | Remove listener |
+| `entity.onMouseEnter(handler)` | Mouse enter |
+| `entity.offMouseEnter(handler?)` | Remove listener |
+| `entity.onMouseLeave(handler)` | Mouse leave |
+| `entity.offMouseLeave(handler?)` | Remove listener |
 
 ```typescript
 entity.onClick((e) => {
@@ -315,19 +315,19 @@ entity.onMouseEnter((e) => {
 })
 ```
 
-交互事件按需安装——首次调用 `onClick` / `onMouseEnter` 等方法时自动注册到底层 ViewerEventHandle。`enableSubmitToEntity(true)` 的 Feature 也会向上冒泡到 Entity。
+Interaction events are installed on demand. The first call to methods such as `onClick` or `onMouseEnter` automatically registers the underlying ViewerEventHandle. Features with `enableSubmitToEntity(true)` also bubble events up to Entity.
 
-## 常见陷阱
+## Common Pitfalls
 
-> **陷阱 1 — `instanceof TrajectorySample` 跨模块失效**：在跨 iframe / module 场景下 `instanceof` 可能失效。正确做法是用 `entity.isTrajectorySample()` / `entity.isTrajectorySampleBodyFixed()` 替代。
+> **Pitfall 1 — `instanceof TrajectorySample` fails across modules**: `instanceof` may fail across iframe or module boundaries. Use `entity.isTrajectorySample()` / `entity.isTrajectorySampleBodyFixed()` instead.
 >
-> **陷阱 2 — `getCurrentPosition()` 返回 undefined**：通常是因为 `engine.clock.currentTime` 与轨迹数据的时间范围不匹配。确认已调用 `engine.setSceneTime()`，且 `engine.play()` 后仿真时间在轨迹区间内。
+> **Pitfall 2 — `getCurrentPosition()` returns undefined**: This usually means `engine.clock.currentTime` does not fall within the trajectory data range. Confirm that `engine.setSceneTime()` was called and that simulation time remains within the trajectory interval after `engine.play()`.
 >
-> **陷阱 3 — `bindEngine()` 不可忘**：未调用 `bindEngine()` 的 Entity 不参与渲染循环，`getCurrentPosition()` 等方法返回 `undefined`。
+> **Pitfall 3 — Do not forget `bindEngine()`**: An Entity without `bindEngine()` does not participate in the render loop, so methods such as `getCurrentPosition()` return `undefined`.
 >
-> **陷阱 4 — 高性能模式下的 Feature 裁剪**：非活跃实体的非白名单 Feature 不会触发 `update()`。见 [Engine 高性能模式](/en/guide/engine#高性能模式)。
+> **Pitfall 4 — Feature culling in high-performance mode**: Non-whitelisted Features on inactive entities do not trigger `update()`. See [Engine high-performance mode](/en/guide/engine#高性能模式).
 >
-> **陷阱 5 — 零法线崩溃**：如果自定义几何体或模型包含 (0,0,0) 法线，`transformToWorldCoordinates` 中的 `normalize()` 会报 `"normalized result is not a number"`。确保几何体法线非零。
+> **Pitfall 5 — Zero-normal crash**: If custom geometry or a model contains a (0,0,0) normal, `normalize()` in `transformToWorldCoordinates` reports `"normalized result is not a number"`. Ensure that geometry normals are non-zero.
 
 
 ---

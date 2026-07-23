@@ -6,15 +6,15 @@
 
 # Class: TimeSchedule
 
-仿真时间调度器 — 管理时间区间任务和时间点任务，在仿真时间推进时触发回调。
+Simulation-time scheduler that manages interval and point-in-time tasks and triggers callbacks as simulation time advances.
 
-核心职责：
-1. **任务管理**：添加/移除/清空时间区间任务（[TimeTask](TimeTask.md)）和时间点任务（[TimePointTask](TimePointTask.md)）
-2. **状态驱动**：每帧调用 `update(curTime)` 推进仿真时间，自动检测任务进入/离开/触发
-3. **事件通知**：任务状态变更时通过 `onTaskStatusChange` 发送事件，供 UI 组件（如 [TaskTimeLineWidget](TaskTimeLineWidget.md)）响应
-4. **状态查询**：通过 `getTasks()` 获取所有任务的当前状态
+Core responsibilities:
+1. **Task management**: add, remove, and clear interval tasks ([TimeTask](TimeTask.md)) and point-in-time tasks ([TimePointTask](TimePointTask.md))
+2. **State-driven progression**: call `update(curTime)` every frame to advance simulation time and automatically detect task entry, exit, and triggering
+3. **Event notifications**: emit `onTaskStatusChange` when task state changes so UI components such as [TaskTimeLineWidget](TaskTimeLineWidget.md) can respond
+4. **State queries**: use `getTasks()` to obtain the current state of all tasks
 
-时间区间任务的状态流转：
+Interval-task state transitions:
 ```
 idle → entered（onEnter 回调）→ active（onTick 每帧）→ finished（onLeave 回调）
  ↑ │
@@ -56,7 +56,7 @@ function renderLoop() {
 
 > **new TimeSchedule**(`ctx`): `TimeSchedule`
 
-创建仿真时间调度器。
+Creates a simulation-time scheduler.
 
 #### Parameters
 
@@ -64,7 +64,7 @@ function renderLoop() {
 
 [`Engine`](Engine.md)
 
-上下文对象，通常是 [Engine](Engine.md) 实例，会作为 `ctx` 参数传递给所有任务回调
+Context object, usually an [Engine](Engine.md) instance, passed as the `ctx` parameter to every task callback.
 
 #### Returns
 
@@ -76,7 +76,7 @@ function renderLoop() {
 
 > **add**(`task`): `void`
 
-添加时间区间任务。
+Adds an interval task.
 
 #### Parameters
 
@@ -84,7 +84,7 @@ function renderLoop() {
 
 [`TimeTask`](TimeTask.md)
 
-要添加的时间区间任务
+Interval task to add.
 
 #### Returns
 
@@ -103,7 +103,7 @@ schedule.add(task);
 
 > **addPoint**(`task`): `void`
 
-添加时间点任务。
+Adds a point-in-time task.
 
 #### Parameters
 
@@ -111,7 +111,7 @@ schedule.add(task);
 
 [`TimePointTask`](TimePointTask.md)
 
-要添加的时间点任务
+Point-in-time task to add.
 
 #### Returns
 
@@ -130,7 +130,7 @@ schedule.addPoint(pointTask);
 
 > **clear**(): `void`
 
-清空所有任务（区间任务和时间点任务全部移除，状态重置为 idle）。
+Clears all tasks (removes both interval and point-in-time tasks and resets their state to idle).
 
 #### Returns
 
@@ -149,12 +149,12 @@ console.log(schedule.getTasks().length); // 0
 
 > **destroy**(): `void`
 
-销毁调度器并清理所有资源。
+Destroys the scheduler and cleans up all resources.
 
-销毁后：
-- 所有任务被清空并重置为 idle 状态
-- 所有事件监听器被移除
-- 后续的 `add`/`addPoint`/`update` 调用会被静默忽略
+After destruction:
+- all tasks are cleared and reset to idle
+- all event listeners are removed
+- subsequent `add`/`addPoint`/`update` calls are silently ignored
 
 #### Returns
 
@@ -172,15 +172,15 @@ schedule.destroy();
 
 > **getTasks**(): readonly [`TimeTask`](TimeTask.md)\<`unknown`\>[]
 
-获取所有已注册的时间区间任务（只读数组）。
+Gets all registered interval tasks as a read-only array.
 
-可用于 UI 组件遍历任务列表、计算进度、展示状态等。
+Useful for UI components to iterate over tasks, calculate progress, and display status.
 
 #### Returns
 
 readonly [`TimeTask`](TimeTask.md)\<`unknown`\>[]
 
-当前调度器中所有 [TimeTask](TimeTask.md) 的只读数组
+Read-only array of all [TimeTask](TimeTask.md) instances in the scheduler.
 
 #### Example
 
@@ -197,7 +197,7 @@ tasks.forEach(task => {
 
 > **offTaskStatusChange**(`handler`): `void`
 
-取消订阅任务状态变更事件。
+Unsubscribes from task-status change events.
 
 #### Parameters
 
@@ -205,7 +205,7 @@ tasks.forEach(task => {
 
 `TaskStatusChangeHandler`
 
-之前通过 [onTaskStatusChange](#ontaskstatuschange) 注册的回调函数
+Callback previously registered through [onTaskStatusChange](#ontaskstatuschange).
 
 #### Returns
 
@@ -226,10 +226,10 @@ schedule.offTaskStatusChange(handler);
 
 > **onTaskStatusChange**(`handler`): `void`
 
-订阅任务状态变更事件。
+Subscribes to task-status change events.
 
-当任意 [TimeTask](TimeTask.md) 的状态发生转换时（idle→entered / entered→active / active→idle），
-回调会通过微任务队列调度执行，支持多个监听器同时订阅。
+When any [TimeTask](TimeTask.md) changes state (idle→entered / entered→active / active→idle),
+the callback is scheduled through the microtask queue, and multiple listeners can subscribe simultaneously.
 
 #### Parameters
 
@@ -237,7 +237,7 @@ schedule.offTaskStatusChange(handler);
 
 `TaskStatusChangeHandler`
 
-状态变更回调函数
+State-change callback.
 
 #### Returns
 
@@ -260,7 +260,7 @@ schedule.onTaskStatusChange(({ task, prevStatus, currentStatus }) => {
 
 > **remove**(`task`): `boolean`
 
-移除指定时间区间任务。
+Removes the specified interval task.
 
 #### Parameters
 
@@ -268,13 +268,13 @@ schedule.onTaskStatusChange(({ task, prevStatus, currentStatus }) => {
 
 [`TimeTask`](TimeTask.md)
 
-要移除的任务实例
+Task instance to remove.
 
 #### Returns
 
 `boolean`
 
-是否移除成功（false 表示该任务不在调度器中）
+Whether removal succeeded (false means the task is not in the scheduler).
 
 #### Example
 
@@ -289,7 +289,7 @@ if (removed) console.log("任务已移除");
 
 > **removeById**(`id`): `boolean`
 
-根据任务 id 移除任务（支持区间任务和时间点任务）。
+Removes a task by id (supports both interval and point-in-time tasks).
 
 #### Parameters
 
@@ -297,13 +297,13 @@ if (removed) console.log("任务已移除");
 
 `string`
 
-任务唯一标识
+Unique task identifier.
 
 #### Returns
 
 `boolean`
 
-是否移除成功
+Whether removal succeeded.
 
 #### Example
 
@@ -317,7 +317,7 @@ schedule.removeById("observation-window");
 
 > **removePoint**(`task`): `boolean`
 
-移除指定时间点任务。
+Removes the specified point-in-time task.
 
 #### Parameters
 
@@ -325,13 +325,13 @@ schedule.removeById("observation-window");
 
 [`TimePointTask`](TimePointTask.md)
 
-要移除的任务实例
+The task instance to remove.
 
 #### Returns
 
 `boolean`
 
-是否移除成功
+Whether the task was removed successfully.
 
 ***
 
@@ -339,13 +339,13 @@ schedule.removeById("observation-window");
 
 > **update**(`curTime`): `void`
 
-推进调度器时间（应在渲染循环中每帧调用）。
+Advances scheduler time and should be called every frame in the render loop.
 
-此方法会遍历所有已注册的任务，根据当前仿真时间判断：
-1. 时间区间任务：检测是否进入/离开/在区间内，触发对应回调和状态变更事件
-2. 时间点任务：检测是否到达触发时间点，触发 `onTrigger` 回调
+This method iterates over all registered tasks and uses the current simulation time to determine:
+1. Interval tasks: whether they are entered, exited, or active, triggering the corresponding callbacks and state-change events
+2. Point-in-time tasks: whether their trigger time has been reached, triggering the `onTrigger` callback
 
-内部支持节流控制：若 `_detectIntervalMs > 0`，则按间隔节流检测。
+Throttling is supported internally: when `_detectIntervalMs > 0`, detection is throttled to that interval.
 
 #### Parameters
 
@@ -353,7 +353,7 @@ schedule.removeById("observation-window");
 
 `JulianDate`
 
-当前仿真时间（JulianDate），通常从 `engine.getCurrentTime()` 获取
+Current simulation time (JulianDate), usually obtained from `engine.getCurrentTime()`.
 
 #### Returns
 

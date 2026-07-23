@@ -16,7 +16,7 @@ Turbulence material configuration.
 
 > `optional` **colorA?**: [`DColor`](DColor.md)
 
-Turbulence low value color.
+Turbulence low-value color.
 
 ***
 
@@ -24,7 +24,7 @@ Turbulence low value color.
 
 > `optional` **colorB?**: [`DColor`](DColor.md)
 
-Turbulence high value color.
+Turbulence high-value color.
 
 ***
 

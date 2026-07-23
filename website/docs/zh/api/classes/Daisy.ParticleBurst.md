@@ -10,17 +10,25 @@ Represents a burst of [Particle](Daisy.Particle.md)s from a [ParticleSystem](Dai
 
 ## Param
 
+**options**
+
 An object with the following properties:
 
 ## Param
+
+**options.time**
 
 The time in seconds after the beginning of the particle system's lifetime that the burst will occur.
 
 ## Param
 
+**options.minimum**
+
 The minimum number of particles emmitted in the burst.
 
 ## Param
+
+**options.maximum**
 
 The maximum number of particles emitted in the burst.
 

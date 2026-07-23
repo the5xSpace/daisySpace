@@ -73,11 +73,19 @@ function targetPath(docsDir, locale, file) {
   return path.join(docsDir, locale, ...file.split("/"));
 }
 
-export async function prepareDocuments({ docsDir } = {}) {
+export async function prepareDocuments({ docsDir, files: requestedFiles = null } = {}) {
   const sourceDir = path.join(docsDir, "_source");
   if (!(await exists(sourceDir))) throw new Error(`documentation source directory not found: ${sourceDir}`);
-  const files = await listMarkdownFiles(sourceDir);
-  const sourceSet = new Set(files);
+  const allFiles = requestedFiles?.length > 0 ? null : await listMarkdownFiles(sourceDir);
+  const files = requestedFiles?.length > 0 ? requestedFiles : allFiles;
+  const unknownFiles = [];
+  for (const file of files) {
+    if (!(await exists(sourcePath(docsDir, file)))) unknownFiles.push(file);
+  }
+  if (unknownFiles.length > 0) {
+    throw new Error(`documentation source file not found: ${unknownFiles.join(", ")}`);
+  }
+  const sourceSet = allFiles ? new Set(allFiles) : null;
   let updatedZh = 0;
   let createdEn = 0;
   let removedTargets = 0;
@@ -92,11 +100,13 @@ export async function prepareDocuments({ docsDir } = {}) {
     }
   }
 
-  for (const locale of LOCALES) {
-    for (const file of await listMarkdownFiles(path.join(docsDir, locale))) {
-      if (!sourceSet.has(file)) {
-        await rm(targetPath(docsDir, locale, file), { force: true });
-        removedTargets += 1;
+  if (sourceSet) {
+    for (const locale of LOCALES) {
+      for (const file of await listMarkdownFiles(path.join(docsDir, locale))) {
+        if (!sourceSet.has(file)) {
+          await rm(targetPath(docsDir, locale, file), { force: true });
+          removedTargets += 1;
+        }
       }
     }
   }
@@ -108,17 +118,31 @@ export async function acceptDocuments({
   i18nDir,
   allowPending = false,
   sourceCommit = null,
+  files: requestedFiles = null,
 } = {}) {
-  await prepareDocuments({ docsDir });
+  await prepareDocuments({ docsDir, files: requestedFiles });
   const state = await loadState(i18nDir);
-  const files = await listMarkdownFiles(path.join(docsDir, "_source"));
-  const nextManifest = {
-    version: MANIFEST_VERSION,
-    sourceLocale: "zh-CN",
-    glossaryHash: state.glossaryHash,
-    sourceCommit,
-    files: {},
-  };
+  const scoped = requestedFiles?.length > 0;
+  const allFiles = scoped ? null : await listMarkdownFiles(path.join(docsDir, "_source"));
+  const files = scoped ? requestedFiles : allFiles;
+
+  // A scoped accept updates only the requested manifest entries. This keeps a
+  // slow or incomplete document from blocking already translated batches.
+  const nextManifest = scoped
+    ? {
+        ...state.manifest,
+        sourceLocale: "zh-CN",
+        glossaryHash: state.glossaryHash,
+        sourceCommit: sourceCommit ?? state.manifest.sourceCommit ?? null,
+        files: { ...state.manifest.files },
+      }
+    : {
+        version: MANIFEST_VERSION,
+        sourceLocale: "zh-CN",
+        glossaryHash: state.glossaryHash,
+        sourceCommit,
+        files: {},
+      };
   let pendingBlocks = 0;
 
   for (const file of files) {
@@ -136,7 +160,7 @@ export async function acceptDocuments({
     throw new Error(`${pendingBlocks} pending translations remain; Codex must finish docs/en before acceptance`);
   }
   await writeAtomic(state.manifestPath, `${JSON.stringify(nextManifest)}\n`);
-  return { files: files.length, pendingBlocks, manifest: nextManifest };
+  return { files: files.length, pendingBlocks, scoped, manifest: nextManifest };
 }
 
 export async function checkDocuments({ docsDir, i18nDir, allowPending = false } = {}) {
@@ -191,9 +215,19 @@ export async function checkDocuments({ docsDir, i18nDir, allowPending = false } 
   return { files: sourceFiles.length, pendingBlocks };
 }
 
-export async function diffDocuments({ docsDir, i18nDir } = {}) {
+export async function diffDocuments({ docsDir, i18nDir, files: requestedFiles = null } = {}) {
   const state = await loadState(i18nDir);
-  const current = await listMarkdownFiles(path.join(docsDir, "_source"));
+  const scoped = requestedFiles?.length > 0;
+  const current = scoped
+    ? requestedFiles
+    : await listMarkdownFiles(path.join(docsDir, "_source"));
+  const unknownFiles = [];
+  for (const file of current) {
+    if (!(await exists(sourcePath(docsDir, file)))) unknownFiles.push(file);
+  }
+  if (unknownFiles.length > 0) {
+    throw new Error(`documentation source file not found: ${unknownFiles.join(", ")}`);
+  }
   const currentSet = new Set(current);
   const files = [];
 
@@ -247,20 +281,23 @@ export async function diffDocuments({ docsDir, i18nDir } = {}) {
     }
   }
 
-  for (const file of Object.keys(state.manifest.files)) {
-    if (!currentSet.has(file)) files.push({
-      file,
-      status: "deleted",
-      sourceChanged: true,
-      targetChanged: true,
-      validationError: null,
-      pendingBlocks: 0,
-      pendingCharacters: 0,
-      blocks: [],
-    });
+  if (!scoped) {
+    for (const file of Object.keys(state.manifest.files)) {
+      if (!currentSet.has(file)) files.push({
+        file,
+        status: "deleted",
+        sourceChanged: true,
+        targetChanged: true,
+        validationError: null,
+        pendingBlocks: 0,
+        pendingCharacters: 0,
+        blocks: [],
+      });
+    }
   }
   return {
     sourceCommit: state.manifest.sourceCommit ?? null,
+    scoped,
     modifiedFiles: files.length,
     pendingBlocks: files.reduce((total, file) => total + file.pendingBlocks, 0),
     pendingCharacters: files.reduce((total, file) => total + file.pendingCharacters, 0),

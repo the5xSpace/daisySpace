@@ -8,9 +8,9 @@
 
 > **PolylineOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-PolylineFeature 配置。
+PolylineFeature configuration.
 
-通过 `pathway` 描述线段路径，支持点位、实体引用与父实体占位符。
+Describes the line path through `pathway`, supporting positions, entity references, and parent-entity placeholders.
 
 ## Type Declaration
 
@@ -18,7 +18,7 @@ PolylineFeature 配置。
 
 > `optional` **alwaysOnTop?**: `boolean`
 
-是否始终可见（被地球遮挡时使用 depthFailMaterial 绘制）。
+Whether the line is always visible (uses depthFailMaterial when occluded by the Earth).
 
 #### Default
 
@@ -30,15 +30,15 @@ false
 
 > `optional` **arcType?**: `Daisy.ArcType`
 
-折线插值方式。
+Polyline interpolation method.
 
-用于控制相邻采样点之间如何连线。
+Controls how adjacent sample points are connected.
 
 ### clampToGround?
 
 > `optional` **clampToGround?**: `boolean`
 
-是否贴地。
+Whether to clamp to the ground.
 
 #### Default
 
@@ -50,9 +50,9 @@ true
 
 > `optional` **classificationType?**: `Daisy.ClassificationType`
 
-贴地折线分类目标。
+Classification target for the ground-clamped polyline.
 
-仅在 `clampToGround=true` 且底层使用 GroundPolylinePrimitive 时生效。
+Effective only when `clampToGround=true` and the underlying implementation uses GroundPolylinePrimitive.
 
 #### Default
 
@@ -64,18 +64,18 @@ Daisy.ClassificationType.BOTH
 
 > `optional` **depthFailMaterial?**: [`DMaterial`](DMaterial.md)
 
-深度失败材质（可选）。
+Depth-fail material (optional).
 
 ### ellipsoid?
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-贴地计算与天体跟随所使用的中心天体定义。
+Central-body definition used for ground calculations and celestial-body following.
 
-注意：一旦该组件添加到实体上，会被实体自身的中心天体配置覆盖，
-组件将始终遵循实体当前绑定的中心天体。
+Note: once this component is added to an Entity, this value is overridden by the Entity's own central-body configuration.
+The component always follows the central body currently bound to the Entity.
 
-注意：当使用非默认中心天体时，`pathway` 中的点位应为该天体局部坐标。
+Note: when using a non-default central body, positions in `pathway` must use that body's local coordinates.
 
 #### Default
 
@@ -87,7 +87,7 @@ CelestialEllipsoid.Earth()
 
 > `optional` **loop?**: `boolean`
 
-是否闭合为环。
+Whether to close the line into a loop.
 
 #### Default
 
@@ -99,27 +99,27 @@ false
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-材质。
+Material.
 
 ### name?
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name (for display or debugging).
 
 ### pathway?
 
 > `optional` **pathway?**: [`Pathway`](Pathway.md)
 
-折线路径。
+Polyline path.
 
-支持点位、实体引用与父实体占位符。
+Supports positions, entity references, and parent-entity placeholders.
 
 ### show?
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show the polyline.
 
 #### Default
 
@@ -131,8 +131,8 @@ true
 
 > `optional` **sortBefore?**: `boolean`
 
-贴地采样前是否按地理顺序排序点位。
-对于时间序列轨迹应设为 false 以保持时间顺序。
+Whether to sort positions geographically before ground sampling.
+Set to false for time-series trajectories to preserve time order.
 
 #### Default
 
@@ -144,27 +144,27 @@ true
 
 > `optional` **trackingTarget?**: `PolylineTrackTarget`
 
-`trackTarget` 的兼容别名，与 Feature.enableTracking 的命名保持一致。
+Compatibility alias for `trackTarget`, matching the naming of Feature.enableTracking.
 
 ### trackTarget?
 
 > `optional` **trackTarget?**: `PolylineTrackTarget`
 
-自动追踪目标。
+Target to track automatically.
 
-当配置该项时，PolylineFeature 会把目标补入 `pathway`：
-- 未提供 pathway：使用 `[REF.SELF_ENTITY, trackTarget]`
-- pathway 只有宿主/起点：追加 `trackTarget` 作为终点
+When configured, PolylineFeature adds the target to `pathway`:
+- When pathway is not provided: use `[REF.SELF_ENTITY, trackTarget]`
+- When pathway contains only the host/start point: append `trackTarget` as the endpoint
 
-适合表达“宿主实体始终连到某个动态目标”的链路线。
+This is useful for expressing a link where the host Entity always connects to a dynamic target.
 
 ### width?
 
 > `optional` **width?**: `number`
 
-线宽（像素）。
+Line width in pixels.
 
-最小为 1。
+The minimum is 1.
 
 #### Default
 

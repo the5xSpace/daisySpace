@@ -6,10 +6,9 @@
 
 # Class: Link
 
-管理两个对象之间的链路绘制与传输效果。
+Manages link rendering and transmission effects between two objects.
 
-组件会综合目标端可见性、时间计划以及中心天体遮挡结果，
-决定当前时刻是否绘制链路线。
+The component combines target visibility, time schedules, and central-body occlusion results to determine whether to render the link at the current time.
 
 ## Example
 
@@ -33,7 +32,7 @@ sat.addLink({
 
 > **new Link**(`options`): `Link`
 
-创建链路组件；注册到物理对象后才会创建链路线。
+Creates the link component; the link geometry is created only after registration with a physical object.
 
 #### Parameters
 
@@ -55,9 +54,9 @@ sat.addLink({
 
 > **transformer**: `Transformer` \| `undefined` = `undefined`
 
-组件级 Transformer（可选）。
+Component-level Transformer (optional).
 
-建议用来表示“安装/物理基准”变换，而不是去污染 Entity.transformer。
+Recommended for representing installation or physical-reference transforms instead of modifying Entity.transformer.
 
 #### Inherited from
 
@@ -69,7 +68,7 @@ sat.addLink({
 
 > `readonly` **type**: `string` = `"Link"`
 
-组件类型标识。子类需要覆写。
+Component type identifier. Subclasses must override it.
 
 #### Overrides
 
@@ -83,10 +82,10 @@ sat.addLink({
 
 > **get** **id**(): `string`
 
-设置组件 id（全局唯一标识）。
+Sets the component id (globally unique identifier).
 
-- 通常由 BaseComponent.register() 自动生成
-- 也允许业务侧手动指定以便对齐外部系统 id
+- Usually generated automatically by BaseComponent.register()
+- Can also be specified manually to align with an external system id
 
 ##### Returns
 
@@ -96,10 +95,10 @@ sat.addLink({
 
 > **set** **id**(`value`): `void`
 
-设置组件 id（全局唯一标识）。
+Sets the component id (globally unique identifier).
 
-- 通常由 BaseComponent.register() 自动生成
-- 也允许业务侧手动指定以便对齐外部系统 id
+- Usually generated automatically by BaseComponent.register()
+- Can also be specified manually to align with an external system id
 
 ##### Parameters
 
@@ -123,7 +122,7 @@ sat.addLink({
 
 > **get** **name**(): `string`
 
-设置组件名称（用于按名称检索/管理）。
+Sets the component name for lookup and management by name.
 
 ##### Returns
 
@@ -133,7 +132,7 @@ sat.addLink({
 
 > **set** **name**(`value`): `void`
 
-设置组件名称（用于按名称检索/管理）。
+Sets the component name for lookup and management by name.
 
 ##### Parameters
 
@@ -157,7 +156,7 @@ sat.addLink({
 
 > **get** **options**(): [`LinkOptions`](../types/PW.LinkOptions.md)
 
-获取当前完整配置。
+Gets the complete current configuration.
 
 ##### Returns
 
@@ -167,7 +166,7 @@ sat.addLink({
 
 > **set** **options**(`value`): `void`
 
-合并更新链路配置并同步已有链路线。
+Merges the link configuration and synchronizes existing link geometry.
 
 ##### Parameters
 
@@ -201,7 +200,7 @@ sat.addLink({
 
 > **destroy**(): `void`
 
-销毁链路组件及其链路线。
+Destroys the link component and its link geometry.
 
 #### Returns
 
@@ -217,13 +216,13 @@ sat.addLink({
 
 > **getHostObject**(): [`BaseObject`](PW.BaseObject.md) \| `undefined`
 
-获取当前绑定的宿主对象。
+Gets the currently bound host object.
 
 #### Returns
 
 [`BaseObject`](PW.BaseObject.md) \| `undefined`
 
-当前链路所属的物理对象。
+The physical object that owns the current link.
 
 ***
 
@@ -231,7 +230,7 @@ sat.addLink({
 
 > **register**(`object`): `Link`
 
-注册到宿主物理对象并创建链路线。
+Registers with the host physical object and creates the link geometry.
 
 #### Parameters
 
@@ -253,7 +252,7 @@ sat.addLink({
 
 > **remove**(): `void`
 
-将链路组件从宿主对象上移除并销毁内部资源。
+Removes the link component from the host object and destroys its internal resources.
 
 #### Returns
 
@@ -265,9 +264,9 @@ sat.addLink({
 
 > **resetTemporalState**(`_time?`): `void`
 
-重置跨时间循环保留的临时状态。
+Resets temporary state preserved across time cycles.
 
-当仿真时间倒退或循环回起点时，宿主对象会调用该方法，让组件清理跨帧缓存。
+When simulation time moves backward or loops to its start, the host object calls this method so the component can clear cross-frame caches.
 
 #### Parameters
 
@@ -289,7 +288,7 @@ sat.addLink({
 
 > **setShow**(`show`): `void`
 
-更新链路显示计划。
+Updates the link display schedule.
 
 #### Parameters
 
@@ -297,7 +296,7 @@ sat.addLink({
 
 [`LinkSchedule`](../types/PW.LinkSchedule.md)
 
-新的显示计划。
+New display schedule.
 
 #### Returns
 
@@ -309,7 +308,7 @@ sat.addLink({
 
 > **setTarget**(`target`): `void`
 
-更新链路目标端。
+Updates the link target endpoint.
 
 #### Parameters
 
@@ -317,7 +316,7 @@ sat.addLink({
 
 [`LinkEndpoint`](../types/PW.LinkEndpoint.md)
 
-新的目标端对象或点位。
+New target object or position.
 
 #### Returns
 
@@ -329,7 +328,7 @@ sat.addLink({
 
 > **unregister**(): `void`
 
-解除注册并释放链路线。
+Unregisters the component and releases the link geometry.
 
 #### Returns
 
@@ -345,10 +344,9 @@ sat.addLink({
 
 > **update**(`_spaceObject`, `time`): `void`
 
-按当前时刻刷新链路可见性与几何配置。
+Refreshes link visibility and geometry configuration for the current time.
 
-仅当目标端存在、两端可见、显示计划命中且链路未被中心天体遮挡时，
-才会实际绘制链路线。
+The link geometry is rendered only when a target exists, both endpoints are visible, the display schedule matches, and the link is not occluded by a central body.
 
 #### Parameters
 
@@ -356,13 +354,13 @@ sat.addLink({
 
 `any`
 
-当前宿主对象，链路内部不直接使用该参数。
+Current host object; the link does not use this parameter directly.
 
 ##### time
 
 `JulianDate`
 
-当前仿真时间。
+Current simulation time.
 
 #### Returns
 

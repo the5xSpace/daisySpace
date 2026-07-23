@@ -222,6 +222,22 @@ Feature 的唯一标识。
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`isDestroyed`](Feature.md#isdestroyed)
+
+***
+
 ### lodMode
 
 #### Get Signature

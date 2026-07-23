@@ -33,7 +33,13 @@ PhysicalWorld 组件基类。
 
 ### Constructor
 
-> **new BaseComponent**(): `BaseComponent`
+> **new BaseComponent**(`options?`): `BaseComponent`
+
+#### Parameters
+
+##### options?
+
+[`ComponentIdentityOptions`](../types/PW.ComponentIdentityOptions.md) = `{}`
 
 #### Returns
 
@@ -107,6 +113,22 @@ PhysicalWorld 组件基类。
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Implementation of
+
+[`IComponent`](../interfaces/PW.IComponent.md).[`isDestroyed`](../interfaces/PW.IComponent.md#isdestroyed)
+
+***
+
 ### name
 
 #### Get Signature
@@ -150,6 +172,10 @@ PhysicalWorld 组件基类。
 ##### Returns
 
 `boolean`
+
+#### Implementation of
+
+[`IComponent`](../interfaces/PW.IComponent.md).[`registered`](../interfaces/PW.IComponent.md#registered)
 
 ## Methods
 

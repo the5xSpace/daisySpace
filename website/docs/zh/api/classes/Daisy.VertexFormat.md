@@ -22,6 +22,8 @@ const format = new Daisy.VertexFormat({
 
 ## Param
 
+**options**
+
 An object with boolean properties corresponding to VertexFormat properties as shown in the code example.
 
 ## Constructors

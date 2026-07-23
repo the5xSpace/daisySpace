@@ -8,7 +8,7 @@
 
 > **NearEarthOrbiterConfig** = [`VehicleConfig`](PW.VehicleConfig.md) & `object`
 
-NearEarthOrbiter 配置。
+Configuration for NearEarthOrbiter.
 
 ## Type Declaration
 
@@ -16,75 +16,75 @@ NearEarthOrbiter 配置。
 
 > `optional` **autoOrientationByVelocity?**: `boolean`
 
-是否自动将姿态设置为“速度朝向”。
+Whether to automatically orient the attitude in the direction of velocity.
 
-注意：该能力依赖于 position 为“轨迹采样”类型。
+Note: this capability requires position to use the trajectory-sample form.
 
 ### enableSpg4Propagation?
 
 > `optional` **enableSpg4Propagation?**: `boolean`
 
-是否启用实时传播。
+Whether to enable real-time propagation.
 
-- true：每帧按仿真时间更新位置
-- false：保留用户设置的 position（静态或轨迹采样）
+- true: update the position every frame according to simulation time
+- false: preserve the user-configured position (static or trajectory samples)
 
 ### groundTrack?
 
 > `optional` **groundTrack?**: [`GroundTrackComponentOptions`](PW.GroundTrackComponentOptions.md) \| `false`
 
-真实星下点轨迹组件配置。
+Configuration for the ground-track component.
 
-- `false`：不自动挂载
-- 对象：构造时自动挂载组件
+- `false`: do not mount automatically
+- Object: mount the component automatically during construction
 
 ### orbitDefinition?
 
 > `optional` **orbitDefinition?**: `OrbitSourceInput`
 
-轨道定义（首选入口），支持 TLE / OMM XML / JSON GP。
+Orbit definition (preferred entry point), supporting TLE / OMM XML / JSON GP.
 
-当同时提供 `orbitDefinition`、`orbitSource`、`tle` 时，
-优先级：`orbitDefinition > orbitSource > tle`。
+When `orbitDefinition`, `orbitSource`, and `tle` are all provided, the priority is:
+`orbitDefinition > orbitSource > tle`.
 
 ### orbitElementsView?
 
 > `optional` **orbitElementsView?**: [`OrbitElementsViewComponentOptions`](PW.OrbitElementsViewComponentOptions.md) \| `false`
 
-轨道根数几何视图组件配置。
+Configuration for the orbit-elements geometric-view component.
 
-- `false`：不自动挂载
-- 对象：构造时自动挂载组件
+- `false`: do not mount automatically
+- Object: mount the component automatically during construction
 
 ### orbitSource?
 
 > `optional` **orbitSource?**: `OrbitSourceInput`
 
-通用轨道源输入，支持 TLE / OMM XML / JSON GP。
+Generic orbit-source input, supporting TLE / OMM XML / JSON GP.
 
-当同时提供 `orbitSource` 和 `tle` 时，优先使用 `orbitSource`。
+When both `orbitSource` and `tle` are provided, `orbitSource` takes precedence.
 
 ### realtimeOrbit?
 
 > `optional` **realtimeOrbit?**: [`RealtimeOrbitComponentOptions`](PW.RealtimeOrbitComponentOptions.md) \| `false`
 
-实时轨道圈组件配置。
+Configuration for the real-time orbit component.
 
-- `false`：不自动挂载
-- 对象：构造时自动挂载组件
+- `false`: do not mount automatically
+- Object: mount the component automatically during construction
 
 ### tle?
 
 > `optional` **tle?**: `string` \| `string`[]
 
-轨道根数（两行/三行字符串）。
+Orbital elements (two-line or three-line string).
 
 ### trajectory?
 
 > `optional` **trajectory?**: `false` \| [`NearEarthOrbiterTrajectoryRequest`](PW.NearEarthOrbiterTrajectoryRequest.md)
 
-构造后是否自动写入轨迹采样。
+Whether to automatically write trajectory samples after construction.
 
-- 省略：自动启用，绑定 Engine 后会自动执行 `applyTrajectory()`
-- `false`：关闭自动执行，改为手动调用 `applyTrajectory()`
-- 对象：自动执行，并把对象作为 `applyTrajectory(...)` 的默认参数
+- Omitted: enabled automatically; `applyTrajectory()` runs automatically after binding to an Engine
+- `false`: disable automatic execution and call `applyTrajectory()` manually
+- Object: execute automatically and use the object as the default argument to `applyTrajectory(...)`

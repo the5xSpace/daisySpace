@@ -6,9 +6,9 @@
 
 # Class: Engine
 
-Daisy 仿真引擎主入口。
+Main entry point for the Daisy simulation engine.
 
-负责管理引擎生命周期、场景对象集合、widget 集合、时间轴约束以及相机能力。
+Manages the engine lifecycle, scene-object collections, widget collections, timeline constraints, and camera capabilities.
 
 ## Constructors
 
@@ -16,9 +16,9 @@ Daisy 仿真引擎主入口。
 
 > **new Engine**(`viewer`, `options?`): `Engine`
 
-创建 Daisy 引擎实例。
+Create a Daisy engine instance.
 
-初始化渲染循环、相机管理、集合管理、交互守卫、地形检测、镜头光晕等子系统。
+Initialize the render loop, camera management, collection management, interaction guards, terrain detection, lens flare, and other subsystems.
 
 #### Parameters
 
@@ -26,13 +26,13 @@ Daisy 仿真引擎主入口。
 
 `Viewer`
 
-由 `Engine.create()` 创建并传入的内部视图实例。
+Internal view instance created and passed by `Engine.create()`.
 
 ##### options?
 
 `EngineOptions`
 
-引擎运行时配置选项。
+Engine runtime configuration options.
 
 #### Returns
 
@@ -284,8 +284,8 @@ Note: UI widgets must be created through `addWidget`, not through `Engine.create
 
 > **completeMorph**(): `void`
 
-强制完成当前进行中的 morph 动画。
-在切换场景模式后需要立即操作相机时调用，避免 morph 动画干扰。
+Force the current morph animation to complete.
+Call this when the camera must be operated immediately after a scene-mode switch, so the morph animation does not interfere.
 
 #### Returns
 
@@ -319,7 +319,7 @@ Note: UI widgets must be created through `addWidget`, not through `Engine.create
 
 > **createExtraCamera**(`options?`): [`ExtraCamera`](ExtraCamera.md)
 
-创建并注册一个额外相机（ExtraCamera）。
+Create and register an extra camera (ExtraCamera).
 
 #### Parameters
 
@@ -327,13 +327,13 @@ Note: UI widgets must be created through `addWidget`, not through `Engine.create
 
 `CreateExtraCameraOptions` = `{}`
 
-相机配置选项，包括 id、跟踪目标、视角等
+Camera configuration options, including id, tracking target, and view parameters.
 
 #### Returns
 
 [`ExtraCamera`](ExtraCamera.md)
 
-创建的 ExtraCamera 实例
+The created ExtraCamera instance
 
 #### Example
 
@@ -347,13 +347,13 @@ const cam = engine.createExtraCamera({ id: "pip", follow: true });
 
 > **createTimeSchedule**(): [`TimeSchedule`](TimeSchedule.md)
 
-创建一个新的时间调度器（TimeSchedule）并注册到引擎。
+Create a new time scheduler (TimeSchedule) and register it with the engine.
 
 #### Returns
 
 [`TimeSchedule`](TimeSchedule.md)
 
-新创建的 TimeSchedule 实例
+The newly created TimeSchedule instance
 
 ***
 
@@ -407,9 +407,9 @@ const cam = engine.createExtraCamera({ id: "pip", follow: true });
 
 > **followTarget**(`entity`): `void`
 
-使主相机跟踪指定实体或基础对象。
+Make the main camera follow the specified Entity or BaseObject.
 
-注意：月球/火星天体建议使用 `switchToCelestial` 切换参考系，而非本方法。
+Note: For Moon or Mars, use `switchToCelestial` to switch the reference frame instead of this method.
 
 #### Parameters
 
@@ -417,7 +417,7 @@ const cam = engine.createExtraCamera({ id: "pip", follow: true });
 
 [`Entity`](Entity.md) \| [`BaseObject`](PW.BaseObject.md)
 
-要跟踪的 Entity 或 PW.BaseObject 实例
+Entity or PW.BaseObject instance to follow
 
 #### Returns
 
@@ -429,7 +429,7 @@ const cam = engine.createExtraCamera({ id: "pip", follow: true });
 
 > **formatTime**(`time`, `config?`): `string`
 
-使用引擎级默认配置格式化一个 JulianDate。
+Format a JulianDate using the engine-level default configuration.
 
 #### Parameters
 
@@ -605,13 +605,13 @@ Returns the current lens flare parameters.
 
 > **getMultiplier**(): `number`
 
-获取当前播放倍率。
+Get the current playback multiplier.
 
 #### Returns
 
 `number`
 
-当前倍率值。
+Current multiplier value.
 
 ***
 
@@ -619,13 +619,13 @@ Returns the current lens flare parameters.
 
 > **getObjects**(): [`BaseObject`](PW.BaseObject.md)[]
 
-获取引擎中所有已注册的 BaseObject 列表。
+Get all registered BaseObjects in the engine.
 
 #### Returns
 
 [`BaseObject`](PW.BaseObject.md)[]
 
-BaseObject 数组引用
+Reference to the BaseObject array
 
 ***
 
@@ -653,7 +653,7 @@ BaseObject 数组引用
 
 > **getTimeFormat**(): [`TimeFormatOptions`](../interfaces/TimeFormatOptions.md)
 
-获取当前引擎级 Widget 时间格式配置。
+Get the current engine-level Widget time-format configuration.
 
 #### Returns
 
@@ -665,13 +665,13 @@ BaseObject 数组引用
 
 > **getWidgets**(): [`IWidget`](../interfaces/IWidget.md)[]
 
-获取引擎中所有已注册的 Widget 列表。
+Get all registered Widgets in the engine.
 
 #### Returns
 
 [`IWidget`](../interfaces/IWidget.md)[]
 
-IWidget 数组，若无集合管理器则返回空数组
+IWidget array; returns an empty array when there is no collection manager.
 
 ***
 
@@ -713,13 +713,13 @@ Hidden/removed/destroyed objects are filtered out.
 
 > **isAnimating**(): `boolean`
 
-判断动画是否正在播放。
+Check whether animation is playing.
 
 #### Returns
 
 `boolean`
 
-true 表示正在播放，false 表示已暂停或停止。
+true means playing; false means paused or stopped.
 
 ***
 
@@ -825,7 +825,7 @@ true 表示正在播放，false 表示已暂停或停止。
 
 > **offTick**(`callback`): `void`
 
-取消时钟 tick 回调。
+Cancel the clock tick callback.
 
 #### Parameters
 
@@ -833,7 +833,7 @@ true 表示正在播放，false 表示已暂停或停止。
 
 () => `void`
 
-之前注册的回调函数
+Previously registered callback function
 
 #### Returns
 
@@ -893,8 +893,8 @@ true 表示正在播放，false 表示已暂停或停止。
 
 > **onPostRender**(`callback`): () => `void`
 
-注册每帧渲染后的回调（postRender）。
-回调中 `this` 自动绑定为当前 Engine 实例。
+Register a callback after each frame is rendered (postRender).
+Inside the callback, `this` is automatically bound to the current Engine instance.
 
 #### Parameters
 
@@ -902,11 +902,11 @@ true 表示正在播放，false 表示已暂停或停止。
 
 (`time`) => `void`
 
-回调函数，接收当前仿真时间
+Callback function receiving the current simulation time
 
 #### Returns
 
-取消注册的函数
+Function that unregisters the callback
 
 () => `void`
 
@@ -916,8 +916,8 @@ true 表示正在播放，false 表示已暂停或停止。
 
 > **onPreRender**(`callback`): () => `void`
 
-注册每帧渲染前的回调（preRender）。
-回调中 `this` 自动绑定为当前 Engine 实例。
+Register a callback before each frame is rendered (preRender).
+Inside the callback, `this` is automatically bound to the current Engine instance.
 
 #### Parameters
 
@@ -925,11 +925,11 @@ true 表示正在播放，false 表示已暂停或停止。
 
 (`time`) => `void`
 
-回调函数，接收当前仿真时间
+Callback function receiving the current simulation time
 
 #### Returns
 
-取消注册的函数
+Function that unregisters the callback
 
 () => `void`
 
@@ -939,7 +939,7 @@ true 表示正在播放，false 表示已暂停或停止。
 
 > **onTick**(`callback`): () => `void`
 
-注册时钟 tick 回调。
+Register a clock tick callback.
 
 #### Parameters
 
@@ -947,11 +947,11 @@ true 表示正在播放，false 表示已暂停或停止。
 
 () => `void`
 
-回调函数
+Callback function
 
 #### Returns
 
-取消注册的函数
+Function that unregisters the callback
 
 () => `void`
 
@@ -961,8 +961,8 @@ true 表示正在播放，false 表示已暂停或停止。
 
 > **pause**(): `void`
 
-暂停动画播放（不重置 currentTime）。
-与 stop() 的区别：stop() 会将 currentTime 重置到 startTime，而 pause() 仅冻结当前时间。
+Pause animation playback without resetting currentTime.
+Unlike stop(), which resets currentTime to startTime, pause() only freezes the current time.
 
 #### Returns
 
@@ -1026,8 +1026,8 @@ true 表示正在播放，false 表示已暂停或停止。
 
 > **registerObject**(`object`): [`BaseObject`](PW.BaseObject.md)
 
-将一个 BaseObject 注册到引擎中，使其参与引擎的生命周期管理。
-重复注册同一对象不会产生副作用。
+Register a BaseObject with the engine so it participates in engine lifecycle management.
+Registering the same object repeatedly has no side effects.
 
 #### Parameters
 
@@ -1035,13 +1035,13 @@ true 表示正在播放，false 表示已暂停或停止。
 
 [`BaseObject`](PW.BaseObject.md)
 
-要注册的 BaseObject 实例
+BaseObject instance to register
 
 #### Returns
 
 [`BaseObject`](PW.BaseObject.md)
 
-传入的对象（便于链式调用）
+The supplied object, for chaining
 
 ***
 
@@ -1185,7 +1185,7 @@ true 表示正在播放，false 表示已暂停或停止。
 
 > **setCameraInputEnabled**(`enabled`): `void`
 
-设置主相机输入控制器是否启用（锁定/解锁用户交互）。
+Set whether the main-camera input controller is enabled (lock or unlock user interaction).
 
 #### Parameters
 
@@ -1193,7 +1193,7 @@ true 表示正在播放，false 表示已暂停或停止。
 
 `boolean`
 
-是否启用输入
+Whether input is enabled
 
 #### Returns
 
@@ -1205,14 +1205,14 @@ true 表示正在播放，false 表示已暂停或停止。
 
 > **setCameraInputFlags**(`flags`): () => `void`
 
-按 patch 方式设置主相机输入控制 flag，只修改传入的字段，其余保持不变。
-返回 restore 函数，调用后恢复被修改的字段到调用前的值。
+Patch the main-camera input-control flags, changing only supplied fields and preserving the rest.
+Returns a restore function that restores changed fields to their previous values.
 
 #### Parameters
 
 ##### flags
 
-需要修改的 flag 集合，只 patch 传入的字段。
+Flag collection to modify; only supplied fields are patched.
 
 ###### inputs?
 
@@ -1240,7 +1240,7 @@ true 表示正在播放，false 表示已暂停或停止。
 
 #### Returns
 
-restore 函数，调用后恢复原状。
+Restore function that restores the previous state.
 
 () => `void`
 
@@ -1278,20 +1278,20 @@ restore(); // 恢复
 
 > **setHighPerformanceMode**(`enable`, `options?`): `this`
 
-设置高性能模式。
+Enable or disable high-performance mode.
 
-当场景中实体数量较大时（数百至数万级），启用此模式可显著降低每帧 CPU 开销，
-通过分组更新、频率节流、Feature 裁剪等策略将负载分散到多帧。
+When a scene contains many entities (hundreds to tens of thousands), this mode can significantly reduce per-frame CPU cost
+by distributing work across frames through grouped updates, frequency throttling, and Feature culling.
 
-**使用方式：**
-- `setHighPerformanceMode(true)` — 使用默认参数启用
-- `setHighPerformanceMode(false)` — 关闭
-- `setHighPerformanceMode({ enabled: true, entityUpdateGroups: 4, ... })` — 自定义参数启用
+**Usage:**
+- `setHighPerformanceMode(true)` — Enable with default options
+- `setHighPerformanceMode(false)` — Disable
+- `setHighPerformanceMode({ enabled: true, entityUpdateGroups: 4, ... })` — Enable with custom options
 
-**内部联动：**
-- 启用时自动将 `stateCache` 时间桶设为 0.1s、`modelMatrixCache` 设为 1s
-- 禁用时恢复为不限制（`undefined`）
-- 参数值会被 clamp 到有效范围（如 entityUpdateGroups ∈ [1, 64]）
+**Internal coordination:**
+- When enabled, automatically set the `stateCache` time bucket to 0.1s and `modelMatrixCache` to 1s
+- When disabled, restore unlimited values (`undefined`)
+- Clamp parameter values to valid ranges, such as entityUpdateGroups ∈ [1, 64]
 
 #### Parameters
 
@@ -1299,19 +1299,19 @@ restore(); // 恢复
 
 `boolean` \| `HighPerformanceModeOptions`
 
-布尔值或完整配置对象
+Boolean value or complete configuration object
 
 ##### options?
 
 `Omit`\<`HighPerformanceModeOptions`, `"enabled"`\>
 
-当 `enable` 为布尔值时，可附加额外配置
+Additional configuration when `enable` is a boolean
 
 #### Returns
 
 `this`
 
-this（支持链式调用）
+this (supports chaining)
 
 #### Example
 
@@ -1423,7 +1423,7 @@ Show or hide the lens flare effect without changing tuned parameters.
 
 > **setMultiplier**(`v`): `void`
 
-设置仿真时钟倍速。
+Set the simulation clock multiplier.
 
 #### Parameters
 
@@ -1431,7 +1431,7 @@ Show or hide the lens flare effect without changing tuned parameters.
 
 `number`
 
-时钟倍速值，1 为实时，负值表示倒退
+Clock multiplier; 1 is real time and negative values play backward.
 
 #### Returns
 
@@ -1499,9 +1499,9 @@ Show or hide the lens flare effect without changing tuned parameters.
 
 > **setTimeFormat**(`config?`): `this`
 
-设置所有 Widget 默认使用的时间格式。
+Set the default time format used by all Widgets.
 
-Widget 自身传入 `timeFormat` / `timeLabel` 时优先使用局部配置。
+When a Widget supplies `timeFormat` / `timeLabel`, its local configuration takes priority.
 
 #### Parameters
 
@@ -1747,7 +1747,7 @@ Static pre-initialization hook.
 
 > `static` **setEngineBaseUrl**(`baseUrl`): `void`
 
-设置底层静态资源基址。
+Set the base URL for static engine resources.
 
 #### Parameters
 

@@ -1,10 +1,10 @@
 # Camera System
 
-The Daisy camera system provides fly-to, follow, multi-camera, and orbital-rotation capabilities.
+Daisy's camera system provides flying, target following, multiple cameras, and orbital rotation.
 
 ## Basic Operations
 
-Access the camera via `engine.camera`:
+Access the camera through `engine.camera`:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -31,21 +31,21 @@ engine.setMinZoomDistance(100)
 engine.setMaxZoomDistance(10_000_000)
 ```
 
-The `target` parameter of `flyToTarget` accepts:
-- `Entity` / `Entity[]` — uses the entity's current position
-- `Cartesian3` / `Cartesian3[]` — world coordinates
-- `Cartographic` / `Cartographic[]` — longitude, latitude, and height
-- `{ lon, lat, height }` — longitude / latitude object
-- `[lon, lat, height]` — coordinate array
+`flyToTarget` supports the following `target` values:
+- `Entity` / `Entity[]` - uses the current Entity position
+- `Cartesian3` / `Cartesian3[]` - world coordinates
+- `Cartographic` / `Cartographic[]` - longitude, latitude, and height
+- `{ lon, lat, height }` - longitude/latitude object
+- `[lon, lat, height]` - coordinate array
 
-## Follow Target
+## Following a Target
 
 ```typescript
 engine.followTarget(satellite)
 // 等价于 engine.camera.followTarget(satellite)
 ```
 
-`followTarget` accepts an `Entity` or `BaseObject`. The camera automatically tracks the target's movement and supports ArcRotate orbital control:
+`followTarget` accepts an `Entity` or `BaseObject`. The camera automatically follows the target's motion and supports ArcRotate orbital control:
 
 ```typescript
 engine.camera.followTarget(aircraft, {
@@ -62,7 +62,7 @@ engine.camera.followTarget(aircraft, {
 
 ## Orbital Camera (ArcRotate)
 
-In ArcRotate mode the camera orbits the target under mouse-drag control:
+In ArcRotate mode, drag with the mouse to rotate the camera around the target:
 
 ```typescript
 // 切换到 ArcRotate 模式
@@ -75,14 +75,14 @@ engine.camera.followTarget(sat, {
 ```
 
 | Parameter | Description |
-|-----------|-------------|
-| `targetFrameMode` | `"model"` (default, inherits target attitude) / `"enu"` (ENU reference frame, does not inherit pitch or roll) |
-| `enableGroundCollisionSlide` | Automatically slide along the ground on collision |
-| `disableGroundCollisionSlideBelowTargetHeight` | Disable ground-collision sliding below this height |
+|------|------|
+| `targetFrameMode` | `"model"` (default, inherits target attitude) / `"enu"` (east-north-up frame, does not inherit pitch or roll) |
+| `enableGroundCollisionSlide` | Automatically slides when colliding with the ground |
+| `disableGroundCollisionSlideBelowTargetHeight` | Disables collision sliding below this height |
 
-## Multi-Camera (ExtraCamera / PiP)
+## Multiple Cameras (ExtraCamera / PiP)
 
-Picture-in-picture multi-camera views are created via `engine.createExtraCamera()`:
+Create a picture-in-picture camera with `engine.createExtraCamera()`:
 
 ```typescript
 // 创建额外相机
@@ -117,20 +117,20 @@ engine.pushActiveRenderCameraId("sat-closeup")
 engine.popActiveRenderCameraId()
 ```
 
-### flyToTarget Full Parameters
+### Complete flyToTarget Parameters
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| `offset` | `HeadingPitchRange \| Cartesian3` | Camera offset (heading / pitch / range) |
-| `duration` | `number` | Flight duration (seconds); 0 = instant teleport |
+|------|------|------|
+| `offset` | `HeadingPitchRange \| Cartesian3` | Camera offset (heading, pitch, and distance) |
+| `duration` | `number` | Flight duration in seconds; 0 teleports immediately |
 
-Accepted `target` input forms:
+Supported `target` input forms:
 - `Entity` / `Entity[]`
 - `Cartesian3` / `Cartesian3[]`
 - `Cartographic` / `Cartographic[]`
 - `{ lon, lat, height }` / `{ longitude, latitude, height }`
 - `[lon, lat]` / `[lon, lat, height]`
-- `Promise` — resolves asynchronously before executing
+- `Promise` - resolves asynchronously before execution
 
 ### flyHome
 
@@ -145,7 +145,7 @@ engine.camera.flyHome(duration)  // 飞回默认视角
 engine.camera.removeTrackedDaisyEntity()
 ```
 
-### ExtraCamera Advanced Capabilities
+### Advanced ExtraCamera Capabilities
 
 ```typescript
 const extra = engine.createExtraCamera({ id: "pip" })
@@ -172,17 +172,17 @@ extra.openPiP({
 extra.destroy()
 ```
 
-PiP window supports the following interactions: drag to move, resize, minimize, maximize / restore.
+PiP windows support dragging, resizing, minimizing, and maximizing/restoring.
 
 ### ArcRotate Collision Handling
 
 | Parameter | Description |
-|-----------|-------------|
-| `enableGroundCollisionSlide` | Camera automatically slides along the ground on collision |
-| `disableGroundCollisionSlideBelowTargetHeight` | Disable ground-collision sliding below the target's current height |
-| `targetFrameMode` | `"model"` (default, inherits target attitude) / `"enu"` (ENU reference frame, does not inherit pitch or roll) |
+|------|------|
+| `enableGroundCollisionSlide` | Automatically slides the camera when it collides with the ground |
+| `disableGroundCollisionSlideBelowTargetHeight` | Disables collision sliding below this target height |
+| `targetFrameMode` | `"model"` (default, inherits target attitude) / `"enu"` (east-north-up frame, does not inherit pitch or roll) |
 
-## Input Control
+## Input Controls
 
 ```typescript
 // 全局开关

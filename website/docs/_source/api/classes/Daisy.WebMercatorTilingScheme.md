@@ -11,24 +11,34 @@ the tiling scheme used by Google Maps, Microsoft Bing Maps, and most of ESRI Arc
 
 ## Param
 
+**options**
+
 Object with the following properties:
 
 ## Param
+
+**options.ellipsoid**
 
 The ellipsoid whose surface is being tiled. Defaults to
 the default ellipsoid.
 
 ## Param
 
+**options.numberOfLevelZeroTilesX**
+
 The number of tiles in the X direction at level zero of
  the tile tree.
 
 ## Param
 
+**options.numberOfLevelZeroTilesY**
+
 The number of tiles in the Y direction at level zero of
  the tile tree.
 
 ## Param
+
+**options.rectangleSouthwestInMeters**
 
 The southwest corner of the rectangle covered by the
  tiling scheme, in meters. If this parameter or rectangleNortheastInMeters is not specified, the entire
@@ -36,6 +46,8 @@ The southwest corner of the rectangle covered by the
  direction, resulting in a square projection.
 
 ## Param
+
+**options.rectangleNortheastInMeters**
 
 The northeast corner of the rectangle covered by the
  tiling scheme, in meters. If this parameter or rectangleSouthwestInMeters is not specified, the entire

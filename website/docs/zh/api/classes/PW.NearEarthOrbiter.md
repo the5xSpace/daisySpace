@@ -116,6 +116,22 @@ sat.bindViewer(viewer);
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`id`](PW.Aircraft.md#id)
+
+***
+
 ### options
 
 #### Get Signature

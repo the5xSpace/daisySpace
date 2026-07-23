@@ -15,6 +15,18 @@ PhysicalWorld 组件接口。
 
 ## Properties
 
+### isDestroyed
+
+> `readonly` **isDestroyed**: `boolean`
+
+***
+
+### registered
+
+> `readonly` **registered**: `boolean`
+
+***
+
 ### transformer
 
 > **transformer**: `Transformer` \| `undefined`

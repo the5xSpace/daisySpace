@@ -6,11 +6,11 @@
 
 # Class: ViewDistanceStrategy
 
-视距策略管理器。
+View-distance strategy manager.
 
-用于：
-- 按“场景模板”管理不同尺度的 `DistanceDisplayCondition`
-- 计算相机到目标点（ECEF）的距离，并据此判断是否满足显示距离
+Used to:
+- manage `DistanceDisplayCondition` values at different scales by scene template
+- calculate the distance from the camera to a target point (ECEF) and determine whether it satisfies the display range
 
 ## Example
 
@@ -43,9 +43,9 @@ strategy.setScene(ViewScene.GROUND);
 
 > **get** **PathResolutionScale**(): `number`
 
-路径分辨率缩放系数（默认 1）。
+Path-resolution scale factor (default 1).
 
-数值越大，路径显示更平滑，但开销更高。
+Larger values produce smoother paths at a higher cost.
 
 ##### Returns
 
@@ -55,7 +55,7 @@ strategy.setScene(ViewScene.GROUND);
 
 > **set** **PathResolutionScale**(`scale`): `void`
 
-设置路径分辨率缩放系数。
+Sets the path-resolution scale factor.
 
 ##### Parameters
 
@@ -63,7 +63,7 @@ strategy.setScene(ViewScene.GROUND);
 
 `number`
 
-必须为正数
+Must be positive.
 
 ##### Returns
 
@@ -75,7 +75,7 @@ strategy.setScene(ViewScene.GROUND);
 
 > **anyCameraInDistanceDisplayCondition**(`cameras`, `positionECEF`, `ddc?`, `options?`): `boolean`
 
-判断是否存在任意相机满足距离显示条件（near/far）。
+Checks whether any camera satisfies the distance display condition (near/far).
 
 #### Parameters
 
@@ -83,23 +83,23 @@ strategy.setScene(ViewScene.GROUND);
 
 `Camera`[]
 
-相机数组（主相机/额外相机）
+Camera array (primary and additional cameras).
 
 ##### positionECEF
 
 `Cartesian3`
 
-目标位置（ECEF）
+Target position (ECEF).
 
 ##### ddc?
 
 `DistanceDisplayCondition`
 
-距离显示条件；为空时视为永远可见
+Distance display condition; when omitted, the target is considered always visible.
 
 ##### options?
 
-可选计算参数
+Optional calculation options.
 
 ###### celestialEllipsoid?
 
@@ -125,7 +125,7 @@ const visible = strategy.anyCameraInDistanceDisplayCondition(cameras, targetPos,
 
 > **computeCameraToPositionDistance**(`cameraPositionECEF`, `positionECEF`, `options?`): `number`
 
-计算相机到目标点的距离（米）。
+Calculates the distance from the camera to the target point in meters.
 
 #### Parameters
 
@@ -133,17 +133,17 @@ const visible = strategy.anyCameraInDistanceDisplayCondition(cameras, targetPos,
 
 `Cartesian3`
 
-相机位置（ECEF）
+Camera position (ECEF).
 
 ##### positionECEF
 
 `Cartesian3`
 
-目标位置（ECEF）
+Target position (ECEF).
 
 ##### options?
 
-可选计算参数
+Optional calculation options.
 
 ###### celestialEllipsoid?
 
@@ -169,7 +169,7 @@ const d = strategy.computeCameraToPositionDistance(cameraPos, targetPos);
 
 > **getDistanceDisplayCondition**(`level`): `DistanceDisplayCondition`
 
-获取指定视距等级对应的距离显示条件。
+Gets the distance display condition for the specified view-distance level.
 
 #### Parameters
 
@@ -177,7 +177,7 @@ const d = strategy.computeCameraToPositionDistance(cameraPos, targetPos);
 
 [`ViewDistanceLevel`](../enums/ViewDistanceLevel.md)
 
-视距等级
+View-distance level.
 
 #### Returns
 
@@ -189,7 +189,7 @@ const d = strategy.computeCameraToPositionDistance(cameraPos, targetPos);
 
 > **getScene**(): `string`
 
-获取当前场景模板名。
+Gets the name of the current scene template.
 
 #### Returns
 
@@ -201,7 +201,7 @@ const d = strategy.computeCameraToPositionDistance(cameraPos, targetPos);
 
 > **getViewDistance**(): [`ViewDistanceTemplate`](../types/ViewDistanceTemplate.md)
 
-获取当前场景对应的视距模板。
+Gets the view-distance template for the current scene.
 
 #### Returns
 
@@ -213,7 +213,7 @@ const d = strategy.computeCameraToPositionDistance(cameraPos, targetPos);
 
 > **hasTemplate**(`name`): `boolean`
 
-判断是否存在指定模板名。
+Checks whether a template with the specified name exists.
 
 #### Parameters
 
@@ -221,7 +221,7 @@ const d = strategy.computeCameraToPositionDistance(cameraPos, targetPos);
 
 `string`
 
-模板名
+Template name.
 
 #### Returns
 
@@ -233,7 +233,7 @@ const d = strategy.computeCameraToPositionDistance(cameraPos, targetPos);
 
 > **registerTemplate**(`name`, `template`): `void`
 
-注册/覆盖一个视距模板。
+Registers or replaces a view-distance template.
 
 #### Parameters
 
@@ -241,13 +241,13 @@ const d = strategy.computeCameraToPositionDistance(cameraPos, targetPos);
 
 `string`
 
-模板名
+Template name.
 
 ##### template
 
 [`ViewDistanceTemplate`](../types/ViewDistanceTemplate.md)
 
-模板对象
+Template object.
 
 #### Returns
 
@@ -265,7 +265,7 @@ strategy.registerTemplate("custom", template);
 
 > **setScene**(`scene`): `void`
 
-切换当前场景模板。
+Switches the current scene template.
 
 #### Parameters
 
@@ -273,7 +273,7 @@ strategy.registerTemplate("custom", template);
 
 `string`
 
-模板名（如 `ViewScene.SPACE`）
+Template name, such as `ViewScene.SPACE`.
 
 #### Returns
 

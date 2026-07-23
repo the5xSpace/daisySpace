@@ -15,13 +15,19 @@ constants is normally used.
 
 ## Param
 
+**x**
+
 The radius in the x direction.
 
 ## Param
 
+**y**
+
 The radius in the y direction.
 
 ## Param
+
+**z**
 
 The radius in the z direction.
 

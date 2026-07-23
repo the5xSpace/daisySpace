@@ -1,21 +1,21 @@
-# 实体几何体
+# Solid Geometry
 
-实体几何体 Feature 用于渲染长方体、立方体、圆柱、椭球、球体、椭圆锥等三维封闭几何。所有实体几何体均以 Entity 位置为原点，支持材质、轮廓线、阴影等通用选项。
+Solid geometry Features render closed 3D shapes such as boxes, cubes, cylinders, ellipsoids, spheres, and elliptical cones. All solid geometry uses the Entity position as its origin and supports common options such as materials, outlines, and shadows.
 
-## Feature 选型
+## Choosing a Feature
 
-| 需求 | Feature | 说明 |
+| Requirement | Feature | Description |
 |------|---------|------|
-| 三轴独立尺寸的长方体 | `BoxFeature` | `dimensions: Cartesian3` |
-| 棱台 / 截面可变的立方体 | `CubeFeature` | 底顶面独立宽长、`emitDirection` |
-| 圆柱 / 圆台 | `CylinderFeature` | 顶底半径可不同 |
-| 三轴椭球体 | `EllipsoidFeature` | `dimensions: Cartesian3`，支持纹理 |
-| 正球体 | `SphereFeature` | `radius`，内部复用 EllipsoidFeature |
-| 椭圆锥 / 椭圆台（传感器锥体） | `EllipticalConeFeature` | 顶底椭圆半轴、`emitDirection` |
+| Box with independent dimensions on all three axes | `BoxFeature` | `dimensions: Cartesian3` |
+| Cube or frustum with variable cross-sections | `CubeFeature` | Independent top/bottom width and length, `emitDirection` |
+| Cylinder or truncated cylinder | `CylinderFeature` | Top and bottom radii can differ |
+| Three-axis ellipsoid | `EllipsoidFeature` | `dimensions: Cartesian3`, supports textures |
+| Sphere | `SphereFeature` | `radius`, internally reuses EllipsoidFeature |
+| Elliptical cone or truncated cone (sensor cone) | `EllipticalConeFeature` | Top/bottom elliptical semi-axes, `emitDirection` |
 
 ## BoxFeature
 
-长方体，通过 `dimensions` 分别指定 X / Y / Z 三个方向的边长。
+Create a box by specifying the edge lengths along the X, Y, and Z axes with `dimensions`.
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -35,20 +35,20 @@ entity.addFeature(new Daisy.BoxFeature({
 }))
 ```
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|--------|------|
-| `dimensions` | `Cartesian3` | `(100, 100, 100)` | X / Y / Z 三边边长（米） |
-| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.6)` | 材质 |
-| `outline` | `boolean` | `true` | 轮廓线 |
-| `outlineColor` | `DColor` | `Color.BLACK` | 轮廓色 |
-| `outlineWidth` | `number` | `1` | 轮廓宽度（像素） |
-| `show` | `boolean` | `true` | 可见性 |
-| `shadows` | `ShadowMode` | `DISABLED` | 阴影模式 |
-| `distanceDisplayCondition` | `DistanceDisplayCondition` | `undefined` | 视距显示条件 |
+| `dimensions` | `Cartesian3` | `(100, 100, 100)` | X, Y, and Z edge lengths in meters |
+| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.6)` | Material |
+| `outline` | `boolean` | `true` | Outline |
+| `outlineColor` | `DColor` | `Color.BLACK` | Outline color |
+| `outlineWidth` | `number` | `1` | Outline width in pixels |
+| `show` | `boolean` | `true` | Visibility |
+| `shadows` | `ShadowMode` | `DISABLED` | Shadow mode |
+| `distanceDisplayCondition` | `DistanceDisplayCondition` | `undefined` | Distance display condition |
 
 ## CubeFeature
 
-棱台 / 立方体，底顶面可独立指定宽度和长度，通过 `emitDirection` 控制对齐基准。
+Create a frustum or cube with independent top and bottom widths and lengths. Use `emitDirection` to control the alignment reference.
 
 ```typescript
 entity.addFeature(new Daisy.CubeFeature({
@@ -64,26 +64,26 @@ entity.addFeature(new Daisy.CubeFeature({
 }))
 ```
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|--------|------|
-| `bottomX` | `number` | `100` | 底部宽度（米） |
-| `bottomY` | `number` | `100` | 底部长度（米） |
-| `topX` | `number` | `100` | 顶面宽度（米） |
-| `topY` | `number` | `100` | 顶面长度（米） |
-| `height` | `number` | `100` | 高度（米） |
-| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.5)` | 材质 |
-| `emitDirection` | `EmitDirection` | `TO_UP` | 发射方向/对齐基准 |
-| `autoLength` | `boolean` | `false` | 自动高度（贴地/射线求交动态计算） |
-| `fill` | `boolean` | `true` | 填充面 |
-| `outline` | `boolean` | `false` | 轮廓线 |
-| `outlineColor` | `DColor` | — | 轮廓色 |
-| `outlineWidth` | `number` | `1` | 轮廓宽度（像素） |
-| `show` | `boolean` | `true` | 可见性 |
-| `position` | `Cartesian3` | — | 相对实体局部偏移 |
+| `bottomX` | `number` | `100` | Bottom width in meters |
+| `bottomY` | `number` | `100` | Bottom length in meters |
+| `topX` | `number` | `100` | Top width in meters |
+| `topY` | `number` | `100` | Top length in meters |
+| `height` | `number` | `100` | Height in meters |
+| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.5)` | Material |
+| `emitDirection` | `EmitDirection` | `TO_UP` | Emission direction and alignment reference |
+| `autoLength` | `boolean` | `false` | Automatic height from surface/ray intersections |
+| `fill` | `boolean` | `true` | Fill faces |
+| `outline` | `boolean` | `false` | Outline |
+| `outlineColor` | `DColor` | — | Outline color |
+| `outlineWidth` | `number` | `1` | Outline width in pixels |
+| `show` | `boolean` | `true` | Visibility |
+| `position` | `Cartesian3` | — | Local offset relative to the Entity |
 
 ## CylinderFeature
 
-圆柱 / 圆台，顶底半径可不同。高度方向为 Z 轴（经 `emitDirection` 变换后对齐）。
+A cylinder or truncated cylinder with independently configurable top and bottom radii. Its height axis is Z, transformed by `emitDirection` for alignment.
 
 ```typescript
 entity.addFeature(new Daisy.CylinderFeature({
@@ -97,27 +97,27 @@ entity.addFeature(new Daisy.CylinderFeature({
 }))
 ```
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|--------|------|
-| `height` | `number` | `200000` | 高度（米） |
-| `topRadius` | `number` | `100` | 顶部半径（米） |
-| `bottomRadius` | `number` | `100` | 底部半径（米） |
-| `slices` | `number` | `64` | 切分片数（越大越圆滑） |
-| `capTop` | `boolean` | `true` | 封顶 |
-| `capBottom` | `boolean` | `true` | 封底 |
-| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.5)` | 材质 |
-| `emitDirection` | `EmitDirection` | `TO_UP` | 发射方向 |
-| `autoLength` | `boolean` | `false` | 自动高度 |
-| `fill` | `boolean` | `true` | 填充面 |
-| `outline` | `boolean` | `false` | 轮廓线 |
-| `outlineColor` | `DColor` | — | 轮廓色 |
-| `outlineWidth` | `number` | `1` | 轮廓宽度（像素） |
-| `show` | `boolean` | `true` | 可见性 |
-| `position` | `Cartesian3` | — | 相对实体局部偏移 |
+| `height` | `number` | `200000` | Height in meters |
+| `topRadius` | `number` | `100` | Top radius in meters |
+| `bottomRadius` | `number` | `100` | Bottom radius in meters |
+| `slices` | `number` | `64` | Number of slices; larger values are smoother |
+| `capTop` | `boolean` | `true` | Cap the top |
+| `capBottom` | `boolean` | `true` | Cap the bottom |
+| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.5)` | Material |
+| `emitDirection` | `EmitDirection` | `TO_UP` | Emission direction |
+| `autoLength` | `boolean` | `false` | Automatic height |
+| `fill` | `boolean` | `true` | Fill faces |
+| `outline` | `boolean` | `false` | Outline |
+| `outlineColor` | `DColor` | — | Outline color |
+| `outlineWidth` | `number` | `1` | Outline width in pixels |
+| `show` | `boolean` | `true` | Visibility |
+| `position` | `Cartesian3` | — | Local offset relative to the Entity |
 
 ## EllipsoidFeature
 
-三轴椭球体，`dimensions` 对应 X / Y / Z 三个方向的直径。支持纹理贴图、光照控制。
+A three-axis ellipsoid where `dimensions` specifies the diameters along X, Y, and Z. Supports texture mapping and lighting controls.
 
 ```typescript
 entity.addFeature(new Daisy.EllipsoidFeature({
@@ -130,21 +130,21 @@ entity.addFeature(new Daisy.EllipsoidFeature({
 }))
 ```
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|--------|------|
-| `dimensions` | `Cartesian3` | `(100, 100, 100)` | X / Y / Z 三轴直径（米） |
-| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.6)` | 材质（支持颜色/纹理/DMaterial） |
-| `outline` | `boolean` | `true` | 轮廓线（三轴椭圆环） |
-| `outlineColor` | `DColor` | `Color.BLACK` | 轮廓色 |
-| `outlineWidth` | `number` | `1` | 轮廓宽度（像素） |
-| `lighting` | `boolean` | `true` | 光照（影响明暗面） |
-| `stOffset` | `Cartesian2` | `(0, 0)` | 纹理坐标偏移 |
-| `show` | `boolean` | `true` | 可见性 |
-| `shadows` | `ShadowMode` | `DISABLED` | 阴影模式 |
+| `dimensions` | `Cartesian3` | `(100, 100, 100)` | X, Y, and Z diameters in meters |
+| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.6)` | Material; supports colors, textures, and DMaterial |
+| `outline` | `boolean` | `true` | Three-axis elliptical outline |
+| `outlineColor` | `DColor` | `Color.BLACK` | Outline color |
+| `outlineWidth` | `number` | `1` | Outline width in pixels |
+| `lighting` | `boolean` | `true` | Lighting, affecting shaded faces |
+| `stOffset` | `Cartesian2` | `(0, 0)` | Texture-coordinate offset |
+| `show` | `boolean` | `true` | Visibility |
+| `shadows` | `ShadowMode` | `DISABLED` | Shadow mode |
 
 ## SphereFeature
 
-正球体，内部复用 `EllipsoidFeature`。所有 `EllipsoidFeature` 的参数均可透传使用。
+A sphere that internally reuses `EllipsoidFeature`. All `EllipsoidFeature` parameters can be passed through.
 
 ```typescript
 entity.addFeature(new Daisy.SphereFeature({
@@ -158,25 +158,25 @@ entity.addFeature(new Daisy.SphereFeature({
 }))
 ```
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|--------|------|
-| `radius` | `number` | `100` | 球体半径（米） |
-| `material` | `DMaterial` | — | 材质（透传 EllipsoidFeature） |
-| `outline` | `boolean` | — | 轮廓线 |
-| `outlineColor` | `DColor` | — | 轮廓色 |
-| `outlineWidth` | `number` | — | 轮廓宽度 |
+| `radius` | `number` | `100` | Sphere radius in meters |
+| `material` | `DMaterial` | — | Material, passed through to EllipsoidFeature |
+| `outline` | `boolean` | — | Outline |
+| `outlineColor` | `DColor` | — | Outline color |
+| `outlineWidth` | `number` | — | Outline width |
 
-> **提示**：由于 `SphereFeature` 继承自 `Omit<EllipsoidOptions, "dimensions">`，所有 EllipsoidFeature 参数（`lighting`、`stOffset`、`shadows` 等）均可直接传入。
+> **Tip**: Because `SphereFeature` extends `Omit<EllipsoidOptions, "dimensions">`, all EllipsoidFeature parameters (`lighting`, `stOffset`, `shadows`, and others) can be passed directly.
 
 ## EllipticalConeFeature
 
-椭圆锥/椭圆台，通过顶底椭圆半轴定义截面形状。常用于表示传感器波束覆盖锥体。
+An elliptical cone or truncated cone whose cross-section is defined by the top and bottom elliptical semi-axes. It is commonly used to represent sensor coverage cones.
 
-**`emitDirection` 控制中心轴方向**：锥体的 Z 轴（高度方向）经 `emitDirection` 对齐到指定方向。X / Y 半轴始终垂直于发射方向所在的平面，分别沿椭圆的长短轴方向展开。
+**`emitDirection` controls the central-axis direction**: the cone's Z axis (height direction) is aligned to the specified direction by `emitDirection`. The X and Y semi-axes remain perpendicular to the plane containing the emission direction and expand along the ellipse's major and minor axes.
 
-- `TO_UP`：锥体沿 +Z（远离地表）延伸，Entity 位于宽底端
-- `TO_GROUND`：锥体沿 -Z（指向地表）延伸，顶点在 Entity 位置
-- `CENTER`：锥体中心与 Entity 重合
+- `TO_UP`: The cone extends along +Z (away from the surface), with the Entity at the wide base.
+- `TO_GROUND`: The cone extends along -Z (toward the surface), with the apex at the Entity position.
+- `CENTER`: The cone center coincides with the Entity.
 
 ```typescript
 entity.addFeature(new Daisy.EllipticalConeFeature({
@@ -197,36 +197,36 @@ entity.addFeature(new Daisy.EllipticalConeFeature({
 }))
 ```
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|--------|------|
-| `topSemiMajorAxis` | `number` | `1` | 顶端椭圆长半轴（米） |
-| `topSemiMinorAxis` | `number` | `1` | 顶端椭圆短半轴（米） |
-| `bottomSemiMajorAxis` | `number` | `100` | 底端椭圆长半轴（米） |
-| `bottomSemiMinorAxis` | `number` | `50` | 底端椭圆短半轴（米） |
-| `height` | `number` | `100` | 锥体高度（米） |
-| `slices` | `number` | `64` | 椭圆切分片数 |
-| `capTop` | `boolean` | `true` | 封顶（顶端覆盖面） |
-| `capBottom` | `boolean` | `true` | 封底（底端覆盖面） |
-| `emitDirection` | `EmitDirection` | `TO_UP` | 发射方向，决定中心轴朝向 |
-| `autoLength` | `boolean` | `false` | 自动高度 |
-| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.5)` | 材质 |
-| `fill` | `boolean` | `true` | 填充面 |
-| `outline` | `boolean` | `false` | 轮廓线 |
-| `outlineColor` | `DColor` | — | 轮廓色 |
-| `outlineWidth` | `number` | `1` | 轮廓宽度（像素） |
-| `show` | `boolean` | `true` | 可见性 |
-| `position` | `Cartesian3` | — | 相对实体局部偏移 |
+| `topSemiMajorAxis` | `number` | `1` | Top elliptical semi-major axis in meters |
+| `topSemiMinorAxis` | `number` | `1` | Top elliptical semi-minor axis in meters |
+| `bottomSemiMajorAxis` | `number` | `100` | Bottom elliptical semi-major axis in meters |
+| `bottomSemiMinorAxis` | `number` | `50` | Bottom elliptical semi-minor axis in meters |
+| `height` | `number` | `100` | Cone height in meters |
+| `slices` | `number` | `64` | Number of elliptical slices |
+| `capTop` | `boolean` | `true` | Cap the top |
+| `capBottom` | `boolean` | `true` | Cap the bottom |
+| `emitDirection` | `EmitDirection` | `TO_UP` | Emission direction that determines the central axis |
+| `autoLength` | `boolean` | `false` | Automatic height |
+| `material` | `DMaterial` | `Color.BLUE.withAlpha(0.5)` | Material |
+| `fill` | `boolean` | `true` | Fill faces |
+| `outline` | `boolean` | `false` | Outline |
+| `outlineColor` | `DColor` | — | Outline color |
+| `outlineWidth` | `number` | `1` | Outline width in pixels |
+| `show` | `boolean` | `true` | Visibility |
+| `position` | `Cartesian3` | — | Local offset relative to the Entity |
 
-### emitDirection 旋转基准
+### emitDirection Rotation Reference
 
-| 模式 | 旋转基准点 | 适用场景 |
+| Mode | Rotation reference | Use case |
 |------|-----------|----------|
-| `TO_GROUND` | Entity 位置为顶点，锥体向地球方向延伸 | 卫星对地传感器 |
-| `CENTER` | 椎体中心与 Entity 重合 | 居中锥体 |
-| `TO_UP` | Entity 位置为底点，锥体向上延伸 | 地对空传感器 |
+| `TO_GROUND` | Entity position is the apex; cone extends toward Earth | Satellite-to-ground sensor |
+| `CENTER` | Cone center coincides with the Entity | Centered cone |
+| `TO_UP` | Entity position is the base; cone extends upward | Ground-to-air sensor |
 
-> X / Y 半轴始终垂直于 emit 方向。例如 `TO_GROUND` 时，椭圆截面在垂直于"指向地心方向"的平面内展开。
+> The X and Y semi-axes are always perpendicular to the emission direction. For example, with `TO_GROUND`, the elliptical cross-section expands in the plane perpendicular to the direction toward the center of the Earth.
 
 ---
 
-> **相关 API**：[BoxFeature](/en/api/classes/BoxFeature) · [CubeFeature](/en/api/classes/CubeFeature) · [CylinderFeature](/en/api/classes/CylinderFeature) · [EllipsoidFeature](/en/api/classes/EllipsoidFeature) · [SphereFeature](/en/api/classes/SphereFeature) · [EllipticalConeFeature](/en/api/classes/EllipticalConeFeature)
+> **Related APIs**: [BoxFeature](/en/api/classes/BoxFeature) · [CubeFeature](/en/api/classes/CubeFeature) · [CylinderFeature](/en/api/classes/CylinderFeature) · [EllipsoidFeature](/en/api/classes/EllipsoidFeature) · [SphereFeature](/en/api/classes/SphereFeature) · [EllipticalConeFeature](/en/api/classes/EllipticalConeFeature)

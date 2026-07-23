@@ -1,10 +1,10 @@
 # Link Communication
 
-The Link component renders a connecting line between two endpoints, with support for time-scheduled show / hide, flowing arrow materials, and direction control.
+The Link component renders a connecting line between two endpoints, with time-based visibility scheduling, animated arrow materials, and direction control.
 
 ## Architecture
 
-Link implements the `IComponent` interface, and is mounted via `BaseObject.addLink()`:
+Link implements the `IComponent` interface and is mounted through `BaseObject.addLink()`:
 
 ```
 源对象（卫星/地面站）
@@ -12,7 +12,7 @@ Link implements the `IComponent` interface, and is mounted via `BaseObject.addLi
           └── PolylineFeature（动态更新两端位置）
 ```
 
-The two endpoints of a link are specified via `target`; the source is implicitly the host object itself. Link uses `CelestialEllipsoid` internally for Earth occlusion detection — when one endpoint is hidden behind the body, the link line is automatically hidden.
+The two Link endpoints are specified through `target`; the source endpoint implicitly equals the host object itself. Link uses `CelestialEllipsoid` internally for Earth-occlusion detection and automatically hides the line when either endpoint is blocked by Earth.
 
 ## Adding a Link
 
@@ -53,21 +53,21 @@ sat.addLink({
 ## LinkOptions
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| `target` | `BaseObject \| Entity \| Cartesian3 \| { entity }` | Link peer |
+|------|------|------|
+| `target` | `BaseObject \| Entity \| Cartesian3 \| { entity }` | Remote endpoint of the link |
 | `show` | `boolean \| LinkTimeRange \| LinkTimeRange[]` | Visibility schedule |
 | `color` | `DColor` | Line color |
-| `material` | `DMaterial` | Material (higher priority than color/speed/direction) |
-| `width` | `number` | `2` | Line width (pixels) |
+| `material` | `DMaterial` | Material, taking precedence over color/speed/direction |
+| `width` | `number` | `2` | Line width in pixels |
 | `direction` | `"forward" \| "reverse"` | Flow direction |
 | `speed` | `number` | Flow speed (default 0) |
 | `clampToGround` | `boolean` | Clamp to ground |
-| `arcType` | `ArcType` | Interpolation type |
+| `arcType` | `ArcType` | Interpolation method |
 | `name` | `string` | Name |
 
 ## Time Scheduling (LinkSchedule)
 
-`show` supports three forms:
+The `show` parameter supports three forms:
 
 ```typescript
 // 始终显示
@@ -83,7 +83,7 @@ show: [
 ]
 ```
 
-Typical usage: compute pass windows via `sat.getTransits()`, then map to link time ranges:
+Typical usage: first calculate transit windows with `sat.getTransits()`, then map the windows to the Link time intervals:
 
 ```typescript
 const transits = sat.getTransits({
@@ -105,7 +105,7 @@ site.addLink({
 })
 ```
 
-## Flowing Arrow Material
+## Animated Arrow Material
 
 ```typescript
 // 使用 MaterialFactory 预设
@@ -121,15 +121,15 @@ site.addLink({
 })
 ```
 
-If only `color` + `direction` + `speed` are provided without `material`, Link will automatically generate a default flowing-arrow material internally.
+If only `color` + `direction` + `speed` are provided without `material`, Link automatically generates a default animated arrow material.
 
 ## Earth Occlusion Detection
 
-Link automatically uses the current host object's `celestialEllipsoid` for occlusion detection: when either endpoint of the link segment is hidden behind the celestial body, the link is automatically hidden. Implemented via `CelestialEllipsoid.rayIntersection()`; active in 3D mode only.
+Link automatically uses the host object's `celestialEllipsoid` for occlusion detection. If either endpoint of the link is occluded by a celestial body, the link is hidden automatically. Detection uses `CelestialEllipsoid.rayIntersection()` and is effective only in 3D mode.
 
 ## Dynamic Endpoints
 
-`target` can be a moving Entity — Link retrieves the remote endpoint position every frame via `entity.getCurrentPosition()` and updates the PolylineFeature vertices.
+`target` can be a moving Entity. Each frame, Link uses `entity.getCurrentPosition()` to get the remote endpoint and update the vertices of the PolylineFeature.
 
 
 ---

@@ -20,7 +20,7 @@ Opacity override, range 0~1.
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-Uniform flame main color. After passing, startColor/endColor will be derived.
+Uniform flame main color. When set, startColor/endColor are derived from it.
 
 ### emissionRateScale?
 
@@ -46,9 +46,9 @@ Built-in particle preset. Currently only provides rocket-flame; more presets wil
 
 Propulsion particle renderer.
 
-- `capsule-sprite`: Host capsule particle, a world-anchored sprite patch, suitable for rocket/aircraft plumes.
-- `capsule-billboard`: Legacy config compatibility alias; internally also maps to `capsule-sprite`.
-- `world-particle`: World particle, integrated per particle, suitable for natural particles like smoke, rain, snow, and water flow after leaving the host.
+- `capsule-sprite`: Host capsule particle, a world-anchored sprite patch suitable for rocket or aircraft plumes.
+- `capsule-billboard`: Legacy compatibility alias that also maps to `capsule-sprite`.
+- `world-particle`: World particles integrated per particle, suitable for natural particles like smoke, rain, snow, and water flow after leaving the host.
 
 ### sizeScale?
 

@@ -6,13 +6,12 @@
 
 # Class: WeatherParticleComponent
 
-相机天气粒子组件。
+Camera weather-particle component.
 
-该组件是 ParticleFeature 的物理世界封装，适合雨、雪、雾、云这类自然粒子：
-- 粒子属于世界空间，可以有速度、生命周期和自然扩散；
-- 组件会把发射体积挂在相机前方，让用户靠近/拉远时始终有局部天气观感；
-- 它不用于火箭喷焰/飞机尾焰。喷焰主体属于强宿主绑定、强聚焦目标，应使用
- CapsuleParticleFeature 或 JetEngine 的 `capsule-sprite` 渲染管线。
+This component is the physical-world wrapper for ParticleFeature and is suited to natural particles such as rain, snow, fog, and clouds:
+- Particles belong to world space and can have velocity, a lifetime, and natural spreading.
+- The component places the emitter volume in front of the camera so local weather remains visible as the user moves closer or farther away.
+- It is not intended for rocket exhaust or aircraft contrails. Exhaust is strongly host-bound and focused on a target, so use CapsuleParticleFeature or JetEngine's `capsule-sprite` rendering pipeline.
 
 ## Extends
 
@@ -44,9 +43,9 @@
 
 > **transformer**: `Transformer` \| `undefined` = `undefined`
 
-组件级 Transformer（可选）。
+Component-level Transformer (optional).
 
-建议用来表示“安装/物理基准”变换，而不是去污染 Entity.transformer。
+Recommended for representing installation or physical-reference transforms instead of modifying Entity.transformer.
 
 #### Inherited from
 
@@ -58,7 +57,7 @@
 
 > `readonly` **type**: `string` = `"WeatherParticleComponent"`
 
-组件类型标识。子类需要覆写。
+Component type identifier. Subclasses must override it.
 
 #### Overrides
 
@@ -72,10 +71,10 @@
 
 > **get** **id**(): `string`
 
-设置组件 id（全局唯一标识）。
+Sets the component id (globally unique identifier).
 
-- 通常由 BaseComponent.register() 自动生成
-- 也允许业务侧手动指定以便对齐外部系统 id
+- Usually generated automatically by BaseComponent.register()
+- Can also be specified manually to align with an external system id
 
 ##### Returns
 
@@ -85,10 +84,10 @@
 
 > **set** **id**(`value`): `void`
 
-设置组件 id（全局唯一标识）。
+Sets the component id (globally unique identifier).
 
-- 通常由 BaseComponent.register() 自动生成
-- 也允许业务侧手动指定以便对齐外部系统 id
+- Usually generated automatically by BaseComponent.register()
+- Can also be specified manually to align with an external system id
 
 ##### Parameters
 
@@ -112,7 +111,7 @@
 
 > **get** **name**(): `string`
 
-设置组件名称（用于按名称检索/管理）。
+Sets the component name for lookup and management by name.
 
 ##### Returns
 
@@ -122,7 +121,7 @@
 
 > **set** **name**(`value`): `void`
 
-设置组件名称（用于按名称检索/管理）。
+Sets the component name for lookup and management by name.
 
 ##### Parameters
 
@@ -190,7 +189,7 @@
 
 > **destroy**(): `void`
 
-销毁组件及其内部资源。
+Destroys the component and its internal resources.
 
 #### Returns
 
@@ -206,9 +205,9 @@
 
 > **register**(`object`): [`CameraWeatherParticleComponent`](PW.CameraWeatherParticleComponent.md)
 
-将组件注册到物理对象上。
+Registers the component with a physical object.
 
-子类通常在这里创建/绑定内部渲染适配层（Feature）或初始化资源。
+Subclasses typically create or bind an internal rendering adapter (Feature) or initialize resources here.
 
 #### Parameters
 
@@ -230,9 +229,9 @@
 
 > **resetTemporalState**(`_time?`): `void`
 
-重置跨时间循环保留的临时状态。
+Resets temporary state preserved across time cycles.
 
-当仿真时间倒退或循环回起点时，宿主对象会调用该方法，让组件清理跨帧缓存。
+When simulation time moves backward or loops to its start, the host object calls this method so the component can clear cross-frame caches.
 
 #### Parameters
 
@@ -314,7 +313,7 @@
 
 > **unregister**(): `void`
 
-从物理对象卸载组件，但不销毁组件实例（可用于临时禁用）。
+Unloads the component from the physical object without destroying the component instance, which can be used for temporary disabling.
 
 #### Returns
 
@@ -330,7 +329,7 @@
 
 > **update**(`spaceObject`, `_time`): `void`
 
-每帧更新（仿真时间驱动）。
+Updates every frame, driven by simulation time.
 
 #### Parameters
 

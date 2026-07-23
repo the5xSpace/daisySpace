@@ -1,12 +1,12 @@
-# 时间调度
+# Time Scheduling
 
-仿真时间调度是航天仿真的核心需求之一。DaisySpace-Sdk 提供两类时间能力：
-1. **仿真时钟** — Engine 层的时间播放控制（已涵盖在 [Engine 引擎](/en/guide/engine#时间控制)）
-2. **任务调度** — `TimeSchedule` + `TimeTask` / `TimePointTask` 实现的时间驱动任务系统
+Simulation-time scheduling is a core requirement in space simulation. DaisySpace-Sdk provides two kinds of time capabilities:
+1. **Simulation clock** — time playback control at the Engine layer (covered in [Engine time control](/en/guide/engine#时间控制))
+2. **Task scheduling** - a time-driven task system implemented by `TimeSchedule` + `TimeTask` / `TimePointTask`
 
-本文档聚焦于**任务调度器**。
+This document focuses on the **task scheduler**.
 
-## 架构
+## Architecture
 
 ```
 Engine.timeSchedule  ──→  TimeSchedule（默认实例）
@@ -17,9 +17,9 @@ TimeSchedule
     └── TimePointTask[] 时间点任务（单次触发）
 ```
 
-Engine 在构造函数中自动创建一个 `timeSchedule` 实例，每帧在 `RenderLoopManager` 中调用 `schedule.update(currentTime)`。如果需要独立的调度器（例如在特定 Entity 或 BaseObject 内使用），可以调用 `engine.createTimeSchedule()` 创建新实例。
+The Engine automatically creates a `timeSchedule` instance in its constructor and calls `schedule.update(currentTime)` in `RenderLoopManager` every frame. To create an independent scheduler, for example for use inside a specific Entity or BaseObject, call `engine.createTimeSchedule()`.
 
-## TimeTask — 时间区间任务
+## TimeTask - Interval Task
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -49,25 +49,25 @@ const task = new Daisy.TimeTask({
 schedule.add(task)
 ```
 
-`TimeTask` 构造参数：
+`TimeTask` constructor parameters:
 
-| 参数 | 类型 | 说明 |
+| Parameter | Type | Description |
 |------|------|------|
-| `id` | `string` | 任务唯一标识 |
-| `name` | `string` | 任务显示名称 |
-| `startJulianTime` | `JulianDate` | 开始时间 |
-| `endJulianTime` | `JulianDate` | 结束时间 |
-| `onEnter` | `TimeTaskHandler` | 进入区间时触发一次 |
-| `onTick` | `TimeTaskHandler` | 在区间内每帧触发 |
-| `onLeave` | `TimeTaskHandler` | 离开区间时触发一次 |
+| `id` | `string` | Unique task identifier |
+| `name` | `string` | Display name of the task |
+| `startJulianTime` | `JulianDate` | Start time |
+| `endJulianTime` | `JulianDate` | End time |
+| `onEnter` | `TimeTaskHandler` | Invoked once when entering the interval |
+| `onTick` | `TimeTaskHandler` | Invoked every frame within the interval |
+| `onLeave` | `TimeTaskHandler` | Invoked once when leaving the interval |
 
-回调参数（4 个）：
-- `curTime` — 当前仿真时间
-- `ctx` — 上下文对象（Engine 实例）
-- `getStartOffset()` — 当前时间相对开始时间的秒偏移
-- `getEndOffset()` — 当前时间相对结束时间的秒偏移
+Callback parameters (4):
+- `curTime` - current simulation time
+- `ctx` - context object (the Engine instance)
+- `getStartOffset()` - offset in seconds from the start time to the current time
+- `getEndOffset()` - offset in seconds from the current time to the end time
 
-### 状态流转
+### State Transitions
 
 ```
 idle  ──(进入区间)──→  entered  ──(首帧 onTick)──→  active  ──(离开区间)──→  finished
@@ -75,16 +75,16 @@ idle  ──(进入区间)──→  entered  ──(首帧 onTick)──→  ac
   └────────────────(loop 回退到开始之前)──────────────────────────────────────────┘
 ```
 
-| 状态 | 含义 |
+| State | Meaning |
 |------|------|
-| `idle` | 未进入区间 |
-| `entered` | 刚进入区间（`onEnter` 已触发，`onTick` 尚未） |
-| `active` | 正在区间内执行 |
-| `finished` | 已离开区间 |
+| `idle` | Not in the interval |
+| `entered` | Just entered the interval (`onEnter` has fired, but `onTick` has not) |
+| `active` | Executing within the interval |
+| `finished` | Has left the interval |
 
-## TimePointTask — 时间点任务
+## TimePointTask - Point-in-Time Task
 
-在仿真时间到达指定时间点时触发一次：
+Fires once when simulation time reaches the specified time point:
 
 ```typescript
 const triggerTime = Daisy.JulianDate.addSeconds(startTime, 30 * 60, new Daisy.JulianDate())
@@ -101,18 +101,18 @@ const pointTask = new Daisy.TimePointTask({
 schedule.addPoint(pointTask)
 ```
 
-| 参数 | 类型 | 说明 |
+| Parameter | Type | Description |
 |------|------|------|
-| `id` | `string` | 唯一标识 |
-| `name` | `string` | 显示名称 |
-| `timeJulianTime` | `JulianDate` | 触发时间点 |
-| `onTrigger` | `TimePointTaskHandler` | 到达时触发一次 |
+| `id` | `string` | Unique identifier |
+| `name` | `string` | Display name |
+| `timeJulianTime` | `JulianDate` | Trigger time point |
+| `onTrigger` | `TimePointTaskHandler` | Invoked once when reached |
 
-状态：`idle` → `triggered`（仅一次）。
+State: `idle` -> `triggered` (once only).
 
-## 调度器管理
+## Scheduler Management
 
-`engine.timeSchedule` 是默认调度器，但也可以创建独立调度器：
+`engine.timeSchedule` is the default scheduler, but independent schedulers can also be created:
 
 ```typescript
 // 使用默认调度器
@@ -133,7 +133,7 @@ schedule.clear()            // 清空全部
 schedule.getTasks()         // 获取所有区间任务（只读）
 ```
 
-## 状态变更监听
+## State-Change Listeners
 
 ```typescript
 schedule.onTaskStatusChange(({ task, prevStatus, currentStatus }) => {
@@ -143,11 +143,11 @@ schedule.onTaskStatusChange(({ task, prevStatus, currentStatus }) => {
 schedule.offTaskStatusChange(handler)  // 取消订阅
 ```
 
-此事件在状态转换时触发（微任务调度），常用于驱动 UI 组件（如 `TaskTimeLineWidget`、`TaskGanttWidget`）更新。
+This event fires on state transitions (scheduled as a microtask) and is commonly used to update UI components such as `TaskTimeLineWidget` and `TaskGanttWidget`.
 
-## 可视化组件
+## Visualization Components
 
-调度器可配合内置可视化 Widget 使用：
+The scheduler can be used with the built-in visualization Widgets:
 
 ```typescript
 // 时间线进度
@@ -164,20 +164,20 @@ engine.addWidget(new Daisy.TaskGanttWidget(schedule, {
 }))
 ```
 
-## 调度器与仿真时钟的关系
+## Scheduler and Simulation Clock
 
-- 调度器**不控制**仿真时钟——它只**响应**仿真时钟。
-- Engine 的渲染循环每帧调用 `schedule.update(engine.getCurrentTime())`。
-- 仿真时间由 `engine.play()` / `engine.setMultiplier()` / `engine.setCurrentTime()` 驱动。
-- 调度器的任务回调通过**微任务队列**调度执行，异常自动捕获，不会中断调度器。
+- The scheduler **does not control** the simulation clock; it only **responds** to it.
+- The Engine render loop calls `schedule.update(engine.getCurrentTime())` every frame.
+- Simulation time is driven by `engine.play()` / `engine.setMultiplier()` / `engine.setCurrentTime()`.
+- Scheduler task callbacks run through the **microtask queue**; exceptions are caught automatically and do not interrupt the scheduler.
 
-## 常见陷阱
+## Common Pitfalls
 
-> **陷阱 1 — 调度器依赖仿真时间**：仿真时间必须在 `TimeTask` 的 `[startJulianTime, endJulianTime]` 区间内任务才会触发。确保 `engine.setSceneTime()` 的范围覆盖任务时间。
+> **Pitfall 1 - The scheduler depends on simulation time**: a task fires only when simulation time is within the `TimeTask` interval `[startJulianTime, endJulianTime]`. Ensure the range passed to `engine.setSceneTime()` covers the task time.
 >
-> **陷阱 2 — loop 模式下的状态重置**：当 `setSceneTime(start, stop, true)` 启用循环时，`TimeSchedule` 在仿真时间跳回区间之前会自动将 `finished` 状态重置为 `idle`，保证每次循环都能重新触发任务。
+> **Pitfall 2 - State reset in loop mode**: when `setSceneTime(start, stop, true)` enables looping, `TimeSchedule` automatically resets `finished` to `idle` before simulation time jumps back to the interval, allowing tasks to fire again on every loop.
 >
-> **陷阱 3 — `engine.clock` 陷阱的延续**：如果 `engine.clock` 未正确同步（见 [Engine 陷阱](/en/guide/engine)），调度器从 `engine.getCurrentTime()` 读取的可能是实时时间而非仿真时间，导致任务永远无法匹配。
+> **Pitfall 3 — continuation of the `engine.clock` pitfall**: if `engine.clock` is not synchronized correctly (see the [Engine pitfall](/en/guide/engine)), the scheduler may read real time rather than simulation time from `engine.getCurrentTime()`, so tasks never match.
 
 
 ---

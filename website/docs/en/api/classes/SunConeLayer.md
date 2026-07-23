@@ -6,12 +6,12 @@
 
 # Class: SunConeLayer
 
-展示遮挡天体背向光源一侧的本影和半影空间范围。
+Displays the spatial extent of the umbra and penumbra behind an occluding body relative to the light source.
 
 ## Remarks
 
-日锥只在三维模式下显示；切换到二维模式时释放空间渲染资源，返回三维模式后重建。
-`visualLengthScale` 仅改变可视长度，`getOcclusionState()` 始终使用真实天体尺寸判定。
+The light cone is displayed only in 3D mode; spatial rendering resources are released when switching to 2D and rebuilt when returning to 3D.
+`visualLengthScale` changes only the visual length, while `getOcclusionState()` always uses the body's actual size for classification.
 
 ## Example
 
@@ -37,7 +37,7 @@ if (position) {
 
 > **new SunConeLayer**(`options?`): `SunConeLayer`
 
-创建日锥图层并校验显示、分段和更新间隔配置。
+Creates the light-cone layer and validates the display, segmentation, and update-interval options.
 
 #### Parameters
 
@@ -59,7 +59,7 @@ if (position) {
 
 > `optional` **engine?**: [`Engine`](Engine.md)
 
-引擎实例。
+The engine instance.
 
 #### Inherited from
 
@@ -71,7 +71,7 @@ if (position) {
 
 > `optional` **id?**: `string`
 
-图层唯一标识符。
+Unique layer identifier.
 
 #### Inherited from
 
@@ -83,8 +83,8 @@ if (position) {
 
 > `optional` **isDestroyed?**: `boolean` = `false`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+The collection manager uses this to avoid destroyed singleton instances.
 
 #### Inherited from
 
@@ -96,7 +96,7 @@ if (position) {
 
 > `optional` **key?**: `string`
 
-Widget 标识键（用于单例去重）。
+Widget identifier key, used for singleton deduplication.
 
 #### Inherited from
 
@@ -108,7 +108,7 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **name?**: `string`
 
-图层名称。
+Layer name.
 
 #### Inherited from
 
@@ -120,8 +120,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **rebuildOnMorph?**: `boolean` = `true`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether to rebuild with destroy -> register when the scene morphs (2D/3D).
+The default is true; UI widgets should usually set this to false.
 
 #### Inherited from
 
@@ -133,8 +133,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **singleton?**: `boolean`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether this is a singleton widget.
+- If true, only one instance with the same key can exist in the Engine.
 
 #### Inherited from
 
@@ -146,8 +146,8 @@ Widget 标识键（用于单例去重）。
 
 > `optional` **zoomIgnored?**: `boolean` = `false`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore this widget during camera aggregate observation.
+UI controller widgets should set this to true.
 
 #### Inherited from
 
@@ -161,7 +161,7 @@ UI 控制器类 widget 应设为 true。
 
 > **get** **show**(): `boolean`
 
-是否显示日锥；修改后立即更新已有空间渲染资源。
+Whether to display the light cone; changes immediately update existing spatial rendering resources.
 
 ##### Returns
 
@@ -187,7 +187,7 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`_`): `void`
 
-进入二维模式时释放三维空间渲染资源。
+Releases 3D spatial rendering resources when entering 2D mode.
 
 #### Parameters
 
@@ -209,7 +209,7 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-销毁图层并解除注册。
+Destroys and unregisters the layer.
 
 #### Returns
 
@@ -225,7 +225,7 @@ UI 控制器类 widget 应设为 true。
 
 > **getBoundingSphere**(): `BoundingSphere` \| `undefined`
 
-获取当前可见日锥的包围球；未显示或不在三维模式时返回 `undefined`。
+Gets the bounding sphere of the currently visible light cone; returns `undefined` when it is hidden or the scene is not in 3D mode.
 
 #### Returns
 
@@ -237,7 +237,7 @@ UI 控制器类 widget 应设为 true。
 
 > **getOcclusionState**(`observer`, `time?`): [`SunOcclusionState`](../types/SunOcclusionState.md)
 
-判定任意世界坐标点位于日照区、本影还是半影。
+Determines whether a world-coordinate point is in the lit region, umbra, or penumbra.
 
 #### Parameters
 
@@ -245,13 +245,13 @@ UI 控制器类 widget 应设为 true。
 
 `Cartesian3`
 
-待判定点的世界坐标。
+World coordinates of the point to classify.
 
 ##### time?
 
 `JulianDate`
 
-判定时刻；未设置时优先使用引擎当前时刻。
+Time at which to classify the point; when omitted, the engine's current time is used first.
 
 #### Returns
 
@@ -263,7 +263,7 @@ UI 控制器类 widget 应设为 true。
 
 > **is3d**(): `boolean`
 
-判断是否是3d模式
+Determines whether the scene is in 3D mode.
 
 #### Returns
 
@@ -279,7 +279,7 @@ UI 控制器类 widget 应设为 true。
 
 > **morphSwitchHandle**(`mode`): `void`
 
-在离开三维模式时释放日锥的空间渲染资源。
+Releases the light cone's spatial rendering resources when leaving 3D mode.
 
 #### Parameters
 
@@ -301,7 +301,7 @@ UI 控制器类 widget 应设为 true。
 
 > **refresh**(): `void`
 
-忽略更新间隔，按引擎当前时刻立即重建日锥。
+Ignores the update interval and immediately rebuilds the light cone using the engine's current time.
 
 #### Returns
 
@@ -317,7 +317,7 @@ UI 控制器类 widget 应设为 true。
 
 > **register**(`engine`): `SunConeLayer`
 
-将图层注册到引擎；三维模式下立即创建本影和半影。
+Registers the layer with the engine; immediately creates the umbra and penumbra in 3D mode.
 
 #### Parameters
 
@@ -339,7 +339,7 @@ UI 控制器类 widget 应设为 true。
 
 > **unregister**(): `void`
 
-解除注册并释放当前图层拥有的空间渲染资源。
+Unregisters the layer and releases its current spatial rendering resources.
 
 #### Returns
 
@@ -351,7 +351,7 @@ UI 控制器类 widget 应设为 true。
 
 > **update**(`time`): `void`
 
-根据仿真时刻和配置的最小更新间隔刷新日锥形态。
+Refreshes the light-cone shape according to the simulation time and configured minimum update interval.
 
 #### Parameters
 
@@ -373,7 +373,7 @@ UI 控制器类 widget 应设为 true。
 
 > **offMorphSwitch**(`callback`): `void`
 
-移除投影切换事件监听
+Removes the projection-switch event listener.
 
 #### Parameters
 
@@ -397,7 +397,7 @@ MORPH_SWITCH
 
 > **onMorphSwitch**(`callback`): `void`
 
-监听投影切换事件
+Listens for projection-switch events.
 
 #### Parameters
 

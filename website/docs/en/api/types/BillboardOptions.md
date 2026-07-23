@@ -8,14 +8,14 @@
 
 > **BillboardOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-BillboardFeature 配置。
+BillboardFeature configuration.
 
-用于在 Entity 附近创建一个“广告牌”渲染节点，并随实体位置在每帧更新。
+Creates a billboard render node near an Entity and updates it every frame with the Entity position.
 
-设计要点：
-- 该 Feature 自己管理节点创建/销毁（不依赖 Entity 的 property 系列）
-- `position` 表示“实体局部坐标系下的偏移”，最终会叠加到实体当前位置
-- 屏幕偏移支持“像素”和“米”两套口径；当提供米时，会在每帧按相机尺度换算为像素
+Design notes:
+- This Feature manages node creation and destruction itself; it does not depend on the Entity property series.
+- `position` is an offset in the Entity's local coordinate system and is added to the Entity's current position.
+- Screen offsets support both pixels and meters. When meters are provided, they are converted to pixels using the camera scale each frame.
 
 ## Type Declaration
 
@@ -23,15 +23,15 @@ BillboardFeature 配置。
 
 > `optional` **alignedAxis?**: `Daisy.Cartesian3`
 
-对齐轴（通常用于让 billboard 与某方向对齐）。
+Alignment axis, usually used to align the billboard with a direction.
 
 ### color?
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-颜色。
+Color.
 
-说明：内部会在创建与更新阶段统一解析为渲染层颜色对象。
+The value is normalized to a render-layer color object during creation and update.
 
 #### Default
 
@@ -43,106 +43,106 @@ WHITE
 
 > `optional` **disableDepthTestDistance?**: `number`
 
-关闭深度测试的距离阈值（单位：米）。
+Distance threshold in meters beyond which depth testing is disabled.
 
-值越大越倾向“始终可见”；通常用于 UI 类节点避免被场景遮挡。
+Larger values make the node more likely to remain visible; commonly used for UI nodes to avoid scene occlusion.
 
 ### distanceDisplayCondition?
 
 > `optional` **distanceDisplayCondition?**: `Daisy.DistanceDisplayCondition`
 
-显示距离条件。
+Display distance condition.
 
-用于在不同视距下自动隐藏/显示该节点（典型用于“远距离简化 UI 负担”）。
+Automatically hides or shows the node at different viewing distances, typically to reduce UI load at long range.
 
 ### eyeOffset?
 
 > `optional` **eyeOffset?**: `Daisy.Cartesian3`
 
-视点偏移（单位：米）。
+Eye offset in meters.
 
 ### height?
 
 > `optional` **height?**: `number`
 
-高度。
+Height.
 
-- 当 `sizeInMeters=false`：单位为像素
-- 当 `sizeInMeters=true`：单位为米
+- When `sizeInMeters=false`: the unit is pixels.
+- When `sizeInMeters=true`: the unit is meters.
 
 ### heightReference?
 
 > `optional` **heightReference?**: `Daisy.HeightReference`
 
-高程参考。
+Height reference.
 
 ### horizontalOrigin?
 
 > `optional` **horizontalOrigin?**: `Daisy.HorizontalOrigin`
 
-水平对齐。
+Horizontal alignment.
 
 ### image?
 
 > `optional` **image?**: `string` \| `HTMLCanvasElement` \| `HTMLImageElement` \| `ImageData`
 
-广告牌图片。
+Billboard image.
 
-可传图片 URL、Canvas、Image、ImageData 等。
+Accepts an image URL, Canvas, Image, ImageData, and similar sources.
 
 ### imageSubRegion?
 
 > `optional` **imageSubRegion?**: `Daisy.BoundingRectangle`
 
-图片裁剪区域。
+Image crop region.
 
 ### offsetMeters?
 
 > `optional` **offsetMeters?**: `Daisy.Cartesian2`
 
-屏幕偏移（单位：米）。
+Screen offset in meters.
 
-与 `offsetPx` 二选一；若同时设置则优先使用米。
+Use it instead of `offsetPx`; when both are set, the meter value takes precedence.
 
-说明：
-- “米偏移”面向空间尺度表达：不随屏幕分辨率/缩放变化而改变语义
-- 内部会在 update 周期通过相机尺度换算为像素偏移（见 update 中的 metersPerPixelAt）
+Notes:
+- Meter offsets express spatial scale and do not change meaning with screen resolution or zoom.
+- They are converted to pixel offsets during the update cycle using the camera scale (see metersPerPixelAt in update).
 
 ### offsetPx?
 
 > `optional` **offsetPx?**: `Daisy.Cartesian2`
 
-屏幕像素偏移（单位：像素）。
+Screen pixel offset.
 
-与 `offsetMeters` 同时设置时，以 `offsetMeters` 为准（因为“米”会在每帧自适应换算）。
+When set together with `offsetMeters`, `offsetMeters` takes precedence because meters are adapted each frame.
 
 ### pixelOffset?
 
 > `optional` **pixelOffset?**: `Daisy.Cartesian2`
 
-兼容字段：等同 `offsetPx`（单位：像素）。
+Compatibility field equivalent to `offsetPx`.
 
-与 `offsetMeters` 同时设置时，以 `offsetMeters` 为准。
+When set together with `offsetMeters`, `offsetMeters` takes precedence.
 
 ### pixelOffsetMeters?
 
 > `optional` **pixelOffsetMeters?**: `Daisy.Cartesian2`
 
-兼容字段：等同 `offsetMeters`（单位：米）。
+Compatibility field equivalent to `offsetMeters`.
 
-与 `offsetPx` 二选一；若同时设置则优先使用米。
+Use it instead of `offsetPx`; when both are set, the meter value takes precedence.
 
 ### pixelOffsetScaleByDistance?
 
 > `optional` **pixelOffsetScaleByDistance?**: `Daisy.NearFarScalar`
 
-像素偏移随距离缩放。
+Whether the pixel offset scales with distance.
 
 ### position?
 
 > `optional` **position?**: `Daisy.Cartesian3`
 
-相对实体坐标系下的位置。
+Position in the Entity-relative coordinate system.
 
 #### Default
 
@@ -154,13 +154,13 @@ Cartesian3.ZERO
 
 > `optional` **rotation?**: `number`
 
-旋转角（弧度）。
+Rotation angle in radians.
 
 ### scale?
 
 > `optional` **scale?**: `number`
 
-缩放比例。
+Scale factor.
 
 #### Default
 
@@ -172,13 +172,13 @@ Cartesian3.ZERO
 
 > `optional` **scaleByDistance?**: `Daisy.NearFarScalar`
 
-按距离缩放。
+Whether to scale with distance.
 
 ### show?
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show the billboard.
 
 #### Default
 
@@ -190,7 +190,7 @@ true
 
 > `optional` **sizeInMeters?**: `boolean`
 
-是否使用“米”为单位的尺寸（否则 width/height 为像素）。
+Whether dimensions use meters as the unit; otherwise width/height use pixels.
 
 #### Default
 
@@ -202,25 +202,25 @@ false
 
 > `optional` **splitDirection?**: `Daisy.SplitDirection`
 
-分屏方向。
+Split-screen direction.
 
 ### translucencyByDistance?
 
 > `optional` **translucencyByDistance?**: `Daisy.NearFarScalar`
 
-透明度随距离变化。
+Whether opacity changes with distance.
 
 ### verticalOrigin?
 
 > `optional` **verticalOrigin?**: `Daisy.VerticalOrigin`
 
-垂直对齐。
+Vertical alignment.
 
 ### width?
 
 > `optional` **width?**: `number`
 
-宽度。
+Width.
 
-- 当 `sizeInMeters=false`：单位为像素
-- 当 `sizeInMeters=true`：单位为米
+- When `sizeInMeters=false`: the unit is pixels.
+- When `sizeInMeters=true`: the unit is meters.

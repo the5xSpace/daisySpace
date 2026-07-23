@@ -9,10 +9,14 @@
 Capsule particle Feature.
 
 Division of labor with ParticleFeature:
-- ParticleFeature is a "world particle": each particle has independent position, velocity, and lifecycle, suitable for natural effects like rain, snow, fog, smoke, water flow, and dust — effects that remain part of the physical world after leaving the host.
-- CapsuleParticleFeature is a "host capsule particle": uses a world-anchored sprite patch to play pre-generated canvas animation frames, suitable for rocket exhaust, aircraft afterburners, attitude control nozzles — effects strongly bound to a host, highly focused, requiring continuous visual bodies.
+- ParticleFeature is a "world particle" system: each particle has an independent position, velocity, and lifetime, suitable for rain, snow,
+  lifecycle, suitable for natural effects like rain, snow, fog, smoke, water flow, and dust.
+- CapsuleParticleFeature is a "host capsule particle" system: it uses a world-anchored textured plane to play
+  pre-generated canvas animation frames, suitable for rocket exhaust, aircraft afterburners, attitude control nozzles — effects strongly bound to a host,
+  highly focused, requiring continuous visual bodies.
 
-Design rationale: ParticleSystem internally uses "one billboard per particle". When the host moves at high speed and minimumPixelSize is enabled, discrete particles exhibit trailing, scattering, and scale inconsistency.
+Design rationale: ParticleSystem internally uses "one billboard per particle". When the host moves at high speed and
+and minimumPixelSize is enabled, discrete particles exhibit trailing, scattering, and scale inconsistency.
 Capsule particles consolidate the main flame into a single continuous sprite. The sprite root is determined by the host's local nozzle,
 the long axis by the host's local direction; optional screenSpaceSizing adjusts length/radius by meters-per-pixel at the nozzle,
 without changing the nozzle anchor, so close-ups won't drift off the local axis.

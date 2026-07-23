@@ -1,8 +1,8 @@
-# 弹出层
+# Popovers
 
-[UI.PopoverFeature](/en/api/classes/UI.PopoverFeature) 是 DOM Overlay 弹出层组件——它将 HTML 元素投影到屏幕坐标系中实体对应的位置，而不是在 WebGL 画布内渲染。支持多种触发模式、锚点方向、距离门限和完整的状态回调。
+[UI.PopoverFeature](/en/api/classes/UI.PopoverFeature) is a DOM Overlay popover component. It projects an HTML element to the screen position corresponding to an Entity instead of rendering inside the WebGL canvas. It supports multiple trigger modes, anchor directions, distance thresholds, and complete state callbacks.
 
-## 基础用法
+## Basic Usage
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -30,24 +30,24 @@ entity.addFeature(new Daisy.UI.PopoverFeature({
 }))
 ```
 
-## anchorPosition — 锚点方向
+## anchorPosition — Anchor Direction
 
-控制弹窗相对于实体位置的弹出方向：
+Controls the popover direction relative to the Entity position:
 
-| 值 | 说明 |
+| Value | Description |
 |----|------|
-| `"top"` | 弹窗在实体上方 |
-| `"bottom"` | 弹窗在实体下方 |
-| `"left"` | 弹窗在实体左侧 |
-| `"right"` | 弹窗在实体右侧 |
+| `"top"` | Popover above the Entity |
+| `"bottom"` | Popover below the Entity |
+| `"left"` | Popover to the left of the Entity |
+| `"right"` | Popover to the right of the Entity |
 
-## trigger — 触发模式
+## trigger — Trigger Mode
 
-三种触发模式控制弹窗的打开/关闭行为：
+Three trigger modes control how the popover opens and closes:
 
-### always — 常驻显示
+### always — Always Visible
 
-弹窗在初始化后始终保持打开，不受点击和键盘事件影响：
+The popover remains open after initialization and is unaffected by click or keyboard events:
 
 ```typescript
 entity.addFeature(new Daisy.UI.PopoverFeature({
@@ -59,11 +59,11 @@ entity.addFeature(new Daisy.UI.PopoverFeature({
 }))
 ```
 
-适合常驻提示或任务面板，始终跟随实体。`closeOnOutsideClick` 和 `closeOnEsc` 设为 `false` 可防止误关闭。
+This is suitable for persistent hints or task panels that always follow the Entity. Set `closeOnOutsideClick` and `closeOnEsc` to `false` to prevent accidental closing.
 
-### click — 点击切换
+### click — Click to Toggle
 
-点击实体打开弹窗，再次点击实体、按 ESC 或点击空白区域关闭：
+Click the Entity to open the popover; click it again, press ESC, or click an empty area to close it:
 
 ```typescript
 entity.addFeature(new Daisy.UI.PopoverFeature({
@@ -75,11 +75,11 @@ entity.addFeature(new Daisy.UI.PopoverFeature({
 }))
 ```
 
-适合详情面板和交互式信息展示。
+This is suitable for detail panels and interactive information displays.
 
-### hover — 悬停显示
+### hover — Show on Hover
 
-鼠标进入实体时打开弹窗，离开实体和弹窗后延迟隐藏：
+The popover opens when the pointer enters the Entity and hides after the pointer leaves both the Entity and the popover:
 
 ```typescript
 entity.addFeature(new Daisy.UI.PopoverFeature({
@@ -90,11 +90,11 @@ entity.addFeature(new Daisy.UI.PopoverFeature({
 }))
 ```
 
-弹窗自身也会保持 hover 状态，方便用户将鼠标移入弹窗内部点击内容。
+The popover itself also keeps the hover state active, allowing users to move the pointer inside and click its content.
 
-## maxDistance — 距离门限
+## maxDistance — Distance Threshold
 
-`maxDistance` 控制弹窗可见的最大距离（米）。相机距离超过门限时弹窗自动隐藏，回到门限内时重新显示：
+`maxDistance` controls the maximum distance in meters at which the popover is visible. The popover hides automatically when the camera exceeds the threshold and reappears when it returns within the threshold:
 
 ```typescript
 entity.addFeature(new Daisy.UI.PopoverFeature({
@@ -104,9 +104,9 @@ entity.addFeature(new Daisy.UI.PopoverFeature({
 }))
 ```
 
-> **注意：** 超过距离门限时只是隐藏 DOM 节点，弹窗的 `visible` 状态（请求可见）不会改变。区分"请求可见"与"实际渲染可见"对调试很重要。
+> **Note:** Exceeding the distance threshold only hides the DOM node; the popover's `visible` state (requested visibility) does not change. Distinguishing "requested visibility" from "actually rendered visibility" is important when debugging.
 
-### 动态调整门限
+### Dynamically Adjust the Threshold
 
 ```typescript
 popover.options = {
@@ -116,9 +116,9 @@ popover.options = {
 eng.triggerUpdateOnce?.()
 ```
 
-## show() / hide() — API 控制
+## show() / hide() — API Control
 
-通过 API 直接控制弹窗可见性，不受 trigger 模式限制：
+Control popover visibility directly through the API, regardless of the trigger mode:
 
 ```typescript
 // 手动打开
@@ -131,11 +131,11 @@ popover.hide("api")
 popover.toggle("api")
 ```
 
-`show()` 和 `hide()` 接收一个 reason 字符串参数，该原因会传递到 `onVisibilityChange` 回调中。
+`show()` and `hide()` accept a reason string, which is passed to the `onVisibilityChange` callback.
 
-## onVisibilityChange — 状态回调
+## onVisibilityChange — State Callback
 
-弹窗每次可见性变化时触发回调，回调参数包含可见状态和变更原因：
+The callback runs whenever popover visibility changes. Its argument contains the visibility state and the reason for the change:
 
 ```typescript
 popover.onVisibilityChange((event) => {
@@ -145,29 +145,29 @@ popover.onVisibilityChange((event) => {
 })
 ```
 
-### 全部 reason 码
+### All Reason Codes
 
-| reason | 含义 | 触发场景 |
+| reason | Meaning | Trigger |
 |--------|------|----------|
-| `initial` | 初始化 | 弹窗创建时的初始状态 |
-| `api` | API 控制 | 调用 `show()` / `hide()` / `toggle()` |
-| `entity-selected` | 实体选中 | 选中实体时自动显示 |
-| `entity-unselected` | 实体取消 | 取消选中时自动隐藏 |
-| `outside-click` | 外部点击 | 点击弹窗和实体以外的区域 |
-| `escape` | ESC 关闭 | 按下 Escape 键 |
-| `hover-enter` | 悬停进入 | 鼠标进入实体（hover 模式） |
-| `hover-leave` | 悬停离开 | 鼠标离开实体和弹窗（hover 模式） |
-| `entity-hidden` | 实体隐藏 | 实体被隐藏时弹窗跟随隐藏 |
-| `missing-position` | 无坐标 | 实体无法获取有效位置 |
-| `distance` | 距离隐藏 | 相机距离超过 `maxDistance` 门限 |
-| `occluded` | 地球遮挡 | 实体被地球曲面遮挡 |
-| `offscreen` | 屏幕外 | 弹窗投影到屏幕外 |
-| `rendered` | 已渲染 | DOM 已经上屏绘制 |
-| `destroy` | 已销毁 | 弹窗 Feature 被销毁 |
+| `initial` | Initialization | Initial state when the popover is created |
+| `api` | API control | `show()` / `hide()` / `toggle()` is called |
+| `entity-selected` | Entity selected | Automatically shown when the Entity is selected |
+| `entity-unselected` | Entity unselected | Automatically hidden when selection is cleared |
+| `outside-click` | Outside click | Click outside the popover and Entity |
+| `escape` | ESC close | Escape key pressed |
+| `hover-enter` | Hover entered | Pointer enters the Entity in hover mode |
+| `hover-leave` | Hover left | Pointer leaves the Entity and popover in hover mode |
+| `entity-hidden` | Entity hidden | Popover follows the hidden Entity |
+| `missing-position` | Missing position | Entity cannot provide a valid position |
+| `distance` | Hidden by distance | Camera exceeds the `maxDistance` threshold |
+| `occluded` | Earth occlusion | Entity is occluded by the Earth surface |
+| `offscreen` | Off-screen | Popover projects outside the screen |
+| `rendered` | Rendered | DOM has been rendered on screen |
+| `destroy` | Destroyed | Popover Feature is destroyed |
 
-## 完整示例
+## Complete Examples
 
-### 常驻遥测面板
+### Persistent Telemetry Panel
 
 ```typescript
 const content = document.createElement("div")
@@ -191,7 +191,7 @@ entity.addFeature(new Daisy.UI.PopoverFeature({
 }))
 ```
 
-### 点击详情卡片
+### Clickable Detail Card
 
 ```typescript
 const card = document.createElement("div")
@@ -218,7 +218,7 @@ popover.onVisibilityChange((event) => {
 entity.addFeature(popover)
 ```
 
-### hover 悬停预览
+### Hover Preview
 
 ```typescript
 entity.addFeature(new Daisy.UI.PopoverFeature({
@@ -230,18 +230,18 @@ entity.addFeature(new Daisy.UI.PopoverFeature({
 }))
 ```
 
-## ESC 关闭与外部点击
+## ESC Close and Outside Click
 
-| 选项 | 类型 | 默认 | 说明 |
+| Option | Type | Default | Description |
 |------|------|------|------|
-| `closeOnEsc` | `boolean` | `true`（click 模式） | 按 ESC 键关闭弹窗 |
-| `closeOnOutsideClick` | `boolean` | `true`（click 模式） | 点击弹窗和实体以外的区域关闭弹窗 |
+| `closeOnEsc` | `boolean` | `true` (click mode) | Close the popover when ESC is pressed |
+| `closeOnOutsideClick` | `boolean` | `true` (click mode) | Close the popover when clicking outside the popover and Entity |
 
-对于 `"always"` 模式，建议将两者设为 `false`，否则用户可能意外关闭常驻面板。
+For `"always"` mode, set both options to `false` to prevent users from accidentally closing a persistent panel.
 
-## 实体选中集成
+## Entity Selection Integration
 
-PopoverFeature 与实体选中状态深度集成。选中实体时自动显示弹窗，取消选中时自动隐藏（`click` 和 `hover` 模式）。可通过 `entity.onSelected()` 和 `entity.onUnSelected()` 在选中状态变化时执行额外逻辑：
+PopoverFeature integrates closely with Entity selection state. It automatically shows when an Entity is selected and hides when selection is cleared (`click` and `hover` modes). Use `entity.onSelected()` and `entity.onUnSelected()` to run additional logic when selection changes:
 
 ```typescript
 entity.onSelected(() => {
@@ -256,23 +256,23 @@ entity.onUnSelected(() => {
 })
 ```
 
-## 参数表
+## Parameter Table
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|--------|------|
-| `element` | `string \| HTMLElement` | — | 绑定的 DOM 元素（必填） |
-| `anchorPosition` | `"top" \| "bottom" \| "left" \| "right"` | `"top"` | 锚点方向 |
-| `trigger` | `"always" \| "click" \| "hover"` | `"always"` | 触发模式 |
-| `show` | `boolean` | — | 初始可见性 |
-| `maxDistance` | `number` | — | 最大可见距离（米） |
-| `offsetPx` | `Cartesian2` | — | 像素偏移 |
-| `gap` | `number` | `0` | 弹窗与锚点间距（像素） |
-| `fixedWidth` | `number` | — | 固定宽度（像素） |
-| `backgroundColor` | `string` | — | 弹窗背景色 |
-| `color` | `string` | — | 弹窗文字颜色 |
-| `closeOnEsc` | `boolean` | 跟随 trigger | 是否响应 ESC 键关闭 |
-| `closeOnOutsideClick` | `boolean` | 跟随 trigger | 是否响应外部点击关闭 |
-| `hoverDelayMs` | `number` | `120` | hover 模式下离开后的隐藏延迟（毫秒） |
-| `name` | `string` | — | 名称 |
+| `element` | `string \| HTMLElement` | — | Bound DOM element (required) |
+| `anchorPosition` | `"top" \| "bottom" \| "left" \| "right"` | `"top"` | Anchor direction |
+| `trigger` | `"always" \| "click" \| "hover"` | `"always"` | Trigger mode |
+| `show` | `boolean` | — | Initial visibility |
+| `maxDistance` | `number` | — | Maximum visible distance in meters |
+| `offsetPx` | `Cartesian2` | — | Pixel offset |
+| `gap` | `number` | `0` | Gap between the popover and anchor in pixels |
+| `fixedWidth` | `number` | — | Fixed width in pixels |
+| `backgroundColor` | `string` | — | Popover background color |
+| `color` | `string` | — | Popover text color |
+| `closeOnEsc` | `boolean` | Follows trigger | Whether to close on ESC |
+| `closeOnOutsideClick` | `boolean` | Follows trigger | Whether to close on outside click |
+| `hoverDelayMs` | `number` | `120` | Hide delay after leaving in hover mode, in milliseconds |
+| `name` | `string` | — | Name |
 
-> **相关 API**：[UI.PopoverFeature](/en/api/classes/UI.PopoverFeature)
+> **Related API**: [UI.PopoverFeature](/en/api/classes/UI.PopoverFeature)

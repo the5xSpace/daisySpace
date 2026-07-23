@@ -11,7 +11,7 @@
 Trajectory write request.
 
 A business-oriented shorthand entry point:
-- `startTime`/`endTime` can be omitted and will default to the current scene time
+- `startTime/endTime` can be omitted and will default to the current scene time
 - `stepSeconds` defaults to 600
 
 ## Properties

@@ -10,6 +10,8 @@ A non-overlapping collection of [TimeInterval](Daisy.TimeInterval.md) instances 
 
 ## Param
 
+**intervals**
+
 An array of intervals to add to the collection.
 
 ## Constructors

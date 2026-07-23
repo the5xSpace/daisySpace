@@ -1,10 +1,10 @@
-# 传感器
+# Sensors
 
-Sensor 是 DaisySpace-Sdk 物理世界中最核心的组件之一，封装了波束可视化、覆盖投影、跟踪模式和流动材质等能力。
+Sensor is one of the core components in the DaisySpace-Sdk physical world. It encapsulates beam visualization, coverage projection, tracking mode, and flowing materials.
 
-## 架构
+## Architecture
 
-Sensor 实现 `IComponent` 接口，通过 `BaseObject.addSensor()` 挂载到物理对象上。内部使用多个 Feature（EllipticalConeFeature / ShaderPolygonFeature 等）组合渲染：
+Sensor implements the `IComponent` interface and is attached to a physical object through `BaseObject.addSensor()`. Internally, it combines multiple Features such as EllipticalConeFeature and ShaderPolygonFeature for rendering:
 
 ```
 BaseObject（卫星/地面站）
@@ -14,18 +14,18 @@ BaseObject（卫星/地面站）
           └── 流动效果（自定义材质）
 ```
 
-## 波束类型（SensorType）
+## Beam Types (SensorType)
 
-| 类型 | 值 | 几何体 |
+| Type | Value | Geometry |
 |------|:---:|--------|
-| `PW.SensorType.EllipticalCone` | `"ellipticalCone"` | 椭圆锥（X/Y 开角可独立设置） |
-| `PW.SensorType.Cone` | `"cone"` | 圆锥（圆形截面） |
-| `PW.SensorType.Pyramid` | `"pyramid"` | 四棱锥（内部使用 CubeFeature 渲染） |
-| `PW.SensorType.Cylinder` | `"cylinder"` | 柱体 |
+| `PW.SensorType.EllipticalCone` | `"ellipticalCone"` | Elliptical cone (independent X/Y aperture angles) |
+| `PW.SensorType.Cone` | `"cone"` | Cone (circular cross-section) |
+| `PW.SensorType.Pyramid` | `"pyramid"` | Pyramid (rendered internally with CubeFeature) |
+| `PW.SensorType.Cylinder` | `"cylinder"` | Cylinder |
 
-## 添加传感器
+## Add a Sensor
 
-每个物理对象类型有不同的默认发射方向（由 `addSensor()` 自动设置 `emitDirection` 默认值）：
+Each physical object type has a different default emission direction. `addSensor()` sets the default `emitDirection` automatically:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -43,26 +43,26 @@ const sensor = sat.addSensor({
 })
 ```
 
-## 发射方向（EmitDirection）
+## Emission Direction (EmitDirection)
 
-控制波束相对宿主对象的朝向：
+Controls the beam direction relative to the host object:
 
-| 值 | 方向 | 适用场景 |
+| Value | Direction | Use case |
 |------|------|----------|
-| `CENTER` | 原点发射 | 通用 |
-| `TO_UP` | +Z（上方） | 地面站对空 |
-| `TO_BOTTOM` | -Z（下方） | 飞机对地侦查 |
-| `TO_GROUND` | 地表法线方向 | 卫星对地 |
-| `TO_FRONT` | +X（前方） | 车辆前视 |
-| `TO_AFTER` | -X（后方） | 后视传感器 |
-| `TO_LEFT` | +Y（左侧） | 侧视 |
-| `TO_RIGHT` | -Y（右侧） | 侧视 |
+| `CENTER` | Emit from the origin | General purpose |
+| `TO_UP` | +Z (up) | Ground station to sky |
+| `TO_BOTTOM` | -Z (down) | Aircraft-to-ground observation |
+| `TO_GROUND` | Surface normal direction | Satellite-to-ground observation |
+| `TO_FRONT` | +X (forward) | Vehicle forward view |
+| `TO_AFTER` | -X (backward) | Rear-facing sensor |
+| `TO_LEFT` | +Y (left) | Side view |
+| `TO_RIGHT` | -Y (right) | Side view |
 
-各对象类型的默认值：`Satellite` 为 `TO_BOTTOM`，`Aircraft` 为 `TO_BOTTOM`，`GroundStation` 为 `TO_UP`，`Vehicle` 为 `TO_FRONT`。
+The defaults by object type are: `Satellite` uses `TO_BOTTOM`, `Aircraft` uses `TO_BOTTOM`, `GroundStation` uses `TO_UP`, and `Vehicle` uses `TO_FRONT`.
 
-## 波束姿态（beamAttitudeDeg）
+## Beam Attitude (beamAttitudeDeg)
 
-手动设置波束指向角：
+Set the beam pointing angles manually:
 
 ```typescript
 sat.addSensor({
@@ -76,11 +76,11 @@ sat.addSensor({
 })
 ```
 
-> 注意：启用跟踪模式后，`beamAttitudeDeg` 会被忽略。
+> Note: `beamAttitudeDeg` is ignored when tracking mode is enabled.
 
-## 跟踪模式（link.track）
+## Tracking Mode (link.track)
 
-传感器自动跟踪目标实体或坐标：
+The sensor automatically tracks target entities or coordinates:
 
 ```typescript
 // 按时间段切换目标
@@ -103,13 +103,13 @@ sensor.options = {
 }
 ```
 
-支持的目标类型：`Entity`、`BaseObject`、`Cartesian3`、`Cartographic`。
+Supported target types: `Entity`, `BaseObject`, `Cartesian3`, and `Cartographic`.
 
-## 覆盖足迹（BeamFootprint）
+## Coverage Footprint (BeamFootprint)
 
-只有 `emitDirection === TO_GROUND` 时才会生成地面覆盖足迹；其他发射方向调用该能力会返回空结果。
+Ground coverage footprints are generated only when `emitDirection === TO_GROUND`; other emission directions return an empty result.
 
-在传感器下方渲染地面覆盖区域：
+Render the ground coverage area below the sensor:
 
 ```typescript
 sensor.setBeamFootprint({
@@ -125,11 +125,11 @@ sensor.setBeamFootprint({
 })
 ```
 
-足迹通过 `BeamProjector` 计算（SGP4 坐标 → 地面交点 → 多边形轮廓），渲染使用 `ShaderPolygonFeature`。
+The footprint is computed by `BeamProjector` (SGP4 coordinates to ground intersections to a polygon outline) and rendered with `ShaderPolygonFeature`.
 
-## 流动效果（link.flow）
+## Flow Effect (link.flow)
 
-波束体积上的流动材质：
+Apply a flowing material to the beam volume:
 
 ```typescript
 sensor.options = {
@@ -148,11 +148,11 @@ sensor.options = {
 }
 ```
 
-不配置 `activeWhen` 时，流动效果默认跟随 track 是否有目标（有目标时激活）。
+When `activeWhen` is not configured, the flow effect follows whether track has a target and activates when a target is present.
 
-### drawFootprint — 绘制计算覆盖
+### drawFootprint: Calculate and Draw Coverage
 
-在时间范围内计算并渲染传感器地面覆盖区域，基于 `BeamProjector` 做波束-地面交点采样：
+Calculate and render the sensor's ground coverage over a time range by sampling beam-ground intersections with `BeamProjector`:
 
 ```typescript
 sensor.drawFootprint({
@@ -168,11 +168,11 @@ sensor.drawFootprint({
 })
 ```
 
-`drawFootprint` 由 `Sensor` 实例直接调用，内部委托 `BeamProjector` 做时间序列采样，再通过 `ShaderPolygonFeature` 渲染多边形。调用 `clearFootprintUnionRenderer()` 可清除渲染结果。
+Call `drawFootprint` directly on a `Sensor` instance. It delegates time-series sampling to `BeamProjector` and renders the polygon with `ShaderPolygonFeature`. Call `clearFootprintUnionRenderer()` to clear the rendered result.
 
 ### throughGround
 
-控制波束是否禁止穿透地面/天体椭球，默认 `true`：
+Controls whether the beam is prevented from passing through the ground or a celestial ellipsoid. The default is `true`:
 
 ```typescript
 sat.addSensor({
@@ -181,12 +181,12 @@ sat.addSensor({
 })
 ```
 
-- `true`：禁止穿透。波束朝向椭球且发生相交时，长度会限制到最近交点
-- `false`：允许穿透。波束直接按 `beamLength` 延伸。适用于深空传感器或无需地面裁剪的场景
+- `true`: Prevents penetration. When a beam points toward and intersects the ellipsoid, its length is limited to the nearest intersection.
+- `false`: Allows penetration. The beam extends directly by `beamLength`, which is suitable for deep-space sensors or scenarios that do not require ground clipping.
 
-### apertureDeg X/Y 轴向
+### apertureDeg X/Y Axes
 
-在 `TO_GROUND` 发射方向下，`apertureDeg` 的 X/Y 轴与卫星运动方向有明确的对应关系：
+With the `TO_GROUND` emission direction, the X/Y axes of `apertureDeg` have a defined relationship to the satellite's direction of motion:
 
 ```typescript
 sat.addSensor({
@@ -194,16 +194,16 @@ sat.addSensor({
 })
 ```
 
-| 轴 | 方向 | 说明 |
+| Axis | Direction | Description |
 |------|------|------|
-| `xDeg` | 沿轨方向 (along-track) | 卫星前进方向的开角 |
-| `yDeg` | 交轨方向 (cross-track) | 垂直于前进方向的开角 |
+| `xDeg` | Along-track | Aperture angle in the satellite's direction of travel |
+| `yDeg` | Cross-track | Aperture angle perpendicular to the direction of travel |
 
-当 `apertureDeg` 为单一 `number` 时，X/Y 方向开角相同（圆锥形截面）。
+When `apertureDeg` is a single `number`, the X/Y aperture angles are equal, producing a conical cross-section.
 
-## 覆盖合并（Coverage Merge）
+## Coverage Merge
 
-多个传感器覆盖区域的布尔合并（WASM 加速）：
+Boolean merging of coverage areas from multiple sensors, accelerated by WASM:
 
 ```typescript
 // 多颗卫星的传感器覆盖合并
@@ -211,26 +211,26 @@ const sensors = sats.map(sat => sat.sensors[0])
 // 覆盖合并通过 Constellation + CoverageAnalysis 实现（见分析工具篇）
 ```
 
-## SensorOptions 完整清单
+## Complete SensorOptions Reference
 
-| 参数 | 类型 | 说明 |
+| Parameter | Type | Description |
 |------|------|------|
-| `name` | `string` | 名称 |
-| `type` | `SensorType` | 波束体积类型 |
-| `show` | `TimeValue<boolean>` | 总开关（关则停止全部计算） |
-| `beamShow` | `TimeValue<boolean>` | 仅控制波束可见性 |
-| `material` | `DMaterial` | 材质（优先于 color） |
-| `color` | `DColor` | 颜色（默认 CYAN 25% 透明） |
-| `apertureDeg` | `number \| { xDeg, yDeg }` | X/Y 独立开角 |
-| `beamLength` | `TimeValue<number>` | 波束长度（米） |
-| `emitDirection` | `EmitDirection` | 发射方向 |
-| `throughGround` | `boolean` | 是否禁止穿透地面/天体椭球 |
-| `beamAttitudeDeg` | `SensorBeamAttitudeDeg` | 手动姿态角 |
-| `link.track` | `SensorTrackInterval[]` | 跟踪目标时间段配置 |
-| `link.flow` | `SensorFlowConfigDetail` | 流动效果配置 |
-| `footPrint` | `BeamFootprint \| false` | 覆盖足迹配置 |
+| `name` | `string` | Name |
+| `type` | `SensorType` | Beam volume type |
+| `show` | `TimeValue<boolean>` | Master switch; disabling it stops all calculations |
+| `beamShow` | `TimeValue<boolean>` | Controls beam visibility only |
+| `material` | `DMaterial` | Material, taking priority over color |
+| `color` | `DColor` | Color, CYAN with 25% opacity by default |
+| `apertureDeg` | `number \| { xDeg, yDeg }` | Independent X/Y aperture angles |
+| `beamLength` | `TimeValue<number>` | Beam length in meters |
+| `emitDirection` | `EmitDirection` | Emission direction |
+| `throughGround` | `boolean` | Whether to prevent penetration of the ground or celestial ellipsoid |
+| `beamAttitudeDeg` | `SensorBeamAttitudeDeg` | Manual attitude angles |
+| `link.track` | `SensorTrackInterval[]` | Target tracking intervals |
+| `link.flow` | `SensorFlowConfigDetail` | Flow effect configuration |
+| `footPrint` | `BeamFootprint \| false` | Coverage footprint configuration |
 
-> **相关 API**：[PW.Sensor](/en/api/classes/PW.Sensor) · `Analysis.BeamProjector` · [ShaderPolygonFeature](/en/api/classes/ShaderPolygonFeature)
+> **Related APIs**: [PW.Sensor](/en/api/classes/PW.Sensor) · `Analysis.BeamProjector` · [ShaderPolygonFeature](/en/api/classes/ShaderPolygonFeature)
 
 ---
 

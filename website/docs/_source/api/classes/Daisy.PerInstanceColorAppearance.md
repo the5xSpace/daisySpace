@@ -59,33 +59,49 @@ const rectanglePrimitive = new Daisy.Primitive({
 
 ## Param
 
+**options**
+
 Object with the following properties:
 
 ## Param
+
+**options.flat**
 
 When `true`, flat shading is used in the fragment shader, which means lighting is not taking into account.
 
 ## Param
 
+**options.faceForward**
+
 When `true`, the fragment shader flips the surface normal as needed to ensure that the normal faces the viewer to avoid dark spots. This is useful when both sides of a geometry should be shaded like WallGeometry.
 
 ## Param
+
+**options.translucent**
 
 When `true`, the geometry is expected to appear translucent so [PerInstanceColorAppearance#renderState](#renderstate) has alpha blending enabled.
 
 ## Param
 
+**options.closed**
+
 When `true`, the geometry is expected to be closed so [PerInstanceColorAppearance#renderState](#renderstate) has backface culling enabled.
 
 ## Param
+
+**options.vertexShaderSource**
 
 Optional GLSL vertex shader source to override the default vertex shader.
 
 ## Param
 
+**options.fragmentShaderSource**
+
 Optional GLSL fragment shader source to override the default fragment shader.
 
 ## Param
+
+**options.renderState**
 
 Optional render state to override the default render state.
 

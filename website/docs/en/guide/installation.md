@@ -4,18 +4,18 @@ title: Installation
 
 # Installation
 
-DaisySpace-Sdk is published as an npm package, recommended for use in modern front-end projects such as Vite, Vue, React, or Svelte.
+DaisySpace-Sdk is published as an npm package and is recommended for modern frontend projects built with Vite, Vue, React, or Svelte.
 
 ## Requirements
 
-| Project | Requirement |
-|---------|-------------|
+| Item | Requirement |
+|------|-------------|
 | Node.js | 18+ |
-| Package manager | npm / pnpm / yarn (all supported) |
+| Package manager | npm / pnpm / yarn |
 | TypeScript | `strict` mode recommended |
-| Browser | Modern browser with WebGL2 support |
+| Browser | A modern browser with WebGL2 support |
 
-The SDK pins the underlying rendering runtime version internally, so consuming projects do not need to declare or upgrade the rendering dependency.
+The SDK ships with a locked rendering runtime version, so application projects do not need to declare or upgrade the low-level rendering dependency separately.
 
 ## Install the SDK
 
@@ -30,15 +30,15 @@ pnpm add daisy-space-sdk
 yarn add daisy-space-sdk
 ```
 
-## Minimal Project Setup
+## Minimal Setup
 
-Prepare a container element in your HTML:
+Prepare a container in HTML:
 
 ```html
 <div id="daisyContainer" style="width: 100vw; height: 100vh"></div>
 ```
 
-Create the engine in your application code:
+Create the engine in application code:
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -56,17 +56,17 @@ if (!container) throw new Error("daisyContainer not found")
 const engine = await Daisy.Engine.create(container)
 ```
 
-## Static Asset Paths
+## Static Asset Path
 
-`daisy-space-sdk` ships with Cesium runtime, Workers, imagery, and model assets. Applications must preserve the SDK `dist` directory structure, and set `BuildModuleUrl` to the public directory before creating the engine:
+`daisy-space-sdk` includes static assets such as the Cesium runtime, Worker, imagery, and models. Applications must preserve the SDK `dist` directory structure and point `BuildModuleUrl` to that public directory before creating the engine:
 
 ```typescript
 Daisy.BuildModuleUrl.setBaseUrl("/vendor/daisy/")
 const engine = await Daisy.Engine.create("daisyContainer")
 ```
 
-When referencing SDK built-in assets, you must generate URLs through `Daisy.BuildModuleUrl.getUrl()`. Do not use application root paths such as `/static/...` or `/sandAssets/...`. For the full asset directory listing and bundler integration requirements, see [Built-in Static Resources](/en/guide/builtin-assets).
+When application code references SDK-built-in assets, always generate URLs through `Daisy.BuildModuleUrl.getUrl()`. Do not use application-root paths such as `/static/...` or `/sandAssets/...`. See [Built-in Assets](/en/guide/builtin-assets) for the full directory list and build-tool integration requirements.
 
 ## Next Steps
 
-After installation, first run through the [Quick Start](/en/guide/) minimal example, then proceed to [Satellite](/en/guide/satellite), [Sensor](/en/guide/sensor), or [Route Aircraft](/en/guide/route-aircraft) based on your use case.
+After installation, run the minimal example in [Quick Start](/en/guide/) first, then move on to [Satellite](/en/guide/satellite), [Sensor](/en/guide/sensor), or [Route Aircraft](/en/guide/route-aircraft) based on your use case.

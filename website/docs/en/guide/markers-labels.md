@@ -1,13 +1,13 @@
 # Marker System
 
-Features are used to mark locations and display information in the scene, including point markers, billboards, text labels, and popovers.
+Marker Features identify positions and display information in a scene, including point markers, billboards, text labels, and popovers.
 
-## Feature Selection
+## Choosing a Feature
 
-| Use Case | Feature | Description |
-|----------|---------|-------------|
-| Simple dot | `PointFeature` | Pixel or metric-sized dot |
-| Image / icon | `BillboardFeature` | Billboard always facing the camera |
+| Need | Feature | Description |
+|------|---------|------|
+| Simple point | `PointFeature` | Pixel-sized or meter-sized point |
+| Image/icon | `BillboardFeature` | Billboard that always faces the camera |
 | Text label | `UI.LabelFeature` | 2D text overlay |
 | HTML popover | `UI.PopoverFeature` | DOM Overlay |
 
@@ -33,14 +33,14 @@ entity.addFeature(new Daisy.PointFeature({
 ```
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
+|------|------|------|
 | `color` | `DColor` | Fill color |
 | `size` | `number` | Size in meters |
-| `sizePx` / `pixelSize` | `number` | Pixel size |
+| `sizePx` / `pixelSize` | `number` | Size in pixels |
 | `outlineColor` | `DColor` | Outline color |
-| `outlineWidth` | `number` | Outline width (pixels) |
-| `disableDepthTestDistance` | `number` | Distance at which depth testing is disabled (meters) |
-| `position` | `Cartesian3` | Offset relative to the entity |
+| `outlineWidth` | `number` | Outline width in pixels |
+| `disableDepthTestDistance` | `number` | Distance at which to disable depth testing, in meters |
+| `position` | `Cartesian3` | Offset relative to the Entity |
 
 ## BillboardFeature
 
@@ -55,14 +55,14 @@ entity.addFeature(new Daisy.BillboardFeature({
 ```
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
+|------|------|------|
 | `image` | `string \| Canvas \| Image` | Image resource |
 | `scale` | `number` | Scale |
 | `color` | `DColor` | Overlay color |
 | `offsetPx` | `Cartesian2` | Pixel offset |
-| `offsetMeters` | `Cartesian2` | Offset in meters (takes precedence over offsetPx) |
-| `alignedAxis` | `Cartesian3` | Alignment axis |
-| `disableDepthTestDistance` | `number` | Distance at which depth testing is disabled |
+| `offsetMeters` | `Cartesian2` | Meter offset (takes precedence over offsetPx) |
+| `alignedAxis` | `Cartesian3` | Orientation axis |
+| `disableDepthTestDistance` | `number` | Disables depth testing |
 
 ## UI.LabelFeature
 
@@ -83,23 +83,23 @@ entity.addFeature(new Daisy.UI.LabelFeature({
 ```
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| `text` | `string` | Display text (supports `\n` for newlines) |
+|------|------|------|
+| `text` | `string` | Text to display (supports `\n` line breaks) |
 | `font` | `string` | CSS font string |
 | `fillColor` | `DColor` | Text color |
 | `style` | `LabelStyle` | `FILL` / `OUTLINE` / `FILL_AND_OUTLINE` |
 | `outlineColor` | `DColor` | Outline color |
 | `outlineWidth` | `number` | Outline width |
-| `showBackground` | `boolean` | Show background rectangle |
+| `showBackground` | `boolean` | Background rectangle |
 | `backgroundColor` | `DColor` | Background color |
 | `backgroundPadding` | `Cartesian2` | Background padding |
 | `pixelOffset` / `offsetPx` | `Cartesian2` | Pixel offset |
-| `offsetMeters` | `Cartesian2` | Offset in meters |
-| `disableDepthTestDistance` | `number` | Distance at which depth testing is disabled |
+| `offsetMeters` | `Cartesian2` | Meter offset |
+| `disableDepthTestDistance` | `number` | Disables depth testing |
 
 ## UI.PopoverFeature
 
-A Popover is a DOM Overlay—it does not render inside the WebGL canvas; instead, it projects HTML elements to the screen-space coordinates corresponding to the entity's position:
+Popover is a DOM Overlay. It is not rendered in the WebGL canvas; instead, it projects an HTML element to the screen position corresponding to the Entity:
 
 ```typescript
 entity.addFeature(new Daisy.UI.PopoverFeature({
@@ -111,14 +111,14 @@ entity.addFeature(new Daisy.UI.PopoverFeature({
 ```
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
+|------|------|------|
 | `element` | `string \| HTMLElement` | Bound DOM element |
 | `anchorPosition` | `PopoverAnchor` | Anchor direction |
 | `trigger` | `PopoverTrigger` | Trigger mode |
-| `maxDistance` | `number` | Maximum display distance (meters) |
+| `maxDistance` | `number` | Maximum display distance, in meters |
 | `offsetPx` | `Cartesian2` | Pixel offset |
 
-The Popover automatically hides when the entity is occluded, off-screen, or the distance exceeds `maxDistance`. The provided `element` must already exist in the DOM.
+Popover hides automatically when the Entity is occluded, off-screen, or beyond `maxDistance`. The supplied `element` must already exist in the DOM.
 
 
 ---

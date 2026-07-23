@@ -53,18 +53,23 @@ function hasFlag(name) {
   return process.argv.slice(3).includes(name);
 }
 
-function optionValue(name, args = process.argv.slice(3)) {
-  const assignment = args.find((argument) => argument.startsWith(`${name}=`));
-  if (assignment) return assignment.slice(name.length + 1);
-  const index = args.indexOf(name);
-  if (index === -1) return null;
-  const value = args[index + 1];
-  if (!value || value.startsWith("--")) throw new Error(`${name} requires a value`);
-  return value;
-}
-
 function normalizeDocumentationFile(file) {
   return file?.replaceAll("\\", "/").replace(/^\.\//, "");
+}
+
+function optionValues(name, args = process.argv.slice(3)) {
+  const values = [];
+  for (let index = 0; index < args.length; index += 1) {
+    const argument = args[index];
+    if (argument === name) {
+      const value = args[index + 1];
+      if (!value || value.startsWith("--")) throw new Error(`${name} requires a value`);
+      values.push(normalizeDocumentationFile(value));
+    } else if (argument.startsWith(`${name}=`)) {
+      values.push(normalizeDocumentationFile(argument.slice(name.length + 1)));
+    }
+  }
+  return values;
 }
 
 function selectDiffReport(report, file) {
@@ -119,12 +124,13 @@ export async function run(command = process.argv[2]) {
     return result;
   }
   if (command === "diff") {
-    const report = await diffDocuments({ docsDir, i18nDir });
+    const files = optionValues("--file");
+    const report = await diffDocuments({ docsDir, i18nDir, files });
     report.gitBase = report.sourceCommit;
     report.gitChanges = gitDocumentationChanges(report.sourceCommit);
     console.log(formatDiffReport(report, {
       details: hasFlag("--details"),
-      file: optionValue("--file"),
+      file: files.length === 1 ? files[0] : null,
     }));
     return report;
   }
@@ -134,6 +140,7 @@ export async function run(command = process.argv[2]) {
       i18nDir,
       allowPending: hasFlag("--allow-pending"),
       sourceCommit: gitSourceRevision(),
+      files: optionValues("--file"),
     });
     printSummary("accepted", result);
     return result;
@@ -160,7 +167,7 @@ export async function run(command = process.argv[2]) {
   }
   throw new Error(
     "Usage: node ./scripts/docs-i18n.mjs <init|prepare|diff|accept|check> " +
-      "[--allow-pending] [--file <relative-doc-path>] [--details]",
+      "[--allow-pending] [--file <relative-doc-path>]... [--details]",
   );
 }
 

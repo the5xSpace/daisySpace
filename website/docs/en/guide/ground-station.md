@@ -1,8 +1,8 @@
-# 地面站
+# Ground Stations
 
-地面站（GroundStation）是固定在行星表面的测控站点，可挂载天线模型、部署对空传感器并与航天器建立通信链路。`PW.Site` 是 `PW.GroundStation` 的语义别名，两者完全等价。
+GroundStation is a tracking and control site fixed to a planetary surface. It can mount an antenna model, deploy air-facing sensors, and establish communication links with spacecraft. `PW.Site` is a semantic alias for `PW.GroundStation`; the two are equivalent.
 
-## 对象层次
+## Object Hierarchy
 
 ```
 BaseObject（抽象基类）
@@ -11,7 +11,7 @@ BaseObject（抽象基类）
               └── GroundStation / Site ← 传感器默认 TO_UP
 ```
 
-## 创建地面站
+## Create a Ground Station
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -33,21 +33,21 @@ const site = new Daisy.PW.GroundStation({
 site.bindEngine(engine)
 ```
 
-GroundStation 默认挂载 `dsn34` 天线模型；可通过 `stationModel` 选择预设站型或传入自定义模型配置。
+GroundStation mounts the `dsn34` antenna model by default. Use `stationModel` to select a preset station type or provide a custom model configuration.
 
-## 站型选项（stationModel）
+## Station Types (stationModel)
 
-| 值 | 说明 |
+| Value | Description |
 |------|------|
-| `"dsn34"` | DSN 34m 天线（默认） |
-| `"dsn70"` | DSN 70m 大型天线 |
-| `"radome"` | 雷达罩 |
-| `false` | 不挂载模型，仅显示点位 |
-| `ModelOptions` | 自定义模型（url / minimumPixelSize / maximumScale） |
+| `"dsn34"` | DSN 34 m antenna (default) |
+| `"dsn70"` | Large DSN 70 m antenna |
+| `"radome"` | Radome |
+| `false` | Do not mount a model; display only the point |
+| `ModelOptions` | Custom model (url / minimumPixelSize / maximumScale) |
 
-## 天线朝向控制
+## Control Antenna Orientation
 
-天线模型通过 `azimuth` 和 `elevation` 两个旋转节点实现姿态控制。使用 `setAntennaPointing()` 驱动模型节点：
+The antenna model controls orientation through the `azimuth` and `elevation` rotation nodes. Use `setAntennaPointing()` to drive these model nodes:
 
 ```typescript
 // 方位角 135°，俯仰角 42°
@@ -58,7 +58,7 @@ const nodes = site.getAntennaNodeNames()
 // 示例输出：["azimuth", "elevation", "base", ...]
 ```
 
-可通过 `antenna` 配置自定义旋转节点名称、旋转轴和偏置角：
+Use `antenna` to configure custom rotation-node names, rotation axes, and angle offsets:
 
 ```typescript
 const site = new Daisy.PW.GroundStation({
@@ -74,11 +74,11 @@ const site = new Daisy.PW.GroundStation({
 })
 ```
 
-> Sensor 的 `link.track` 负责控制波束的真实指向；`setAntennaPointing()` 仅驱动模型节点的视觉姿态。
+> `link.track` on Sensor controls the actual beam direction; `setAntennaPointing()` only drives the model nodes' visual orientation.
 
-## 添加传感器
+## Add Sensors
 
-GroundStation 的传感器默认安装方向为 `TO_UP`（指向天空），适用于对空观测场景：
+GroundStation sensors use `TO_UP` (pointing toward the sky) by default, which is suitable for air-observation scenarios:
 
 ```typescript
 const beam = site.addSensor({
@@ -93,7 +93,7 @@ const beam = site.addSensor({
 })
 ```
 
-传感器可通过 `link.track` 跟踪飞行目标，实现波束实时指向：
+Sensors can track an aircraft through `link.track`, keeping the beam pointed at the target in real time:
 
 ```typescript
 const trackPlan = [{ start: missionStart, end: missionStop, target: aircraft }]
@@ -111,11 +111,11 @@ site.addSensor({
 })
 ```
 
-详见 [传感器](/en/guide/sensor)。
+See [Sensors](/en/guide/sensor).
 
-## 添加通信链路
+## Add Communication Links
 
-`addLink()` 建立地面站与目标航天器之间的可视化链路，支持时间调度和流动动画：
+`addLink()` creates a visual link between the ground station and a target spacecraft, with time scheduling and flow animation:
 
 ```typescript
 site.addLink({
@@ -130,11 +130,11 @@ site.addLink({
 })
 ```
 
-详见 [链路通信](/en/guide/link)。
+See [Link Communication](/en/guide/link).
 
-## 过境预报集成
+## Integrate Transit Forecasts
 
-结合 `getTransits()` 方法获取卫星过境窗口，将窗口时间用于链路的 `show` 配置：
+Use `getTransits()` to obtain satellite transit windows and pass those window times to the link's `show` configuration:
 
 ```typescript
 const transits = sat.getTransits({
@@ -147,24 +147,24 @@ const transits = sat.getTransits({
 const passSlots = transits.map(t => ({ start: t.start, end: t.end }))
 ```
 
-## 构造函数参数
+## Constructor Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default | Description |
 |------|------|:---:|------|
-| `name` | `string` | — | 站点名称 |
-| `position` | `Cartesian3` | `ZERO` | ECEF 坐标 |
-| `stationModel` | `"dsn34"` \| `"dsn70"` \| `"radome"` \| `ModelOptions` \| `false` | `"dsn34"` | 天线模型配置 |
-| `model` | `ModelOptions` \| `false` | — | 覆盖 stationModel，传入 false 则不挂载模型 |
-| `antenna` | `GroundStationAntennaPointingOptions` | — | 天线节点控制配置 |
-| `label` | `LabelOptions` \| `false` | — | 文字标签 |
-| `point` | `PointComOptions` \| `false` | — | 点位标记 |
-| `billboard` | `BillboardOptions` \| `false` | — | 广告牌 |
-| `sensors` | `SensorOptions` \| `SensorOptions[]` | — | 预挂载传感器 |
+| `name` | `string` | — | Site name |
+| `position` | `Cartesian3` | `ZERO` | ECEF coordinates |
+| `stationModel` | `"dsn34"` \| `"dsn70"` \| `"radome"` \| `ModelOptions` \| `false` | `"dsn34"` | Antenna model configuration |
+| `model` | `ModelOptions` \| `false` | — | Overrides stationModel; false prevents mounting a model |
+| `antenna` | `GroundStationAntennaPointingOptions` | — | Antenna-node control configuration |
+| `label` | `LabelOptions` \| `false` | — | Text label |
+| `point` | `PointComOptions` \| `false` | — | Point marker |
+| `billboard` | `BillboardOptions` \| `false` | — | Billboard |
+| `sensors` | `SensorOptions` \| `SensorOptions[]` | — | Sensors to mount initially |
 
-## 事件
+## Events
 
-[PW.GroundStation](/en/api/classes/PW.GroundStation) 继承自 [BaseObject](/en/api/classes/PW.BaseObject)，事件 API 与 [卫星](/en/guide/satellite#事件) 相同，包括完整的生命周期事件和交互事件。
+[PW.GroundStation](/en/api/classes/PW.GroundStation) extends [BaseObject](/en/api/classes/PW.BaseObject). Its event API matches [Satellites](/en/guide/satellite#事件), including the complete lifecycle and interaction events.
 
 ---
 
-> **相关 API**：[PW.GroundStation](/en/api/classes/PW.GroundStation) · [PW.Sensor](/en/api/classes/PW.Sensor) · [PW.Link](/en/api/classes/PW.Link) · [PW.Aircraft](/en/api/classes/PW.Aircraft)
+> **Related API**: [PW.GroundStation](/en/api/classes/PW.GroundStation) · [PW.Sensor](/en/api/classes/PW.Sensor) · [PW.Link](/en/api/classes/PW.Link) · [PW.Aircraft](/en/api/classes/PW.Aircraft)

@@ -73,3 +73,45 @@ test("partial agent work can be accepted as pending but strict check still fails
   await checkDocuments({ docsDir, i18nDir, allowPending: true });
   await assert.rejects(checkDocuments({ docsDir, i18nDir }), /pending translations/);
 });
+
+test("scoped accept updates one file without scanning or gating other files", async () => {
+  const { docsDir, i18nDir } = await fixture();
+  await mkdir(path.join(docsDir, "_source", "guide", "advanced"), { recursive: true });
+  await writeFile(path.join(docsDir, "_source", "guide", "advanced", "index.md"),
+    "# 高级用法\n\n仍待翻译的内容。\n", "utf8");
+  await prepareDocuments({ docsDir });
+
+  const englishFile = path.join(docsDir, "en", "guide", "index.md");
+  await writeFile(englishFile, "# Quick Start\n\nRead the [API](/en/api/) and create an `Engine`.\n", "utf8");
+
+  const result = await acceptDocuments({
+    docsDir,
+    i18nDir,
+    files: ["guide/index.md"],
+    sourceCommit: "abc123",
+  });
+
+  assert.equal(result.scoped, true);
+  assert.equal(result.files, 1);
+  const manifest = JSON.parse(await readFile(path.join(i18nDir, "manifest.json"), "utf8"));
+  assert.equal(manifest.files["guide/index.md"].locales.en.status, "translated");
+  assert.equal(manifest.files["guide/advanced/index.md"], undefined);
+});
+
+test("scoped diff only evaluates the requested file", async () => {
+  const { docsDir, i18nDir } = await fixture();
+  await prepareDocuments({ docsDir });
+  const englishFile = path.join(docsDir, "en", "guide", "index.md");
+  await writeFile(englishFile, "# Quick Start\n\nRead the [API](/en/api/) and create an `Engine`.\n", "utf8");
+  await acceptDocuments({ docsDir, i18nDir, files: ["guide/index.md"] });
+
+  const report = await diffDocuments({
+    docsDir,
+    i18nDir,
+    files: ["guide/index.md"],
+  });
+
+  assert.equal(report.scoped, true);
+  assert.equal(report.modifiedFiles, 0);
+  assert.deepEqual(report.files, []);
+});

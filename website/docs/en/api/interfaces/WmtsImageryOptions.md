@@ -6,7 +6,7 @@
 
 # Interface: WmtsImageryOptions
 
-WMTS 影像配置
+WMTS imagery configuration.
 
 ## Extends
 
@@ -18,7 +18,7 @@ WMTS 影像配置
 
 > `optional` **alpha?**: `number`
 
-图层透明度（0 ~ 1），默认 1
+Layer opacity (0 to 1); defaults to 1.
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ WMTS 影像配置
 
 > `optional` **brightness?**: `number`
 
-图层亮度，默认 1。
+Layer brightness; defaults to 1.
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ WMTS 影像配置
 
 > `optional` **colorToAlpha?**: `Color`
 
-与该颜色接近的像素将变为透明，可用于去除带底色的叠加瓦片背景。
+Pixels close to this color become transparent. Use this to remove the background from overlay tiles with a solid base color.
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ WMTS 影像配置
 
 > `optional` **colorToAlphaThreshold?**: `number`
 
-颜色转透明的 RGB 通道容差（0 ~ 1），默认 0.004。
+RGB-channel tolerance for converting a color to transparency (0 to 1); defaults to 0.004.
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ WMTS 影像配置
 
 > `optional` **contrast?**: `number`
 
-图层对比度，默认 1。
+Layer contrast; defaults to 1.
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ WMTS 影像配置
 
 > `optional` **dayAlpha?**: `number`
 
-白昼区域透明度（0 ~ 1）。启用地球光照时生效。
+Opacity of the daylight region (0 to 1). Effective when globe lighting is enabled.
 
 #### Inherited from
 
@@ -90,7 +90,7 @@ WMTS 影像配置
 
 > `optional` **format?**: `string`
 
-影像格式，默认 "image/png"
+Image format; defaults to "image/png".
 
 ***
 
@@ -98,7 +98,7 @@ WMTS 影像配置
 
 > **layer**: `string`
 
-图层名称
+Layer name.
 
 ***
 
@@ -106,7 +106,7 @@ WMTS 影像配置
 
 > `optional` **maxLevel?**: `number`
 
-最大层级，默认 18
+Maximum level; defaults to 18.
 
 ***
 
@@ -114,7 +114,7 @@ WMTS 影像配置
 
 > `optional` **minLevel?**: `number`
 
-最小层级，默认 0
+Minimum level; defaults to 0.
 
 ***
 
@@ -122,7 +122,7 @@ WMTS 影像配置
 
 > `optional` **nightAlpha?**: `number`
 
-夜间区域透明度（0 ~ 1）。启用地球光照时生效。
+Opacity of the nighttime region (0 to 1). Effective when globe lighting is enabled.
 
 #### Inherited from
 
@@ -134,7 +134,7 @@ WMTS 影像配置
 
 > `optional` **show?**: `boolean`
 
-是否显示该图层，默认 true
+Whether to show the layer; defaults to true.
 
 #### Inherited from
 
@@ -146,7 +146,7 @@ WMTS 影像配置
 
 > `optional` **style?**: `string`
 
-样式名称，默认 "default"
+Style name; defaults to "default".
 
 ***
 
@@ -154,7 +154,7 @@ WMTS 影像配置
 
 > `optional` **subdomains?**: `string`[]
 
-子域名列表，用于 {s} 变量
+List of subdomains used for the {s} variable.
 
 ***
 
@@ -162,7 +162,7 @@ WMTS 影像配置
 
 > **tileMatrixSetID**: `string`
 
-瓦片矩阵集 ID
+Tile matrix set ID.
 
 ***
 
@@ -170,7 +170,7 @@ WMTS 影像配置
 
 > **type**: [`WMTS`](../enums/GeoImageryType.md#wmts)
 
-图层类型：WMTS
+Layer type: WMTS.
 
 ***
 
@@ -178,4 +178,4 @@ WMTS 影像配置
 
 > **url**: `string`
 
-WMTS 服务地址
+WMTS service URL.

@@ -6,11 +6,11 @@
 
 # Class: Aircraft
 
-Aircraft：飞行器（Vehicle 的特化）。
+Aircraft: an aircraft specialization of Vehicle.
 
-语义约定：
-- 默认传感器安装方向为 TO_BOTTOM（机体下视）
-- 业务侧可通过 `addSensor({ emitDirection: ... })` 覆盖安装方向
+Semantic conventions:
+- The default sensor mounting direction is TO_BOTTOM (downward relative to the body).
+- Application code can override the mounting direction with `addSensor({ emitDirection: ... })`.
 
 ## Example
 
@@ -42,7 +42,7 @@ aircraft.addSensor({ emitDirection: Daisy.EmitDirection.TO_FRONT, apertureDeg: 6
 
 > **new Aircraft**(`options?`, `celestialEllipsoid?`): `Aircraft`
 
-创建 Vehicle。
+Create a Vehicle.
 
 #### Parameters
 
@@ -50,13 +50,13 @@ aircraft.addSensor({ emitDirection: Daisy.EmitDirection.TO_FRONT, apertureDeg: 6
 
 [`VehicleConfig`](../types/PW.VehicleConfig.md)
 
-Vehicle 配置（继承 FreeObjectConfig，并扩展 orientation/sensors）
+Vehicle configuration (inherits FreeObjectConfig and adds orientation/sensors).
 
 ##### celestialEllipsoid?
 
 [`CelestialEllipsoid`](PW.CelestialEllipsoid.md)
 
-所属天体（默认地球）
+Celestial body (Earth by default).
 
 #### Returns
 
@@ -117,7 +117,7 @@ vehicle.bindViewer(viewer);
 
 > **get** **entity**(): [`Entity`](Entity.md) \| `CelestialEntity`
 
-获取宿主 Entity（用于挂载 Feature、交互事件、更新等）。
+Get the host Entity for mounting Features, interaction events, updates, and more.
 
 ##### Returns
 
@@ -135,9 +135,9 @@ vehicle.bindViewer(viewer);
 
 > **get** **options**(): [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
 
-对象创建/配置参数的原始快照（不同子类会扩展其结构）。
+Original snapshot of the object creation/configuration parameters; subclasses may extend its structure.
 
-注意：这是“语义配置”的来源，而不是渲染结果。渲染落地由 _applyConfig + Feature/Component 完成。
+Note: this is the source of the semantic configuration, not the rendering result. Rendering is applied by _applyConfig plus Feature/Component.
 
 ##### Returns
 
@@ -163,7 +163,7 @@ vehicle.bindViewer(viewer);
 
 > **set** **orientation**(`value`): `void`
 
-便捷设置姿态（写入宿主 Entity.orientation）。
+Convenience setter for orientation; writes to the host Entity.orientation.
 
 ##### Parameters
 
@@ -187,10 +187,10 @@ vehicle.bindViewer(viewer);
 
 > **get** **position**(): [`ObjectPositon`](../types/PW.ObjectPositon.md)
 
-设置对象位置（支持静态坐标或采样轨迹）。
+Set the object position (supports static coordinates or sampled trajectories).
 
-- 赋值后会同步写入宿主 entity.position
-- 对 CelestialEntity（非地球天体）不允许使用支持惯性系的 TrajectorySample
+- Assignment also writes to the host entity.position.
+- CelestialEntity objects (non-Earth bodies) cannot use TrajectorySample values that support inertial frames.
 
 ##### Example
 
@@ -206,7 +206,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **set** **position**(`value`): `void`
 
-便捷设置位置（支持静态坐标或采样轨迹）。
+Convenience setter for position (supports static coordinates or sampled trajectories).
 
 ##### Parameters
 
@@ -228,9 +228,9 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **addComponent**\<`T`\>(`component`): `T`
 
-挂载一个 PhysicalWorld 组件到当前对象。
+Mount a PhysicalWorld component on the current object.
 
-注意：Feature 仍应通过 Entity.addFeature() 的路径挂载；该方法仅面向 IComponent。
+Note: Features should still be mounted through Entity.addFeature(); this method is only for IComponent.
 
 #### Type Parameters
 
@@ -244,7 +244,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 `T`
 
-组件实例
+Component instance
 
 #### Returns
 
@@ -312,11 +312,11 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **addSensor**(`options?`): [`Sensor`](PW.Sensor.md)
 
-添加传感器（并补齐飞行器常见的默认波束长度推断逻辑）。
+Add a sensor and apply the default beam-length inference commonly used by aircraft.
 
-说明：
-- 当未显式给定 `beamLength/range` 时，会尝试从对象状态推断一个合理的默认长度
-- 推断逻辑复用 Vehicle 的实现
+Notes:
+- When `beamLength/range` is not provided explicitly, a reasonable default length is inferred from the object state when possible.
+- The inference reuses the Vehicle implementation.
 
 #### Parameters
 
@@ -338,10 +338,10 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 > **bindEngine**(`engine`): `void`
 
-绑定到 Engine 并完成注册。
+Bind to an Engine and complete registration.
 
-- 若 Engine 中不存在同 id 的实体，会自动 addEntity
-- 随后会触发 register()
+- If the Engine has no Entity with the same id, addEntity is called automatically.
+- register() is then triggered.
 
 #### Parameters
 
@@ -371,7 +371,7 @@ obj.bindEngine(engine);
 
 > **destroy**(): `void`
 
-销毁对象（清理交互监听、销毁组件、销毁宿主实体并释放事件管理器）。
+Destroy the object, including interaction listeners, components, the host Entity, and the event manager.
 
 #### Returns
 
@@ -393,7 +393,7 @@ obj.destroy();
 
 > **getComponentById**(`id?`): [`Component`](../types/PW.Component.md)[]
 
-根据 id 获取组件列表（理论上 id 全局唯一，但保留返回数组以兼容历史逻辑）。
+Get components by id. IDs are theoretically globally unique, but an array is returned for historical compatibility.
 
 #### Parameters
 
@@ -401,7 +401,7 @@ obj.destroy();
 
 `string`
 
-组件 id
+Component id
 
 #### Returns
 
@@ -417,7 +417,7 @@ obj.destroy();
 
 > **getComponentByName**(`name?`): [`Component`](../types/PW.Component.md)[]
 
-根据 name 获取组件列表。
+Get components by name.
 
 #### Parameters
 
@@ -425,7 +425,7 @@ obj.destroy();
 
 `string`
 
-组件名称（component.name）
+Component name (component.name)
 
 #### Returns
 
@@ -441,7 +441,7 @@ obj.destroy();
 
 > **getComponents**(`type?`): [`Component`](../types/PW.Component.md)[]
 
-获取组件列表。
+Get the component list.
 
 #### Parameters
 
@@ -449,7 +449,7 @@ obj.destroy();
 
 `string`
 
-组件类型（对应 component.type）；不传则返回全部
+Component type (corresponding to component.type); omit it to return all components.
 
 #### Returns
 
@@ -465,7 +465,7 @@ obj.destroy();
 
 > **getCurrentOrientation**(): [`Rotation`](../types/Rotation.md)
 
-获取当前仿真时刻的局部姿态。
+Get the local orientation at the current simulation time.
 
 #### Returns
 
@@ -481,16 +481,15 @@ obj.destroy();
 
 > **getCurrentPosition**(): `Cartesian3` \| `undefined`
 
-获取当前仿真时间的实时位置。
+Get the live position at the current simulation time.
 
-如果 position 是 TrajectorySample，会根据引擎当前时间求值；
-如果是静态 Cartesian3，直接返回。
+If position is a TrajectorySample, it is evaluated at the current Engine time. If it is a static Cartesian3, it is returned directly.
 
 #### Returns
 
 `Cartesian3` \| `undefined`
 
-当前时刻的世界坐标，或 undefined（无法求值时）
+World coordinates at the current time, or undefined when evaluation is not possible.
 
 #### Inherited from
 
@@ -502,7 +501,7 @@ obj.destroy();
 
 > **getOrientationAtTime**(`timestamp`): [`Rotation`](../types/Rotation.md)
 
-获取指定仿真时刻的局部姿态。
+Get the local orientation at a specified simulation time.
 
 #### Parameters
 
@@ -524,7 +523,7 @@ obj.destroy();
 
 > **getPosition**(`time`): `Cartesian3` \| `undefined`
 
-获取指定时刻的位置（委托给宿主 entity.getPosition）。
+Get the position at a specified time by delegating to the host entity.getPosition.
 
 #### Parameters
 
@@ -532,7 +531,7 @@ obj.destroy();
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
@@ -548,7 +547,7 @@ obj.destroy();
 
 > **getPositionAtTime**(`timestamp`): `Cartesian3` \| `undefined`
 
-获取指定仿真时刻的世界位置。
+Get the world position at a specified simulation time.
 
 #### Parameters
 
@@ -604,7 +603,7 @@ obj.destroy();
 
 > **getTransformAtTime**(`timestamp`): `BaseObjectResolvedTransform`
 
-获取指定仿真时刻的局部姿态。
+Get the local transform at a specified simulation time.
 
 #### Parameters
 
@@ -626,7 +625,7 @@ obj.destroy();
 
 > **getTransformMatrixAtTime**(`timestamp`): `Matrix4`
 
-获取指定仿真时刻的局部变换矩阵。
+Get the local transform matrix at a specified simulation time.
 
 #### Parameters
 
@@ -648,7 +647,7 @@ obj.destroy();
 
 > **register**(): `void`
 
-将宿主实体注册到 Daisy 管线中（触发 entity.reRegisterAll）。
+Register the host Entity with the Daisy pipeline (triggers entity.reRegisterAll).
 
 #### Returns
 
@@ -670,7 +669,7 @@ obj.register();
 
 > **removeComponentById**(`id`): `void`
 
-根据 id 移除组件（会先 destroy）。
+Remove a component by id (destroying it first).
 
 #### Parameters
 
@@ -678,7 +677,7 @@ obj.register();
 
 `string`
 
-组件 id
+Component id
 
 #### Returns
 
@@ -694,7 +693,7 @@ obj.register();
 
 > **removeComponentByName**(`name`): `void`
 
-根据 name 移除组件（会先 destroy）。
+Remove a component by name (destroying it first).
 
 #### Parameters
 
@@ -702,7 +701,7 @@ obj.register();
 
 `string`
 
-组件名称
+Component name
 
 #### Returns
 
@@ -738,10 +737,9 @@ obj.register();
 
 > **resetTemporalState**(`time?`): `void`
 
-重置跨帧/跨时间循环的运行态。
+Reset runtime state across frames and time loops.
 
-Engine 在检测到仿真时间倒退时调用此方法。这里不销毁业务配置，只清理
-BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件。
+Engine calls this method when it detects that simulation time moved backward. It does not destroy application configuration; it only clears BaseObject time-value caches and forwards the reset to mounted components.
 
 #### Parameters
 
@@ -763,7 +761,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 > **setOptions**(`config`): `void`
 
-更新配置（会按策略重建对应的 Feature）。
+Update configuration and rebuild the corresponding Features according to the strategy.
 
 #### Parameters
 
@@ -771,7 +769,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 [`VehicleConfig`](../types/PW.VehicleConfig.md)
 
-新配置
+New configuration
 
 #### Returns
 
@@ -793,7 +791,7 @@ obj.setOptions({ label: { text: "Updated" } });
 
 > **unregister**(): `void`
 
-反注册：移除实体挂载的所有 Feature，并通知组件解除绑定。
+Unregister: remove all Features mounted on the Entity and notify components to unbind.
 
 #### Returns
 
@@ -815,7 +813,7 @@ obj.unregister();
 
 > **update**(`time`): `void`
 
-每帧更新（驱动 entity.update，并同步驱动挂载组件的 update）。
+Update each frame by driving entity.update and the update methods of mounted components.
 
 #### Parameters
 
@@ -823,7 +821,7 @@ obj.unregister();
 
 `JulianDate`
 
-仿真时间
+Simulation time
 
 #### Returns
 
@@ -839,7 +837,7 @@ obj.unregister();
 
 > **offClick**(`handler?`): `void`
 
-取消监听对象点击事件。
+Stop listening for object click events.
  click
 
 #### Parameters
@@ -862,7 +860,7 @@ obj.unregister();
 
 > **offDblClick**(`handler?`): `void`
 
-取消监听对象双击事件。
+Stop listening for object double-click events.
  dblclick
 
 #### Parameters
@@ -885,7 +883,7 @@ obj.unregister();
 
 > **offMouseEnter**(`handler?`): `void`
 
-取消监听对象鼠标移入事件。
+Stop listening for object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -908,7 +906,7 @@ obj.unregister();
 
 > **offMouseLeave**(`handler?`): `void`
 
-取消监听对象鼠标移出事件。
+Stop listening for object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -931,7 +929,7 @@ obj.unregister();
 
 > **onBeforeDestroy**(`callback`): `void`
 
-监听销毁前事件。
+Listen for the before-destroy event.
  BEFORE_DESTROY
 
 #### Parameters
@@ -954,7 +952,7 @@ obj.unregister();
 
 > **onBeforeRegister**(`callback`): `void`
 
-监听注册前事件。
+Listen for the before-register event.
  BEFORE_REGISTER
 
 #### Parameters
@@ -977,7 +975,7 @@ obj.unregister();
 
 > **onBeforeUnregister**(`callback`): `void`
 
-监听卸载前事件。
+Listen for the before-unregister event.
  BEFORE_UNREGISTER
 
 #### Parameters
@@ -1000,7 +998,7 @@ obj.unregister();
 
 > **onBeforeUpdate**(`callback`): `void`
 
-监听更新前事件。
+Listen for the before-update event.
  BEFORE_UPDATE
 
 #### Parameters
@@ -1023,7 +1021,7 @@ obj.unregister();
 
 > **onClick**(`handler`): `void`
 
-监听对象点击事件。
+Listen for object click events.
  click
 
 #### Parameters
@@ -1046,7 +1044,7 @@ obj.unregister();
 
 > **onDblClick**(`handler`): `void`
 
-监听对象双击事件。
+Listen for object double-click events.
  dblclick
 
 #### Parameters
@@ -1069,7 +1067,7 @@ obj.unregister();
 
 > **onDestroy**(`callback`): `void`
 
-监听销毁事件。
+Listen for destroy events.
  DESTROY
 
 #### Parameters
@@ -1092,7 +1090,7 @@ obj.unregister();
 
 > **onMouseEnter**(`handler`): `void`
 
-监听对象鼠标移入事件。
+Listen for object mouse-enter events.
  mouseenter
 
 #### Parameters
@@ -1115,7 +1113,7 @@ obj.unregister();
 
 > **onMouseLeave**(`handler`): `void`
 
-监听对象鼠标移出事件。
+Listen for object mouse-leave events.
  mouseleave
 
 #### Parameters
@@ -1138,7 +1136,7 @@ obj.unregister();
 
 > **onRegister**(`callback`): `void`
 
-监听注册完成事件。
+Listen for the completed-register event.
  REGISTER
 
 #### Parameters
@@ -1161,7 +1159,7 @@ obj.unregister();
 
 > **onUnregister**(`callback`): `void`
 
-监听卸载事件。
+Listen for unregister events.
  UNREGISTER
 
 #### Parameters
@@ -1184,7 +1182,7 @@ obj.unregister();
 
 > **onUpdate**(`callback`): `void`
 
-监听更新事件。
+Listen for update events.
  UPDATE
 
 #### Parameters

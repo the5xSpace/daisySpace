@@ -4,6 +4,7 @@ node_modules/
 dist/
 playground/dist/
 website/docs/.vitepress/cache/
+website/docs/.vitepress/.temp/
 website/docs/.vitepress/dist/
 website/docs/public/playground/
 website/i18n/*.tmp-*

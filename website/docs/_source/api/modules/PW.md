@@ -63,6 +63,7 @@ PhysicalWorld 模块入口。
 - [CelestialEllipsoidPositionECEF](../types/PW.CelestialEllipsoidPositionECEF.md)
 - [CelestialRayLike](../types/PW.CelestialRayLike.md)
 - [Component](../types/PW.Component.md)
+- [ComponentIdentityOptions](../types/PW.ComponentIdentityOptions.md)
 - [FootprintAtTimeDrawOptions](../types/PW.FootprintAtTimeDrawOptions.md)
 - [FootprintDrawOptions](../types/PW.FootprintDrawOptions.md)
 - [FootprintLngLatBounds](../types/PW.FootprintLngLatBounds.md)

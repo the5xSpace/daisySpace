@@ -6,9 +6,9 @@
 
 # Class: PolylineGroundRenderable
 
-PolylineGroundRenderable：基于 `viewer.collections.polylineCollection` 的折线封装。
+PolylineGroundRenderable is a polyline wrapper based on `viewer.collections.polylineCollection`.
 
-该类负责折线的创建、位置更新以及销毁，避免业务代码直接操作 Collection 的细节。
+This class creates, updates, and destroys polylines so application code does not need to manipulate Collection details directly.
 
 ## Example
 
@@ -28,7 +28,7 @@ renderable.destroy();
 
 > **new PolylineGroundRenderable**(`viewer`, `options?`): `PolylineGroundRenderable`
 
-创建一条折线并立即加入到 `viewer.collections.polylineCollection`。
+Creates a polyline and immediately adds it to `viewer.collections.polylineCollection`.
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Daisy SDK Engine。
 
 [`PolylineGroundOptions`](../types/PolylineGroundOptions.md)
 
-折线配置参数。
+Polyline configuration options.
 
 #### Returns
 
@@ -54,7 +54,7 @@ Daisy SDK Engine。
 
 > **create**(): `void`
 
-创建 Polyline 并加入到 polylineCollection。
+Creates a Polyline and adds it to polylineCollection.
 
 #### Returns
 
@@ -62,7 +62,7 @@ Daisy SDK Engine。
 
 #### Remarks
 
-若 `clampToGround=true`，会在创建时对 `positions` 进行贴地采样插值。
+When `clampToGround=true`, the `positions` are sampled and interpolated against the ground during creation.
 
 ***
 
@@ -70,7 +70,7 @@ Daisy SDK Engine。
 
 > **destroy**(): `void`
 
-从 `viewer.collections.polylineCollection` 移除并释放引用。
+Removes the polyline from `viewer.collections.polylineCollection` and releases the reference.
 
 #### Returns
 
@@ -178,7 +178,7 @@ Daisy SDK Engine。
 
 > **updatePositions**(`positions`): `void`
 
-更新折线控制点。
+Updates the polyline control points.
 
 #### Parameters
 
@@ -186,7 +186,7 @@ Daisy SDK Engine。
 
 `Cartesian3`[]
 
-新的折线控制点（世界坐标）。
+New polyline control points in world coordinates.
 
 #### Returns
 
@@ -194,4 +194,4 @@ Daisy SDK Engine。
 
 #### Remarks
 
-- 当 `clampToGround=true` 时，会自动重新计算贴地采样后的点集。
+- When `clampToGround=true`, the ground-sampled point set is recalculated automatically.

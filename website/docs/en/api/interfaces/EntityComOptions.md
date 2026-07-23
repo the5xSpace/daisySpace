@@ -113,7 +113,7 @@ Render order value (lower values render first).
 
 > **show**: `boolean`
 
-是否显示。
+Whether to show the component.
 
 ***
 

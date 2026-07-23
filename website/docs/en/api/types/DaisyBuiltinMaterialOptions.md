@@ -8,7 +8,7 @@
 
 > **DaisyBuiltinMaterialOptions** = [`SolidMaterialOptions`](SolidMaterialOptions.md) \| \{ `channel?`: `string`; `channels?`: `string`; `color?`: [`DColor`](DColor.md); `image?`: `string` \| `HTMLImageElement` \| `HTMLCanvasElement`; `maximumHeight?`: `number`; `minimumHeight?`: `number`; `repeat?`: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`; `strength?`: `number`; \} \| [`GridMaterialOptions`](GridMaterialOptions.md) \| [`CheckerboardMaterialOptions`](CheckerboardMaterialOptions.md) \| [`StripeMaterialOptions`](StripeMaterialOptions.md) \| [`DotMaterialOptions`](DotMaterialOptions.md) \| \{ `amplitude?`: `number`; `animationSpeed?`: `number`; `baseWaterColor?`: [`DColor`](DColor.md); `blendColor?`: [`DColor`](DColor.md); `frequency?`: `number`; `normalMap?`: `string`; `specularIntensity?`: `number`; `specularMap?`: `string`; \} \| \{ `color?`: [`DColor`](DColor.md); `rimColor?`: [`DColor`](DColor.md); `width?`: `number`; \} \| \{ `fadeDirection?`: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`; `fadeInColor?`: [`DColor`](DColor.md); `fadeOutColor?`: [`DColor`](DColor.md); `maximumDistance?`: `number`; `repeat?`: `boolean`; `time?`: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`; \} \| \{ `color?`: [`DColor`](DColor.md); `dashLength?`: `number`; `dashPattern?`: `number`; `gapColor?`: [`DColor`](DColor.md); `glowPower?`: `number`; `outlineColor?`: [`DColor`](DColor.md); `outlineWidth?`: `number`; `taperPower?`: `number`; \} \| \{ `alpha?`: `number`; `color?`: [`DColor`](DColor.md); `contourColor?`: [`DColor`](DColor.md); `contourWidth?`: `number`; `spacing?`: `number`; `width?`: `number`; \} \| \{ `colors?`: `string` \| `HTMLCanvasElement`; `heights?`: `string` \| `HTMLCanvasElement`; `landColor?`: [`DColor`](DColor.md); `waterColor?`: [`DColor`](DColor.md); \}
 
-`MaterialFactory.Builtin()` 接受的内置材质参数联合类型。
+Union of built-in material option types accepted by `MaterialFactory.Builtin()`.
 
 ## Union Members
 
@@ -24,49 +24,49 @@
 
 > `optional` **channel?**: `string`
 
-参与标量采样的单个通道，例如 `a` 或 `r`。
+A single channel used for scalar sampling, such as `a` or `r`.
 
 #### channels?
 
 > `optional` **channels?**: `string`
 
-参与颜色采样的通道组合，例如 `rgb`。
+A combination of channels used for color sampling, such as `rgb`.
 
 #### color?
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-纹理混合颜色。
+Texture blend color.
 
 #### image?
 
 > `optional` **image?**: `string` \| `HTMLImageElement` \| `HTMLCanvasElement`
 
-图片 URL、图片元素或画布。
+Image URL, image element, or canvas.
 
 #### maximumHeight?
 
 > `optional` **maximumHeight?**: `number`
 
-高程映射的最大高度。
+Maximum height for elevation mapping.
 
 #### minimumHeight?
 
 > `optional` **minimumHeight?**: `number`
 
-高程映射的最小高度。
+Minimum height for elevation mapping.
 
 #### repeat?
 
 > `optional` **repeat?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-纹理横纵重复次数。
+Number of horizontal and vertical texture repetitions.
 
 #### strength?
 
 > `optional` **strength?**: `number`
 
-凹凸或法线效果强度。
+Strength of the bump or normal effect.
 
 ***
 
@@ -94,49 +94,49 @@
 
 > `optional` **amplitude?**: `number`
 
-波纹振幅。
+Wave amplitude.
 
 #### animationSpeed?
 
 > `optional` **animationSpeed?**: `number`
 
-波纹动画速度。
+Wave animation speed.
 
 #### baseWaterColor?
 
 > `optional` **baseWaterColor?**: [`DColor`](DColor.md)
 
-水体基础颜色。
+Base water color.
 
 #### blendColor?
 
 > `optional` **blendColor?**: [`DColor`](DColor.md)
 
-水面混合颜色。
+Water-surface blend color.
 
 #### frequency?
 
 > `optional` **frequency?**: `number`
 
-波纹频率。
+Wave frequency.
 
 #### normalMap?
 
 > `optional` **normalMap?**: `string`
 
-法线贴图 URL。
+Normal-map URL.
 
 #### specularIntensity?
 
 > `optional` **specularIntensity?**: `number`
 
-高光强度。
+Specular intensity.
 
 #### specularMap?
 
 > `optional` **specularMap?**: `string`
 
-高光贴图 URL。
+Specular-map URL.
 
 ***
 
@@ -148,19 +148,19 @@
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-表面基础颜色。
+Base surface color.
 
 #### rimColor?
 
 > `optional` **rimColor?**: [`DColor`](DColor.md)
 
-边缘光颜色。
+Rim-light color.
 
 #### width?
 
 > `optional` **width?**: `number`
 
-边缘光宽度。
+Rim-light width.
 
 ***
 
@@ -172,37 +172,37 @@
 
 > `optional` **fadeDirection?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-淡变方向；数字表示两个分量使用相同值。
+Fade direction; a number uses the same value for both components.
 
 #### fadeInColor?
 
 > `optional` **fadeInColor?**: [`DColor`](DColor.md)
 
-淡入端颜色。
+Fade-in color.
 
 #### fadeOutColor?
 
 > `optional` **fadeOutColor?**: [`DColor`](DColor.md)
 
-淡出端颜色。
+Fade-out color.
 
 #### maximumDistance?
 
 > `optional` **maximumDistance?**: `number`
 
-淡变计算的最大距离。
+Maximum distance used for the fade calculation.
 
 #### repeat?
 
 > `optional` **repeat?**: `boolean`
 
-是否循环淡变。
+Whether to repeat the fade.
 
 #### time?
 
 > `optional` **time?**: `Daisy.Cartesian2` \| \{ `x`: `number`; `y`: `number`; \} \| `number`
 
-当前淡变进度；数字表示两个分量使用相同值。
+Current fade progress; a number uses the same value for both components.
 
 ***
 
@@ -214,49 +214,49 @@
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-线主体颜色。
+Main line color.
 
 #### dashLength?
 
 > `optional` **dashLength?**: `number`
 
-单个虚线周期长度。
+Length of one dash cycle.
 
 #### dashPattern?
 
 > `optional` **dashPattern?**: `number`
 
-虚线位模式。
+Dash bit pattern.
 
 #### gapColor?
 
 > `optional` **gapColor?**: [`DColor`](DColor.md)
 
-虚线间隔颜色。
+Dash gap color.
 
 #### glowPower?
 
 > `optional` **glowPower?**: `number`
 
-发光强度。
+Glow intensity.
 
 #### outlineColor?
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色。
+Outline color.
 
 #### outlineWidth?
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度，单位为像素。
+Outline width in pixels.
 
 #### taperPower?
 
 > `optional` **taperPower?**: `number`
 
-线端渐细强度。
+Line-end taper strength.
 
 ***
 
@@ -268,37 +268,37 @@
 
 > `optional` **alpha?**: `number`
 
-整体透明度，范围为 0 至 1。
+Overall opacity, from 0 to 1.
 
 #### color?
 
 > `optional` **color?**: [`DColor`](DColor.md)
 
-基础颜色。
+Base color.
 
 #### contourColor?
 
 > `optional` **contourColor?**: [`DColor`](DColor.md)
 
-等高线颜色。
+Contour color.
 
 #### contourWidth?
 
 > `optional` **contourWidth?**: `number`
 
-等高线宽度。
+Contour width.
 
 #### spacing?
 
 > `optional` **spacing?**: `number`
 
-等高线高程间隔。
+Contour elevation spacing.
 
 #### width?
 
 > `optional` **width?**: `number`
 
-等高线宽度的兼容字段。
+Compatibility field for contour width.
 
 ***
 
@@ -310,22 +310,22 @@
 
 > `optional` **colors?**: `string` \| `HTMLCanvasElement`
 
-分段颜色纹理。
+Segmented color texture.
 
 #### heights?
 
 > `optional` **heights?**: `string` \| `HTMLCanvasElement`
 
-高程分段纹理。
+Segmented elevation texture.
 
 #### landColor?
 
 > `optional` **landColor?**: [`DColor`](DColor.md)
 
-陆地区域颜色。
+Land-area color.
 
 #### waterColor?
 
 > `optional` **waterColor?**: [`DColor`](DColor.md)
 
-水域颜色。
+Water-area color.

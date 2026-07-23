@@ -12,6 +12,8 @@ and will be rendered using a GeographicTilingScheme.
 
 ## Param
 
+**options**
+
 Object describing initialization options
 
 ## Constructors

@@ -32,19 +32,19 @@ Terrain type: ellipsoid without elevation.
 
 > `optional` **assetId?**: `number`
 
-Cesium Ion terrain asset ID. Default `1`.
+Cesium Ion terrain asset ID. Defaults to `1`.
 
 #### requestVertexNormals?
 
 > `optional` **requestVertexNormals?**: `boolean`
 
-Whether to request terrain vertex normals. Terrain materials such as slope and aspect depend on this data. Default `true`.
+Whether to request terrain vertex normals. Terrain materials such as slope and aspect depend on this data. Defaults to `true`.
 
 #### requestWaterMask?
 
 > `optional` **requestWaterMask?**: `boolean`
 
-Whether to request water mask. Default `false`.
+Whether to request water mask. Defaults to `false`.
 
 #### type
 
@@ -62,7 +62,7 @@ Terrain type: Cesium Ion asset.
 
 > **type**: [`ArcGis`](../enums/GeoTerrainType.md#arcgis)
 
-Terrain type: ArcGIS
+Terrain type: ArcGIS.
 
 ***
 
@@ -80,4 +80,4 @@ Custom terrain data source instance. Recommended for advanced users only.
 
 > **type**: [`Custom`](../enums/GeoTerrainType.md#custom)
 
-Terrain type: Custom
+Terrain type: Custom.

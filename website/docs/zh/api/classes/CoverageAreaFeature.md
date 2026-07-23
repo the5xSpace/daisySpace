@@ -221,6 +221,26 @@ Feature 的唯一标识。
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`isDestroyed`](../interfaces/IFeature.md#isdestroyed)
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`isDestroyed`](Feature.md#isdestroyed)
+
+***
+
 ### lodMode
 
 #### Get Signature

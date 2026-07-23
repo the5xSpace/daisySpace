@@ -8,9 +8,9 @@
 
 > **CorridorOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-CorridorFeature 配置。
+CorridorFeature configuration.
 
-用于在场景中沿路径绘制走廊几何体（如飞行走廊、道路等）。
+Used to draw corridor geometry along a path in the scene, such as flight corridors and roads.
 
 ## Type Declaration
 
@@ -18,7 +18,7 @@ CorridorFeature 配置。
 
 > `optional` **clampToGround?**: `boolean`
 
-是否贴地。
+Whether to clamp to the ground.
 
 #### Default
 
@@ -30,9 +30,9 @@ false
 
 > `optional` **classificationType?**: `Daisy.ClassificationType`
 
-贴地分类目标。
+Ground classification target.
 
-仅在 `clampToGround=true` 且底层使用 GroundPrimitive 时生效。
+Only effective when `clampToGround=true` and using GroundPrimitive.
 
 #### Default
 
@@ -44,7 +44,7 @@ Daisy.ClassificationType.BOTH
 
 > `optional` **cornerType?**: `CornerType`
 
-拐角类型。
+Corner type.
 
 #### Default
 
@@ -56,18 +56,18 @@ CornerType.ROUNDED
 
 > `optional` **distanceDisplayCondition?**: `Daisy.DistanceDisplayCondition`
 
-显示距离条件。
+Distance display condition.
 
-当相机距离超出该范围时会自动隐藏。
+Auto-hides when the camera distance exceeds this range.
 
 ### ellipsoid?
 
 > `optional` **ellipsoid?**: [`CelestialEllipsoid`](../classes/PW.CelestialEllipsoid.md)
 
-贴地计算与天体跟随所使用的天体椭球。
+Celestial ellipsoid used for ground clamping and celestial body following.
 
-注意：一旦该组件通过 Entity.addFeature() 添加到实体上，会被实体的 celestialEllipsoid 覆盖，
-组件将始终遵循实体的天体椭球配置。
+Note: once this component is added to an entity via Entity.addFeature(), it will be overridden by the entity's celestialEllipsoid,
+and it will always follow the entity's celestial ellipsoid configuration.
 
 #### Default
 
@@ -79,15 +79,15 @@ CelestialEllipsoid.Earth()
 
 > `optional` **extrudedHeight?**: `number`
 
-挤出高度（单位：米）。
+Extruded height in meters.
 
-设置后走廊会从地面挤出到指定高度，形成立体效果。
+When set, the corridor extrudes from the ground to the specified height, creating a 3D effect.
 
 ### fill?
 
 > `optional` **fill?**: `boolean`
 
-是否填充面。
+Whether to fill the surface.
 
 #### Default
 
@@ -99,7 +99,7 @@ true
 
 > `optional` **granularity?**: `number`
 
-采样粒度（单位：弧度）。
+Sampling granularity in radians.
 
 #### Default
 
@@ -111,7 +111,7 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **height?**: `number`
 
-走廊高度（单位：米）。
+Corridor height in meters.
 
 #### Default
 
@@ -123,9 +123,9 @@ Daisy.Math.RADIANS_PER_DEGREE
 
 > `optional` **material?**: [`DMaterial`](DMaterial.md)
 
-走廊材质。
+Corridor material.
 
-支持 `Daisy.Material` 或颜色（`DColor` / CSS 色值字符串）。
+Supports `Daisy.Material` or a color (`DColor` or CSS color string).
 
 #### Default
 
@@ -137,7 +137,7 @@ Color.BLUE.withAlpha(0.5)
 
 > `optional` **outline?**: `boolean`
 
-是否绘制轮廓线。
+Whether to draw an outline.
 
 #### Default
 
@@ -149,7 +149,7 @@ false
 
 > `optional` **outlineColor?**: [`DColor`](DColor.md)
 
-轮廓颜色。
+Outline color.
 
 #### Default
 
@@ -161,7 +161,7 @@ Color.BLACK
 
 > `optional` **outlineWidth?**: `number`
 
-轮廓宽度（单位：像素）。
+Outline width in pixels.
 
 #### Default
 
@@ -173,15 +173,15 @@ Color.BLACK
 
 > **pathway**: [`Pathway`](Pathway.md)
 
-走廊路径。
+Corridor path.
 
-支持点位、实体引用与父实体占位符。
+Supports points, entity references, and parent entity placeholders.
 
 ### show?
 
 > `optional` **show?**: `boolean`
 
-是否显示。
+Whether to show.
 
 #### Default
 
@@ -193,9 +193,9 @@ true
 
 > `optional` **updateThrottleMs?**: `number`
 
-更新节流时间（单位：毫秒）。
+Update throttle time in milliseconds.
 
-适用于高频更新时降低重算开销。
+Reduces recalculation overhead for high-frequency updates.
 
 #### Default
 
@@ -207,7 +207,7 @@ true
 
 > `optional` **vertexFormat?**: `Daisy.VertexFormat`
 
-顶点格式。
+Vertex format.
 
 #### Default
 
@@ -219,7 +219,7 @@ VertexFormat.POSITION_AND_NORMAL
 
 > `optional` **width?**: `number`
 
-走廊宽度（单位：米）。
+Corridor width in meters.
 
 #### Default
 

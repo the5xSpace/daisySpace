@@ -24,13 +24,19 @@ viewer.creditDisplay.addStaticCredit(credit);
 
 ## Param
 
+**container**
+
 The HTML element where credits will be displayed
 
 ## Param
 
+**delimiter**
+
 The string to separate text credits
 
 ## Param
+
+**viewport**
 
 The HTML element that will contain the credits popup
 

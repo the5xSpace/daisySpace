@@ -6,18 +6,18 @@
 
 # Class: TaskGanttWidget
 
-任务时间线 Widget（甘特图） — 在 HTML 面板中实时展示 TimeSchedule 调度任务的执行进度。
+Task timeline Widget (Gantt chart) that displays the execution progress of TimeSchedule tasks in an HTML panel in real time.
 
-## 功能
-- 绑定 [TimeSchedule](TimeSchedule.md)，监听任务状态变更事件
-- 每秒刷新（1Hz），构建状态快照并调用渲染函数
-- 每个任务分配独立颜色（HSL 色相旋转），底部图例展示
-- 时间轴刻度，方便对比时间比例
-- Hover 任务条显示 tooltip（名称、起止时间、状态、进度）
+## Features
+- Binds to [TimeSchedule](TimeSchedule.md) and listens for task-status changes
+- Refreshes every second (1 Hz), builds a state snapshot, and calls the renderer
+- Assigns each task an independent color using HSL hue rotation and displays a legend at the bottom
+- Shows timeline ticks for comparing time ratios
+- Hover over a task bar to show a tooltip with the name, start/end times, status, and progress
 
-## 三种定制方式
+## Three Customization Methods
 
-### 方式 1：CSS 变量覆盖（零代码）
+### Method 1: Override CSS Variables (No Code)
 ```css
 :root {
  --ttl-bg: rgba(30, 41, 59, 0.95);
@@ -25,7 +25,7 @@
 }
 ```
 
-### 方式 2：renderer 选项（函数级覆写）
+### Method 2: renderer Option (Function-Level Override)
 ```ts
 new TaskGanttWidget(schedule, {
  renderer: (container, state) => {
@@ -34,7 +34,7 @@ new TaskGanttWidget(schedule, {
 });
 ```
 
-### 方式 3：继承覆写（类级覆写）
+### Method 3: Override Through Inheritance (Class-Level Override)
 ```ts
 class MyWidget extends TaskGanttWidget {
  renderTimeline(container, state) {
@@ -108,8 +108,8 @@ engine.addWidget(widget);
 
 > `optional` **isDestroyed?**: `boolean` = `false`
 
-当前 Widget 是否已经释放。
-集合管理器用它避开已销毁的单例实例。
+Whether the current Widget has been destroyed.
+The collection manager uses this to skip destroyed singleton instances.
 
 #### Inherited from
 
@@ -121,7 +121,7 @@ engine.addWidget(widget);
 
 > **key**: `string` = `"daisy.task-gantt"`
 
-Widget 标识键（用于单例去重）。
+Widget key (used for singleton deduplication).
 
 #### Overrides
 
@@ -143,8 +143,8 @@ Widget 标识键（用于单例去重）。
 
 > **rebuildOnMorph**: `boolean` = `false`
 
-场景 morph(2D/3D) 时是否需要 destroy -> register 重建。
-默认 true；UI 类 widget 通常应设为 false。
+Whether to rebuild through destroy -> register during scene morphing (2D/3D).
+Defaults to true; UI Widgets should generally set this to false.
 
 #### Overrides
 
@@ -156,8 +156,8 @@ Widget 标识键（用于单例去重）。
 
 > **singleton**: `boolean` = `true`
 
-是否为单例 widget。
-- 若为 true，Engine 内同 key 只允许存在一个实例。
+Whether this is a singleton Widget.
+- If true, only one instance with the same key is allowed within an Engine.
 
 #### Overrides
 
@@ -169,8 +169,8 @@ Widget 标识键（用于单例去重）。
 
 > **zoomIgnored**: `boolean` = `true`
 
-是否在相机聚合观测时忽略。
-UI 控制器类 widget 应设为 true。
+Whether to ignore this Widget during camera aggregation.
+UI controller Widgets should set this to true.
 
 #### Overrides
 
@@ -182,8 +182,8 @@ UI 控制器类 widget 应设为 true。
 
 > **createIn2d**(`_`): `void`
 
-在 2D 模式下创建 Widget 资源。
-子类应重写此方法以实现 2D 模式特有的初始化逻辑（如添加 Billboard、Label 等）。
+Creates Widget resources in 2D mode.
+Subclasses should override this method for 2D-specific initialization, such as adding Billboard or Label objects.
 
 #### Parameters
 
@@ -191,7 +191,7 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](Engine.md)
 
-引擎实例
+Engine instance.
 
 #### Returns
 
@@ -207,8 +207,8 @@ UI 控制器类 widget 应设为 true。
 
 > **destroy**(): `void`
 
-销毁 Widget，释放资源并解除事件绑定。
-将移除 morph 切换监听并标记实例为已销毁。
+Destroys the Widget, releases resources, and removes event bindings.
+Removes the morph-switch listener and marks the instance as destroyed.
 
 #### Returns
 
@@ -224,13 +224,13 @@ UI 控制器类 widget 应设为 true。
 
 > **is3d**(): `boolean`
 
-判断当前场景是否处于 3D 模式。
+Checks whether the current scene is in 3D mode.
 
 #### Returns
 
 `boolean`
 
-若为 3D 模式返回 true，否则返回 false
+Returns true in 3D mode and false otherwise.
 
 #### Inherited from
 
@@ -242,8 +242,8 @@ UI 控制器类 widget 应设为 true。
 
 > **morphSwitchHandle**(`_`): `void`
 
-场景模式切换处理。
-当场景在 2D/3D 之间切换时由引擎回调触发，子类可重写以实现自适应逻辑。
+Handles scene-mode changes.
+Called by the Engine when the scene switches between 2D and 3D; subclasses can override it for adaptive behavior.
 
 #### Parameters
 
@@ -251,7 +251,7 @@ UI 控制器类 widget 应设为 true。
 
 `SceneMode`
 
-切换后的场景模式
+Scene mode after the switch.
 
 #### Returns
 
@@ -267,7 +267,7 @@ UI 控制器类 widget 应设为 true。
 
 > **offMorphSwitch**(`callback`): `void`
 
-移除场景模式切换监听。
+Removes the scene-mode change listener.
 
 #### Parameters
 
@@ -275,7 +275,7 @@ UI 控制器类 widget 应设为 true。
 
 (`mode`) => `void`
 
-需要移除的回调函数
+Callback function to remove.
 
 #### Returns
 
@@ -291,7 +291,7 @@ UI 控制器类 widget 应设为 true。
 
 > **onMorphSwitch**(`callback`): `void`
 
-注册场景模式切换监听。
+Registers a scene-mode change listener.
 
 #### Parameters
 
@@ -299,7 +299,7 @@ UI 控制器类 widget 应设为 true。
 
 (`mode`) => `void`
 
-场景切换时的回调函数
+Callback invoked when the scene changes.
 
 #### Returns
 
@@ -315,9 +315,9 @@ UI 控制器类 widget 应设为 true。
 
 > **refresh**(): `void`
 
-外部配置变化后的同步刷新入口。
+Entry point for synchronized refreshes after external configuration changes.
 
-子类可重写此方法刷新 DOM、Canvas 或缓存状态。
+Subclasses can override this method to refresh the DOM, Canvas, or cached state.
 
 #### Returns
 
@@ -333,9 +333,9 @@ UI 控制器类 widget 应设为 true。
 
 > **register**(`engine`): `this`
 
-注册 Widget 到引擎，完成初始化绑定。
-将当前实例挂载到指定 Engine，重置销毁标记，并监听场景 morph 事件。
-若当前为 2D 模式，则立即调用 createIn2d 完成 2D 资源创建。
+Registers the Widget with the Engine and completes initialization bindings.
+Mounts the current instance on the specified Engine, resets the destroyed flag, and listens for scene morph events.
+When the current mode is 2D, immediately calls createIn2d to create 2D resources.
 
 #### Parameters
 
@@ -343,13 +343,13 @@ UI 控制器类 widget 应设为 true。
 
 [`Engine`](Engine.md)
 
-目标引擎实例
+Target Engine instance.
 
 #### Returns
 
 `this`
 
-当前 Widget 实例（支持链式调用）
+Current Widget instance (supports chaining).
 
 #### Overrides
 
@@ -361,7 +361,7 @@ UI 控制器类 widget 应设为 true。
 
 > **renderTimeline**(`container`, `state`): `void`
 
-渲染时间线 UI（可覆写）。
+Renders the timeline UI (overridable).
 
 #### Parameters
 
@@ -369,13 +369,13 @@ UI 控制器类 widget 应设为 true。
 
 `HTMLElement`
 
-挂载 DOM 容器
+DOM container to mount into.
 
 ##### state
 
 [`TaskGanttState`](../interfaces/TaskGanttState.md)
 
-当前调度状态快照
+Current scheduler-state snapshot.
 
 #### Returns
 
@@ -403,8 +403,8 @@ UI 控制器类 widget 应设为 true。
 
 > **update**(`_`): `void`
 
-每帧更新回调。
-子类应重写此方法以实现逐帧驱动逻辑（如位置插值、状态同步等）。
+Per-frame update callback.
+Subclasses should override this method for frame-driven logic such as position interpolation and state synchronization.
 
 #### Parameters
 
@@ -412,7 +412,7 @@ UI 控制器类 widget 应设为 true。
 
 `JulianDate`
 
-当前仿真时间（JulianDate）
+Current simulation time (JulianDate).
 
 #### Returns
 

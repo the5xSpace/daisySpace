@@ -21,6 +21,8 @@ const osm = new Daisy.OpenStreetMapImageryProvider({
 
 ## Param
 
+**options**
+
 Object describing initialization options
 
 ## Extends

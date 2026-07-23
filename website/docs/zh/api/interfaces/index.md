@@ -63,6 +63,7 @@
 | `ImageAssetRegion` | [ImageAssetRegion](ImageAssetRegion.md) |
 | `IonImageryOptions` | [IonImageryOptions](IonImageryOptions.md) |
 | `J2000Result` | [J2000Result](J2000Result.md) |
+| `LabelOptions` | [LabelOptions](LabelOptions.md) |
 | `LaunchSite` | [LaunchSite](LaunchSite.md) |
 | `MarkerTarget` | [MarkerTarget](MarkerTarget.md) |
 | `MarkerWidgetOptions` | [MarkerWidgetOptions](MarkerWidgetOptions.md) |
@@ -122,7 +123,6 @@
 | `TrajectoryGpuSampleData` | [TrajectoryGpuSampleData](TrajectoryGpuSampleData.md) |
 | `TrajectoryPackedSamples` | [TrajectoryPackedSamples](TrajectoryPackedSamples.md) |
 | `TrajectorySampleOptions` | [TrajectorySampleOptions](TrajectorySampleOptions.md) |
-| `LabelOptions` | [LabelOptions](UI.LabelOptions.md) |
 | `PopoverOptions` | [PopoverOptions](UI.PopoverOptions.md) |
 | `PopoverVisibilityChangeEvent` | [PopoverVisibilityChangeEvent](UI.PopoverVisibilityChangeEvent.md) |
 | `ViewDistanceStrategyOptions` | [ViewDistanceStrategyOptions](ViewDistanceStrategyOptions.md) |

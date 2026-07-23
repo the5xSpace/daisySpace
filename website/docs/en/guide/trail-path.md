@@ -1,6 +1,6 @@
-# Trail Path
+# Trail Paths
 
-[TrailPathFeature](/en/api/classes/TrailPathFeature) renders a segmented, color-coded trail line along an entity's path — the history, current, and future segments each have independently controllable color and material.
+[TrailPathFeature](/en/api/classes/TrailPathFeature) renders a segmented, colored trail along an Entity's motion path. The historical, current, and future segments have independent color and material controls.
 
 ## Configuration
 
@@ -31,7 +31,7 @@ entity.addFeature(new Daisy.TrailPathFeature({
 }))
 ```
 
-Or use the `entity.setPath()` shorthand:
+Or use `entity.setPath()` as a shortcut:
 
 ```typescript
 entity.setPath({
@@ -48,44 +48,44 @@ entity.setPath({
 ## Parameter Table
 
 | Parameter | Type | Default | Description |
-|-----------|------|------:|-------------|
-| `width` | `number` | 2 | Line width (pixels) |
-| `historySecond` | `number` | 43200 | History trail time span (seconds) |
-| `futureSecond` | `number` | 43200 | Future trail time span (seconds) |
-| `resolutionSecond` | `number` | 60 | Sampling interval (seconds) |
-| `maxDirectionInterpolationCount` | `number` | 720 | Direction interpolation cap |
-| `autoOptimize` | `boolean` | true | Adaptive density sampling |
-| `color` | `DColor` | PURPLE | Current segment color (between history and future) |
-| `historyColor` | `DColor` | — | History segment color |
-| `futureColor` | `DColor` | — | Future segment color |
-| `historyMaterial` | `DMaterial` | — | History segment material (takes precedence over historyColor) |
-| `futureMaterial` | `DMaterial` | — | Future segment material (takes precedence over futureColor) |
-| `materialAppearance` | `MaterialAppearance` | — | Rendering appearance control (advanced usage) |
+|------|------|:---:|------|
+| `width` | `number` | 2 | Line width in pixels |
+| `historySecond` | `number` | 43200 | Historical trail time span, in seconds |
+| `futureSecond` | `number` | 43200 | Future trail time span, in seconds |
+| `resolutionSecond` | `number` | 60 | Sampling interval, in seconds |
+| `maxDirectionInterpolationCount` | `number` | 720 | Maximum direction-interpolation count |
+| `autoOptimize` | `boolean` | true | Adaptive-density sampling |
+| `color` | `DColor` | PURPLE | Current-segment color between the historical and future segments |
+| `historyColor` | `DColor` | — | Historical-segment color |
+| `futureColor` | `DColor` | — | Future-segment color |
+| `historyMaterial` | `DMaterial` | — | Historical-segment material (takes precedence over historyColor) |
+| `futureMaterial` | `DMaterial` | — | Future-segment material (takes precedence over futureColor) |
+| `materialAppearance` | `MaterialAppearance` | — | Rendering appearance control (advanced use) |
 | `show` | `boolean` | true | Visibility |
-| `updateIntervalSecond` | `number` | 1 | Trail update interval (seconds); lowering it reduces computation |
+| `updateIntervalSecond` | `number` | 1 | Trail update interval in seconds; reducing it can lower computation cost |
 | `distanceDisplayCondition` | `DistanceDisplayCondition` | — | Distance-based display condition |
-| `beforeSecond` | `number` | — | Deprecated compatibility alias for historySecond |
-| `afterSecond` | `number` | — | Deprecated compatibility alias for futureSecond |
+| `beforeSecond` | `number` | — | Compatibility alias for historySecond (deprecated) |
+| `afterSecond` | `number` | — | Compatibility alias for futureSecond (deprecated) |
 
 ## Sampling Strategy
 
-When `autoOptimize: true`, the system adaptively adjusts sampling density based on the following factors:
+When `autoOptimize: true`, the system adaptively adjusts sampling density based on:
 
-- **Camera distance**: the farther the camera, the sparser the sampling
-- **Entity speed**: the faster the entity moves, the denser the sampling to maintain visual continuity
-- **Entity count**: sampling is automatically reduced when many entities are present
+- **Camera distance**: sparser sampling at greater distances.
+- **Entity speed**: denser sampling at higher speeds to preserve visual continuity.
+- **Entity count**: automatically reduces the update rate when there are many Entities.
 
 When `autoOptimize: false`, sampling strictly follows `resolutionSecond` and `maxDirectionInterpolationCount`.
 
 ## Performance Notes
 
-- TrailPathFeature pre-computes trajectory sample points internally via a Web Worker thread
-- In large-scale constellation scenarios (thousands of satellites), TrailPathFeature on inactive entities is skipped in high-performance mode
-- For non-hovered satellites, set `show: false` or control sampling density via `autoOptimize`
+- TrailPathFeature precomputes trajectory sample points on a Worker thread.
+- In large constellations with thousands of satellites, TrailPathFeature instances for inactive Entities are skipped in high-performance mode.
+- For satellites that are not hovered, set `show: false` or use `autoOptimize` to control sampling density.
 
 ### Building TrajectorySample Data
 
-TrailPathFeature expects the Entity's position to be of type TrajectorySample. Build trajectory data as follows:
+TrailPathFeature expects the Entity's position to be a TrajectorySample. Build trajectory data as follows:
 
 ```typescript
 const trajectory = new Daisy.TrajectorySample(Daisy.ReferenceFrame.FIXED, {
@@ -114,15 +114,15 @@ entity.position = trajectory
 
 TrailPathFeature divides the trail into three independently colored segments:
 
-- **History segment** (within historySecond): historyColor / historyMaterial
-- **Current segment** (near current position): color
-- **Future segment** (within futureSecond): futureColor / futureMaterial
+- **Historical segment** (within the historySecond range): historyColor / historyMaterial
+- **Current segment** (near the current position): color
+- **Future segment** (within the futureSecond range): futureColor / futureMaterial
 
-When neither historyColor nor futureColor is set, all segments use color.
+When historyColor/futureColor are not set, all segments use color.
 
 ### Worker Acceleration
 
-TrailPathFeature offloads trajectory sampling computation to a Web Worker thread. Multi-threaded pre-computation is automatically enabled when the entity count exceeds 100. `updateIntervalSecond` controls the pre-computation frequency — a larger value makes updates lazier but increases display latency.
+TrailPathFeature offloads trajectory sampling calculations to Web Worker threads. Multithreaded precomputation is enabled automatically when the Entity count exceeds 100. `updateIntervalSecond` controls the precomputation frequency: larger values reduce update frequency but increase display latency.
 
 ---
 

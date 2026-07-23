@@ -40,7 +40,7 @@ Color randomization intensity, 0~1. Used to quickly control color variation betw
 
 > `optional` **emissionRate?**: `number`
 
-Emission frequency semantic — particle density per cycle period. In pre-generation mode, it primarily affects the birth phase distribution.
+Emission-rate semantics, measured as "particle density per cycle". In pre-generated mode, this primarily affects the distribution of birth phases.
 
 ***
 

@@ -15,6 +15,7 @@ Feature 基类。
 
 ## Extended by
 
+- [`LabelFeature`](LabelFeature.md)
 - [`ModelFeature`](ModelFeature.md)
 - [`PointFeature`](PointFeature.md)
 - [`TrailPathFeature`](TrailPathFeature.md)
@@ -38,7 +39,6 @@ Feature 基类。
 - [`CoverageAreaFeature`](CoverageAreaFeature.md)
 - [`GeoJsonFeature`](GeoJsonFeature.md)
 - [`FreeGeometryFeature`](FreeGeometryFeature.md)
-- [`LabelFeature`](UI.LabelFeature.md)
 - [`PopoverFeature`](UI.PopoverFeature.md)
 
 ## Implements
@@ -215,6 +215,22 @@ Feature 的唯一标识。
 #### Implementation of
 
 [`IFeature`](../interfaces/IFeature.md).[`includeInBoundingSphere`](../interfaces/IFeature.md#includeinboundingsphere)
+
+***
+
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`isDestroyed`](../interfaces/IFeature.md#isdestroyed)
 
 ***
 

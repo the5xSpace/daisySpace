@@ -222,6 +222,14 @@ TO_GROUND 基于对象顶部中心点旋转，顶部发射至椭球，并自动�
 
 ***
 
+### id?
+
+> `optional` **id?**: `string`
+
+注册前可提供的稳定业务 ID。
+
+***
+
 ### link?
 
 > `optional` **link?**: [`SensorLinkOptions`](PW.SensorLinkOptions.md)

@@ -10,13 +10,19 @@ A 3D Cartesian point.
 
 ## Param
 
+**x**
+
 The X component.
 
 ## Param
 
+**y**
+
 The Y component.
 
 ## Param
+
+**z**
 
 The Z component.
 

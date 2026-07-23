@@ -6,7 +6,7 @@
 
 # Interface: TimeFormatDateTime
 
-提供给自定义格式化函数的完整日期时间上下文。
+Complete date-time context provided to a custom formatter.
 
 ## Extends
 
@@ -18,7 +18,7 @@
 
 > **date**: `Date`
 
-按目标时区偏移后的副本，读取时应使用 UTC 系列取值方法。
+A copy shifted to the target time zone. Use the UTC getter methods when reading it.
 
 ***
 
@@ -26,7 +26,7 @@
 
 > **day**: `number`
 
-月内日期，范围为 1 至 31。
+Day of the month, from 1 to 31.
 
 #### Inherited from
 
@@ -38,7 +38,7 @@
 
 > **format**: (`pattern?`) => `string`
 
-使用当前上下文按 token 模式输出文本。
+Formats text from the current context using the token pattern.
 
 #### Parameters
 
@@ -56,7 +56,7 @@
 
 > **hour**: `number`
 
-小时，范围为 0 至 23。
+Hour, from 0 to 23.
 
 #### Inherited from
 
@@ -68,7 +68,7 @@
 
 > **millisecond**: `number`
 
-毫秒，范围为 0 至 999。
+Milliseconds, from 0 to 999.
 
 #### Inherited from
 
@@ -80,7 +80,7 @@
 
 > **minute**: `number`
 
-分钟，范围为 0 至 59。
+Minute, from 0 to 59.
 
 #### Inherited from
 
@@ -92,7 +92,7 @@
 
 > **month**: `number`
 
-月份，范围为 1 至 12。
+Month, from 1 to 12.
 
 #### Inherited from
 
@@ -104,7 +104,7 @@
 
 > **parts**: [`TimeFormatParts`](TimeFormatParts.md)
 
-与顶层年月日等字段一致的结构化字段副本。
+Structured field copy corresponding to the top-level year, month, day, and other fields.
 
 ***
 
@@ -112,7 +112,7 @@
 
 > `optional` **referenceDate?**: `Date`
 
-`t0` 配置解析得到的参考时刻；未配置时为 `undefined`。
+Reference time parsed from the `t0` configuration; `undefined` when not configured.
 
 ***
 
@@ -120,7 +120,7 @@
 
 > `optional` **relativeSeconds?**: `number`
 
-当前时刻相对 `referenceDate` 的秒数；未配置参考时刻时为 `undefined`。
+Seconds from the current time to `referenceDate`; `undefined` when no reference time is configured.
 
 ***
 
@@ -128,7 +128,7 @@
 
 > **second**: `number`
 
-秒，范围为 0 至 59。
+Second, from 0 to 59.
 
 #### Inherited from
 
@@ -140,7 +140,7 @@
 
 > **timestampMs**: `number`
 
-原始时刻对应的 Unix 毫秒时间戳。
+Unix timestamp in milliseconds for the original time.
 
 ***
 
@@ -148,7 +148,7 @@
 
 > **timezoneName**: `string`
 
-`TZ` token 使用的时区显示名。
+Display name of the time zone used by the `TZ` token.
 
 ***
 
@@ -156,7 +156,7 @@
 
 > **timezoneOffsetHours**: `number`
 
-相对 UTC 的时区偏移小时数，范围限制为 -24 至 24。
+Time-zone offset from UTC in hours, limited to -24 through 24.
 
 ***
 
@@ -164,7 +164,7 @@
 
 > **toDate**: () => `Date`
 
-返回 `date` 的新副本。
+Returns a new copy of `date`.
 
 #### Returns
 
@@ -176,7 +176,7 @@
 
 > **toISOString**: () => `string`
 
-返回原始 UTC 时刻的 ISO 字符串。
+Returns the ISO string for the original UTC time.
 
 #### Returns
 
@@ -188,7 +188,7 @@
 
 > **utcDate**: `Date`
 
-原始 UTC Date。
+Original UTC Date.
 
 ***
 
@@ -196,7 +196,7 @@
 
 > **year**: `number`
 
-四位年份。
+Four-digit year.
 
 #### Inherited from
 

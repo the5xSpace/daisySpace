@@ -13,6 +13,7 @@ Feature 基础配置选项。
 ## Extended by
 
 - [`EntityComOptions`](EntityComOptions.md)
+- [`LabelOptions`](LabelOptions.md)
 - [`CylinderOptions`](CylinderOptions.md)
 - [`EllipticalConeOptions`](EllipticalConeOptions.md)
 - [`ModelOptions`](ModelOptions.md)
@@ -23,7 +24,6 @@ Feature 基础配置选项。
 - [`CubeOptions`](CubeOptions.md)
 - [`ParticleFeatureOptions`](ParticleFeatureOptions.md)
 - [`CapsuleParticleOptions`](CapsuleParticleOptions.md)
-- [`LabelOptions`](UI.LabelOptions.md)
 - [`PopoverOptions`](UI.PopoverOptions.md)
 
 ## Properties

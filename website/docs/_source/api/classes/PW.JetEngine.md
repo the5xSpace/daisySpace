@@ -134,6 +134,22 @@
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`PropulsionComponent`](PW.PropulsionComponent.md).[`isDestroyed`](PW.PropulsionComponent.md#isdestroyed)
+
+***
+
 ### name
 
 #### Get Signature

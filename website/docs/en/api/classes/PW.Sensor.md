@@ -6,23 +6,23 @@
 
 # Class: Sensor
 
-物理传感器组件（PW.Sensor）。
+Physical sensor component (PW.Sensor).
 
-语义层：
-- 传感器参数以“随仿真时间变化”的形式输入（角度/姿态/量程等）
-- 对外输出 footprint（地理围栏）用于业务侧分析或联动
+Semantic layer:
+- Sensor parameters are provided as values that can change with simulation time (angles/attitude/range, etc.)
+- Outputs footprint geofences for application-side analysis or linkage
 
-渲染层（内部复用 Feature）：
-- 以 Solid Feature（椭圆锥/圆柱等）作为体积/视锥表现
-- 以 PolygonFeature 表示地面 footprint 面积
+Rendering layer (reuses Feature internally):
+- Uses Solid Features (elliptical cones/cylinders, etc.) for volume/frustum presentation
+- Uses PolygonFeature for ground footprint area
 
-坐标与方向约定（面向业务语义）：
-- 传感器始终“安装”在宿主对象的局部坐标系上，由 `mountDirection` 指定初始朝向
-- `beamAttitudeDeg` 仅描述“波束相对安装基准的姿态偏转”（方位/俯仰/横滚）
-形体参数约定（面向可调逻辑）：
-- `range` 作为“基准长度/量程”，形体会按该长度构造（或在对地模式下自动延展）
-- `apertureDeg` 会被换算为“在量程末端的横向尺寸”（例如底面半径/半轴/底面宽高）
-- 当关键参数变化导致几何拓扑需要重建时，会触发内部 `reCreate`（见 `_resolveGeometry().solidKey`）
+Coordinate and direction conventions for application semantics:
+- The sensor is always mounted in the host object local frame, with `mountDirection` specifying the initial orientation
+- `beamAttitudeDeg` only describes the beam attitude offset relative to the mount base (azimuth/elevation/roll)
+Geometry parameter conventions for tunable logic:
+- `range` is the base length/range used to construct the geometry (or auto-extended in ground-relative modes)
+- `apertureDeg` is converted into a lateral size at the range end, such as base radius, semi-axes, or base width/height
+- When key parameter changes require topology rebuild, an internal `reCreate` is triggered (see `_resolveGeometry().solidKey`)
 
 ## Extends
 
@@ -34,7 +34,7 @@
 
 > **new Sensor**(`options?`): `Sensor`
 
-创建一个传感器组件实例（尚未绑定到对象）。
+Create a sensor component instance that is not yet bound to an object.
 
 #### Parameters
 
@@ -42,7 +42,7 @@
 
 [`SensorOptions`](../types/PW.SensorOptions.md) = `{}`
 
-传感器配置
+Sensor configuration.
 
 #### Returns
 
@@ -71,9 +71,9 @@ vehicle.addComponent(sensor);
 
 > **transformer**: `Transformer` \| `undefined` = `undefined`
 
-组件级 Transformer（可选）。
+Component-level Transformer (optional).
 
-建议用来表示“安装/物理基准”变换，而不是去污染 Entity.transformer。
+Prefer this for mount/physical-base transforms rather than polluting Entity.transformer.
 
 #### Inherited from
 
@@ -85,7 +85,7 @@ vehicle.addComponent(sensor);
 
 > `readonly` **type**: `string` = `"Sensor"`
 
-组件类型标识。子类需要覆写。
+Component type identifier. Subclasses must override it.
 
 #### Overrides
 
@@ -125,10 +125,10 @@ vehicle.addComponent(sensor);
 
 > **get** **id**(): `string`
 
-设置组件 id（全局唯一标识）。
+Set the component ID, a globally unique identifier.
 
-- 通常由 BaseComponent.register() 自动生成
-- 也允许业务侧手动指定以便对齐外部系统 id
+- Usually generated automatically by BaseComponent.register()
+- Applications may also set it manually to align with external system IDs
 
 ##### Returns
 
@@ -138,10 +138,10 @@ vehicle.addComponent(sensor);
 
 > **set** **id**(`value`): `void`
 
-设置组件 id（全局唯一标识）。
+Set the component ID, a globally unique identifier.
 
-- 通常由 BaseComponent.register() 自动生成
-- 也允许业务侧手动指定以便对齐外部系统 id
+- Usually generated automatically by BaseComponent.register()
+- Applications may also set it manually to align with external system IDs
 
 ##### Parameters
 
@@ -165,7 +165,7 @@ vehicle.addComponent(sensor);
 
 > **get** **name**(): `string`
 
-设置组件名称（用于按名称检索/管理）。
+Set the component name for lookup and management by name.
 
 ##### Returns
 
@@ -175,7 +175,7 @@ vehicle.addComponent(sensor);
 
 > **set** **name**(`value`): `void`
 
-设置组件名称（用于按名称检索/管理）。
+Set the component name for lookup and management by name.
 
 ##### Parameters
 
@@ -239,7 +239,7 @@ vehicle.addComponent(sensor);
 
 > **clearBeamFootprint**(): `void`
 
-清空当前已生成的 beam footprint 数据与渲染结果。
+Clear currently generated beam footprint data and render results.
 
 #### Returns
 
@@ -251,7 +251,7 @@ vehicle.addComponent(sensor);
 
 > **clearFootprintRangeRenderer**(): `void`
 
-清空 footprint 区间渲染器。
+Clear the footprint interval renderer.
 
 #### Returns
 
@@ -263,7 +263,7 @@ vehicle.addComponent(sensor);
 
 > **clearFootprintSampleRenderer**(): `void`
 
-清空按样本逐帧绘制的 footprint 结果。
+Clear footprint results drawn sample-by-sample.
 
 #### Returns
 
@@ -275,7 +275,7 @@ vehicle.addComponent(sensor);
 
 > **clearFootprintUnionRenderer**(): `void`
 
-清空合并 footprint 渲染器。
+Clear the merged footprint renderer.
 
 #### Returns
 
@@ -287,10 +287,10 @@ vehicle.addComponent(sensor);
 
 > **computeFootprintRecords**(`stepSeconds?`, `maxSampleCount?`): `RealtimeFootprintRecord`[]
 
-计算覆盖时间范围内的离散采样覆盖记录。
+Compute discrete sampled coverage records over a coverage time range.
 
-根据 `footPrint.footprintTimes` 配置和指定步长，对时间范围进行离散采样，
-计算每个采样时刻的覆盖范围（经纬度集合）。
+According to the `footPrint.footprintTimes` configuration and the specified step size, discretely sample the time range
+and compute coverage (longitude/latitude sets) at each sample time.
 
 #### Parameters
 
@@ -298,7 +298,7 @@ vehicle.addComponent(sensor);
 
 `number` = `60`
 
-采样步长（秒），默认 60 秒
+Sampling step size in seconds; defaults to 60 seconds.
 
 ##### maxSampleCount?
 
@@ -308,7 +308,7 @@ vehicle.addComponent(sensor);
 
 `RealtimeFootprintRecord`[]
 
-覆盖记录数组，每个元素包含采样时间和对应的覆盖范围经纬度集合
+Coverage record array; each element contains a sample time and the corresponding coverage longitude/latitude set.
 
 #### Example
 
@@ -324,7 +324,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **destroy**(): `void`
 
-销毁组件（会移除内部 Feature 并释放资源）。
+Destroy the component, remove internal Features, and release resources.
 
 #### Returns
 
@@ -340,7 +340,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **drawCoverageAtSimulationTime**(`config?`): [`FootprintLngLatBounds`](../types/PW.FootprintLngLatBounds.md) \| `undefined`
 
-绘制当前仿真时间覆盖（drawFootprintAtSimulationTime 的别名）。
+Draw coverage at the current simulation time; alias of drawFootprintAtSimulationTime.
 
 #### Parameters
 
@@ -358,7 +358,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **drawCoverageAtTime**(`time`, `config?`): [`FootprintLngLatBounds`](../types/PW.FootprintLngLatBounds.md) \| `undefined`
 
-绘制某一时刻覆盖（drawFootprintAtTime 的别名）。
+Draw coverage at a single time; alias of drawFootprintAtTime.
 
 #### Parameters
 
@@ -380,7 +380,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **drawFootprint**(`config`): [`FootprintLngLatBounds`](../types/PW.FootprintLngLatBounds.md) \| `undefined`
 
-绘制指定时间区间内的 footprint。
+Draw the footprint within the specified time interval.
 
 #### Parameters
 
@@ -388,13 +388,13 @@ const records = sensor.computeFootprintRecords(30);
 
 [`FootprintDrawOptions`](../types/PW.FootprintDrawOptions.md)
 
-绘制配置。
+Draw configuration.
 
 #### Returns
 
 [`FootprintLngLatBounds`](../types/PW.FootprintLngLatBounds.md) \| `undefined`
 
-本次绘制结果对应的经纬高边界。
+Longitude/latitude/height bounds for the current draw result.
 
 ***
 
@@ -402,7 +402,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **drawFootprintAtSimulationTime**(`config?`): [`FootprintLngLatBounds`](../types/PW.FootprintLngLatBounds.md) \| `undefined`
 
-绘制当前仿真时间的覆盖。
+Draw coverage at the current simulation time.
 
 #### Parameters
 
@@ -420,7 +420,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **drawFootprintAtTime**(`time`, `config?`): [`FootprintLngLatBounds`](../types/PW.FootprintLngLatBounds.md) \| `undefined`
 
-绘制某一时刻的覆盖（begin=end）。
+Draw coverage at a single time (begin equals end).
 
 #### Parameters
 
@@ -442,7 +442,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **drawFootprintUnion**(`config`): [`FootprintLngLatBounds`](../types/PW.FootprintLngLatBounds.md) \| `undefined`
 
-绘制指定时间区间内的合并 footprint。
+Draw the merged footprint within the specified time interval.
 
 #### Parameters
 
@@ -450,13 +450,13 @@ const records = sensor.computeFootprintRecords(30);
 
 [`FootprintDrawOptions`](../types/PW.FootprintDrawOptions.md)
 
-合并绘制配置。
+Merged draw configuration.
 
 #### Returns
 
 [`FootprintLngLatBounds`](../types/PW.FootprintLngLatBounds.md) \| `undefined`
 
-合并结果对应的经纬高边界。
+Longitude/latitude/height bounds corresponding to the merged result.
 
 ***
 
@@ -464,13 +464,13 @@ const records = sensor.computeFootprintRecords(30);
 
 > **getEstimatedRealtimeFootprintVisibleCount**(): `number`
 
-获取实时 footprint 的预计可见数量。
+Get the expected visible count of the real-time footprint.
 
 #### Returns
 
 `number`
 
-当前估算的可见数量。
+Current estimated visible count.
 
 ***
 
@@ -478,10 +478,10 @@ const records = sensor.computeFootprintRecords(30);
 
 > **getFootPrintAtTime**(`time`): `Cartographic`[]
 
-获取传感器在当前或指定时刻的地面覆盖范围。
+Get the sensor ground coverage at the current or specified time.
 
-会临时修改 Feature 状态并自动恢复——每次调用都有 state save/restore 开销。
-批量分析场景请使用 [getFootPrintAtTimeUnsafe](#getfootprintattimeunsafe)。
+Temporarily modifies Feature state and restores it automatically; each call pays a state save/restore cost.
+For batch analysis, use [getFootPrintAtTimeUnsafe](#getfootprintattimeunsafe).
 
 #### Parameters
 
@@ -499,14 +499,14 @@ const records = sensor.computeFootprintRecords(30);
 
 > **getFootPrintAtTimeUnsafe**(`time`): `Cartographic`[]
 
-批量分析专用：跳过 state save/restore/_syncLiveFeature，直接计算覆盖区。
+Batch-analysis only: skip state save/restore/_syncLiveFeature and compute coverage directly.
 
-与 [getFootPrintAtTime](#getfootprintattime) 的区别：
-- 不做 _captureFootprintEvaluationLiveState / _restoreFootprintEvaluationLiveState
-- 不做 _syncLiveFeatureToCurrentTime（调用后 Feature 留在目标时间，不触发渲染）
-- 批量计算完成后需调用 [syncLiveFeatureToCurrentTime](#synclivefeaturetocurrenttime) 统一还原
+Differences from [getFootPrintAtTime](#getfootprintattime):
+- Does not call _captureFootprintEvaluationLiveState / _restoreFootprintEvaluationLiveState
+- Does not call _syncLiveFeatureToCurrentTime (after the call, the Feature remains at the target time without triggering render)
+- After batch computation finishes, call [syncLiveFeatureToCurrentTime](#synclivefeaturetocurrenttime) to restore state in one step
 
-适用于 BaseCoverageAnalysis 中对大量时间步连续计算覆盖区的场景。
+Suitable for BaseCoverageAnalysis scenarios that compute coverage continuously across many time steps.
 
 #### Parameters
 
@@ -524,13 +524,13 @@ const records = sensor.computeFootprintRecords(30);
 
 > **getFootprintRenderComplexityProfile**(): `FootprintRenderComplexityProfile` \| `undefined`
 
-获取 footprint 渲染复杂度画像。
+Get the footprint rendering complexity profile.
 
 #### Returns
 
 `FootprintRenderComplexityProfile` \| `undefined`
 
-当前复杂度画像；若尚未建立则返回 `undefined`。
+Current complexity profile; returns `undefined` if it has not been established yet.
 
 ***
 
@@ -586,13 +586,13 @@ const records = sensor.computeFootprintRecords(30);
 
 > **getHostObject**(): [`BaseObject`](PW.BaseObject.md) \| `undefined`
 
-获取当前绑定的宿主对象。
+Get the currently bound host object.
 
 #### Returns
 
 [`BaseObject`](PW.BaseObject.md) \| `undefined`
 
-当前传感器所属的物理对象。
+The physical object that currently owns this sensor.
 
 ***
 
@@ -600,7 +600,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **hideBeam**(): `void`
 
-隐藏波束体积。
+Hide the beam volume.
 
 #### Returns
 
@@ -612,7 +612,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **hideBeamFootprint**(): `void`
 
-隐藏当前已生成的 beam footprint。
+Hide the currently generated beam footprint.
 
 #### Returns
 
@@ -624,7 +624,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **hideFootprintRangeRenderer**(): `void`
 
-隐藏 footprint 区间渲染结果。
+Hide the footprint interval render result.
 
 #### Returns
 
@@ -636,7 +636,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **hideFootprintUnionRenderer**(): `void`
 
-隐藏合并 footprint 渲染结果。
+Hide the merged footprint render result.
 
 #### Returns
 
@@ -648,7 +648,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **register**(`object`): `Sensor`
 
-将组件注册到物理对象上，并确保内部 Feature（体积/footprint）创建。
+Register the component on a physical object and ensure internal Features (volume/footprint) are created.
 
 #### Parameters
 
@@ -670,7 +670,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **removeBeamFootprint**(): `void`
 
-彻底移除 beam footprint 功能及其已生成结果。
+Completely remove the beam footprint feature and any generated results.
 
 #### Returns
 
@@ -682,9 +682,9 @@ const records = sensor.computeFootprintRecords(30);
 
 > **resetTemporalState**(`time?`): `void`
 
-重置跨时间循环保留的临时状态。
+Reset temporary state retained across time loops.
 
-当仿真时间倒退或循环回起点时，宿主对象会调用该方法，让组件清理跨帧缓存。
+When simulation time rewinds or loops back to the start, the host object calls this method so the component can clear cross-frame caches.
 
 #### Parameters
 
@@ -706,11 +706,11 @@ const records = sensor.computeFootprintRecords(30);
 
 > **setBeamFootprint**(`config`): `void`
 
-配置并启动“时间区间覆盖绘制”。
+Configure and start interval coverage drawing.
 
-说明：
-- 调用后会立即进入实时调度
-- 后续可再次调用以动态更新绘制参数
+Description:
+- Real-time scheduling starts immediately after the call
+- The method can be called again later to update drawing parameters dynamically
 
 #### Parameters
 
@@ -728,7 +728,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **setFootprintRangeRenderer**(`config`): `void`
 
-配置 footprint 区间渲染器。
+Configure the footprint interval renderer.
 
 #### Parameters
 
@@ -736,7 +736,7 @@ const records = sensor.computeFootprintRecords(30);
 
 `false` \| [`FootprintRangeRendererOptions`](../types/PW.FootprintRangeRendererOptions.md)
 
-区间渲染配置；传 `false` 时清空当前渲染器。
+Interval render configuration; pass `false` to clear the current renderer.
 
 #### Returns
 
@@ -748,12 +748,12 @@ const records = sensor.computeFootprintRecords(30);
 
 > **setRealtimeFootprintRender**(`stepSeconds?`, `retainSeconds?`, `maxSampleCount?`): `void`
 
-配置实时 footprint 绘制参数。
+Configure real-time footprint drawing parameters.
 
-说明：
-- 预计算所有采样时刻的覆盖范围
-- 跟随仿真时间动态显示/隐藏采样点
-- 时间到达采样点时绘制，过期后移除或隐藏
+Description:
+- Precompute coverage at all sample times
+- Dynamically show/hide sample points with simulation time
+- Draw when the time reaches a sample, then remove or hide after it expires
 
 #### Parameters
 
@@ -761,19 +761,19 @@ const records = sensor.computeFootprintRecords(30);
 
 `number` = `60`
 
-采样步长，单位为秒。默认 60。
+Sampling step size in seconds. Defaults to 60.
 
 ##### retainSeconds?
 
 `number`
 
-采样点过期后的保留时间，单位为秒；`0` 表示立即移除。
+Retention time after a sample expires, in seconds; `0` means remove immediately.
 
 ##### maxSampleCount?
 
 `number`
 
-覆盖采样数量上限；最终有效值不超过 3000。
+Maximum number of coverage samples; the effective value is capped at 3000.
 
 #### Returns
 
@@ -785,7 +785,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **showBeam**(): `void`
 
-显示波束体积。
+Show the beam volume.
 
 #### Returns
 
@@ -797,7 +797,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **showBeamFootprint**(): `void`
 
-显示当前已生成的 beam footprint。
+Show the currently generated beam footprint.
 
 #### Returns
 
@@ -809,7 +809,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **showFootprintRangeRenderer**(): `void`
 
-显示 footprint 区间渲染结果。
+Show the footprint interval render result.
 
 #### Returns
 
@@ -821,7 +821,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **showFootprintUnionRenderer**(): `void`
 
-显示合并 footprint 渲染结果。
+Show the merged footprint render result.
 
 #### Returns
 
@@ -833,10 +833,10 @@ const records = sensor.computeFootprintRecords(30);
 
 > **syncLiveFeatureToCurrentTime**(): `void`
 
-批量分析后统一还原 Feature 到引擎时间。
+After batch analysis, restore the Feature to the engine time in one step.
 
-配合 [getFootPrintAtTimeUnsafe](#getfootprintattimeunsafe) 使用——批量计算完后调用此方法
-将 Feature 的 temporal state 重置回引擎当前时间。
+Use with [getFootPrintAtTimeUnsafe](#getfootprintattimeunsafe). After batch computation, call this method
+to reset the Feature temporal state back to the engine current time.
 
 #### Returns
 
@@ -848,7 +848,7 @@ const records = sensor.computeFootprintRecords(30);
 
 > **unregister**(): `void`
 
-从物理对象卸载组件（会移除内部 Feature）。
+Detach the component from the physical object and remove internal Features.
 
 #### Returns
 
@@ -864,15 +864,15 @@ const records = sensor.computeFootprintRecords(30);
 
 > **update**(`spaceObject`, `time`): `void`
 
-每帧更新（由宿主 BaseObject.update 驱动）。
+Update every frame, driven by the host BaseObject.update.
 
-当前职责：
-- 分发覆盖调度更新（与实体 update 保持同一时序）
-- 更新实时 footprint 绘制状态
+Current responsibilities:
+- Dispatch coverage scheduling updates on the same cadence as entity update
+- Update real-time footprint drawing state
 
-说明：
-- 覆盖调度不再依赖内部定时器或场景事件监听
-- 由宿主更新统一驱动，可确保与实体姿态/位置同步
+Description:
+- Coverage scheduling no longer depends on internal timers or scene event listeners
+- It is driven by host updates so it stays synchronized with entity attitude and position
 
 #### Parameters
 
@@ -880,13 +880,13 @@ const records = sensor.computeFootprintRecords(30);
 
 `any`
 
-宿主实体（兼容传入）
+Host entity (accepted for compatibility).
 
 ##### time
 
 `JulianDate`
 
-仿真时间
+Simulation time.
 
 #### Returns
 

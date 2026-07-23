@@ -47,7 +47,7 @@ FreeObject 配置（语义层）。
 
 ### label?
 
-> `optional` **label?**: [`LabelOptions`](../interfaces/UI.LabelOptions.md) \| [`LabelOptions`](../interfaces/UI.LabelOptions.md)[] \| `false`
+> `optional` **label?**: [`LabelOptions`](../interfaces/LabelOptions.md) \| [`LabelOptions`](../interfaces/LabelOptions.md)[] \| `false`
 
 Label 配置（单个或多个）。
 - `false`：移除 label
