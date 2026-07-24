@@ -37,7 +37,7 @@ Daisy 统一 Widget 生命周期接口。
 
 > `optional` **id?**: `string`
 
-图层唯一标识符。
+图层唯一标识符；来自构造参数 `options.id`，注册前后均可读取。
 
 #### Overrides
 

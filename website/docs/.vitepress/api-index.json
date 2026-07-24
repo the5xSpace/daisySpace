@@ -410,6 +410,7 @@
   "RouteComponentOptions": "/api/interfaces/PW.RouteComponentOptions",
   "SunConeDimensionInput": "/api/interfaces/SunConeDimensionInput",
   "TimelineWidgetOptions": "/api/interfaces/TimelineWidgetOptions",
+  "WidgetIdentityOptions": "/api/interfaces/WidgetIdentityOptions",
   "AttitudeSphereOptions": "/api/types/AttitudeSphereOptions",
   "CapsuleParticlePreset": "/api/types/CapsuleParticlePreset",
   "ModelExplosionOptions": "/api/types/ModelExplosionOptions",

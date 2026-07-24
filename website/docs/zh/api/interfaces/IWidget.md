@@ -31,6 +31,10 @@ Daisy 统一 Widget 生命周期接口。
 
 > `optional` **id?**: `string`
 
+Widget 唯一标识。
+
+构造参数中的 `id` 会由 Widget 基类保存，注册到 Engine 前后均可读取。
+
 ***
 
 ### isDestroyed?
@@ -53,6 +57,8 @@ Widget 标识键（用于单例去重）。
 ### name?
 
 > `optional` **name?**: `string`
+
+Widget 显示名称。
 
 ***
 

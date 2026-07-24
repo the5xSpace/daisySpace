@@ -47,16 +47,6 @@
 
 ***
 
-### id?
-
-> `optional` **id?**: `string`
-
-#### Inherited from
-
-[`MarkerWidget`](MarkerWidget.md).[`id`](MarkerWidget.md#id)
-
-***
-
 ### isDestroyed?
 
 > `optional` **isDestroyed?**: `boolean` = `false`
@@ -79,16 +69,6 @@ Widget 标识键（用于单例去重）。
 #### Overrides
 
 [`MarkerWidget`](MarkerWidget.md).[`key`](MarkerWidget.md#key)
-
-***
-
-### name?
-
-> `optional` **name?**: `string`
-
-#### Inherited from
-
-[`MarkerWidget`](MarkerWidget.md).[`name`](MarkerWidget.md#name)
 
 ***
 
@@ -128,6 +108,82 @@ UI 控制器类 widget 应设为 true。
 #### Inherited from
 
 [`MarkerWidget`](MarkerWidget.md).[`zoomIgnored`](MarkerWidget.md#zoomignored)
+
+## Accessors
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string` \| `undefined`
+
+Widget 唯一标识。
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **id**(`value`): `void`
+
+Widget 唯一标识。
+
+构造参数中的 `id` 会由 Widget 基类保存，注册到 Engine 前后均可读取。
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+Widget 唯一标识。
+
+构造参数中的 `id` 会由 Widget 基类保存，注册到 Engine 前后均可读取。
+
+#### Inherited from
+
+[`MarkerWidget`](MarkerWidget.md).[`id`](MarkerWidget.md#id)
+
+***
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string` \| `undefined`
+
+Widget 显示名称。
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **name**(`value`): `void`
+
+Widget 显示名称。
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+Widget 显示名称。
+
+#### Inherited from
+
+[`MarkerWidget`](MarkerWidget.md).[`name`](MarkerWidget.md#name)
 
 ## Methods
 

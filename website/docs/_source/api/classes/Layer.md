@@ -35,15 +35,15 @@ Daisy 统一 Widget 生命周期接口。
 
 ### Constructor
 
-> **new Layer**(`options`): `Layer`
+> **new Layer**(`options?`): `Layer`
 
 构造函数。
 
 #### Parameters
 
-##### options
+##### options?
 
-`any`
+`any` = `{}`
 
 图层选项。
 
@@ -70,22 +70,6 @@ Daisy 统一 Widget 生命周期接口。
 #### Inherited from
 
 [`Widget`](Widget.md).[`engine`](Widget.md#engine)
-
-***
-
-### id?
-
-> `optional` **id?**: `string`
-
-图层唯一标识符。
-
-#### Implementation of
-
-[`ILayer`](../interfaces/ILayer.md).[`id`](../interfaces/ILayer.md#id)
-
-#### Overrides
-
-[`Widget`](Widget.md).[`id`](Widget.md#id)
 
 ***
 
@@ -119,22 +103,6 @@ Widget 标识键（用于单例去重）。
 #### Inherited from
 
 [`Widget`](Widget.md).[`key`](Widget.md#key)
-
-***
-
-### name?
-
-> `optional` **name?**: `string`
-
-图层名称。
-
-#### Implementation of
-
-[`ILayer`](../interfaces/ILayer.md).[`name`](../interfaces/ILayer.md#name)
-
-#### Overrides
-
-[`Widget`](Widget.md).[`name`](Widget.md#name)
 
 ***
 
@@ -186,6 +154,88 @@ UI 控制器类 widget 应设为 true。
 #### Inherited from
 
 [`Widget`](Widget.md).[`zoomIgnored`](Widget.md#zoomignored)
+
+## Accessors
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string` \| `undefined`
+
+Widget 唯一标识。
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **id**(`value`): `void`
+
+Widget 唯一标识。
+
+构造参数中的 `id` 会由 Widget 基类保存，注册到 Engine 前后均可读取。
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+图层唯一标识符；来自构造参数 `options.id`，注册前后均可读取。
+
+#### Implementation of
+
+[`ILayer`](../interfaces/ILayer.md).[`id`](../interfaces/ILayer.md#id)
+
+#### Inherited from
+
+[`TimelineWidget`](TimelineWidget.md).[`id`](TimelineWidget.md#id)
+
+***
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string` \| `undefined`
+
+Widget 显示名称。
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **name**(`value`): `void`
+
+Widget 显示名称。
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+图层名称。
+
+#### Implementation of
+
+[`ILayer`](../interfaces/ILayer.md).[`name`](../interfaces/ILayer.md#name)
+
+#### Inherited from
+
+[`TimelineWidget`](TimelineWidget.md).[`name`](TimelineWidget.md#name)
 
 ## Methods
 

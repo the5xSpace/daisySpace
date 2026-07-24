@@ -46,18 +46,6 @@
 
 ***
 
-### id?
-
-> `optional` **id?**: `string`
-
-图层唯一标识符。
-
-#### Inherited from
-
-[`CelestialGeodeticGridLayers`](CelestialGeodeticGridLayers.md).[`id`](CelestialGeodeticGridLayers.md#id)
-
-***
-
 ### isDestroyed?
 
 > `optional` **isDestroyed?**: `boolean` = `false`
@@ -80,18 +68,6 @@ Widget 标识键（用于单例去重）。
 #### Inherited from
 
 [`CelestialGeodeticGridLayers`](CelestialGeodeticGridLayers.md).[`key`](CelestialGeodeticGridLayers.md#key)
-
-***
-
-### name?
-
-> `optional` **name?**: `string`
-
-图层名称。
-
-#### Inherited from
-
-[`CelestialGeodeticGridLayers`](CelestialGeodeticGridLayers.md).[`name`](CelestialGeodeticGridLayers.md#name)
 
 ***
 
@@ -143,6 +119,80 @@ UI 控制器类 widget 应设为 true。
 [`CelestialGeodeticGridLayers`](CelestialGeodeticGridLayers.md).[`zoomIgnored`](CelestialGeodeticGridLayers.md#zoomignored)
 
 ## Accessors
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string` \| `undefined`
+
+Widget 唯一标识。
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **id**(`value`): `void`
+
+Widget 唯一标识。
+
+构造参数中的 `id` 会由 Widget 基类保存，注册到 Engine 前后均可读取。
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+图层唯一标识符；来自构造参数 `options.id`，注册前后均可读取。
+
+#### Inherited from
+
+[`TimelineWidget`](TimelineWidget.md).[`id`](TimelineWidget.md#id)
+
+***
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string` \| `undefined`
+
+Widget 显示名称。
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **name**(`value`): `void`
+
+Widget 显示名称。
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+图层名称。
+
+#### Inherited from
+
+[`TimelineWidget`](TimelineWidget.md).[`name`](TimelineWidget.md#name)
+
+***
 
 ### options
 

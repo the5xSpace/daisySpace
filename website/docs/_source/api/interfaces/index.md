@@ -1,6 +1,6 @@
 # Interfaces
 
-共 129 个 interfaces。
+共 130 个 interfaces。
 
 | 名称 | 链接 |
 |------|------|
@@ -127,6 +127,7 @@
 | `PopoverVisibilityChangeEvent` | [PopoverVisibilityChangeEvent](UI.PopoverVisibilityChangeEvent.md) |
 | `ViewDistanceStrategyOptions` | [ViewDistanceStrategyOptions](ViewDistanceStrategyOptions.md) |
 | `WatermarkWidgetOptions` | [WatermarkWidgetOptions](WatermarkWidgetOptions.md) |
+| `WidgetIdentityOptions` | [WidgetIdentityOptions](WidgetIdentityOptions.md) |
 | `WidgetPalette` | [WidgetPalette](WidgetPalette.md) |
 | `WidgetThemeEffects` | [WidgetThemeEffects](WidgetThemeEffects.md) |
 | `WmsImageryOptions` | [WmsImageryOptions](WmsImageryOptions.md) |

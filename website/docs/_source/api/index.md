@@ -284,6 +284,7 @@
 - [TrajectorySampleOptions](interfaces/TrajectorySampleOptions.md)
 - [ViewDistanceStrategyOptions](interfaces/ViewDistanceStrategyOptions.md)
 - [WatermarkWidgetOptions](interfaces/WatermarkWidgetOptions.md)
+- [WidgetIdentityOptions](interfaces/WidgetIdentityOptions.md)
 - [WidgetPalette](interfaces/WidgetPalette.md)
 - [WidgetThemeEffects](interfaces/WidgetThemeEffects.md)
 - [WmsImageryOptions](interfaces/WmsImageryOptions.md)

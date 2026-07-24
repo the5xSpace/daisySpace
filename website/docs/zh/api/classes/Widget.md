@@ -28,7 +28,17 @@ Daisy Widget 基类（生命周期对齐旧 Layer）。
 
 ### Constructor
 
-> **new Widget**(): `Widget`
+> **new Widget**(`options?`): `Widget`
+
+创建 Widget，并保存可由运行时和编辑器稳定读取的身份信息。
+
+#### Parameters
+
+##### options?
+
+[`WidgetIdentityOptions`](../interfaces/WidgetIdentityOptions.md) = `{}`
+
+Widget 身份信息。
 
 #### Returns
 
@@ -43,16 +53,6 @@ Daisy Widget 基类（生命周期对齐旧 Layer）。
 #### Implementation of
 
 [`IWidget`](../interfaces/IWidget.md).[`engine`](../interfaces/IWidget.md#engine)
-
-***
-
-### id?
-
-> `optional` **id?**: `string`
-
-#### Implementation of
-
-[`IWidget`](../interfaces/IWidget.md).[`id`](../interfaces/IWidget.md#id)
 
 ***
 
@@ -78,16 +78,6 @@ Widget 标识键（用于单例去重）。
 #### Implementation of
 
 [`IWidget`](../interfaces/IWidget.md).[`key`](../interfaces/IWidget.md#key)
-
-***
-
-### name?
-
-> `optional` **name?**: `string`
-
-#### Implementation of
-
-[`IWidget`](../interfaces/IWidget.md).[`name`](../interfaces/IWidget.md#name)
 
 ***
 
@@ -127,6 +117,82 @@ UI 控制器类 widget 应设为 true。
 #### Implementation of
 
 [`IWidget`](../interfaces/IWidget.md).[`zoomIgnored`](../interfaces/IWidget.md#zoomignored)
+
+## Accessors
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string` \| `undefined`
+
+Widget 唯一标识。
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **id**(`value`): `void`
+
+Widget 唯一标识。
+
+构造参数中的 `id` 会由 Widget 基类保存，注册到 Engine 前后均可读取。
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+Widget 唯一标识。
+
+构造参数中的 `id` 会由 Widget 基类保存，注册到 Engine 前后均可读取。
+
+#### Implementation of
+
+[`IWidget`](../interfaces/IWidget.md).[`id`](../interfaces/IWidget.md#id)
+
+***
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string` \| `undefined`
+
+Widget 显示名称。
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **name**(`value`): `void`
+
+Widget 显示名称。
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+Widget 显示名称。
+
+#### Implementation of
+
+[`IWidget`](../interfaces/IWidget.md).[`name`](../interfaces/IWidget.md#name)
 
 ## Methods
 
