@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { formatDiffReport } from "../docs-i18n.mjs";
+import { documentationFiles, formatDiffReport } from "../docs-i18n.mjs";
 
 const REPORT = {
   sourceCommit: "abc123+dirty",
@@ -56,4 +56,17 @@ test("full details remain available only when explicitly requested", () => {
 
   assert.match(output, /"blocks"/);
   assert.match(output, /快速开始/);
+});
+
+test("documentation files accept simple positional paths and legacy file options", () => {
+  assert.deepEqual(
+    documentationFiles([
+      "guide/index.md",
+      "--file",
+      ".\\guide\\engine.md",
+      "--file=guide/index.md",
+      "--details",
+    ]),
+    ["guide/index.md", "guide/engine.md"],
+  );
 });

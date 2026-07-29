@@ -69,6 +69,68 @@ engine.destroy()
 | `pause()` | `false` | **保持当前位置** |
 | `stop()` | `false` | **重置到 startTime** |
 
+## 单对象预览会话
+
+`PreviewEngineSession` 面向编辑器、属性检查器和素材面板中的短生命周期预览。它仍使用真实 Engine、Entity、Feature 和物理组件渲染链路，但以 `preview` 运行配置启动，不创建地球、影像、地形、天空、太阳、月球、星空、Widget 或时间调度器。
+
+预览默认自动推进仿真时间并启用连续渲染，相机通过 ArcRotate 跟踪器以每秒 12 度围绕唯一宿主旋转。宿主 Entity 的本体 XYZ 坐标轴默认显示，便于判断粒子发射方向、模型姿态和组件安装方向。
+
+会话启动时只创建一种临时宿主：
+
+| 宿主 | 适用目标 | 挂载方法 |
+|------|------|------|
+| `entity` | Feature，例如几何体、模型、材质效果和粒子 | `mountFeature()` |
+| `base-object` | `IComponent`，也可挂载内部 Entity 的 Feature | `mountComponent()` / `mountFeature()` |
+
+Feature 预览使用最轻量的 Entity 宿主：
+
+```typescript
+const session = await Daisy.PreviewEngineSession.create(container, {
+    host: { kind: "entity", name: "Particle Preview" },
+    cameraRange: 220,
+    autoPlay: true,
+    autoOrbit: true,
+    orbitSpeedDegreesPerSecond: 12,
+    showBodyAxis: true,
+})
+
+session.mountFeature(new Daisy.ParticleFeature({
+    emissionRate: 120,
+    minimumSpeed: 10,
+    maximumSpeed: 30,
+}))
+
+// 参数变化时再次挂载，新 Feature 会替换并销毁旧目标
+session.mountFeature(new Daisy.ParticleFeature({ emissionRate: 240 }))
+session.resize()
+
+// 这些开关只影响当前预览会话
+session.setBodyAxisVisible(false)
+session.setAutoOrbit(false)
+session.resetCamera()
+
+// 面板关闭、类型切换或创建完成时释放目标、宿主和 Engine
+session.destroy()
+```
+
+物理组件预览使用 BaseObject 宿主。未指定 `createObject` 时会创建 `PW.FreeObject`；有合法宿主类型限制的组件必须传入匹配的对象工厂。
+
+```typescript
+const session = await Daisy.PreviewEngineSession.create(container, {
+    host: { kind: "base-object", name: "Component Preview" },
+})
+
+session.mountComponent(new Daisy.PW.WeatherParticleComponent({
+    preset: "rain",
+}))
+
+// 宿主类别变化时重建唯一临时宿主
+session.setHost({ kind: "entity", name: "Feature Preview" })
+session.destroy()
+```
+
+`PreviewEngineSession` 拥有当前目标、临时宿主、相机跟踪、本体轴、逐帧环绕回调和 Engine 的完整生命周期。`mountFeature()` 或 `mountComponent()` 会先清理旧目标并确保播放继续，`destroy()` 会注销环绕回调、解除相机跟踪并释放全部临时资源，且可重复调用。预览会话、临时宿主、SDK 实例和预览状态都不应写入 Scenario；业务数据只保存可重新构造目标的定义。
+
 ## 实体管理
 
 [Entity](/api/classes/Entity) 是场景中所有可视化对象的容器。每个 Entity 通过挂载 [Feature](/api/classes/Feature) 组件来获得渲染能力。

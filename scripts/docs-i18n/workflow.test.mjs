@@ -8,6 +8,7 @@ import {
   acceptDocuments,
   checkDocuments,
   diffDocuments,
+  finishDocuments,
   prepareDocuments,
 } from "./workflow.mjs";
 
@@ -114,4 +115,96 @@ test("scoped diff only evaluates the requested file", async () => {
   assert.equal(report.scoped, true);
   assert.equal(report.modifiedFiles, 0);
   assert.deepEqual(report.files, []);
+});
+
+test("scoped prepare does not create or update unrelated targets", async () => {
+  const { docsDir } = await fixture();
+  const unrelatedSource = path.join(docsDir, "_source", "guide", "advanced.md");
+  const unrelatedEnglish = path.join(docsDir, "en", "guide", "advanced.md");
+  await writeFile(unrelatedSource, "# 高级用法\n", "utf8");
+  await mkdir(path.dirname(unrelatedEnglish), { recursive: true });
+  await writeFile(unrelatedEnglish, "# Existing translation\n", "utf8");
+
+  const result = await prepareDocuments({ docsDir, files: ["guide/index.md"] });
+
+  assert.equal(result.files, 1);
+  assert.equal(await readFile(unrelatedEnglish, "utf8"), "# Existing translation\n");
+  await assert.rejects(
+    readFile(path.join(docsDir, "zh", "guide", "advanced.md"), "utf8"),
+    /ENOENT/,
+  );
+});
+
+test("scoped check ignores stale unrelated documents", async () => {
+  const { docsDir, i18nDir } = await fixture();
+  const advancedSource = path.join(docsDir, "_source", "guide", "advanced.md");
+  await writeFile(advancedSource, "# 高级用法\n\n检查更多能力。\n", "utf8");
+  await prepareDocuments({ docsDir });
+  await writeFile(
+    path.join(docsDir, "en", "guide", "index.md"),
+    "# Quick Start\n\nRead the [API](/en/api/) and create an `Engine`.\n",
+    "utf8",
+  );
+  await writeFile(
+    path.join(docsDir, "en", "guide", "advanced.md"),
+    "# Advanced Usage\n\nExplore more capabilities.\n",
+    "utf8",
+  );
+  await acceptDocuments({ docsDir, i18nDir });
+  await writeFile(path.join(docsDir, "en", "guide", "advanced.md"), "# Stale\n", "utf8");
+
+  const result = await checkDocuments({
+    docsDir,
+    i18nDir,
+    files: ["guide/index.md"],
+  });
+
+  assert.equal(result.scoped, true);
+  assert.equal(result.files, 1);
+  await assert.rejects(checkDocuments({ docsDir, i18nDir }), /target hash mismatch/);
+});
+
+test("finish accepts and checks only a completed translation", async () => {
+  const { docsDir, i18nDir } = await fixture();
+  await prepareDocuments({ docsDir, files: ["guide/index.md"] });
+  await writeFile(
+    path.join(docsDir, "en", "guide", "index.md"),
+    "# Quick Start\n\nRead the [API](/en/api/) and create an `Engine`.\n",
+    "utf8",
+  );
+
+  const result = await finishDocuments({
+    docsDir,
+    i18nDir,
+    files: ["guide/index.md"],
+    sourceCommit: "abc123",
+  });
+
+  assert.equal(result.files, 1);
+  assert.equal(result.checked.scoped, true);
+  const manifest = JSON.parse(await readFile(path.join(i18nDir, "manifest.json"), "utf8"));
+  assert.equal(manifest.files["guide/index.md"].locales.en.status, "translated");
+});
+
+test("finish fails concisely when the requested translation is pending", async () => {
+  const { docsDir, i18nDir } = await fixture();
+
+  await assert.rejects(
+    finishDocuments({ docsDir, i18nDir, files: ["guide/index.md"] }),
+    (error) => {
+      assert.match(error.message, /documentation translation is incomplete/);
+      assert.match(error.message, /guide\/index\.md: pending=2 characters=/);
+      assert.doesNotMatch(error.message, /快速开始/);
+      return true;
+    },
+  );
+});
+
+test("finish refuses an unscoped run", async () => {
+  const { docsDir, i18nDir } = await fixture();
+
+  await assert.rejects(
+    finishDocuments({ docsDir, i18nDir, files: [] }),
+    /requires at least one document path/,
+  );
 });

@@ -25,10 +25,10 @@ Do not introduce a translation service, API keys, prompt templates, request batc
 3. Translate directly with the LLM's language ability. Do not route meaning through external tools, translation APIs, or scripts.
 4. Edit `website/docs/en/**` directly with `apply_patch`.
 5. Keep protected literals, code blocks, links, table structure, and heading structure unchanged.
-6. Use local scripts only after a translation pass is already written, and only for validation:
+6. Use local scripts only after a translation pass is already written. Finish each file-scoped batch with one command:
 
    ```bash
-   pnpm docs:diff -- --file <relative-doc-path>
+   pnpm docs:finish <relative-doc-path> [more-paths...]
    pnpm --dir website build
    ```
 
@@ -58,10 +58,10 @@ Do not introduce a translation service, API keys, prompt templates, request batc
 After translating a set of files, verify the site builds without errors:
 
 ```bash
-cd website && pnpm build
+pnpm --dir website build
 ```
 
-A successful build means all translated files are syntactically valid and can be published. The `docs:accept` and `docs:check` scripts are optional validation helpers; they may fail on unrelated files and should not block translation progress.
+A successful build means all translated files are syntactically valid and can be published. `docs:finish` prepares the Chinese mirror, validates the English translation, accepts the requested files, and performs a scoped strict check. It requires at least one path, so it cannot accidentally scan or update the entire documentation tree. The lower-level `docs:prepare`, `docs:diff`, `docs:accept`, and `docs:check` commands also accept positional paths or repeated `--file` options for diagnosis.
 
 ## Direct Translation Workflow
 
@@ -69,6 +69,6 @@ When translating files:
 
 1. Translate the target English file directly from `_source`.
 2. Keep the original Markdown structure intact.
-3. Run `pnpm docs:diff -- --file <path>` after editing to catch validation errors.
+3. Run `pnpm docs:finish <path>` after editing to prepare, validate, accept, and strictly check that file.
 4. Fix errors immediately by restoring code blocks from `_source`, restoring protected literals, or re-translating surrounding prose.
-5. Verify with `pnpm build` at the end of the session or after a coherent set of edits.
+5. Repeat step 3 until it passes, then verify with `pnpm --dir website build` at the end of the session or after a coherent set of edits.

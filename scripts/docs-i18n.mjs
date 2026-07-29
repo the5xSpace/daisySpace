@@ -6,6 +6,7 @@ import {
   acceptDocuments,
   checkDocuments,
   diffDocuments,
+  finishDocuments,
   prepareDocuments,
 } from "./docs-i18n/workflow.mjs";
 
@@ -57,19 +58,22 @@ function normalizeDocumentationFile(file) {
   return file?.replaceAll("\\", "/").replace(/^\.\//, "");
 }
 
-function optionValues(name, args = process.argv.slice(3)) {
+export function documentationFiles(args = process.argv.slice(3)) {
   const values = [];
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index];
-    if (argument === name) {
+    if (argument === "--file") {
       const value = args[index + 1];
-      if (!value || value.startsWith("--")) throw new Error(`${name} requires a value`);
+      if (!value || value.startsWith("--")) throw new Error("--file requires a value");
       values.push(normalizeDocumentationFile(value));
-    } else if (argument.startsWith(`${name}=`)) {
-      values.push(normalizeDocumentationFile(argument.slice(name.length + 1)));
+      index += 1;
+    } else if (argument.startsWith("--file=")) {
+      values.push(normalizeDocumentationFile(argument.slice("--file=".length)));
+    } else if (argument !== "--" && !argument.startsWith("--")) {
+      values.push(normalizeDocumentationFile(argument));
     }
   }
-  return values;
+  return [...new Set(values)];
 }
 
 function selectDiffReport(report, file) {
@@ -119,12 +123,12 @@ function printSummary(label, result) {
 
 export async function run(command = process.argv[2]) {
   if (command === "prepare") {
-    const result = await prepareDocuments({ docsDir });
+    const result = await prepareDocuments({ docsDir, files: documentationFiles() });
     printSummary("prepared", result);
     return result;
   }
   if (command === "diff") {
-    const files = optionValues("--file");
+    const files = documentationFiles();
     const report = await diffDocuments({ docsDir, i18nDir, files });
     report.gitBase = report.sourceCommit;
     report.gitChanges = gitDocumentationChanges(report.sourceCommit);
@@ -140,7 +144,7 @@ export async function run(command = process.argv[2]) {
       i18nDir,
       allowPending: hasFlag("--allow-pending"),
       sourceCommit: gitSourceRevision(),
-      files: optionValues("--file"),
+      files: documentationFiles(),
     });
     printSummary("accepted", result);
     return result;
@@ -150,8 +154,19 @@ export async function run(command = process.argv[2]) {
       docsDir,
       i18nDir,
       allowPending: hasFlag("--allow-pending"),
+      files: documentationFiles(),
     });
     printSummary("check passed", result);
+    return result;
+  }
+  if (command === "finish") {
+    const result = await finishDocuments({
+      docsDir,
+      i18nDir,
+      files: documentationFiles(),
+      sourceCommit: gitSourceRevision(),
+    });
+    printSummary("finished", result);
     return result;
   }
   if (command === "init") {
@@ -166,8 +181,8 @@ export async function run(command = process.argv[2]) {
     return result;
   }
   throw new Error(
-    "Usage: node ./scripts/docs-i18n.mjs <init|prepare|diff|accept|check> " +
-      "[--allow-pending] [--file <relative-doc-path>]... [--details]",
+    "Usage: node ./scripts/docs-i18n.mjs <init|prepare|diff|accept|check|finish> " +
+      "[relative-doc-path]... [--file <relative-doc-path>]... [--allow-pending] [--details]",
   );
 }
 

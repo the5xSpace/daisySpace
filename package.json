@@ -13,6 +13,7 @@
     "docs:diff": "node ./scripts/docs-i18n.mjs diff",
     "docs:accept": "node ./scripts/docs-i18n.mjs accept",
     "docs:check": "node ./scripts/docs-i18n.mjs check",
+    "docs:finish": "node ./scripts/docs-i18n.mjs finish",
     "test:docs": "node --test ./scripts/docs-i18n/*.test.mjs",
     "test:site": "node --test ./scripts/dev-ports.test.mjs",
     "dev:site": "node ./scripts/dev-site.mjs ../DaisySpaceSdk",

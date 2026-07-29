@@ -163,12 +163,27 @@ export async function acceptDocuments({
   return { files: files.length, pendingBlocks, scoped, manifest: nextManifest };
 }
 
-export async function checkDocuments({ docsDir, i18nDir, allowPending = false } = {}) {
+export async function checkDocuments({
+  docsDir,
+  i18nDir,
+  allowPending = false,
+  files: requestedFiles = null,
+} = {}) {
   const state = await loadState(i18nDir);
   if (state.manifest.glossaryHash !== state.glossaryHash) {
     throw new Error("glossary changed; rerun docs:accept after Codex reviews terminology");
   }
-  const sourceFiles = await listMarkdownFiles(path.join(docsDir, "_source"));
+  const scoped = requestedFiles?.length > 0;
+  const sourceFiles = scoped
+    ? requestedFiles
+    : await listMarkdownFiles(path.join(docsDir, "_source"));
+  const unknownFiles = [];
+  for (const file of sourceFiles) {
+    if (!(await exists(sourcePath(docsDir, file)))) unknownFiles.push(file);
+  }
+  if (unknownFiles.length > 0) {
+    throw new Error(`documentation source file not found: ${unknownFiles.join(", ")}`);
+  }
   const sourceSet = new Set(sourceFiles);
   const errors = [];
   let pendingBlocks = 0;
@@ -202,17 +217,19 @@ export async function checkDocuments({ docsDir, i18nDir, allowPending = false } 
     }
   }
 
-  for (const file of Object.keys(state.manifest.files)) {
-    if (!sourceSet.has(file)) errors.push(`manifest contains deleted source ${file}`);
-  }
-  for (const locale of LOCALES) {
-    for (const file of await listMarkdownFiles(path.join(docsDir, locale))) {
-      if (!sourceSet.has(file)) errors.push(`unexpected target ${locale}/${file}`);
+  if (!scoped) {
+    for (const file of Object.keys(state.manifest.files)) {
+      if (!sourceSet.has(file)) errors.push(`manifest contains deleted source ${file}`);
+    }
+    for (const locale of LOCALES) {
+      for (const file of await listMarkdownFiles(path.join(docsDir, locale))) {
+        if (!sourceSet.has(file)) errors.push(`unexpected target ${locale}/${file}`);
+      }
     }
   }
   if (!allowPending && pendingBlocks > 0) errors.push(`${pendingBlocks} pending translations remain`);
   if (errors.length > 0) throw new Error(errors.join("\n"));
-  return { files: sourceFiles.length, pendingBlocks };
+  return { files: sourceFiles.length, pendingBlocks, scoped };
 }
 
 export async function diffDocuments({ docsDir, i18nDir, files: requestedFiles = null } = {}) {
@@ -303,4 +320,37 @@ export async function diffDocuments({ docsDir, i18nDir, files: requestedFiles = 
     pendingCharacters: files.reduce((total, file) => total + file.pendingCharacters, 0),
     files,
   };
+}
+
+export async function finishDocuments({
+  docsDir,
+  i18nDir,
+  files,
+  sourceCommit = null,
+} = {}) {
+  if (!files?.length) {
+    throw new Error("docs:finish requires at least one document path");
+  }
+
+  await prepareDocuments({ docsDir, files });
+  const report = await diffDocuments({ docsDir, i18nDir, files });
+  const incomplete = report.files.filter((file) => file.pendingBlocks > 0 || file.validationError);
+  if (incomplete.length > 0) {
+    const details = incomplete.map((file) => {
+      const pending = `pending=${file.pendingBlocks} characters=${file.pendingCharacters}`;
+      return file.validationError
+        ? `${file.file}: ${pending} validation=${file.validationError}`
+        : `${file.file}: ${pending}`;
+    });
+    throw new Error(["documentation translation is incomplete", ...details].join("\n"));
+  }
+
+  const accepted = await acceptDocuments({
+    docsDir,
+    i18nDir,
+    files,
+    sourceCommit,
+  });
+  const checked = await checkDocuments({ docsDir, i18nDir, files });
+  return { files: files.length, pendingBlocks: 0, report, accepted, checked };
 }

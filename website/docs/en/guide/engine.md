@@ -69,6 +69,68 @@ engine.destroy()
 | `pause()` | `false` | **Keeps the current position** |
 | `stop()` | `false` | **Resets to startTime** |
 
+## Single-Object Preview Sessions
+
+`PreviewEngineSession` is intended for short-lived previews in editors, inspectors, and asset panels. It still uses the real Engine, Entity, Feature, and physical-component rendering pipeline, but starts with the `preview` runtime profile and creates no globe, imagery, terrain, sky, sun, moon, stars, Widget, or time scheduler.
+
+By default, a preview advances simulation time with continuous rendering enabled. Its camera uses the ArcRotate tracker to orbit the single host at 12 degrees per second. The host Entity's body XYZ axes are visible by default so particle emission, model attitude, and component mounting directions remain clear.
+
+Each session creates exactly one temporary host when it starts:
+
+| Host | Intended targets | Mounting methods |
+|------|------|------|
+| `entity` | Features such as geometry, models, material effects, and particles | `mountFeature()` |
+| `base-object` | `IComponent` instances; it can also mount Features on the internal Entity | `mountComponent()` / `mountFeature()` |
+
+Feature previews use the lightest Entity host:
+
+```typescript
+const session = await Daisy.PreviewEngineSession.create(container, {
+    host: { kind: "entity", name: "Particle Preview" },
+    cameraRange: 220,
+    autoPlay: true,
+    autoOrbit: true,
+    orbitSpeedDegreesPerSecond: 12,
+    showBodyAxis: true,
+})
+
+session.mountFeature(new Daisy.ParticleFeature({
+    emissionRate: 120,
+    minimumSpeed: 10,
+    maximumSpeed: 30,
+}))
+
+// 参数变化时再次挂载，新 Feature 会替换并销毁旧目标
+session.mountFeature(new Daisy.ParticleFeature({ emissionRate: 240 }))
+session.resize()
+
+// 这些开关只影响当前预览会话
+session.setBodyAxisVisible(false)
+session.setAutoOrbit(false)
+session.resetCamera()
+
+// 面板关闭、类型切换或创建完成时释放目标、宿主和 Engine
+session.destroy()
+```
+
+Physical-component previews use a BaseObject host. When `createObject` is omitted, the session creates a `PW.FreeObject`; components with host-type restrictions must provide a compatible object factory.
+
+```typescript
+const session = await Daisy.PreviewEngineSession.create(container, {
+    host: { kind: "base-object", name: "Component Preview" },
+})
+
+session.mountComponent(new Daisy.PW.WeatherParticleComponent({
+    preset: "rain",
+}))
+
+// 宿主类别变化时重建唯一临时宿主
+session.setHost({ kind: "entity", name: "Feature Preview" })
+session.destroy()
+```
+
+`PreviewEngineSession` owns the complete lifecycle of the current target, temporary host, camera tracking, body axes, per-frame orbit callback, and Engine. `mountFeature()` and `mountComponent()` clear the previous target and ensure playback continues. `destroy()` unregisters the orbit callback, releases camera tracking, and disposes every temporary resource; repeated calls are safe. Never persist preview sessions, temporary hosts, SDK instances, or preview state in a Scenario. Business data should contain only the definitions needed to reconstruct the target.
+
 ## Entity Management
 
 [Entity](/en/api/classes/Entity) is the container for all visual objects in the scene. Each Entity gains rendering capabilities by mounting [Feature](/en/api/classes/Feature) components.
