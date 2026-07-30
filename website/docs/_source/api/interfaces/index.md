@@ -1,6 +1,6 @@
 # Interfaces
 
-共 130 个 interfaces。
+共 133 个 interfaces。
 
 | 名称 | 链接 |
 |------|------|
@@ -89,6 +89,9 @@
 | `EquatorialPlaneOptions` | [EquatorialPlaneOptions](Plane.EquatorialPlaneOptions.md) |
 | `PlaneLayerOptions` | [PlaneLayerOptions](Plane.PlaneLayerOptions.md) |
 | `PointComOptions` | [PointComOptions](PointComOptions.md) |
+| `PreviewEngineSessionOptions` | [PreviewEngineSessionOptions](PreviewEngineSessionOptions.md) |
+| `PreviewHost` | [PreviewHost](PreviewHost.md) |
+| `PreviewHostContext` | [PreviewHostContext](PreviewHostContext.md) |
 | `ProjectionRange` | [ProjectionRange](ProjectionRange.md) |
 | `RadialPulseMaterialOptions` | [RadialPulseMaterialOptions](RadialPulseMaterialOptions.md) |
 | `RingSweepMaterialOptions` | [RingSweepMaterialOptions](RingSweepMaterialOptions.md) |

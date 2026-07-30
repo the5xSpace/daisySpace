@@ -1300,6 +1300,38 @@ engine.camera.followTarget(entity, {
 
 ***
 
+### orbitTrackedTargetBy()
+
+> **orbitTrackedTargetBy**(`deltaTheta`, `deltaPhi?`): `boolean`
+
+对当前 ArcRotate 跟踪视角施加环绕增量。
+
+#### Parameters
+
+##### deltaTheta
+
+`number`
+
+水平环绕增量，单位为弧度。
+
+##### deltaPhi?
+
+`number` = `0`
+
+垂直环绕增量，单位为弧度。
+
+#### Returns
+
+`boolean`
+
+当前存在可用的 ArcRotate 跟踪器时返回 true。
+
+#### Inherited from
+
+[`Camera`](Camera.md).[`orbitTrackedTargetBy`](Camera.md#orbittrackedtargetby)
+
+***
+
 ### pickEllipsoid()
 
 > **pickEllipsoid**(`windowPosition`, `ellipsoid?`, `result?`): `Cartesian3` \| `undefined`

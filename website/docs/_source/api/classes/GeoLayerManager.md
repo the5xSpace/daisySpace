@@ -22,13 +22,19 @@ engine.geoLayer.setBaseImagery({
 
 ### Constructor
 
-> **new GeoLayerManager**(`viewer`): `GeoLayerManager`
+> **new GeoLayerManager**(`viewer`, `options?`): `GeoLayerManager`
 
 #### Parameters
 
 ##### viewer
 
 [`Engine`](Engine.md)
+
+##### options?
+
+###### initializeSky?
+
+`boolean`
 
 #### Returns
 

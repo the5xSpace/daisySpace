@@ -1,6 +1,6 @@
 # Classes
 
-共 234 个 classes。
+共 237 个 classes。
 
 | 名称 | 链接 |
 |------|------|
@@ -10,6 +10,7 @@
 | `AttitudeSphereMatrix4Renderable` | [AttitudeSphereMatrix4Renderable](AttitudeSphereMatrix4Renderable.md) |
 | `AttitudeSphereOverlay` | [AttitudeSphereOverlay](AttitudeSphereOverlay.md) |
 | `AttitudeSphereRenderable` | [AttitudeSphereRenderable](AttitudeSphereRenderable.md) |
+| `BaseObjectPreviewHost` | [BaseObjectPreviewHost](BaseObjectPreviewHost.md) |
 | `BillboardFeature` | [BillboardFeature](BillboardFeature.md) |
 | `BodyTrackedCameraController` | [BodyTrackedCameraController](BodyTrackedCameraController.md) |
 | `BoundBoxCollection` | [BoundBoxCollection](BoundBoxCollection.md) |
@@ -122,6 +123,7 @@
 | `EllipticalConeFeature` | [EllipticalConeFeature](EllipticalConeFeature.md) |
 | `Engine` | [Engine](Engine.md) |
 | `Entity` | [Entity](Entity.md) |
+| `EntityPreviewHost` | [EntityPreviewHost](EntityPreviewHost.md) |
 | `ExtraCamera` | [ExtraCamera](ExtraCamera.md) |
 | `Abstract Class: Feature` | [Abstract Class: Feature](Feature.md) |
 | `FeatureEventHandle` | [FeatureEventHandle](FeatureEventHandle.md) |
@@ -188,6 +190,7 @@
 | `PolylineFeature` | [PolylineFeature](PolylineFeature.md) |
 | `PolylineGroundRenderable` | [PolylineGroundRenderable](PolylineGroundRenderable.md) |
 | `PolylineVolumeFeature` | [PolylineVolumeFeature](PolylineVolumeFeature.md) |
+| `PreviewEngineSession` | [PreviewEngineSession](PreviewEngineSession.md) |
 | `RadialPulseMaterial` | [RadialPulseMaterial](RadialPulseMaterial.md) |
 | `RectangleEmitter` | [RectangleEmitter](RectangleEmitter.md) |
 | `RectangleFeature` | [RectangleFeature](RectangleFeature.md) |

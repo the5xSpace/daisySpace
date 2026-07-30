@@ -1,0 +1,11 @@
+{
+  "jsonrpc": "2.0",
+  "id": 10,
+  "method": "tools/call",
+  "params": {
+    "name": "execute_blender_code",
+    "arguments": {
+      "code": "import bpy\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete(use_global=False)\nresult = {'status': 'ok'}"
+    }
+  }
+}

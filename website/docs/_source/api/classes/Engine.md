@@ -118,6 +118,14 @@ Daisy 仿真引擎主入口。
 
 ***
 
+### runtimeProfile
+
+> `readonly` **runtimeProfile**: `EngineRuntimeProfile`
+
+当前引擎使用的运行资源配置。
+
+***
+
 ### stateCache
 
 > **stateCache**: `TimeCache`\<[`EntityTimeState`](../interfaces/EntityTimeState.md)\>

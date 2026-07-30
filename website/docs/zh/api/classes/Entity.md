@@ -796,6 +796,18 @@ entity.addFeature(feature);
 
 ***
 
+### clearBodyAxis()
+
+> **clearBodyAxis**(): `void`
+
+移除实体体轴并清除后续更新配置。
+
+#### Returns
+
+`void`
+
+***
+
 ### computeModelMatrix()
 
 > **computeModelMatrix**(`state`): `Matrix4`

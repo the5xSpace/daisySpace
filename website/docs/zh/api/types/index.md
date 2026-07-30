@@ -1,6 +1,6 @@
 # Type Aliases
 
-共 267 个 types。
+共 271 个 types。
 
 | 名称 | 链接 |
 |------|------|
@@ -221,6 +221,10 @@
 | `PolylineGroundOptions` | [PolylineGroundOptions](PolylineGroundOptions.md) |
 | `PolylineOptions` | [PolylineOptions](PolylineOptions.md) |
 | `PolylineVolumeOptions` | [PolylineVolumeOptions](PolylineVolumeOptions.md) |
+| `PreviewBaseObjectFactory` | [PreviewBaseObjectFactory](PreviewBaseObjectFactory.md) |
+| `PreviewEngineContainer` | [PreviewEngineContainer](PreviewEngineContainer.md) |
+| `PreviewHostKind` | [PreviewHostKind](PreviewHostKind.md) |
+| `PreviewHostSpec` | [PreviewHostSpec](PreviewHostSpec.md) |
 | `PropagationOptions` | [PropagationOptions](PropagationOptions.md) |
 | `RectangleOptions` | [RectangleOptions](RectangleOptions.md) |
 | `Rotation` | [Rotation](Rotation.md) |
