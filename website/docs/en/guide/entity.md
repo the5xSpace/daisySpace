@@ -179,6 +179,8 @@ entity.getCurrentMatrix()       // 当前仿真时间的矩阵
 // 最终矩阵 = baseMatrix × initTransform × transform × preset × scale
 ```
 
+Editors and scenario serialization layers should persist additional local translation, rotation, and scale as one complete state, then write that state back to the target `transformer` during creation and updates. Object-level transforms on `BaseObject` ultimately apply to its internal Entity `transformer`, while each Feature uses its own `transformer`. Do not assume that every `IComponent` supports a generic transform; keep using each component's public installation parameters for component mounting and orientation.
+
 ## Display and Visibility
 
 ```typescript

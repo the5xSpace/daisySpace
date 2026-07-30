@@ -179,6 +179,8 @@ entity.getCurrentMatrix()       // 当前仿真时间的矩阵
 // 最终矩阵 = baseMatrix × initTransform × transform × preset × scale
 ```
 
+编辑器或场景序列化层应把附加的局部平移、旋转和缩放作为一组完整状态保存，并在创建与更新时写回目标 `transformer`。`BaseObject` 的对象级变换最终作用于其内部 Entity 的 `transformer`，Feature 则使用自身的 `transformer`；不要假定所有 `IComponent` 都支持通用变换，组件安装姿态应继续使用对应组件的公开参数。
+
 ## 显示与可见性
 
 ```typescript
