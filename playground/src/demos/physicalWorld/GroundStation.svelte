@@ -81,7 +81,7 @@ const site = new Daisy.PW.GroundStation({
     stationModel: false,
     position: Daisy.Cartesian3.fromDegrees(siteLon, siteLat, siteAlt),
     point: false,
-    label: {
+    text: {
         text: "Beijing-DSN",
         font: "13px sans-serif",
         offsetPx: new Daisy.Cartesian2(0, -26),
@@ -116,7 +116,7 @@ const aircraft = new Daisy.PW.Aircraft({
         outlineColor: Daisy.Color.BLACK.withAlpha(0.6),
         outlineWidth: 1,
     },
-    label: {
+    text: {
         text: "Target-UAV",
         font: "13px sans-serif",
         offsetPx: new Daisy.Cartesian2(0, -18),

@@ -5,10 +5,10 @@ const SCENE_START = new Date("2026-03-20T12:00:00Z");
 const startTime = Daisy.JulianDate.fromDate(SCENE_START);
 const stopTime = Daisy.JulianDate.addSeconds(startTime, 3600, new Daisy.JulianDate());
 const SAMPLE_PRESETS = [
-    { label: "10s", value: 10 },
-    { label: "30s", value: 30 },
-    { label: "60s", value: 60 },
-    { label: "120s", value: 120 },
+    { text: "10s", value: 10 },
+    { text: "30s", value: 30 },
+    { text: "60s", value: 60 },
+    { text: "120s", value: 120 },
 ];
 const LIMIT_PRESETS = [500, 1000, 2000, 3000];
 
@@ -63,7 +63,7 @@ function makeSat(name, tle, pathColor) {
             outlineColor: Daisy.Color.BLACK.withAlpha(0.6),
             outlineWidth: 1.4,
         },
-        label: {
+        text: {
             text: name,
             font: "13px sans-serif",
             offsetPx: new Daisy.Cartesian2(0, -18),

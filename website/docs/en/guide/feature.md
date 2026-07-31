@@ -20,7 +20,7 @@ const engine = await Daisy.Engine.create("daisyContainer")
 
 const entity = engine.createEntity("Satellite")
 entity.addFeature(new Daisy.PointFeature({ color: Daisy.Color.RED }))      // 红点标记
-entity.addFeature(new Daisy.UI.LabelFeature({ text: "SAT-01" }))           // 文字标签
+entity.addFeature(new Daisy.UI.TextFeature({ text: "SAT-01" }))            // 文本
 entity.addFeature(new Daisy.TrailPathFeature({ /* ... */ }))               // 轨迹尾迹
 ```
 
@@ -72,8 +72,8 @@ There are **29 Feature types**, including labels/popovers under `UI` and the Ent
 | Feature | Description | Key parameters |
 |---------|------|----------|
 | `PointFeature` | Point marker (size/color/outline) | `size`, `color`, `outlineColor`, `outlineWidth` |
-| `BillboardFeature` | Billboard/icon | `image`, `scale`, `color`, `alignedAxis` |
-| `UI.LabelFeature` | Text label (CSS-styled font family) | `text`, `font`, `fillColor`, `style`, `pixelOffset` |
+| `ImageFeature` | Image/icon | `image`, `scale`, `color`, `alignedAxis` |
+| `UI.TextFeature` | Text (CSS-styled font family) | `text`, `font`, `fillColor`, `style`, `pixelOffset` |
 | `UI.PopoverFeature` | Popover (DOM Overlay) | `element`, `anchorPosition`, `trigger` |
 
 ### Lines and Paths

@@ -68,7 +68,7 @@ for (let i = 0; i < 5; i++) {
         // 3D模型：使用钱德拉X射线天文台模型
         model: { url: Daisy.BuildModuleUrl.getUrl("models/ChandraXrayObservatory.glb"), minimumPixelSize: 34 },
         // 标签样式：显示名称，带背景
-        label: { text: `${data.name}-${i + 1}`, font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
+        text: { text: `${data.name}-${i + 1}`, font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
         // 轨道路径：显示前后30分钟的轨迹
         path: { show: true, width: 1.5, color: Daisy.Color.CYAN.withAlpha(0.45), historySecond: 30 * 60, futureSecond: 30 * 60 },
         // 星下点轨迹：在地面显示卫星投影轨迹

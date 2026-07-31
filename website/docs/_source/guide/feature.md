@@ -20,7 +20,7 @@ const engine = await Daisy.Engine.create("daisyContainer")
 
 const entity = engine.createEntity("Satellite")
 entity.addFeature(new Daisy.PointFeature({ color: Daisy.Color.RED }))      // 红点标记
-entity.addFeature(new Daisy.UI.LabelFeature({ text: "SAT-01" }))           // 文字标签
+entity.addFeature(new Daisy.UI.TextFeature({ text: "SAT-01" }))            // 文本
 entity.addFeature(new Daisy.TrailPathFeature({ /* ... */ }))               // 轨迹尾迹
 ```
 
@@ -72,8 +72,8 @@ interface IFeature {
 | Feature | 说明 | 关键参数 |
 |---------|------|----------|
 | `PointFeature` | 点标记（size/color/outline） | `size`, `color`, `outlineColor`, `outlineWidth` |
-| `BillboardFeature` | 广告牌/图标 | `image`, `scale`, `color`, `alignedAxis` |
-| `UI.LabelFeature` | 文字标签（CSS 样式字体系列） | `text`, `font`, `fillColor`, `style`, `pixelOffset` |
+| `ImageFeature` | 图片/图标 | `image`, `scale`, `color`, `alignedAxis` |
+| `UI.TextFeature` | 文本（CSS 样式字体系列） | `text`, `font`, `fillColor`, `style`, `pixelOffset` |
 | `UI.PopoverFeature` | 弹出框（DOM Overlay） | `element`, `anchorPosition`, `trigger` |
 
 ### 线性图形（Line / Path）

@@ -17,7 +17,7 @@ Semantic conventions:
 ```ts
 import * as Daisy from "daisy-space-sdk";
 
-const station = new Daisy.PW.GroundStation({ name: "GS-1", label: { text: "GS-1" } });
+const station = new Daisy.PW.GroundStation({ name: "GS-1", text: { text: "GS-1" } });
 station.position = Daisy.Cartesian3.fromDegrees(116.39, 39.9, 0);
 station.bindViewer(viewer);
 
@@ -100,6 +100,22 @@ Get the host Entity, used for attaching Features, interaction events, updates, a
 #### Inherited from
 
 [`Vehicle`](PW.Vehicle.md).[`entity`](PW.Vehicle.md#entity)
+
+***
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`id`](PW.Vehicle.md#id)
 
 ***
 
@@ -822,7 +838,7 @@ New configuration.
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Inherited from

@@ -31,8 +31,8 @@ export const areaFeaturesDemo: DemoDefinition = {
     component: () => import("./AreaFeatures.svelte"),
 };
 export const markerFeaturesDemo: DemoDefinition = {
-    id: "features-marker-features", title: "标签组件", subtitle: "Point / Billboard / Label / Popover",
-    module: "features", tags: ["point", "billboard", "label", "marker"], difficulty: "basic", preset: "earth-basic",
+    id: "features-marker-features", title: "标记组件", subtitle: "Point / Image / Text / Popover",
+    module: "features", tags: ["point", "image", "text", "marker"], difficulty: "basic", preset: "earth-basic",
     code: () => import("./MarkerFeatures.svelte?raw").then((m) => m.default),
     component: () => import("./MarkerFeatures.svelte"),
 };

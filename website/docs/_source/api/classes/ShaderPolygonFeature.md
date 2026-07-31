@@ -368,7 +368,7 @@ Feature 的显示名称（业务自定义）。
 
 当前 Feature 是否需要 Entity 在每帧预先计算模型矩阵。
 
-点、标签、广告牌这类只依赖实体位置的 Feature 可以返回 false，
+点、标签、图片这类只依赖实体位置的 Feature 可以返回 false，
 从而让海量目标场景跳过不必要的姿态/矩阵计算。
 
 #### Inherited from

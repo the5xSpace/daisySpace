@@ -74,10 +74,10 @@ const sat = engine.createEntity("STARLINK-1008");
 sat.position = satTrajectory;
 sat.orientation = satTrajectory.getVelocityOrientation();  // 姿态：速度方向
 sat.addFeature(new Daisy.PointFeature({ pixelSize: 10, color: Color.CYAN, outlineColor: Color.BLACK.withAlpha(0.7), outlineWidth: 2 }));
-// LabelFeature: UI 标签
+// TextFeature: UI 标签
 // style: FILL_AND_OUTLINE - 填充+描边样式
 // backgroundPadding: 背景内边距，pixelOffset: 像素偏移
-sat.addFeature(new Daisy.UI.LabelFeature({
+sat.addFeature(new Daisy.UI.TextFeature({
     text: "STARLINK-1008",
     font: "13px sans-serif",
     fillColor: Color.WHITE,
@@ -129,7 +129,7 @@ stationEntity.addFeature(new Daisy.PointFeature({
     outlineColor: Color.BLACK.withAlpha(0.8),
     outlineWidth: 2,
 }));
-stationEntity.addFeature(new Daisy.UI.LabelFeature({
+stationEntity.addFeature(new Daisy.UI.TextFeature({
     text: "GS-BJ",
     font: "11px sans-serif",
     fillColor: Color.YELLOW,

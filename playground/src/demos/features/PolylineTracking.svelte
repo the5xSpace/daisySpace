@@ -107,7 +107,7 @@ function addMarker(entity, color, label) {
         outlineWidth: 2,
         disableDepthTestDistance: Number.POSITIVE_INFINITY,
     }));
-    entity.addFeature(new Daisy.UI.LabelFeature({
+    entity.addFeature(new Daisy.UI.TextFeature({
         text: label,
         font: "13px sans-serif",
         offsetPx: new C2(0, -18),

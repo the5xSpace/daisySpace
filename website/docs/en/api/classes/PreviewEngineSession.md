@@ -6,9 +6,9 @@
 
 # Class: PreviewEngineSession
 
-单目标 SDK 预览会话。
+Single-target SDK preview session.
 
-会话拥有 Engine、临时宿主和当前目标的完整生命周期，不应写入业务场景。
+The session owns the complete lifecycle of the Engine, temporary host, and current target. It must not be written into the application Scenario.
 
 ## Properties
 
@@ -130,6 +130,26 @@
 
 ***
 
+### replaceHost()
+
+> **replaceHost**(`host`): [`PreviewHost`](../interfaces/PreviewHost.md)
+
+Replaces the startup placeholder host with a complete Entity or BaseObject constructed by the caller.
+
+The Session takes exclusive ownership of the instance lifecycle without clearing its existing Feature or Component instances.
+
+#### Parameters
+
+##### host
+
+[`Entity`](Entity.md) \| [`BaseObject`](PW.BaseObject.md)
+
+#### Returns
+
+[`PreviewHost`](../interfaces/PreviewHost.md)
+
+***
+
 ### resetCamera()
 
 > **resetCamera**(`range?`): `void`
@@ -192,7 +212,7 @@
 
 > **setHost**(`spec`): [`PreviewHost`](../interfaces/PreviewHost.md)
 
-宿主类型或物理对象子类型变化时替换临时宿主。
+Replaces the temporary host when the host type or physical object subtype changes.
 
 #### Parameters
 

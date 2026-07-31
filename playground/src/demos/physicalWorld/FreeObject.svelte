@@ -115,7 +115,7 @@ const carModel = {
     shadows: Daisy.ShadowMode.ENABLED,
 };
 
-const baseLabel = (text) => ({
+const baseText = (text) => ({
     text,
     font: "13px sans-serif",
     offsetPx: new C2(0, -20),
@@ -143,9 +143,9 @@ const modeSpecs = {
         title: "城市巡航车",
         summary: "最小闭环示例：FreeObject 用轨迹驱动车体，在城市道路上持续巡航。",
         labelText: "CityCar / Cruise",
-        capabilities: ["model", "label", "path", "sensor", "popover"],
+        capabilities: ["model", "text", "path", "sensor", "popover"],
         model: carModel,
-        label: baseLabel("CityCar / Cruise"),
+        text: baseText("CityCar / Cruise"),
         path: basePath,
         polyline: false,
         popover: {
@@ -174,16 +174,16 @@ const modeSpecs = {
         cube: false,
         arrowPoint: false,
         point: false,
-        billboard: false,
+        image: false,
     },
     payload: {
         badge: "任务载荷",
         title: "载荷车",
         summary: "在同一辆车上叠加碰撞球和载荷盒，说明 FreeObject 不只是模型壳子，还能装配安全与任务组件。",
         labelText: "CityCar / Payload",
-        capabilities: ["model", "label", "path", "sensor", "collisionBall", "cube", "popover"],
+        capabilities: ["model", "text", "path", "sensor", "collisionBall", "cube", "popover"],
         model: carModel,
-        label: baseLabel("CityCar / Payload"),
+        text: baseText("CityCar / Payload"),
         path: basePath,
         polyline: false,
         popover: {
@@ -233,16 +233,16 @@ const modeSpecs = {
         },
         arrowPoint: false,
         point: false,
-        billboard: false,
+        image: false,
     },
     inspect: {
         badge: "感知强化",
         title: "前向感知车",
         summary: "用前向箭头和更长的传感器波束，强调 FreeObject 作为通用载体时的方向语义。",
         labelText: "CityCar / Inspect",
-        capabilities: ["model", "label", "path", "sensor", "arrowPoint", "popover"],
+        capabilities: ["model", "text", "path", "sensor", "arrowPoint", "popover"],
         model: carModel,
-        label: baseLabel("CityCar / Inspect"),
+        text: baseText("CityCar / Inspect"),
         path: basePath,
         polyline: false,
         popover: {
@@ -286,7 +286,7 @@ const modeSpecs = {
             },
         },
         point: false,
-        billboard: false,
+        image: false,
     },
 };
 
@@ -300,7 +300,7 @@ const car = new Daisy.PW.FreeObject({
     name: "CityCar",
     position: route,
     model: modeSpecs.cruise.model,
-    label: modeSpecs.cruise.label,
+    text: modeSpecs.cruise.text,
     path: modeSpecs.cruise.path,
     polyline: modeSpecs.cruise.polyline,
     popover: modeSpecs.cruise.popover,
@@ -317,7 +317,7 @@ car.entity.setBodyAxis({
 function buildObjectConfig(spec) {
     return {
         model: spec.model,
-        label: spec.label,
+        text: spec.text,
         path: spec.path,
         polyline: spec.polyline,
         popover: spec.popover,
@@ -325,7 +325,7 @@ function buildObjectConfig(spec) {
         cube: spec.cube,
         arrowPoint: spec.arrowPoint,
         point: spec.point,
-        billboard: spec.billboard,
+        image: spec.image,
     };
 }
 

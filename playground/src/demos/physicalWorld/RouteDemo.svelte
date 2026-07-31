@@ -122,7 +122,7 @@ const hostObject = new Daisy.PW.FreeObject({
     name: "Route-Host",
     position: C3.fromDegrees(0, 0, 0), // 占位，RouteComponent 会创建自己的航点实体
     point: false,
-    label: false,
+    text: false,
     path: false,
 });
 hostObject.bindEngine(engine);
@@ -183,7 +183,7 @@ const aircraft = new Daisy.PW.Aircraft({
         maxDirectionInterpolationCount: 3000,
     },
     point: false,
-    label: {
+    text: {
         text: "✈ 航班 BJ-SH",
         font: "bold 13px sans-serif",
         offsetPx: new Daisy.Cartesian2(0, -24),

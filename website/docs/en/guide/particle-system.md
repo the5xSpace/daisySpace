@@ -165,7 +165,7 @@ entity.addFeature(new Daisy.ParticleFeature({
 
 ## CapsuleParticleFeature
 
-Capsule particles pre-render the entire particle system to a canvas and play it as a single Sprite plane (Billboard). They are suitable for effects that need a strongly bound host and a continuous body shape.
+Capsule particles pre-render the entire particle system to a canvas and play it as a single Sprite plane. They are suitable for effects that need a strongly bound host and a continuous body shape.
 
 ```typescript
 entity.addFeature(new Daisy.CapsuleParticleFeature({

@@ -1,14 +1,14 @@
 # Marker System
 
-Marker Features identify positions and display information in a scene, including point markers, billboards, text labels, and popovers.
+Marker Features identify positions and display information in a scene, including point markers, images, text labels, and popovers.
 
 ## Choosing a Feature
 
 | Need | Feature | Description |
 |------|---------|------|
 | Simple point | `PointFeature` | Pixel-sized or meter-sized point |
-| Image/icon | `BillboardFeature` | Billboard that always faces the camera |
-| Text label | `UI.LabelFeature` | 2D text overlay |
+| Image/icon | `ImageFeature` | Image that always faces the camera |
+| Text | `UI.TextFeature` | 2D text overlay |
 | HTML popover | `UI.PopoverFeature` | DOM Overlay |
 
 ## PointFeature
@@ -42,10 +42,10 @@ entity.addFeature(new Daisy.PointFeature({
 | `disableDepthTestDistance` | `number` | Distance at which to disable depth testing, in meters |
 | `position` | `Cartesian3` | Offset relative to the Entity |
 
-## BillboardFeature
+## ImageFeature
 
 ```typescript
-entity.addFeature(new Daisy.BillboardFeature({
+entity.addFeature(new Daisy.ImageFeature({
     image: "/assets/sat-icon.png",
     scale: 1.5,
     color: Daisy.Color.WHITE,
@@ -64,10 +64,10 @@ entity.addFeature(new Daisy.BillboardFeature({
 | `alignedAxis` | `Cartesian3` | Orientation axis |
 | `disableDepthTestDistance` | `number` | Disables depth testing |
 
-## UI.LabelFeature
+## UI.TextFeature
 
 ```typescript
-entity.addFeature(new Daisy.UI.LabelFeature({
+entity.addFeature(new Daisy.UI.TextFeature({
     text: "SAT-01\nAlt: 550km",
     font: "14px sans-serif",
     fillColor: Daisy.Color.WHITE,

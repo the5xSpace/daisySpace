@@ -90,9 +90,9 @@ target.addFeature(new Daisy.CubeFeature({
     outlineWidth: 1,
     show: true,
 }));
-// LabelFeature: UI 标签特征
+// TextFeature: UI 标签特征
 // offsetPx: 像素偏移（Cartesian2），showBackground: 显示背景框
-target.addFeature(new Daisy.UI.LabelFeature({
+target.addFeature(new Daisy.UI.TextFeature({
     text: "Moving target",
     font: "13px sans-serif",
     offsetPx: new Daisy.Cartesian2(0, -20),

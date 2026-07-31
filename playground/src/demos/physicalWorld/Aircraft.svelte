@@ -130,7 +130,7 @@ const routeHost = new Daisy.PW.FreeObject({
     name: "UAV-Route-Host",
     position: C3.fromDegrees(0, 0, 0),
     point: false,
-    label: false,
+    text: false,
     path: false,
 });
 routeHost.bindEngine(engine);
@@ -209,7 +209,7 @@ const targetObjects = targetSpecs.map((spec) => {
             outlineWidth: 2,
             disableDepthTestDistance: Number.POSITIVE_INFINITY,
         },
-        label: {
+        text: {
             text: `${spec.label} · ${spec.type}`,
             font: "bold 12px sans-serif",
             offsetPx: new C2(0, -20),
@@ -234,7 +234,7 @@ scanArea.addFeature(new Daisy.EllipsoidFeature({
     outlineWidth: 1,
     emitDirection: Daisy.EmitDirection.CENTER,
 }));
-scanArea.addFeature(new Daisy.UI.LabelFeature({
+scanArea.addFeature(new Daisy.UI.TextFeature({
     text: "SCAN ZONE",
     font: "bold 12px sans-serif",
     offsetPx: new C2(0, -24),
@@ -276,7 +276,7 @@ const aircraft = new Daisy.PW.Aircraft({
         autoOptimize: false,
         maxDirectionInterpolationCount: 900,
     },
-    label: {
+    text: {
         text: "UAV-Quad-01",
         font: "bold 13px sans-serif",
         offsetPx: new C2(0, -28),

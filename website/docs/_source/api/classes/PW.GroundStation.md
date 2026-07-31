@@ -17,7 +17,7 @@ GroundStation：地面站点/测站。
 ```ts
 import * as Daisy from "daisy-space-sdk";
 
-const station = new Daisy.PW.GroundStation({ name: "GS-1", label: { text: "GS-1" } });
+const station = new Daisy.PW.GroundStation({ name: "GS-1", text: { text: "GS-1" } });
 station.position = Daisy.Cartesian3.fromDegrees(116.39, 39.9, 0);
 station.bindViewer(viewer);
 
@@ -838,7 +838,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Inherited from

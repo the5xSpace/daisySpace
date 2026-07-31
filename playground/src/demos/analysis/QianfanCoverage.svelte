@@ -414,7 +414,7 @@ for (const [name, line1, line2] of QIANFAN_TLES) {
                 outlineColor: Daisy.Color.BLACK.withAlpha(0.6),
                 outlineWidth: 1,
             },
-            label: {
+            text: {
                 text: shortName(name),
                 font: "9px sans-serif",
                 offsetPx: new Daisy.Cartesian2(0, -11),

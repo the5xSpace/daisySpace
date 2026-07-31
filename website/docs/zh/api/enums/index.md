@@ -1,9 +1,10 @@
 # Enumerations
 
-共 27 个 enums。
+共 28 个 enums。
 
 | 名称 | 链接 |
 |------|------|
+| `CelestialMarkerBody` | [CelestialMarkerBody](CelestialMarkerBody.md) |
 | `ArcType` | [ArcType](Daisy.ArcType.md) |
 | `Axis` | [Axis](Daisy.Axis.md) |
 | `ClassificationType` | [ClassificationType](Daisy.ClassificationType.md) |

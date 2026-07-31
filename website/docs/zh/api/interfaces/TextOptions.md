@@ -2,11 +2,11 @@
 
 ***
 
-[daisy-space-sdk](../README.md) / LabelOptions
+[daisy-space-sdk](../README.md) / TextOptions
 
-# Interface: LabelOptions
+# Interface: TextOptions
 
-标签要素，用于在场景中显示文本标签
+文本要素，用于在场景中显示文字内容
 
 功能：
 - 在实体坐标系下添加一个 `Label`
@@ -261,7 +261,7 @@
 
 > `optional` **style?**: `LabelStyle`
 
-标签样式
+文本绘制样式
 
 ***
 

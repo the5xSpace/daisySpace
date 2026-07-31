@@ -11,9 +11,9 @@
 FreeObject configuration at the semantic layer.
 
 Features:
-- Organized as optional Features such as model, label, billboard, and path.
+- Organized as optional Features such as model, text, image, and path.
 - Pass `false` to any field to disable or remove that Feature type.
-- Some fields accept arrays to mount multiple Features of the same type at once, such as multiple billboards or polylines.
+- Some fields accept arrays to mount multiple Features of the same type at once, such as multiple images or polylines.
 
 ## Type Declaration
 
@@ -23,13 +23,6 @@ Features:
 
 Arrow-pointer configuration, either one item or multiple items.
 - `false`: removes the arrow pointer.
-
-### billboard?
-
-> `optional` **billboard?**: [`BillboardOptions`](BillboardOptions.md) \| [`BillboardOptions`](BillboardOptions.md)[] \| `false`
-
-Billboard configuration, either one item or multiple items.
-- `false`: removes the billboard.
 
 ### collisionBall?
 
@@ -45,12 +38,12 @@ Collision-ball configuration.
 Cube configuration, either one item or multiple items.
 - `false`: removes the cube.
 
-### label?
+### image?
 
-> `optional` **label?**: [`LabelOptions`](../interfaces/UI.LabelOptions.md) \| [`LabelOptions`](../interfaces/UI.LabelOptions.md)[] \| `false`
+> `optional` **image?**: [`ImageOptions`](ImageOptions.md) \| [`ImageOptions`](ImageOptions.md)[] \| `false`
 
-Label configuration, either one item or multiple items.
-- `false`: removes the label.
+Image configuration, either one item or multiple items.
+- `false`: removes the image.
 
 ### model?
 
@@ -112,3 +105,10 @@ Daisy.Cartesian3.ZERO
 Sensor configuration, reserved for future use.
 
 FreeObject does not process this field directly. Use the Vehicle/Aircraft addSensor API instead.
+
+### text?
+
+> `optional` **text?**: [`TextOptions`](../interfaces/TextOptions.md) \| [`TextOptions`](../interfaces/TextOptions.md)[] \| `false`
+
+Text configuration, either one item or multiple items.
+- `false`: removes the text.

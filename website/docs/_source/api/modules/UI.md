@@ -23,12 +23,12 @@
 
 ## References
 
-### LabelFeature
+### TextFeature
 
-Re-exports [LabelFeature](../classes/LabelFeature.md)
+Re-exports [TextFeature](../classes/TextFeature.md)
 
 ***
 
-### LabelOptions
+### TextOptions
 
-Re-exports [LabelOptions](../interfaces/LabelOptions.md)
+Re-exports [TextOptions](../interfaces/TextOptions.md)

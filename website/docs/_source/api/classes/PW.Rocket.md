@@ -945,7 +945,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Overrides

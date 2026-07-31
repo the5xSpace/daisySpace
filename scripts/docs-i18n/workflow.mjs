@@ -73,14 +73,27 @@ function targetPath(docsDir, locale, file) {
   return path.join(docsDir, locale, ...file.split("/"));
 }
 
-export async function prepareDocuments({ docsDir, files: requestedFiles = null } = {}) {
+export async function prepareDocuments({ docsDir, i18nDir = null, files: requestedFiles = null } = {}) {
   const sourceDir = path.join(docsDir, "_source");
   if (!(await exists(sourceDir))) throw new Error(`documentation source directory not found: ${sourceDir}`);
-  const allFiles = requestedFiles?.length > 0 ? null : await listMarkdownFiles(sourceDir);
-  const files = requestedFiles?.length > 0 ? requestedFiles : allFiles;
+  const scoped = requestedFiles !== null && requestedFiles !== undefined;
+  const allFiles = scoped ? null : await listMarkdownFiles(sourceDir);
+  const files = scoped ? requestedFiles : allFiles;
+  const existingFiles = [];
+  const deletedFiles = [];
   const unknownFiles = [];
+  const manifestFiles = scoped && i18nDir
+    ? (await loadState(i18nDir)).manifest.files
+    : {};
   for (const file of files) {
-    if (!(await exists(sourcePath(docsDir, file)))) unknownFiles.push(file);
+    if (await exists(sourcePath(docsDir, file))) existingFiles.push(file);
+    else {
+      const hasTarget = await Promise.all(
+        LOCALES.map((locale) => exists(targetPath(docsDir, locale, file))),
+      );
+      if (manifestFiles[file] || hasTarget.some(Boolean)) deletedFiles.push(file);
+      else unknownFiles.push(file);
+    }
   }
   if (unknownFiles.length > 0) {
     throw new Error(`documentation source file not found: ${unknownFiles.join(", ")}`);
@@ -90,7 +103,7 @@ export async function prepareDocuments({ docsDir, files: requestedFiles = null }
   let createdEn = 0;
   let removedTargets = 0;
 
-  for (const file of files) {
+  for (const file of existingFiles) {
     const sourceMarkdown = await readFile(sourcePath(docsDir, file), "utf8");
     if (await writeIfChanged(targetPath(docsDir, "zh", file), sourceMarkdown)) updatedZh += 1;
     const englishFile = targetPath(docsDir, "en", file);
@@ -100,7 +113,17 @@ export async function prepareDocuments({ docsDir, files: requestedFiles = null }
     }
   }
 
-  if (sourceSet) {
+  if (scoped) {
+    for (const file of deletedFiles) {
+      for (const locale of LOCALES) {
+        const output = targetPath(docsDir, locale, file);
+        if (await exists(output)) {
+          await rm(output, { force: true });
+          removedTargets += 1;
+        }
+      }
+    }
+  } else if (sourceSet) {
     for (const locale of LOCALES) {
       for (const file of await listMarkdownFiles(path.join(docsDir, locale))) {
         if (!sourceSet.has(file)) {
@@ -120,9 +143,9 @@ export async function acceptDocuments({
   sourceCommit = null,
   files: requestedFiles = null,
 } = {}) {
-  await prepareDocuments({ docsDir, files: requestedFiles });
+  await prepareDocuments({ docsDir, i18nDir, files: requestedFiles });
   const state = await loadState(i18nDir);
-  const scoped = requestedFiles?.length > 0;
+  const scoped = requestedFiles !== null && requestedFiles !== undefined;
   const allFiles = scoped ? null : await listMarkdownFiles(path.join(docsDir, "_source"));
   const files = scoped ? requestedFiles : allFiles;
 
@@ -146,6 +169,10 @@ export async function acceptDocuments({
   let pendingBlocks = 0;
 
   for (const file of files) {
+    if (!(await exists(sourcePath(docsDir, file)))) {
+      delete nextManifest.files[file];
+      continue;
+    }
     const sourceMarkdown = await readFile(sourcePath(docsDir, file), "utf8");
     const locales = {};
     for (const locale of LOCALES) {
@@ -167,28 +194,35 @@ export async function checkDocuments({
   docsDir,
   i18nDir,
   allowPending = false,
+  allowDeleted = false,
   files: requestedFiles = null,
 } = {}) {
   const state = await loadState(i18nDir);
   if (state.manifest.glossaryHash !== state.glossaryHash) {
     throw new Error("glossary changed; rerun docs:accept after Codex reviews terminology");
   }
-  const scoped = requestedFiles?.length > 0;
+  const scoped = requestedFiles !== null && requestedFiles !== undefined;
   const sourceFiles = scoped
     ? requestedFiles
     : await listMarkdownFiles(path.join(docsDir, "_source"));
-  const unknownFiles = [];
-  for (const file of sourceFiles) {
-    if (!(await exists(sourcePath(docsDir, file)))) unknownFiles.push(file);
-  }
-  if (unknownFiles.length > 0) {
-    throw new Error(`documentation source file not found: ${unknownFiles.join(", ")}`);
-  }
   const sourceSet = new Set(sourceFiles);
   const errors = [];
   let pendingBlocks = 0;
 
   for (const file of sourceFiles) {
+    if (!(await exists(sourcePath(docsDir, file)))) {
+      if (!allowDeleted) {
+        errors.push(`documentation source file not found: ${file}`);
+        continue;
+      }
+      if (state.manifest.files[file]) errors.push(`manifest contains deleted source ${file}`);
+      for (const locale of LOCALES) {
+        if (await exists(targetPath(docsDir, locale, file))) {
+          errors.push(`unexpected target ${locale}/${file}`);
+        }
+      }
+      continue;
+    }
     const sourceMarkdown = await readFile(sourcePath(docsDir, file), "utf8");
     const entry = state.manifest.files[file];
     if (!entry) {
@@ -234,21 +268,34 @@ export async function checkDocuments({
 
 export async function diffDocuments({ docsDir, i18nDir, files: requestedFiles = null } = {}) {
   const state = await loadState(i18nDir);
-  const scoped = requestedFiles?.length > 0;
+  const scoped = requestedFiles !== null && requestedFiles !== undefined;
   const current = scoped
     ? requestedFiles
     : await listMarkdownFiles(path.join(docsDir, "_source"));
-  const unknownFiles = [];
-  for (const file of current) {
-    if (!(await exists(sourcePath(docsDir, file)))) unknownFiles.push(file);
-  }
-  if (unknownFiles.length > 0) {
-    throw new Error(`documentation source file not found: ${unknownFiles.join(", ")}`);
-  }
   const currentSet = new Set(current);
   const files = [];
 
   for (const file of current) {
+    if (!(await exists(sourcePath(docsDir, file)))) {
+      const hasTarget = await Promise.all(
+        LOCALES.map((locale) => exists(targetPath(docsDir, locale, file))),
+      );
+      if (state.manifest.files[file] || hasTarget.some(Boolean)) {
+        files.push({
+          file,
+          status: "deleted",
+          sourceChanged: true,
+          targetChanged: true,
+          validationError: null,
+          pendingBlocks: 0,
+          pendingCharacters: 0,
+          blocks: [],
+        });
+      } else {
+        throw new Error(`documentation source file not found: ${file}`);
+      }
+      continue;
+    }
     const sourceMarkdown = await readFile(sourcePath(docsDir, file), "utf8");
     const previous = state.manifest.files[file];
     const englishFile = targetPath(docsDir, "en", file);
@@ -256,6 +303,10 @@ export async function diffDocuments({ docsDir, i18nDir, files: requestedFiles = 
     const sourceChanged = !previous || previous.sourceHash !== hashText(sourceMarkdown);
     const targetChanged = !previous || targetMarkdown == null ||
       previous.locales?.en?.targetHash !== hashText(targetMarkdown);
+    const hasPendingTranslation = previous?.locales?.en?.blocks?.some(
+      (block) => block.status === "pending",
+    ) ?? false;
+    if (!sourceChanged && !targetChanged && !hasPendingTranslation) continue;
     let blocks = sourceWorkBlocks(sourceMarkdown, file, previous?.locales?.en);
     let validationError = null;
     let currentRecord = null;
@@ -332,7 +383,7 @@ export async function finishDocuments({
     throw new Error("docs:finish requires at least one document path");
   }
 
-  await prepareDocuments({ docsDir, files });
+  await prepareDocuments({ docsDir, i18nDir, files });
   const report = await diffDocuments({ docsDir, i18nDir, files });
   const incomplete = report.files.filter((file) => file.pendingBlocks > 0 || file.validationError);
   if (incomplete.length > 0) {
@@ -351,6 +402,6 @@ export async function finishDocuments({
     files,
     sourceCommit,
   });
-  const checked = await checkDocuments({ docsDir, i18nDir, files });
+  const checked = await checkDocuments({ docsDir, i18nDir, files, allowDeleted: true });
   return { files: files.length, pendingBlocks: 0, report, accepted, checked };
 }

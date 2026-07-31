@@ -13,7 +13,7 @@ Feature 基础配置选项。
 ## Extended by
 
 - [`EntityComOptions`](EntityComOptions.md)
-- [`LabelOptions`](LabelOptions.md)
+- [`TextOptions`](TextOptions.md)
 - [`CylinderOptions`](CylinderOptions.md)
 - [`EllipticalConeOptions`](EllipticalConeOptions.md)
 - [`ModelOptions`](ModelOptions.md)

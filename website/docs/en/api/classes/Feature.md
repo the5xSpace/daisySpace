@@ -15,10 +15,11 @@ Provides:
 
 ## Extended by
 
+- [`TextFeature`](TextFeature.md)
 - [`ModelFeature`](ModelFeature.md)
 - [`PointFeature`](PointFeature.md)
 - [`TrailPathFeature`](TrailPathFeature.md)
-- [`BillboardFeature`](BillboardFeature.md)
+- [`ImageFeature`](ImageFeature.md)
 - [`BoundBoxFeature`](BoundBoxFeature.md)
 - [`BoxFeature`](BoxFeature.md)
 - [`SphereFeature`](SphereFeature.md)
@@ -38,7 +39,6 @@ Provides:
 - [`CoverageAreaFeature`](CoverageAreaFeature.md)
 - [`GeoJsonFeature`](GeoJsonFeature.md)
 - [`FreeGeometryFeature`](FreeGeometryFeature.md)
-- [`LabelFeature`](UI.LabelFeature.md)
 - [`PopoverFeature`](UI.PopoverFeature.md)
 
 ## Implements
@@ -218,6 +218,22 @@ Sets whether the current Feature participates in the Entity bounding-sphere aggr
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`isDestroyed`](../interfaces/IFeature.md#isdestroyed)
+
+***
+
 ### lodMode
 
 #### Get Signature
@@ -348,7 +364,7 @@ Conservative default: most Features require the Entity model matrix.
 
 Whether the current Feature requires Entity to precompute the model matrix each frame.
 
-Features such as points, labels, and billboards that depend only on Entity position can return false,
+Features such as points, labels, and images that depend only on Entity position can return false,
 allowing large-scale scenes to skip unnecessary attitude and matrix calculations.
 
 #### Implementation of

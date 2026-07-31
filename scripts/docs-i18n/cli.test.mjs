@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { documentationFiles, formatDiffReport } from "../docs-i18n.mjs";
+import {
+  documentationFileFromRepositoryPath,
+  documentationFiles,
+  formatDiffReport,
+  incrementalDocumentationFiles,
+} from "../docs-i18n.mjs";
 
 const REPORT = {
   sourceCommit: "abc123+dirty",
@@ -41,6 +46,17 @@ test("default diff output is a token-efficient file worklist", () => {
   assert.doesNotMatch(output, /快速开始|"blocks"/);
 });
 
+test("default diff truncates verbose validation errors", () => {
+  const output = formatDiffReport({
+    ...REPORT,
+    files: [{ ...REPORT.files[0], validationError: "structure mismatch ".repeat(100) }],
+    modifiedFiles: 1,
+  });
+
+  assert.ok(output.length < 500);
+  assert.match(output, /structure mismatch.*\.\.\./);
+});
+
 test("file-scoped diff output includes only that file's block details", () => {
   const output = formatDiffReport(REPORT, { file: ".\\guide\\index.md" });
   const selected = JSON.parse(output);
@@ -69,4 +85,26 @@ test("documentation files accept simple positional paths and legacy file options
     ]),
     ["guide/index.md", "guide/engine.md"],
   );
+});
+
+test("incremental commands use changed files by default and require --all for a full scan", () => {
+  const changed = ["guide/engine.md", "api/classes/Engine.md"];
+
+  assert.deepEqual(incrementalDocumentationFiles([], changed), changed);
+  assert.deepEqual(incrementalDocumentationFiles(["guide/index.md"], changed), [
+    "guide/index.md",
+  ]);
+  assert.equal(incrementalDocumentationFiles(["--all"], changed), null);
+});
+
+test("repository paths from source and English targets map to one translation unit", () => {
+  assert.equal(
+    documentationFileFromRepositoryPath("website/docs/_source/guide/engine.md"),
+    "guide/engine.md",
+  );
+  assert.equal(
+    documentationFileFromRepositoryPath("website\\docs\\en\\guide\\engine.md"),
+    "guide/engine.md",
+  );
+  assert.equal(documentationFileFromRepositoryPath("website/docs/zh/guide/engine.md"), null);
 });

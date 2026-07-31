@@ -118,6 +118,14 @@ Engine runtime configuration options.
 
 ***
 
+### runtimeProfile
+
+> `readonly` **runtimeProfile**: `EngineRuntimeProfile`
+
+Runtime resource configuration used by the current Engine.
+
+***
+
 ### stateCache
 
 > **stateCache**: `TimeCache`\<[`EntityTimeState`](../interfaces/EntityTimeState.md)\>
@@ -169,6 +177,18 @@ Engine runtime configuration options.
 ##### Returns
 
 [`Entity`](Entity.md)[]
+
+***
+
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
 
 ## Methods
 
@@ -1326,7 +1346,7 @@ engine.setHighPerformanceMode({
  visibilityCheckGroups: 24,
  inactiveUpdateIntervalSeconds: 0.5,
  activeUpdateIntervalSeconds: 0.03,
- keepFeatureTypes: ["PointFeature", "UI_LabelFeature", "BillboardFeature"],
+ keepFeatureTypes: ["PointFeature", "UI_TextFeature", "ImageFeature"],
 });
 
 // 关闭

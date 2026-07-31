@@ -176,7 +176,7 @@ const sat = new Daisy.PW.Satellite({
         outlineColor: Daisy.Color.BLACK.withAlpha(0.6),
         outlineWidth: 1.4,
     },
-    label: {
+    text: {
         text: "SAT-1",
         font: "13px sans-serif",
         offsetPx: new Daisy.Cartesian2(0, -18),

@@ -18,6 +18,12 @@ Feature is used to mount renderable or interactive capabilities (such as models,
 
 ***
 
+### isDestroyed
+
+> `readonly` **isDestroyed**: `boolean`
+
+***
+
 ### options
 
 > **options**: `any`
@@ -36,7 +42,7 @@ Feature is used to mount renderable or interactive capabilities (such as models,
 
 Whether the current Feature requires the Entity to precompute the model matrix each frame.
 
-Features that only depend on entity position, such as points, labels, and billboards, can return false,
+Features that only depend on entity position, such as points, labels, and images, can return false,
 allowing large-scale target scenes to skip unnecessary attitude/matrix calculations.
 
 ***

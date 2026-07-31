@@ -9,7 +9,7 @@ Entity 本身不渲染任何东西。它通过**挂载 Feature 组件**来获得
 ```
 Entity（空壳） + PointFeature → 可渲染的点
 Entity（空壳） + ModelFeature → 3D 模型
-Entity（空壳） + PointFeature + LabelFeature + TrailPathFeature → 组合效果
+Entity（空壳） + PointFeature + TextFeature + TrailPathFeature → 组合效果
 ```
 
 这种"组合优于继承"的设计是理解 Entity 的关键。

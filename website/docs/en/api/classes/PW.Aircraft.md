@@ -68,7 +68,7 @@ Celestial body (Earth by default).
 const vehicle = new Vehicle({
  name: "Vehicle-1",
  model: { url: "/models/ChandraXrayObservatory.glb", minimumPixelSize: 48 },
- label: { text: "Vehicle-1" },
+ text: { text: "Vehicle-1" },
  sensors: { type: SensorType.EllipticalCone, range: 120_000, apertureDeg: 10 },
 });
 vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
@@ -126,6 +126,22 @@ Get the host Entity for mounting Features, interaction events, updates, and more
 #### Inherited from
 
 [`Vehicle`](PW.Vehicle.md).[`entity`](PW.Vehicle.md#entity)
+
+***
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`id`](PW.Vehicle.md#id)
 
 ***
 
@@ -778,7 +794,7 @@ New configuration
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Inherited from

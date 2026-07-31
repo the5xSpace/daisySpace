@@ -23,7 +23,7 @@ const site = new Daisy.PW.GroundStation({
     position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 80),
     stationModel: false,          // 不挂载 3D 天线模型
     point: false,
-    label: {
+    text: {
         text: "Beijing-DSN",
         font: "13px sans-serif",
         offsetPx: new Daisy.Cartesian2(0, -26),
@@ -156,9 +156,9 @@ const passSlots = transits.map(t => ({ start: t.start, end: t.end }))
 | `stationModel` | `"dsn34"` \| `"dsn70"` \| `"radome"` \| `ModelOptions` \| `false` | `"dsn34"` | 天线模型配置 |
 | `model` | `ModelOptions` \| `false` | — | 覆盖 stationModel，传入 false 则不挂载模型 |
 | `antenna` | `GroundStationAntennaPointingOptions` | — | 天线节点控制配置 |
-| `label` | `LabelOptions` \| `false` | — | 文字标签 |
+| `text` | `TextOptions` \| `false` | — | 文本 |
 | `point` | `PointComOptions` \| `false` | — | 点位标记 |
-| `billboard` | `BillboardOptions` \| `false` | — | 广告牌 |
+| `image` | `ImageOptions` \| `false` | — | 图片 |
 | `sensors` | `SensorOptions` \| `SensorOptions[]` | — | 预挂载传感器 |
 
 ## 事件

@@ -53,7 +53,7 @@ BaseObject
 | Parameter | Type | Description |
 |------|------|------|
 | `model` | `ModelFeatureOptions` | 3D model (glTF / GLB) |
-| `label` | `LabelFeatureOptions` | Text label |
+| `text` | `TextOptions` | Text |
 | `ascent` | `AscentTrajectoryOptions` | Ascent trajectory configuration, which can be passed directly to the constructor |
 | `epoch` | `JulianDate` | Trajectory start time |
 | `autoOrientationByVelocity` | `boolean` | Rotate automatically along the velocity direction (default `true`) |

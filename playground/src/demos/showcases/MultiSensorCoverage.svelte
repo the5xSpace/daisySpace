@@ -36,7 +36,7 @@ const sat = new Daisy.PW.Satellite({
     trajectory: { stepSeconds: 30 },
     point: { size: 1000, color: Daisy.Color.WHITE, outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
     model: { url: Daisy.BuildModuleUrl.getUrl("models/ChandraXrayObservatory.glb"), minimumPixelSize: 42 },
-    label: { text: "MultiSensor-SAT", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
+    text: { text: "MultiSensor-SAT", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
     path: { show: true, width: 2, color: Daisy.Color.CYAN.withAlpha(0.55), historySecond: 45 * 60, futureSecond: 45 * 60 },
 });
 sat.bindEngine(engine);  // 绑定卫星到引擎
@@ -48,7 +48,7 @@ const site = new Daisy.PW.GroundStation({
     position: Daisy.Cartesian3.fromDegrees(116.33, 40.052, 100),
     stationModel: false,  // 不显示3D模型
     point: { size: 1000, color: Daisy.Color.RED, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
-    label: { text: "Beijing" },
+    text: { text: "Beijing" },
 });
 site.bindEngine(engine);  // 绑定地面站到引擎
 

@@ -27,7 +27,7 @@ const sat = new Daisy.PW.Satellite({
 2 44714  53.1558 344.8432 0002025 106.0305 345.7371 15.37590305  5813`,
     enableSpg4Propagation: false, trajectory: { stepSeconds: 30 },
     point: { size: 1000, color: Daisy.Color.CYAN, outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
-    label: { text: "BeamDemo-SAT", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
+    text: { text: "BeamDemo-SAT", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
     path: { show: true, width: 2, color: Daisy.Color.CYAN.withAlpha(0.55), historySecond: 45 * 60, futureSecond: 45 * 60 },
 });
 sat.bindEngine(engine);

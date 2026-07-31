@@ -26,7 +26,7 @@ for (const data of tleList) {
         enableSpg4Propagation: false,
         trajectory: { stepSeconds: 30 },
         point: { size: 800, color: Daisy.Color.CYAN },
-        label: { text: data.name },
+        text: { text: data.name },
         path: {
             show: true,
             width: 1.5,
@@ -127,7 +127,7 @@ for (const { name, tle } of tles) {
         enableSpg4Propagation: false,
         trajectory: { stepSeconds: 30 },
         point: { size: 800, color: Daisy.Color.CYAN },
-        label: { text: name },
+        text: { text: name },
         path: { show: true, width: 1.5, color: Daisy.Color.CYAN.withAlpha(0.45) },
     })
     con.addSatellite(sat)

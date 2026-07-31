@@ -65,8 +65,8 @@ const dataSource = await importer.load(czmlData, "cesium")
 | CZML 元素 | 转换目标 | 说明 |
 |-----------|----------|------|
 | `point` | `PointFeature` | 点标记 |
-| `billboard` | `BillboardFeature` | 公告板图标 |
-| `label` | `UI.LabelFeature` | 文字标签 |
+| `billboard` | `ImageFeature` | 图片图标 |
+| `label` | `UI.TextFeature` | 文本 |
 | `model` | `ModelFeature` | 3D 模型（glTF） |
 | `path` | `TrailPathFeature` | 尾迹轨迹 |
 | `polyline` | `PolylineFeature` | 折线 |

@@ -116,6 +116,22 @@ Gets the host Entity (for mounting Features, interaction events, updates, etc.).
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`id`](PW.Aircraft.md#id)
+
+***
+
 ### options
 
 #### Get Signature
@@ -631,7 +647,7 @@ Gets the orbital state at the current simulation time.
 
 ###### observerLocation?
 
-[`number`, `number`, `number`]
+\[`number`, `number`, `number`\]
 
 ###### velocitySampleSeconds?
 
@@ -764,7 +780,7 @@ Gets the orbital state at a specified simulation time (position/orientation/inst
 
 ###### observerLocation?
 
-[`number`, `number`, `number`]
+\[`number`, `number`, `number`\]
 
 ###### velocitySampleSeconds?
 
@@ -1050,7 +1066,7 @@ Computes single-point observation result at a specified simulation time.
 
 ##### observerLocation?
 
-[`number`, `number`, `number`]
+\[`number`, `number`, `number`\]
 
 #### Returns
 
@@ -1194,7 +1210,7 @@ New configuration
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Inherited from

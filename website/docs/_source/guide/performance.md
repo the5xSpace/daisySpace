@@ -8,7 +8,7 @@
 
 **更新频率节流**：活跃实体（hover/选中/跟踪）高频更新，非活跃实体低频更新。
 
-**Feature 类型裁剪**：非活跃实体仅保留白名单中的 Feature 类型（如 Point、Label、Billboard），跳过模型、轨迹等渲染开销较大的 Feature。
+**Feature 类型裁剪**：非活跃实体仅保留白名单中的 Feature 类型（如 Point、Label、Image），跳过模型、轨迹等渲染开销较大的 Feature。
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -26,7 +26,7 @@ engine.setHighPerformanceMode({
     visibilityCheckGroups: 24,
     inactiveUpdateIntervalSeconds: 0.5,
     activeUpdateIntervalSeconds: 0.03,
-    keepFeatureTypes: ["PointFeature", "UI_LabelFeature", "BillboardFeature"],
+    keepFeatureTypes: ["PointFeature", "UI_TextFeature", "ImageFeature"],
 })
 
 // 自动启用阈值（实体数 >= 500 时自动开启）

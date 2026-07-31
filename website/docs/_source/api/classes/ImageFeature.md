@@ -2,19 +2,13 @@
 
 ***
 
-[daisy-space-sdk](../README.md) / LabelFeature
+[daisy-space-sdk](../README.md) / ImageFeature
 
-# Class: LabelFeature
+# Class: ImageFeature
 
-LabelFeature
+图片要素（ImageFeature）。
 
-示例：
-const label = new Daisy.UI.LabelFeature({
- text: 'Hello',
- font: '16px sans-serif',
- position: Daisy.Cartesian3.fromDegrees(116.391, 39.907)
-});
-entity.addFeature(label);
+基于 `Engine.collections.billboardCollection` 管理生命周期。
 
 ## Extends
 
@@ -24,19 +18,17 @@ entity.addFeature(label);
 
 ### Constructor
 
-> **new LabelFeature**(`options`): `LabelFeature`
-
-创建一个文本标签特性
+> **new ImageFeature**(`options`): `ImageFeature`
 
 #### Parameters
 
 ##### options
 
-[`LabelOptions`](../interfaces/LabelOptions.md)
+[`ImageOptions`](../types/ImageOptions.md)
 
 #### Returns
 
-`LabelFeature`
+`ImageFeature`
 
 #### Overrides
 
@@ -90,7 +82,7 @@ entity.addFeature(label);
 
 ### type
 
-> `readonly` `static` **type**: `"UI_LabelFeature"` = `'UI_LabelFeature'`
+> `readonly` `static` **type**: `"ImageFeature"` = `'ImageFeature'`
 
 #### Overrides
 
@@ -301,7 +293,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Inherited from
 
-[`Feature`](Feature.md).[`name`](Feature.md#name)
+[`PopoverFeature`](UI.PopoverFeature.md).[`name`](UI.PopoverFeature.md#name)
 
 ***
 
@@ -309,7 +301,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Get Signature
 
-> **get** **options**(): [`LabelOptions`](../interfaces/LabelOptions.md)
+> **get** **options**(): [`ImageOptions`](../types/ImageOptions.md)
 
 获取组件配置（EntityComOptions）。
 
@@ -317,7 +309,7 @@ Feature 的显示名称（业务自定义）。
 
 ##### Returns
 
-[`LabelOptions`](../interfaces/LabelOptions.md)
+[`ImageOptions`](../types/ImageOptions.md)
 
 组件配置
 
@@ -333,7 +325,7 @@ Feature 的显示名称（业务自定义）。
 
 ###### value
 
-[`LabelOptions`](../interfaces/LabelOptions.md)
+[`ImageOptions`](../types/ImageOptions.md)
 
 ##### Returns
 
@@ -361,7 +353,7 @@ Feature 的显示名称（业务自定义）。
 
 当前 Feature 是否需要 Entity 在每帧预先计算模型矩阵。
 
-点、标签、广告牌这类只依赖实体位置的 Feature 可以返回 false，
+点、标签、图片这类只依赖实体位置的 Feature 可以返回 false，
 从而让海量目标场景跳过不必要的姿态/矩阵计算。
 
 #### Overrides
@@ -402,7 +394,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Inherited from
 
-[`Feature`](Feature.md).[`throttleable`](Feature.md#throttleable)
+[`PopoverFeature`](UI.PopoverFeature.md).[`throttleable`](UI.PopoverFeature.md#throttleable)
 
 ***
 
@@ -516,9 +508,20 @@ Feature 的显示名称（业务自定义）。
 
 ### create()
 
-> **create**(): `void`
+> **create**(`entity`): `void`
 
-创建底层 Label 实例
+创建图片节点（只会创建一次）。
+
+关键点：
+- 节点统一挂在 Engine.collections.billboardCollection 下管理
+- “米偏移”不在创建阶段直接写入节点：因为需要相机尺度换算，必须在 update 周期处理
+- 兼容字段 pixelOffset/pixelOffsetMeters：创建阶段只处理像素口径（pixelOffset）
+
+#### Parameters
+
+##### entity
+
+[`Entity`](Entity.md)
 
 #### Returns
 
@@ -530,7 +533,9 @@ Feature 的显示名称（业务自定义）。
 
 > **destroy**(): `void`
 
-销毁并从集合移除
+销毁并释放资源。
+
+说明：节点生命周期由集合统一管理，因此需要显式 remove，避免残留与内存泄漏。
 
 #### Returns
 
@@ -656,6 +661,16 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### getOptions()
+
+> **getOptions**(): [`ImageOptions`](../types/ImageOptions.md)
+
+#### Returns
+
+[`ImageOptions`](../types/ImageOptions.md)
+
+***
+
 ### is3d()
 
 > **is3d**(): `boolean`
@@ -722,9 +737,19 @@ Feature 的显示名称（业务自定义）。
 
 ### reCreate()
 
-> **reCreate**(): `void`
+> **reCreate**(`entity`): `void`
 
-重新创建（销毁并重建标签）
+重建节点。
+
+使用场景：
+- 某些配置变更无法安全地增量更新到现有节点（或业务侧希望立即刷新）
+- 需要切换图片资源、裁剪区域等可能触发底层缓存策略的字段时
+
+#### Parameters
+
+##### entity
+
+[`Entity`](Entity.md)
 
 #### Returns
 
@@ -738,9 +763,13 @@ Feature 的显示名称（业务自定义）。
 
 ### register()
 
-> **register**(`entity`): `LabelFeature`
+> **register**(`entity`): `ImageFeature`
 
-注册到实体（将标签加入 `labelsCollection`）
+注册到 Entity，并确保节点被创建。
+
+说明：
+- Feature 的生命周期由 Entity 驱动；register 之后，Entity 会在每帧调用 update
+- 本 Feature 采用“首次 register 即创建”的策略；后续配置变更若涉及重建可调用 reCreate
 
 #### Parameters
 
@@ -750,7 +779,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Returns
 
-`LabelFeature`
+`ImageFeature`
 
 #### Overrides
 
@@ -858,7 +887,17 @@ undefined 配置项
 
 > **update**(`entity`, `time`): `void`
 
-每帧更新（主要处理位置变更）
+每帧更新。
+
+更新顺序（从“生命周期正确”角度保证最小意外）：
+1. 保护性判断：节点未创建直接返回
+2. 同步 node 引用并交给基类 update（处理可见性/LOD/交互等通用逻辑）
+3. 若当前帧隐藏则提前返回（避免无谓计算）
+4. 更新世界位置：实体当前位置 + options.position（实体局部偏移）
+5. 更新 scale/color 等允许运行期变更的字段
+6. 处理屏幕偏移：
+ - 若提供“米偏移”：按当前视点尺度换算成像素偏移
+ - 否则使用像素偏移
 
 #### Parameters
 

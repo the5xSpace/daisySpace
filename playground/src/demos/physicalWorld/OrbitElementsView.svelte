@@ -58,7 +58,7 @@ engine.play();
 //   - referenceAxisMaterial: 参考轴材质
 //   - angleArcMaterial: 角度弧线材质
 //   - earthTransparencyAlpha: 地球透明度
-// - label: 标签配置
+// - text: 标签配置
 const sat = new Daisy.PW.NearEarthOrbiter({
     name: "ISS (Orbit Elements Demo)",
     orbitDefinition: `ISS (ZARYA)
@@ -81,7 +81,7 @@ const sat = new Daisy.PW.NearEarthOrbiter({
         angleArcMaterial: Daisy.Color.WHITE.withAlpha(0.75),
         earthTransparencyAlpha: 0.45,
     },
-    label: { text: "ISS (Orbit Elements)", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.4) },
+    text: { text: "ISS (Orbit Elements)", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.4) },
 });
 
 // bindEngine: 绑定引擎，使卫星生效

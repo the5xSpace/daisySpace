@@ -39,7 +39,7 @@ engine.play();
 // - enableSpg4Propagation: 是否启用 SGP4 实时轨道传播
 // - trajectory: 轨迹配置
 // - point: 点标记配置
-// - label: 标签配置
+// - text: 标签配置
 // - path: 路径配置
 const sat = new Daisy.PW.Satellite({
     name: "TrackSAT",
@@ -48,7 +48,7 @@ const sat = new Daisy.PW.Satellite({
 2 44714  53.1558 344.8432 0002025 106.0305 345.7371 15.37590305  5813`,
     enableSpg4Propagation: false, trajectory: { stepSeconds: 30 },
     point: { size: 1000, color: Daisy.Color.CYAN, outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
-    label: { text: "TrackSAT", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
+    text: { text: "TrackSAT", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
     path: { show: true, width: 2, color: Daisy.Color.CYAN.withAlpha(0.55), historySecond: 45 * 60, futureSecond: 45 * 60 },
 });
 
@@ -61,13 +61,13 @@ sat.bindEngine(engine);
 // - position: 位置坐标（Cartesian3.fromDegrees）
 // - stationModel: 是否显示 3D 模型
 // - point: 点标记配置
-// - label: 标签配置
+// - text: 标签配置
 const site = new Daisy.PW.GroundStation({
     name: "Beijing-GS",
     position: Daisy.Cartesian3.fromDegrees(116.33, 40.052, 100),
     stationModel: false,
     point: { size: 1000, color: Daisy.Color.RED, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
-    label: { text: "Beijing" },
+    text: { text: "Beijing" },
 });
 
 // bindEngine: 绑定引擎，使地面站生效

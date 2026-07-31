@@ -8,7 +8,7 @@ Enable this mode when the number of entities in a scene is large, typically from
 
 **Update frequency throttling**: Active entities (hovered, selected, or tracked) update frequently, while inactive entities update less often.
 
-**Feature type pruning**: Inactive entities keep only whitelisted Feature types such as Point, Label, and Billboard, skipping expensive rendering Features like models and trajectories.
+**Feature type pruning**: Inactive entities keep only whitelisted Feature types such as Point, Label, and Image, skipping expensive rendering Features like models and trajectories.
 
 ```typescript
 import * as Daisy from "daisy-space-sdk"
@@ -26,7 +26,7 @@ engine.setHighPerformanceMode({
     visibilityCheckGroups: 24,
     inactiveUpdateIntervalSeconds: 0.5,
     activeUpdateIntervalSeconds: 0.03,
-    keepFeatureTypes: ["PointFeature", "UI_LabelFeature", "BillboardFeature"],
+    keepFeatureTypes: ["PointFeature", "UI_TextFeature", "ImageFeature"],
 })
 
 // 自动启用阈值（实体数 >= 500 时自动开启）

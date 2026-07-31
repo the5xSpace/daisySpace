@@ -11,9 +11,9 @@
 FreeObject 配置（语义层）。
 
 特点：
-- 以“可选 Feature”形式组织：model/label/billboard/path 等
+- 以“可选 Feature”形式组织：model/text/image/path 等
 - 每个字段可传 `false` 表示禁用/移除该类 Feature
-- 部分字段支持数组：用于一次挂载多个同类 Feature（如多块 billboard、多条 polyline）
+- 部分字段支持数组：用于一次挂载多个同类 Feature（如多张图片、多条 polyline）
 
 ## Type Declaration
 
@@ -23,13 +23,6 @@ FreeObject 配置（语义层）。
 
 箭头指示器配置（单个或多个）。
 - `false`：移除箭头指示器
-
-### billboard?
-
-> `optional` **billboard?**: [`BillboardOptions`](BillboardOptions.md) \| [`BillboardOptions`](BillboardOptions.md)[] \| `false`
-
-广告牌配置（单个或多个）。
-- `false`：移除广告牌
 
 ### collisionBall?
 
@@ -45,12 +38,12 @@ FreeObject 配置（语义层）。
 立方体配置（单个或多个）。
 - `false`：移除立方体
 
-### label?
+### image?
 
-> `optional` **label?**: [`LabelOptions`](../interfaces/LabelOptions.md) \| [`LabelOptions`](../interfaces/LabelOptions.md)[] \| `false`
+> `optional` **image?**: [`ImageOptions`](ImageOptions.md) \| [`ImageOptions`](ImageOptions.md)[] \| `false`
 
-Label 配置（单个或多个）。
-- `false`：移除 label
+图片配置（单个或多个）。
+- `false`：移除图片
 
 ### model?
 
@@ -112,3 +105,10 @@ Daisy.Cartesian3.ZERO
 传感器配置（预留）。
 
 当前 FreeObject 不直接处理该字段，推荐使用 Vehicle/Aircraft 的 addSensor API。
+
+### text?
+
+> `optional` **text?**: [`TextOptions`](../interfaces/TextOptions.md) \| [`TextOptions`](../interfaces/TextOptions.md)[] \| `false`
+
+文本配置（单个或多个）。
+- `false`：移除文本

@@ -6,6 +6,8 @@
 // 当相机距离天体超过 9 万公里时，显示小圆点 + 标签标记方位。
 // 关键 API:
 //   - Daisy.CelestialMarkerWidget : 天体标记组件
+//   - Daisy.CelestialMarkerBody   : 内置天体枚举
+//   - widget.setEnabledBodies()   : 运行时更新启用列表
 //   - widget.custom               : 自定义标记目标
 //   - engine.addWidget()          : 添加组件
 //   - engine.removeWidget()       : 移除组件
@@ -21,9 +23,27 @@ let marsEnabled = $state(true);    // 火星标记
 let earthEnabled = $state(false);  // 地球标记（默认关闭）
 let customEnabled = $state(false); // 自定义目标标记
 let markerWidget = $state(null);   // 当前组件实例
+let activeBodyCount = $state(3);   // 当前启用的内置天体数量
+
+function getEnabledBodies() {
+    const bodies = [];
+    if (sunEnabled) bodies.push(Daisy.CelestialMarkerBody.Sun);
+    if (moonEnabled) bodies.push(Daisy.CelestialMarkerBody.Moon);
+    if (marsEnabled) bodies.push(Daisy.CelestialMarkerBody.Mars);
+    if (earthEnabled) bodies.push(Daisy.CelestialMarkerBody.Earth);
+    return bodies;
+}
+
+function syncEnabledBodies() {
+    if (!markerWidget) return;
+    const bodies = getEnabledBodies();
+    markerWidget.setEnabledBodies(bodies);
+    activeBodyCount = bodies.length;
+    __log(`CelestialMarkerWidget: 已启用 ${activeBodyCount} 个内置天体，关闭的天体不会计算星历`);
+}
 
 // ── 2. 创建/重建标记组件 ────────────────────────────────────────────────────
-// 每次开关变化时销毁旧组件并创建新组件
+// 自定义目标集合变化时重建组件；内置天体开关直接更新 enabledBodies。
 function createMarker() {
     // 销毁旧组件
     if (markerWidget) {
@@ -31,12 +51,9 @@ function createMarker() {
         markerWidget = null;
     }
     
-    // 构建组件选项
+    // 构建组件选项。enabledBodies 是完整列表，不会叠加 SDK 默认值。
     const opts = {
-        earth: earthEnabled,
-        moon: moonEnabled,
-        sun: sunEnabled,
-        mars: marsEnabled,
+        enabledBodies: getEnabledBodies(),
     };
     
     // 自定义标记示例：添加国际空间站标记
@@ -55,7 +72,8 @@ function createMarker() {
     // 创建并添加组件
     const w = new Daisy.CelestialMarkerWidget(opts);
     markerWidget = engine.addWidget(w);
-    __log(`CelestialMarkerWidget: 地球=${earthEnabled} 月球=${moonEnabled} 太阳=${sunEnabled} 火星=${marsEnabled} 自定义=${customEnabled}`);
+    activeBodyCount = getEnabledBodies().length;
+    __log(`CelestialMarkerWidget: 已启用 ${activeBodyCount} 个内置天体，自定义目标=${customEnabled}`);
 }
 
 // ── 3. 初始化 ──────────────────────────────────────────────────────────────
@@ -80,25 +98,25 @@ import DemoPanel from "../../shell/DemoPanel.svelte";
 
 <DemoPanel title="天体标记组件">
     <h2>天体标记组件</h2>
-    <p class="desc">当相机距离天体超过 9 万公里时，显示小圆点 + 标签标记方位。</p>
+    <p class="desc">默认显示太阳、月球和火星；关闭后对应天体不会继续计算或更新星历。</p>
     <div class="controls">
         <label class="toggle">
-            <input type="checkbox" bind:checked={earthEnabled} onchange={createMarker} />
+            <input type="checkbox" bind:checked={earthEnabled} onchange={syncEnabledBodies} />
             <span class="dot" style="background:#2a9df4"></span>
             地球
         </label>
         <label class="toggle">
-            <input type="checkbox" bind:checked={moonEnabled} onchange={createMarker} />
+            <input type="checkbox" bind:checked={moonEnabled} onchange={syncEnabledBodies} />
             <span class="dot" style="background:#cccccc"></span>
             月球
         </label>
         <label class="toggle">
-            <input type="checkbox" bind:checked={sunEnabled} onchange={createMarker} />
+            <input type="checkbox" bind:checked={sunEnabled} onchange={syncEnabledBodies} />
             <span class="dot" style="background:#ffd166"></span>
             太阳
         </label>
         <label class="toggle">
-            <input type="checkbox" bind:checked={marsEnabled} onchange={createMarker} />
+            <input type="checkbox" bind:checked={marsEnabled} onchange={syncEnabledBodies} />
             <span class="dot" style="background:#ff6f61"></span>
             火星
         </label>
@@ -108,6 +126,7 @@ import DemoPanel from "../../shell/DemoPanel.svelte";
             自定义目标
         </label>
     </div>
+    <p class="status">当前启用 {activeBodyCount} 个内置天体</p>
 </DemoPanel>
 
 <style>
@@ -121,8 +140,8 @@ h2 {
         font-size: 12px;
     }
     .controls {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
     }
     .toggle {
@@ -139,5 +158,10 @@ h2 {
         width: 10px;
         height: 10px;
         border-radius: 50%;
+    }
+    .status {
+        margin: 12px 0 0;
+        color: #7dd3fc;
+        font-size: 12px;
     }
 </style>

@@ -65,8 +65,8 @@ Sixteen CZML graphic elements are mapped automatically to the corresponding Dais
 | CZML Element | Conversion target | Description |
 |-----------|----------|------|
 | `point` | `PointFeature` | Point marker |
-| `billboard` | `BillboardFeature` | Billboard icon |
-| `label` | `UI.LabelFeature` | Text label |
+| `billboard` | `ImageFeature` | Image icon |
+| `label` | `UI.TextFeature` | Text |
 | `model` | `ModelFeature` | 3D model (glTF) |
 | `path` | `TrailPathFeature` | Trail path |
 | `polyline` | `PolylineFeature` | Polyline |

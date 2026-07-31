@@ -1346,7 +1346,7 @@ engine.setHighPerformanceMode({
  visibilityCheckGroups: 24,
  inactiveUpdateIntervalSeconds: 0.5,
  activeUpdateIntervalSeconds: 0.03,
- keepFeatureTypes: ["PointFeature", "UI_LabelFeature", "BillboardFeature"],
+ keepFeatureTypes: ["PointFeature", "UI_TextFeature", "ImageFeature"],
 });
 
 // 关闭

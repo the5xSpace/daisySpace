@@ -3,7 +3,7 @@
 // Engine 创建 Demo — 引擎初始化与基本配置
 //
 // 本示例演示如何创建 Daisy 引擎实例、配置场景时间、
-// 创建实体并添加 PointFeature 和 LabelFeature 组件。
+// 创建实体并添加 PointFeature 和 TextFeature 组件。
 //
 // 关键 API 说明：
 // - engine: 引擎实例，由 Playground 框架自动创建和注入
@@ -69,8 +69,8 @@ entity.addFeature(new Daisy.PointFeature({
     size: 1000, color: Daisy.Color.CYAN, outlineColor: Daisy.Color.WHITE, outlineWidth: 2, show: true,
 }));
 
-// 添加 LabelFeature（标签）
-// LabelFeature 参数：
+// 添加 TextFeature（文本）
+// TextFeature 参数：
 //   - text: 显示文本
 //   - font: 字体样式（CSS 格式）
 //   - fillColor: 文字颜色
@@ -81,7 +81,7 @@ entity.addFeature(new Daisy.PointFeature({
 //   - backgroundColor: 背景颜色（支持 alpha 透明度）
 //   - backgroundPadding: 背景内边距
 //   - pixelOffset: 像素偏移量
-entity.addFeature(new Daisy.UI.LabelFeature({
+entity.addFeature(new Daisy.UI.TextFeature({
     text: "DemoEntity", font: "14px sans-serif", fillColor: Daisy.Color.CYAN,
     style: Daisy.LabelStyle.FILL_AND_OUTLINE, outlineWidth: 2, outlineColor: Daisy.Color.BLACK,
     showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.5),

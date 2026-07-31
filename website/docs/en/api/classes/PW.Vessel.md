@@ -17,7 +17,7 @@ Description:
 ```ts
 import * as Daisy from "daisy-space-sdk";
 
-const vessel = new Daisy.PW.Vessel({ name: "Ship-1", label: { text: "Ship-1" } });
+const vessel = new Daisy.PW.Vessel({ name: "Ship-1", text: { text: "Ship-1" } });
 vessel.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 0);
 vessel.bindViewer(viewer);
 
@@ -100,6 +100,22 @@ Get the host Entity, used for attaching Features, interaction events, updates, a
 #### Inherited from
 
 [`Vehicle`](PW.Vehicle.md).[`entity`](PW.Vehicle.md#entity)
+
+***
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`id`](PW.Vehicle.md#id)
 
 ***
 
@@ -768,7 +784,7 @@ New configuration.
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Inherited from

@@ -14,7 +14,7 @@ const vehicle = new Daisy.PW.Vehicle({
     name: "Beijing-Taxi",
     position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 0),
     point: { size: 1000, color: Daisy.Color.BLUE, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
-    label: { text: "Beijing-Taxi", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.5) },
+    text: { text: "Beijing-Taxi", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.5) },
 });
 vehicle.bindEngine(engine);
 
@@ -22,7 +22,7 @@ const vessel = new Daisy.PW.Vessel({
     name: "CargoShip",
     position: Daisy.Cartesian3.fromDegrees(121.5, 31.2, 0),
     point: { size: 1000, color: Daisy.Color.GREEN, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
-    label: { text: "CargoShip", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.5) },
+    text: { text: "CargoShip", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.5) },
 });
 vessel.bindEngine(engine);
 

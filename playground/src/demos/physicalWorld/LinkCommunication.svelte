@@ -45,7 +45,7 @@ engine.setSceneTime(startTime, stopTime);
 //     - color: 颜色
 //     - outlineColor: 轮廓颜色
 //     - outlineWidth: 轮廓宽度
-//   - label: 标签配置
+//   - text: 标签配置
 //     - text: 显示文本
 //     - font: 字体样式
 //     - offsetPx: 像素偏移量
@@ -64,7 +64,7 @@ const sat = new Daisy.PW.Satellite({
 2 44714  53.1558 344.8432 0002025 106.0305 345.7371 15.37590305  5813`,
     enableSpg4Propagation: false, trajectory: { stepSeconds: 30 },
     point: { size: 1000, color: Daisy.Color.CYAN, outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
-    label: { text: "RelaySAT", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
+    text: { text: "RelaySAT", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
     path: { show: true, width: 2, color: Daisy.Color.CYAN.withAlpha(0.55), historySecond: 45 * 60, futureSecond: 45 * 60 },
 });
 // bindEngine 将卫星绑定到引擎，使其参与场景渲染和时间更新
@@ -77,14 +77,14 @@ sat.bindEngine(engine);
 //   - position: 位置坐标（Cartesian3.fromDegrees）
 //   - stationModel: 是否显示 3D 模型
 //   - point: 点标记配置（同 Satellite）
-//   - label: 标签配置
+//   - text: 标签配置
 //     - text: 显示文本
 const site1 = new Daisy.PW.GroundStation({
     name: "Beijing-GS",
     position: Daisy.Cartesian3.fromDegrees(116.33, 40.052, 100),
     stationModel: false,
     point: { size: 1000, color: Daisy.Color.RED, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
-    label: { text: "Beijing" },
+    text: { text: "Beijing" },
 });
 site1.bindEngine(engine);
 
@@ -93,7 +93,7 @@ const site2 = new Daisy.PW.GroundStation({
     position: Daisy.Cartesian3.fromDegrees(121.5, 31.2, 100),
     stationModel: false,
     point: { size: 1000, color: Daisy.Color.YELLOW, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
-    label: { text: "Shanghai" },
+    text: { text: "Shanghai" },
 });
 site2.bindEngine(engine);
 
@@ -117,8 +117,8 @@ const passSlots2 = transits2.map((it) => ({ start: Daisy.JulianDate.fromDate(new
 
 // 合并两个地面站的过境窗口，并按时间排序
 const allSlots = [
-    ...passSlots1.map((s, i) => ({ ...s, label: `BJ 过境 #${i + 1}` })),
-    ...passSlots2.map((s, i) => ({ ...s, label: `SH 过境 #${i + 1}` })),
+    ...passSlots1.map((s, i) => ({ ...s, text: `BJ 过境 #${i + 1}` })),
+    ...passSlots2.map((s, i) => ({ ...s, text: `SH 过境 #${i + 1}` })),
 ].sort((a, b) => Daisy.JulianDate.secondsDifference(a.start, b.start));
 
 // 跳转到第一个过境窗口开始前 30 秒

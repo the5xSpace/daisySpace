@@ -113,6 +113,22 @@ Get the host Entity, used for attaching Features, interaction events, updates, a
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`id`](PW.Vehicle.md#id)
+
+***
+
 ### options
 
 #### Get Signature
@@ -929,7 +945,7 @@ New configuration.
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Overrides

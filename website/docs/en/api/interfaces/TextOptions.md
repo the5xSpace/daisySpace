@@ -2,16 +2,16 @@
 
 ***
 
-[daisy-space-sdk](../README.md) / LabelOptions
+[daisy-space-sdk](../README.md) / TextOptions
 
-# Interface: LabelOptions
+# Interface: TextOptions
 
-标签要素，用于在场景中显示文本标签
+Text feature for displaying text content in a scene.
 
-功能：
-- 在实体坐标系下添加一个 `Label`
-- 支持颜色、字体、背景、位置等常用样式配置
-- 按 `Engine.collections.labelsCollection` 管理生命周期
+Capabilities:
+- Adds a `Label` in the Entity coordinate system
+- Supports common style settings such as color, font, background, and position
+- Manages its lifecycle through `Engine.collections.labelsCollection`
 
 ## Extends
 
@@ -23,7 +23,7 @@
 
 > `optional` **backgroundColor?**: [`DColor`](../types/DColor.md)
 
-背景颜色
+Background color.
 
 ***
 
@@ -31,7 +31,7 @@
 
 > `optional` **backgroundPadding?**: `Cartesian2`
 
-背景内边距
+Background padding.
 
 ***
 
@@ -39,7 +39,7 @@
 
 > `optional` **disableDepthTestDistance?**: `number`
 
-关闭深度检测的距离阈值（单位：米）
+Distance threshold for disabling depth testing, in meters.
 
 ***
 
@@ -47,7 +47,7 @@
 
 > `optional` **distanceDisplayCondition?**: `DistanceDisplayCondition`
 
-显示距离条件
+Distance display condition.
 
 ***
 
@@ -55,7 +55,7 @@
 
 > `optional` **eyeOffset?**: `Cartesian3`
 
-视点偏移
+Eye offset.
 
 ***
 
@@ -63,7 +63,7 @@
 
 > `optional` **fillColor?**: [`DColor`](../types/DColor.md)
 
-文本填充色，默认 `Daisy.Color.WHITE`
+Text fill color. Defaults to `Daisy.Color.WHITE`.
 
 ***
 
@@ -71,7 +71,7 @@
 
 > `optional` **font?**: `string`
 
-字体，如 `16px sans-serif`
+Font, such as `16px sans-serif`.
 
 ***
 
@@ -79,7 +79,7 @@
 
 > `optional` **heightReference?**: `HeightReference`
 
-高程参考
+Height reference.
 
 ***
 
@@ -87,7 +87,7 @@
 
 > `optional` **horizontalOrigin?**: `HorizontalOrigin`
 
-水平对齐
+Horizontal alignment.
 
 ***
 
@@ -95,7 +95,7 @@
 
 > `optional` **id?**: `string`
 
-自定义 id
+Custom ID.
 
 #### Overrides
 
@@ -107,9 +107,9 @@
 
 > `optional` **includeInBoundingSphere?**: `boolean`
 
-是否参与所属 Entity 的包围球聚合。
+Whether to include this Feature in its Entity's bounding-sphere aggregation.
 
-适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+Enable this for Features that should be included when the camera runs zoom/flyTo. It can be disabled for guides, temporary effects, and similar Features.
 
 #### Inherited from
 
@@ -121,7 +121,7 @@
 
 > `optional` **name?**: `string`
 
-名称（可用于展示/调试）。
+Name used for display or debugging.
 
 #### Inherited from
 
@@ -133,9 +133,9 @@
 
 > `optional` **offsetMeters?**: `Cartesian2`
 
-屏幕偏移（单位：米）。
+Screen offset in meters.
 
-与 `offsetPx` 二选一；若同时设置则优先使用米。
+Mutually exclusive with `offsetPx`; when both are set, the meter-based value takes precedence.
 
 ***
 
@@ -143,9 +143,9 @@
 
 > `optional` **offsetPx?**: `Cartesian2`
 
-屏幕像素偏移（单位：像素）。
+Screen offset in pixels.
 
-与 `offsetMeters` 同时设置时，以 `offsetMeters` 为准。
+When used with `offsetMeters`, `offsetMeters` takes precedence.
 
 ***
 
@@ -153,7 +153,7 @@
 
 > `optional` **outlineColor?**: [`DColor`](../types/DColor.md)
 
-文本描边颜色
+Text outline color.
 
 ***
 
@@ -161,7 +161,7 @@
 
 > `optional` **outlineWidth?**: `number`
 
-文本描边宽度（像素）
+Text outline width in pixels.
 
 ***
 
@@ -169,7 +169,7 @@
 
 > `optional` **overlayPass?**: `boolean`
 
-是否启用叠加渲染通道。
+Whether to enable the overlay rendering pass.
 
 #### Inherited from
 
@@ -181,9 +181,9 @@
 
 > `optional` **pixelOffset?**: `Cartesian2`
 
-兼容字段：等同 `offsetPx`（单位：像素）。
+Compatibility field equivalent to `offsetPx`, in pixels.
 
-与 `offsetMeters` 同时设置时，以 `offsetMeters` 为准。
+When used with `offsetMeters`, `offsetMeters` takes precedence.
 
 ***
 
@@ -191,9 +191,9 @@
 
 > `optional` **pixelOffsetMeters?**: `Cartesian2`
 
-兼容字段：等同 `offsetMeters`（单位：米）。
+Compatibility field equivalent to `offsetMeters`, in meters.
 
-与 `offsetPx` 二选一；若同时设置则优先使用米。
+Mutually exclusive with `offsetPx`; when both are set, the meter-based value takes precedence.
 
 ***
 
@@ -201,7 +201,7 @@
 
 > `optional` **pixelOffsetScaleByDistance?**: `NearFarScalar`
 
-距离缩放（像素偏移）
+Distance-based scaling for the pixel offset.
 
 ***
 
@@ -209,7 +209,7 @@
 
 > `optional` **position?**: `Cartesian3`
 
-相对实体坐标系下的位置，默认 `Daisy.Cartesian3.ZERO`
+Position relative to the Entity coordinate system. Defaults to `Daisy.Cartesian3.ZERO`.
 
 ***
 
@@ -217,7 +217,7 @@
 
 > `optional` **renderOrder?**: `number`
 
-渲染排序值（数值越小越先渲染）。
+Render order. Lower values render first.
 
 #### Inherited from
 
@@ -229,7 +229,7 @@
 
 > `optional` **scale?**: `number`
 
-缩放
+Scale.
 
 ***
 
@@ -237,7 +237,7 @@
 
 > `optional` **scaleByDistance?**: `NearFarScalar`
 
-距离缩放
+Distance-based scaling.
 
 ***
 
@@ -245,7 +245,7 @@
 
 > `optional` **show?**: `boolean`
 
-是否显示，默认 `true`
+Whether to show the text. Defaults to `true`.
 
 ***
 
@@ -253,7 +253,7 @@
 
 > `optional` **showBackground?**: `boolean`
 
-是否显示背景
+Whether to show the background.
 
 ***
 
@@ -261,7 +261,7 @@
 
 > `optional` **style?**: `LabelStyle`
 
-标签样式
+Text drawing style.
 
 ***
 
@@ -269,7 +269,7 @@
 
 > **text**: `string`
 
-显示的文本内容（必填）
+Text content to display. Required.
 
 ***
 
@@ -277,7 +277,7 @@
 
 > `optional` **translucencyByDistance?**: `NearFarScalar`
 
-透明度随距离变化
+Distance-based translucency.
 
 ***
 
@@ -285,7 +285,7 @@
 
 > `optional` **verticalOrigin?**: `VerticalOrigin`
 
-垂直对齐
+Vertical alignment.
 
 ***
 
@@ -293,7 +293,7 @@
 
 > `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
 
-可见性策略配置。
+Visibility strategy configuration.
 
 #### Inherited from
 

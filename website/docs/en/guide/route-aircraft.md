@@ -141,7 +141,7 @@ const aircraft = new Daisy.PW.Aircraft({
     name: "UAV-1",
     position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 10000),
     point: { size: 1000, color: Daisy.Color.ORANGE },
-    label: { text: "UAV-1" },
+    text: { text: "UAV-1" },
 })
 
 aircraft.bindEngine(engine)

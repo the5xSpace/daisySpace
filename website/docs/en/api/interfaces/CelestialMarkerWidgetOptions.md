@@ -14,9 +14,22 @@
 
 ***
 
-### earth?
+### ~~earth?~~
 
 > `optional` **earth?**: `boolean`
+
+#### Deprecated
+
+Use `enabledBodies`. When any legacy boolean field is provided, the legacy behavior of enabling only fields explicitly set to true is preserved.
+
+***
+
+### enabledBodies?
+
+> `optional` **enabledBodies?**: readonly [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+The complete list of built-in celestial bodies to enable. When provided, it replaces the defaults rather than adding to them.
+When omitted, Sun, Moon, and Mars are enabled by default.
 
 ***
 
@@ -26,15 +39,23 @@
 
 ***
 
-### mars?
+### ~~mars?~~
 
 > `optional` **mars?**: `boolean`
 
+#### Deprecated
+
+Use `enabledBodies`.
+
 ***
 
-### moon?
+### ~~moon?~~
 
 > `optional` **moon?**: `boolean`
+
+#### Deprecated
+
+Use `enabledBodies`.
 
 ***
 
@@ -50,6 +71,10 @@
 
 ***
 
-### sun?
+### ~~sun?~~
 
 > `optional` **sun?**: `boolean`
+
+#### Deprecated
+
+Use `enabledBodies`.

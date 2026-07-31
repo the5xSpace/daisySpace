@@ -171,7 +171,7 @@ function addSample({ name, label, level, color, position, manualDdc, defaulted =
         disableDepthTestDistance: Number.POSITIVE_INFINITY,
         distanceDisplayCondition: ddc,
     });
-    const tag = new Daisy.UI.LabelFeature({
+    const tag = new Daisy.UI.TextFeature({
         text: label,
         font: "12px sans-serif",
         fillColor: color,

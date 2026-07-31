@@ -34,6 +34,11 @@ pnpm docs:check
 pnpm test:docs
 ```
 
+`docs:prepare`, `docs:diff`, and `docs:accept` are incremental by default: they
+select only Git-changed source/English files since the accepted manifest baseline.
+Pass explicit document paths for a smaller batch, or `--all` for a deliberate
+full-tree operation. `docs:check` remains a full strict audit.
+
 Website builds regenerate TypeDoc output and refuse stale translations. The
 repository never calls a model or stores model credentials. Until Codex finishes
 strict acceptance, English routes are excluded rather than serving stale content.

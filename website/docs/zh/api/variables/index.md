@@ -1,11 +1,12 @@
 # Variables
 
-共 89 个 variables。
+共 90 个 variables。
 
 | 名称 | 链接 |
 |------|------|
 | `AviationTemplate` | [AviationTemplate](AviationTemplate.md) |
 | `BuiltinTemplates` | [BuiltinTemplates](BuiltinTemplates.md) |
+| `DEFAULT\_CELESTIAL\_MARKER\_BODIES` | [DEFAULT\_CELESTIAL\_MARKER\_BODIES](DEFAULT_CELESTIAL_MARKER_BODIES.md) |
 | `DEFAULT\_MAX\_TRANSITS` | [DEFAULT\_MAX\_TRANSITS](DEFAULT_MAX_TRANSITS.md) |
 | `DEFAULT\_TIME\_FORMAT` | [DEFAULT\_TIME\_FORMAT](DEFAULT_TIME_FORMAT.md) |
 | `defaultAccessToken` | [defaultAccessToken](Daisy.Ion.defaultAccessToken.md) |

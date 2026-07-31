@@ -6,7 +6,7 @@
 
 # Type Alias: RocketConfig
 
-> **RocketConfig** = `Omit`\<[`VehicleConfig`](PW.VehicleConfig.md), `"position"` \| `"path"` \| `"point"` \| `"label"` \| `"model"` \| `"orientation"`\> & [`RocketDefaultVisualsOptions`](PW.RocketDefaultVisualsOptions.md) & `object`
+> **RocketConfig** = `Omit`\<[`VehicleConfig`](PW.VehicleConfig.md), `"position"` \| `"path"` \| `"point"` \| `"text"` \| `"model"` \| `"orientation"`\> & [`RocketDefaultVisualsOptions`](PW.RocketDefaultVisualsOptions.md) & `object`
 
 ## Type Declaration
 

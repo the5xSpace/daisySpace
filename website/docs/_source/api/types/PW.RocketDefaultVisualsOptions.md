@@ -10,12 +10,6 @@
 
 ## Properties
 
-### label?
-
-> `optional` **label?**: [`VehicleConfig`](PW.VehicleConfig.md)\[`"label"`\]
-
-***
-
 ### model?
 
 > `optional` **model?**: [`VehicleConfig`](PW.VehicleConfig.md)\[`"model"`\]
@@ -31,3 +25,9 @@
 ### point?
 
 > `optional` **point?**: [`VehicleConfig`](PW.VehicleConfig.md)\[`"point"`\]
+
+***
+
+### text?
+
+> `optional` **text?**: [`VehicleConfig`](PW.VehicleConfig.md)\[`"text"`\]

@@ -129,6 +129,23 @@ session.setHost({ kind: "entity", name: "Feature Preview" })
 session.destroy()
 ```
 
+会话启动时创建的 Entity 或 BaseObject 只是冷启动占位。编辑完整 Entity 或物理对象时，应先在会话外构造对象并挂载它已有的全部 Feature 和 Component，再调用 `replaceHost()`。会话会销毁占位宿主，直接注册并接管传入对象；传入对象不会成为占位宿主的子节点，其现有挂载内容也不会被 `clear()` 删除。
+
+```typescript
+const session = await Daisy.PreviewEngineSession.create(container, {
+    host: { kind: "entity", name: "Loading Placeholder" },
+})
+
+const entity = new Daisy.Entity("Edited Entity")
+entity.addFeature(new Daisy.CubeFeature({ dimensions: new Daisy.Cartesian3(10, 10, 10) }))
+entity.addFeature(new Daisy.PointFeature({ size: 16 }))
+
+// 草稿构造完成后，直接替换占位宿主并接管完整对象
+session.replaceHost(entity)
+```
+
+`replaceHost()` 接管传入对象的独占生命周期。下一次替换或会话销毁时，该 Entity/BaseObject 及其全部 Feature、Component 会一并销毁，因此不要传入已经属于正式 Runtime 或另一个预览会话的实例。替换后，相机跟踪、本体轴、自动播放和自动环绕都会重新指向新宿主。
+
 `PreviewEngineSession` 拥有当前目标、临时宿主、相机跟踪、本体轴、逐帧环绕回调和 Engine 的完整生命周期。`mountFeature()` 或 `mountComponent()` 会先清理旧目标并确保播放继续，`destroy()` 会注销环绕回调、解除相机跟踪并释放全部临时资源，且可重复调用。预览会话、临时宿主、SDK 实例和预览状态都不应写入 Scenario；业务数据只保存可重新构造目标的定义。
 
 ## 实体管理
@@ -286,7 +303,7 @@ engine.setHighPerformanceMode({
     visibilityCheckGroups: 12,       // 可见性检查分组
     inactiveUpdateIntervalSeconds: 0.5,
     activeUpdateIntervalSeconds: 0.03,
-    keepFeatureTypes: ["PointFeature", "UI_LabelFeature", "BillboardFeature"],
+    keepFeatureTypes: ["PointFeature", "UI_TextFeature", "ImageFeature"],
 })
 
 // 关闭

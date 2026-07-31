@@ -53,7 +53,7 @@ BaseObject
 | 参数 | 类型 | 说明 |
 |------|------|------|
 | `model` | `ModelFeatureOptions` | 3D 模型（glTF / GLB） |
-| `label` | `LabelFeatureOptions` | 文字标签 |
+| `text` | `TextOptions` | 文本 |
 | `ascent` | `AscentTrajectoryOptions` | 上升轨迹配置（可在构造时直接传入） |
 | `epoch` | `JulianDate` | 轨迹起始时间 |
 | `autoOrientationByVelocity` | `boolean` | 自动按速度方向旋转（默认 `true`） |

@@ -68,7 +68,7 @@ Vehicle 配置（继承 FreeObjectConfig，并扩展 orientation/sensors）
 const vehicle = new Vehicle({
  name: "Vehicle-1",
  model: { url: "/models/ChandraXrayObservatory.glb", minimumPixelSize: 48 },
- label: { text: "Vehicle-1" },
+ text: { text: "Vehicle-1" },
  sensors: { type: SensorType.EllipticalCone, range: 120_000, apertureDeg: 10 },
 });
 vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
@@ -796,7 +796,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Inherited from

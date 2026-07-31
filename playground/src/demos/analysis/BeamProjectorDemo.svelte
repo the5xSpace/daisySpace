@@ -45,7 +45,7 @@ const sat = new Daisy.PW.Satellite({
     trajectory: { stepSeconds: 30 },
     path: { show: true, color: Daisy.Color.CYAN.withAlpha(0.45), width: 2 },
     point: { size: 900, color: Daisy.Color.CYAN, outlineColor: Daisy.Color.BLACK.withAlpha(0.6), outlineWidth: 1.4 },
-    label: { text: "BeamProj-Sat", font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.36) },
+    text: { text: "BeamProj-Sat", font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.36) },
 });
 sat.setTle(starlinkTle);
 sat.bindEngine(engine);

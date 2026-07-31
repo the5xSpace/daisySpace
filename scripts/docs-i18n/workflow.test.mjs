@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -135,6 +135,19 @@ test("scoped prepare does not create or update unrelated targets", async () => {
   );
 });
 
+test("an empty incremental scope completes without falling back to a full scan", async () => {
+  const { docsDir, i18nDir } = await fixture();
+
+  const prepared = await prepareDocuments({ docsDir, i18nDir, files: [] });
+  const report = await diffDocuments({ docsDir, i18nDir, files: [] });
+
+  assert.equal(prepared.files, 0);
+  assert.equal(prepared.updatedZh, 0);
+  assert.equal(report.scoped, true);
+  assert.equal(report.modifiedFiles, 0);
+  await assert.rejects(readFile(path.join(docsDir, "zh", "guide", "index.md")), /ENOENT/);
+});
+
 test("scoped check ignores stale unrelated documents", async () => {
   const { docsDir, i18nDir } = await fixture();
   const advancedSource = path.join(docsDir, "_source", "guide", "advanced.md");
@@ -184,6 +197,39 @@ test("finish accepts and checks only a completed translation", async () => {
   assert.equal(result.checked.scoped, true);
   const manifest = JSON.parse(await readFile(path.join(i18nDir, "manifest.json"), "utf8"));
   assert.equal(manifest.files["guide/index.md"].locales.en.status, "translated");
+});
+
+test("finish removes a deleted source from scoped targets and manifest", async () => {
+  const { docsDir, i18nDir } = await fixture();
+  await prepareDocuments({ docsDir });
+  await writeFile(
+    path.join(docsDir, "en", "guide", "index.md"),
+    "# Quick Start\n\nRead the [API](/en/api/) and create an `Engine`.\n",
+    "utf8",
+  );
+  await acceptDocuments({ docsDir, i18nDir });
+  await rm(path.join(docsDir, "_source", "guide", "index.md"));
+
+  const result = await finishDocuments({
+    docsDir,
+    i18nDir,
+    files: ["guide/index.md"],
+  });
+
+  assert.equal(result.files, 1);
+  await assert.rejects(readFile(path.join(docsDir, "zh", "guide", "index.md")), /ENOENT/);
+  await assert.rejects(readFile(path.join(docsDir, "en", "guide", "index.md")), /ENOENT/);
+  const manifest = JSON.parse(await readFile(path.join(i18nDir, "manifest.json"), "utf8"));
+  assert.equal(manifest.files["guide/index.md"], undefined);
+});
+
+test("finish rejects an unknown scoped path", async () => {
+  const { docsDir, i18nDir } = await fixture();
+
+  await assert.rejects(
+    finishDocuments({ docsDir, i18nDir, files: ["guide/missing.md"] }),
+    /documentation source file not found: guide\/missing\.md/,
+  );
 });
 
 test("finish fails concisely when the requested translation is pending", async () => {

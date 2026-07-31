@@ -17,7 +17,7 @@ Vessel：船舶（水面平台，Vehicle 的语义别名）。
 ```ts
 import * as Daisy from "daisy-space-sdk";
 
-const vessel = new Daisy.PW.Vessel({ name: "Ship-1", label: { text: "Ship-1" } });
+const vessel = new Daisy.PW.Vessel({ name: "Ship-1", text: { text: "Ship-1" } });
 vessel.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 0);
 vessel.bindViewer(viewer);
 
@@ -784,7 +784,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Inherited from

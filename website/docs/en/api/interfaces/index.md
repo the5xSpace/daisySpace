@@ -1,6 +1,6 @@
 # Interfaces
 
-129 interfaces total.
+133 interfaces total.
 
 | Name | Link |
 |------|------|
@@ -88,6 +88,9 @@
 | `EquatorialPlaneOptions` | [EquatorialPlaneOptions](Plane.EquatorialPlaneOptions.md) |
 | `PlaneLayerOptions` | [PlaneLayerOptions](Plane.PlaneLayerOptions.md) |
 | `PointComOptions` | [PointComOptions](PointComOptions.md) |
+| `PreviewEngineSessionOptions` | [PreviewEngineSessionOptions](PreviewEngineSessionOptions.md) |
+| `PreviewHost` | [PreviewHost](PreviewHost.md) |
+| `PreviewHostContext` | [PreviewHostContext](PreviewHostContext.md) |
 | `ProjectionRange` | [ProjectionRange](ProjectionRange.md) |
 | `RadialPulseMaterialOptions` | [RadialPulseMaterialOptions](RadialPulseMaterialOptions.md) |
 | `RingSweepMaterialOptions` | [RingSweepMaterialOptions](RingSweepMaterialOptions.md) |
@@ -107,6 +110,7 @@
 | `TaskStepListState` | [TaskStepListState](TaskStepListState.md) |
 | `TaskTimeLineWidgetOptions` | [TaskTimeLineWidgetOptions](TaskTimeLineWidgetOptions.md) |
 | `TaskTimelineEntry` | [TaskTimelineEntry](TaskTimelineEntry.md) |
+| `TextOptions` | [TextOptions](TextOptions.md) |
 | `TimeAxisTick` | [TimeAxisTick](TimeAxisTick.md) |
 | `TimeDynamicPropertyOptions` | [TimeDynamicPropertyOptions](TimeDynamicPropertyOptions.md) |
 | `TimeFormatDateTime` | [TimeFormatDateTime](TimeFormatDateTime.md) |
@@ -122,11 +126,11 @@
 | `TrajectoryGpuSampleData` | [TrajectoryGpuSampleData](TrajectoryGpuSampleData.md) |
 | `TrajectoryPackedSamples` | [TrajectoryPackedSamples](TrajectoryPackedSamples.md) |
 | `TrajectorySampleOptions` | [TrajectorySampleOptions](TrajectorySampleOptions.md) |
-| `LabelOptions` | [LabelOptions](UI.LabelOptions.md) |
 | `PopoverOptions` | [PopoverOptions](UI.PopoverOptions.md) |
 | `PopoverVisibilityChangeEvent` | [PopoverVisibilityChangeEvent](UI.PopoverVisibilityChangeEvent.md) |
 | `ViewDistanceStrategyOptions` | [ViewDistanceStrategyOptions](ViewDistanceStrategyOptions.md) |
 | `WatermarkWidgetOptions` | [WatermarkWidgetOptions](WatermarkWidgetOptions.md) |
+| `WidgetIdentityOptions` | [WidgetIdentityOptions](WidgetIdentityOptions.md) |
 | `WidgetPalette` | [WidgetPalette](WidgetPalette.md) |
 | `WidgetThemeEffects` | [WidgetThemeEffects](WidgetThemeEffects.md) |
 | `WmsImageryOptions` | [WmsImageryOptions](WmsImageryOptions.md) |

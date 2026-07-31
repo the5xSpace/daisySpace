@@ -23,7 +23,7 @@ for (const data of tles) {
         name: data.name, tle: data.tle,
         enableSpg4Propagation: false, trajectory: { stepSeconds: 30 },
         point: { size: 800, color: Daisy.Color.CYAN, outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
-        label: { text: data.name, font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
+        text: { text: data.name, font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
         path: { show: true, width: 1.5, color: Daisy.Color.CYAN.withAlpha(0.45), historySecond: 30 * 60, futureSecond: 30 * 60 },
     });
     constellation.addSatellite(sat);

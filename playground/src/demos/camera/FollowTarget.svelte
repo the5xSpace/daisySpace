@@ -56,7 +56,7 @@ const sat = new Daisy.PW.Satellite({
     trajectory: { stepSeconds: 30 }, // 轨迹采样步长 30 秒
     point: { size: 1000, color: Daisy.Color.CYAN, outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
     model: { url: Daisy.BuildModuleUrl.getUrl("models/ChandraXrayObservatory.glb"), minimumPixelSize: 42 },
-    label: { text: "STARLINK-1008", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
+    text: { text: "STARLINK-1008", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
     path: { show: true, width: 2, color: Daisy.Color.CYAN.withAlpha(0.55), historySecond: 45 * 60, futureSecond: 45 * 60 },
 });
 // bindEngine: 将卫星绑定到引擎（必须调用才会显示）

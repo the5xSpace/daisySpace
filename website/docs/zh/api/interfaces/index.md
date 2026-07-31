@@ -63,7 +63,6 @@
 | `ImageAssetRegion` | [ImageAssetRegion](ImageAssetRegion.md) |
 | `IonImageryOptions` | [IonImageryOptions](IonImageryOptions.md) |
 | `J2000Result` | [J2000Result](J2000Result.md) |
-| `LabelOptions` | [LabelOptions](LabelOptions.md) |
 | `LaunchSite` | [LaunchSite](LaunchSite.md) |
 | `MarkerTarget` | [MarkerTarget](MarkerTarget.md) |
 | `MarkerWidgetOptions` | [MarkerWidgetOptions](MarkerWidgetOptions.md) |
@@ -111,6 +110,7 @@
 | `TaskStepListState` | [TaskStepListState](TaskStepListState.md) |
 | `TaskTimeLineWidgetOptions` | [TaskTimeLineWidgetOptions](TaskTimeLineWidgetOptions.md) |
 | `TaskTimelineEntry` | [TaskTimelineEntry](TaskTimelineEntry.md) |
+| `TextOptions` | [TextOptions](TextOptions.md) |
 | `TimeAxisTick` | [TimeAxisTick](TimeAxisTick.md) |
 | `TimeDynamicPropertyOptions` | [TimeDynamicPropertyOptions](TimeDynamicPropertyOptions.md) |
 | `TimeFormatDateTime` | [TimeFormatDateTime](TimeFormatDateTime.md) |

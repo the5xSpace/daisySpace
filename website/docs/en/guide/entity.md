@@ -9,7 +9,7 @@ Entity does not render anything by itself. It gains visualization capabilities b
 ```
 Entity（空壳） + PointFeature → 可渲染的点
 Entity（空壳） + ModelFeature → 3D 模型
-Entity（空壳） + PointFeature + LabelFeature + TrailPathFeature → 组合效果
+Entity（空壳） + PointFeature + TextFeature + TrailPathFeature → 组合效果
 ```
 
 This "composition over inheritance" design is the key to understanding Entity.

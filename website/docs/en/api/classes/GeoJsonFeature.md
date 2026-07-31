@@ -221,6 +221,26 @@ Set whether the current Feature participates in the Entity bounding-sphere aggre
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`isDestroyed`](../interfaces/IFeature.md#isdestroyed)
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`isDestroyed`](Feature.md#isdestroyed)
+
+***
+
 ### lodMode
 
 #### Get Signature
@@ -347,7 +367,7 @@ Conservative default: most Features require the Entity model matrix.
 
 Whether the current Feature requires the Entity to precompute the model matrix every frame.
 
-Features such as points, labels, and billboards that only depend on the entity position can return false,
+Features such as points, labels, and images that only depend on the entity position can return false,
 allowing scenes with many targets to skip unnecessary orientation and matrix calculations.
 
 #### Implementation of

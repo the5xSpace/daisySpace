@@ -1,6 +1,6 @@
 # Type Aliases
 
-266 types total.
+271 types.
 
 | Name | Link |
 |------|------|
@@ -21,7 +21,6 @@
 | `AttitudeSphereOptions` | [AttitudeSphereOptions](AttitudeSphereOptions.md) |
 | `AttitudeSphereOverlayOptions` | [AttitudeSphereOverlayOptions](AttitudeSphereOverlayOptions.md) |
 | `AutoNormalsMode` | [AutoNormalsMode](AutoNormalsMode.md) |
-| `BillboardOptions` | [BillboardOptions](BillboardOptions.md) |
 | `CameraFlyToTargetOptions` | [CameraFlyToTargetOptions](CameraFlyToTargetOptions.md) |
 | `CameraViewTarget` | [CameraViewTarget](CameraViewTarget.md) |
 | `CapsuleParticleEmitter2DBlendMode` | [CapsuleParticleEmitter2DBlendMode](CapsuleParticleEmitter2DBlendMode.md) |
@@ -117,6 +116,7 @@
 | `HslColor` | [HslColor](HslColor.md) |
 | `ImageAssetRenderable` | [ImageAssetRenderable](ImageAssetRenderable.md) |
 | `ImageAssetSource` | [ImageAssetSource](ImageAssetSource.md) |
+| `ImageOptions` | [ImageOptions](ImageOptions.md) |
 | `InterSatelliteVisibilityOptions` | [InterSatelliteVisibilityOptions](InterSatelliteVisibilityOptions.md) |
 | `KeplerElementDataOptions` | [KeplerElementDataOptions](KeplerElementDataOptions.md) |
 | `LabelOptionsWithFormat` | [LabelOptionsWithFormat](LabelOptionsWithFormat.md) |
@@ -149,6 +149,7 @@
 | `CelestialEllipsoidPositionECEF` | [CelestialEllipsoidPositionECEF](PW.CelestialEllipsoidPositionECEF.md) |
 | `CelestialRayLike` | [CelestialRayLike](PW.CelestialRayLike.md) |
 | `Component` | [Component](PW.Component.md) |
+| `ComponentIdentityOptions` | [ComponentIdentityOptions](PW.ComponentIdentityOptions.md) |
 | `FootprintAtTimeDrawOptions` | [FootprintAtTimeDrawOptions](PW.FootprintAtTimeDrawOptions.md) |
 | `FootprintDrawOptions` | [FootprintDrawOptions](PW.FootprintDrawOptions.md) |
 | `FootprintLngLatBounds` | [FootprintLngLatBounds](PW.FootprintLngLatBounds.md) |
@@ -220,6 +221,10 @@
 | `PolylineGroundOptions` | [PolylineGroundOptions](PolylineGroundOptions.md) |
 | `PolylineOptions` | [PolylineOptions](PolylineOptions.md) |
 | `PolylineVolumeOptions` | [PolylineVolumeOptions](PolylineVolumeOptions.md) |
+| `PreviewBaseObjectFactory` | [PreviewBaseObjectFactory](PreviewBaseObjectFactory.md) |
+| `PreviewEngineContainer` | [PreviewEngineContainer](PreviewEngineContainer.md) |
+| `PreviewHostKind` | [PreviewHostKind](PreviewHostKind.md) |
+| `PreviewHostSpec` | [PreviewHostSpec](PreviewHostSpec.md) |
 | `PropagationOptions` | [PropagationOptions](PropagationOptions.md) |
 | `RectangleOptions` | [RectangleOptions](RectangleOptions.md) |
 | `Rotation` | [Rotation](Rotation.md) |

@@ -210,7 +210,7 @@ function makeTarget(spec) {
     });
     entity.addFeature(point);
 
-    entity.addFeature(new Daisy.UI.LabelFeature({
+    entity.addFeature(new Daisy.UI.TextFeature({
         name: `${spec.id}-label`,
         text: `${spec.name}\n${spec.title}`,
         font: "12px Segoe UI, sans-serif",

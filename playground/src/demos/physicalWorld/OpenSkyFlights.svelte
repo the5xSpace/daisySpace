@@ -8,7 +8,7 @@
 // 核心流程：
 //   1. 调用 GET https://opensky-network.org/api/states/all 获取快照
 //   2. 每行 state vector 包含 icao24 / callsign / lat / lon / alt / velocity ……
-//   3. 有效位置 → 创建 Entity + PointFeature + LabelFeature
+//   3. 有效位置 → 创建 Entity + PointFeature + TextFeature
 //   4. 颜色编码高度（绿→青→黄→橙→红），地面为绿色
 //   5. 每 30 秒自动刷新（匿名用户限速 10次/s，30s 间隔完全合规）
 //
@@ -16,7 +16,7 @@
 //   - fetch("https://opensky-network.org/api/states/all")  — 获取所有航班
 //   - engine.createEntity(name)        — 创建实体
 //   - Daisy.PointFeature               — 点标记（彩色圆点）
-//   - Daisy.UI.LabelFeature            — 标签（呼号文字）
+//   - Daisy.UI.TextFeature            — 文本（呼号文字）
 //   - engine.setHighPerformanceMode    — 大量实体渲染优化
 // =============================================================================
 import { onDestroy, onMount } from "svelte";
@@ -123,7 +123,7 @@ async function fetchFlights() {
 
             // ── 标签（仅非空呼号且非纯 ICAO 地址） ──
             if (showLabels && callsign && callsign !== icao24 && callsign.length > 1) {
-                entity.addFeature(new Daisy.UI.LabelFeature({
+                entity.addFeature(new Daisy.UI.TextFeature({
                     text: callsign,
                     font: "11px sans-serif",
                     fillColor: Daisy.Color.WHITE,
@@ -202,7 +202,7 @@ onMount(() => {
     engine.setHighPerformanceMode?.({
         enabled: true,
         visibilityCheckGroups: 20,
-        keepFeatureTypes: ["PointFeature", "UI_LabelFeature"],
+        keepFeatureTypes: ["PointFeature", "UI_TextFeature"],
     });
 
     // 添加轻量控制面板

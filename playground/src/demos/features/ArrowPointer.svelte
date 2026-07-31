@@ -49,7 +49,7 @@ satEntity.position = trajectory;
 
 // 添加点标记和标签
 satEntity.addFeature(new Daisy.PointFeature({ pixelSize: 12, color: Daisy.Color.CORNFLOWERBLUE, outlineColor: Daisy.Color.WHITE, outlineWidth: 2 }));
-satEntity.addFeature(new Daisy.UI.LabelFeature({ text: "Sat", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.5), fillColor: Daisy.Color.WHITE }));
+satEntity.addFeature(new Daisy.UI.TextFeature({ text: "Sat", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.5), fillColor: Daisy.Color.WHITE }));
 
 // ── 3. 响应式状态：指向开关 ──────────────────────────────────────────────
 let sunEnabled = $state(true);
@@ -72,7 +72,7 @@ const arrowEarth = new Daisy.ArrowPointerFeature({ target: "earthCenter", length
 const beijingEntity = engine.createEntity("Beijing");
 beijingEntity.position = C3.fromDegrees(116.4, 39.9, 500);
 beijingEntity.addFeature(new Daisy.PointFeature({ pixelSize: 16, color: Daisy.Color.RED, outlineColor: Daisy.Color.WHITE, outlineWidth: 2 }));
-beijingEntity.addFeature(new Daisy.UI.LabelFeature({ text: "北京市", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -22), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.6), fillColor: Daisy.Color.WHITE }));
+beijingEntity.addFeature(new Daisy.UI.TextFeature({ text: "北京市", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -22), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.6), fillColor: Daisy.Color.WHITE }));
 
 // 创建指向地面目标的箭头
 // target: 可以是实体或坐标

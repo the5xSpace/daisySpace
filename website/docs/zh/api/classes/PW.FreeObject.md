@@ -17,7 +17,7 @@ FreeObject：通用物理语义对象（可挂载一组常用 Feature）。
 const obj = new FreeObject({
  name: "Obj-1",
  model: { url: "/models/ChandraXrayObservatory.glb", minimumPixelSize: 40 },
- label: { text: "Obj-1" },
+ text: { text: "Obj-1" },
 });
 obj.position = Daisy.Cartesian3.fromDegrees(116.39, 39.9, 1000);
 obj.bindViewer(viewer);
@@ -670,7 +670,7 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 ***

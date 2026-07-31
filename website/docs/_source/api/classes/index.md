@@ -11,7 +11,6 @@
 | `AttitudeSphereOverlay` | [AttitudeSphereOverlay](AttitudeSphereOverlay.md) |
 | `AttitudeSphereRenderable` | [AttitudeSphereRenderable](AttitudeSphereRenderable.md) |
 | `BaseObjectPreviewHost` | [BaseObjectPreviewHost](BaseObjectPreviewHost.md) |
-| `BillboardFeature` | [BillboardFeature](BillboardFeature.md) |
 | `BodyTrackedCameraController` | [BodyTrackedCameraController](BodyTrackedCameraController.md) |
 | `BoundBoxCollection` | [BoundBoxCollection](BoundBoxCollection.md) |
 | `BoundBoxFeature` | [BoundBoxFeature](BoundBoxFeature.md) |
@@ -137,8 +136,8 @@
 | `HeatmapFeature` | [HeatmapFeature](HeatmapFeature.md) |
 | `HemisphereEmitter` | [HemisphereEmitter](HemisphereEmitter.md) |
 | `ImageAsset` | [ImageAsset](ImageAsset.md) |
+| `ImageFeature` | [ImageFeature](ImageFeature.md) |
 | `KeyboardControl` | [KeyboardControl](KeyboardControl.md) |
-| `LabelFeature` | [LabelFeature](LabelFeature.md) |
 | `Layer` | [Layer](Layer.md) |
 | `LineEmitter` | [LineEmitter](LineEmitter.md) |
 | `LiteController` | [LiteController](LiteController.md) |
@@ -219,6 +218,7 @@
 | `SurfaceTriangulatedMeshBuilder` | [SurfaceTriangulatedMeshBuilder](SurfaceTriangulatedMeshBuilder.md) |
 | `TaskGanttWidget` | [TaskGanttWidget](TaskGanttWidget.md) |
 | `TaskTimeLineWidget` | [TaskTimeLineWidget](TaskTimeLineWidget.md) |
+| `TextFeature` | [TextFeature](TextFeature.md) |
 | `TilesetFeature` | [TilesetFeature](TilesetFeature.md) |
 | `TimeDynamicProperty` | [TimeDynamicProperty](TimeDynamicProperty.md) |
 | `TimePointTask` | [TimePointTask](TimePointTask.md) |

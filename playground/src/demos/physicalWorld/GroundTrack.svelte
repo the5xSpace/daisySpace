@@ -106,7 +106,7 @@ function groundTrackOptions() {
 // - trajectory: 轨迹配置
 //   - stepSeconds: 采样步长（秒）
 // - point: 点标记配置
-// - label: 标签配置
+// - text: 标签配置
 // - path: 路径配置
 // - groundTrack: 星下点配置
 function createSatellite() {
@@ -118,7 +118,7 @@ function createSatellite() {
         enableSpg4Propagation: false,
         trajectory: { stepSeconds: 30 },
         point: { pixelSize: 14, color: Daisy.Color.WHITE.withAlpha(0.9), outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
-        label: { text: "STARLINK-1008", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
+        text: { text: "STARLINK-1008", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -18), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
         path: { historySecond: 50 * 60, futureSecond: 35 * 60, resolutionSecond: 30, width: 2, color: Daisy.Color.CYAN.withAlpha(0.6) },
         groundTrack: groundTrackOptions(),
     });

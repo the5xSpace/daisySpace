@@ -45,7 +45,7 @@ groundEntity.addFeature(new Daisy.PointFeature({
     outlineColor: Daisy.Color.WHITE,
     outlineWidth: 2,
 }));
-groundEntity.addFeature(new Daisy.UI.LabelFeature({
+groundEntity.addFeature(new Daisy.UI.TextFeature({
     text: "TO_GROUND: 顶点在实体位置，向地球方向旋转",
     font: "13px sans-serif",
     offsetPx: new Daisy.Cartesian2(-132, -38),
@@ -90,7 +90,7 @@ centerEntity.addFeature(new Daisy.PointFeature({
     outlineColor: Daisy.Color.WHITE,
     outlineWidth: 2,
 }));
-centerEntity.addFeature(new Daisy.UI.LabelFeature({
+centerEntity.addFeature(new Daisy.UI.TextFeature({
     text: "CENTER: 实体位置就是椎体中心，绕中心旋转",
     font: "13px sans-serif",
     offsetPx: new Daisy.Cartesian2(0, -38),
@@ -135,7 +135,7 @@ upEntity.addFeature(new Daisy.PointFeature({
     outlineColor: Daisy.Color.WHITE,
     outlineWidth: 2,
 }));
-upEntity.addFeature(new Daisy.UI.LabelFeature({
+upEntity.addFeature(new Daisy.UI.TextFeature({
     text: "TO_UP: 底点在实体位置，向上旋转",
     font: "13px sans-serif",
     offsetPx: new Daisy.Cartesian2(132, -38),

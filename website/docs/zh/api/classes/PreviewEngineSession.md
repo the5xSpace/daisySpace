@@ -130,6 +130,26 @@
 
 ***
 
+### replaceHost()
+
+> **replaceHost**(`host`): [`PreviewHost`](../interfaces/PreviewHost.md)
+
+用调用方已构造的完整 Entity 或 BaseObject 替换启动占位宿主。
+
+Session 接管该实例的独占生命周期，但不会清空它已有的 Feature 或 Component。
+
+#### Parameters
+
+##### host
+
+[`Entity`](Entity.md) \| [`BaseObject`](PW.BaseObject.md)
+
+#### Returns
+
+[`PreviewHost`](../interfaces/PreviewHost.md)
+
+***
+
 ### resetCamera()
 
 > **resetCamera**(`range?`): `void`

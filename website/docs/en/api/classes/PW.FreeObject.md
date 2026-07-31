@@ -17,7 +17,7 @@ FreeObject: a general-purpose physical semantic object that can attach a set of 
 const obj = new FreeObject({
  name: "Obj-1",
  model: { url: "/models/ChandraXrayObservatory.glb", minimumPixelSize: 40 },
- label: { text: "Obj-1" },
+ text: { text: "Obj-1" },
 });
 obj.position = Daisy.Cartesian3.fromDegrees(116.39, 39.9, 1000);
 obj.bindViewer(viewer);
@@ -108,6 +108,22 @@ Get the host Entity, used for attaching Features, interaction events, updates, a
 #### Inherited from
 
 [`BaseObject`](PW.BaseObject.md).[`entity`](PW.BaseObject.md#entity)
+
+***
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`BaseObject`](PW.BaseObject.md).[`id`](PW.BaseObject.md#id)
 
 ***
 
@@ -654,7 +670,7 @@ New configuration
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 ***

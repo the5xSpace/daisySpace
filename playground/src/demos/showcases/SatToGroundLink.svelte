@@ -35,7 +35,7 @@ const sat = new Daisy.PW.Satellite({
     trajectory: { stepSeconds: 30 },
     point: { size: 1000, color: Daisy.Color.WHITE, outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
     model: { url: Daisy.BuildModuleUrl.getUrl("models/ChandraXrayObservatory.glb"), minimumPixelSize: 42 },
-    label: { text: "STARLINK-1008", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.4) },
+    text: { text: "STARLINK-1008", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.4) },
     path: { show: true, width: 2, color: Daisy.Color.LIME.withAlpha(0.55), historySecond: 45 * 60, futureSecond: 45 * 60 },
     groundTrack: { show: true, width: 2, material: Daisy.Color.LIME.withAlpha(0.6) },  // 星下点轨迹
 });
@@ -47,7 +47,7 @@ const site = new Daisy.PW.GroundStation({
     position: Daisy.Cartesian3.fromDegrees(116.33, 40.052, 100),
     stationModel: false,
     point: { size: 1000, color: Daisy.Color.RED, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
-    label: { text: "Beijing", font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -14), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.4) },
+    text: { text: "Beijing", font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -14), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.4) },
 });
 site.bindEngine(engine);  // 绑定地面站到引擎
 

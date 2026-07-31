@@ -2,15 +2,15 @@
 
 ***
 
-[daisy-space-sdk](../README.md) / BillboardOptions
+[daisy-space-sdk](../README.md) / ImageOptions
 
-# Type Alias: BillboardOptions
+# Type Alias: ImageOptions
 
-> **BillboardOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
+> **ImageOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-BillboardFeature 配置。
+ImageFeature 配置。
 
-用于在 Entity 附近创建一个“广告牌”渲染节点，并随实体位置在每帧更新。
+用于在 Entity 附近创建一个始终面向相机的图片渲染节点，并随实体位置在每帧更新。
 
 设计要点：
 - 该 Feature 自己管理节点创建/销毁（不依赖 Entity 的 property 系列）
@@ -23,7 +23,7 @@ BillboardFeature 配置。
 
 > `optional` **alignedAxis?**: `Daisy.Cartesian3`
 
-对齐轴（通常用于让 billboard 与某方向对齐）。
+对齐轴（通常用于让图片与某方向对齐）。
 
 ### color?
 
@@ -86,7 +86,7 @@ WHITE
 
 > `optional` **image?**: `string` \| `HTMLCanvasElement` \| `HTMLImageElement` \| `ImageData`
 
-广告牌图片。
+图片资源。
 
 可传图片 URL、Canvas、Image、ImageData 等。
 

@@ -82,7 +82,7 @@ const targetSpecs = [
         mode: "Feature 独立响应",
         lon: 116.7,
         color: C.CYAN,
-        description: "PointFeature / LabelFeature 自己监听 click、hover、dblclick。",
+        description: "PointFeature / TextFeature 自己监听 click、hover、dblclick。",
     },
     {
         key: "charlie",
@@ -139,7 +139,7 @@ function pushEvent(layer, title, detail, tone = layer) {
 // - pixelOffset: 像素偏移量
 // - disableDepthTestDistance: 禁用深度测试的距离（无穷大 = 始终显示）
 function makeLabel(title, mode, color) {
-    return new Daisy.UI.LabelFeature({
+    return new Daisy.UI.TextFeature({
         name: `${title}-label`,
         text: `${title}\n${mode}`,
         font: "13px Segoe UI, sans-serif",
@@ -305,7 +305,7 @@ function bindLifecycle(target, feature) {
 // 遍历 targetSpecs，为每个配置创建：
 // 1. Entity 实体
 // 2. PointFeature 点标记
-// 3. LabelFeature 标签
+// 3. TextFeature 标签
 // 4. 绑定生命周期事件
 // 5. 添加 Feature 到 Entity
 // 6. 绑定 Entity 事件

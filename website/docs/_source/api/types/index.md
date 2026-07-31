@@ -21,7 +21,6 @@
 | `AttitudeSphereOptions` | [AttitudeSphereOptions](AttitudeSphereOptions.md) |
 | `AttitudeSphereOverlayOptions` | [AttitudeSphereOverlayOptions](AttitudeSphereOverlayOptions.md) |
 | `AutoNormalsMode` | [AutoNormalsMode](AutoNormalsMode.md) |
-| `BillboardOptions` | [BillboardOptions](BillboardOptions.md) |
 | `CameraFlyToTargetOptions` | [CameraFlyToTargetOptions](CameraFlyToTargetOptions.md) |
 | `CameraViewTarget` | [CameraViewTarget](CameraViewTarget.md) |
 | `CapsuleParticleEmitter2DBlendMode` | [CapsuleParticleEmitter2DBlendMode](CapsuleParticleEmitter2DBlendMode.md) |
@@ -117,6 +116,7 @@
 | `HslColor` | [HslColor](HslColor.md) |
 | `ImageAssetRenderable` | [ImageAssetRenderable](ImageAssetRenderable.md) |
 | `ImageAssetSource` | [ImageAssetSource](ImageAssetSource.md) |
+| `ImageOptions` | [ImageOptions](ImageOptions.md) |
 | `InterSatelliteVisibilityOptions` | [InterSatelliteVisibilityOptions](InterSatelliteVisibilityOptions.md) |
 | `KeplerElementDataOptions` | [KeplerElementDataOptions](KeplerElementDataOptions.md) |
 | `LabelOptionsWithFormat` | [LabelOptionsWithFormat](LabelOptionsWithFormat.md) |

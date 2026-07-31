@@ -222,6 +222,22 @@ Sets whether this Feature participates in the Entity's bounding sphere aggregati
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`isDestroyed`](Feature.md#isdestroyed)
+
+***
+
 ### lodMode
 
 #### Get Signature
@@ -358,7 +374,7 @@ Conservative default: most Features require the Entity model matrix.
 
 Whether this Feature requires the Entity to precompute the model matrix each frame.
 
-Features like points, labels, and billboards that only depend on entity position can return false,
+Features like points, labels, and images that only depend on entity position can return false,
 allowing massive target scenarios to skip unnecessary pose/matrix calculations.
 
 #### Inherited from

@@ -1,14 +1,14 @@
 # 标记系统
 
-标记类 Feature 用于在场景中标定位置和显示信息，包括点标记、广告牌、文字标签和弹出框。
+标记类 Feature 用于在场景中标定位置和显示信息，包括点标记、图片、文字标签和弹出框。
 
 ## Feature 选型
 
 | 需求 | Feature | 说明 |
 |------|---------|------|
 | 简单圆点 | `PointFeature` | 像素点或米制圆点 |
-| 图片/图标 | `BillboardFeature` | 始终面向相机的广告牌 |
-| 文字标签 | `UI.LabelFeature` | 二维文字叠加层 |
+| 图片/图标 | `ImageFeature` | 始终面向相机的图片 |
+| 文本 | `UI.TextFeature` | 二维文字叠加层 |
 | HTML 弹出框 | `UI.PopoverFeature` | DOM Overlay |
 
 ## PointFeature
@@ -42,10 +42,10 @@ entity.addFeature(new Daisy.PointFeature({
 | `disableDepthTestDistance` | `number` | 关闭深度测试的距离（米） |
 | `position` | `Cartesian3` | 相对实体偏移 |
 
-## BillboardFeature
+## ImageFeature
 
 ```typescript
-entity.addFeature(new Daisy.BillboardFeature({
+entity.addFeature(new Daisy.ImageFeature({
     image: "/assets/sat-icon.png",
     scale: 1.5,
     color: Daisy.Color.WHITE,
@@ -64,10 +64,10 @@ entity.addFeature(new Daisy.BillboardFeature({
 | `alignedAxis` | `Cartesian3` | 朝向轴 |
 | `disableDepthTestDistance` | `number` | 关闭深度测试 |
 
-## UI.LabelFeature
+## UI.TextFeature
 
 ```typescript
-entity.addFeature(new Daisy.UI.LabelFeature({
+entity.addFeature(new Daisy.UI.TextFeature({
     text: "SAT-01\nAlt: 550km",
     font: "14px sans-serif",
     fillColor: Daisy.Color.WHITE,

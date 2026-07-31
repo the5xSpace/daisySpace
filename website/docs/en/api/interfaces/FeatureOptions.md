@@ -13,6 +13,7 @@ All concrete Feature Options types inherit from this interface.
 ## Extended by
 
 - [`EntityComOptions`](EntityComOptions.md)
+- [`TextOptions`](TextOptions.md)
 - [`CylinderOptions`](CylinderOptions.md)
 - [`EllipticalConeOptions`](EllipticalConeOptions.md)
 - [`ModelOptions`](ModelOptions.md)
@@ -23,7 +24,6 @@ All concrete Feature Options types inherit from this interface.
 - [`CubeOptions`](CubeOptions.md)
 - [`ParticleFeatureOptions`](ParticleFeatureOptions.md)
 - [`CapsuleParticleOptions`](CapsuleParticleOptions.md)
-- [`LabelOptions`](UI.LabelOptions.md)
 - [`PopoverOptions`](UI.PopoverOptions.md)
 
 ## Properties

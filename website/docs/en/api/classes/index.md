@@ -1,6 +1,6 @@
 # Classes
 
-234 classes total.
+237 classes.
 
 | Name | Link |
 |------|------|
@@ -10,7 +10,7 @@
 | `AttitudeSphereMatrix4Renderable` | [AttitudeSphereMatrix4Renderable](AttitudeSphereMatrix4Renderable.md) |
 | `AttitudeSphereOverlay` | [AttitudeSphereOverlay](AttitudeSphereOverlay.md) |
 | `AttitudeSphereRenderable` | [AttitudeSphereRenderable](AttitudeSphereRenderable.md) |
-| `BillboardFeature` | [BillboardFeature](BillboardFeature.md) |
+| `BaseObjectPreviewHost` | [BaseObjectPreviewHost](BaseObjectPreviewHost.md) |
 | `BodyTrackedCameraController` | [BodyTrackedCameraController](BodyTrackedCameraController.md) |
 | `BoundBoxCollection` | [BoundBoxCollection](BoundBoxCollection.md) |
 | `BoundBoxFeature` | [BoundBoxFeature](BoundBoxFeature.md) |
@@ -122,6 +122,7 @@
 | `EllipticalConeFeature` | [EllipticalConeFeature](EllipticalConeFeature.md) |
 | `Engine` | [Engine](Engine.md) |
 | `Entity` | [Entity](Entity.md) |
+| `EntityPreviewHost` | [EntityPreviewHost](EntityPreviewHost.md) |
 | `ExtraCamera` | [ExtraCamera](ExtraCamera.md) |
 | `Abstract Class: Feature` | [Abstract Class: Feature](Feature.md) |
 | `FeatureEventHandle` | [FeatureEventHandle](FeatureEventHandle.md) |
@@ -135,7 +136,9 @@
 | `HeatmapFeature` | [HeatmapFeature](HeatmapFeature.md) |
 | `HemisphereEmitter` | [HemisphereEmitter](HemisphereEmitter.md) |
 | `ImageAsset` | [ImageAsset](ImageAsset.md) |
+| `ImageFeature` | [ImageFeature](ImageFeature.md) |
 | `KeyboardControl` | [KeyboardControl](KeyboardControl.md) |
+| `TextFeature` | [TextFeature](TextFeature.md) |
 | `Layer` | [Layer](Layer.md) |
 | `LineEmitter` | [LineEmitter](LineEmitter.md) |
 | `LiteController` | [LiteController](LiteController.md) |
@@ -187,6 +190,7 @@
 | `PolylineFeature` | [PolylineFeature](PolylineFeature.md) |
 | `PolylineGroundRenderable` | [PolylineGroundRenderable](PolylineGroundRenderable.md) |
 | `PolylineVolumeFeature` | [PolylineVolumeFeature](PolylineVolumeFeature.md) |
+| `PreviewEngineSession` | [PreviewEngineSession](PreviewEngineSession.md) |
 | `RadialPulseMaterial` | [RadialPulseMaterial](RadialPulseMaterial.md) |
 | `RectangleEmitter` | [RectangleEmitter](RectangleEmitter.md) |
 | `RectangleFeature` | [RectangleFeature](RectangleFeature.md) |
@@ -229,7 +233,6 @@
 | `TrajectorySample` | [TrajectorySample](TrajectorySample.md) |
 | `TrajectorySampleBodyFixed` | [TrajectorySampleBodyFixed](TrajectorySampleBodyFixed.md) |
 | `TrajectoryWebGpuBackend` | [TrajectoryWebGpuBackend](TrajectoryWebGpuBackend.md) |
-| `LabelFeature` | [LabelFeature](UI.LabelFeature.md) |
 | `PopoverFeature` | [PopoverFeature](UI.PopoverFeature.md) |
 | `VibrationEmitter` | [VibrationEmitter](VibrationEmitter.md) |
 | `ViewDistanceStrategy` | [ViewDistanceStrategy](ViewDistanceStrategy.md) |

@@ -90,7 +90,7 @@ for (var i = 0; i < models.length; i++) {
     entity.addFeature(feature);
     featureList.push(feature);
 
-    entity.addFeature(new Daisy.UI.LabelFeature({
+    entity.addFeature(new Daisy.UI.TextFeature({
         text: cfg.name,
         font: "13px sans-serif",
         fillColor: Daisy.Color.WHITE,

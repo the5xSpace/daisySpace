@@ -2,15 +2,15 @@
 
 ***
 
-[daisy-space-sdk](../README.md) / BillboardOptions
+[daisy-space-sdk](../README.md) / ImageOptions
 
-# Type Alias: BillboardOptions
+# Type Alias: ImageOptions
 
-> **BillboardOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
+> **ImageOptions** = `object` & [`FeatureOptions`](../interfaces/FeatureOptions.md)
 
-BillboardFeature configuration.
+ImageFeature configuration.
 
-Creates a billboard render node near an Entity and updates it every frame with the Entity position.
+Creates an image render node near an Entity that always faces the camera and updates it every frame with the Entity position.
 
 Design notes:
 - This Feature manages node creation and destruction itself; it does not depend on the Entity property series.
@@ -23,7 +23,7 @@ Design notes:
 
 > `optional` **alignedAxis?**: `Daisy.Cartesian3`
 
-Alignment axis, usually used to align the billboard with a direction.
+Alignment axis, usually used to align the image with a direction.
 
 ### color?
 
@@ -86,7 +86,7 @@ Horizontal alignment.
 
 > `optional` **image?**: `string` \| `HTMLCanvasElement` \| `HTMLImageElement` \| `ImageData`
 
-Billboard image.
+Image resource.
 
 Accepts an image URL, Canvas, Image, ImageData, and similar sources.
 
@@ -178,7 +178,7 @@ Whether to scale with distance.
 
 > `optional` **show?**: `boolean`
 
-Whether to show the billboard.
+Whether to show the image.
 
 #### Default
 

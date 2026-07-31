@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -50,6 +51,88 @@ function gitDocumentationChanges(sourceCommit) {
     .filter(Boolean))];
 }
 
+function gitNullSeparated(args) {
+  const result = spawnSync("git", args, {
+    cwd: root,
+    encoding: "buffer",
+    shell: false,
+  });
+  if (result.status !== 0) return null;
+  return result.stdout
+    .toString("utf8")
+    .split("\0")
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
+function manifestState() {
+  try {
+    return JSON.parse(readFileSync(path.join(i18nDir, "manifest.json"), "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+export function documentationFileFromRepositoryPath(file) {
+  const normalized = file.replaceAll("\\", "/");
+  for (const prefix of ["website/docs/_source/", "website/docs/en/"]) {
+    if (normalized.startsWith(prefix) && /\.mdx?$/i.test(normalized)) {
+      return normalized.slice(prefix.length);
+    }
+  }
+  return null;
+}
+
+export function changedDocumentationFiles() {
+  const manifest = manifestState();
+  const base = manifest?.sourceCommit?.split("+")[0] ?? null;
+  if (!base) return null;
+  const pathspec = ["--", "website/docs/_source", "website/docs/en", "website/i18n/glossary.json"];
+  const committed = gitNullSeparated([
+    "diff",
+    "--name-only",
+    "--no-renames",
+    "-z",
+    base,
+    "HEAD",
+    ...pathspec,
+  ]);
+  const unstaged = gitNullSeparated([
+    "diff",
+    "--name-only",
+    "--no-renames",
+    "-z",
+    ...pathspec,
+  ]);
+  const staged = gitNullSeparated([
+    "diff",
+    "--cached",
+    "--name-only",
+    "--no-renames",
+    "-z",
+    ...pathspec,
+  ]);
+  const untracked = gitNullSeparated([
+    "ls-files",
+    "--others",
+    "--exclude-standard",
+    "-z",
+    ...pathspec,
+  ]);
+  if ([committed, unstaged, staged, untracked].some((files) => files === null)) return null;
+  const changed = [...committed, ...unstaged, ...staged, ...untracked];
+  if (changed.includes("website/i18n/glossary.json")) return null;
+  return [...new Set(changed.map(documentationFileFromRepositoryPath).filter((file) => file !== null))]
+    .filter(
+      (file) =>
+        existsSync(path.join(docsDir, "_source", ...file.split("/"))) ||
+        Boolean(manifest.files?.[file]) ||
+        existsSync(path.join(docsDir, "zh", ...file.split("/"))) ||
+        existsSync(path.join(docsDir, "en", ...file.split("/"))),
+    )
+    .sort();
+}
+
 function hasFlag(name) {
   return process.argv.slice(3).includes(name);
 }
@@ -76,6 +159,13 @@ export function documentationFiles(args = process.argv.slice(3)) {
   return [...new Set(values)];
 }
 
+export function incrementalDocumentationFiles(args = process.argv.slice(3), changed = undefined) {
+  const explicit = documentationFiles(args);
+  if (explicit.length > 0) return explicit;
+  if (args.includes("--all")) return null;
+  return changed ?? changedDocumentationFiles();
+}
+
 function selectDiffReport(report, file) {
   if (!file) return report;
   const normalized = normalizeDocumentationFile(file);
@@ -89,8 +179,9 @@ function selectDiffReport(report, file) {
   };
 }
 
-function compactValue(value) {
-  return String(value ?? "").replace(/[\r\n\t]+/g, " ").trim();
+function compactValue(value, maxLength = 180) {
+  const compact = String(value ?? "").replace(/[\r\n\t]+/g, " ").trim();
+  return compact.length <= maxLength ? compact : `${compact.slice(0, maxLength - 3)}...`;
 }
 
 export function formatDiffReport(report, { details = false, file = null } = {}) {
@@ -123,18 +214,22 @@ function printSummary(label, result) {
 
 export async function run(command = process.argv[2]) {
   if (command === "prepare") {
-    const result = await prepareDocuments({ docsDir, files: documentationFiles() });
+    const result = await prepareDocuments({
+      docsDir,
+      i18nDir,
+      files: incrementalDocumentationFiles(),
+    });
     printSummary("prepared", result);
     return result;
   }
   if (command === "diff") {
-    const files = documentationFiles();
+    const files = incrementalDocumentationFiles();
     const report = await diffDocuments({ docsDir, i18nDir, files });
     report.gitBase = report.sourceCommit;
     report.gitChanges = gitDocumentationChanges(report.sourceCommit);
     console.log(formatDiffReport(report, {
       details: hasFlag("--details"),
-      file: files.length === 1 ? files[0] : null,
+      file: files?.length === 1 ? files[0] : null,
     }));
     return report;
   }
@@ -144,7 +239,7 @@ export async function run(command = process.argv[2]) {
       i18nDir,
       allowPending: hasFlag("--allow-pending"),
       sourceCommit: gitSourceRevision(),
-      files: documentationFiles(),
+      files: incrementalDocumentationFiles(),
     });
     printSummary("accepted", result);
     return result;
@@ -182,7 +277,7 @@ export async function run(command = process.argv[2]) {
   }
   throw new Error(
     "Usage: node ./scripts/docs-i18n.mjs <init|prepare|diff|accept|check|finish> " +
-      "[relative-doc-path]... [--file <relative-doc-path>]... [--allow-pending] [--details]",
+      "[relative-doc-path]... [--file <relative-doc-path>]... [--all] [--allow-pending] [--details]",
   );
 }
 

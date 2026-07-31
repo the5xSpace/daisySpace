@@ -23,7 +23,7 @@ const site = new Daisy.PW.GroundStation({
     position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 80),
     stationModel: false,          // 不挂载 3D 天线模型
     point: false,
-    label: {
+    text: {
         text: "Beijing-DSN",
         font: "13px sans-serif",
         offsetPx: new Daisy.Cartesian2(0, -26),
@@ -156,9 +156,9 @@ const passSlots = transits.map(t => ({ start: t.start, end: t.end }))
 | `stationModel` | `"dsn34"` \| `"dsn70"` \| `"radome"` \| `ModelOptions` \| `false` | `"dsn34"` | Antenna model configuration |
 | `model` | `ModelOptions` \| `false` | — | Overrides stationModel; false prevents mounting a model |
 | `antenna` | `GroundStationAntennaPointingOptions` | — | Antenna-node control configuration |
-| `label` | `LabelOptions` \| `false` | — | Text label |
+| `text` | `TextOptions` \| `false` | — | Text |
 | `point` | `PointComOptions` \| `false` | — | Point marker |
-| `billboard` | `BillboardOptions` \| `false` | — | Billboard |
+| `image` | `ImageOptions` \| `false` | — | Image |
 | `sensors` | `SensorOptions` \| `SensorOptions[]` | — | Sensors to mount initially |
 
 ## Events

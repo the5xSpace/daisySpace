@@ -165,7 +165,7 @@ entity.addFeature(new Daisy.ParticleFeature({
 
 ## CapsuleParticleFeature
 
-胶囊粒子将整个粒子系统预渲染为一张 canvas，作为单个 Sprite 面片（Billboard）播放。适合需要强绑宿主、连续主体形态的效果。
+胶囊粒子将整个粒子系统预渲染为一张 canvas，作为单个 Sprite 面片播放。适合需要强绑宿主、连续主体形态的效果。
 
 ```typescript
 entity.addFeature(new Daisy.CapsuleParticleFeature({

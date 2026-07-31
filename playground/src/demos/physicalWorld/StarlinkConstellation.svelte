@@ -128,7 +128,7 @@ function showFocusFeatures(sat: any, satelliteName: string, colorIndex: number) 
     const color = pickColor(colorIndex);
 
     sat.setOptions?.({
-        label: {
+        text: {
             text: satelliteName,
             font: "bold 18px sans-serif",
             offsetPx: new Daisy.Cartesian2(0, -24),
@@ -161,7 +161,7 @@ function hideFocusFeatures(sat: any) {
     if (!focusedSatelliteIds.has(id)) return;
     focusedSatelliteIds.delete(id);
     sat.setOptions?.({
-        label: false,
+        text: false,
     });
     sat.removeComponentByName?.(FOCUS_ORBIT_COMPONENT_NAME);
     forceSatelliteRefresh(sat);
@@ -451,7 +451,7 @@ async function loadAndBuild() {
         engine.setHighPerformanceMode({
             enabled: true,
             visibilityCheckGroups: 24,
-            keepFeatureTypes: ["PointFeature", "UI_LabelFeature", "BillboardFeature"],
+            keepFeatureTypes: ["PointFeature", "UI_TextFeature", "ImageFeature"],
         });
         installFocusEventBridge();
 

@@ -8,12 +8,10 @@
 
 ## Classes
 
-- [LabelFeature](../classes/UI.LabelFeature.md)
 - [PopoverFeature](../classes/UI.PopoverFeature.md)
 
 ## Interfaces
 
-- [LabelOptions](../interfaces/UI.LabelOptions.md)
 - [PopoverOptions](../interfaces/UI.PopoverOptions.md)
 - [PopoverVisibilityChangeEvent](../interfaces/UI.PopoverVisibilityChangeEvent.md)
 
@@ -22,3 +20,15 @@
 - [PopoverAnchor](../types/UI.PopoverAnchor.md)
 - [PopoverTrigger](../types/UI.PopoverTrigger.md)
 - [PopoverVisibilityChangeReason](../types/UI.PopoverVisibilityChangeReason.md)
+
+## References
+
+### TextFeature
+
+Re-exports [TextFeature](../classes/TextFeature.md)
+
+***
+
+### TextOptions
+
+Re-exports [TextOptions](../interfaces/TextOptions.md)

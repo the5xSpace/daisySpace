@@ -129,6 +129,23 @@ session.setHost({ kind: "entity", name: "Feature Preview" })
 session.destroy()
 ```
 
+The Entity or BaseObject created when a session starts is only a cold-start placeholder. When editing a complete Entity or physical object, first construct the object outside the session and attach all of its existing Features and Components, then call `replaceHost()`. The session destroys the placeholder, directly registers the supplied object, and takes ownership of it. The supplied object does not become a child of the placeholder, and its existing attachments are not removed by `clear()`.
+
+```typescript
+const session = await Daisy.PreviewEngineSession.create(container, {
+    host: { kind: "entity", name: "Loading Placeholder" },
+})
+
+const entity = new Daisy.Entity("Edited Entity")
+entity.addFeature(new Daisy.CubeFeature({ dimensions: new Daisy.Cartesian3(10, 10, 10) }))
+entity.addFeature(new Daisy.PointFeature({ size: 16 }))
+
+// 草稿构造完成后，直接替换占位宿主并接管完整对象
+session.replaceHost(entity)
+```
+
+`replaceHost()` takes exclusive ownership of the supplied object's lifecycle. The next replacement or session destruction disposes that Entity/BaseObject together with all of its Features and Components, so do not pass an instance that already belongs to the production Runtime or another preview session. After replacement, camera tracking, body axes, automatic playback, and automatic orbiting all target the new host.
+
 `PreviewEngineSession` owns the complete lifecycle of the current target, temporary host, camera tracking, body axes, per-frame orbit callback, and Engine. `mountFeature()` and `mountComponent()` clear the previous target and ensure playback continues. `destroy()` unregisters the orbit callback, releases camera tracking, and disposes every temporary resource; repeated calls are safe. Never persist preview sessions, temporary hosts, SDK instances, or preview state in a Scenario. Business data should contain only the definitions needed to reconstruct the target.
 
 ## Entity Management
@@ -286,7 +303,7 @@ engine.setHighPerformanceMode({
     visibilityCheckGroups: 12,       // 可见性检查分组
     inactiveUpdateIntervalSeconds: 0.5,
     activeUpdateIntervalSeconds: 0.03,
-    keepFeatureTypes: ["PointFeature", "UI_LabelFeature", "BillboardFeature"],
+    keepFeatureTypes: ["PointFeature", "UI_TextFeature", "ImageFeature"],
 })
 
 // 关闭

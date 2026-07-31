@@ -150,7 +150,7 @@ function createRocketOnPad(launchPos: any) {
     name: "Rocket",
     model: getRocketModelOptions(),
     point: false,
-    label: {
+    text: {
       text: "火箭",
       fillColor: Color.WHITE,
       pixelOffset: new Daisy.Cartesian2(0, -28),
@@ -221,7 +221,7 @@ function initScene() {
   })
 
   launchMarkerEntity = new Daisy.Entity("LaunchSite")
-  launchMarkerEntity.addFeature(new Daisy.UI.LabelFeature({
+  launchMarkerEntity.addFeature(new Daisy.UI.TextFeature({
     text: `${launchSite.lat.toFixed(1)}°, ${launchSite.lon.toFixed(1)}°`,
     font: "12px monospace",
     fillColor: Color.YELLOW,
@@ -334,7 +334,7 @@ function onLaunch() {
   rocketObject.setOptions?.({
     model: getRocketModelOptions(),
     point: false,
-    label: {
+    text: {
       text: "火箭",
       fillColor: Color.WHITE,
       pixelOffset: new Daisy.Cartesian2(0, -24),
@@ -412,7 +412,7 @@ function placeEventMarkers(epoch: any) {
     marker.addFeature(new Daisy.PointFeature({
       color: e.type === "apogee" ? Color.CYAN : Color.HOTPINK, pixelSize: 10,
     }))
-    marker.addFeature(new Daisy.UI.LabelFeature({
+    marker.addFeature(new Daisy.UI.TextFeature({
       text: e.type === "staging" ? "级分离" : e.type === "burnout" ? "关机" : "远地点",
       font: "11px monospace",
       fillColor: e.type === "apogee" ? Color.CYAN : Color.HOTPINK,
@@ -590,7 +590,7 @@ function getJettisonLocalDirection(id: string, index: number) {
   return new C3(2.6 * split, -4.2, 2.2)
 }
 
-function beginModelNodeJettison(id: string, label: string, second: number) {
+function beginModelNodeJettison(id: string, text: string, second: number) {
   const model = getRocketModelFeature()
   if (!model?.transformNode) return false
   const nodeNames = resolveJettisonNodeNames(id)
@@ -619,7 +619,7 @@ function beginModelNodeJettison(id: string, label: string, second: number) {
   return true
 }
 
-function triggerJettisonEffect(id: string, label: string, second: number, color: any) {
+function triggerJettisonEffect(id: string, text: string, second: number, color: any) {
   if (beginModelNodeJettison(id, label, second)) return
   createJettisonVisual(id, label, second, color)
 }
@@ -663,7 +663,7 @@ function clearModelNodeJettisons() {
   modelNodeJettisons = []
 }
 
-function createJettisonVisual(id: string, label: string, second: number, color: any) {
+function createJettisonVisual(id: string, text: string, second: number, color: any) {
   if (!missionStartTime || !rocketObject?.trajectory) return
   const name = `Jettison-${id}`
   if (separationVisuals.some((entity: any) => entity?.name === name)) return
@@ -682,7 +682,7 @@ function createJettisonVisual(id: string, label: string, second: number, color: 
     pixelSize: 12,
     disableDepthTestDistance: Number.POSITIVE_INFINITY,
   }))
-  entity.addFeature(new Daisy.UI.LabelFeature({
+  entity.addFeature(new Daisy.UI.TextFeature({
     text: label,
     font: "11px monospace",
     fillColor: color,

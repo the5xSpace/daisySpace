@@ -105,6 +105,22 @@ Gets the host Entity (for mounting Features, interaction events, updates, etc.).
 
 ***
 
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`id`](PW.NearEarthOrbiter.md#id)
+
+***
+
 ### options
 
 #### Get Signature
@@ -1250,7 +1266,7 @@ New configuration
 #### Example
 
 ```ts
-obj.setOptions({ label: { text: "Updated" } });
+obj.setOptions({ text: { text: "Updated" } });
 ```
 
 #### Inherited from

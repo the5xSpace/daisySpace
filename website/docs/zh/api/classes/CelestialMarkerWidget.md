@@ -111,6 +111,34 @@ UI 控制器类 widget 应设为 true。
 
 ## Accessors
 
+### enabledBodies
+
+#### Get Signature
+
+> **get** **enabledBodies**(): readonly [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+当前参与计算和显示的内置天体列表。返回副本，避免外部绕过 setter 修改状态。
+
+##### Returns
+
+readonly [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+#### Set Signature
+
+> **set** **enabledBodies**(`bodies`): `void`
+
+##### Parameters
+
+###### bodies
+
+readonly [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+##### Returns
+
+`void`
+
+***
+
 ### id
 
 #### Get Signature
@@ -226,6 +254,18 @@ Widget 显示名称。
 #### Inherited from
 
 [`MarkerWidget`](MarkerWidget.md).[`destroy`](MarkerWidget.md#destroy)
+
+***
+
+### getEnabledBodies()
+
+> **getEnabledBodies**(): [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+获取当前启用的内置天体列表。
+
+#### Returns
+
+[`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
 
 ***
 
@@ -363,6 +403,27 @@ Widget 显示名称。
 #### Inherited from
 
 [`MarkerWidget`](MarkerWidget.md).[`register`](MarkerWidget.md#register)
+
+***
+
+### setEnabledBodies()
+
+> **setEnabledBodies**(`bodies`): `this`
+
+设置完整的内置天体启用列表。
+
+只有列表中的天体会创建 MarkerTarget 并在每帧调用星历计算；被移除的天体
+会同步从点和标签集合中移除。返回当前实例，便于链式配置。
+
+#### Parameters
+
+##### bodies
+
+readonly [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+#### Returns
+
+`this`
 
 ***
 

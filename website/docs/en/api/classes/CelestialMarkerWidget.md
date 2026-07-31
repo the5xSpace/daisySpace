@@ -47,16 +47,6 @@ Suitable for marking key locations (e.g., ground stations, satellites, etc.).
 
 ***
 
-### id?
-
-> `optional` **id?**: `string`
-
-#### Inherited from
-
-[`MarkerWidget`](MarkerWidget.md).[`id`](MarkerWidget.md#id)
-
-***
-
 ### isDestroyed?
 
 > `optional` **isDestroyed?**: `boolean` = `false`
@@ -79,16 +69,6 @@ Widget identification key (for singleton deduplication).
 #### Overrides
 
 [`MarkerWidget`](MarkerWidget.md).[`key`](MarkerWidget.md#key)
-
-***
-
-### name?
-
-> `optional` **name?**: `string`
-
-#### Inherited from
-
-[`MarkerWidget`](MarkerWidget.md).[`name`](MarkerWidget.md#name)
 
 ***
 
@@ -128,6 +108,110 @@ UI controller class widgets should be set to true.
 #### Inherited from
 
 [`MarkerWidget`](MarkerWidget.md).[`zoomIgnored`](MarkerWidget.md#zoomignored)
+
+## Accessors
+
+### enabledBodies
+
+#### Get Signature
+
+> **get** **enabledBodies**(): readonly [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+The built-in celestial bodies currently included in calculation and display. Returns a copy so callers cannot bypass the setter to mutate the state.
+
+##### Returns
+
+readonly [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+#### Set Signature
+
+> **set** **enabledBodies**(`bodies`): `void`
+
+##### Parameters
+
+###### bodies
+
+readonly [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+##### Returns
+
+`void`
+
+***
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string` \| `undefined`
+
+Widget unique identifier.
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **id**(`value`): `void`
+
+Widget unique identifier.
+
+The `id` passed to the constructor is stored by the Widget base class and can be read before or after registering with the Engine.
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+Widget unique identifier.
+
+The `id` passed to the constructor is stored by the Widget base class and can be read before or after registering with the Engine.
+
+#### Inherited from
+
+[`MarkerWidget`](MarkerWidget.md).[`id`](MarkerWidget.md#id)
+
+***
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string` \| `undefined`
+
+Widget display name.
+
+##### Returns
+
+`string` \| `undefined`
+
+#### Set Signature
+
+> **set** **name**(`value`): `void`
+
+Widget display name.
+
+##### Parameters
+
+###### value
+
+`string` \| `undefined`
+
+##### Returns
+
+`void`
+
+Widget display name.
+
+#### Inherited from
+
+[`MarkerWidget`](MarkerWidget.md).[`name`](MarkerWidget.md#name)
 
 ## Methods
 
@@ -170,6 +254,18 @@ Removes morph switch listener and marks the instance as destroyed.
 #### Inherited from
 
 [`MarkerWidget`](MarkerWidget.md).[`destroy`](MarkerWidget.md#destroy)
+
+***
+
+### getEnabledBodies()
+
+> **getEnabledBodies**(): [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+Get the built-in celestial bodies currently enabled.
+
+#### Returns
+
+[`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
 
 ***
 
@@ -307,6 +403,26 @@ Current Widget instance (supports chaining)
 #### Inherited from
 
 [`MarkerWidget`](MarkerWidget.md).[`register`](MarkerWidget.md#register)
+
+***
+
+### setEnabledBodies()
+
+> **setEnabledBodies**(`bodies`): `this`
+
+Set the complete list of enabled built-in celestial bodies.
+
+Only bodies in the list create MarkerTarget instances and invoke ephemeris calculations on each frame. Removed bodies are also removed from the point and label collections. Returns the current instance for chaining.
+
+#### Parameters
+
+##### bodies
+
+readonly [`CelestialMarkerBody`](../enums/CelestialMarkerBody.md)[]
+
+#### Returns
+
+`this`
 
 ***
 
