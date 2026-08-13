@@ -1643,7 +1643,7 @@ Parent entity or parent entity id
 
 > **setPath**(`path`): `void`
 
-Set a fast trajectory line for the trajectory sample position.
+Set a fast trajectory line for a trajectory-sampled position.
 
 Only `TrajectorySample` and `TrajectorySampleBodyFixed` positions create a path. For a static `Cartesian3` position, the configuration is saved without creating a degenerate path; assigning a trajectory sample later mounts it automatically, and switching back to a static position removes it.
 Auto-optimization is enabled by default, adjusting sampling interval and point count based on entity count, speed, and camera scale.

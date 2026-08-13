@@ -75,6 +75,22 @@ entity.position = traj
 
 `TrajectorySample` 支持三种插值算法：`"LAGRANGE"`（默认）、`"LINEAR"`、`"HERMITE"`。
 
+### 快速轨迹线
+
+使用 `entity.setPath()` 可以为轨迹采样位置挂载快速轨迹线。该方法使用同一个 `TrailPathFeature` 实现：
+
+```typescript
+entity.setPath({
+    historySecond: 3600,
+    futureSecond: 7200,
+    width: 2,
+    historyColor: Daisy.Color.BLUE,
+    futureColor: Daisy.Color.GREEN.withAlpha(0.5),
+})
+```
+
+`setPath()` 只对 `TrajectorySample` 和 `TrajectorySampleBodyFixed` 生效。当前 `position` 是静态 `Cartesian3` 时，配置会被保存但不会创建退化轨迹；之后切换到轨迹采样位置时会自动创建，切回静态位置时会移除轨迹线。
+
 ### 体固坐标系轨迹（TrajectorySampleBodyFixed）
 
 ```typescript
