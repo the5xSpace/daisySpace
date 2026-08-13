@@ -21,7 +21,6 @@ PhysicalWorld 组件基类。
 - [`CameraWeatherParticleComponent`](PW.CameraWeatherParticleComponent.md)
 - [`Link`](PW.Link.md)
 - [`OrbitElementsViewComponent`](PW.OrbitElementsViewComponent.md)
-- [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
 - [`GroundTrackComponent`](PW.GroundTrackComponent.md)
 - [`RouteComponent`](PW.RouteComponent.md)
 

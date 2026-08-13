@@ -64,15 +64,6 @@ Generic orbit-source input, supporting TLE / OMM XML / JSON GP.
 
 When both `orbitSource` and `tle` are provided, `orbitSource` takes precedence.
 
-### realtimeOrbit?
-
-> `optional` **realtimeOrbit?**: [`RealtimeOrbitComponentOptions`](PW.RealtimeOrbitComponentOptions.md) \| `false`
-
-Configuration for the real-time orbit component.
-
-- `false`: do not mount automatically
-- Object: mount the component automatically during construction
-
 ### tle?
 
 > `optional` **tle?**: `string` \| `string`[]

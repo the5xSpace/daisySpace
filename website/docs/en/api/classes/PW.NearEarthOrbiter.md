@@ -14,6 +14,8 @@ Provides:
 - Real-time propagation using general orbit source (optional)
 - Build ephemeris sampled trajectory (TrajectorySample) over a time range
 
+Orbit trails reuse the inherited `FreeObjectConfig.path` and the host `Entity.setPath()`. `Satellite`, as a semantic alias, uses the same path API and does not require a separate real-time orbit-path component.
+
 ## Example
 
 ```ts
@@ -344,24 +346,6 @@ Adds an orbital elements view component.
 #### Inherited from
 
 [`Aircraft`](PW.Aircraft.md).[`addPropulsion`](PW.Aircraft.md#addpropulsion)
-
-***
-
-### addRealtimeOrbit()
-
-> **addRealtimeOrbit**(`options?`): [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-Adds a real-time orbit component.
-
-#### Parameters
-
-##### options?
-
-[`RealtimeOrbitComponentOptions`](../types/PW.RealtimeOrbitComponentOptions.md) = `{}`
-
-#### Returns
-
-[`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
 
 ***
 

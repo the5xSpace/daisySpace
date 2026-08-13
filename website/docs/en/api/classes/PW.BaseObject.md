@@ -17,6 +17,8 @@ Design constraints:
 - Features are still attached and managed through Entity.addFeature().
 - Components (IComponent) carry higher-level physical semantic capabilities, such as Sensor, and may drive Features internally.
 
+Trail paths are not mounted as PhysicalWorld components. Objects derived from `FreeObject` use the `path` configuration, which is forwarded to the host `Entity.setPath()`; you can also set or update the path directly with `object.entity.setPath(...)`.
+
 ## Extended by
 
 - [`FreeObject`](PW.FreeObject.md)
@@ -53,6 +55,18 @@ Get the host Entity, used for attaching Features, interaction events, updates, a
 ##### Returns
 
 [`Entity`](Entity.md) \| `CelestialEntity`
+
+***
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
 
 ***
 

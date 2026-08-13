@@ -45,6 +45,8 @@ entity.setPath({
 })
 ```
 
+Physical-world objects reuse the same path implementation. `FreeObject`'s `path` configuration uses the parameter type of `Entity.setPath()`, and `Vehicle`, `NearEarthOrbiter`, and `Satellite` inherit this configuration and forward it to their host Entity. No separate orbit-path component is required.
+
 ## Parameter Table
 
 | Parameter | Type | Default | Description |

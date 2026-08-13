@@ -45,6 +45,8 @@ entity.setPath({
 })
 ```
 
+物理世界对象复用同一条路径实现。`FreeObject` 的 `path` 配置类型就是 `Entity.setPath()` 的参数，`Vehicle`、`NearEarthOrbiter` 和 `Satellite` 通过继承这项配置把路径转发给宿主 Entity；不需要额外挂载轨道路径组件。
+
 ## 参数表
 
 | 参数 | 类型 | 默认 | 说明 |

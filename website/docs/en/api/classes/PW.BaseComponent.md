@@ -21,7 +21,6 @@ Design notes:
 - [`CameraWeatherParticleComponent`](PW.CameraWeatherParticleComponent.md)
 - [`Link`](PW.Link.md)
 - [`OrbitElementsViewComponent`](PW.OrbitElementsViewComponent.md)
-- [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
 - [`GroundTrackComponent`](PW.GroundTrackComponent.md)
 - [`RouteComponent`](PW.RouteComponent.md)
 
@@ -33,7 +32,13 @@ Design notes:
 
 ### Constructor
 
-> **new BaseComponent**(): `BaseComponent`
+> **new BaseComponent**(`options?`): `BaseComponent`
+
+#### Parameters
+
+##### options?
+
+[`ComponentIdentityOptions`](../types/PW.ComponentIdentityOptions.md) = `{}`
 
 #### Returns
 
@@ -107,6 +112,22 @@ Get/set component id (globally unique identifier).
 
 ***
 
+### isDestroyed
+
+#### Get Signature
+
+> **get** **isDestroyed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+#### Implementation of
+
+[`IComponent`](../interfaces/PW.IComponent.md).[`isDestroyed`](../interfaces/PW.IComponent.md#isdestroyed)
+
+***
+
 ### name
 
 #### Get Signature
@@ -150,6 +171,10 @@ Get/set component name (for retrieval/management by name).
 ##### Returns
 
 `boolean`
+
+#### Implementation of
+
+[`IComponent`](../interfaces/PW.IComponent.md).[`registered`](../interfaces/PW.IComponent.md#registered)
 
 ## Methods
 

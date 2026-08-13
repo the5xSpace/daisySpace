@@ -12,6 +12,8 @@ Design principles:
 - Exposes a semantic API while reusing Daisy.Entity + Feature + PW.Component internally
 - Most graphics attachment capabilities (model/text/image/trajectory/collision, etc.) reuse the FreeObject strategy system
 
+`Vehicle` and its derived classes inherit `FreeObjectConfig.path`. The configuration is forwarded directly to the host `Entity.setPath()`, so a trail does not require an additional `addComponent()` call.
+
 ## Extends
 
 - [`FreeObject`](PW.FreeObject.md)

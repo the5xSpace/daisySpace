@@ -12,6 +12,8 @@ Vehicle：移动工具（物理语义对象）。
 - 对外提供“语义 API”，内部复用 Daisy.Entity + Feature + PW.Component
 - 多数图形挂载能力（模型/文本/图片/轨迹/碰撞等）复用 FreeObject 的策略系统
 
+`Vehicle` 及其派生类继承 `FreeObjectConfig.path`。该配置会直接转发给宿主 `Entity.setPath()`，因此轨迹线不需要通过 `addComponent()` 额外挂载。
+
 ## Extends
 
 - [`FreeObject`](PW.FreeObject.md)

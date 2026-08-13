@@ -184,8 +184,6 @@
 | `PropulsionParticleOptions` | [PropulsionParticleOptions](PW.PropulsionParticleOptions.md) |
 | `PropulsionParticlePreset` | [PropulsionParticlePreset](PW.PropulsionParticlePreset.md) |
 | `PropulsionParticleRenderer` | [PropulsionParticleRenderer](PW.PropulsionParticleRenderer.md) |
-| `RealtimeOrbitComponentOptions` | [RealtimeOrbitComponentOptions](PW.RealtimeOrbitComponentOptions.md) |
-| `RealtimeOrbitElements` | [RealtimeOrbitElements](PW.RealtimeOrbitElements.md) |
 | `RocketAscentInput` | [RocketAscentInput](PW.RocketAscentInput.md) |
 | `RocketConfig` | [RocketConfig](PW.RocketConfig.md) |
 | `RocketDefaultVisualsOptions` | [RocketDefaultVisualsOptions](PW.RocketDefaultVisualsOptions.md) |

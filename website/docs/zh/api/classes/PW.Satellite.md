@@ -10,6 +10,8 @@ Satellite：NearEarthOrbiter 的语义别名。
 
 语义更贴近“卫星”，便于在业务侧区分 SpaceStation / Debris / Satellite 等同族对象。
 
+卫星路径渲染使用继承自 `FreeObjectConfig.path` 的配置，也可以直接调用宿主 `Entity.setPath()`。
+
 ## Example
 
 ```ts
@@ -341,28 +343,6 @@ obj.addComponent(new Sensor({ range: 100000 }));
 #### Inherited from
 
 [`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`addPropulsion`](PW.NearEarthOrbiter.md#addpropulsion)
-
-***
-
-### addRealtimeOrbit()
-
-> **addRealtimeOrbit**(`options?`): [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-添加实时轨道圈组件。
-
-#### Parameters
-
-##### options?
-
-[`RealtimeOrbitComponentOptions`](../types/PW.RealtimeOrbitComponentOptions.md) = `{}`
-
-#### Returns
-
-[`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-#### Inherited from
-
-[`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`addRealtimeOrbit`](PW.NearEarthOrbiter.md#addrealtimeorbit)
 
 ***
 

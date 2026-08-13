@@ -196,7 +196,21 @@ const sat = new Daisy.PW.Satellite({
 sat.bindEngine(engine)
 ```
 
-> 构造器配置与 `setTle()` 互斥：传入 `tle` 后无需再调用 `setTle()`。`model` / `point` / `label` / `path` / `groundTrack` 均会在 `bindEngine()` 阶段自动创建对应 Feature。
+> 构造器配置与 `setTle()` 互斥：传入 `tle` 后无需再调用 `setTle()`。`model` / `point` / `label` / `path` / `groundTrack` 均会在 `bindEngine()` 阶段自动创建对应 Feature。`path` 是继承自 `FreeObjectConfig` 的快速轨迹配置，最终由宿主 `Entity.setPath()` 创建路径。
+
+也可以在卫星绑定 Engine 后直接通过宿主 Entity 设置或更新路径：
+
+```typescript
+sat.entity.setPath({
+    historySecond: 3600,
+    futureSecond: 7200,
+    width: 2,
+    historyColor: Daisy.Color.BLUE,
+    futureColor: Daisy.Color.GREEN.withAlpha(0.5),
+})
+```
+
+这里的路径是 Entity 的快速轨迹线，不需要通过 `addComponent()` 挂载轨道路径组件。`setPath()` 会结合实体数量、速度和相机尺度自动优化采样间隔与点数上限；传入 `path: false` 或调用 `sat.entity.removePath()` 可移除路径。
 
 ### enableSpg4Propagation
 
@@ -352,10 +366,6 @@ sat.addComponent(new Daisy.PW.GroundTrackComponent({
     width: 2,
 }))
 
-// 实时轨道圈（动态更新）
-sat.addComponent(new Daisy.PW.RealtimeOrbitComponent({
-    material: Daisy.Color.BLUE.withAlpha(0.4),
-}))
 ```
 
 ## 星座批量创建

@@ -17,6 +17,8 @@ PhysicalWorld 基础对象（语义对象）。
 - Feature 依然通过 Entity.addFeature() 的路径挂载与管理
 - “组件”（IComponent）用于承载更高层的物理语义能力（例如 Sensor），并可内部驱动 Feature
 
+轨迹路径不作为 PhysicalWorld 组件挂载。继承自 `FreeObject` 的对象通过 `path` 配置调用宿主 `Entity.setPath()`；也可以通过 `object.entity.setPath(...)` 直接设置或更新路径。
+
 ## Extended by
 
 - [`FreeObject`](PW.FreeObject.md)

@@ -167,7 +167,6 @@
 | `NearEarthOrbiter` | [NearEarthOrbiter](PW.NearEarthOrbiter.md) |
 | `OrbitElementsViewComponent` | [OrbitElementsViewComponent](PW.OrbitElementsViewComponent.md) |
 | `PropulsionComponent` | [PropulsionComponent](PW.PropulsionComponent.md) |
-| `RealtimeOrbitComponent` | [RealtimeOrbitComponent](PW.RealtimeOrbitComponent.md) |
 | `Rocket` | [Rocket](PW.Rocket.md) |
 | `RouteComponent` | [RouteComponent](PW.RouteComponent.md) |
 | `Satellite` | [Satellite](PW.Satellite.md) |

@@ -196,7 +196,21 @@ const sat = new Daisy.PW.Satellite({
 sat.bindEngine(engine)
 ```
 
-> Constructor configuration and `setTle()` are mutually exclusive: after passing `tle`, you do not need to call `setTle()`. `model` / `point` / `label` / `path` / `groundTrack` automatically create the corresponding Features during `bindEngine()`.
+> Constructor configuration and `setTle()` are mutually exclusive: after passing `tle`, you do not need to call `setTle()`. `model` / `point` / `label` / `path` / `groundTrack` automatically create the corresponding Features during `bindEngine()`. `path` is the fast path configuration inherited from `FreeObjectConfig`; it is ultimately applied through the host `Entity.setPath()`.
+
+After the satellite is bound to an Engine, you can also set or update the path through its host Entity:
+
+```typescript
+sat.entity.setPath({
+    historySecond: 3600,
+    futureSecond: 7200,
+    width: 2,
+    historyColor: Daisy.Color.BLUE,
+    futureColor: Daisy.Color.GREEN.withAlpha(0.5),
+})
+```
+
+This is the Entity fast path and does not require mounting an orbit-path component with `addComponent()`. `setPath()` automatically optimizes sampling intervals and point limits using entity count, speed, and camera scale; pass `path: false` or call `sat.entity.removePath()` to remove it.
 
 ### enableSpg4Propagation
 
@@ -352,10 +366,6 @@ sat.addComponent(new Daisy.PW.GroundTrackComponent({
     width: 2,
 }))
 
-// 实时轨道圈（动态更新）
-sat.addComponent(new Daisy.PW.RealtimeOrbitComponent({
-    material: Daisy.Color.BLUE.withAlpha(0.4),
-}))
 ```
 
 ## Batch-Creating a Constellation

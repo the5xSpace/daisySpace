@@ -14,6 +14,8 @@ NearEarthOrbiter：近地轨道目标（卫星/空间站/碎片等）。
 - 使用通用轨道源进行实时传播（可选）
 - 构建一段时间范围内的星历采样轨迹（TrajectorySample）
 
+轨道路径复用继承链上的 `FreeObjectConfig.path` 和宿主 `Entity.setPath()`。`Satellite` 作为语义别名使用同一套路径 API，不需要单独的实时轨道路径组件。
+
 ## Example
 
 ```ts
@@ -344,24 +346,6 @@ obj.addComponent(new Sensor({ range: 100000 }));
 #### Inherited from
 
 [`Aircraft`](PW.Aircraft.md).[`addPropulsion`](PW.Aircraft.md#addpropulsion)
-
-***
-
-### addRealtimeOrbit()
-
-> **addRealtimeOrbit**(`options?`): [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-添加实时轨道圈组件。
-
-#### Parameters
-
-##### options?
-
-[`RealtimeOrbitComponentOptions`](../types/PW.RealtimeOrbitComponentOptions.md) = `{}`
-
-#### Returns
-
-[`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
 
 ***
 

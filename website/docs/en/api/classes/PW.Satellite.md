@@ -10,6 +10,8 @@ Satellite: Semantic alias for NearEarthOrbiter.
 
 The semantics are closer to “satellite”, making it easier to distinguish related objects such as SpaceStation / Debris / Satellite in application code.
 
+Satellite path rendering uses the inherited `FreeObjectConfig.path` configuration or the host `Entity.setPath()` directly.
+
 ## Example
 
 ```ts
@@ -341,28 +343,6 @@ Adds an orbital elements view component.
 #### Inherited from
 
 [`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`addPropulsion`](PW.NearEarthOrbiter.md#addpropulsion)
-
-***
-
-### addRealtimeOrbit()
-
-> **addRealtimeOrbit**(`options?`): [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-Adds a real-time orbit component.
-
-#### Parameters
-
-##### options?
-
-[`RealtimeOrbitComponentOptions`](../types/PW.RealtimeOrbitComponentOptions.md) = `{}`
-
-#### Returns
-
-[`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-#### Inherited from
-
-[`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`addRealtimeOrbit`](PW.NearEarthOrbiter.md#addrealtimeorbit)
 
 ***
 
