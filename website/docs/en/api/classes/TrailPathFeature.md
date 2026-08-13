@@ -9,7 +9,7 @@
 Trail path Feature (history segment + future segment).
 
 Main behavior:
-- Independently draws dynamic trail lines, not relying on the entity’s built-in path display
+- Underlying Feature used by `Entity.setPath()`; it can also be mounted directly
 - Splits the entire trajectory into history (before) and future (after) based on current simulation time
 - Supports sampling and drawing in both inertial (INERTIAL) and fixed (FIXED) reference frames
 - In autoOptimize mode, adaptively adjusts sampling density based on camera distance, entity count, frame rate, etc.

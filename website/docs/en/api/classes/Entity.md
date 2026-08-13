@@ -65,6 +65,12 @@ Whether behind the camera
 
 ***
 
+### isDestroyed
+
+> **isDestroyed**: `boolean` = `false`
+
+***
+
 ### isInCameraCullingVolume
 
 > **isInCameraCullingVolume**: `boolean` = `false`
@@ -790,6 +796,18 @@ Returns true if time is valid, false if outside available range
 
 ***
 
+### clearBodyAxis()
+
+> **clearBodyAxis**(): `void`
+
+Remove the entity body axis and clear the subsequent update configuration.
+
+#### Returns
+
+`void`
+
+***
+
 ### computeModelMatrix()
 
 > **computeModelMatrix**(`state`): `Matrix4`
@@ -1485,7 +1503,7 @@ if (feature) entity.removeFeature(feature as any);
 
 > **removePath**(): `void`
 
-Remove fast path, only effective in TrajectorySample position mode
+Remove the fast path and clear the saved configuration used for automatic path mounting.
 
 #### Returns
 
@@ -1627,6 +1645,7 @@ Parent entity or parent entity id
 
 Set a fast trajectory line for the trajectory sample position.
 
+Only `TrajectorySample` and `TrajectorySampleBodyFixed` positions create a path. For a static `Cartesian3` position, the configuration is saved without creating a degenerate path; assigning a trajectory sample later mounts it automatically, and switching back to a static position removes it.
 Auto-optimization is enabled by default, adjusting sampling interval and point count based on entity count, speed, and camera scale.
 
 #### Parameters

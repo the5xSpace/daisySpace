@@ -366,6 +366,15 @@ sat.addComponent(new Daisy.PW.GroundTrackComponent({
     width: 2,
 }))
 
+// 运动轨迹线：由 Entity.setPath() 统一实现。
+// 仅在预计算轨迹或外部 TrajectorySample 模式下显示；实时 SGP4 模式使用当前 Cartesian3，
+// 不会生成退化的回放轨迹。
+sat.entity.setPath({
+    historySecond: 43200,
+    futureSecond: 43200,
+    color: Daisy.Color.BLUE.withAlpha(0.4),
+})
+
 ```
 
 ## Batch-Creating a Constellation

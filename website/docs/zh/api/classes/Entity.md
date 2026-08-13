@@ -1503,7 +1503,7 @@ if (feature) entity.removeFeature(feature as any);
 
 > **removePath**(): `void`
 
-移除快速路径，仅在TrajectorySample位置模式下生效
+移除快速路径，并清除后续自动挂载所保存的配置。
 
 #### Returns
 
@@ -1645,6 +1645,9 @@ entity.setBoundBoxDebugVisible(true);
 
 为轨迹采样位置设置快速轨迹线。
 
+只有 `TrajectorySample` 或 `TrajectorySampleBodyFixed` 位置会创建轨迹线；
+静态 `Cartesian3` 位置只保存配置，不会创建退化轨迹。若先调用本方法，
+后续再设置轨迹采样位置时会自动挂载轨迹线。
 自动优化默认开启，会结合实体数量、速度和相机尺度调整采样间隔与点数上限。
 
 #### Parameters
