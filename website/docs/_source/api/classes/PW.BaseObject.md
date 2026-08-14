@@ -200,6 +200,18 @@ obj.bindEngine(engine);
 
 ***
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除当前物理对象的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+***
+
 ### destroy()
 
 > **destroy**(): `void`
@@ -470,6 +482,46 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Returns
 
 `void`
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+显示当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
 
 ***
 

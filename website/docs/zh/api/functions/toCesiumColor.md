@@ -10,13 +10,9 @@
 
 ## Param
 
-**color**
-
 Daisy 颜色对象或 CSS 颜色字符串，例如 `#ff0`、`#ffff00`、`rgba(...)`。
 
 ## Param
-
-**defaultColor**
 
 当 `color` 为空时返回的默认值。
 

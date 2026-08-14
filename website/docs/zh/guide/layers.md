@@ -20,15 +20,34 @@ engine.geoLayer.setBaseImagery({
     maxLevel: 18,
 })
 
-// 内置类型
+// SDK 主内置影像
+engine.geoLayer.setBaseImagery({
+    type: Daisy.GeoImageryType.XYZ,
+    url: Daisy.BuildModuleUrl.getUrl("static/earth/{z}/{x}/{y}.jpg"),
+    minLevel: 0,
+    maxLevel: 3,
+    tilingScheme: "webMercator",
+})
+
+// 第二套内置影像：完整 Geographic 纬度范围
+engine.geoLayer.setBaseImagery({
+    type: Daisy.GeoImageryType.XYZ,
+    url: Daisy.BuildModuleUrl.getUrl(
+        "static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg",
+    ),
+    minLevel: 0,
+    maxLevel: 2,
+    tilingScheme: "geographic",
+})
+
+// OpenStreetMap 默认地址
 engine.geoLayer.setBaseImagery({
     type: Daisy.GeoImageryType.OpenStreetMap,
 })
 
-// ArcGIS 地图服务
+// ArcGIS 地图服务；url 可省略，使用全局设置或 SDK 默认地址
 engine.geoLayer.setBaseImagery({
     type: Daisy.GeoImageryType.ArcGisMapServer,
-    url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
 })
 ```
 
@@ -36,12 +55,56 @@ engine.geoLayer.setBaseImagery({
 
 | 类型 | 说明 |
 |------|------|
-| `XYZ` | 标准瓦片服务（需 `url`，模板 `{z}/{y}/{x}`） |
-| `OpenStreetMap` | OSM 开放街道地图 |
-| `ArcGisMapServer` | ArcGIS 地图服务（需 `url`） |
+| `XYZ` | 标准瓦片服务（需 `url`，可通过 `tilingScheme` 选择坐标方案） |
+| `OpenStreetMap` | OSM 开放街道地图（`url` 可省略，默认使用官方地址） |
+| `ArcGisMapServer` | ArcGIS 地图服务（`url` 可省略，使用全局设置或 SDK 默认地址） |
 | `WMTS` | WMTS 标准服务 |
 | `WMS` | WMS 标准服务 |
 | `CesiumIon` | Cesium Ion 资源（需 `assetId`） |
+
+### 第三方地图资源与授权
+
+第三方地图资源的 token、key 和默认地址通过 `GlobalConfig.configure()` 注入运行时。它们只保存在宿主的本地偏好或运行时上下文，不写入 Scenario、Package 或导出资源定义。
+
+```typescript
+Daisy.GlobalConfig.configure({
+    thirdPartyResources: {
+        cesiumIon: { token: "your-cesium-ion-token" },
+        arcgis: {
+            key: "your-arcgis-key-or-token",
+            url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+        },
+        openstreetmap: {
+            url: "https://tile.openstreetmap.org/",
+        },
+    },
+})
+```
+
+OpenStreetMap 默认使用 `https://tile.openstreetmap.org/`，兼容服务可以在 URL 中使用 `{key}` 占位符。ArcGIS 默认关闭 `usePreCachedTilesIfAvailable`；当服务不可达或初始化失败时，SDK 回退到本地 `static/earth/` 影像，并保持 globe/椭球可见。
+
+### XYZ 瓦片坐标方案
+
+`XYZ` 默认使用 `webMercator`（Web Mercator）坐标方案，适合大多数在线地图服务，但纬度范围通常只到约 `±85.0511°`。需要覆盖完整 `-90°` 到 `90°` 纬度的经纬度瓦片时，设置 `tilingScheme: "geographic"`。
+
+| 坐标方案 | 适用场景 |
+|------|------|
+| `webMercator` | 默认方案；适用于 EPSG:3857 等 Web Mercator 服务 |
+| `geographic` | 适用于 EPSG:4326 / 经纬度瓦片，可覆盖南北极 |
+
+使用 `geographic` 时，如果服务按 TMS 行号存储瓦片（南侧行号为 `0`），URL 应使用 `{reverseY}`；标准 XYZ 服务仍使用 `{y}`：
+
+```typescript
+engine.geoLayer.setBaseImagery({
+    type: Daisy.GeoImageryType.XYZ,
+    url: Daisy.BuildModuleUrl.getUrl(
+        "static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg",
+    ),
+    minLevel: 0,
+    maxLevel: 2,
+    tilingScheme: "geographic",
+})
+```
 
 ### 叠加图层
 

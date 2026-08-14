@@ -6,7 +6,7 @@
 
 # Interface: XYZImageryOptions
 
-XYZ 瓦片影像配置
+XYZ 瓦片影像配置。
 
 ## Extends
 
@@ -131,6 +131,15 @@ XYZ 瓦片影像配置
 > `optional` **subdomains?**: `string`[]
 
 子域名列表，用于 {s} 变量
+
+***
+
+### tilingScheme?
+
+> `optional` **tilingScheme?**: [`XYZImageryTilingScheme`](../types/XYZImageryTilingScheme.md)
+
+瓦片坐标方案，默认使用 Web Mercator。
+地理坐标瓦片通常覆盖完整的 -90° 到 90° 纬度范围。
 
 ***
 

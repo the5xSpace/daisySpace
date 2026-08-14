@@ -81,6 +81,20 @@ Color.GREEN.withAlpha(0.3)
 
 ***
 
+### cornerLengthRatio?
+
+> `optional` **cornerLengthRatio?**: `number`
+
+角点短线占对应盒边的比例。
+
+#### Default
+
+```ts
+0.22
+```
+
+***
+
 ### detectCollision?
 
 > `optional` **detectCollision?**: `boolean`
@@ -135,6 +149,20 @@ false
 
 ***
 
+### includeInBoundingSphere?
+
+> `optional` **includeInBoundingSphere?**: `boolean`
+
+是否参与实体包围球聚合。
+
+#### Default
+
+```ts
+true
+```
+
+***
+
 ### outlineColor?
 
 > `optional` **outlineColor?**: `Color`
@@ -146,6 +174,49 @@ false
 ```ts
 Color.BLACK
 ```
+
+***
+
+### outlineGlow?
+
+> `optional` **outlineGlow?**: `boolean`
+
+是否在主轮廓外绘制一层发光轮廓。
+
+***
+
+### outlineGlowColor?
+
+> `optional` **outlineGlowColor?**: `Color`
+
+发光轮廓颜色。
+
+***
+
+### outlineGlowPower?
+
+> `optional` **outlineGlowPower?**: `number`
+
+PolylineGlow 的发光强度。
+
+***
+
+### outlineGlowWidth?
+
+> `optional` **outlineGlowWidth?**: `number`
+
+发光轮廓宽度（像素）。
+
+***
+
+### outlineMode?
+
+> `optional` **outlineMode?**: `"box"` \| `"corners"`
+
+轮廓显示模式。
+
+- `box`：显示完整 12 条边（默认，兼容碰撞调试盒）
+- `corners`：只显示 8 个角上的短线段，适合选中态聚焦盒
 
 ***
 
@@ -185,6 +256,20 @@ Color.BLACK
 > `optional` **show?**: `boolean`
 
 是否显示
+
+#### Default
+
+```ts
+true
+```
+
+***
+
+### surfaceVisible?
+
+> `optional` **surfaceVisible?**: `boolean`
+
+是否显示透明盒面。选中态聚焦盒通常关闭盒面，只保留角点线段。
 
 #### Default
 

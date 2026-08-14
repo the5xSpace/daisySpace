@@ -23,91 +23,61 @@ const scene = new Daisy.Scene({
 
 ## Param
 
-**options**
-
 Object with the following properties:
 
 ## Param
-
-**options.canvas**
 
 The HTML canvas element to create the scene for.
 
 ## Param
 
-**options.contextOptions**
-
 Context and WebGL creation properties.
 
 ## Param
-
-**options.creditContainer**
 
 The HTML element in which the credits will be displayed. If not specified, a credit container will be created and added as a sibling of the canvas.
 
 ## Param
 
-**options.creditViewport**
-
 The HTML element in which to display the credit popup. If not specified, the viewport will be added as a sibling of the canvas.
 
 ## Param
-
-**options.ellipsoid**
 
 The default ellipsoid. If not specified, the default ellipsoid is used.
 
 ## Param
 
-**options.mapProjection**
-
 The map projection to use in 2D and Columbus View modes.
 
 ## Param
-
-**options.orderIndependentTranslucency**
 
 If true and the configuration supports it, use order independent translucency.
 
 ## Param
 
-**options.scene3DOnly**
-
 If true, optimizes memory use and performance for 3D mode but disables the ability to use 2D or Columbus View.
 
 ## Param
-
-**options.shadows**
 
 Determines if shadows are cast by light sources.
 
 ## Param
 
-**options.mapMode2D**
-
 Determines if the 2D map is rotatable or can be scrolled infinitely in the horizontal direction.
 
 ## Param
-
-**options.requestRenderMode**
 
 If true, rendering a frame will only occur when needed as determined by changes within the scene. Enabling improves performance of the application, but requires using [Scene#requestRender](#requestrender) to render a new frame explicitly in this mode. This will be necessary in many cases after making changes to the scene in other parts of the API. See [Performance with Explicit Rendering](https://cesium.com/blog/2018/01/24/cesium-scene-rendering-performance/|Improving).
 
 ## Param
 
-**options.maximumRenderTimeChange**
-
 If requestRenderMode is true, this value defines the maximum change in simulation time allowed before a render is requested. See [Performance with Explicit Rendering](https://cesium.com/blog/2018/01/24/cesium-scene-rendering-performance/|Improving).
 
 ## Param
 
-**options.depthPlaneEllipsoidOffset**
-
 Adjust the DepthPlane to address rendering artefacts below ellipsoid zero elevation.
 
 ## Param
-
-**options.msaaSamples**
 
 If provided, this value controls the rate of multisample antialiasing. Typical multisampling rates are 2, 4, and sometimes 8 samples per pixel. Higher sampling rates of MSAA may impact performance in exchange for improved visual quality. This value only applies to WebGL2 contexts that support multisample render targets. Set to 1 to disable MSAA.
 

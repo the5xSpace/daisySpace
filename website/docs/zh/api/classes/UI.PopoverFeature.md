@@ -567,6 +567,22 @@ Whether the popover is requested to be open.
 
 ***
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除所属实体当前的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`clearFocusTarget`](Feature.md#clearfocustarget)
+
+***
+
 ### destroy()
 
 > **destroy**(): `void`
@@ -935,6 +951,54 @@ undefined 配置项
 #### Inherited from
 
 [`Feature`](Feature.md).[`setBodyAxis`](Feature.md#setbodyaxis)
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+将当前 Feature 设为所属实体的选中聚焦目标。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`setFocusTarget`](Feature.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前 Feature 的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`setFocusVisible`](Feature.md#setfocusvisible)
 
 ***
 

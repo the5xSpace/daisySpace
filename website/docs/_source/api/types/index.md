@@ -1,6 +1,6 @@
 # Type Aliases
 
-共 271 个 types。
+共 276 个 types。
 
 | 名称 | 链接 |
 |------|------|
@@ -21,6 +21,7 @@
 | `AttitudeSphereOptions` | [AttitudeSphereOptions](AttitudeSphereOptions.md) |
 | `AttitudeSphereOverlayOptions` | [AttitudeSphereOverlayOptions](AttitudeSphereOverlayOptions.md) |
 | `AutoNormalsMode` | [AutoNormalsMode](AutoNormalsMode.md) |
+| `BoundBoxFocusBoundsResolver` | [BoundBoxFocusBoundsResolver](BoundBoxFocusBoundsResolver.md) |
 | `CameraFlyToTargetOptions` | [CameraFlyToTargetOptions](CameraFlyToTargetOptions.md) |
 | `CameraViewTarget` | [CameraViewTarget](CameraViewTarget.md) |
 | `CapsuleParticleEmitter2DBlendMode` | [CapsuleParticleEmitter2DBlendMode](CapsuleParticleEmitter2DBlendMode.md) |
@@ -162,6 +163,10 @@
 | `GroundStationConfig` | [GroundStationConfig](PW.GroundStationConfig.md) |
 | `GroundStationPresetModel` | [GroundStationPresetModel](PW.GroundStationPresetModel.md) |
 | `GroundTrackComponentOptions` | [GroundTrackComponentOptions](PW.GroundTrackComponentOptions.md) |
+| `InstantOrbitComponentOptions` | [InstantOrbitComponentOptions](PW.InstantOrbitComponentOptions.md) |
+| `InstantOrbitDiagnostic` | [InstantOrbitDiagnostic](PW.InstantOrbitDiagnostic.md) |
+| `InstantOrbitElements` | [InstantOrbitElements](PW.InstantOrbitElements.md) |
+| `InstantOrbitUnavailableReason` | [InstantOrbitUnavailableReason](PW.InstantOrbitUnavailableReason.md) |
 | `LinkDirection` | [LinkDirection](PW.LinkDirection.md) |
 | `LinkEndpoint` | [LinkEndpoint](PW.LinkEndpoint.md) |
 | `LinkOptions` | [LinkOptions](PW.LinkOptions.md) |
@@ -184,8 +189,6 @@
 | `PropulsionParticleOptions` | [PropulsionParticleOptions](PW.PropulsionParticleOptions.md) |
 | `PropulsionParticlePreset` | [PropulsionParticlePreset](PW.PropulsionParticlePreset.md) |
 | `PropulsionParticleRenderer` | [PropulsionParticleRenderer](PW.PropulsionParticleRenderer.md) |
-| `RealtimeOrbitComponentOptions` | [RealtimeOrbitComponentOptions](PW.RealtimeOrbitComponentOptions.md) |
-| `RealtimeOrbitElements` | [RealtimeOrbitElements](PW.RealtimeOrbitElements.md) |
 | `RocketAscentInput` | [RocketAscentInput](PW.RocketAscentInput.md) |
 | `RocketConfig` | [RocketConfig](PW.RocketConfig.md) |
 | `RocketDefaultVisualsOptions` | [RocketDefaultVisualsOptions](PW.RocketDefaultVisualsOptions.md) |
@@ -227,6 +230,7 @@
 | `PreviewHostSpec` | [PreviewHostSpec](PreviewHostSpec.md) |
 | `PropagationOptions` | [PropagationOptions](PropagationOptions.md) |
 | `RectangleOptions` | [RectangleOptions](RectangleOptions.md) |
+| `ResourceKey` | [ResourceKey](ResourceKey.md) |
 | `Rotation` | [Rotation](Rotation.md) |
 | `SceneSwitcherOptions` | [SceneSwitcherOptions](SceneSwitcherOptions.md) |
 | `ShaderParamType` | [ShaderParamType](ShaderParamType.md) |
@@ -275,3 +279,4 @@
 | `WalkerTopology` | [WalkerTopology](WalkerTopology.md) |
 | `WallOptions` | [WallOptions](WallOptions.md) |
 | `WidgetThemeModeOrEffects` | [WidgetThemeModeOrEffects](WidgetThemeModeOrEffects.md) |
+| `XYZImageryTilingScheme` | [XYZImageryTilingScheme](XYZImageryTilingScheme.md) |

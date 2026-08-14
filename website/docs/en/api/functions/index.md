@@ -1,6 +1,6 @@
 # Functions
 
-86 functions total.
+87 functions total.
 
 | Name | Link |
 |------|------|
@@ -64,6 +64,7 @@
 | `calculateSunConeDimensions()` | [calculateSunConeDimensions()](calculateSunConeDimensions.md) |
 | `clampLineWidth()` | [clampLineWidth()](clampLineWidth.md) |
 | `classifySunOcclusion()` | [classifySunOcclusion()](classifySunOcclusion.md) |
+| `createBuiltinImageryOptions()` | [createBuiltinImageryOptions()](createBuiltinImageryOptions.md) |
 | `createDateTime()` | [createDateTime()](createDateTime.md) |
 | `createDisposableDetachMaterial()` | [createDisposableDetachMaterial()](createDisposableDetachMaterial.md) |
 | `createParticleEmitter()` | [createParticleEmitter()](createParticleEmitter.md) |

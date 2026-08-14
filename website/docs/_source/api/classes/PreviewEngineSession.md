@@ -158,7 +158,7 @@ Session 接管该实例的独占生命周期，但不会清空它已有的 Featu
 
 ##### range?
 
-`number` = `...`
+`number`
 
 #### Returns
 

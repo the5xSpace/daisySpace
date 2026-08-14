@@ -9,7 +9,18 @@ import * as Daisy from "daisy-space-sdk"
 
 const engine = await Daisy.Engine.create("daisyContainer")
 const entity = engine.createEntity("demo")
-entity.position = Daisy.Cartesian3.fromDegrees(116.4, 39.9, 500_000)
+const trajectory = new Daisy.TrajectorySampleBodyFixed()
+trajectory.pushData([
+    {
+        time: Daisy.JulianDate.fromIso8601("2026-01-01T00:00:00Z"),
+        position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 500_000),
+    },
+    {
+        time: Daisy.JulianDate.fromIso8601("2026-01-01T01:00:00Z"),
+        position: Daisy.Cartesian3.fromDegrees(120.0, 35.0, 500_000),
+    },
+])
+entity.position = trajectory
 entity.addFeature(new Daisy.TrailPathFeature({
     width: 3,
 
@@ -30,6 +41,8 @@ entity.addFeature(new Daisy.TrailPathFeature({
     show: true,
 }))
 ```
+
+`TrailPathFeature` expects the Entity's `position` to be a trajectory-sampling object. A static `Cartesian3` represents one fixed position and cannot produce a historical or future trail; use `entity.setPath()` as the unified shortcut when appropriate.
 
 Or use `entity.setPath()` as a shortcut:
 

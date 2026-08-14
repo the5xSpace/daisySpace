@@ -118,8 +118,17 @@ ArcGIS MapServer 影像配置
 
 ***
 
-### url
+### url?
 
-> **url**: `string`
+> `optional` **url?**: `string`
 
-ArcGIS MapServer 服务地址
+ArcGIS MapServer 服务地址；未设置时使用全局授权设置中的地址，
+再回退到 SDK 默认 World Street Map 地址。
+
+***
+
+### usePreCachedTilesIfAvailable?
+
+> `optional` **usePreCachedTilesIfAvailable?**: `boolean`
+
+是否优先使用 ArcGIS 预缓存瓦片；默认 `false`，避免创建阶段请求 `?f=json` 元数据。

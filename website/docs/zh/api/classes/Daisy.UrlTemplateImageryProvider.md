@@ -45,8 +45,6 @@ const custom = new Daisy.UrlTemplateImageryProvider({
 
 ## Param
 
-**options**
-
 Object describing initialization options
 
 ## Extended by

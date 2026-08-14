@@ -24,8 +24,8 @@ importers:
   playground:
     dependencies:
       daisy-space-sdk:
-        specifier: file:../../DaisySim
-        version: file:../DaisySim(vite@5.4.21(@types/node@22.20.1)(lightningcss@1.32.0))(vue@3.5.39(typescript@5.9.3))
+        specifier: file:../../daisySpaceSdk
+        version: file:../daisySpaceSdk(vite@5.4.21(@types/node@22.20.1)(lightningcss@1.32.0))
     devDependencies:
       '@codemirror/commands':
         specifier: ^6.8.1
@@ -923,9 +923,6 @@ packages:
   bitmap-sdf@1.0.4:
     resolution: {integrity: sha512-1G3U4n5JE6RAiALMxu0p1XmeZkTeCwGKykzsLTCqVzfSDaN6S7fKnkIkfejogz+iwqBWc0UYAIKnKHNN7pSfDg==}
 
-  bootstrap-icons@1.13.1:
-    resolution: {integrity: sha512-ijombt4v6bv5CLeXvRWKy7CuM3TRTuPEuGaGKvTV5cz65rQSY8RQ2JcHt6b90cBBAC7s8fsf2EkQDldzCoXUjw==}
-
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
 
@@ -971,8 +968,8 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  daisy-space-sdk@file:../DaisySim:
-    resolution: {directory: ../DaisySim, type: directory}
+  daisy-space-sdk@file:../daisySpaceSdk:
+    resolution: {directory: ../daisySpaceSdk, type: directory}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -2448,8 +2445,6 @@ snapshots:
 
   bitmap-sdf@1.0.4: {}
 
-  bootstrap-icons@1.13.1: {}
-
   ccount@2.0.1: {}
 
   cesium-navigation-es6@3.0.9:
@@ -2493,11 +2488,10 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  daisy-space-sdk@file:../DaisySim(vite@5.4.21(@types/node@22.20.1)(lightningcss@1.32.0))(vue@3.5.39(typescript@5.9.3)):
+  daisy-space-sdk@file:../daisySpaceSdk(vite@5.4.21(@types/node@22.20.1)(lightningcss@1.32.0)):
     dependencies:
       '@tailwindcss/vite': 4.3.2(vite@5.4.21(@types/node@22.20.1)(lightningcss@1.32.0))
       '@turf/simplify': 7.3.5
-      bootstrap-icons: 1.13.1
       cesium: 1.137.0
       cesium-navigation-es6: 3.0.9
       earcut: 3.2.3
@@ -2508,11 +2502,9 @@ snapshots:
       jsts: 2.12.1
       lit-html: 3.3.3
       lucide: 1.24.0
-      lucide-vue-next: 0.577.0(vue@3.5.39(typescript@5.9.3))
       polygon-clipping: 0.15.7
     transitivePeerDependencies:
       - vite
-      - vue
 
   debug@4.4.3:
     dependencies:

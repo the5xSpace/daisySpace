@@ -38,9 +38,10 @@ var modelBaseAlt = 2200400; // 模型高度 2200.4km
 engine.geoLayer.setSky({ type: Daisy.GeoSkyType.Cesium });
 engine.geoLayer.setBaseImagery({
     type: Daisy.GeoImageryType.XYZ,
-    url: Daisy.BuildModuleUrl.getUrl("static/earth/{z}/{x}/{y}.jpg"),
+    url: Daisy.BuildModuleUrl.getUrl("static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg"),
     minLevel: 0,
-    maxLevel: 3,
+    maxLevel: 2,
+    tilingScheme: "geographic",
 });
 
 // ── 2. 创建黄色平台 ──────────────────────────────────────────────

@@ -43,31 +43,21 @@ const instanceTop = new Daisy.GeometryInstance({
 
 ## Param
 
-**options**
-
 Object with the following properties:
 
 ## Param
-
-**options.geometry**
 
 The geometry to instance.
 
 ## Param
 
-**options.modelMatrix**
-
 The model matrix that transforms to transform the geometry from model to world coordinates.
 
 ## Param
 
-**options.id**
-
 A user-defined object to return when the instance is picked with [Scene#pick](Daisy.Scene.md#pick) or get/set per-instance attributes with Primitive#getGeometryInstanceAttributes.
 
 ## Param
-
-**options.attributes**
 
 Per-instance attributes like a show or color attribute shown in the example below.
 

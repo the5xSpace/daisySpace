@@ -75,79 +75,53 @@ scene.primitives.add(new Daisy.GroundPrimitive({
 
 ## Param
 
-**options**
-
 Object with the following properties:
 
 ## Param
-
-**options.geometryInstances**
 
 The geometry instances to render.
 
 ## Param
 
-**options.appearance**
-
 The appearance used to render the primitive. Defaults to a flat PerInstanceColorAppearance when GeometryInstances have a color attribute.
 
 ## Param
-
-**options.show**
 
 Determines if this primitive will be shown.
 
 ## Param
 
-**options.vertexCacheOptimize**
-
 When `true`, geometry vertices are optimized for the pre and post-vertex-shader caches.
 
 ## Param
-
-**options.interleave**
 
 When `true`, geometry vertex attributes are interleaved, which can slightly improve rendering performance but increases load time.
 
 ## Param
 
-**options.compressVertices**
-
 When `true`, the geometry vertices are compressed, which will save memory.
 
 ## Param
-
-**options.releaseGeometryInstances**
 
 When `true`, the primitive does not keep a reference to the input `geometryInstances` to save memory.
 
 ## Param
 
-**options.allowPicking**
-
 When `true`, each geometry instance will only be pickable with [Scene#pick](Daisy.Scene.md#pick). When `false`, GPU memory is saved.
 
 ## Param
-
-**options.asynchronous**
 
 Determines if the primitive will be created asynchronously or block until ready. If false initializeTerrainHeights() must be called first.
 
 ## Param
 
-**options.classificationType**
-
 Determines whether terrain, 3D Tiles or both will be classified.
 
 ## Param
 
-**options.debugShowBoundingVolume**
-
 For debugging only. Determines if this primitive's commands' bounding spheres are shown.
 
 ## Param
-
-**options.debugShowShadowVolume**
 
 For debugging only. Determines if the shadow volume for each geometry in the primitive is drawn. Must be `true` on
  creation for the volumes to be created before the geometry is released or options.releaseGeometryInstance must be `false`.

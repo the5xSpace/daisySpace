@@ -40,31 +40,21 @@ const geometry = new Daisy.Geometry({
 
 ## Param
 
-**options**
-
 Object with the following properties:
 
 ## Param
-
-**options.attributes**
 
 Attributes, which make up the geometry's vertices.
 
 ## Param
 
-**options.primitiveType**
-
 The type of primitives in the geometry.
 
 ## Param
 
-**options.indices**
-
 Optional index data that determines the primitives in the geometry.
 
 ## Param
-
-**options.boundingSphere**
 
 An optional bounding sphere that fully enclosed the geometry.
 

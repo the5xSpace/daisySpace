@@ -39,7 +39,7 @@
 
 ### equatorDiskMaterial?
 
-> `optional` **equatorDiskMaterial?**: `Daisy.Color`
+> `optional` **equatorDiskMaterial?**: [`DColor`](DColor.md)
 
 赤道面填充色，默认半透明黄色
 
@@ -83,7 +83,7 @@
 
 ### orbitPlaneMaterial?
 
-> `optional` **orbitPlaneMaterial?**: `Daisy.Color`
+> `optional` **orbitPlaneMaterial?**: [`DColor`](DColor.md)
 
 轨道面填充色，默认半透明青色
 

@@ -12,7 +12,7 @@ export interface ScenePreset {
     setup: (container: HTMLElement | string) => Promise<Daisy.Engine>;
 }
 
-/** 最小地球场景（本地 XYZ + 无时间轴） */
+/** 最小地球场景（本地 NaturalEarthII 地理瓦片 + 无时间轴） */
 export const earthBasic: ScenePreset = {
     id: "earth-basic",
     label: "地球基础",
@@ -23,9 +23,10 @@ export const earthBasic: ScenePreset = {
         engine.geoLayer.clearImagery();
         engine.geoLayer.setBaseImagery({
             type: Daisy.GeoImageryType.XYZ,
-            url: Daisy.BuildModuleUrl.getUrl("static/earth/{z}/{x}/{y}.jpg"),
+            url: Daisy.BuildModuleUrl.getUrl("static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg"),
             minLevel: 0,
-            maxLevel: 3,
+            maxLevel: 2,
+            tilingScheme: "geographic",
         });
         return engine;
     },
@@ -52,9 +53,10 @@ export const earthWithTimeline: ScenePreset = {
         engine.geoLayer.clearImagery();
         engine.geoLayer.setBaseImagery({
             type: Daisy.GeoImageryType.XYZ,
-            url: Daisy.BuildModuleUrl.getUrl("static/earth/{z}/{x}/{y}.jpg"),
+            url: Daisy.BuildModuleUrl.getUrl("static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg"),
             minLevel: 0,
-            maxLevel: 3,
+            maxLevel: 2,
+            tilingScheme: "geographic",
         });
         return engine;
     },

@@ -8,11 +8,9 @@
 
 Provides a single, top-level imagery tile. The single image is assumed to be in
 the Geographic projection (i.e. WGS84 / EPSG:4326),
-and will be rendered using a GeographicTilingScheme.
+and will be rendered using a [GeographicTilingScheme](Daisy.GeographicTilingScheme.md).
 
 ## Param
-
-**options**
 
 Object describing initialization options
 

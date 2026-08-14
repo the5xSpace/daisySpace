@@ -119,6 +119,24 @@ vehicle.addComponent(sensor);
 
 ***
 
+### entity
+
+#### Get Signature
+
+> **get** **entity**(): [`Entity`](Entity.md) \| `undefined`
+
+当前物理组件的渲染宿主实体。
+
+##### Returns
+
+[`Entity`](Entity.md) \| `undefined`
+
+#### Inherited from
+
+[`BaseComponent`](PW.BaseComponent.md).[`entity`](PW.BaseComponent.md#entity)
+
+***
+
 ### id
 
 #### Get Signature
@@ -260,6 +278,22 @@ vehicle.addComponent(sensor);
 #### Returns
 
 `void`
+
+***
+
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除当前物理组件的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`BaseComponent`](PW.BaseComponent.md).[`clearFocusTarget`](PW.BaseComponent.md#clearfocustarget)
 
 ***
 
@@ -487,6 +521,25 @@ const records = sensor.computeFootprintRecords(30);
 `number`
 
 当前估算的可见数量。
+
+***
+
+### getFocusFeatures()
+
+> **getFocusFeatures**(): [`IFeature`](../interfaces/IFeature.md)[]
+
+返回组件直接持有的 Feature。
+
+物理组件的具体实现通常将 Feature 保存在私有字段中；这里仅在用户选中组件时
+做一次浅层解析，避免把组件内部的渲染 Feature 暴露成新的强制约束。
+
+#### Returns
+
+[`IFeature`](../interfaces/IFeature.md)[]
+
+#### Inherited from
+
+[`BaseComponent`](PW.BaseComponent.md).[`getFocusFeatures`](PW.BaseComponent.md#getfocusfeatures)
 
 ***
 
@@ -737,6 +790,54 @@ const records = sensor.computeFootprintRecords(30);
 #### Returns
 
 `void`
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+显示当前物理组件的选中聚焦盒。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`BaseComponent`](PW.BaseComponent.md).[`setFocusTarget`](PW.BaseComponent.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前物理组件的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`BaseComponent`](PW.BaseComponent.md).[`setFocusVisible`](PW.BaseComponent.md#setfocusvisible)
 
 ***
 

@@ -122,4 +122,4 @@ Layer type: OpenStreetMap
 
 > `optional` **url?**: `string`
 
-OSM service URL, defaults to the official URL
+OSM service URL, defaults to `https://tile.openstreetmap.org/`.

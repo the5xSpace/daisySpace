@@ -10,25 +10,17 @@ A bounding rectangle given by a corner, width and height.
 
 ## Param
 
-**x**
-
 The x coordinate of the rectangle.
 
 ## Param
-
-**y**
 
 The y coordinate of the rectangle.
 
 ## Param
 
-**width**
-
 The width of the rectangle.
 
 ## Param
-
-**height**
 
 The height of the rectangle.
 

@@ -18,9 +18,21 @@ CelestialMarkerWidget 支持的内置天体。
 
 ***
 
+### Jupiter
+
+> **Jupiter**: `"jupiter"`
+
+***
+
 ### Mars
 
 > **Mars**: `"mars"`
+
+***
+
+### Mercury
+
+> **Mercury**: `"mercury"`
 
 ***
 
@@ -30,6 +42,36 @@ CelestialMarkerWidget 支持的内置天体。
 
 ***
 
+### Neptune
+
+> **Neptune**: `"neptune"`
+
+***
+
+### Pluto
+
+> **Pluto**: `"pluto"`
+
+***
+
+### Saturn
+
+> **Saturn**: `"saturn"`
+
+***
+
 ### Sun
 
 > **Sun**: `"sun"`
+
+***
+
+### Uranus
+
+> **Uranus**: `"uranus"`
+
+***
+
+### Venus
+
+> **Venus**: `"venus"`

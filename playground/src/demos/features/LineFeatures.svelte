@@ -43,9 +43,10 @@ engine.play();
 engine.geoLayer.clearImagery();
 engine.geoLayer.setBaseImagery({
     type: Daisy.GeoImageryType.XYZ,
-    url: Daisy.BuildModuleUrl.getUrl("static/earth/{z}/{x}/{y}.jpg"),
+    url: Daisy.BuildModuleUrl.getUrl("static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg"),
     minLevel: 0,
-    maxLevel: 3,
+    maxLevel: 2,
+    tilingScheme: "geographic",
 });
 engine.geoLayer.setSky({ type: Daisy.GeoSkyType.SkyBox, sources: {
     positiveX: Daisy.BuildModuleUrl.getUrl("static/assets/SkyBox/default/px.png"),

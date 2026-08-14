@@ -31,55 +31,37 @@ const geometry = Daisy.RectangleGeometry.createGeometry(rectangle);
 
 ## Param
 
-**options**
-
 Object with the following properties:
 
 ## Param
-
-**options.rectangle**
 
 A cartographic rectangle with north, south, east and west properties in radians.
 
 ## Param
 
-**options.vertexFormat**
-
 The vertex attributes to be computed.
 
 ## Param
-
-**options.ellipsoid**
 
 The ellipsoid on which the rectangle lies.
 
 ## Param
 
-**options.granularity**
-
 The distance, in radians, between each latitude and longitude. Determines the number of positions in the buffer.
 
 ## Param
-
-**options.height**
 
 The distance in meters between the rectangle and the ellipsoid surface.
 
 ## Param
 
-**options.rotation**
-
 The rotation of the rectangle, in radians. A positive rotation is counter-clockwise.
 
 ## Param
 
-**options.stRotation**
-
 The rotation of the texture coordinates, in radians. A positive rotation is counter-clockwise.
 
 ## Param
-
-**options.extrudedHeight**
 
 The distance in meters between the rectangle's extruded face and the ellipsoid surface.
 

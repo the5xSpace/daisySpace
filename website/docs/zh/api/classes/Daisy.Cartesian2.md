@@ -10,13 +10,9 @@ A 2D Cartesian point.
 
 ## Param
 
-**x**
-
 The X component.
 
 ## Param
-
-**y**
 
 The Y component.
 

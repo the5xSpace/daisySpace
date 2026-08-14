@@ -9,7 +9,18 @@ import * as Daisy from "daisy-space-sdk"
 
 const engine = await Daisy.Engine.create("daisyContainer")
 const entity = engine.createEntity("demo")
-entity.position = Daisy.Cartesian3.fromDegrees(116.4, 39.9, 500_000)
+const trajectory = new Daisy.TrajectorySampleBodyFixed()
+trajectory.pushData([
+    {
+        time: Daisy.JulianDate.fromIso8601("2026-01-01T00:00:00Z"),
+        position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 500_000),
+    },
+    {
+        time: Daisy.JulianDate.fromIso8601("2026-01-01T01:00:00Z"),
+        position: Daisy.Cartesian3.fromDegrees(120.0, 35.0, 500_000),
+    },
+])
+entity.position = trajectory
 entity.addFeature(new Daisy.TrailPathFeature({
     width: 3,
 
@@ -30,6 +41,8 @@ entity.addFeature(new Daisy.TrailPathFeature({
     show: true,
 }))
 ```
+
+`TrailPathFeature` 需要实体的 `position` 是轨迹采样对象。静态 `Cartesian3` 只表示一个固定位置，不能生成历史或未来轨迹；如果希望使用统一的快捷入口，可以调用 `entity.setPath()`，它会使用同一个轨迹线实现。
 
 或通过 `entity.setPath()` 快捷设置：
 

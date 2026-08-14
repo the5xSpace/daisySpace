@@ -31,10 +31,7 @@ import { HighPrecisionSGP4Analyzer } from "./sdk/index";
 const analyzer = new HighPrecisionSGP4Analyzer();
 await analyzer.init();
 
-const tle = [
- "1 25544U 98067A 20194.51782528 -.00002182 00000-0 -11606-4 0 2927",
- "2 25544 51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537"
-];
+const tle = await analyzer.loadTleData(25544);
 
 const nowUtc = new Date();
 const state = await analyzer.computeStateAtTime(tle, nowUtc, {

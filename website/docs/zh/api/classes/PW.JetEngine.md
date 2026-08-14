@@ -94,6 +94,24 @@
 
 ***
 
+### entity
+
+#### Get Signature
+
+> **get** **entity**(): [`Entity`](Entity.md) \| `undefined`
+
+当前物理组件的渲染宿主实体。
+
+##### Returns
+
+[`Entity`](Entity.md) \| `undefined`
+
+#### Inherited from
+
+[`PropulsionComponent`](PW.PropulsionComponent.md).[`entity`](PW.PropulsionComponent.md#entity)
+
+***
+
 ### id
 
 #### Get Signature
@@ -278,6 +296,22 @@
 
 ## Methods
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除当前物理组件的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`PropulsionComponent`](PW.PropulsionComponent.md).[`clearFocusTarget`](PW.PropulsionComponent.md#clearfocustarget)
+
+***
+
 ### destroy()
 
 > **destroy**(): `void`
@@ -291,6 +325,25 @@
 #### Inherited from
 
 [`PropulsionComponent`](PW.PropulsionComponent.md).[`destroy`](PW.PropulsionComponent.md#destroy)
+
+***
+
+### getFocusFeatures()
+
+> **getFocusFeatures**(): [`IFeature`](../interfaces/IFeature.md)[]
+
+返回组件直接持有的 Feature。
+
+物理组件的具体实现通常将 Feature 保存在私有字段中；这里仅在用户选中组件时
+做一次浅层解析，避免把组件内部的渲染 Feature 暴露成新的强制约束。
+
+#### Returns
+
+[`IFeature`](../interfaces/IFeature.md)[]
+
+#### Inherited from
+
+[`PropulsionComponent`](PW.PropulsionComponent.md).[`getFocusFeatures`](PW.PropulsionComponent.md#getfocusfeatures)
 
 ***
 
@@ -379,6 +432,54 @@
 #### Inherited from
 
 [`PropulsionComponent`](PW.PropulsionComponent.md).[`setEnabled`](PW.PropulsionComponent.md#setenabled)
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+显示当前物理组件的选中聚焦盒。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`PropulsionComponent`](PW.PropulsionComponent.md).[`setFocusTarget`](PW.PropulsionComponent.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前物理组件的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`PropulsionComponent`](PW.PropulsionComponent.md).[`setFocusVisible`](PW.PropulsionComponent.md#setfocusvisible)
 
 ***
 

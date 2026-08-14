@@ -10,25 +10,17 @@ A two dimensional region specified as longitude and latitude coordinates.
 
 ## Param
 
-**west**
-
 The westernmost longitude, in radians, in the range [-Pi, Pi].
 
 ## Param
-
-**south**
 
 The southernmost latitude, in radians, in the range [-Pi/2, Pi/2].
 
 ## Param
 
-**east**
-
 The easternmost longitude, in radians, in the range [-Pi, Pi].
 
 ## Param
-
-**north**
 
 The northernmost latitude, in radians, in the range [-Pi/2, Pi/2].
 

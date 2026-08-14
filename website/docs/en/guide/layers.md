@@ -20,15 +20,34 @@ engine.geoLayer.setBaseImagery({
     maxLevel: 18,
 })
 
-// 内置类型
+// SDK 主内置影像
+engine.geoLayer.setBaseImagery({
+    type: Daisy.GeoImageryType.XYZ,
+    url: Daisy.BuildModuleUrl.getUrl("static/earth/{z}/{x}/{y}.jpg"),
+    minLevel: 0,
+    maxLevel: 3,
+    tilingScheme: "webMercator",
+})
+
+// 第二套内置影像：完整 Geographic 纬度范围
+engine.geoLayer.setBaseImagery({
+    type: Daisy.GeoImageryType.XYZ,
+    url: Daisy.BuildModuleUrl.getUrl(
+        "static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg",
+    ),
+    minLevel: 0,
+    maxLevel: 2,
+    tilingScheme: "geographic",
+})
+
+// OpenStreetMap 默认地址
 engine.geoLayer.setBaseImagery({
     type: Daisy.GeoImageryType.OpenStreetMap,
 })
 
-// ArcGIS 地图服务
+// ArcGIS 地图服务；url 可省略，使用全局设置或 SDK 默认地址
 engine.geoLayer.setBaseImagery({
     type: Daisy.GeoImageryType.ArcGisMapServer,
-    url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
 })
 ```
 
@@ -36,12 +55,56 @@ Supported `GeoImageryType` values:
 
 | Type | Description |
 |------|------|
-| `XYZ` | Standard tile service (`url` required; template `{z}/{y}/{x}`) |
-| `OpenStreetMap` | OSM OpenStreetMap data |
-| `ArcGisMapServer` | ArcGIS map service (`url` required) |
+| `XYZ` | Standard tile service (`url` required; choose a tiling scheme with `tilingScheme`) |
+| `OpenStreetMap` | OSM OpenStreetMap imagery (`url` is optional and defaults to the official service) |
+| `ArcGisMapServer` | ArcGIS map service (`url` is optional and uses the global setting or SDK default) |
 | `WMTS` | Standard WMTS service |
 | `WMS` | Standard WMS service |
 | `CesiumIon` | Cesium Ion resource (`assetId` required) |
+
+### Third-Party Map Resources and Authorization
+
+Inject third-party map tokens, keys, and default service URLs into the runtime with `GlobalConfig.configure()`. They remain in the host's local preferences or runtime context and are not written to Scenario, Package, or exported resource definitions.
+
+```typescript
+Daisy.GlobalConfig.configure({
+    thirdPartyResources: {
+        cesiumIon: { token: "your-cesium-ion-token" },
+        arcgis: {
+            key: "your-arcgis-key-or-token",
+            url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+        },
+        openstreetmap: {
+            url: "https://tile.openstreetmap.org/",
+        },
+    },
+})
+```
+
+OpenStreetMap defaults to `https://tile.openstreetmap.org/`; compatible services may use the `{key}` placeholder in their URL. ArcGIS disables `usePreCachedTilesIfAvailable` by default. If the service is unreachable or initialization fails, the SDK falls back to local `static/earth/` imagery while keeping the globe/ellipsoid visible.
+
+### XYZ Tiling Schemes
+
+`XYZ` uses the `webMercator` (Web Mercator) tiling scheme by default. It is suitable for most online map services, but the latitude range usually ends at approximately `±85.0511°`. To cover the full `-90°` to `90°` latitude range with geographic tiles, set `tilingScheme: "geographic"`.
+
+| Tiling scheme | Use case |
+|------|------|
+| `webMercator` | Default; suitable for Web Mercator services such as EPSG:3857 |
+| `geographic` | Suitable for EPSG:4326 / geographic tiles and can cover the poles |
+
+When using `geographic`, if the service stores tiles with TMS row numbering (the southernmost row is `0`), use `{reverseY}` in the URL. Standard XYZ services still use `{y}`:
+
+```typescript
+engine.geoLayer.setBaseImagery({
+    type: Daisy.GeoImageryType.XYZ,
+    url: Daisy.BuildModuleUrl.getUrl(
+        "static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg",
+    ),
+    minLevel: 0,
+    maxLevel: 2,
+    tilingScheme: "geographic",
+})
+```
 
 ### Overlay Layers
 

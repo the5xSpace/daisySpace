@@ -68,6 +68,7 @@
 - [CustomShader](../classes/Daisy.CustomShader.md)
 - [DistanceDisplayCondition](../classes/Daisy.DistanceDisplayCondition.md)
 - [Ellipsoid](../classes/Daisy.Ellipsoid.md)
+- [GeographicTilingScheme](../classes/Daisy.GeographicTilingScheme.md)
 - [Geometry](../classes/Daisy.Geometry.md)
 - [GeometryAttribute](../classes/Daisy.GeometryAttribute.md)
 - [GeometryAttributes](../classes/Daisy.GeometryAttributes.md)

@@ -46,8 +46,6 @@ const esri = await Daisy.ArcGisMapServerImageryProvider.fromUrl(
 
 ## Param
 
-**options**
-
 Object describing initialization options
 
 ## Constructors

@@ -39,39 +39,27 @@ labels.add({
 
 ## Param
 
-**options**
-
 Object with the following properties:
 
 ## Param
-
-**options.modelMatrix**
 
 The 4x4 transformation matrix that transforms each label from model to world coordinates.
 
 ## Param
 
-**options.debugShowBoundingVolume**
-
 For debugging only. Determines if this primitive's commands' bounding spheres are shown.
 
 ## Param
 
-**options.scene**
-
 Must be passed in for labels that use the height reference property or will be depth tested against the globe.
 
 ## Param
-
-**options.blendOption**
 
 The label blending option. The default
 is used for rendering both opaque and translucent labels. However, if either all of the labels are completely opaque or all are completely translucent,
 setting the technique to BlendOption.OPAQUE or BlendOption.TRANSLUCENT can improve performance by up to 2x.
 
 ## Param
-
-**options.show**
 
 Determines if the labels in the collection will be shown.
 

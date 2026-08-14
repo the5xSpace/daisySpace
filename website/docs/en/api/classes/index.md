@@ -1,6 +1,6 @@
 # Classes
 
-237 classes.
+239 classes.
 
 | Name | Link |
 |------|------|
@@ -56,6 +56,7 @@
 | `CustomShader` | [CustomShader](Daisy.CustomShader.md) |
 | `DistanceDisplayCondition` | [DistanceDisplayCondition](Daisy.DistanceDisplayCondition.md) |
 | `Ellipsoid` | [Ellipsoid](Daisy.Ellipsoid.md) |
+| `GeographicTilingScheme` | [GeographicTilingScheme](Daisy.GeographicTilingScheme.md) |
 | `Geometry` | [Geometry](Daisy.Geometry.md) |
 | `GeometryAttribute` | [GeometryAttribute](Daisy.GeometryAttribute.md) |
 | `GeometryAttributes` | [GeometryAttributes](Daisy.GeometryAttributes.md) |
@@ -132,13 +133,13 @@
 | `FreeGeometryFeature` | [FreeGeometryFeature](FreeGeometryFeature.md) |
 | `GeoJsonFeature` | [GeoJsonFeature](GeoJsonFeature.md) |
 | `GeoLayerManager` | [GeoLayerManager](GeoLayerManager.md) |
+| `GlobalConfig` | [GlobalConfig](GlobalConfig.md) |
 | `GpuDeviceManager` | [GpuDeviceManager](GpuDeviceManager.md) |
 | `HeatmapFeature` | [HeatmapFeature](HeatmapFeature.md) |
 | `HemisphereEmitter` | [HemisphereEmitter](HemisphereEmitter.md) |
 | `ImageAsset` | [ImageAsset](ImageAsset.md) |
 | `ImageFeature` | [ImageFeature](ImageFeature.md) |
 | `KeyboardControl` | [KeyboardControl](KeyboardControl.md) |
-| `TextFeature` | [TextFeature](TextFeature.md) |
 | `Layer` | [Layer](Layer.md) |
 | `LineEmitter` | [LineEmitter](LineEmitter.md) |
 | `LiteController` | [LiteController](LiteController.md) |
@@ -168,7 +169,6 @@
 | `NearEarthOrbiter` | [NearEarthOrbiter](PW.NearEarthOrbiter.md) |
 | `OrbitElementsViewComponent` | [OrbitElementsViewComponent](PW.OrbitElementsViewComponent.md) |
 | `PropulsionComponent` | [PropulsionComponent](PW.PropulsionComponent.md) |
-| `RealtimeOrbitComponent` | [RealtimeOrbitComponent](PW.RealtimeOrbitComponent.md) |
 | `Rocket` | [Rocket](PW.Rocket.md) |
 | `RouteComponent` | [RouteComponent](PW.RouteComponent.md) |
 | `Satellite` | [Satellite](PW.Satellite.md) |
@@ -219,6 +219,7 @@
 | `SurfaceTriangulatedMeshBuilder` | [SurfaceTriangulatedMeshBuilder](SurfaceTriangulatedMeshBuilder.md) |
 | `TaskGanttWidget` | [TaskGanttWidget](TaskGanttWidget.md) |
 | `TaskTimeLineWidget` | [TaskTimeLineWidget](TaskTimeLineWidget.md) |
+| `TextFeature` | [TextFeature](TextFeature.md) |
 | `TilesetFeature` | [TilesetFeature](TilesetFeature.md) |
 | `TimeDynamicProperty` | [TimeDynamicProperty](TimeDynamicProperty.md) |
 | `TimePointTask` | [TimePointTask](TimePointTask.md) |

@@ -11,13 +11,9 @@ The holes themselves may also have holes which nest inner polygons.
 
 ## Param
 
-**positions**
-
 A linear ring defining the outer boundary of the polygon or hole.
 
 ## Param
-
-**holes**
 
 An array of polygon hierarchies defining holes in the polygon.
 

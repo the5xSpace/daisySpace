@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "daisy-space-sdk": "file:../../DaisySim"
+    "daisy-space-sdk": "file:../../daisySpaceSdk"
   },
   "devDependencies": {
     "@codemirror/commands": "^6.8.1",

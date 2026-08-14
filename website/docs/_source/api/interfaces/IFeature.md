@@ -137,6 +137,18 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 
 ## Methods
 
+### clearFocusTarget()?
+
+> `optional` **clearFocusTarget**(): `this`
+
+清除所属实体当前的聚焦盒。
+
+#### Returns
+
+`this`
+
+***
+
 ### destroy()
 
 > **destroy**(): `void`
@@ -362,6 +374,68 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 #### Returns
 
 `IFeature`
+
+***
+
+### setFocusHighlight()?
+
+> `optional` **setFocusHighlight**(`visible`, `options?`): `IFeature` \| `undefined`
+
+开启或关闭当前 Feature 的选中边缘高亮。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusHighlightOptions`
+
+#### Returns
+
+`IFeature` \| `undefined`
+
+***
+
+### setFocusTarget()?
+
+> `optional` **setFocusTarget**(`options?`): `this`
+
+将当前 Feature 设为所属实体的聚焦目标。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions`
+
+#### Returns
+
+`this`
+
+***
+
+### setFocusVisible()?
+
+> `optional` **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前 Feature 的聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions`
+
+#### Returns
+
+`this`
 
 ***
 

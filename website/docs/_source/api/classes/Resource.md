@@ -8,15 +8,8 @@
 
 资源注册中心。
 
-用于统一管理第三方地理服务所需的 token / key，
-避免在任何 Options 中直接暴露认证信息。
-
-## Example
-
-```ts
-Daisy.Resource.setCesiumIonToken("your-token");
-Daisy.Resource.setArcGisKey("your-key");
-```
+用于统一管理第三方地理服务所需的 token、key 与默认地址，
+避免在任何影像 Options 中重复携带认证信息。
 
 ## Constructors
 
@@ -30,6 +23,36 @@ Daisy.Resource.setArcGisKey("your-key");
 
 ## Methods
 
+### clear()
+
+> `static` **clear**(): `void`
+
+清除所有第三方资源配置，主要用于测试和应用退出。
+
+#### Returns
+
+`void`
+
+***
+
+### configure()
+
+> `static` **configure**(`options`): `void`
+
+批量配置第三方地图资源。空字符串会清除已有配置。
+
+#### Parameters
+
+##### options
+
+[`ThirdPartyResourceOptions`](../interfaces/ThirdPartyResourceOptions.md)
+
+#### Returns
+
+`void`
+
+***
+
 ### get()
 
 > `static` **get**(`key`): `string` \| `undefined`
@@ -40,7 +63,7 @@ Daisy.Resource.setArcGisKey("your-key");
 
 ##### key
 
-`"cesium-ion"` \| `"arcgis"`
+[`ResourceKey`](../types/ResourceKey.md)
 
 #### Returns
 
@@ -54,15 +77,27 @@ const token = Daisy.Resource.get("cesium-ion");
 
 ***
 
+### getConfiguredResources()
+
+> `static` **getConfiguredResources**(): [`ThirdPartyResourceOptions`](../interfaces/ThirdPartyResourceOptions.md)
+
+获取当前第三方资源配置快照；调用方应按敏感凭据处理返回值。
+
+#### Returns
+
+[`ThirdPartyResourceOptions`](../interfaces/ThirdPartyResourceOptions.md)
+
+***
+
 ### setArcGisKey()
 
-> `static` **setArcGisKey**(`key`): `void`
+> `static` **setArcGisKey**(`key?`): `void`
 
 设置 ArcGIS Key。
 
 #### Parameters
 
-##### key
+##### key?
 
 `string`
 
@@ -78,15 +113,51 @@ Daisy.Resource.setArcGisKey("your-key");
 
 ***
 
+### setArcGISKey()
+
+> `static` **setArcGISKey**(`key?`): `void`
+
+ArcGIS 方法名的大小写别名。
+
+#### Parameters
+
+##### key?
+
+`string`
+
+#### Returns
+
+`void`
+
+***
+
+### setArcGisUrl()
+
+> `static` **setArcGisUrl**(`url?`): `void`
+
+设置 ArcGIS 默认 MapServer 地址。
+
+#### Parameters
+
+##### url?
+
+`string`
+
+#### Returns
+
+`void`
+
+***
+
 ### setCesiumIonToken()
 
-> `static` **setCesiumIonToken**(`token`): `void`
+> `static` **setCesiumIonToken**(`token?`): `void`
 
 设置 Ion 资产 Token。
 
 #### Parameters
 
-##### token
+##### token?
 
 `string`
 
@@ -99,3 +170,39 @@ Daisy.Resource.setArcGisKey("your-key");
 ```ts
 Daisy.Resource.setCesiumIonToken("your-token");
 ```
+
+***
+
+### setOpenStreetMapKey()
+
+> `static` **setOpenStreetMapKey**(`key?`): `void`
+
+设置 OpenStreetMap 或兼容服务的 key。
+
+#### Parameters
+
+##### key?
+
+`string`
+
+#### Returns
+
+`void`
+
+***
+
+### setOpenStreetMapUrl()
+
+> `static` **setOpenStreetMapUrl**(`url?`): `void`
+
+设置 OpenStreetMap 或兼容服务地址。
+
+#### Parameters
+
+##### url?
+
+`string`
+
+#### Returns
+
+`void`

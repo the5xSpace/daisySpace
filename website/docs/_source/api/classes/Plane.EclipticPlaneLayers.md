@@ -140,12 +140,6 @@ Widget 标识键（用于单例去重）。
 
 ***
 
-### orbitPolyline
-
-> **orbitPolyline**: `Polyline` \| `undefined`
-
-***
-
 ### primitive
 
 > **primitive**: `SafePrimitive` \| `undefined`

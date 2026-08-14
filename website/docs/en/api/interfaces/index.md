@@ -1,6 +1,6 @@
 # Interfaces
 
-133 interfaces total.
+135 interfaces total.
 
 | Name | Link |
 |------|------|
@@ -30,6 +30,7 @@
 | `CoveragePolygon` | [CoveragePolygon](CoveragePolygon.md) |
 | `CubeOptions` | [CubeOptions](CubeOptions.md) |
 | `CylinderOptions` | [CylinderOptions](CylinderOptions.md) |
+| `DaisyConfigOptions` | [DaisyConfigOptions](DaisyConfigOptions.md) |
 | `DaisyGeometryDescriptor` | [DaisyGeometryDescriptor](DaisyGeometryDescriptor.md) |
 | `DaisyLabelOptions` | [DaisyLabelOptions](DaisyLabelOptions.md) |
 | `DaisyMaterialShaderSource` | [DaisyMaterialShaderSource](DaisyMaterialShaderSource.md) |
@@ -111,6 +112,7 @@
 | `TaskTimeLineWidgetOptions` | [TaskTimeLineWidgetOptions](TaskTimeLineWidgetOptions.md) |
 | `TaskTimelineEntry` | [TaskTimelineEntry](TaskTimelineEntry.md) |
 | `TextOptions` | [TextOptions](TextOptions.md) |
+| `ThirdPartyResourceOptions` | [ThirdPartyResourceOptions](ThirdPartyResourceOptions.md) |
 | `TimeAxisTick` | [TimeAxisTick](TimeAxisTick.md) |
 | `TimeDynamicPropertyOptions` | [TimeDynamicPropertyOptions](TimeDynamicPropertyOptions.md) |
 | `TimeFormatDateTime` | [TimeFormatDateTime](TimeFormatDateTime.md) |

@@ -10,25 +10,17 @@ A 4D Cartesian point.
 
 ## Param
 
-**x**
-
 The X component.
 
 ## Param
-
-**y**
 
 The Y component.
 
 ## Param
 
-**z**
-
 The Z component.
 
 ## Param
-
-**w**
 
 The W component.
 

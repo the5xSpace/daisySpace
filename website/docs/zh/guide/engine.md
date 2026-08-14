@@ -253,13 +253,17 @@ engine.onMorphStart(() => { console.log("开始切换") })
 
 Engine 内置 `geoLayer` 管理器用于影像、地形、天空：
 
+在 `scene` 运行配置中，Engine 默认使用 SDK 的主内置影像 `static/earth/`，即 Web Mercator XYZ 瓦片；`NaturalEarthII` 是第二套可选的 `GeographicTilingScheme` 资源。Web Mercator 不包含完整的南北极投影范围，但影像缺失或请求失败时 globe/椭球仍保持可见。自定义 XYZ 影像时，可通过 `tilingScheme` 在 Web Mercator 和 Geographic 之间选择。第三方地图地址与授权配置见[地理图层](./layers.md)。
+
 ```typescript
 // 影像
 engine.geoLayer.clearImagery()
 engine.geoLayer.setBaseImagery({
     type: Daisy.GeoImageryType.XYZ,
-    url: "...",
-    minLevel: 0, maxLevel: 3,
+    url: Daisy.BuildModuleUrl.getUrl("static/earth/{z}/{x}/{y}.jpg"),
+    minLevel: 0,
+    maxLevel: 3,
+    tilingScheme: "webMercator",
 })
 
 // 天空

@@ -104,6 +104,16 @@ site.addLink({
 
 ***
 
+### sourcePosition?
+
+> `optional` **sourcePosition?**: `Daisy.Cartesian3`
+
+可选固定起点坐标。
+
+未设置时使用宿主物理对象的实体位置；设置后链路从该世界坐标开始绘制。
+
+***
+
 ### speed?
 
 > `optional` **speed?**: `number`

@@ -55,37 +55,25 @@ const containsDate = Daisy.TimeInterval.contains(timeInterval, dateToCheck);
 
 ## Param
 
-**options**
-
 Object with the following properties:
 
 ## Param
-
-**options.start**
 
 The start time of the interval.
 
 ## Param
 
-**options.stop**
-
 The stop time of the interval.
 
 ## Param
-
-**options.isStartIncluded**
 
 `true` if `options.start` is included in the interval, `false` otherwise.
 
 ## Param
 
-**options.isStopIncluded**
-
 `true` if `options.stop` is included in the interval, `false` otherwise.
 
 ## Param
-
-**options.data**
 
 Arbitrary data associated with this interval.
 

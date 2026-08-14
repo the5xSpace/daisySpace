@@ -501,6 +501,22 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除所属实体当前的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`clearFocusTarget`](../interfaces/IFeature.md#clearfocustarget)
+
+***
+
 ### destroy()
 
 > **destroy**(): `void`
@@ -741,6 +757,54 @@ Feature 的显示名称（业务自定义）。
 ```ts
 undefined 配置项
 ```
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+将当前 Feature 设为所属实体的选中聚焦目标。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`setFocusTarget`](../interfaces/IFeature.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前 Feature 的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`setFocusVisible`](../interfaces/IFeature.md#setfocusvisible)
 
 ***
 

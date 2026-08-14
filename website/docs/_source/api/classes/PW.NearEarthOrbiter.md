@@ -283,6 +283,24 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 ***
 
+### addInstantOrbit()
+
+> **addInstantOrbit**(`options?`): [`InstantOrbitComponent`](PW.InstantOrbitComponent.md)
+
+添加瞬时轨道估计组件。
+
+#### Parameters
+
+##### options?
+
+[`InstantOrbitComponentOptions`](../types/PW.InstantOrbitComponentOptions.md) = `{}`
+
+#### Returns
+
+[`InstantOrbitComponent`](PW.InstantOrbitComponent.md)
+
+***
+
 ### addLink()
 
 > **addLink**(`options`): [`Link`](PW.Link.md)
@@ -344,24 +362,6 @@ obj.addComponent(new Sensor({ range: 100000 }));
 #### Inherited from
 
 [`Aircraft`](PW.Aircraft.md).[`addPropulsion`](PW.Aircraft.md#addpropulsion)
-
-***
-
-### addRealtimeOrbit()
-
-> **addRealtimeOrbit**(`options?`): [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-添加实时轨道圈组件。
-
-#### Parameters
-
-##### options?
-
-[`RealtimeOrbitComponentOptions`](../types/PW.RealtimeOrbitComponentOptions.md) = `{}`
-
-#### Returns
-
-[`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
 
 ***
 
@@ -538,6 +538,22 @@ console.log(ephemeris[0]);
 #### Returns
 
 `void`
+
+***
+
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除当前物理对象的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`clearFocusTarget`](PW.Aircraft.md#clearfocustarget)
 
 ***
 
@@ -1186,6 +1202,54 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Inherited from
 
 [`Aircraft`](PW.Aircraft.md).[`resetTemporalState`](PW.Aircraft.md#resettemporalstate)
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+显示当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`setFocusTarget`](PW.Aircraft.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`setFocusVisible`](PW.Aircraft.md#setfocusvisible)
 
 ***
 

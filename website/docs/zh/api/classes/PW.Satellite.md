@@ -276,6 +276,28 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 ***
 
+### addInstantOrbit()
+
+> **addInstantOrbit**(`options?`): [`InstantOrbitComponent`](PW.InstantOrbitComponent.md)
+
+添加瞬时轨道估计组件。
+
+#### Parameters
+
+##### options?
+
+[`InstantOrbitComponentOptions`](../types/PW.InstantOrbitComponentOptions.md) = `{}`
+
+#### Returns
+
+[`InstantOrbitComponent`](PW.InstantOrbitComponent.md)
+
+#### Inherited from
+
+[`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`addInstantOrbit`](PW.NearEarthOrbiter.md#addinstantorbit)
+
+***
+
 ### addLink()
 
 > **addLink**(`options`): [`Link`](PW.Link.md)
@@ -341,28 +363,6 @@ obj.addComponent(new Sensor({ range: 100000 }));
 #### Inherited from
 
 [`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`addPropulsion`](PW.NearEarthOrbiter.md#addpropulsion)
-
-***
-
-### addRealtimeOrbit()
-
-> **addRealtimeOrbit**(`options?`): [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-添加实时轨道圈组件。
-
-#### Parameters
-
-##### options?
-
-[`RealtimeOrbitComponentOptions`](../types/PW.RealtimeOrbitComponentOptions.md) = `{}`
-
-#### Returns
-
-[`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-#### Inherited from
-
-[`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`addRealtimeOrbit`](PW.NearEarthOrbiter.md#addrealtimeorbit)
 
 ***
 
@@ -542,6 +542,22 @@ console.log(ephemeris[0]);
 #### Inherited from
 
 [`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`clearEphemerisCache`](PW.NearEarthOrbiter.md#clearephemeriscache)
+
+***
+
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除当前物理对象的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`clearFocusTarget`](PW.NearEarthOrbiter.md#clearfocustarget)
 
 ***
 
@@ -1242,6 +1258,54 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Inherited from
 
 [`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`resetTemporalState`](PW.NearEarthOrbiter.md#resettemporalstate)
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+显示当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`setFocusTarget`](PW.NearEarthOrbiter.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`NearEarthOrbiter`](PW.NearEarthOrbiter.md).[`setFocusVisible`](PW.NearEarthOrbiter.md#setfocusvisible)
 
 ***
 

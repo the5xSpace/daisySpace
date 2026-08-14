@@ -10,13 +10,9 @@ A Property whose value is lazily evaluated by a callback function.
 
 ## Param
 
-**callback**
-
 The function to be called when the property is evaluated.
 
 ## Param
-
-**isConstant**
 
 `true` when the callback function returns the same value every time, `false` if the value will change.
 

@@ -509,6 +509,22 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除所属实体当前的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`clearFocusTarget`](Feature.md#clearfocustarget)
+
+***
+
 ### destroy()
 
 > **destroy**(): `void`
@@ -1058,6 +1074,74 @@ undefined 配置项
 
 ***
 
+### setFocusBoundsResolver()
+
+> **setFocusBoundsResolver**(`resolver`): `this`
+
+设置内部聚焦盒的动态边界解析器。
+
+该入口只供 Entity 的选中态辅助盒使用，普通碰撞包围盒不会设置解析器。
+
+#### Parameters
+
+##### resolver
+
+[`BoundBoxFocusBoundsResolver`](../types/BoundBoxFocusBoundsResolver.md) \| `undefined`
+
+#### Returns
+
+`this`
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+将当前 Feature 设为所属实体的选中聚焦目标。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`setFocusTarget`](Feature.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前 Feature 的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`setFocusVisible`](Feature.md#setfocusvisible)
+
+***
+
 ### setIncludeInBoundingSphere()
 
 > **setIncludeInBoundingSphere**(`value`): `this`
@@ -1121,6 +1205,28 @@ undefined 配置项
 #### Inherited from
 
 [`Feature`](Feature.md).[`updateByInteraction`](Feature.md#updatebyinteraction)
+
+***
+
+### updateFocusBounds()
+
+> **updateFocusBounds**(`bounds`, `time?`): `void`
+
+更新聚焦盒的尺寸和世界矩阵，避免每帧通过 options setter 重建渲染对象。
+
+#### Parameters
+
+##### bounds
+
+[`BoundBoxFocusBounds`](../interfaces/BoundBoxFocusBounds.md)
+
+##### time?
+
+`JulianDate`
+
+#### Returns
+
+`void`
 
 ***
 

@@ -329,7 +329,7 @@ vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
 
 > **\_getLockCameraAltitudeMultiplier**(): `number`
 
-获取 lockCamera 的相机高度倍数（相对 maxRadius）
+获取 lockCamera 的相机中心距离倍数（相对 maxRadius）
 
 #### Returns
 
@@ -515,6 +515,22 @@ obj.addComponent(new Sensor({ range: 100000 }));
 #### Inherited from
 
 [`CelestialBody`](PW.CelestialBody.md).[`bindViewer`](PW.CelestialBody.md#bindviewer)
+
+***
+
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除当前物理对象的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`CelestialBody`](PW.CelestialBody.md).[`clearFocusTarget`](PW.CelestialBody.md#clearfocustarget)
 
 ***
 
@@ -756,6 +772,25 @@ obj.destroy();
 
 ***
 
+### initializeCameraTracking()
+
+> **initializeCameraTracking**(): `boolean`
+
+使用当前天体的专用相机跟踪实现初始化相机。
+
+预览和上层工具在直接观察 Moon/Mars 时应调用此入口，而不是把天体当作普通 Entity
+交给 followTarget；后者不会切换天体参考系，也无法正确处理天体自转和地表碰撞。
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`CelestialBody`](PW.CelestialBody.md).[`initializeCameraTracking`](PW.CelestialBody.md#initializecameratracking)
+
+***
+
 ### register()
 
 > **register**(): `void`
@@ -908,6 +943,54 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Inherited from
 
 [`CelestialBody`](PW.CelestialBody.md).[`setCameraLockIntialized`](PW.CelestialBody.md#setcameralockintialized)
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+显示当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`CelestialBody`](PW.CelestialBody.md).[`setFocusTarget`](PW.CelestialBody.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`CelestialBody`](PW.CelestialBody.md).[`setFocusVisible`](PW.CelestialBody.md#setfocusvisible)
 
 ***
 

@@ -10,67 +10,45 @@ A particle emitted by a [ParticleSystem](Daisy.ParticleSystem.md).
 
 ## Param
 
-**options**
-
 An object with the following properties:
 
 ## Param
-
-**options.mass**
 
 The mass of the particle in kilograms.
 
 ## Param
 
-**options.position**
-
 The initial position of the particle in world coordinates.
 
 ## Param
-
-**options.velocity**
 
 The velocity vector of the particle in world coordinates.
 
 ## Param
 
-**options.life**
-
 The life of the particle in seconds.
 
 ## Param
-
-**options.image**
 
 The URI, HTMLImageElement, or HTMLCanvasElement to use for the billboard.
 
 ## Param
 
-**options.startColor**
-
 The color of a particle when it is born.
 
 ## Param
-
-**options.endColor**
 
 The color of a particle when it dies.
 
 ## Param
 
-**options.startScale**
-
 The scale of the particle when it is born.
 
 ## Param
 
-**options.endScale**
-
 The scale of the particle when it dies.
 
 ## Param
-
-**options.imageSize**
 
 The dimensions, width by height, to scale the particle image in pixels.
 

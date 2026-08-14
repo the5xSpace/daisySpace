@@ -200,38 +200,26 @@ polygon.material = new Daisy.Material({
 
 ## Param
 
-**options**
-
 Object with the following properties:
 
 ## Param
 
-**options.strict**
-
 Throws errors for issues that would normally be ignored, including unused uniforms or materials.
 
 ## Param
-
-**options.translucent**
 
 When `true` or a function that returns `true`, the geometry
  with this material is expected to appear translucent.
 
 ## Param
 
-**options.minificationFilter**
-
 The TextureMinificationFilter to apply to this material's textures.
 
 ## Param
 
-**options.magnificationFilter**
-
 The TextureMagnificationFilter to apply to this material's textures.
 
 ## Param
-
-**options.fabric**
 
 The fabric JSON used to generate the material.
 

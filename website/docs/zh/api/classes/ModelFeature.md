@@ -614,6 +614,22 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除所属实体当前的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`clearFocusTarget`](Feature.md#clearfocustarget)
+
+***
+
 ### clearNodeTransform()
 
 > **clearNodeTransform**(`name`): `void`
@@ -1272,6 +1288,79 @@ undefined 配置项
 #### Returns
 
 `this`
+
+***
+
+### setFocusHighlight()
+
+> **setFocusHighlight**(`visible`, `options?`): `this`
+
+为检查器选中态开启模型轮廓高亮。
+
+ Model 原生支持 silhouette，优先使用它显示真实模型边缘；
+不支持 silhouette 的模型仍会保留聚焦盒作为稳定的选择提示。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusHighlightOptions` = `{}`
+
+#### Returns
+
+`this`
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+将当前 Feature 设为所属实体的选中聚焦目标。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`setFocusTarget`](Feature.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前 Feature 的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`setFocusVisible`](Feature.md#setfocusvisible)
 
 ***
 

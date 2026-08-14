@@ -31,31 +31,21 @@ const geometry = new Daisy.Geometry({
 
 ## Param
 
-**options**
-
 Object with the following properties:
 
 ## Param
-
-**options.componentDatatype**
 
 The datatype of each component in the attribute, e.g., individual elements in values.
 
 ## Param
 
-**options.componentsPerAttribute**
-
 A number between 1 and 4 that defines the number of components in an attributes.
 
 ## Param
 
-**options.normalize**
-
 When `true` and `componentDatatype` is an integer format, indicate that the components should be mapped to the range [0, 1] (unsigned) or [-1, 1] (signed) when they are accessed as floating-point for rendering.
 
 ## Param
-
-**options.values**
 
 The values for the attributes stored in a typed array.
 

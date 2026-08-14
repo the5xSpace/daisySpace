@@ -1,9 +1,10 @@
 # Enumerations
 
-28 enums total.
+29 enums total.
 
 | Name | Link |
 |------|------|
+| `BuiltinImageryType` | [BuiltinImageryType](BuiltinImageryType.md) |
 | `CelestialMarkerBody` | [CelestialMarkerBody](CelestialMarkerBody.md) |
 | `ArcType` | [ArcType](Daisy.ArcType.md) |
 | `Axis` | [Axis](Daisy.Axis.md) |

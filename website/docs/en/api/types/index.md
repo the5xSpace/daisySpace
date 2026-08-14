@@ -1,6 +1,6 @@
 # Type Aliases
 
-271 types.
+273 types.
 
 | Name | Link |
 |------|------|
@@ -184,8 +184,6 @@
 | `PropulsionParticleOptions` | [PropulsionParticleOptions](PW.PropulsionParticleOptions.md) |
 | `PropulsionParticlePreset` | [PropulsionParticlePreset](PW.PropulsionParticlePreset.md) |
 | `PropulsionParticleRenderer` | [PropulsionParticleRenderer](PW.PropulsionParticleRenderer.md) |
-| `RealtimeOrbitComponentOptions` | [RealtimeOrbitComponentOptions](PW.RealtimeOrbitComponentOptions.md) |
-| `RealtimeOrbitElements` | [RealtimeOrbitElements](PW.RealtimeOrbitElements.md) |
 | `RocketAscentInput` | [RocketAscentInput](PW.RocketAscentInput.md) |
 | `RocketConfig` | [RocketConfig](PW.RocketConfig.md) |
 | `RocketDefaultVisualsOptions` | [RocketDefaultVisualsOptions](PW.RocketDefaultVisualsOptions.md) |
@@ -227,6 +225,7 @@
 | `PreviewHostSpec` | [PreviewHostSpec](PreviewHostSpec.md) |
 | `PropagationOptions` | [PropagationOptions](PropagationOptions.md) |
 | `RectangleOptions` | [RectangleOptions](RectangleOptions.md) |
+| `ResourceKey` | [ResourceKey](ResourceKey.md) |
 | `Rotation` | [Rotation](Rotation.md) |
 | `SceneSwitcherOptions` | [SceneSwitcherOptions](SceneSwitcherOptions.md) |
 | `ShaderParamType` | [ShaderParamType](ShaderParamType.md) |
@@ -275,3 +274,4 @@
 | `WalkerTopology` | [WalkerTopology](WalkerTopology.md) |
 | `WallOptions` | [WallOptions](WallOptions.md) |
 | `WidgetThemeModeOrEffects` | [WidgetThemeModeOrEffects](WidgetThemeModeOrEffects.md) |
+| `XYZImageryTilingScheme` | [XYZImageryTilingScheme](XYZImageryTilingScheme.md) |

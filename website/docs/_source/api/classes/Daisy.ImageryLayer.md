@@ -48,13 +48,9 @@ tileset.imageryLayers.add(imageryLayer);
 
 ## Param
 
-**imageryProvider**
-
 The imagery provider to use.
 
 ## Param
-
-**options**
 
 An object describing initialization options
 

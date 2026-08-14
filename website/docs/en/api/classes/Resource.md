@@ -8,15 +8,8 @@
 
 Resource registry.
 
-Used to centrally manage tokens/keys required by third-party geographic services,
-avoiding direct exposure of authentication information in any Options.
-
-## Example
-
-```ts
-Daisy.Resource.setCesiumIonToken("your-token");
-Daisy.Resource.setArcGisKey("your-key");
-```
+Used to centrally manage tokens, keys, and default URLs required by third-party geographic services,
+so imagery Options do not need to carry authentication information repeatedly.
 
 ## Constructors
 
@@ -30,17 +23,47 @@ Daisy.Resource.setArcGisKey("your-key");
 
 ## Methods
 
+### clear()
+
+> `static` **clear**(): `void`
+
+Clears all third-party resource configuration, mainly for tests and application shutdown.
+
+#### Returns
+
+`void`
+
+***
+
+### configure()
+
+> `static` **configure**(`options`): `void`
+
+Configures third-party map resources in bulk. Empty strings clear existing values.
+
+#### Parameters
+
+##### options
+
+[`ThirdPartyResourceOptions`](../interfaces/ThirdPartyResourceOptions.md)
+
+#### Returns
+
+`void`
+
+***
+
 ### get()
 
 > `static` **get**(`key`): `string` \| `undefined`
 
-Get resource credentials.
+Gets a resource credential.
 
 #### Parameters
 
 ##### key
 
-`"cesium-ion"` \| `"arcgis"`
+[`ResourceKey`](../types/ResourceKey.md)
 
 #### Returns
 
@@ -54,15 +77,27 @@ const token = Daisy.Resource.get("cesium-ion");
 
 ***
 
+### getConfiguredResources()
+
+> `static` **getConfiguredResources**(): [`ThirdPartyResourceOptions`](../interfaces/ThirdPartyResourceOptions.md)
+
+Gets a snapshot of the current third-party resource configuration; callers should treat the result as sensitive credentials.
+
+#### Returns
+
+[`ThirdPartyResourceOptions`](../interfaces/ThirdPartyResourceOptions.md)
+
+***
+
 ### setArcGisKey()
 
-> `static` **setArcGisKey**(`key`): `void`
+> `static` **setArcGisKey**(`key?`): `void`
 
-Set ArcGIS Key.
+Sets the ArcGIS Key.
 
 #### Parameters
 
-##### key
+##### key?
 
 `string`
 
@@ -78,15 +113,51 @@ Daisy.Resource.setArcGisKey("your-key");
 
 ***
 
-### setCesiumIonToken()
+### setArcGISKey()
 
-> `static` **setCesiumIonToken**(`token`): `void`
+> `static` **setArcGISKey**(`key?`): `void`
 
-Set Ion asset Token.
+Case alias for the ArcGIS method name.
 
 #### Parameters
 
-##### token
+##### key?
+
+`string`
+
+#### Returns
+
+`void`
+
+***
+
+### setArcGisUrl()
+
+> `static` **setArcGisUrl**(`url?`): `void`
+
+Sets the default ArcGIS MapServer URL.
+
+#### Parameters
+
+##### url?
+
+`string`
+
+#### Returns
+
+`void`
+
+***
+
+### setCesiumIonToken()
+
+> `static` **setCesiumIonToken**(`token?`): `void`
+
+Sets the Ion asset Token.
+
+#### Parameters
+
+##### token?
 
 `string`
 
@@ -99,3 +170,39 @@ Set Ion asset Token.
 ```ts
 Daisy.Resource.setCesiumIonToken("your-token");
 ```
+
+***
+
+### setOpenStreetMapKey()
+
+> `static` **setOpenStreetMapKey**(`key?`): `void`
+
+Sets the key for OpenStreetMap or a compatible service.
+
+#### Parameters
+
+##### key?
+
+`string`
+
+#### Returns
+
+`void`
+
+***
+
+### setOpenStreetMapUrl()
+
+> `static` **setOpenStreetMapUrl**(`url?`): `void`
+
+Sets the URL for OpenStreetMap or a compatible service.
+
+#### Parameters
+
+##### url?
+
+`string`
+
+#### Returns
+
+`void`

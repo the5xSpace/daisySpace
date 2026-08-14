@@ -21,8 +21,8 @@ PhysicalWorld 组件基类。
 - [`CameraWeatherParticleComponent`](PW.CameraWeatherParticleComponent.md)
 - [`Link`](PW.Link.md)
 - [`OrbitElementsViewComponent`](PW.OrbitElementsViewComponent.md)
-- [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
 - [`GroundTrackComponent`](PW.GroundTrackComponent.md)
+- [`InstantOrbitComponent`](PW.InstantOrbitComponent.md)
 - [`RouteComponent`](PW.RouteComponent.md)
 
 ## Implements
@@ -72,6 +72,20 @@ PhysicalWorld 组件基类。
 [`IComponent`](../interfaces/PW.IComponent.md).[`type`](../interfaces/PW.IComponent.md#type)
 
 ## Accessors
+
+### entity
+
+#### Get Signature
+
+> **get** **entity**(): [`Entity`](Entity.md) \| `undefined`
+
+当前物理组件的渲染宿主实体。
+
+##### Returns
+
+[`Entity`](Entity.md) \| `undefined`
+
+***
 
 ### id
 
@@ -179,6 +193,18 @@ PhysicalWorld 组件基类。
 
 ## Methods
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除当前物理组件的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+***
+
 ### destroy()
 
 > **destroy**(): `void`
@@ -192,6 +218,21 @@ PhysicalWorld 组件基类。
 #### Implementation of
 
 [`IComponent`](../interfaces/PW.IComponent.md).[`destroy`](../interfaces/PW.IComponent.md#destroy)
+
+***
+
+### getFocusFeatures()
+
+> **getFocusFeatures**(): [`IFeature`](../interfaces/IFeature.md)[]
+
+返回组件直接持有的 Feature。
+
+物理组件的具体实现通常将 Feature 保存在私有字段中；这里仅在用户选中组件时
+做一次浅层解析，避免把组件内部的渲染 Feature 暴露成新的强制约束。
+
+#### Returns
+
+[`IFeature`](../interfaces/IFeature.md)[]
 
 ***
 
@@ -240,6 +281,46 @@ PhysicalWorld 组件基类。
 #### Implementation of
 
 [`IComponent`](../interfaces/PW.IComponent.md).[`resetTemporalState`](../interfaces/PW.IComponent.md#resettemporalstate)
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+显示当前物理组件的选中聚焦盒。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前物理组件的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
 
 ***
 

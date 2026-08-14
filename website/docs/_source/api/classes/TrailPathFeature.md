@@ -9,7 +9,7 @@
 轨迹线 Feature（历史段 + 未来段）。
 
 主要行为：
-- 独立绘制动态轨迹线，不依赖实体的内置路径显示能力
+- 作为 `Entity.setPath()` 使用的底层 Feature，也支持直接挂载
 - 支持按当前仿真时间将整条轨迹切分为：历史（before）与未来（after）
 - 支持惯性系(INERTIAL)与固连系(FIXED)两类参考系下的取样与绘制
 - 在 autoOptimize 模式下，结合相机距离、实体数量、帧率等自适应采样密度
@@ -516,6 +516,22 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除所属实体当前的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`clearFocusTarget`](Feature.md#clearfocustarget)
+
+***
+
 ### destroy()
 
 > **destroy**(): `void`
@@ -825,6 +841,54 @@ undefined 配置项
 #### Inherited from
 
 [`Feature`](Feature.md).[`setBodyAxis`](Feature.md#setbodyaxis)
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+将当前 Feature 设为所属实体的选中聚焦目标。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`setFocusTarget`](Feature.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前 Feature 的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Feature`](Feature.md).[`setFocusVisible`](Feature.md#setfocusvisible)
 
 ***
 

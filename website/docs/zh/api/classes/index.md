@@ -1,6 +1,6 @@
 # Classes
 
-共 237 个 classes。
+共 239 个 classes。
 
 | 名称 | 链接 |
 |------|------|
@@ -56,6 +56,7 @@
 | `CustomShader` | [CustomShader](Daisy.CustomShader.md) |
 | `DistanceDisplayCondition` | [DistanceDisplayCondition](Daisy.DistanceDisplayCondition.md) |
 | `Ellipsoid` | [Ellipsoid](Daisy.Ellipsoid.md) |
+| `GeographicTilingScheme` | [GeographicTilingScheme](Daisy.GeographicTilingScheme.md) |
 | `Geometry` | [Geometry](Daisy.Geometry.md) |
 | `GeometryAttribute` | [GeometryAttribute](Daisy.GeometryAttribute.md) |
 | `GeometryAttributes` | [GeometryAttributes](Daisy.GeometryAttributes.md) |
@@ -132,6 +133,7 @@
 | `FreeGeometryFeature` | [FreeGeometryFeature](FreeGeometryFeature.md) |
 | `GeoJsonFeature` | [GeoJsonFeature](GeoJsonFeature.md) |
 | `GeoLayerManager` | [GeoLayerManager](GeoLayerManager.md) |
+| `GlobalConfig` | [GlobalConfig](GlobalConfig.md) |
 | `GpuDeviceManager` | [GpuDeviceManager](GpuDeviceManager.md) |
 | `HeatmapFeature` | [HeatmapFeature](HeatmapFeature.md) |
 | `HemisphereEmitter` | [HemisphereEmitter](HemisphereEmitter.md) |
@@ -160,6 +162,7 @@
 | `FreeObject` | [FreeObject](PW.FreeObject.md) |
 | `GroundStation` | [GroundStation](PW.GroundStation.md) |
 | `GroundTrackComponent` | [GroundTrackComponent](PW.GroundTrackComponent.md) |
+| `InstantOrbitComponent` | [InstantOrbitComponent](PW.InstantOrbitComponent.md) |
 | `JetEngine` | [JetEngine](PW.JetEngine.md) |
 | `Link` | [Link](PW.Link.md) |
 | `Mars` | [Mars](PW.Mars.md) |
@@ -167,7 +170,6 @@
 | `NearEarthOrbiter` | [NearEarthOrbiter](PW.NearEarthOrbiter.md) |
 | `OrbitElementsViewComponent` | [OrbitElementsViewComponent](PW.OrbitElementsViewComponent.md) |
 | `PropulsionComponent` | [PropulsionComponent](PW.PropulsionComponent.md) |
-| `RealtimeOrbitComponent` | [RealtimeOrbitComponent](PW.RealtimeOrbitComponent.md) |
 | `Rocket` | [Rocket](PW.Rocket.md) |
 | `RouteComponent` | [RouteComponent](PW.RouteComponent.md) |
 | `Satellite` | [Satellite](PW.Satellite.md) |

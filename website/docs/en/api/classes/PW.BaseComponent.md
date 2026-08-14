@@ -21,7 +21,6 @@ Design notes:
 - [`CameraWeatherParticleComponent`](PW.CameraWeatherParticleComponent.md)
 - [`Link`](PW.Link.md)
 - [`OrbitElementsViewComponent`](PW.OrbitElementsViewComponent.md)
-- [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
 - [`GroundTrackComponent`](PW.GroundTrackComponent.md)
 - [`RouteComponent`](PW.RouteComponent.md)
 

@@ -253,13 +253,17 @@ engine.onMorphStart(() => { console.log("开始切换") })
 
 Engine includes the `geoLayer` manager for imagery, terrain, and sky:
 
+In the `scene` runtime profile, Engine uses the SDK's primary built-in imagery from `static/earth/` by default, using Web Mercator XYZ tiles. `NaturalEarthII` is the second built-in resource and uses `GeographicTilingScheme`. Web Mercator does not include the full polar projection range, but the globe/ellipsoid remains visible when imagery is missing or a request fails. For custom XYZ imagery, use `tilingScheme` to choose between Web Mercator and geographic coordinates. See [Geographic Layers](./layers.md) for third-party map addresses and authorization settings.
+
 ```typescript
 // 影像
 engine.geoLayer.clearImagery()
 engine.geoLayer.setBaseImagery({
     type: Daisy.GeoImageryType.XYZ,
-    url: "...",
-    minLevel: 0, maxLevel: 3,
+    url: Daisy.BuildModuleUrl.getUrl("static/earth/{z}/{x}/{y}.jpg"),
+    minLevel: 0,
+    maxLevel: 3,
+    tilingScheme: "webMercator",
 })
 
 // 天空

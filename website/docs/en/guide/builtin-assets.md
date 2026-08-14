@@ -63,11 +63,18 @@ The SDK currently includes all of the following asset roots. Public assets can b
 
 ### Earth and Night Imagery
 
-`static/earth/` and `static/night/` are low-level XYZ tiles included with the SDK. They currently cover levels `0` through `3`, making them suitable for offline previews and default scenes but not for a high-resolution global basemap.
+`static/earth/` is the SDK's primary built-in Earth imagery and the default resource for `Engine` in the `scene` runtime profile. It uses Web Mercator XYZ tiles, currently covers levels `0` through `3`, and uses `{z}/{x}/{y}` in the URL.
+
+`static/assets/NaturalEarthII/` remains available as the second built-in resource. It uses `GeographicTilingScheme` and the TMS row placeholder `{reverseY}`, currently covers levels `0` through `2`, and covers the full `-90°` to `90°` latitude range. Use this resource or another geographic XYZ service when true polar imagery is required.
+
+`static/night/` remains available as low-level Web Mercator night imagery. Web Mercator itself does not cover the poles; when Earth imagery has no polar tiles, the Cesium globe/ellipsoid should remain visible and show its base color.
 
 ```typescript
 const earthUrl = Daisy.BuildModuleUrl.getUrl(
     "static/earth/{z}/{x}/{y}.jpg",
+)
+const naturalEarthUrl = Daisy.BuildModuleUrl.getUrl(
+    "static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg",
 )
 const nightUrl = Daisy.BuildModuleUrl.getUrl(
     "static/night/{z}/{x}/{y}.jpg",
@@ -78,10 +85,11 @@ engine.geoLayer.setBaseImagery({
     url: earthUrl,
     minLevel: 0,
     maxLevel: 3,
+    tilingScheme: "webMercator",
 })
 ```
 
-`static/assets/NaturalEarthII/` also provides Natural Earth II tiles for levels `0` through `2` and `tilemapresource.xml`.
+To switch to the second resource, replace `url` with `naturalEarthUrl`, set `maxLevel` to `2`, and set `tilingScheme` to `"geographic"`. The Natural Earth II directory also provides `tilemapresource.xml`, which can be used to confirm its TMS tile layout.
 
 ### Skyboxes
 

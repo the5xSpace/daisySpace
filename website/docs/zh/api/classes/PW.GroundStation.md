@@ -371,6 +371,22 @@ obj.bindEngine(engine);
 
 ***
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `this`
+
+清除当前物理对象的选中聚焦盒。
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`clearFocusTarget`](PW.Vehicle.md#clearfocustarget)
+
+***
+
 ### destroy()
 
 > **destroy**(): `void`
@@ -814,6 +830,54 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 `boolean`
 
 模型已加载且至少一个目标节点写入成功时返回 true。
+
+***
+
+### setFocusTarget()
+
+> **setFocusTarget**(`options?`): `this`
+
+显示当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`setFocusTarget`](PW.Vehicle.md#setfocustarget)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `options?`): `this`
+
+显示或隐藏当前物理对象的选中聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`setFocusVisible`](PW.Vehicle.md#setfocusvisible)
 
 ***
 

@@ -66,8 +66,6 @@ viewer.imageryLayers.addImageryProvider(weather);
 
 ## Param
 
-**options**
-
 Object describing initialization options
 
 ## Constructors

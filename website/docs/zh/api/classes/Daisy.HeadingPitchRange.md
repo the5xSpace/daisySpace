@@ -13,19 +13,13 @@ angles are below the plane. Range is the distance from the center of the frame.
 
 ## Param
 
-**heading**
-
 The heading angle in radians.
 
 ## Param
 
-**pitch**
-
 The pitch angle in radians.
 
 ## Param
-
-**range**
 
 The distance from the center in meters.
 

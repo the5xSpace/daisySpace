@@ -2,11 +2,11 @@
 
 ***
 
-[daisy-space-sdk](../README.md) / [PW](../modules/PW.md) / RealtimeOrbitComponentOptions
+[daisy-space-sdk](../README.md) / [PW](../modules/PW.md) / InstantOrbitComponentOptions
 
-# Type Alias: RealtimeOrbitComponentOptions
+# Type Alias: InstantOrbitComponentOptions
 
-> **RealtimeOrbitComponentOptions** = `object`
+> **InstantOrbitComponentOptions** = `object`
 
 ## Properties
 
@@ -18,13 +18,13 @@
 
 ### depthFailMaterial?
 
-> `optional` **depthFailMaterial?**: [`PolylineOptions`](PolylineOptions.md)\[`"depthFailMaterial"`\]
+> `optional` **depthFailMaterial?**: [`DMaterial`](DMaterial.md)
 
 ***
 
 ### material?
 
-> `optional` **material?**: [`PolylineOptions`](PolylineOptions.md)\[`"material"`\]
+> `optional` **material?**: [`DMaterial`](DMaterial.md)
 
 ***
 
@@ -32,11 +32,15 @@
 
 > `optional` **maxEccentricity?**: `number`
 
+超过此值时拒绝绘制近抛物线或双曲线状态。
+
 ***
 
 ### minEccentricity?
 
 > `optional` **minEccentricity?**: `number`
+
+低于此值时将圆轨道视为没有稳定近地点方向。
 
 ***
 
@@ -50,11 +54,15 @@
 
 > `optional` **resampleSeconds?**: `number`
 
+重新根据当前位置和速度估算轨道的最短间隔（秒）。
+
 ***
 
 ### sampleCount?
 
 > `optional` **sampleCount?**: `number`
+
+闭合轨道的采样点数量；首尾会额外重复一个点以闭合曲线。
 
 ***
 
@@ -67,6 +75,8 @@
 ### velocitySampleSeconds?
 
 > `optional` **velocitySampleSeconds?**: `number`
+
+用于从轨道源估算速度的中心差分时间窗（秒）。
 
 ***
 

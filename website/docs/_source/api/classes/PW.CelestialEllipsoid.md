@@ -798,6 +798,32 @@ const earth = CelestialEllipsoid.Earth();
 
 ***
 
+### Mars()
+
+> `static` **Mars**(`options?`): `CelestialEllipsoid`
+
+创建火星椭球：火星中心位置使用 Daisy 内置的行星历计算。
+
+火星对象目前没有独立的体轴旋转模型，因此这里只负责火星中心平移和局部椭球坐标转换。
+
+#### Parameters
+
+##### options?
+
+###### ellipsoid?
+
+`Ellipsoid`
+
+###### time?
+
+`JulianDate` \| (() => `JulianDate`)
+
+#### Returns
+
+`CelestialEllipsoid`
+
+***
+
 ### Moon()
 
 > `static` **Moon**(`options?`): `CelestialEllipsoid`

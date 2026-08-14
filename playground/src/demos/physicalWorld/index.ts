@@ -36,8 +36,8 @@ export const satelliteConstellationDemo: DemoDefinition = {
     component: () => import("./SatelliteConstellation.svelte"),
 };
 export const starlinkConstellationDemo: DemoDefinition = {
-    id: "pw-starlink-constellation", title: "Starlink 大型星座", subtitle: "Daisy.PW.Satellite + hover 实时轨道圈 + 调速 / 帧率 / 时间轴",
-    problem: "读取压缩星历文本，批量创建 Starlink 星座卫星对象；普通卫星低频保活，hover/click 卫星显示大标签与实时轨道圈，便于大规模实体交互性能测试。",
+    id: "pw-starlink-constellation", title: "Starlink 大型星座", subtitle: "Daisy.PW.Satellite + hover 轨迹线 + 调速 / 帧率 / 时间轴",
+    problem: "读取压缩星历文本，批量创建 Starlink 星座卫星对象；普通卫星低频保活，hover/click 卫星显示大标签与轨迹线，便于大规模实体交互性能测试。",
     module: "physicalWorld", tags: ["satellite", "starlink", "constellation", "benchmark", "webgpu"], difficulty: "advanced", preset: "earth-basic",
     code: () => import("./StarlinkConstellation.svelte?raw").then((m) => m.default),
     component: () => import("./StarlinkConstellation.svelte"),

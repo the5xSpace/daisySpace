@@ -122,4 +122,4 @@ OpenStreetMap 影像配置
 
 > `optional` **url?**: `string`
 
-OSM 服务地址，默认使用官方地址
+OSM 服务地址，默认使用 `https://tile.openstreetmap.org/`。

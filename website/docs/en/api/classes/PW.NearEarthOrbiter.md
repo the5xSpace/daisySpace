@@ -347,24 +347,6 @@ Adds an orbital elements view component.
 
 ***
 
-### addRealtimeOrbit()
-
-> **addRealtimeOrbit**(`options?`): [`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-Adds a real-time orbit component.
-
-#### Parameters
-
-##### options?
-
-[`RealtimeOrbitComponentOptions`](../types/PW.RealtimeOrbitComponentOptions.md) = `{}`
-
-#### Returns
-
-[`RealtimeOrbitComponent`](PW.RealtimeOrbitComponent.md)
-
-***
-
 ### addSensor()
 
 > **addSensor**(`options?`): [`Sensor`](PW.Sensor.md)

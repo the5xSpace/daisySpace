@@ -5,12 +5,12 @@
 // 核心流程：
 //   1. 从预生成紧凑格式星历文本（TEME 坐标）解析数千颗卫星的位置采样
 //   2. 用 TrajectorySample（INERTIAL 参考系）驱动每颗 Daisy.PW.Satellite 的位置
-//   3. 监听 hover / click 事件，动态挂载/卸载标签与实时轨道圈
+//   3. 监听 hover / click 事件，动态挂载/卸载标签与轨迹线
 //   4. 分批（BATCH_SIZE）创建卫星并插帧，避免单帧卡顿
 // 关键 API：
 //   - Daisy.TrajectorySample        : 轨迹数据容器（INERTIAL 参考系 + 线性插值）
 //   - Daisy.PW.Satellite            : 物理世界层卫星实体
-//   - sat.addRealtimeOrbit()        : hover 时动态挂载实时轨道圈
+//   - sat.entity.setPath()          : hover 时显示采样轨迹线
 //   - engine.setHighPerformanceMode : 大量实体渲染分组优化
 //   - engine.eventHandle            : hover / click 事件桥接
 // =============================================================================
@@ -24,8 +24,6 @@ const WINDOW_START_ISO = "2026-06-04T00:00:00.000Z";
 const WINDOW_END_ISO = "2026-06-04T04:00:00.000Z";
 // 每批次创建的卫星数，超出后插帧避免页面冻结
 const BATCH_SIZE = 250;
-// hover 时挂载的实时轨道圈组件名，用于按名查找/删除（幂等保护）
-const FOCUS_ORBIT_COMPONENT_NAME = "__starlink_realtime_orbit";
 // 卫星颜色循环调色板（按索引取色，数量不足时循环）
 const PALETTE = [
     Daisy.Color.fromCssColorString("#22d3ee"),
@@ -120,7 +118,7 @@ function registerSatelliteFocusTarget(sat: any, satelliteName: string, colorInde
     satelliteFocusTargets.set(getSatelliteId(sat), { sat, satelliteName, colorIndex });
 }
 
-/** hover/activated 时显示卫星名称标签和实时轨道圈（幂等）*/
+/** hover/activated 时显示卫星名称标签和轨迹线（幂等）*/
 function showFocusFeatures(sat: any, satelliteName: string, colorIndex: number) {
     const id = getSatelliteId(sat);
     if (focusedSatelliteIds.has(id)) return;
@@ -140,22 +138,22 @@ function showFocusFeatures(sat: any, satelliteName: string, colorIndex: number) 
             disableDepthTestDistance: Number.POSITIVE_INFINITY,
         },
     });
-    if (!sat.getComponentByName?.(FOCUS_ORBIT_COMPONENT_NAME)?.length) {
-        sat.addRealtimeOrbit?.({
-            name: FOCUS_ORBIT_COMPONENT_NAME,
-            show: true,
-            width: 2,
-            material: color.withAlpha(0.92),
-            alwaysOnTop: false,
-            sampleCount: 192,       // 轨道圈采样点数
-            resampleSeconds: 1,     // 重新采样间隔（秒）
-            velocitySampleSeconds: 30, // 速度向量采样步长（秒）
-        });
-    }
+    getSatelliteEntity(sat)?.setPath?.({
+        show: true,
+        historySecond: 3600,
+        futureSecond: 3600,
+        width: 2,
+        color: color.withAlpha(0.92),
+        historyColor: color.withAlpha(0.92),
+        futureColor: color.withAlpha(0.55),
+        autoOptimize: false,
+        resolutionSecond: 10,
+        maxDirectionInterpolationCount: 512,
+    });
     forceSatelliteRefresh(sat);
 }
 
-/** 离开 hover/activated 时移除标签和实时轨道圈（幂等）*/
+/** 离开 hover/activated 时移除标签和轨迹线（幂等）*/
 function hideFocusFeatures(sat: any) {
     const id = getSatelliteId(sat);
     if (!focusedSatelliteIds.has(id)) return;
@@ -163,7 +161,7 @@ function hideFocusFeatures(sat: any) {
     sat.setOptions?.({
         text: false,
     });
-    sat.removeComponentByName?.(FOCUS_ORBIT_COMPONENT_NAME);
+    getSatelliteEntity(sat)?.removePath?.();
     forceSatelliteRefresh(sat);
 }
 
@@ -554,7 +552,7 @@ import DemoPanel from "../../shell/DemoPanel.svelte";
         <div class="title-row">
             <div>
                 <div class="title">Starlink 大型星座</div>
-                <div class="subtitle">Daisy.PW.Satellite + hover 实时轨道圈 + 预生成 TEME 星历</div>
+                <div class="subtitle">Daisy.PW.Satellite + hover 轨迹线 + 预生成 TEME 星历</div>
             </div>
             <button class="action" onclick={loadAndBuild}>重建</button>
         </div>

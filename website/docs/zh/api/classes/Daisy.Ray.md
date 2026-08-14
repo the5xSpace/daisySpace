@@ -10,13 +10,9 @@ Represents a ray that extends infinitely from the provided origin in the provide
 
 ## Param
 
-**origin**
-
 The origin of the ray.
 
 ## Param
-
-**direction**
 
 The direction of the ray.
 

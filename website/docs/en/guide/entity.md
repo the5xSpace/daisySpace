@@ -75,6 +75,22 @@ entity.position = traj
 
 `TrajectorySample` supports three interpolation algorithms: `"LAGRANGE"` (default), `"LINEAR"`, and `"HERMITE"`.
 
+### Fast Path
+
+Use `entity.setPath()` to attach a fast path to a trajectory-sampled position. It uses the same `TrailPathFeature` implementation:
+
+```typescript
+entity.setPath({
+    historySecond: 3600,
+    futureSecond: 7200,
+    width: 2,
+    historyColor: Daisy.Color.BLUE,
+    futureColor: Daisy.Color.GREEN.withAlpha(0.5),
+})
+```
+
+`setPath()` applies only to `TrajectorySample` and `TrajectorySampleBodyFixed`. When the current `position` is a static `Cartesian3`, the configuration is saved but no degenerate path is created. Switching to a trajectory sample later creates it automatically; switching back to a static position removes the path.
+
 ### Body-Fixed Trajectory (TrajectorySampleBodyFixed)
 
 ```typescript

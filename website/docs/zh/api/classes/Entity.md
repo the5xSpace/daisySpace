@@ -808,6 +808,18 @@ entity.addFeature(feature);
 
 ***
 
+### clearFocusTarget()
+
+> **clearFocusTarget**(): `void`
+
+清除当前聚焦目标，但保留辅助 Feature 以便下次选中时复用。
+
+#### Returns
+
+`void`
+
+***
+
 ### computeModelMatrix()
 
 > **computeModelMatrix**(`state`): `Matrix4`
@@ -1503,7 +1515,7 @@ if (feature) entity.removeFeature(feature as any);
 
 > **removePath**(): `void`
 
-移除快速路径，仅在TrajectorySample位置模式下生效
+移除快速路径，并清除后续自动挂载所保存的配置。
 
 #### Returns
 
@@ -1619,6 +1631,56 @@ entity.setBoundBoxDebugVisible(true);
 
 ***
 
+### setFocusTarget()
+
+> **setFocusTarget**(`target?`, `options?`): [`BoundBoxFeature`](BoundBoxFeature.md)
+
+设置当前实体或实体下某个 Feature 的选中聚焦目标。
+
+聚焦盒只绘制透明盒面和四角短线，不参与实体包围球聚合。
+
+#### Parameters
+
+##### target?
+
+`EntityFocusTarget` = `...`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+[`BoundBoxFeature`](BoundBoxFeature.md)
+
+***
+
+### setFocusVisible()
+
+> **setFocusVisible**(`visible`, `target?`, `options?`): [`BoundBoxFeature`](BoundBoxFeature.md) \| `undefined`
+
+设置或隐藏当前实体/目标的聚焦盒。
+
+#### Parameters
+
+##### visible
+
+`boolean`
+
+##### target?
+
+`EntityFocusTarget` = `...`
+
+##### options?
+
+`EntityFocusOptions` = `{}`
+
+#### Returns
+
+[`BoundBoxFeature`](BoundBoxFeature.md) \| `undefined`
+
+***
+
 ### setParent()
 
 > **setParent**(`parent?`): `this`
@@ -1645,6 +1707,9 @@ entity.setBoundBoxDebugVisible(true);
 
 为轨迹采样位置设置快速轨迹线。
 
+只有 `TrajectorySample` 或 `TrajectorySampleBodyFixed` 位置会创建轨迹线；
+静态 `Cartesian3` 位置只保存配置，不会创建退化轨迹。若先调用本方法，
+后续再设置轨迹采样位置时会自动挂载轨迹线。
 自动优化默认开启，会结合实体数量、速度和相机尺度调整采样间隔与点数上限。
 
 #### Parameters

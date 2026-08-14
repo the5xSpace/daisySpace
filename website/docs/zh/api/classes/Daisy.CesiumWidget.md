@@ -39,189 +39,127 @@ const widget2 = new Daisy.Widget("cesiumContainer", {
 
 ## Param
 
-**container**
-
 The DOM element or ID that will contain the widget.
 
 ## Param
-
-**options**
 
 Object with the following properties:
 
 ## Param
 
-**options.clock**
-
 The clock to use to control current time.
 
 ## Param
-
-**options.shouldAnimate**
 
 `true` if the clock should attempt to advance simulation time by default, `false` otherwise.
 
 ## Param
 
-**options.ellipsoid**
-
 The default ellipsoid.
 
 ## Param
-
-**options.baseLayer**
 
 The bottommost imagery layer applied to the globe. If set to `false`, no imagery provider will be added.
 
 ## Param
 
-**options.terrainProvider**
-
 The terrain provider.
 
 ## Param
-
-**options.terrain**
 
 A terrain object which handles asynchronous terrain provider. Can only specify if options.terrainProvider is undefined.
 
 ## Param
 
-**options.skyBox**
-
 The skybox used to render the stars. When `undefined` and the WGS84 ellipsoid used, the default stars are used. If set to `false`, no skyBox, Sun, or Moon will be added.
 
 ## Param
-
-**options.skyAtmosphere**
 
 Blue sky, and the glow around the Earth's limb. Enabled when the default ellipsoid used. Set to `false` to turn it off.
 
 ## Param
 
-**options.sceneMode**
-
 The initial scene mode.
 
 ## Param
-
-**options.scene3DOnly**
 
 When `true`, each geometry instance will only be rendered in 3D to save GPU memory.
 
 ## Param
 
-**options.orderIndependentTranslucency**
-
 If true and the configuration supports it, use order independent translucency.
 
 ## Param
-
-**options.mapProjection**
 
 The map projection to use in 2D and Columbus View modes.
 
 ## Param
 
-**options.globe**
-
 The globe to use in the scene. If set to `false`, no globe will be added and the sky atmosphere will be hidden by default.
 
 ## Param
-
-**options.useDefaultRenderLoop**
 
 True if this widget should control the render loop, false otherwise.
 
 ## Param
 
-**options.useBrowserRecommendedResolution**
-
 If true, render at the browser's recommended resolution and ignore `window.devicePixelRatio`.
 
 ## Param
-
-**options.targetFrameRate**
 
 The target frame rate when using the default render loop.
 
 ## Param
 
-**options.showRenderLoopErrors**
-
 If true, this widget will automatically display an HTML panel to the user containing the error, if a render loop error occurs.
 
 ## Param
-
-**options.automaticallyTrackDataSourceClocks**
 
 If true, this widget will automatically track the clock settings of newly added DataSources, updating if the DataSource's clock changes. Set this to false if you want to configure the clock independently.
 
 ## Param
 
-**options.contextOptions**
-
 Context and WebGL creation properties passed to [Scene](Daisy.Scene.md).
 
 ## Param
-
-**options.creditContainer**
 
 The DOM element or ID that will contain the [CreditDisplay](Daisy.CreditDisplay.md). If not specified, the credits are added
  to the bottom of the widget itself.
 
 ## Param
 
-**options.creditViewport**
-
 The DOM element or ID that will contain the credit pop up created by the [CreditDisplay](Daisy.CreditDisplay.md). If not specified, it will appear over the widget itself.
 
 ## Param
-
-**options.dataSources**
 
 The collection of data sources visualized by the widget. If this parameter is provided,
  the instance is assumed to be owned by the caller and will not be destroyed when the widget is destroyed.
 
 ## Param
 
-**options.shadows**
-
 Determines if shadows are cast by light sources.
 
 ## Param
-
-**options.terrainShadows**
 
 Determines if the terrain casts or receives shadows from light sources.
 
 ## Param
 
-**options.mapMode2D**
-
 Determines if the 2D map is rotatable or can be scrolled infinitely in the horizontal direction.
 
 ## Param
-
-**options.blurActiveElementOnCanvasFocus**
 
 If true, the active element will blur when the widget's canvas is clicked. Setting this to false is useful for cases when the canvas is clicked only for retrieving position or an entity data without actually meaning to set the canvas to be the active element.
 
 ## Param
 
-**options.requestRenderMode**
-
 If true, rendering a frame will only occur when needed as determined by changes within the scene. Enabling improves performance of the application, but requires using [Scene#requestRender](Daisy.Scene.md#requestrender) to render a new frame explicitly in this mode. This will be necessary in many cases after making changes to the scene in other parts of the API. See [Performance with Explicit Rendering](https://cesium.com/blog/2018/01/24/cesium-scene-rendering-performance/|Improving).
 
 ## Param
 
-**options.maximumRenderTimeChange**
-
 If requestRenderMode is true, this value defines the maximum change in simulation time allowed before a render is requested. See [Performance with Explicit Rendering](https://cesium.com/blog/2018/01/24/cesium-scene-rendering-performance/|Improving).
 
 ## Param
-
-**options.msaaSamples**
 
 If provided, this value controls the rate of multisample antialiasing. Typical multisampling rates are 2, 4, and sometimes 8 samples per pixel. Higher sampling rates of MSAA may impact performance in exchange for improved visual quality. This value only applies to WebGL2 contexts that support multisample render targets. Set to 1 to disable MSAA.
 

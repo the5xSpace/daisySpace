@@ -10,6 +10,22 @@
 
 ## Properties
 
+### borderColor?
+
+> `optional` **borderColor?**: [`DColor`](DColor.md)
+
+材质圆盘边界颜色。
+
+***
+
+### borderPixelWidth?
+
+> `optional` **borderPixelWidth?**: `number`
+
+材质圆盘边界宽度（像素）。
+
+***
+
 ### cellAlpha?
 
 > `optional` **cellAlpha?**: `number`
@@ -35,6 +51,14 @@
 ```ts
 80
 ```
+
+***
+
+### circularMask?
+
+> `optional` **circularMask?**: `boolean`
+
+是否将方形承载几何裁剪为圆盘。
 
 ***
 
@@ -91,3 +115,11 @@ true
 ```ts
 100000
 ```
+
+***
+
+### showBorder?
+
+> `optional` **showBorder?**: `boolean`
+
+是否显示材质圆盘边界。

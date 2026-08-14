@@ -91,9 +91,10 @@ async function createCesiumCompareEngine() {
     cesiumEngine.geoLayer.clearImagery();
     cesiumEngine.geoLayer.setBaseImagery({
         type: Daisy.GeoImageryType.XYZ,
-        url: Daisy.BuildModuleUrl.getUrl("static/earth/{z}/{x}/{y}.jpg"),
+        url: Daisy.BuildModuleUrl.getUrl("static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg"),
         minLevel: 0,
-        maxLevel: 3,
+        maxLevel: 2,
+        tilingScheme: "geographic",
     });
 }
 

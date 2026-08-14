@@ -10,19 +10,13 @@ A position defined by longitude, latitude, and height.
 
 ## Param
 
-**longitude**
-
 The longitude, in radians.
 
 ## Param
 
-**latitude**
-
 The latitude, in radians.
 
 ## Param
-
-**height**
 
 The height, in meters, above the ellipsoid.
 

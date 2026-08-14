@@ -63,11 +63,18 @@ SDK 当前包含以下全部资源根目录。公开资源可供业务直接引�
 
 ### 地球与夜景影像
 
-`static/earth/` 和 `static/night/` 是 SDK 自带的低级别 XYZ 瓦片，当前覆盖 `0` 至 `3` 级，适合离线预览和默认场景，不是高分辨率全球底图。
+`static/earth/` 是 SDK 主内置地球影像，也是 `Engine` 在 `scene` 运行配置中的默认资源。它使用 Web Mercator XYZ 瓦片，当前覆盖 `0` 至 `3` 级，URL 使用 `{z}/{x}/{y}`。
+
+`static/assets/NaturalEarthII/` 保留为第二套内置资源，使用 `GeographicTilingScheme` 和 TMS 行号 `{reverseY}`，当前覆盖 `0` 至 `2` 级以及完整的 `-90°` 到 `90°` 纬度范围。需要真实极区影像时使用这套资源或其他 geographic XYZ 服务。
+
+`static/night/` 仍提供低级别 Web Mercator 夜景影像。Web Mercator 本身不会覆盖南北极；当 Earth 影像没有极区瓦片时，Cesium globe/椭球仍应保持可见并显示底色。
 
 ```typescript
 const earthUrl = Daisy.BuildModuleUrl.getUrl(
     "static/earth/{z}/{x}/{y}.jpg",
+)
+const naturalEarthUrl = Daisy.BuildModuleUrl.getUrl(
+    "static/assets/NaturalEarthII/{z}/{x}/{reverseY}.jpg",
 )
 const nightUrl = Daisy.BuildModuleUrl.getUrl(
     "static/night/{z}/{x}/{y}.jpg",
@@ -78,10 +85,11 @@ engine.geoLayer.setBaseImagery({
     url: earthUrl,
     minLevel: 0,
     maxLevel: 3,
+    tilingScheme: "webMercator",
 })
 ```
 
-`static/assets/NaturalEarthII/` 还提供一套 `0` 至 `2` 级的 Natural Earth II 瓦片及 `tilemapresource.xml`。
+如需切换到第二套资源，将 `url` 替换为 `naturalEarthUrl`，并将 `maxLevel` 改为 `2`、`tilingScheme` 改为 `"geographic"`。Natural Earth II 目录同时提供 `tilemapresource.xml`，可用于确认其 TMS 瓦片布局。
 
 ### 天空盒
 

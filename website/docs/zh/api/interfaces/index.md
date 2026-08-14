@@ -1,6 +1,6 @@
 # Interfaces
 
-共 133 个 interfaces。
+共 136 个 interfaces。
 
 | 名称 | 链接 |
 |------|------|
@@ -11,6 +11,7 @@
 | `AscentTrajectoryOptions` | [AscentTrajectoryOptions](AscentTrajectoryOptions.md) |
 | `BodyTrackedCameraState` | [BodyTrackedCameraState](BodyTrackedCameraState.md) |
 | `BoundBoxCollisionStats` | [BoundBoxCollisionStats](BoundBoxCollisionStats.md) |
+| `BoundBoxFocusBounds` | [BoundBoxFocusBounds](BoundBoxFocusBounds.md) |
 | `BoundBoxOptions` | [BoundBoxOptions](BoundBoxOptions.md) |
 | `BoxComponentEntityComOptions` | [BoxComponentEntityComOptions](BoxComponentEntityComOptions.md) |
 | `BuildTrajectoryOptions` | [BuildTrajectoryOptions](BuildTrajectoryOptions.md) |
@@ -30,6 +31,7 @@
 | `CoveragePolygon` | [CoveragePolygon](CoveragePolygon.md) |
 | `CubeOptions` | [CubeOptions](CubeOptions.md) |
 | `CylinderOptions` | [CylinderOptions](CylinderOptions.md) |
+| `DaisyConfigOptions` | [DaisyConfigOptions](DaisyConfigOptions.md) |
 | `DaisyGeometryDescriptor` | [DaisyGeometryDescriptor](DaisyGeometryDescriptor.md) |
 | `DaisyLabelOptions` | [DaisyLabelOptions](DaisyLabelOptions.md) |
 | `DaisyMaterialShaderSource` | [DaisyMaterialShaderSource](DaisyMaterialShaderSource.md) |
@@ -111,6 +113,7 @@
 | `TaskTimeLineWidgetOptions` | [TaskTimeLineWidgetOptions](TaskTimeLineWidgetOptions.md) |
 | `TaskTimelineEntry` | [TaskTimelineEntry](TaskTimelineEntry.md) |
 | `TextOptions` | [TextOptions](TextOptions.md) |
+| `ThirdPartyResourceOptions` | [ThirdPartyResourceOptions](ThirdPartyResourceOptions.md) |
 | `TimeAxisTick` | [TimeAxisTick](TimeAxisTick.md) |
 | `TimeDynamicPropertyOptions` | [TimeDynamicPropertyOptions](TimeDynamicPropertyOptions.md) |
 | `TimeFormatDateTime` | [TimeFormatDateTime](TimeFormatDateTime.md) |

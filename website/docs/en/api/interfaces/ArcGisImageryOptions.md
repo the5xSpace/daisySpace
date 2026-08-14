@@ -118,8 +118,17 @@ Layer type: ArcGIS MapServer
 
 ***
 
-### url
+### url?
 
-> **url**: `string`
+> `optional` **url?**: `string`
 
-ArcGIS MapServer service URL
+ArcGIS MapServer service URL; when omitted, the global authorization setting is used,
+then the SDK's default World Street Map URL.
+
+***
+
+### usePreCachedTilesIfAvailable?
+
+> `optional` **usePreCachedTilesIfAvailable?**: `boolean`
+
+Whether to prefer ArcGIS pre-cached tiles. Defaults to `false` to avoid the `?f=json` metadata request during creation.

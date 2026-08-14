@@ -38,6 +38,15 @@ NearEarthOrbiter 配置。
 - `false`：不自动挂载
 - 对象：构造时自动挂载组件
 
+### instantOrbit?
+
+> `optional` **instantOrbit?**: [`InstantOrbitComponentOptions`](PW.InstantOrbitComponentOptions.md) \| `false`
+
+瞬时轨道估计组件配置。
+
+它根据当前时刻的位置和速度绘制一条诊断性的闭合轨道，
+不替代真实运动来源，也不显示历史/未来轨迹。
+
 ### orbitDefinition?
 
 > `optional` **orbitDefinition?**: `OrbitSourceInput`
@@ -63,15 +72,6 @@ NearEarthOrbiter 配置。
 通用轨道源输入，支持 TLE / OMM XML / JSON GP。
 
 当同时提供 `orbitSource` 和 `tle` 时，优先使用 `orbitSource`。
-
-### realtimeOrbit?
-
-> `optional` **realtimeOrbit?**: [`RealtimeOrbitComponentOptions`](PW.RealtimeOrbitComponentOptions.md) \| `false`
-
-实时轨道圈组件配置。
-
-- `false`：不自动挂载
-- 对象：构造时自动挂载组件
 
 ### tle?
 

@@ -11,8 +11,6 @@ Particles will be positioned within a circle and have initial velocities going a
 
 ## Param
 
-**radius**
-
 The radius of the circle in meters.
 
 ## Constructors

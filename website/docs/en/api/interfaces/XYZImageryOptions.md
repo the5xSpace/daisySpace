@@ -6,7 +6,7 @@
 
 # Interface: XYZImageryOptions
 
-XYZ tile imagery configuration
+XYZ tile imagery configuration.
 
 ## Extends
 
@@ -131,6 +131,15 @@ Whether to display this layer, default true
 > `optional` **subdomains?**: `string`[]
 
 Subdomain list, used for {s} variable
+
+***
+
+### tilingScheme?
+
+> `optional` **tilingScheme?**: [`XYZImageryTilingScheme`](../types/XYZImageryTilingScheme.md)
+
+Tiling scheme. Defaults to Web Mercator.
+Geographic tiles usually cover the full -90° to 90° latitude range.
 
 ***
 
