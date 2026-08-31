@@ -82,6 +82,7 @@ const guideSections = [
     text: label("数据与格式", "Data and Formats"),
     items: [
       [label("CZML 导入", "CZML Import"), "/guide/czml"],
+      [label("Scenario 数据驱动场景", "Scenario-Driven Scenes"), "/guide/scenario-runtime"],
       [label("时间格式化", "Time Formatting"), "/guide/time-format"],
     ],
   },
