@@ -1,0 +1,23 @@
+name: daisyspace-website
+
+services:
+  website:
+    container_name: daisyspace-website
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${DAISYSPACE_WEBSITE_PORT:-38080}:80"
+    networks: [daisyspace_shared]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+networks:
+  daisyspace_shared:
+    name: ${DAISYSPACE_SHARED_NETWORK:-daisyspace-shared}
+    external: true
