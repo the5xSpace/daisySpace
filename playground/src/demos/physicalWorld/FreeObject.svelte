@@ -109,8 +109,10 @@ function renderPopover(spec) {
 }
 
 // ── 4. 模式定义 ───────────────────────────────────────────────────────────────
+// FreeObject 不自动挂载模型；这里显式使用内置 vehicle 模型（daisy-vehicle）
 const carModel = {
-    url: Daisy.BuildModuleUrl.getUrl("models/bluecar.glb"),
+    url: Daisy.resolveDaisyModelAsset("vehicle").modelUrl,
+    minimumPixelSize: 48,
     showOutline: false,
     shadows: Daisy.ShadowMode.ENABLED,
 };

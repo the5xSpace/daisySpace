@@ -92,8 +92,9 @@ sat.addFeature(new Daisy.UI.TextFeature({
 // ModelFeature: 3D 模型特征
 // minimumPixelSize: 最小像素大小（保证模型在远处也可见）
 // silhouetteSize: 轮廓线宽度（用于高亮选中效果）
+// 使用内置 satellite 模型（daisy-satellite）
 sat.addFeature(new Daisy.ModelFeature({
-    url: Daisy.BuildModuleUrl.getUrl("models/ChandraXrayObservatory.glb"),
+    url: Daisy.resolveDaisyModelAsset("satellite").modelUrl,
     show: true,
     minimumPixelSize: 96,
     silhouetteSize: 2,

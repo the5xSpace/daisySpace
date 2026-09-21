@@ -34,7 +34,7 @@ const sat = new Daisy.PW.Satellite({
     enableSpg4Propagation: false,
     trajectory: { stepSeconds: 30 },
     point: { size: 1000, color: Daisy.Color.WHITE, outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
-    model: { url: Daisy.BuildModuleUrl.getUrl("models/ChandraXrayObservatory.glb"), minimumPixelSize: 42 },
+    // 默认自动挂载内置 satellite 模型（daisy-satellite）
     text: { text: "STARLINK-1008", font: "14px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.4) },
     path: { show: true, width: 2, color: Daisy.Color.LIME.withAlpha(0.55), historySecond: 45 * 60, futureSecond: 45 * 60 },
     groundTrack: { show: true, width: 2, material: Daisy.Color.LIME.withAlpha(0.6) },  // 星下点轨迹
@@ -45,7 +45,7 @@ sat.bindEngine(engine);  // 绑定卫星到引擎
 const site = new Daisy.PW.GroundStation({
     name: "Beijing-GS",
     position: Daisy.Cartesian3.fromDegrees(116.33, 40.052, 100),
-    stationModel: false,
+    // 默认自动挂载内置 fixedGroundStation 模型
     point: { size: 1000, color: Daisy.Color.RED, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
     text: { text: "Beijing", font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -14), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.4) },
 });

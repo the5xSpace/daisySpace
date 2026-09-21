@@ -59,13 +59,12 @@ sat.bindEngine(engine);
 // Daisy.PW.GroundStation: 地面站对象
 // - name: 地面站名称
 // - position: 位置坐标（Cartesian3.fromDegrees）
-// - stationModel: 是否显示 3D 模型
+// - 默认自动挂载内置 fixedGroundStation 模型；useBuiltinModel/model:false 可关闭
 // - point: 点标记配置
 // - text: 标签配置
 const site = new Daisy.PW.GroundStation({
     name: "Beijing-GS",
     position: Daisy.Cartesian3.fromDegrees(116.33, 40.052, 100),
-    stationModel: false,
     point: { size: 1000, color: Daisy.Color.RED, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
     text: { text: "Beijing" },
 });

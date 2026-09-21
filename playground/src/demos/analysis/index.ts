@@ -26,7 +26,7 @@ export const gpuComputeDemo: DemoDefinition = {
 
 export const qianfanCoverageDemo: DemoDefinition = {
     id: "analysis-qianfan-coverage", title: "千帆星座覆盖分析", subtitle: "QIANFAN 164星 + 连续覆盖",
-    problem: "千帆星座 164 颗卫星的时间窗覆盖分析。使用 TLE + SGP4 轨道传播 + ConstellationCoverageAnalysis，支持 6/12/24 小时范围、30/60/300 秒步长，并按每颗卫星连续覆盖显示结果。",
+    problem: "千帆星座 164 颗卫星的时间窗覆盖分析。使用 TLE + SGP4 轨道传播 + ConstellationCoverageAnalysis；大规模星座关闭内置模型改用点标记，支持 6/12/24 小时范围、30/60/300 秒步长。",
     module: "analysis", tags: ["qianfan", "constellation", "coverage", "tle", "sgp4", "continuous", "gpu-io"], difficulty: "advanced", preset: "earth-basic",
     code: () => import("./QianfanCoverage.svelte?raw").then((m) => m.default),
     component: () => import("./QianfanCoverage.svelte"),

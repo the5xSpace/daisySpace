@@ -501,6 +501,8 @@ async function loadAndBuild() {
                 enableSpg4Propagation: false,
                 autoOrientationByVelocity: false,
                 trajectory: false,
+                // 大规模星座压测：关闭内置模型，仅用点标记保证帧率
+                useBuiltinModel: false,
                 point: {
                     pixelSize: 6,
                     color: pickColor(index),

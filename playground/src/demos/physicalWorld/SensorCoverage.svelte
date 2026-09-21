@@ -50,7 +50,7 @@ function nowMs() {
 function makeSat(name, tle, pathColor) {
     const sat = new Daisy.PW.Satellite({
         name,
-        model: { url: Daisy.BuildModuleUrl.getUrl("models/ChandraXrayObservatory.glb"), minimumPixelSize: 48 },
+        // 默认自动挂载内置 satellite 模型（daisy-satellite）
         trajectory: { stepSeconds: 30 },
         path: {
             show: true,

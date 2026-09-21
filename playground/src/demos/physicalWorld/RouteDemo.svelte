@@ -166,11 +166,7 @@ const trajectory = new Daisy.PathBuilder()
 // ── 6. 创建飞行器并跟踪 ──────────────────────────────────────────
 const aircraft = new Daisy.PW.Aircraft({
     name: "BJ-SH-Flight",
-    model: {
-        url: Daisy.BuildModuleUrl.getUrl("models/GlobalHawk.glb"),
-        minimumPixelSize: 100,
-        maximumScale: 3000,
-    },
+    // 默认自动挂载内置 aircraft 模型（daisy-aircraft）
     path: {
         show: true,
         width: 2,
@@ -357,7 +353,7 @@ import DemoPanel from "../../shell/DemoPanel.svelte";
                 <span class="dot-icon">📌</span>航点
             </span>
             <span class="legend-item">
-                <span class="dot-icon">🟠</span>飞行器（GlobalHawk）
+                <span class="dot-icon">🟠</span>飞行器（内置 aircraft）
             </span>
             <span class="legend-item">
                 <span class="dot" style="background:#fbbf24"></span>飞行轨迹 Path
@@ -366,7 +362,7 @@ import DemoPanel from "../../shell/DemoPanel.svelte";
     </div>
 
     <div class="footer">
-        贝塞尔 {30}° · PolylineGlow · GlobalHawk · TrajectorySample
+        贝塞尔 {30}° · PolylineGlow · daisy-aircraft · TrajectorySample
     </div>
 </DemoPanel>
 

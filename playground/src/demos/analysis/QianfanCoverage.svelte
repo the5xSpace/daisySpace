@@ -408,6 +408,8 @@ for (const [name, line1, line2] of QIANFAN_TLES) {
             name,
             enableSpg4Propagation: false,
             trajectory: { stepSeconds: 30 },
+            // 百颗级覆盖分析：关闭内置模型，用点标记保持分析视图清晰
+            useBuiltinModel: false,
             point: {
                 size: 520,
                 color: Daisy.Color.CYAN,

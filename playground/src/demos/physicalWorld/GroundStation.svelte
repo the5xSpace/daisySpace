@@ -78,7 +78,7 @@ function computeLookAngles(sitePos, targetPos) {
 
 const site = new Daisy.PW.GroundStation({
     name: "Beijing-DSN",
-    stationModel: false,
+    // 默认自动挂载内置 fixedGroundStation 模型（daisy-fixed-ground-station）
     position: Daisy.Cartesian3.fromDegrees(siteLon, siteLat, siteAlt),
     point: false,
     text: {
@@ -105,9 +105,10 @@ site.entity.addFeature(patrolRing);
 const aircraftTrajectory = makeCircularTrajectory();
 const aircraft = new Daisy.PW.Aircraft({
     name: "Target-UAV",
+    // 盘旋目标使用内置 uav 模型（daisy-uav）
     model: {
-        url: Daisy.BuildModuleUrl.getUrl("models/GlobalHawk.glb"),
-        minimumPixelSize: 64,
+        url: Daisy.resolveDaisyModelAsset("uav").modelUrl,
+        minimumPixelSize: 36,
         maximumScale: 1600,
     },
     point: {

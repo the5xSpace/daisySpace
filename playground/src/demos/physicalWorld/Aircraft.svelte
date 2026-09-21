@@ -26,8 +26,8 @@ const C2 = Daisy.Cartesian2;
 const Color = Daisy.Color;
 const JD = Daisy.JulianDate;
 
-// 资源目录当前没有显式命名的四轴 GLB；放入模型后只需要替换这里。
-const quadrotorModelUrl = Daisy.BuildModuleUrl.getUrl("models/uav2.glb");
+// 内置无人机模型（daisy-uav）；kind 也可用 "aircraft" 切换为固定翼
+const uavAsset = Daisy.resolveDaisyModelAsset("uav");
 
 // ── 1. 场景与时间 ─────────────────────────────────────────────────────────────
 const start = JD.fromDate(new Date("2026-04-20T06:00:00Z"));
@@ -246,11 +246,11 @@ scanArea.addFeature(new Daisy.UI.TextFeature({
 // ── 4. 创建无人机 Aircraft ──────────────────────────────────────────────────
 const aircraft = new Daisy.PW.Aircraft({
     name: "UAV-Quad-01",
+    // Aircraft 构造期默认挂 aircraft 内置模型；此处覆盖为 uav（四旋翼）
     model: {
-        url: quadrotorModelUrl,
-        minimumPixelSize: 72,
+        url: uavAsset.modelUrl,
+        minimumPixelSize: 48,
         maximumScale: 600,
-        scale: 0.32,
         shadows: Daisy.ShadowMode.ENABLED,
         color: Color.WHITE,
         colorBlendAmount: 0.08,
@@ -295,12 +295,12 @@ if (modelFeature) {
     modelFeature.onload(() => {
         const anims = modelFeature.getAnimationInfos();
         __log?.(`模型动画列表: ${anims.length} 个 - ${anims.map((a) => `${a.index}:${a.name ?? "unnamed"}`).join(", ")}`);
-        // 旋翼动画（每个旋翼一个独立动画）
+        // 内置 uav 模型动画：rotor_spin
+        const targetAnimName = uavAsset.animation; // "rotor_spin"
         const rotorAnimations = anims.filter(
-            (a) => a.name?.toLowerCase().includes("motor_props")
+            (a) => a.name === targetAnimName || a.name?.toLowerCase().includes("rotor")
         );
         if (rotorAnimations.length > 0) {
-            // 为每个旋翼动画单独启动（确保每个 index 都被独立 add）
             for (const anim of rotorAnimations) {
                 modelFeature.playAnimation({
                     index: anim.index,
@@ -308,12 +308,11 @@ if (modelFeature) {
                     multiplier: 3.0,
                 });
             }
-            __log?.(`已为 ${rotorAnimations.length} 个旋翼启动独立动画`);
+            __log?.(`已播放内置旋翼动画: ${targetAnimName} (${rotorAnimations.length} 段)`);
         } else {
-            // 没有匹配到 motor_props，回退到全部播放
             const ids = modelFeature.playAllAnimations({
                 loop: Daisy.ModelAnimationLoop.REPEAT,
-                multiplier: 3.0,
+                multiplier: 1.0,
             });
             __log?.(`回退到 playAllAnimations: 启动了 ${ids.length} 个动画`);
         }

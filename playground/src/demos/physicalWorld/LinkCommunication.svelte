@@ -75,14 +75,13 @@ sat.bindEngine(engine);
 // 参数说明：
 //   - name: 地面站名称
 //   - position: 位置坐标（Cartesian3.fromDegrees）
-//   - stationModel: 是否显示 3D 模型
+//   - 默认自动挂载内置 fixedGroundStation 模型
 //   - point: 点标记配置（同 Satellite）
 //   - text: 标签配置
 //     - text: 显示文本
 const site1 = new Daisy.PW.GroundStation({
     name: "Beijing-GS",
     position: Daisy.Cartesian3.fromDegrees(116.33, 40.052, 100),
-    stationModel: false,
     point: { size: 1000, color: Daisy.Color.RED, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
     text: { text: "Beijing" },
 });
@@ -91,7 +90,6 @@ site1.bindEngine(engine);
 const site2 = new Daisy.PW.GroundStation({
     name: "Shanghai-GS",
     position: Daisy.Cartesian3.fromDegrees(121.5, 31.2, 100),
-    stationModel: false,
     point: { size: 1000, color: Daisy.Color.YELLOW, outlineColor: Daisy.Color.WHITE, outlineWidth: 1 },
     text: { text: "Shanghai" },
 });

@@ -2,6 +2,7 @@
 let { engine, daisy: Daisy, container, log: __log, registerCleanup } = $props();
 
 // VehicleVessel — 地面车辆 + 船舶
+// 构造时自动挂载内置模型：vehicle → daisy-vehicle，vessel → daisy-cargo-ship
 const now = Daisy.JulianDate.fromDate(new Date("2026-04-20T06:00:00Z"));
 const start = Daisy.JulianDate.addHours(now, -1, new Daisy.JulianDate());
 const stop = Daisy.JulianDate.addHours(now, 3, new Daisy.JulianDate());
@@ -29,5 +30,5 @@ vessel.bindEngine(engine);
 engine.camera.flyToTarget([vehicle.entity, vessel.entity].filter(Boolean), {
     offset: new Daisy.HeadingPitchRange(0, Daisy.Math.toRadians(-45), 5000000),
 });
-__log("Vehicle + Vessel 已创建");
+__log("Vehicle + Vessel 已创建（内置 vehicle / cargoShip 模型）");
 </script>

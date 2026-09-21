@@ -37,8 +37,8 @@ export const markerFeaturesDemo: DemoDefinition = {
     component: () => import("./MarkerFeatures.svelte"),
 };
 export const modelFeatureDemo: DemoDefinition = {
-    id: "features-model-feature", title: "模型组件", subtitle: "Space Formation / Node Transform / Animation",
-    module: "features", tags: ["model", "gltf", "glb", "space", "node", "animation"], difficulty: "intermediate", preset: "earth-basic",
+    id: "features-model-feature", title: "模型组件", subtitle: "Builtin Models / Node Transform / Animation",
+    module: "features", tags: ["model", "gltf", "glb", "builtin", "node", "animation"], difficulty: "intermediate", preset: "earth-basic",
     code: () => import("./ModelFeature.svelte?raw").then((m) => m.default),
     component: () => import("./ModelFeature.svelte"),
 };

@@ -37,15 +37,15 @@ export const satelliteConstellationDemo: DemoDefinition = {
 };
 export const starlinkConstellationDemo: DemoDefinition = {
     id: "pw-starlink-constellation", title: "Starlink 大型星座", subtitle: "Daisy.PW.Satellite + hover 轨迹线 + 调速 / 帧率 / 时间轴",
-    problem: "读取压缩星历文本，批量创建 Starlink 星座卫星对象；普通卫星低频保活，hover/click 卫星显示大标签与轨迹线，便于大规模实体交互性能测试。",
+    problem: "读取压缩星历文本，批量创建 Starlink 星座卫星对象；大规模压测关闭内置模型改用点标记，hover/click 卫星显示大标签与轨迹线。",
     module: "physicalWorld", tags: ["satellite", "starlink", "constellation", "benchmark", "webgpu"], difficulty: "advanced", preset: "earth-basic",
     code: () => import("./StarlinkConstellation.svelte?raw").then((m) => m.default),
     component: () => import("./StarlinkConstellation.svelte"),
 };
 export const groundStationDemo: DemoDefinition = {
-    id: "pw-ground-station", title: "地面站", subtitle: "天线模型 + 盘旋目标 + 跟踪波束",
-    problem: "展示地面站如何驱动天线模型、持续跟踪空中目标，并用链路表达测控/遥测能力。",
-    module: "physicalWorld", tags: ["ground-station", "ground", "station"], difficulty: "basic", preset: "earth-basic",
+    id: "pw-ground-station", title: "地面站", subtitle: "内置天线模型 + 盘旋目标 + 跟踪波束",
+    problem: "展示地面站如何驱动内置 fixedGroundStation 天线模型、持续跟踪空中目标，并用链路表达测控/遥测能力。目标机使用内置 uav 模型。",
+    module: "physicalWorld", tags: ["ground-station", "ground", "station", "builtin-model"], difficulty: "basic", preset: "earth-basic",
     code: () => import("./GroundStation.svelte?raw").then((m) => m.default),
     component: () => import("./GroundStation.svelte"),
 };
@@ -85,23 +85,23 @@ export const orbitElementsViewDemo: DemoDefinition = {
     component: () => import("./OrbitElementsView.svelte"),
 };
 export const aircraftDemo: DemoDefinition = {
-    id: "pw-aircraft", title: "飞行器", subtitle: "Aircraft 对象",
-    problem: "展示机载对象如何挂载位置、轨迹和可视化特征。",
-    module: "physicalWorld", tags: ["aircraft", "plane"], difficulty: "basic", preset: "earth-timeline",
+    id: "pw-aircraft", title: "飞行器", subtitle: "Aircraft 对象 · 内置 uav 模型",
+    problem: "展示机载对象如何挂载位置、轨迹和可视化特征；示例使用内置 uav 模型（daisy-uav）并播放旋翼动画。",
+    module: "physicalWorld", tags: ["aircraft", "uav", "builtin-model"], difficulty: "basic", preset: "earth-timeline",
     code: () => import("./Aircraft.svelte?raw").then((m) => m.default),
     component: () => import("./Aircraft.svelte"),
 };
 export const vehicleVesselDemo: DemoDefinition = {
-    id: "pw-vehicle-vessel", title: "车船对象", subtitle: "Vehicle / Vessel",
-    problem: "展示地面车辆和海上载具的基础对象建模方式。",
-    module: "physicalWorld", tags: ["vehicle", "vessel", "ship"], difficulty: "basic", preset: "earth-basic",
+    id: "pw-vehicle-vessel", title: "车船对象", subtitle: "Vehicle / Vessel · 内置模型",
+    problem: "展示地面车辆和海上载具的基础对象建模方式；构造时自动挂载内置 vehicle / cargoShip 模型。",
+    module: "physicalWorld", tags: ["vehicle", "vessel", "ship", "builtin-model"], difficulty: "basic", preset: "earth-basic",
     code: () => import("./VehicleVessel.svelte?raw").then((m) => m.default),
     component: () => import("./VehicleVessel.svelte"),
 };
 export const freeObjectDemo: DemoDefinition = {
     id: "pw-free-object", title: "自由对象", subtitle: "FreeObject 通用载荷平台",
-    problem: "展示自由对象如何承载模型、路径、传感器、碰撞球与弹窗，并用汽车场景串起多种装配方式。",
-    module: "physicalWorld", tags: ["free", "object", "vehicle", "payload"], difficulty: "intermediate", preset: "earth-timeline",
+    problem: "展示自由对象如何承载模型、路径、传感器、碰撞球与弹窗；示例显式挂载内置 vehicle 模型串起多种装配方式。",
+    module: "physicalWorld", tags: ["free", "object", "vehicle", "payload", "builtin-model"], difficulty: "intermediate", preset: "earth-timeline",
     code: () => import("./FreeObject.svelte?raw").then((m) => m.default),
     component: () => import("./FreeObject.svelte"),
 };
@@ -138,7 +138,7 @@ export const openSkyFlightsDemo: DemoDefinition = {
 
 export const rocketLaunchDemo: DemoDefinition = {
     id: "pw-rocket-launch", title: "火箭主动段弹道仿真", subtitle: "AscentTrajectoryBuilder · 多级火箭 · 重力转弯 · 大气阻力",
-    problem: "使用 AscentTrajectoryBuilder 生成火箭主动段弹道轨迹，配备 Saturn V 3D 模型和实时参数面板。支持单级/双级、偏转程序、大气阻力可调。",
+    problem: "使用 AscentTrajectoryBuilder 生成火箭主动段弹道轨迹，配备内置 rocket 模型和实时参数面板。支持单级/双级、偏转程序、大气阻力可调。",
     module: "physicalWorld", tags: ["rocket", "launch", "ascent", "gravity-turn", "trajectory"], difficulty: "advanced", preset: "earth-basic",
     code: () => import("./RocketLaunchDemo.svelte?raw").then((m) => m.default),
     component: () => import("./RocketLaunchDemo.svelte"),

@@ -65,8 +65,7 @@ for (let i = 0; i < 5; i++) {
         trajectory: { stepSeconds: 30 },          // 轨迹采样步长30秒
         // 点击目标样式：大小800米，青色，黑色描边
         point: { size: 800, color: Daisy.Color.CYAN, outlineColor: Daisy.Color.BLACK.withAlpha(0.7), outlineWidth: 1.5 },
-        // 3D模型：使用钱德拉X射线天文台模型
-        model: { url: Daisy.BuildModuleUrl.getUrl("models/ChandraXrayObservatory.glb"), minimumPixelSize: 34 },
+        // 3D模型：默认自动挂载内置 satellite 模型（daisy-satellite）
         // 标签样式：显示名称，带背景
         text: { text: `${data.name}-${i + 1}`, font: "13px sans-serif", offsetPx: new Daisy.Cartesian2(0, -16), showBackground: true, backgroundColor: Daisy.Color.BLACK.withAlpha(0.35) },
         // 轨道路径：显示前后30分钟的轨迹

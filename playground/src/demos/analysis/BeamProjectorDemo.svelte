@@ -41,7 +41,7 @@ const starlinkTle = [
 
 const sat = new Daisy.PW.Satellite({
     name: "BeamProj-Sat",
-    model: { url: Daisy.BuildModuleUrl.getUrl("models/ChandraXrayObservatory.glb"), minimumPixelSize: 48 },
+    // 默认自动挂载内置 satellite 模型（daisy-satellite）
     trajectory: { stepSeconds: 30 },
     path: { show: true, color: Daisy.Color.CYAN.withAlpha(0.45), width: 2 },
     point: { size: 900, color: Daisy.Color.CYAN, outlineColor: Daisy.Color.BLACK.withAlpha(0.6), outlineWidth: 1.4 },

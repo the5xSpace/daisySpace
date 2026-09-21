@@ -7,7 +7,7 @@ import DemoPanel from "../../shell/DemoPanel.svelte";
  * 展示：
  * 1. 从地面发射台准备 → 点火 → 一级爬升 → 偏转 → 级间分离 → 二级入轨 → 弹道远地点
  * 2. 参数面板暴露所有输入，支持单级/双级切换
- * 3. Saturn V 3D 模型沿轨迹飞行 + TrailPath 轨迹线
+ * 3. 内置 rocket 模型沿轨迹飞行 + TrailPath 轨迹线
  * 4. TimeSchedule 事件追踪：liftoff / pitchover / staging / burnout / apogee
  * 5. 相机自动跟随火箭
  */
@@ -68,10 +68,10 @@ function getLaunchPosition() {
 }
 
 function getRocketModelOptions() {
+  // 使用内置 rocket 模型（daisy-rocket，1 glTF 单位 = 1 米）
   return {
-    url: Daisy.BuildModuleUrl.getUrl("models/SaturnVl.glb"),
-    scale: 0.06,
-    minimumPixelSize: 170,
+    url: Daisy.resolveDaisyModelAsset("rocket").modelUrl,
+    minimumPixelSize: 120,
     maximumScale: 2000,
     silhouetteColor: Color.fromCssColorString("#71c7ff"),
     silhouetteSize: 1,
