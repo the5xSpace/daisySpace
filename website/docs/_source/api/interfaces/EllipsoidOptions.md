@@ -205,6 +205,10 @@ ShadowMode.DISABLED
 true
 ```
 
+#### Overrides
+
+[`FeatureOptions`](FeatureOptions.md).[`show`](FeatureOptions.md#show)
+
 ***
 
 ### stOffset?

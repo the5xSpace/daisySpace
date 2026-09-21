@@ -168,7 +168,7 @@
 
 ### evaluateInReferenceFrame()
 
-> **evaluateInReferenceFrame**(`time`, `referenceFrame?`): `Cartesian3` \| `undefined`
+> **evaluateInReferenceFrame**(`time`, `_referenceFrame?`): `Cartesian3` \| `undefined`
 
 获取指定时间点的轨迹点
 
@@ -180,11 +180,9 @@
 
 目标时刻
 
-##### referenceFrame?
+##### \_referenceFrame?
 
 `ReferenceFrame` = `Daisy.ReferenceFrame.FIXED`
-
-参考系；默认 `ReferenceFrame.FIXED`
 
 #### Returns
 
@@ -275,7 +273,7 @@
 
 ### evaluateInReferenceFrameInto()
 
-> **evaluateInReferenceFrameInto**(`time`, `referenceFrame?`, `result`): `Cartesian3` \| `undefined`
+> **evaluateInReferenceFrameInto**(`time`, `_referenceFrame?`, `result`): `Cartesian3` \| `undefined`
 
 获取指定参考系位置并写入 result。供批量热路径复用对象。
 
@@ -285,7 +283,7 @@
 
 `JulianDate`
 
-##### referenceFrame?
+##### \_referenceFrame?
 
 `ReferenceFrame` = `Daisy.ReferenceFrame.FIXED`
 

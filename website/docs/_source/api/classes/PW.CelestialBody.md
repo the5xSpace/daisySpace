@@ -454,22 +454,6 @@ obj.addComponent(new Sensor({ range: 100000 }));
 
 ***
 
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `this`
-
-清除当前物理对象的选中聚焦盒。
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`BaseObject`](PW.BaseObject.md).[`clearFocusTarget`](PW.BaseObject.md#clearfocustarget)
-
-***
-
 ### destroy()
 
 > **destroy**(): `void`
@@ -866,54 +850,6 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 ***
 
-### setFocusTarget()
-
-> **setFocusTarget**(`options?`): `this`
-
-显示当前物理对象的选中聚焦盒。
-
-#### Parameters
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`BaseObject`](PW.BaseObject.md).[`setFocusTarget`](PW.BaseObject.md#setfocustarget)
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前物理对象的选中聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`BaseObject`](PW.BaseObject.md).[`setFocusVisible`](PW.BaseObject.md#setfocusvisible)
-
-***
-
 ### setGridSuppressShow()
 
 > **setGridSuppressShow**(`value`): `void`
@@ -925,6 +861,24 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 ##### value
 
 `boolean`
+
+#### Returns
+
+`void`
+
+***
+
+### setOptions()
+
+> **setOptions**(`config`): `void`
+
+更新天体配置。省略字段保持不变，false/空数组表示明确移除对应能力。
+
+#### Parameters
+
+##### config
+
+`Partial`\<[`CelestialBodyConfig`](../types/PW.CelestialBodyConfig.md)\>
 
 #### Returns
 

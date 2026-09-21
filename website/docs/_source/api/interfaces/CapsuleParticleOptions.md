@@ -397,6 +397,12 @@ power 是否参与可见性。默认 true，保持喷焰“停机即隐藏”的
 
 > `optional` **show?**: `boolean`
 
+是否显示；未设置时由具体 Feature 使用其默认值。
+
+#### Overrides
+
+[`FeatureOptions`](FeatureOptions.md).[`show`](FeatureOptions.md#show)
+
 ***
 
 ### tailColor?

@@ -115,6 +115,10 @@
 
 是否显示。
 
+#### Overrides
+
+[`FeatureOptions`](FeatureOptions.md).[`show`](FeatureOptions.md#show)
+
 ***
 
 ### visibility?

@@ -296,22 +296,6 @@
 
 ## Methods
 
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `this`
-
-清除当前物理组件的选中聚焦盒。
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`PropulsionComponent`](PW.PropulsionComponent.md).[`clearFocusTarget`](PW.PropulsionComponent.md#clearfocustarget)
-
-***
-
 ### destroy()
 
 > **destroy**(): `void`
@@ -432,54 +416,6 @@
 #### Inherited from
 
 [`PropulsionComponent`](PW.PropulsionComponent.md).[`setEnabled`](PW.PropulsionComponent.md#setenabled)
-
-***
-
-### setFocusTarget()
-
-> **setFocusTarget**(`options?`): `this`
-
-显示当前物理组件的选中聚焦盒。
-
-#### Parameters
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`PropulsionComponent`](PW.PropulsionComponent.md).[`setFocusTarget`](PW.PropulsionComponent.md#setfocustarget)
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前物理组件的选中聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`PropulsionComponent`](PW.PropulsionComponent.md).[`setFocusVisible`](PW.PropulsionComponent.md#setfocusvisible)
 
 ***
 

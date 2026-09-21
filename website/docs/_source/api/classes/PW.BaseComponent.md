@@ -193,18 +193,6 @@ PhysicalWorld 组件基类。
 
 ## Methods
 
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `this`
-
-清除当前物理组件的选中聚焦盒。
-
-#### Returns
-
-`this`
-
-***
-
 ### destroy()
 
 > **destroy**(): `void`
@@ -281,46 +269,6 @@ PhysicalWorld 组件基类。
 #### Implementation of
 
 [`IComponent`](../interfaces/PW.IComponent.md).[`resetTemporalState`](../interfaces/PW.IComponent.md#resettemporalstate)
-
-***
-
-### setFocusTarget()
-
-> **setFocusTarget**(`options?`): `this`
-
-显示当前物理组件的选中聚焦盒。
-
-#### Parameters
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前物理组件的选中聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
 
 ***
 

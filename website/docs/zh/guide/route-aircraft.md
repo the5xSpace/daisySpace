@@ -137,20 +137,31 @@ carrier.addComponent(route)
 ## Aircraft — 飞行器
 
 ```typescript
+// 默认：构造时自动挂载内置 aircraft 模型
 const aircraft = new Daisy.PW.Aircraft({
     name: "UAV-1",
     position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 10000),
+    // useBuiltinModel: true,   // 默认 true，可省略
     point: { size: 1000, color: Daisy.Color.ORANGE },
     text: { text: "UAV-1" },
 })
 
 aircraft.bindEngine(engine)
 
+// 关闭内置模型
+const bareAircraft = new Daisy.PW.Aircraft({
+    name: "UAV-Bare",
+    position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 10000),
+    useBuiltinModel: false,
+})
+
 // 设置运动轨迹
 aircraft.position = trajectory  // TrajectorySample from PathBuilder
 ```
 
 Aircraft 默认传感器方向为 `TO_BOTTOM`，可通过 `addSensor` 的 `emitDirection` 覆盖。
+
+构造时未提供 `model` 会默认挂载内置 `aircraft` 模型；可用 `useBuiltinModel: false` 关闭，或用自定义 `model` 覆盖。详见[内置模型库](/guide/model-library)。
 
 ## 完整航路仿真示例
 

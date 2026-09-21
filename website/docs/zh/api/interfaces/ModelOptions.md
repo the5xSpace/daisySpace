@@ -534,6 +534,10 @@ ShadowMode.ENABLED
 true
 ```
 
+#### Overrides
+
+[`FeatureOptions`](FeatureOptions.md).[`show`](FeatureOptions.md#show)
+
 ***
 
 ### showOutline?

@@ -1,11 +1,12 @@
 # Variables
 
-共 92 个 variables。
+共 94 个 variables。
 
 | 名称 | 链接 |
 |------|------|
 | `AviationTemplate` | [AviationTemplate](AviationTemplate.md) |
 | `BuiltinTemplates` | [BuiltinTemplates](BuiltinTemplates.md) |
+| `DAISY\_BUILTIN\_MODEL\_VISUAL\_DEFAULTS` | [DAISY\_BUILTIN\_MODEL\_VISUAL\_DEFAULTS](DAISY_BUILTIN_MODEL_VISUAL_DEFAULTS.md) |
 | `DEFAULT\_ARCGIS\_MAP\_SERVER\_URL` | [DEFAULT\_ARCGIS\_MAP\_SERVER\_URL](DEFAULT_ARCGIS_MAP_SERVER_URL.md) |
 | `DEFAULT\_CELESTIAL\_MARKER\_BODIES` | [DEFAULT\_CELESTIAL\_MARKER\_BODIES](DEFAULT_CELESTIAL_MARKER_BODIES.md) |
 | `DEFAULT\_MAX\_TRANSITS` | [DEFAULT\_MAX\_TRANSITS](DEFAULT_MAX_TRANSITS.md) |
@@ -54,6 +55,7 @@
 | `SOLAR\_RADIUS` | [SOLAR\_RADIUS](Daisy.Math.SOLAR_RADIUS.md) |
 | `THREE\_PI\_OVER\_TWO` | [THREE\_PI\_OVER\_TWO](Daisy.Math.THREE_PI_OVER_TWO.md) |
 | `TWO\_PI` | [TWO\_PI](Daisy.Math.TWO_PI.md) |
+| `DaisyModelLibrary` | [DaisyModelLibrary](DaisyModelLibrary.md) |
 | `ELLIPSOID` | [ELLIPSOID](ELLIPSOID.md) |
 | `EPSILON` | [EPSILON](EPSILON.md) |
 | `~~Variable: GLSL~~` | [~~Variable: GLSL~~](GLSL.md) |

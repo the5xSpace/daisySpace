@@ -157,7 +157,9 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
-    ...(playgroundPort ? {host: "127.0.0.1", port: playgroundPort, strictPort: true} : {}),
+    ...(playgroundPort
+      ? {host: "127.0.0.1", port: playgroundPort, strictPort: true}
+      : {host: "127.0.0.1", strictPort: false}),
     fs: {allow: [workspaceRoot, sdkPackageRoot]},
     ...(playgroundPort ? {hmr: {clientPort: sitePort ?? playgroundPort}} : {}),
   },

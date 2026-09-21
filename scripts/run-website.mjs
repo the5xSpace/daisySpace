@@ -1,4 +1,6 @@
 import { spawn } from "node:child_process";
+import { findAvailablePort, parsePreferredPort } from "./dev-ports.mjs";
+import { resolvePnpmBin } from "./dev-adaptive.mjs";
 import { firstPositionalArg } from "./generate-api-docs.mjs";
 import { refreshDocumentation } from "./refresh-docs.mjs";
 
@@ -10,10 +12,27 @@ if (mode !== "dev" && mode !== "build") {
   process.exit(1);
 }
 
-function runWebsite(command) {
+function runWebsite(command, env = process.env) {
   return new Promise((resolve, reject) => {
-    const child = spawn("pnpm", ["--dir", "website", command], {
+    // dev mode: spawn vitepress directly after adaptive port resolution.
+    // Calling package.json "dev" would re-enter the adaptive wrapper.
+    const args = command === "dev"
+      ? [
+        "--dir",
+        "website",
+        "exec",
+        "vitepress",
+        "dev",
+        "docs",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        String(env.DAISY_SITE_PORT),
+      ]
+      : ["--dir", "website", command];
+    const child = spawn(resolvePnpmBin(), args, {
       stdio: "inherit",
+      env,
       shell: process.platform === "win32",
     });
     child.on("error", reject);
@@ -31,7 +50,19 @@ function runWebsite(command) {
 
 try {
   await refreshDocumentation(sdkPath);
-  await runWebsite(mode);
+  if (mode === "dev") {
+    const preferredPort = parsePreferredPort(process.env.DAISY_SITE_PORT, 5173);
+    const port = await findAvailablePort(preferredPort);
+    const env = {
+      ...process.env,
+      DAISY_SITE_PORT: String(port),
+    };
+    console.log(`[dev:website] adaptive port: ${port}`);
+    console.log(`[dev:website] open this URL: http://127.0.0.1:${port}/`);
+    await runWebsite(mode, env);
+  } else {
+    await runWebsite(mode);
+  }
 } catch (error) {
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);

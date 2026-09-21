@@ -66,10 +66,12 @@ engine.flyTo(entity, { duration: 2 })
 // ── 5. 创建卫星（使用 PW 命名空间）──────────────────────────
 // physicalWorld 通过 `export * as PW` 暴露
 // bindEngine 会把物理对象绑定到引擎，并完成注册
+// 默认挂载内置 satellite 模型；useBuiltinModel: false 可关闭
 const tleText = `1 25544U 98067A   25152.50000000  .00000000  00000-0  00000-0 0  9990
 2 25544  51.6400 247.4627 0000000  51.6400 110.0000 15.50000000    001`
 
 const sat = new Daisy.PW.Satellite({ name: 'SAT-1', tle: tleText })
+// const satBare = new Daisy.PW.Satellite({ name: 'SAT-BARE', tle: tleText, useBuiltinModel: false })
 sat.bindEngine(engine)
 ```
 
@@ -82,6 +84,8 @@ sat.bindEngine(engine)
 | 3 | `createEntity` + `addFeature` | Entity 只持有位置/朝向，可视化完全由 Feature 决定 |
 | 4 | `flyTo(target, options)` | 等价于 `engine.camera.flyToTarget`，target 可为 Entity / 坐标 / 数组 |
 | 5 | `PW.Satellite.bindEngine(engine)` | 物理对象绑定引擎后会自动挂载实体并注册，进入仿真循环 |
+
+卫星、飞行器、火箭、地面站等 `PW` 对象在构造时默认挂载内置模型；可用 `useBuiltinModel: false` 关闭。详见[内置模型库](/guide/model-library)。
 
 > Playground 中已有等价 Demo：[EngineCreate.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/EngineCreate.svelte)，可对照运行。
 

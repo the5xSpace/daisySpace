@@ -19,11 +19,14 @@ Feature 基础配置选项。
 - [`ModelOptions`](ModelOptions.md)
 - [`PointComOptions`](PointComOptions.md)
 - [`PathComponentOptions`](PathComponentOptions.md)
+- [`BoundBoxOptions`](BoundBoxOptions.md)
 - [`BoxComponentEntityComOptions`](BoxComponentEntityComOptions.md)
 - [`EllipsoidOptions`](EllipsoidOptions.md)
 - [`CubeOptions`](CubeOptions.md)
 - [`ParticleFeatureOptions`](ParticleFeatureOptions.md)
 - [`CapsuleParticleOptions`](CapsuleParticleOptions.md)
+- [`HeatmapFeatureOptions`](HeatmapFeatureOptions.md)
+- [`CoverageAreaOptions`](CoverageAreaOptions.md)
 - [`PopoverOptions`](UI.PopoverOptions.md)
 
 ## Properties
@@ -67,6 +70,14 @@ Feature 基础配置选项。
 > `optional` **renderOrder?**: `number`
 
 渲染排序值（数值越小越先渲染）。
+
+***
+
+### show?
+
+> `optional` **show?**: `boolean`
+
+是否显示；未设置时由具体 Feature 使用其默认值。
 
 ***
 

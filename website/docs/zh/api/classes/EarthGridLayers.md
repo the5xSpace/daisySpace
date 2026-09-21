@@ -334,17 +334,15 @@ Widget 显示名称。
 
 ### morphSwitchHandle()
 
-> **morphSwitchHandle**(`mode`): `void`
+> **morphSwitchHandle**(`_mode`): `void`
 
 处理场景模式切换事件。
 
 #### Parameters
 
-##### mode
+##### \_mode
 
 `SceneMode`
-
-当前场景模式。
 
 #### Returns
 

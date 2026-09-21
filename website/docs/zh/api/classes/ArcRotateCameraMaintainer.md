@@ -247,7 +247,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 ### update()
 
-> **update**(`time`): `void`
+> **update**(`time`): `boolean`
 
 每帧更新（由外部渲染循环传入当前仿真时间）。
 
@@ -261,7 +261,7 @@ const remove = viewer._originScene.preRender.addEventListener((_, time) => {
 
 #### Returns
 
-`void`
+`boolean`
 
 ***
 

@@ -1,6 +1,6 @@
 # Interfaces
 
-共 136 个 interfaces。
+共 158 个 interfaces。
 
 | 名称 | 链接 |
 |------|------|
@@ -75,7 +75,12 @@
 | `OsmImageryOptions` | [OsmImageryOptions](OsmImageryOptions.md) |
 | `CameraWeatherParticleOptions` | [CameraWeatherParticleOptions](PW.CameraWeatherParticleOptions.md) |
 | `IComponent` | [IComponent](PW.IComponent.md) |
+| `NearEarthOrbiterEphemerisPlan` | [NearEarthOrbiterEphemerisPlan](PW.NearEarthOrbiterEphemerisPlan.md) |
+| `NearEarthOrbiterMotionConfiguration` | [NearEarthOrbiterMotionConfiguration](PW.NearEarthOrbiterMotionConfiguration.md) |
+| `NearEarthOrbiterMotionDiagnostic` | [NearEarthOrbiterMotionDiagnostic](PW.NearEarthOrbiterMotionDiagnostic.md) |
+| `NearEarthOrbiterMotionTimeRange` | [NearEarthOrbiterMotionTimeRange](PW.NearEarthOrbiterMotionTimeRange.md) |
 | `PropulsionOptions` | [PropulsionOptions](PW.PropulsionOptions.md) |
+| `ResolvedNearEarthOrbiterMotionConfiguration` | [ResolvedNearEarthOrbiterMotionConfiguration](PW.ResolvedNearEarthOrbiterMotionConfiguration.md) |
 | `RouteComponentOptions` | [RouteComponentOptions](PW.RouteComponentOptions.md) |
 | `RouteWaypoint` | [RouteWaypoint](PW.RouteWaypoint.md) |
 | `ParticleEmitterLike` | [ParticleEmitterLike](ParticleEmitterLike.md) |
@@ -95,8 +100,21 @@
 | `PreviewHostContext` | [PreviewHostContext](PreviewHostContext.md) |
 | `ProjectionRange` | [ProjectionRange](ProjectionRange.md) |
 | `RadialPulseMaterialOptions` | [RadialPulseMaterialOptions](RadialPulseMaterialOptions.md) |
+| `ResourceUrlPolicy` | [ResourceUrlPolicy](ResourceUrlPolicy.md) |
 | `RingSweepMaterialOptions` | [RingSweepMaterialOptions](RingSweepMaterialOptions.md) |
 | `RocketStage` | [RocketStage](RocketStage.md) |
+| `RuntimePatchApplyContext` | [RuntimePatchApplyContext](RuntimePatchApplyContext.md) |
+| `RuntimePatchBatchBoundary` | [RuntimePatchBatchBoundary](RuntimePatchBatchBoundary.md) |
+| `RuntimePatchDiagnostic` | [RuntimePatchDiagnostic](RuntimePatchDiagnostic.md) |
+| `RuntimePatchDiagnosticInput` | [RuntimePatchDiagnosticInput](RuntimePatchDiagnosticInput.md) |
+| `RuntimePatchHandler` | [RuntimePatchHandler](RuntimePatchHandler.md) |
+| `RuntimePatchLifecycleLike` | [RuntimePatchLifecycleLike](RuntimePatchLifecycleLike.md) |
+| `RuntimePatchMutation` | [RuntimePatchMutation](RuntimePatchMutation.md) |
+| `RuntimePatchPortOptions` | [RuntimePatchPortOptions](RuntimePatchPortOptions.md) |
+| `RuntimePatchRequest` | [RuntimePatchRequest](RuntimePatchRequest.md) |
+| `RuntimePatchResult` | [RuntimePatchResult](RuntimePatchResult.md) |
+| `RuntimePatchRollbackContext` | [RuntimePatchRollbackContext](RuntimePatchRollbackContext.md) |
+| `RuntimePatchRollbackResult` | [RuntimePatchRollbackResult](RuntimePatchRollbackResult.md) |
 | `ShaderParamBinding` | [ShaderParamBinding](ShaderParamBinding.md) |
 | `SimState2D` | [SimState2D](SimState2D.md) |
 | `SimulationTimeDisplayWidgetOptions` | [SimulationTimeDisplayWidgetOptions](SimulationTimeDisplayWidgetOptions.md) |
@@ -131,6 +149,10 @@
 | `TrajectorySampleOptions` | [TrajectorySampleOptions](TrajectorySampleOptions.md) |
 | `PopoverOptions` | [PopoverOptions](UI.PopoverOptions.md) |
 | `PopoverVisibilityChangeEvent` | [PopoverVisibilityChangeEvent](UI.PopoverVisibilityChangeEvent.md) |
+| `UpdateBatchOptions` | [UpdateBatchOptions](UpdateBatchOptions.md) |
+| `UpdateBatchResult` | [UpdateBatchResult](UpdateBatchResult.md) |
+| `UpdateBatchToken` | [UpdateBatchToken](UpdateBatchToken.md) |
+| `UpdateInvalidation` | [UpdateInvalidation](UpdateInvalidation.md) |
 | `ViewDistanceStrategyOptions` | [ViewDistanceStrategyOptions](ViewDistanceStrategyOptions.md) |
 | `WatermarkWidgetOptions` | [WatermarkWidgetOptions](WatermarkWidgetOptions.md) |
 | `WidgetIdentityOptions` | [WidgetIdentityOptions](WidgetIdentityOptions.md) |

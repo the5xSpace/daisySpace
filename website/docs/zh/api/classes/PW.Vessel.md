@@ -123,7 +123,7 @@ vessel.addSensor({ apertureDeg: { xDeg: 6, yDeg: 3 }, beamLength: 80_000 });
 
 #### Get Signature
 
-> **get** **options**(): [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
+> **get** **options**(): [`VehicleConfig`](../types/PW.VehicleConfig.md)
 
 对象创建/配置参数的原始快照（不同子类会扩展其结构）。
 
@@ -131,7 +131,7 @@ vessel.addSensor({ apertureDeg: { xDeg: 6, yDeg: 3 }, beamLength: 80_000 });
 
 ##### Returns
 
-[`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
+[`VehicleConfig`](../types/PW.VehicleConfig.md)
 
 #### Inherited from
 
@@ -371,22 +371,6 @@ obj.bindEngine(engine);
 
 ***
 
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `this`
-
-清除当前物理对象的选中聚焦盒。
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`Vehicle`](PW.Vehicle.md).[`clearFocusTarget`](PW.Vehicle.md#clearfocustarget)
-
-***
-
 ### destroy()
 
 > **destroy**(): `void`
@@ -620,6 +604,40 @@ obj.destroy();
 
 ***
 
+### getSensor()
+
+> **getSensor**(`idOrName`): [`Sensor`](PW.Sensor.md) \| `undefined`
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+#### Returns
+
+[`Sensor`](PW.Sensor.md) \| `undefined`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`getSensor`](PW.Vehicle.md#getsensor)
+
+***
+
+### getSensors()
+
+> **getSensors**(): [`Sensor`](PW.Sensor.md)[]
+
+#### Returns
+
+[`Sensor`](PW.Sensor.md)[]
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`getSensors`](PW.Vehicle.md#getsensors)
+
+***
+
 ### getTransformAtTime()
 
 > **getTransformAtTime**(`timestamp`): `BaseObjectResolvedTransform`
@@ -754,6 +772,26 @@ obj.register();
 
 ***
 
+### removeSensor()
+
+> **removeSensor**(`idOrName`): `void`
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`removeSensor`](PW.Vehicle.md#removesensor)
+
+***
+
 ### resetTemporalState()
 
 > **resetTemporalState**(`time?`): `void`
@@ -776,54 +814,6 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Inherited from
 
 [`Vehicle`](PW.Vehicle.md).[`resetTemporalState`](PW.Vehicle.md#resettemporalstate)
-
-***
-
-### setFocusTarget()
-
-> **setFocusTarget**(`options?`): `this`
-
-显示当前物理对象的选中聚焦盒。
-
-#### Parameters
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`Vehicle`](PW.Vehicle.md).[`setFocusTarget`](PW.Vehicle.md#setfocustarget)
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前物理对象的选中聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`Vehicle`](PW.Vehicle.md).[`setFocusVisible`](PW.Vehicle.md#setfocusvisible)
 
 ***
 
@@ -900,6 +890,58 @@ obj.unregister();
 #### Inherited from
 
 [`Vehicle`](PW.Vehicle.md).[`update`](PW.Vehicle.md#update)
+
+***
+
+### updatePropulsion()
+
+> **updatePropulsion**(`idOrName`, `options`): [`PropulsionComponent`](PW.PropulsionComponent.md) \| `undefined`
+
+按 id 或 name 更新已挂载动力组件，不创建新的组件实例。
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+##### options
+
+`Partial`\<[`PropulsionOptions`](../interfaces/PW.PropulsionOptions.md)\>
+
+#### Returns
+
+[`PropulsionComponent`](PW.PropulsionComponent.md) \| `undefined`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`updatePropulsion`](PW.Vehicle.md#updatepropulsion)
+
+***
+
+### updateSensor()
+
+> **updateSensor**(`idOrName`, `options`): [`Sensor`](PW.Sensor.md) \| `undefined`
+
+按 id 或 name 更新已挂载传感器，不创建新的组件实例。
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+##### options
+
+`Partial`\<[`SensorOptions`](../types/PW.SensorOptions.md)\>
+
+#### Returns
+
+[`Sensor`](PW.Sensor.md) \| `undefined`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`updateSensor`](PW.Vehicle.md#updatesensor)
 
 ## Events
 

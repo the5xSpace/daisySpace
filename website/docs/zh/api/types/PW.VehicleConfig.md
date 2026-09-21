@@ -18,7 +18,7 @@
 
 ### propulsions?
 
-> `optional` **propulsions?**: [`PropulsionComponent`](../classes/PW.PropulsionComponent.md) \| [`PropulsionComponent`](../classes/PW.PropulsionComponent.md)[]
+> `optional` **propulsions?**: [`PropulsionComponent`](../classes/PW.PropulsionComponent.md) \| [`PropulsionComponent`](../classes/PW.PropulsionComponent.md)[] \| `false`
 
 动力组件集合（可选）。
 
@@ -26,6 +26,6 @@
 
 ### sensors?
 
-> `optional` **sensors?**: [`SensorOptions`](PW.SensorOptions.md) \| [`SensorOptions`](PW.SensorOptions.md)[]
+> `optional` **sensors?**: [`SensorOptions`](PW.SensorOptions.md) \| [`SensorOptions`](PW.SensorOptions.md)[] \| `false`
 
 传感器集合（可选）。

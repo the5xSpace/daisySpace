@@ -76,6 +76,14 @@ Daisy 仿真引擎主入口。
 
 ***
 
+### focusBoxManager
+
+> `readonly` **focusBoxManager**: [`FocusBoxManager`](FocusBoxManager.md)
+
+Engine 级 selected/hover 聚焦框资源池。
+
+***
+
 ### geoLayer
 
 > **geoLayer**: [`GeoLayerManager`](GeoLayerManager.md)
@@ -150,6 +158,14 @@ Daisy 仿真引擎主入口。
 
 ***
 
+### updateBatch
+
+> `readonly` **updateBatch**: [`UpdateBatch`](UpdateBatch.md)\<[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)\<`unknown`, `string`\>\>
+
+Coalesces SDK invalidations raised by one Runtime Adapter flush.
+
+***
+
 ### viewDistanceStrategy
 
 > **viewDistanceStrategy**: [`ViewDistanceStrategy`](ViewDistanceStrategy.md)
@@ -208,6 +224,22 @@ Daisy 仿真引擎主入口。
 
 ***
 
+### abortUpdate()
+
+> **abortUpdate**(`token?`): [`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)
+
+#### Parameters
+
+##### token?
+
+[`UpdateBatchToken`](../interfaces/UpdateBatchToken.md)
+
+#### Returns
+
+[`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)
+
+***
+
 ### addEntity()
 
 > **addEntity**(`entity`): `void`
@@ -257,6 +289,16 @@ Note: UI widgets must be created through `addWidget`, not through `Engine.create
 #### Returns
 
 [`IWidget`](../interfaces/IWidget.md)
+
+***
+
+### beginUpdate()
+
+> **beginUpdate**(): [`UpdateBatchToken`](../interfaces/UpdateBatchToken.md)
+
+#### Returns
+
+[`UpdateBatchToken`](../interfaces/UpdateBatchToken.md)
 
 ***
 
@@ -400,6 +442,22 @@ const cam = engine.createExtraCamera({ id: "pip", follow: true });
 #### Returns
 
 `void`
+
+***
+
+### endUpdate()
+
+> **endUpdate**(`token?`): [`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)\<[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)\<`unknown`, `string`\>\> \| `Promise`\<[`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)\<[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)\<`unknown`, `string`\>\>\>
+
+#### Parameters
+
+##### token?
+
+[`UpdateBatchToken`](../interfaces/UpdateBatchToken.md)
+
+#### Returns
+
+[`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)\<[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)\<`unknown`, `string`\>\> \| `Promise`\<[`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)\<[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)\<`unknown`, `string`\>\>\>
 
 ***
 
@@ -716,6 +774,22 @@ Hidden/removed/destroyed objects are filtered out.
 #### Returns
 
 `boolean`
+
+***
+
+### invalidateUpdate()
+
+> **invalidateUpdate**(`update`): `void` \| [`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)\<[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)\<`unknown`, `string`\>\> \| `Promise`\<[`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)\<[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)\<`unknown`, `string`\>\>\>
+
+#### Parameters
+
+##### update
+
+[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)
+
+#### Returns
+
+`void` \| [`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)\<[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)\<`unknown`, `string`\>\> \| `Promise`\<[`UpdateBatchResult`](../interfaces/UpdateBatchResult.md)\<[`UpdateInvalidation`](../interfaces/UpdateInvalidation.md)\<`unknown`, `string`\>\>\>
 
 ***
 
@@ -1656,6 +1730,50 @@ Widget 自身传入 `timeFormat` / `timeLabel` 时优先使用局部配置。
 #### Returns
 
 `void`
+
+***
+
+### withUpdateBatch()
+
+#### Call Signature
+
+> **withUpdateBatch**\<`T`\>(`work`): `T`
+
+##### Type Parameters
+
+###### T
+
+`T`
+
+##### Parameters
+
+###### work
+
+() => `T`
+
+##### Returns
+
+`T`
+
+#### Call Signature
+
+> **withUpdateBatch**\<`T`\>(`work`): `Promise`\<`T`\>
+
+##### Type Parameters
+
+###### T
+
+`T`
+
+##### Parameters
+
+###### work
+
+() => `PromiseLike`\<`T`\>
+
+##### Returns
+
+`Promise`\<`T`\>
 
 ***
 

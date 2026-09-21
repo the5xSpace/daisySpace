@@ -279,6 +279,12 @@ Feature 基础配置选项。
 
 > `optional` **show?**: `boolean`
 
+是否显示；未设置时由具体 Feature 使用其默认值。
+
+#### Overrides
+
+[`FeatureOptions`](FeatureOptions.md).[`show`](FeatureOptions.md#show)
+
 ***
 
 ### sizeInMeters?

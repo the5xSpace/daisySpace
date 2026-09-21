@@ -30,9 +30,21 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 
 ***
 
+### overlayPass
+
+> **overlayPass**: `boolean`
+
+***
+
 ### registered
 
 > **registered**: `boolean`
+
+***
+
+### renderOrder
+
+> **renderOrder**: `number`
 
 ***
 
@@ -56,6 +68,12 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 ### type
 
 > `readonly` **type**: `string`
+
+***
+
+### visibility
+
+> **visibility**: [`VisibilityStrategy`](../types/VisibilityStrategy.md) \| `undefined`
 
 ## Accessors
 
@@ -137,18 +155,6 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 
 ## Methods
 
-### clearFocusTarget()?
-
-> `optional` **clearFocusTarget**(): `this`
-
-清除所属实体当前的聚焦盒。
-
-#### Returns
-
-`this`
-
-***
-
 ### destroy()
 
 > **destroy**(): `void`
@@ -184,6 +190,18 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 #### Returns
 
 `BoundingSphere` \| `undefined`
+
+***
+
+### getTransformTimeline()?
+
+> `optional` **getTransformTimeline**(): `TransformTimeline` \| `undefined`
+
+获取当前 Feature 的仿真时间局部变换配置。
+
+#### Returns
+
+`TransformTimeline` \| `undefined`
 
 ***
 
@@ -399,46 +417,6 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 
 ***
 
-### setFocusTarget()?
-
-> `optional` **setFocusTarget**(`options?`): `this`
-
-将当前 Feature 设为所属实体的聚焦目标。
-
-#### Parameters
-
-##### options?
-
-`EntityFocusOptions`
-
-#### Returns
-
-`this`
-
-***
-
-### setFocusVisible()?
-
-> `optional` **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前 Feature 的聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions`
-
-#### Returns
-
-`this`
-
-***
-
 ### setIncludeInBoundingSphere()
 
 > **setIncludeInBoundingSphere**(`value`): `this`
@@ -448,6 +426,24 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 ##### value
 
 `boolean`
+
+#### Returns
+
+`this`
+
+***
+
+### setTransformTimeline()?
+
+> `optional` **setTransformTimeline**(`timeline?`): `this`
+
+设置/清除 Feature 的仿真时间局部变换。
+
+#### Parameters
+
+##### timeline?
+
+`TransformTimeline`
 
 #### Returns
 
@@ -508,6 +504,24 @@ Feature 用于在 Daisy.Entity 上挂载可渲染或可交互的能力（如模�
 ##### entity
 
 [`Entity`](../classes/Entity.md)
+
+#### Returns
+
+`void`
+
+***
+
+### updateTransformAtTime()?
+
+> `optional` **updateTransformAtTime**(`time`): `void`
+
+在指定仿真时刻解析 Feature 的局部变换。
+
+#### Parameters
+
+##### time
+
+`JulianDate`
 
 #### Returns
 

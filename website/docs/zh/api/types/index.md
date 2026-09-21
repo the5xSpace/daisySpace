@@ -1,6 +1,6 @@
 # Type Aliases
 
-共 276 个 types。
+共 303 个 types。
 
 | 名称 | 链接 |
 |------|------|
@@ -21,7 +21,6 @@
 | `AttitudeSphereOptions` | [AttitudeSphereOptions](AttitudeSphereOptions.md) |
 | `AttitudeSphereOverlayOptions` | [AttitudeSphereOverlayOptions](AttitudeSphereOverlayOptions.md) |
 | `AutoNormalsMode` | [AutoNormalsMode](AutoNormalsMode.md) |
-| `BoundBoxFocusBoundsResolver` | [BoundBoxFocusBoundsResolver](BoundBoxFocusBoundsResolver.md) |
 | `CameraFlyToTargetOptions` | [CameraFlyToTargetOptions](CameraFlyToTargetOptions.md) |
 | `CameraViewTarget` | [CameraViewTarget](CameraViewTarget.md) |
 | `CapsuleParticleEmitter2DBlendMode` | [CapsuleParticleEmitter2DBlendMode](CapsuleParticleEmitter2DBlendMode.md) |
@@ -73,6 +72,8 @@
 | `DaisyAuroraOptions` | [DaisyAuroraOptions](DaisyAuroraOptions.md) |
 | `DaisyBuiltinMaterialOptions` | [DaisyBuiltinMaterialOptions](DaisyBuiltinMaterialOptions.md) |
 | `DaisyBuiltinMaterialType` | [DaisyBuiltinMaterialType](DaisyBuiltinMaterialType.md) |
+| `DaisyBuiltinModelToggleConfig` | [DaisyBuiltinModelToggleConfig](DaisyBuiltinModelToggleConfig.md) |
+| `DaisyBuiltinModelVisualOptions` | [DaisyBuiltinModelVisualOptions](DaisyBuiltinModelVisualOptions.md) |
 | `DaisyCellularOptions` | [DaisyCellularOptions](DaisyCellularOptions.md) |
 | `DaisyCircuitOptions` | [DaisyCircuitOptions](DaisyCircuitOptions.md) |
 | `DaisyContourBandsOptions` | [DaisyContourBandsOptions](DaisyContourBandsOptions.md) |
@@ -83,6 +84,8 @@
 | `DaisyMarbleOptions` | [DaisyMarbleOptions](DaisyMarbleOptions.md) |
 | `DaisyMaterialDescriptor` | [DaisyMaterialDescriptor](DaisyMaterialDescriptor.md) |
 | `DaisyMatrixRainOptions` | [DaisyMatrixRainOptions](DaisyMatrixRainOptions.md) |
+| `DaisyModelAsset` | [DaisyModelAsset](DaisyModelAsset.md) |
+| `DaisyModelKind` | [DaisyModelKind](DaisyModelKind.md) |
 | `DaisyNoiseFieldOptions` | [DaisyNoiseFieldOptions](DaisyNoiseFieldOptions.md) |
 | `DaisyScanlineOptions` | [DaisyScanlineOptions](DaisyScanlineOptions.md) |
 | `DaisySdfRingsOptions` | [DaisySdfRingsOptions](DaisySdfRingsOptions.md) |
@@ -96,15 +99,19 @@
 | `EphemerisDataCallbackOptions` | [EphemerisDataCallbackOptions](EphemerisDataCallbackOptions.md) |
 | `EphemerisDataOptions` | [EphemerisDataOptions](EphemerisDataOptions.md) |
 | `FeatureEventHandleHost` | [FeatureEventHandleHost](FeatureEventHandleHost.md) |
+| `FeatureTransformTimeline` | [FeatureTransformTimeline](FeatureTransformTimeline.md) |
 | `FlightPhase` | [FlightPhase](FlightPhase.md) |
 | `FloatingPanelOptions` | [FloatingPanelOptions](FloatingPanelOptions.md) |
 | `FlowDirection` | [FlowDirection](FlowDirection.md) |
+| `FocusBoxManagerOptions` | [FocusBoxManagerOptions](FocusBoxManagerOptions.md) |
+| `FocusBoxSlot` | [FocusBoxSlot](FocusBoxSlot.md) |
 | `FollowTarget` | [FollowTarget](FollowTarget.md) |
 | `FollowTargetOptions` | [FollowTargetOptions](FollowTargetOptions.md) |
 | `FollowTargetView` | [FollowTargetView](FollowTargetView.md) |
 | `FrameRateWidgetOptions` | [FrameRateWidgetOptions](FrameRateWidgetOptions.md) |
 | `GeoEarthTransparencyOptions` | [GeoEarthTransparencyOptions](GeoEarthTransparencyOptions.md) |
 | `GeoImageryOptions` | [GeoImageryOptions](GeoImageryOptions.md) |
+| `GeoJsonBuildErrorCallback` | [GeoJsonBuildErrorCallback](GeoJsonBuildErrorCallback.md) |
 | `GeoJsonLoadCallback` | [GeoJsonLoadCallback](GeoJsonLoadCallback.md) |
 | `GeoSkyOptions` | [GeoSkyOptions](GeoSkyOptions.md) |
 | `GeoTerrainOptions` | [GeoTerrainOptions](GeoTerrainOptions.md) |
@@ -151,6 +158,8 @@
 | `CelestialRayLike` | [CelestialRayLike](PW.CelestialRayLike.md) |
 | `Component` | [Component](PW.Component.md) |
 | `ComponentIdentityOptions` | [ComponentIdentityOptions](PW.ComponentIdentityOptions.md) |
+| `ConstellationOptions` | [ConstellationOptions](PW.ConstellationOptions.md) |
+| `ConstellationTopology` | [ConstellationTopology](PW.ConstellationTopology.md) |
 | `FootprintAtTimeDrawOptions` | [FootprintAtTimeDrawOptions](PW.FootprintAtTimeDrawOptions.md) |
 | `FootprintDrawOptions` | [FootprintDrawOptions](PW.FootprintDrawOptions.md) |
 | `FootprintLngLatBounds` | [FootprintLngLatBounds](PW.FootprintLngLatBounds.md) |
@@ -163,6 +172,9 @@
 | `GroundStationConfig` | [GroundStationConfig](PW.GroundStationConfig.md) |
 | `GroundStationPresetModel` | [GroundStationPresetModel](PW.GroundStationPresetModel.md) |
 | `GroundTrackComponentOptions` | [GroundTrackComponentOptions](PW.GroundTrackComponentOptions.md) |
+| `GroundTrackLineStyle` | [GroundTrackLineStyle](PW.GroundTrackLineStyle.md) |
+| `GroundTrackPointStyle` | [GroundTrackPointStyle](PW.GroundTrackPointStyle.md) |
+| `GroundTrackTimeRangeMode` | [GroundTrackTimeRangeMode](PW.GroundTrackTimeRangeMode.md) |
 | `InstantOrbitComponentOptions` | [InstantOrbitComponentOptions](PW.InstantOrbitComponentOptions.md) |
 | `InstantOrbitDiagnostic` | [InstantOrbitDiagnostic](PW.InstantOrbitDiagnostic.md) |
 | `InstantOrbitElements` | [InstantOrbitElements](PW.InstantOrbitElements.md) |
@@ -174,24 +186,33 @@
 | `LinkTimeRange` | [LinkTimeRange](PW.LinkTimeRange.md) |
 | `MarsConfig` | [MarsConfig](PW.MarsConfig.md) |
 | `MoonConfig` | [MoonConfig](PW.MoonConfig.md) |
+| `NearEarthOrbiterAttitudeMode` | [NearEarthOrbiterAttitudeMode](PW.NearEarthOrbiterAttitudeMode.md) |
 | `NearEarthOrbiterConfig` | [NearEarthOrbiterConfig](PW.NearEarthOrbiterConfig.md) |
 | `NearEarthOrbiterEphemerisCache` | [NearEarthOrbiterEphemerisCache](PW.NearEarthOrbiterEphemerisCache.md) |
 | `NearEarthOrbiterEphemerisRequest` | [NearEarthOrbiterEphemerisRequest](PW.NearEarthOrbiterEphemerisRequest.md) |
+| `NearEarthOrbiterMotionDiagnosticCode` | [NearEarthOrbiterMotionDiagnosticCode](PW.NearEarthOrbiterMotionDiagnosticCode.md) |
+| `NearEarthOrbiterMotionErrorCode` | [NearEarthOrbiterMotionErrorCode](PW.NearEarthOrbiterMotionErrorCode.md) |
+| `NearEarthOrbiterMotionSource` | [NearEarthOrbiterMotionSource](PW.NearEarthOrbiterMotionSource.md) |
 | `NearEarthOrbiterOrientationDeg` | [NearEarthOrbiterOrientationDeg](PW.NearEarthOrbiterOrientationDeg.md) |
 | `NearEarthOrbiterOsculatingElements` | [NearEarthOrbiterOsculatingElements](PW.NearEarthOrbiterOsculatingElements.md) |
+| `NearEarthOrbiterPositionMode` | [NearEarthOrbiterPositionMode](PW.NearEarthOrbiterPositionMode.md) |
 | `NearEarthOrbiterState` | [NearEarthOrbiterState](PW.NearEarthOrbiterState.md) |
 | `NearEarthOrbiterTrajectoryOptions` | [NearEarthOrbiterTrajectoryOptions](PW.NearEarthOrbiterTrajectoryOptions.md) |
 | `NearEarthOrbiterTrajectoryRequest` | [NearEarthOrbiterTrajectoryRequest](PW.NearEarthOrbiterTrajectoryRequest.md) |
 | `NearEarthOrbiterTransitRequest` | [NearEarthOrbiterTransitRequest](PW.NearEarthOrbiterTransitRequest.md) |
 | `ObjectPositon` | [ObjectPositon](PW.ObjectPositon.md) |
 | `OrbitElementsViewComponentOptions` | [OrbitElementsViewComponentOptions](PW.OrbitElementsViewComponentOptions.md) |
+| `OrbitElementsViewDiagnostic` | [OrbitElementsViewDiagnostic](PW.OrbitElementsViewDiagnostic.md) |
 | `OrbitElementsViewDiagramAnchors` | [OrbitElementsViewDiagramAnchors](PW.OrbitElementsViewDiagramAnchors.md) |
+| `OrbitElementsViewUnavailableReason` | [OrbitElementsViewUnavailableReason](PW.OrbitElementsViewUnavailableReason.md) |
 | `PropulsionParticleOptions` | [PropulsionParticleOptions](PW.PropulsionParticleOptions.md) |
 | `PropulsionParticlePreset` | [PropulsionParticlePreset](PW.PropulsionParticlePreset.md) |
 | `PropulsionParticleRenderer` | [PropulsionParticleRenderer](PW.PropulsionParticleRenderer.md) |
 | `RocketAscentInput` | [RocketAscentInput](PW.RocketAscentInput.md) |
 | `RocketConfig` | [RocketConfig](PW.RocketConfig.md) |
 | `RocketDefaultVisualsOptions` | [RocketDefaultVisualsOptions](PW.RocketDefaultVisualsOptions.md) |
+| `RouteSchedule` | [RouteSchedule](PW.RouteSchedule.md) |
+| `RouteTimeRange` | [RouteTimeRange](PW.RouteTimeRange.md) |
 | `SensorApertureDeg` | [SensorApertureDeg](PW.SensorApertureDeg.md) |
 | `SensorBeamAttitudeDeg` | [SensorBeamAttitudeDeg](PW.SensorBeamAttitudeDeg.md) |
 | `SensorFlowConfigDetail` | [SensorFlowConfigDetail](PW.SensorFlowConfigDetail.md) |
@@ -230,8 +251,13 @@
 | `PreviewHostSpec` | [PreviewHostSpec](PreviewHostSpec.md) |
 | `PropagationOptions` | [PropagationOptions](PropagationOptions.md) |
 | `RectangleOptions` | [RectangleOptions](RectangleOptions.md) |
+| `ResolvedDaisyModelAsset` | [ResolvedDaisyModelAsset](ResolvedDaisyModelAsset.md) |
 | `ResourceKey` | [ResourceKey](ResourceKey.md) |
 | `Rotation` | [Rotation](Rotation.md) |
+| `RuntimePatchSeverity` | [RuntimePatchSeverity](RuntimePatchSeverity.md) |
+| `RuntimePatchStatus` | [RuntimePatchStatus](RuntimePatchStatus.md) |
+| `RuntimePatchStrategy` | [RuntimePatchStrategy](RuntimePatchStrategy.md) |
+| `RuntimePatchTargetResolver` | [RuntimePatchTargetResolver](RuntimePatchTargetResolver.md) |
 | `SceneSwitcherOptions` | [SceneSwitcherOptions](SceneSwitcherOptions.md) |
 | `ShaderParamType` | [ShaderParamType](ShaderParamType.md) |
 | `ShaderParamUnavailablePolicy` | [ShaderParamUnavailablePolicy](ShaderParamUnavailablePolicy.md) |
@@ -273,6 +299,7 @@
 | `PopoverAnchor` | [PopoverAnchor](UI.PopoverAnchor.md) |
 | `PopoverTrigger` | [PopoverTrigger](UI.PopoverTrigger.md) |
 | `PopoverVisibilityChangeReason` | [PopoverVisibilityChangeReason](UI.PopoverVisibilityChangeReason.md) |
+| `UpdateBatchResultStatus` | [UpdateBatchResultStatus](UpdateBatchResultStatus.md) |
 | `ViewDistanceTemplate` | [ViewDistanceTemplate](ViewDistanceTemplate.md) |
 | `VisibilityStrategy` | [VisibilityStrategy](VisibilityStrategy.md) |
 | `VisibilityWindow` | [VisibilityWindow](VisibilityWindow.md) |

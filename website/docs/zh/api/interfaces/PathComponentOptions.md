@@ -26,6 +26,20 @@ futureSecond 的兼容别名（不推荐继续使用）。
 
 ***
 
+### alwaysOnTop?
+
+> `optional` **alwaysOnTop?**: `boolean`
+
+是否始终显示在其他物体之上。
+
+#### Default
+
+```ts
+false
+```
+
+***
+
 ### autoOptimize?
 
 > `optional` **autoOptimize?**: `boolean`
@@ -66,6 +80,17 @@ historySecond 的兼容别名（不推荐继续使用）。
 ```ts
 Color.PURPLE.withAlpha(0.8)
 ```
+
+***
+
+### depthFailMaterial?
+
+> `optional` **depthFailMaterial?**: [`DMaterial`](../types/DMaterial.md)
+
+轨迹被其他物体遮挡时使用的材质。
+
+未设置时保持 默认的深度遮挡行为；配合 `alwaysOnTop` 可让轨迹始终使用
+当前线材质显示在遮挡物之上。
 
 ***
 
@@ -113,6 +138,14 @@ Color.PURPLE.withAlpha(0.35)
 
 ***
 
+### futureWidth?
+
+> `optional` **futureWidth?**: `number`
+
+预报段独立线宽；未设置时继承 `width`。
+
+***
+
 ### historyColor?
 
 > `optional` **historyColor?**: [`DColor`](../types/DColor.md)
@@ -146,6 +179,14 @@ Color.PURPLE.withAlpha(0.8)
 ```ts
 43200
 ```
+
+***
+
+### historyWidth?
+
+> `optional` **historyWidth?**: `number`
+
+历史段独立线宽；未设置时继承 `width`。
 
 ***
 
@@ -260,6 +301,10 @@ Color.PURPLE.withAlpha(0.8)
 ```ts
 true
 ```
+
+#### Overrides
+
+[`FeatureOptions`](FeatureOptions.md).[`show`](FeatureOptions.md#show)
 
 ***
 

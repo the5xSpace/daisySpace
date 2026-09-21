@@ -10,6 +10,19 @@ import * as Daisy from "daisy-space-sdk"
 const engine = await Daisy.Engine.create("container")
 const entity = engine.createEntity("demo")
 
+// 默认：构造时自动挂载内置 rocket 模型
+const rocketBuiltin = new Daisy.PW.Rocket({
+    name: "Daisy-Rocket",
+    // useBuiltinModel: true,   // 默认 true，可省略
+})
+
+// 关闭内置模型
+const rocketBare = new Daisy.PW.Rocket({
+    name: "No-Model",
+    useBuiltinModel: false,
+})
+
+// 自定义模型（优先于内置默认）
 const rocket = new Daisy.PW.Rocket({
     name: "Saturn V",
     model: { url: "/models/SaturnV.glb", scale: 0.06 },
@@ -52,13 +65,16 @@ BaseObject
 
 | Parameter | Type | Description |
 |------|------|------|
-| `model` | `ModelFeatureOptions` | 3D model (glTF / GLB) |
+| `model` | `ModelFeatureOptions` | 3D model (glTF / GLB). When omitted, the constructor mounts the builtin `rocket` model by default |
+| `useBuiltinModel` | `boolean` | Whether to enable the builtin model (default `true`). `false` skips automatic mounting |
 | `text` | `TextOptions` | Text |
 | `ascent` | `AscentTrajectoryOptions` | Ascent trajectory configuration, which can be passed directly to the constructor |
 | `epoch` | `JulianDate` | Trajectory start time |
 | `autoOrientationByVelocity` | `boolean` | Rotate automatically along the velocity direction (default `true`) |
 | `autoAlignVerticalModelToFlight` | `boolean` | Automatically align model Z-up to X-forward (default `true`) |
 | `bodyAxis` | `boolean \| BodyAxisOptions` | Show body-coordinate debugging axes |
+
+`model` in the minimal example is optional: when omitted, the builtin `daisy-rocket` model is used. For custom models and `useBuiltinModel`, see [Built-in Model Library](/en/guide/model-library).
 
 ## Propulsion System
 

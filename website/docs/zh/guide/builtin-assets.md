@@ -145,7 +145,7 @@ const satelliteModel = Daisy.BuildModuleUrl.getUrl(
 )
 ```
 
-`models/` 目录还包含 Astronaut、CesiumMan、Hubble、Juno、ISS、火星探测器、深空网络天线、无人机、货船等完整 GLB 示例模型。引用方式一致，例如：
+`models/` 目录中的内置轻量模型（卫星、固定地面站、火箭、地面车辆、固定翼飞机、移动地面站、货船、无人机）见[内置模型库](/guide/model-library)。`PW` 物理对象构造时会默认挂载其中对应的模型，可用 `useBuiltinModel` 关闭。目录中还包含 Astronaut、CesiumMan、Hubble、Juno、ISS、火星探测器、深空网络天线等示例模型。引用方式一致，例如：
 
 ```typescript
 const modelUrl = Daisy.BuildModuleUrl.getUrl(

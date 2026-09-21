@@ -18,10 +18,10 @@
 
 ### stationModel?
 
-> `optional` **stationModel?**: [`GroundStationPresetModel`](PW.GroundStationPresetModel.md) \| [`ModelOptions`](../interfaces/ModelOptions.md) \| `false`
+> `optional` **stationModel?**: `GroundStationStationModel`
 
 预设站型模型。
 
-- 不传：默认 dsn34
+- 不传：默认 daisy（内置 fixedGroundStation）
 - false：不自动挂载模型
 - ModelOptions：使用自定义模型

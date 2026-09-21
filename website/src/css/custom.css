@@ -441,6 +441,30 @@ a.ds-btn-secondary {
   margin-left: 4px;
 }
 
+/* 内置模型库：总览表中的预览缩略图 */
+.vp-doc table img[src*="/images/models/"] {
+  display: block;
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+  background: #2a2d32;
+  box-shadow: var(--vp-shadow-1);
+}
+
+/* 内置模型库：模型明细中的大图预览 */
+.vp-doc p > img[src^="/images/models/"] {
+  display: block;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  margin: 0.75rem 0 1rem;
+  border-radius: 8px;
+  background: #2a2d32;
+  box-shadow: var(--vp-shadow-2);
+}
+
 .VPContent a.tsd-kind-module,
 .VPContent a[class*="tsd-kind-"] {
   display: inline-block;

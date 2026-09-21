@@ -8,9 +8,35 @@
 
 ## Extends
 
-- `Partial`\<[`CoverageAreaOptions`](CoverageAreaOptions.md)\>
+- `Partial`\<[`CoverageAreaOptions`](CoverageAreaOptions.md)\>.`Partial`\<[`FeatureOptions`](FeatureOptions.md)\>
 
 ## Properties
+
+### id?
+
+> `optional` **id?**: `string`
+
+自定义标识（用于底层渲染对象标识/检索）。
+
+#### Inherited from
+
+[`FeatureOptions`](FeatureOptions.md).[`id`](FeatureOptions.md#id)
+
+***
+
+### includeInBoundingSphere?
+
+> `optional` **includeInBoundingSphere?**: `boolean`
+
+是否参与所属 Entity 的包围球聚合。
+
+适用于需要被相机 zoom/flyTo 纳入取景的 Feature。辅助线、临时效果等可以关闭。
+
+#### Inherited from
+
+[`FeatureOptions`](FeatureOptions.md).[`includeInBoundingSphere`](FeatureOptions.md#includeinboundingsphere)
+
+***
 
 ### label?
 
@@ -59,6 +85,24 @@
 
 ***
 
+### name?
+
+> `optional` **name?**: `string`
+
+名称（可用于展示/调试）。
+
+#### Inherited from
+
+[`FeatureOptions`](FeatureOptions.md).[`name`](FeatureOptions.md#name)
+
+***
+
+### onBuildError?
+
+> `optional` **onBuildError?**: [`GeoJsonBuildErrorCallback`](../types/GeoJsonBuildErrorCallback.md)
+
+***
+
 ### opacity?
 
 > `optional` **opacity?**: `number`
@@ -95,6 +139,18 @@
 
 ***
 
+### overlayPass?
+
+> `optional` **overlayPass?**: `boolean`
+
+是否启用叠加渲染通道。
+
+#### Inherited from
+
+[`FeatureOptions`](FeatureOptions.md).[`overlayPass`](FeatureOptions.md#overlaypass)
+
+***
+
 ### polygons?
 
 > `optional` **polygons?**: [`CoveragePolygon`](CoveragePolygon.md)[]
@@ -107,6 +163,18 @@
 
 ***
 
+### renderOrder?
+
+> `optional` **renderOrder?**: `number`
+
+渲染排序值（数值越小越先渲染）。
+
+#### Inherited from
+
+[`FeatureOptions`](FeatureOptions.md).[`renderOrder`](FeatureOptions.md#renderorder)
+
+***
+
 ### resolution?
 
 > `optional` **resolution?**: `number`
@@ -116,3 +184,27 @@
 #### Inherited from
 
 [`CoverageAreaOptions`](CoverageAreaOptions.md).[`resolution`](CoverageAreaOptions.md#resolution)
+
+***
+
+### show?
+
+> `optional` **show?**: `boolean`
+
+是否显示；未设置时由具体 Feature 使用其默认值。
+
+#### Inherited from
+
+[`FeatureOptions`](FeatureOptions.md).[`show`](FeatureOptions.md#show)
+
+***
+
+### visibility?
+
+> `optional` **visibility?**: [`VisibilityStrategy`](../types/VisibilityStrategy.md)
+
+可见性策略配置。
+
+#### Inherited from
+
+[`FeatureOptions`](FeatureOptions.md).[`visibility`](FeatureOptions.md#visibility)

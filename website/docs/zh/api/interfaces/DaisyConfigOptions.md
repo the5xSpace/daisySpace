@@ -67,7 +67,7 @@ Daisy Engine/UI 的全局默认配置项。
 
 #### preset?
 
-> `optional` **preset?**: `"default"` \| `"center"` \| `"leftTop"` \| `"leftBottom"` \| `"leftCenter"` \| `"centerTop"` \| `"centerBottom"` \| `"rightTop"` \| `"rightBottom"` \| `"rightCenter"`
+> `optional` **preset?**: `"center"` \| `"default"` \| `"leftTop"` \| `"leftBottom"` \| `"leftCenter"` \| `"centerTop"` \| `"centerBottom"` \| `"rightTop"` \| `"rightBottom"` \| `"rightCenter"`
 
 面板预设位置。默认 `leftBottom`。
 

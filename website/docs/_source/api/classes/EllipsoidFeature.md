@@ -70,7 +70,7 @@
 
 ### handle
 
-> **handle**: (`mode`) => `void`
+> **handle**: (`_mode`) => `void`
 
 场景模式切换时的默认处理。
 
@@ -78,7 +78,7 @@
 
 #### Parameters
 
-##### mode
+##### \_mode
 
 `SceneMode`
 
@@ -357,7 +357,7 @@ Feature 的显示名称（业务自定义）。
 
 ###### value
 
-[`EllipsoidOptions`](../interfaces/EllipsoidOptions.md)
+`Partial`\<[`EllipsoidOptions`](../interfaces/EllipsoidOptions.md)\>
 
 ##### Returns
 
@@ -368,6 +368,70 @@ Feature 的显示名称（业务自定义）。
 #### Overrides
 
 `BaseSolidFeature.options`
+
+***
+
+### overlayPass
+
+#### Get Signature
+
+> **get** **overlayPass**(): `boolean`
+
+当前 Feature 是否进入叠加渲染通道。
+
+##### Returns
+
+`boolean`
+
+#### Set Signature
+
+> **set** **overlayPass**(`value`): `void`
+
+##### Parameters
+
+###### value
+
+`boolean`
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+`BaseSolidFeature.overlayPass`
+
+***
+
+### renderOrder
+
+#### Get Signature
+
+> **get** **renderOrder**(): `number`
+
+当前 Feature 的渲染排序值。
+
+##### Returns
+
+`number`
+
+#### Set Signature
+
+> **set** **renderOrder**(`value`): `void`
+
+##### Parameters
+
+###### value
+
+`number`
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+`BaseSolidFeature.renderOrder`
 
 ***
 
@@ -503,6 +567,20 @@ Feature 的显示名称（业务自定义）。
 
 [`VisibilityStrategy`](../types/VisibilityStrategy.md) \| `undefined`
 
+#### Set Signature
+
+> **set** **visibility**(`value`): `void`
+
+##### Parameters
+
+###### value
+
+[`VisibilityStrategy`](../types/VisibilityStrategy.md) \| `undefined`
+
+##### Returns
+
+`void`
+
 #### Inherited from
 
 `BaseSolidFeature.visibility`
@@ -568,22 +646,6 @@ Feature 的显示名称（业务自定义）。
 #### Inherited from
 
 `BaseSolidFeature.calcAutoHeight`
-
-***
-
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `this`
-
-清除所属实体当前的选中聚焦盒。
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-`BaseSolidFeature.clearFocusTarget`
 
 ***
 
@@ -777,6 +839,22 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### getTransformTimeline()
+
+> **getTransformTimeline**(): `TransformTimeline` \| `undefined`
+
+获取当前 Feature 的仿真时间局部变换配置。
+
+#### Returns
+
+`TransformTimeline` \| `undefined`
+
+#### Inherited from
+
+`BaseSolidFeature.getTransformTimeline`
+
+***
+
 ### is3d()
 
 > **is3d**(): `boolean`
@@ -899,15 +977,15 @@ Feature 的显示名称（业务自定义）。
 
 ### preUpdate()
 
-> **preUpdate**(`entity`, `time`): `void`
+> **preUpdate**(`_entity`, `_time`): `void`
 
 #### Parameters
 
-##### entity
+##### \_entity
 
 `any`
 
-##### time
+##### \_time
 
 `JulianDate`
 
@@ -1044,54 +1122,6 @@ undefined 配置项
 
 ***
 
-### setFocusTarget()
-
-> **setFocusTarget**(`options?`): `this`
-
-将当前 Feature 设为所属实体的选中聚焦目标。
-
-#### Parameters
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-`BaseSolidFeature.setFocusTarget`
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前 Feature 的选中聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-`BaseSolidFeature.setFocusVisible`
-
-***
-
 ### setIncludeInBoundingSphere()
 
 > **setIncludeInBoundingSphere**(`value`): `this`
@@ -1115,6 +1145,31 @@ undefined 配置项
 #### Inherited from
 
 `BaseSolidFeature.setIncludeInBoundingSphere`
+
+***
+
+### setTransformTimeline()
+
+> **setTransformTimeline**(`timeline?`): `this`
+
+设置 Feature 的仿真时间局部变换。
+
+姿态字段使用角度制，与 Transformer.setRotation() 保持一致；
+translation/scale 使用 Cartesian3。传入 undefined 会清除时间轴并恢复用户变换的单位状态。
+
+#### Parameters
+
+##### timeline?
+
+`TransformTimeline`
+
+#### Returns
+
+`this`
+
+#### Inherited from
+
+`BaseSolidFeature.setTransformTimeline`
 
 ***
 
@@ -1247,6 +1302,29 @@ undefined 配置项
 #### Returns
 
 `void`
+
+***
+
+### updateTransformAtTime()
+
+> **updateTransformAtTime**(`time`): `void`
+
+在指定仿真时刻解析并应用 Feature 的局部变换时间轴。
+Entity.update() 会在每个 Feature 的渲染更新前调用此方法。
+
+#### Parameters
+
+##### time
+
+`JulianDate`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+`BaseSolidFeature.updateTransformAtTime`
 
 ## Events
 

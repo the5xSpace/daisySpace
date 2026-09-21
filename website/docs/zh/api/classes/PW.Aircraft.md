@@ -21,6 +21,7 @@ const aircraft = new Daisy.PW.Aircraft({ name: "UAV-1" });
 aircraft.position = Daisy.Cartesian3.fromDegrees(120.0, 30.0, 10_000);
 aircraft.bindViewer(viewer);
 
+// 默认自动挂载内置 aircraft 模型；useBuiltinModel: false 可关闭
 // 默认下视
 aircraft.addSensor({ apertureDeg: 10, beamLength: 200_000 });
 
@@ -42,7 +43,10 @@ aircraft.addSensor({ emitDirection: Daisy.EmitDirection.TO_FRONT, apertureDeg: 6
 
 > **new Aircraft**(`options?`, `celestialEllipsoid?`): `Aircraft`
 
-创建 Vehicle。
+创建 Aircraft。
+
+构造期默认挂载内置 aircraft 模型；可通过 `model` 覆盖，
+或 `useBuiltinModel: false` 关闭。
 
 #### Parameters
 
@@ -50,32 +54,15 @@ aircraft.addSensor({ emitDirection: Daisy.EmitDirection.TO_FRONT, apertureDeg: 6
 
 [`VehicleConfig`](../types/PW.VehicleConfig.md)
 
-Vehicle 配置（继承 FreeObjectConfig，并扩展 orientation/sensors）
-
 ##### celestialEllipsoid?
 
 [`CelestialEllipsoid`](PW.CelestialEllipsoid.md)
-
-所属天体（默认地球）
 
 #### Returns
 
 `Aircraft`
 
-#### Example
-
-```ts
-const vehicle = new Vehicle({
- name: "Vehicle-1",
- model: { url: "/models/ChandraXrayObservatory.glb", minimumPixelSize: 48 },
- text: { text: "Vehicle-1" },
- sensors: { type: SensorType.EllipticalCone, range: 120_000, apertureDeg: 10 },
-});
-vehicle.position = Daisy.Cartesian3.fromDegrees(121.5, 31.2, 30);
-vehicle.bindViewer(viewer);
-```
-
-#### Inherited from
+#### Overrides
 
 [`Vehicle`](PW.Vehicle.md).[`constructor`](PW.Vehicle.md#constructor)
 
@@ -149,7 +136,7 @@ vehicle.bindViewer(viewer);
 
 #### Get Signature
 
-> **get** **options**(): [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
+> **get** **options**(): [`VehicleConfig`](../types/PW.VehicleConfig.md)
 
 对象创建/配置参数的原始快照（不同子类会扩展其结构）。
 
@@ -157,7 +144,7 @@ vehicle.bindViewer(viewer);
 
 ##### Returns
 
-[`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
+[`VehicleConfig`](../types/PW.VehicleConfig.md)
 
 #### Inherited from
 
@@ -380,22 +367,6 @@ obj.bindEngine(engine);
 #### Inherited from
 
 [`Vehicle`](PW.Vehicle.md).[`bindEngine`](PW.Vehicle.md#bindengine)
-
-***
-
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `this`
-
-清除当前物理对象的选中聚焦盒。
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`Vehicle`](PW.Vehicle.md).[`clearFocusTarget`](PW.Vehicle.md#clearfocustarget)
 
 ***
 
@@ -632,6 +603,40 @@ obj.destroy();
 
 ***
 
+### getSensor()
+
+> **getSensor**(`idOrName`): [`Sensor`](PW.Sensor.md) \| `undefined`
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+#### Returns
+
+[`Sensor`](PW.Sensor.md) \| `undefined`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`getSensor`](PW.Vehicle.md#getsensor)
+
+***
+
+### getSensors()
+
+> **getSensors**(): [`Sensor`](PW.Sensor.md)[]
+
+#### Returns
+
+[`Sensor`](PW.Sensor.md)[]
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`getSensors`](PW.Vehicle.md#getsensors)
+
+***
+
 ### getTransformAtTime()
 
 > **getTransformAtTime**(`timestamp`): `BaseObjectResolvedTransform`
@@ -766,6 +771,26 @@ obj.register();
 
 ***
 
+### removeSensor()
+
+> **removeSensor**(`idOrName`): `void`
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`removeSensor`](PW.Vehicle.md#removesensor)
+
+***
+
 ### resetTemporalState()
 
 > **resetTemporalState**(`time?`): `void`
@@ -788,54 +813,6 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 #### Inherited from
 
 [`Vehicle`](PW.Vehicle.md).[`resetTemporalState`](PW.Vehicle.md#resettemporalstate)
-
-***
-
-### setFocusTarget()
-
-> **setFocusTarget**(`options?`): `this`
-
-显示当前物理对象的选中聚焦盒。
-
-#### Parameters
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`Vehicle`](PW.Vehicle.md).[`setFocusTarget`](PW.Vehicle.md#setfocustarget)
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前物理对象的选中聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`Vehicle`](PW.Vehicle.md).[`setFocusVisible`](PW.Vehicle.md#setfocusvisible)
 
 ***
 
@@ -912,6 +889,58 @@ obj.unregister();
 #### Inherited from
 
 [`Vehicle`](PW.Vehicle.md).[`update`](PW.Vehicle.md#update)
+
+***
+
+### updatePropulsion()
+
+> **updatePropulsion**(`idOrName`, `options`): [`PropulsionComponent`](PW.PropulsionComponent.md) \| `undefined`
+
+按 id 或 name 更新已挂载动力组件，不创建新的组件实例。
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+##### options
+
+`Partial`\<[`PropulsionOptions`](../interfaces/PW.PropulsionOptions.md)\>
+
+#### Returns
+
+[`PropulsionComponent`](PW.PropulsionComponent.md) \| `undefined`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`updatePropulsion`](PW.Vehicle.md#updatepropulsion)
+
+***
+
+### updateSensor()
+
+> **updateSensor**(`idOrName`, `options`): [`Sensor`](PW.Sensor.md) \| `undefined`
+
+按 id 或 name 更新已挂载传感器，不创建新的组件实例。
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+##### options
+
+`Partial`\<[`SensorOptions`](../types/PW.SensorOptions.md)\>
+
+#### Returns
+
+[`Sensor`](PW.Sensor.md) \| `undefined`
+
+#### Inherited from
+
+[`Vehicle`](PW.Vehicle.md).[`updateSensor`](PW.Vehicle.md#updatesensor)
 
 ## Events
 

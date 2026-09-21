@@ -1,6 +1,6 @@
 # Classes
 
-共 239 个 classes。
+共 244 个 classes。
 
 | 名称 | 链接 |
 |------|------|
@@ -129,6 +129,7 @@
 | `FeatureEventHandle` | [FeatureEventHandle](FeatureEventHandle.md) |
 | `FloatingControlPanel` | [FloatingControlPanel](FloatingControlPanel.md) |
 | `FlowArrowMaterialProperty` | [FlowArrowMaterialProperty](FlowArrowMaterialProperty.md) |
+| `FocusBoxManager` | [FocusBoxManager](FocusBoxManager.md) |
 | `FrameRateWidget` | [FrameRateWidget](FrameRateWidget.md) |
 | `FreeGeometryFeature` | [FreeGeometryFeature](FreeGeometryFeature.md) |
 | `GeoJsonFeature` | [GeoJsonFeature](GeoJsonFeature.md) |
@@ -168,6 +169,7 @@
 | `Mars` | [Mars](PW.Mars.md) |
 | `Moon` | [Moon](PW.Moon.md) |
 | `NearEarthOrbiter` | [NearEarthOrbiter](PW.NearEarthOrbiter.md) |
+| `NearEarthOrbiterMotionError` | [NearEarthOrbiterMotionError](PW.NearEarthOrbiterMotionError.md) |
 | `OrbitElementsViewComponent` | [OrbitElementsViewComponent](PW.OrbitElementsViewComponent.md) |
 | `PropulsionComponent` | [PropulsionComponent](PW.PropulsionComponent.md) |
 | `Rocket` | [Rocket](PW.Rocket.md) |
@@ -198,6 +200,7 @@
 | `Resource` | [Resource](Resource.md) |
 | `RingEmitter` | [RingEmitter](RingEmitter.md) |
 | `RingSweepMaterial` | [RingSweepMaterial](RingSweepMaterial.md) |
+| `RuntimePatchPort` | [RuntimePatchPort](RuntimePatchPort.md) |
 | `SceneModeDropdown` | [SceneModeDropdown](SceneModeDropdown.md) |
 | `SceneModeSwitcher` | [SceneModeSwitcher](SceneModeSwitcher.md) |
 | `Shader` | [Shader](Shader.md) |
@@ -236,6 +239,8 @@
 | `TrajectorySampleBodyFixed` | [TrajectorySampleBodyFixed](TrajectorySampleBodyFixed.md) |
 | `TrajectoryWebGpuBackend` | [TrajectoryWebGpuBackend](TrajectoryWebGpuBackend.md) |
 | `PopoverFeature` | [PopoverFeature](UI.PopoverFeature.md) |
+| `UpdateBatch` | [UpdateBatch](UpdateBatch.md) |
+| `UpdateBatchError` | [UpdateBatchError](UpdateBatchError.md) |
 | `VibrationEmitter` | [VibrationEmitter](VibrationEmitter.md) |
 | `ViewDistanceStrategy` | [ViewDistanceStrategy](ViewDistanceStrategy.md) |
 | `WallFeature` | [WallFeature](WallFeature.md) |

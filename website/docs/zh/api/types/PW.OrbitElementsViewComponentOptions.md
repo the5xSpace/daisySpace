@@ -28,12 +28,13 @@
 
 ***
 
-### earthTransparencyAlpha?
+### ~~earthTransparencyAlpha?~~
 
 > `optional` **earthTransparencyAlpha?**: `number`
 
-启用轨道元素视图时自动设置的地球透明度（0~1），默认 0.35。
-设为 1 则不透明（不修改地球透明度）。
+#### Deprecated
+
+Use `referenceBodyTransparency`.
 
 ***
 
@@ -101,15 +102,48 @@
 
 ***
 
-### resampleSeconds?
+### referenceBodyTransparency?
 
-> `optional` **resampleSeconds?**: `number`
+> `optional` **referenceBodyTransparency?**: `number`
+
+Reference body opacity used while the explanatory diagram is active.
+`0` is fully transparent and `1` is fully opaque.
 
 ***
 
-### sampleStepSeconds?
+### resampleIntervalSeconds?
+
+> `optional` **resampleIntervalSeconds?**: `number`
+
+Preferred semantic name for the interval between geometry rebuilds.
+
+***
+
+### ~~resampleSeconds?~~
+
+> `optional` **resampleSeconds?**: `number`
+
+#### Deprecated
+
+Use `resampleIntervalSeconds`.
+
+***
+
+### ~~sampleStepSeconds?~~
 
 > `optional` **sampleStepSeconds?**: `number`
+
+#### Deprecated
+
+Use `samplingStepSeconds`.
+
+***
+
+### samplingStepSeconds?
+
+> `optional` **samplingStepSeconds?**: `number`
+
+Preferred semantic name for the orbit geometry sampling step.
 
 ***
 

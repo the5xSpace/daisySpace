@@ -136,7 +136,7 @@ sat.bindViewer(viewer);
 
 #### Get Signature
 
-> **get** **options**(): [`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
+> **get** **options**(): [`VehicleConfig`](../types/PW.VehicleConfig.md)
 
 对象创建/配置参数的原始快照（不同子类会扩展其结构）。
 
@@ -144,7 +144,7 @@ sat.bindViewer(viewer);
 
 ##### Returns
 
-[`FreeObjectConfig`](../types/PW.FreeObjectConfig.md)
+[`VehicleConfig`](../types/PW.VehicleConfig.md)
 
 #### Inherited from
 
@@ -541,22 +541,6 @@ console.log(ephemeris[0]);
 
 ***
 
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `this`
-
-清除当前物理对象的选中聚焦盒。
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`Aircraft`](PW.Aircraft.md).[`clearFocusTarget`](PW.Aircraft.md#clearfocustarget)
-
-***
-
 ### destroy()
 
 > **destroy**(): `void`
@@ -744,6 +728,30 @@ obj.destroy();
 
 ***
 
+### getMotionConfiguration()
+
+> **getMotionConfiguration**(): [`ResolvedNearEarthOrbiterMotionConfiguration`](../interfaces/PW.ResolvedNearEarthOrbiterMotionConfiguration.md)
+
+读取当前生效的高层运动配置。
+
+#### Returns
+
+[`ResolvedNearEarthOrbiterMotionConfiguration`](../interfaces/PW.ResolvedNearEarthOrbiterMotionConfiguration.md)
+
+***
+
+### getMotionDiagnostic()
+
+> **getMotionDiagnostic**(): [`NearEarthOrbiterMotionDiagnostic`](../interfaces/PW.NearEarthOrbiterMotionDiagnostic.md)
+
+返回当前运动配置的稳定可用性诊断。
+
+#### Returns
+
+[`NearEarthOrbiterMotionDiagnostic`](../interfaces/PW.NearEarthOrbiterMotionDiagnostic.md)
+
+***
+
 ### getOrbitDefinition()
 
 > **getOrbitDefinition**(): `unknown`
@@ -907,6 +915,40 @@ obj.destroy();
 #### Inherited from
 
 [`Aircraft`](PW.Aircraft.md).[`getPropulsions`](PW.Aircraft.md#getpropulsions)
+
+***
+
+### getSensor()
+
+> **getSensor**(`idOrName`): [`Sensor`](PW.Sensor.md) \| `undefined`
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+#### Returns
+
+[`Sensor`](PW.Sensor.md) \| `undefined`
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`getSensor`](PW.Aircraft.md#getsensor)
+
+***
+
+### getSensors()
+
+> **getSensors**(): [`Sensor`](PW.Sensor.md)[]
+
+#### Returns
+
+[`Sensor`](PW.Sensor.md)[]
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`getSensors`](PW.Aircraft.md#getsensors)
 
 ***
 
@@ -1180,6 +1222,26 @@ obj.register();
 
 ***
 
+### removeSensor()
+
+> **removeSensor**(`idOrName`): `void`
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`removeSensor`](PW.Aircraft.md#removesensor)
+
+***
+
 ### resetTemporalState()
 
 > **resetTemporalState**(`time?`): `void`
@@ -1205,51 +1267,24 @@ BaseObject 自身的时间值缓存，并把 reset 继续下发给挂载组件�
 
 ***
 
-### setFocusTarget()
+### setMotionConfiguration()
 
-> **setFocusTarget**(`options?`): `this`
+> **setMotionConfiguration**(`configuration`): `this`
 
-显示当前物理对象的选中聚焦盒。
+应用高层运动配置。
+
+这是推荐的 SDK 入口；旧的 `enableSpg4Propagation`、`trajectory` 和
+`autoOrientationByVelocity` 仍然保留，但只作为兼容映射存在。
 
 #### Parameters
 
-##### options?
+##### configuration
 
-`EntityFocusOptions` = `{}`
+[`NearEarthOrbiterMotionConfiguration`](../interfaces/PW.NearEarthOrbiterMotionConfiguration.md)
 
 #### Returns
 
 `this`
-
-#### Inherited from
-
-[`Aircraft`](PW.Aircraft.md).[`setFocusTarget`](PW.Aircraft.md#setfocustarget)
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前物理对象的选中聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`Aircraft`](PW.Aircraft.md).[`setFocusVisible`](PW.Aircraft.md#setfocusvisible)
 
 ***
 
@@ -1400,6 +1435,58 @@ obj.unregister();
 #### Overrides
 
 [`Aircraft`](PW.Aircraft.md).[`update`](PW.Aircraft.md#update)
+
+***
+
+### updatePropulsion()
+
+> **updatePropulsion**(`idOrName`, `options`): [`PropulsionComponent`](PW.PropulsionComponent.md) \| `undefined`
+
+按 id 或 name 更新已挂载动力组件，不创建新的组件实例。
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+##### options
+
+`Partial`\<[`PropulsionOptions`](../interfaces/PW.PropulsionOptions.md)\>
+
+#### Returns
+
+[`PropulsionComponent`](PW.PropulsionComponent.md) \| `undefined`
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`updatePropulsion`](PW.Aircraft.md#updatepropulsion)
+
+***
+
+### updateSensor()
+
+> **updateSensor**(`idOrName`, `options`): [`Sensor`](PW.Sensor.md) \| `undefined`
+
+按 id 或 name 更新已挂载传感器，不创建新的组件实例。
+
+#### Parameters
+
+##### idOrName
+
+`string`
+
+##### options
+
+`Partial`\<[`SensorOptions`](../types/PW.SensorOptions.md)\>
+
+#### Returns
+
+[`Sensor`](PW.Sensor.md) \| `undefined`
+
+#### Inherited from
+
+[`Aircraft`](PW.Aircraft.md).[`updateSensor`](PW.Aircraft.md#updatesensor)
 
 ## Events
 

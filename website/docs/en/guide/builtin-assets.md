@@ -145,7 +145,7 @@ const satelliteModel = Daisy.BuildModuleUrl.getUrl(
 )
 ```
 
-The `models/` directory also contains complete GLB sample models including Astronaut, CesiumMan, Hubble, Juno, ISS, Mars rovers, deep-space network antennas, drones, and cargo ships. Reference them in the same way, for example:
+Built-in lightweight models in the `models/` directory (satellite, fixed ground station, rocket, vehicle, aircraft, mobile ground station, cargo ship, and UAV) are documented in the [Built-in Model Library](/en/guide/model-library). `PW` physical objects mount the corresponding models from this set by default during construction; disable that with `useBuiltinModel`. The directory also contains sample models such as Astronaut, CesiumMan, Hubble, Juno, ISS, Mars rovers, and deep-space network antennas. Reference them in the same way, for example:
 
 ```typescript
 const modelUrl = Daisy.BuildModuleUrl.getUrl(

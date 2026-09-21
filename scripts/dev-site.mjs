@@ -1,5 +1,6 @@
 import { spawn, spawnSync } from "node:child_process";
 import { findAvailablePort, parsePreferredPort } from "./dev-ports.mjs";
+import { resolvePnpmBin } from "./dev-adaptive.mjs";
 import { firstPositionalArg } from "./generate-api-docs.mjs";
 import { refreshDocumentation } from "./refresh-docs.mjs";
 
@@ -8,10 +9,10 @@ const children = [];
 let stopping = false;
 
 function start(label, args, extraEnv = {}) {
-  const child = spawn("pnpm", args, {
+  const child = spawn(resolvePnpmBin(), args, {
     stdio: "inherit",
-    shell: process.platform === "win32",
     env: {...process.env, ...extraEnv},
+    shell: process.platform === "win32",
   });
   children.push(child);
 
@@ -61,10 +62,31 @@ try {
   console.log(`[dev:site] website: http://127.0.0.1:${websitePort}/`);
   console.log(`[dev:site] playground: http://127.0.0.1:${websitePort}/playground/`);
   console.log(`[dev:site] internal playground port: ${playgroundPort}`);
+  console.log(`[dev:site] if the browser shows another project, use the website URL above.`);
 
   const firstExit = await Promise.race([
-    start("playground", ["--dir", "playground", "dev"], siteEnvironment),
-    start("website", ["--dir", "website", "dev"], {
+    start("playground", [
+      "--dir",
+      "playground",
+      "exec",
+      "vite",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      String(playgroundPort),
+    ], siteEnvironment),
+    start("website", [
+      "--dir",
+      "website",
+      "exec",
+      "vitepress",
+      "dev",
+      "docs",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      String(websitePort),
+    ], {
       ...siteEnvironment,
       DAISY_PLAYGROUND_PROXY: "true",
     }),

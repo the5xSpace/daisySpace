@@ -51,6 +51,7 @@ FreeObject 配置（语义层）。
 
 模型配置。
 - `false`：移除模型
+- 未提供时：若 `useBuiltinModel` 未关闭，构造期自动挂载对应内置模型
 
 ### name?
 
@@ -112,3 +113,15 @@ Daisy.Cartesian3.ZERO
 
 文本配置（单个或多个）。
 - `false`：移除文本
+
+### useBuiltinModel?
+
+> `optional` **useBuiltinModel?**: `boolean`
+
+是否启用内置默认模型。
+
+- `true`（默认）：构造时若未显式提供 `model`，自动挂载该物理对象对应的
+ DaisyModelLibrary 内置模型
+- `false`：不自动挂载内置模型
+- 显式 `model: {...}` / `model: false` 始终优先于该开关
+- 仅在构造期生效；运行期移除模型请使用 `setOptions({ model: false })`

@@ -1,6 +1,6 @@
 # Functions
 
-共 87 个 functions。
+共 99 个 functions。
 
 | 名称 | 链接 |
 |------|------|
@@ -60,7 +60,13 @@
 | `pointToWindowCoordinates()` | [pointToWindowCoordinates()](Daisy.Transforms.pointToWindowCoordinates.md) |
 | `preloadIcrfFixed()` | [preloadIcrfFixed()](Daisy.Transforms.preloadIcrfFixed.md) |
 | `rotationMatrixFromPositionVelocity()` | [rotationMatrixFromPositionVelocity()](Daisy.Transforms.rotationMatrixFromPositionVelocity.md) |
+| `defaultNearEarthOrbiterEphemerisPlan()` | [defaultNearEarthOrbiterEphemerisPlan()](PW.defaultNearEarthOrbiterEphemerisPlan.md) |
+| `diagnoseNearEarthOrbiterMotion()` | [diagnoseNearEarthOrbiterMotion()](PW.diagnoseNearEarthOrbiterMotion.md) |
+| `normalizeNearEarthOrbiterMotionConfiguration()` | [normalizeNearEarthOrbiterMotionConfiguration()](PW.normalizeNearEarthOrbiterMotionConfiguration.md) |
 | `absSecondsToJulianDateInto()` | [absSecondsToJulianDateInto()](absSecondsToJulianDateInto.md) |
+| `assertSafeNetworkUrl()` | [assertSafeNetworkUrl()](assertSafeNetworkUrl.md) |
+| `assertSafeResourceUrl()` | [assertSafeResourceUrl()](assertSafeResourceUrl.md) |
+| `assertSafeScriptUrl()` | [assertSafeScriptUrl()](assertSafeScriptUrl.md) |
 | `calculateSunConeDimensions()` | [calculateSunConeDimensions()](calculateSunConeDimensions.md) |
 | `clampLineWidth()` | [clampLineWidth()](clampLineWidth.md) |
 | `classifySunOcclusion()` | [classifySunOcclusion()](classifySunOcclusion.md) |
@@ -68,7 +74,9 @@
 | `createDateTime()` | [createDateTime()](createDateTime.md) |
 | `createDisposableDetachMaterial()` | [createDisposableDetachMaterial()](createDisposableDetachMaterial.md) |
 | `createParticleEmitter()` | [createParticleEmitter()](createParticleEmitter.md) |
+| `createRuntimePatchPort()` | [createRuntimePatchPort()](createRuntimePatchPort.md) |
 | `createTimeFormatter()` | [createTimeFormatter()](createTimeFormatter.md) |
+| `createUpdateBatch()` | [createUpdateBatch()](createUpdateBatch.md) |
 | `encodePolygons()` | [encodePolygons()](encodePolygons.md) |
 | `formatDateTime()` | [formatDateTime()](formatDateTime.md) |
 | `formatTime()` | [formatTime()](formatTime.md) |
@@ -79,11 +87,14 @@
 | `getTimeDynamicIntervalEnd()` | [getTimeDynamicIntervalEnd()](getTimeDynamicIntervalEnd.md) |
 | `hslToRgb()` | [hslToRgb()](hslToRgb.md) |
 | `isDaisyMaterialDescriptor()` | [isDaisyMaterialDescriptor()](isDaisyMaterialDescriptor.md) |
+| `isSafeResourceUrl()` | [isSafeResourceUrl()](isSafeResourceUrl.md) |
 | `julianDateToAbsSeconds()` | [julianDateToAbsSeconds()](julianDateToAbsSeconds.md) |
 | `mergeTimeFormatOptions()` | [mergeTimeFormatOptions()](mergeTimeFormatOptions.md) |
 | `normalizeTimeFormatOptions()` | [normalizeTimeFormatOptions()](normalizeTimeFormatOptions.md) |
 | `removePolyline()` | [removePolyline()](removePolyline.md) |
 | `removePrimitive()` | [removePrimitive()](removePrimitive.md) |
+| `resolveDaisyBuiltinModelOptions()` | [resolveDaisyBuiltinModelOptions()](resolveDaisyBuiltinModelOptions.md) |
+| `resolveDaisyModelAsset()` | [resolveDaisyModelAsset()](resolveDaisyModelAsset.md) |
 | `resolveSimTimeDerivative()` | [resolveSimTimeDerivative()](resolveSimTimeDerivative.md) |
 | `resolveSimTimeValue()` | [resolveSimTimeValue()](resolveSimTimeValue.md) |
 | `resolveTimeFormatOptions()` | [resolveTimeFormatOptions()](resolveTimeFormatOptions.md) |
@@ -91,3 +102,4 @@
 | `toCesiumColor()` | [toCesiumColor()](toCesiumColor.md) |
 | `toCesiumMaterial()` | [toCesiumMaterial()](toCesiumMaterial.md) |
 | `toJulianDate()` | [toJulianDate()](toJulianDate.md) |
+| `withDaisyBuiltinModel()` | [withDaisyBuiltinModel()](withDaisyBuiltinModel.md) |

@@ -32,6 +32,26 @@
 
 ## Methods
 
+### createElement()
+
+> **createElement**(`document`, `renderState`): `HTMLSpanElement` \| `undefined`
+
+#### Parameters
+
+##### document
+
+`Document`
+
+##### renderState
+
+[`HighlightRangeRenderState`](../interfaces/HighlightRangeRenderState.md)
+
+#### Returns
+
+`HTMLSpanElement` \| `undefined`
+
+***
+
 ### getBase()
 
 > **getBase**(): `number`

@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "packageManager": "pnpm@9.15.9",
   "scripts": {
-    "dev:playground": "pnpm --dir playground dev",
+    "dev": "node ./scripts/dev-site.mjs ../DaisySpaceSdk",
+    "dev:playground": "node ./scripts/dev-adaptive.mjs playground",
     "build:playground": "pnpm --dir playground build",
     "typecheck:playground": "pnpm --dir playground typecheck",
     "docs:api": "node ./scripts/generate-api-docs.mjs",

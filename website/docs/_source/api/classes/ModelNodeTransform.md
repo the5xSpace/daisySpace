@@ -13,7 +13,7 @@
 ## Example
 
 ```ts
-const model = entity.addFeature(new Daisy.ModelFeature({ url: "/models/ChandraXrayObservatory.glb" }));
+const model = entity.addFeature(new Daisy.ModelFeature({ url: "/models/daisy-satellite.glb" }));
 model.onload(() => {
  model.transformNode("antenna").setShow(false);
  model.transformNode("body").setScale(1.2);

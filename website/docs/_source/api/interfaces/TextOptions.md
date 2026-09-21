@@ -247,6 +247,10 @@
 
 是否显示，默认 `true`
 
+#### Overrides
+
+[`FeatureOptions`](FeatureOptions.md).[`show`](FeatureOptions.md#show)
+
 ***
 
 ### showBackground?

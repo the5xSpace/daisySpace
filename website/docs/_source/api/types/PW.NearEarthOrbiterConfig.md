@@ -47,6 +47,15 @@ NearEarthOrbiter 配置。
 它根据当前时刻的位置和速度绘制一条诊断性的闭合轨道，
 不替代真实运动来源，也不显示历史/未来轨迹。
 
+### motion?
+
+> `optional` **motion?**: [`NearEarthOrbiterMotionConfiguration`](../interfaces/PW.NearEarthOrbiterMotionConfiguration.md)
+
+高层运动配置（推荐入口）。
+
+用一份配置表达运动来源、位置计算方式、姿态来源和星历生成参数，
+不需要组合 `enableSpg4Propagation`、`trajectory` 等旧字段。
+
 ### orbitDefinition?
 
 > `optional` **orbitDefinition?**: `OrbitSourceInput`

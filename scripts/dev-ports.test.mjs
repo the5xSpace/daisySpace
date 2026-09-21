@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { createDevEnv, resolveAdaptivePort, resolvePnpmBin } from "./dev-adaptive.mjs";
 import { findAvailablePort, parsePreferredPort } from "./dev-ports.mjs";
 
 test("uses the fallback when no preferred port is configured", () => {
@@ -26,4 +27,24 @@ test("finds the next available port and respects reserved ports", async () => {
 
   assert.equal(port, 5175);
   assert.deepEqual(checked, [5173, 5175]);
+});
+
+test("website adaptive port honors DAISY_SITE_PORT when free", async () => {
+  const port = await resolveAdaptivePort("website", { DAISY_SITE_PORT: "6210" });
+  assert.equal(port, 6210);
+});
+
+test("playground adaptive env sets DAISY_PLAYGROUND_PORT", () => {
+  const env = createDevEnv("playground", 5188, { PATH: "/usr/bin" });
+  assert.equal(env.DAISY_PLAYGROUND_PORT, "5188");
+  assert.equal(env.PATH, "/usr/bin");
+});
+
+test("resolvePnpmBin returns a spawn-safe binary name", () => {
+  const bin = resolvePnpmBin();
+  if (process.platform === "win32") {
+    assert.equal(bin, "pnpm.cmd");
+  } else {
+    assert.equal(bin, "pnpm");
+  }
 });

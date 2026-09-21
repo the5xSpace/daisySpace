@@ -18,11 +18,10 @@ import * as Daisy from "daisy-space-sdk"
 
 const engine = await Daisy.Engine.create("daisyContainer")
 
+// 默认：构造时自动挂载内置 daisy 固定地面站模型
 const site = new Daisy.PW.GroundStation({
     name: "Beijing-DSN",
     position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 80),
-    stationModel: false,          // 不挂载 3D 天线模型
-    point: false,
     text: {
         text: "Beijing-DSN",
         font: "13px sans-serif",
@@ -31,19 +30,38 @@ const site = new Daisy.PW.GroundStation({
     },
 })
 site.bindEngine(engine)
+
+// 关闭内置模型：仅保留点位/文本
+const bareSite = new Daisy.PW.GroundStation({
+    name: "Beijing-DSN-Bare",
+    position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 80),
+    useBuiltinModel: false,
+    point: false,
+    text: {
+        text: "Beijing-DSN",
+        font: "13px sans-serif",
+        offsetPx: new Daisy.Cartesian2(0, -26),
+        showBackground: true,
+    },
+})
+// 等价写法：stationModel: false 或 model: false
+bareSite.bindEngine(engine)
 ```
 
-GroundStation 默认挂载 `dsn34` 天线模型；可通过 `stationModel` 选择预设站型或传入自定义模型配置。
+GroundStation 默认挂载 `daisy` 固定地面站模型（`models/daisy-fixed-ground-station.glb`）。可通过 `stationModel` 选择预设站型，或传入自定义模型配置；也可用 `useBuiltinModel: false` / `model: false` 关闭模型。详见[内置模型库](/guide/model-library)。
 
 ## 站型选项（stationModel）
 
 | 值 | 说明 |
 |------|------|
-| `"dsn34"` | DSN 34m 天线（默认） |
-| `"dsn70"` | DSN 70m 大型天线 |
-| `"radome"` | 雷达罩 |
+| `"daisy"` | 内置固定地面站（默认） |
+| `"dsn34"` | DSN 34m 天线预设（当前映射到内置 `fixedGroundStation`） |
+| `"dsn70"` | DSN 70m 大型天线预设 |
+| `"radome"` | 雷达罩预设 |
 | `false` | 不挂载模型，仅显示点位 |
 | `ModelOptions` | 自定义模型（url / minimumPixelSize / maximumScale） |
+
+也可使用通用开关 `useBuiltinModel`（默认 `true`）：设为 `false` 时不自动挂载内置模型。
 
 ## 天线朝向控制
 
@@ -63,6 +81,8 @@ const nodes = site.getAntennaNodeNames()
 ```typescript
 const site = new Daisy.PW.GroundStation({
     name: "Custom-Antenna",
+    useBuiltinModel: true,          // 默认开启；false 时不挂载内置模型
+    stationModel: "dsn70",          // 也可换成 "daisy" / "dsn34" / "radome"
     antenna: {
         azimuthNode: "azimuth",
         elevationNode: "elevation",
@@ -153,8 +173,9 @@ const passSlots = transits.map(t => ({ start: t.start, end: t.end }))
 |------|------|:---:|------|
 | `name` | `string` | — | 站点名称 |
 | `position` | `Cartesian3` | `ZERO` | ECEF 坐标 |
-| `stationModel` | `"dsn34"` \| `"dsn70"` \| `"radome"` \| `ModelOptions` \| `false` | `"dsn34"` | 天线模型配置 |
+| `stationModel` | `"daisy"` \| `"dsn34"` \| `"dsn70"` \| `"radome"` \| `ModelOptions` \| `false` | `"daisy"` | 天线模型配置 |
 | `model` | `ModelOptions` \| `false` | — | 覆盖 stationModel，传入 false 则不挂载模型 |
+| `useBuiltinModel` | `boolean` | `true` | 是否启用内置模型；`false` 时不自动挂载 |
 | `antenna` | `GroundStationAntennaPointingOptions` | — | 天线节点控制配置 |
 | `text` | `TextOptions` \| `false` | — | 文本 |
 | `point` | `PointComOptions` \| `false` | — | 点位标记 |

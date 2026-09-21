@@ -66,10 +66,12 @@ engine.flyTo(entity, { duration: 2 })
 // ── 5. 创建卫星（使用 PW 命名空间）──────────────────────────
 // physicalWorld 通过 `export * as PW` 暴露
 // bindEngine 会把物理对象绑定到引擎，并完成注册
+// 默认挂载内置 satellite 模型；useBuiltinModel: false 可关闭
 const tleText = `1 25544U 98067A   25152.50000000  .00000000  00000-0  00000-0 0  9990
 2 25544  51.6400 247.4627 0000000  51.6400 110.0000 15.50000000    001`
 
 const sat = new Daisy.PW.Satellite({ name: 'SAT-1', tle: tleText })
+// const satBare = new Daisy.PW.Satellite({ name: 'SAT-BARE', tle: tleText, useBuiltinModel: false })
 sat.bindEngine(engine)
 ```
 
@@ -82,6 +84,8 @@ sat.bindEngine(engine)
 | 3 | `createEntity` + `addFeature` | An Entity holds only position/orientation; visualization is entirely driven by Features |
 | 4 | `flyTo(target, options)` | Equivalent to `engine.camera.flyToTarget`; target can be an Entity / coordinate / array |
 | 5 | `PW.Satellite.bindEngine(engine)` | After binding to the Engine, the physical object automatically mounts its Entity, registers, and enters the simulation loop |
+
+`PW` objects such as satellites, aircraft, rockets, and ground stations mount builtin models by default during construction. Use `useBuiltinModel: false` to disable that. See [Built-in Model Library](/en/guide/model-library).
 
 > An equivalent Demo already exists in Playground: [EngineCreate.svelte](https://github.com/the5xSpace/daisySpace/blob/main/playground/src/demos/core/EngineCreate.svelte). You can run it side by side.
 

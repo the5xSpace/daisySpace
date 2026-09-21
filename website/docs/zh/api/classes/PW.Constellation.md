@@ -10,13 +10,35 @@
 
 ### Constructor
 
-> **new Constellation**(`topology?`): `Constellation`
+> **new Constellation**(): `Constellation`
+
+#### Returns
+
+`Constellation`
+
+### Constructor
+
+> **new Constellation**(`topology`): `Constellation`
 
 #### Parameters
 
-##### topology?
+##### topology
 
-[`WalkerTopology`](../types/WalkerTopology.md)
+[`ConstellationTopology`](../types/PW.ConstellationTopology.md)
+
+#### Returns
+
+`Constellation`
+
+### Constructor
+
+> **new Constellation**(`options`): `Constellation`
+
+#### Parameters
+
+##### options
+
+[`ConstellationConfig`](../types/ConstellationConfig.md)
 
 #### Returns
 
@@ -60,6 +82,20 @@
 
 ***
 
+### options
+
+#### Get Signature
+
+> **get** **options**(): [`ConstellationConfig`](../types/ConstellationConfig.md)
+
+只读的构造配置快照；卫星集合和聚合结果不属于此配置。
+
+##### Returns
+
+[`ConstellationConfig`](../types/ConstellationConfig.md)
+
+***
+
 ### satelliteCount
 
 #### Get Signature
@@ -81,6 +117,20 @@
 ##### Returns
 
 [`WalkerTopology`](../types/WalkerTopology.md) \| `undefined`
+
+***
+
+### topologyConfig
+
+#### Get Signature
+
+> **get** **topologyConfig**(): [`ConstellationTopology`](../types/PW.ConstellationTopology.md) \| `undefined`
+
+读取完整 topology 配置；`topology` 保持原有 WalkerTopology API。
+
+##### Returns
+
+[`ConstellationTopology`](../types/PW.ConstellationTopology.md) \| `undefined`
 
 ## Methods
 
@@ -231,6 +281,42 @@ readonly [`Satellite`](PW.Satellite.md)[]
 ##### sat
 
 [`Satellite`](PW.Satellite.md)
+
+#### Returns
+
+`void`
+
+***
+
+### setOptions()
+
+> **setOptions**(`config`): `void`
+
+更新构造配置。省略字段保持不变，显式传入 undefined 可清除对应字段。
+
+#### Parameters
+
+##### config
+
+`Partial`\<[`ConstellationConfig`](../types/ConstellationConfig.md)\>
+
+#### Returns
+
+`void`
+
+***
+
+### setTopology()
+
+> **setTopology**(`topology?`): `void`
+
+兼容/便捷设置 topology 的入口。
+
+#### Parameters
+
+##### topology?
+
+[`ConstellationTopology`](../types/PW.ConstellationTopology.md)
 
 #### Returns
 

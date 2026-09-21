@@ -10,6 +10,19 @@ import * as Daisy from "daisy-space-sdk"
 const engine = await Daisy.Engine.create("container")
 const entity = engine.createEntity("demo")
 
+// 默认：构造时自动挂载内置 rocket 模型
+const rocketBuiltin = new Daisy.PW.Rocket({
+    name: "Daisy-Rocket",
+    // useBuiltinModel: true,   // 默认 true，可省略
+})
+
+// 关闭内置模型
+const rocketBare = new Daisy.PW.Rocket({
+    name: "No-Model",
+    useBuiltinModel: false,
+})
+
+// 自定义模型（优先于内置默认）
 const rocket = new Daisy.PW.Rocket({
     name: "Saturn V",
     model: { url: "/models/SaturnV.glb", scale: 0.06 },
@@ -52,13 +65,16 @@ BaseObject
 
 | 参数 | 类型 | 说明 |
 |------|------|------|
-| `model` | `ModelFeatureOptions` | 3D 模型（glTF / GLB） |
+| `model` | `ModelFeatureOptions` | 3D 模型（glTF / GLB）；未提供时构造期默认挂载内置 `rocket` 模型 |
+| `useBuiltinModel` | `boolean` | 是否启用内置模型（默认 `true`）；`false` 时不自动挂载 |
 | `text` | `TextOptions` | 文本 |
 | `ascent` | `AscentTrajectoryOptions` | 上升轨迹配置（可在构造时直接传入） |
 | `epoch` | `JulianDate` | 轨迹起始时间 |
 | `autoOrientationByVelocity` | `boolean` | 自动按速度方向旋转（默认 `true`） |
 | `autoAlignVerticalModelToFlight` | `boolean` | 模型 Z-up → X-forward 自动对齐（默认 `true`） |
 | `bodyAxis` | `boolean \| BodyAxisOptions` | 显示本体坐标系调试轴 |
+
+最小示例中的 `model` 可省略：省略时使用内置 `daisy-rocket` 模型。自定义模型与 `useBuiltinModel` 详见[内置模型库](/guide/model-library)。
 
 ## 推进系统
 

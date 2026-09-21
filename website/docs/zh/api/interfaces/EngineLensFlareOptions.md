@@ -62,4 +62,4 @@
 
 > `optional` **show?**: `boolean`
 
-是否显示镜头光晕效果。默认 `true`。
+是否显示镜头光晕效果。默认 `false`。

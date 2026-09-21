@@ -12,19 +12,37 @@
 
 ### currentPoint?
 
-> `optional` **currentPoint?**: `GroundTrackPointStyle`
+> `optional` **currentPoint?**: [`GroundTrackPointStyle`](PW.GroundTrackPointStyle.md)
+
+***
+
+### futureLine?
+
+> `optional` **futureLine?**: [`GroundTrackLineStyle`](PW.GroundTrackLineStyle.md)
+
+Preferred semantic name for the forecast line style.
+
+***
+
+### futureSeconds?
+
+> `optional` **futureSeconds?**: `number`
+
+Preferred semantic name for the forecast duration.
 
 ***
 
 ### historyLine?
 
-> `optional` **historyLine?**: `GroundTrackLineStyle`
+> `optional` **historyLine?**: [`GroundTrackLineStyle`](PW.GroundTrackLineStyle.md)
 
 ***
 
 ### historySeconds?
 
 > `optional` **historySeconds?**: `number`
+
+History duration in seconds.
 
 ***
 
@@ -42,25 +60,53 @@
 
 ### point?
 
-> `optional` **point?**: `GroundTrackPointStyle`
+> `optional` **point?**: [`GroundTrackPointStyle`](PW.GroundTrackPointStyle.md)
 
 ***
 
-### predictLine?
+### ~~predictLine?~~
 
-> `optional` **predictLine?**: `GroundTrackLineStyle`
+> `optional` **predictLine?**: [`GroundTrackLineStyle`](PW.GroundTrackLineStyle.md)
+
+#### Deprecated
+
+Use `futureLine`.
 
 ***
 
-### predictSeconds?
+### ~~predictSeconds?~~
 
 > `optional` **predictSeconds?**: `number`
 
+#### Deprecated
+
+Use `futureSeconds`.
+
 ***
 
-### sampleStepSeconds?
+### sampleIntervalSeconds?
+
+> `optional` **sampleIntervalSeconds?**: `number`
+
+Alias for `samplingStepSeconds`.
+
+***
+
+### ~~sampleStepSeconds?~~
 
 > `optional` **sampleStepSeconds?**: `number`
+
+#### Deprecated
+
+Use `samplingStepSeconds`.
+
+***
+
+### samplingStepSeconds?
+
+> `optional` **samplingStepSeconds?**: `number`
+
+Preferred semantic name for the sampling interval.
 
 ***
 
@@ -79,6 +125,15 @@
 ### sizePx?
 
 > `optional` **sizePx?**: `number`
+
+***
+
+### timeRangeMode?
+
+> `optional` **timeRangeMode?**: [`GroundTrackTimeRangeMode`](PW.GroundTrackTimeRangeMode.md)
+
+Whether history/prediction duration and sampling follow the host object's
+motion path. Defaults to `"inherit"` for compatibility with older scenes.
 
 ***
 

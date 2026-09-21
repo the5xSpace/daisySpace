@@ -192,6 +192,20 @@ Popover 触发方式
 
 ***
 
+### show?
+
+> `optional` **show?**: [`RouteSchedule`](../types/PW.RouteSchedule.md)
+
+路线显示计划；区间从开始时刻起显示，到结束时刻前隐藏。
+
+#### Default
+
+```ts
+true
+```
+
+***
+
 ### showIcons?
 
 > `optional` **showIcons?**: `boolean`

@@ -166,8 +166,9 @@ const sat = new Daisy.PW.Satellite({
     tle: tleText,                         // TLE 数据源
     enableSpg4Propagation: false,         // true = SGP4 每帧计算, false = 预计算轨迹
     trajectory: { stepSeconds: 30 },      // 轨迹采样间隔
+    // useBuiltinModel: true,             // 默认 true：构造期挂载内置 satellite 模型
     model: {
-        url: "/models/sat.glb",
+        url: "/models/sat.glb",           // 显式 model 优先于内置默认
         minimumPixelSize: 48,
     },
     point: {
@@ -194,9 +195,25 @@ const sat = new Daisy.PW.Satellite({
     },
 })
 sat.bindEngine(engine)
+
+// 省略 model 时使用内置 satellite 模型
+const satBuiltin = new Daisy.PW.Satellite({
+    name: "SAT-BUILTIN",
+    tle: tleText,
+    trajectory: { stepSeconds: 30 },
+})
+
+// 关闭内置模型
+const satBare = new Daisy.PW.Satellite({
+    name: "SAT-BARE",
+    tle: tleText,
+    useBuiltinModel: false,
+})
 ```
 
 > 构造器配置与 `setTle()` 互斥：传入 `tle` 后无需再调用 `setTle()`。`model` / `point` / `label` / `path` / `groundTrack` 均会在 `bindEngine()` 阶段自动创建对应 Feature。
+
+未显式提供 `model` 时，构造期会默认挂载内置 `satellite` 模型（`models/daisy-satellite.glb`）。可用 `useBuiltinModel: false` 关闭，或用 `model: false` / 自定义 `model` 覆盖。详见[内置模型库](/guide/model-library)。
 
 ### enableSpg4Propagation
 

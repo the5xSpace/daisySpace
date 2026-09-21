@@ -361,6 +361,10 @@ Initial visibility.
 true
 ```
 
+#### Overrides
+
+[`FeatureOptions`](FeatureOptions.md).[`show`](FeatureOptions.md#show)
+
 ***
 
 ### snapToPixel?

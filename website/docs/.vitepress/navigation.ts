@@ -53,6 +53,7 @@ const guideSections = [
       [label("着色器多边形", "Shader Polygons"), "/guide/shader-polygon"],
       [label("地面覆盖", "Ground Coverage"), "/guide/coverage-features"],
       [label("3D 模型与 Tileset", "3D Models and Tilesets"), "/guide/model-tileset"],
+      [label("内置模型库", "Built-in Model Library"), "/guide/model-library"],
       [label("轨迹尾迹", "Trail Paths"), "/guide/trail-path"],
       [label("粒子系统", "Particle Systems"), "/guide/particle-system"],
       [label("碰撞检测", "Collision Detection"), "/guide/collision-detection"],

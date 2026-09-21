@@ -67,7 +67,7 @@ Feature 基类。
 
 ### handle
 
-> **handle**: (`mode`) => `void`
+> **handle**: (`_mode`) => `void`
 
 场景模式切换时的默认处理。
 
@@ -75,7 +75,7 @@ Feature 基类。
 
 #### Parameters
 
-##### mode
+##### \_mode
 
 `SceneMode`
 
@@ -350,6 +350,70 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### overlayPass
+
+#### Get Signature
+
+> **get** **overlayPass**(): `boolean`
+
+当前 Feature 是否进入叠加渲染通道。
+
+##### Returns
+
+`boolean`
+
+#### Set Signature
+
+> **set** **overlayPass**(`value`): `void`
+
+##### Parameters
+
+###### value
+
+`boolean`
+
+##### Returns
+
+`void`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`overlayPass`](../interfaces/IFeature.md#overlaypass)
+
+***
+
+### renderOrder
+
+#### Get Signature
+
+> **get** **renderOrder**(): `number`
+
+当前 Feature 的渲染排序值。
+
+##### Returns
+
+`number`
+
+#### Set Signature
+
+> **set** **renderOrder**(`value`): `void`
+
+##### Parameters
+
+###### value
+
+`number`
+
+##### Returns
+
+`void`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`renderOrder`](../interfaces/IFeature.md#renderorder)
+
+***
+
 ### requiresEntityModelMatrix
 
 #### Get Signature
@@ -479,6 +543,24 @@ Feature 的显示名称（业务自定义）。
 
 [`VisibilityStrategy`](../types/VisibilityStrategy.md) \| `undefined`
 
+#### Set Signature
+
+> **set** **visibility**(`value`): `void`
+
+##### Parameters
+
+###### value
+
+[`VisibilityStrategy`](../types/VisibilityStrategy.md) \| `undefined`
+
+##### Returns
+
+`void`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`visibility`](../interfaces/IFeature.md#visibility)
+
 ## Methods
 
 ### beforeRegister()
@@ -498,22 +580,6 @@ Feature 的显示名称（业务自定义）。
 #### Returns
 
 `void`
-
-***
-
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `this`
-
-清除所属实体当前的选中聚焦盒。
-
-#### Returns
-
-`this`
-
-#### Implementation of
-
-[`IFeature`](../interfaces/IFeature.md).[`clearFocusTarget`](../interfaces/IFeature.md#clearfocustarget)
 
 ***
 
@@ -629,6 +695,22 @@ Feature 的显示名称（业务自定义）。
 
 ***
 
+### getTransformTimeline()
+
+> **getTransformTimeline**(): `TransformTimeline` \| `undefined`
+
+获取当前 Feature 的仿真时间局部变换配置。
+
+#### Returns
+
+`TransformTimeline` \| `undefined`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`getTransformTimeline`](../interfaces/IFeature.md#gettransformtimeline)
+
+***
+
 ### is3d()
 
 > **is3d**(): `boolean`
@@ -643,7 +725,7 @@ Feature 的显示名称（业务自定义）。
 
 ### morphSwitchHandle()
 
-> **morphSwitchHandle**(`mode`): `void`
+> **morphSwitchHandle**(`_mode`): `void`
 
 场景模式切换时的默认处理。
 
@@ -651,7 +733,7 @@ Feature 的显示名称（业务自定义）。
 
 #### Parameters
 
-##### mode
+##### \_mode
 
 `SceneMode`
 
@@ -667,15 +749,15 @@ Feature 的显示名称（业务自定义）。
 
 ### preUpdate()
 
-> **preUpdate**(`entity`, `time`): `void`
+> **preUpdate**(`_entity`, `_time`): `void`
 
 #### Parameters
 
-##### entity
+##### \_entity
 
 `any`
 
-##### time
+##### \_time
 
 `JulianDate`
 
@@ -760,54 +842,6 @@ undefined 配置项
 
 ***
 
-### setFocusTarget()
-
-> **setFocusTarget**(`options?`): `this`
-
-将当前 Feature 设为所属实体的选中聚焦目标。
-
-#### Parameters
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Implementation of
-
-[`IFeature`](../interfaces/IFeature.md).[`setFocusTarget`](../interfaces/IFeature.md#setfocustarget)
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前 Feature 的选中聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Implementation of
-
-[`IFeature`](../interfaces/IFeature.md).[`setFocusVisible`](../interfaces/IFeature.md#setfocusvisible)
-
-***
-
 ### setIncludeInBoundingSphere()
 
 > **setIncludeInBoundingSphere**(`value`): `this`
@@ -831,6 +865,31 @@ undefined 配置项
 #### Implementation of
 
 [`IFeature`](../interfaces/IFeature.md).[`setIncludeInBoundingSphere`](../interfaces/IFeature.md#setincludeinboundingsphere)
+
+***
+
+### setTransformTimeline()
+
+> **setTransformTimeline**(`timeline?`): `this`
+
+设置 Feature 的仿真时间局部变换。
+
+姿态字段使用角度制，与 Transformer.setRotation() 保持一致；
+translation/scale 使用 Cartesian3。传入 undefined 会清除时间轴并恢复用户变换的单位状态。
+
+#### Parameters
+
+##### timeline?
+
+`TransformTimeline`
+
+#### Returns
+
+`this`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`setTransformTimeline`](../interfaces/IFeature.md#settransformtimeline)
 
 ***
 
@@ -871,6 +930,29 @@ undefined 配置项
 #### Implementation of
 
 [`IFeature`](../interfaces/IFeature.md).[`updateByInteraction`](../interfaces/IFeature.md#updatebyinteraction)
+
+***
+
+### updateTransformAtTime()
+
+> **updateTransformAtTime**(`time`): `void`
+
+在指定仿真时刻解析并应用 Feature 的局部变换时间轴。
+Entity.update() 会在每个 Feature 的渲染更新前调用此方法。
+
+#### Parameters
+
+##### time
+
+`JulianDate`
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+[`IFeature`](../interfaces/IFeature.md).[`updateTransformAtTime`](../interfaces/IFeature.md#updatetransformattime)
 
 ## Events
 

@@ -18,11 +18,10 @@ import * as Daisy from "daisy-space-sdk"
 
 const engine = await Daisy.Engine.create("daisyContainer")
 
+// 默认：构造时自动挂载内置 daisy 固定地面站模型
 const site = new Daisy.PW.GroundStation({
     name: "Beijing-DSN",
     position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 80),
-    stationModel: false,          // 不挂载 3D 天线模型
-    point: false,
     text: {
         text: "Beijing-DSN",
         font: "13px sans-serif",
@@ -31,19 +30,38 @@ const site = new Daisy.PW.GroundStation({
     },
 })
 site.bindEngine(engine)
+
+// 关闭内置模型：仅保留点位/文本
+const bareSite = new Daisy.PW.GroundStation({
+    name: "Beijing-DSN-Bare",
+    position: Daisy.Cartesian3.fromDegrees(116.4, 39.9, 80),
+    useBuiltinModel: false,
+    point: false,
+    text: {
+        text: "Beijing-DSN",
+        font: "13px sans-serif",
+        offsetPx: new Daisy.Cartesian2(0, -26),
+        showBackground: true,
+    },
+})
+// 等价写法：stationModel: false 或 model: false
+bareSite.bindEngine(engine)
 ```
 
-GroundStation mounts the `dsn34` antenna model by default. Use `stationModel` to select a preset station type or provide a custom model configuration.
+GroundStation mounts the `daisy` fixed-ground-station model by default (`models/daisy-fixed-ground-station.glb`). Use `stationModel` to select a preset station type or provide a custom model configuration. You can also disable the model with `useBuiltinModel: false` / `model: false`. See [Built-in Model Library](/en/guide/model-library).
 
 ## Station Types (stationModel)
 
 | Value | Description |
 |------|------|
-| `"dsn34"` | DSN 34 m antenna (default) |
-| `"dsn70"` | Large DSN 70 m antenna |
-| `"radome"` | Radome |
+| `"daisy"` | Built-in fixed ground station (default) |
+| `"dsn34"` | DSN 34 m antenna preset (currently mapped to builtin `fixedGroundStation`) |
+| `"dsn70"` | DSN 70 m large-antenna preset |
+| `"radome"` | Radome preset |
 | `false` | Do not mount a model; display only the point |
 | `ModelOptions` | Custom model (url / minimumPixelSize / maximumScale) |
+
+The shared toggle `useBuiltinModel` also applies here (default `true`): set it to `false` to skip automatic builtin mounting.
 
 ## Control Antenna Orientation
 
@@ -63,6 +81,8 @@ Use `antenna` to configure custom rotation-node names, rotation axes, and angle 
 ```typescript
 const site = new Daisy.PW.GroundStation({
     name: "Custom-Antenna",
+    useBuiltinModel: true,          // 默认开启；false 时不挂载内置模型
+    stationModel: "dsn70",          // 也可换成 "daisy" / "dsn34" / "radome"
     antenna: {
         azimuthNode: "azimuth",
         elevationNode: "elevation",
@@ -153,8 +173,9 @@ const passSlots = transits.map(t => ({ start: t.start, end: t.end }))
 |------|------|:---:|------|
 | `name` | `string` | — | Site name |
 | `position` | `Cartesian3` | `ZERO` | ECEF coordinates |
-| `stationModel` | `"dsn34"` \| `"dsn70"` \| `"radome"` \| `ModelOptions` \| `false` | `"dsn34"` | Antenna model configuration |
+| `stationModel` | `"daisy"` \| `"dsn34"` \| `"dsn70"` \| `"radome"` \| `ModelOptions` \| `false` | `"daisy"` | Antenna model configuration |
 | `model` | `ModelOptions` \| `false` | — | Overrides stationModel; false prevents mounting a model |
+| `useBuiltinModel` | `boolean` | `true` | Whether to enable the builtin model; `false` skips automatic mounting |
 | `antenna` | `GroundStationAntennaPointingOptions` | — | Antenna-node control configuration |
 | `text` | `TextOptions` \| `false` | — | Text |
 | `point` | `PointComOptions` \| `false` | — | Point marker |

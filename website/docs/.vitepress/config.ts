@@ -134,8 +134,12 @@ export default defineConfig({
       alias: { "@": fileURLToPath(new URL("../", import.meta.url)) },
     },
     server: sitePort || playgroundProxyEnabled ? {
-      ...(sitePort ? { host: "127.0.0.1", port: sitePort, strictPort: true } : {}),
-      ...(playgroundProxyEnabled ? { proxy: {
+      ...(sitePort ? { host: "127.0.0.1", port: sitePort, strictPort: true } : {
+        // No env port: let Vite pick a free port instead of colliding on 5173.
+        host: "127.0.0.1",
+        strictPort: false,
+      }),
+      ...(playgroundProxyEnabled && playgroundPort ? { proxy: {
         "/playground": {
           target: `http://127.0.0.1:${playgroundPort}`,
           changeOrigin: true,

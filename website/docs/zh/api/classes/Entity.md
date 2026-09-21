@@ -808,18 +808,6 @@ entity.addFeature(feature);
 
 ***
 
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `void`
-
-清除当前聚焦目标，但保留辅助 Feature 以便下次选中时复用。
-
-#### Returns
-
-`void`
-
-***
-
 ### computeModelMatrix()
 
 > **computeModelMatrix**(`state`): `Matrix4`
@@ -1210,6 +1198,16 @@ box.onClick(() => console.log("bound box clicked"));
 #### Returns
 
 `JulianDate`[]
+
+***
+
+### getTransformTimeline()
+
+> **getTransformTimeline**(): `TransformTimeline` \| `undefined`
+
+#### Returns
+
+`TransformTimeline` \| `undefined`
 
 ***
 
@@ -1631,56 +1629,6 @@ entity.setBoundBoxDebugVisible(true);
 
 ***
 
-### setFocusTarget()
-
-> **setFocusTarget**(`target?`, `options?`): [`BoundBoxFeature`](BoundBoxFeature.md)
-
-设置当前实体或实体下某个 Feature 的选中聚焦目标。
-
-聚焦盒只绘制透明盒面和四角短线，不参与实体包围球聚合。
-
-#### Parameters
-
-##### target?
-
-`EntityFocusTarget` = `...`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-[`BoundBoxFeature`](BoundBoxFeature.md)
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `target?`, `options?`): [`BoundBoxFeature`](BoundBoxFeature.md) \| `undefined`
-
-设置或隐藏当前实体/目标的聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### target?
-
-`EntityFocusTarget` = `...`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-[`BoundBoxFeature`](BoundBoxFeature.md) \| `undefined`
-
-***
-
 ### setParent()
 
 > **setParent**(`parent?`): `this`
@@ -1756,6 +1704,24 @@ entity.setPath({
 
 ***
 
+### setTransformTimeline()
+
+> **setTransformTimeline**(`timeline?`): `this`
+
+设置或清除实体自身的仿真时间局部变换。
+
+#### Parameters
+
+##### timeline?
+
+`TransformTimeline`
+
+#### Returns
+
+`this`
+
+***
+
 ### supportsInertialSample()
 
 > **supportsInertialSample**(): `boolean`
@@ -1787,6 +1753,24 @@ boolean
 #### Returns
 
 `Matrix4` \| `undefined`
+
+***
+
+### updateTransformAtTime()
+
+> **updateTransformAtTime**(`time`): `void`
+
+在 Entity 计算模型矩阵前解析实体自身的局部变换时间轴。
+
+#### Parameters
+
+##### time
+
+`JulianDate`
+
+#### Returns
+
+`void`
 
 ## Events
 

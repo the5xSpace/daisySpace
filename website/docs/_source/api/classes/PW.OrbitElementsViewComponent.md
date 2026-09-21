@@ -190,22 +190,6 @@ PhysicalWorld 组件基类。
 
 ## Methods
 
-### clearFocusTarget()
-
-> **clearFocusTarget**(): `this`
-
-清除当前物理组件的选中聚焦盒。
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`BaseComponent`](PW.BaseComponent.md).[`clearFocusTarget`](PW.BaseComponent.md#clearfocustarget)
-
-***
-
 ### destroy()
 
 > **destroy**(): `void`
@@ -219,6 +203,16 @@ PhysicalWorld 组件基类。
 #### Overrides
 
 [`BaseComponent`](PW.BaseComponent.md).[`destroy`](PW.BaseComponent.md#destroy)
+
+***
+
+### getDiagnostic()
+
+> **getDiagnostic**(): [`OrbitElementsViewDiagnostic`](../types/PW.OrbitElementsViewDiagnostic.md)
+
+#### Returns
+
+[`OrbitElementsViewDiagnostic`](../types/PW.OrbitElementsViewDiagnostic.md)
 
 ***
 
@@ -253,6 +247,16 @@ PhysicalWorld 组件基类。
 
 ***
 
+### getLatestElements()
+
+> **getLatestElements**(): [`NearEarthOrbiterOsculatingElements`](../types/PW.NearEarthOrbiterOsculatingElements.md) \| `undefined`
+
+#### Returns
+
+[`NearEarthOrbiterOsculatingElements`](../types/PW.NearEarthOrbiterOsculatingElements.md) \| `undefined`
+
+***
+
 ### getOptimalViewDistanceMeters()
 
 > **getOptimalViewDistanceMeters**(): `number` \| `undefined`
@@ -263,6 +267,19 @@ PhysicalWorld 组件基类。
 #### Returns
 
 `number` \| `undefined`
+
+***
+
+### getOptions()
+
+> **getOptions**(): [`OrbitElementsViewComponentOptions`](../types/PW.OrbitElementsViewComponentOptions.md)
+
+Return the normalized public option names used by the semantic contract.
+Legacy aliases are accepted by the constructor but are not emitted here.
+
+#### Returns
+
+[`OrbitElementsViewComponentOptions`](../types/PW.OrbitElementsViewComponentOptions.md)
 
 ***
 
@@ -311,54 +328,6 @@ PhysicalWorld 组件基类。
 #### Inherited from
 
 [`BaseComponent`](PW.BaseComponent.md).[`resetTemporalState`](PW.BaseComponent.md#resettemporalstate)
-
-***
-
-### setFocusTarget()
-
-> **setFocusTarget**(`options?`): `this`
-
-显示当前物理组件的选中聚焦盒。
-
-#### Parameters
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`BaseComponent`](PW.BaseComponent.md).[`setFocusTarget`](PW.BaseComponent.md#setfocustarget)
-
-***
-
-### setFocusVisible()
-
-> **setFocusVisible**(`visible`, `options?`): `this`
-
-显示或隐藏当前物理组件的选中聚焦盒。
-
-#### Parameters
-
-##### visible
-
-`boolean`
-
-##### options?
-
-`EntityFocusOptions` = `{}`
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`BaseComponent`](PW.BaseComponent.md).[`setFocusVisible`](PW.BaseComponent.md#setfocusvisible)
 
 ***
 
