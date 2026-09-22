@@ -7,7 +7,7 @@ import fs from "node:fs";
 
 const playgroundRoot = fileURLToPath(new URL(".", import.meta.url));
 const workspaceRoot = fileURLToPath(new URL("../", import.meta.url));
-const adjacentSdkRoot = path.resolve(playgroundRoot, "../../DaisySim");
+const adjacentSdkRoot = path.resolve(playgroundRoot, "../../daisySpaceSdk");
 const installedSdkRoot = path.resolve(playgroundRoot, "node_modules/daisy-space-sdk");
 const configuredSdkRoot = process.env.DAISY_SDK_ROOT
   ? path.resolve(process.env.DAISY_SDK_ROOT)

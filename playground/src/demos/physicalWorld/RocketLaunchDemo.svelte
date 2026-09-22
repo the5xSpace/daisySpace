@@ -85,6 +85,7 @@ function ensureMainEngine() {
     mainEngine = existing
     return existing
   }
+  // 粒子比例按内置 daisy-rocket（约 55m 高）粗调；若视觉火焰偏大/偏小，优先改 model*Ratio
   mainEngine = rocketObject.addPropulsion(new Daisy.PW.JetEngine({
     name: "main-engine",
     position: new C3(0, 0, 0),

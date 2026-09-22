@@ -47,8 +47,8 @@ const copy = computed(() => isEnglish.value ? {
     "CZML 协议 - 标准格式一键加载",
   ],
   cta: "开始使用 Daisy Space",
-  ctaDescription: "在 Playground 中即时体验所有核心功能，查看源码并动手修改",
-  playground: "前往 Playground",
+  ctaDescription: "在示例中即时体验所有核心功能，查看源码并动手修改",
+  playground: "前往示例",
 });
 
 const featureData = [
@@ -103,6 +103,7 @@ const features = computed(() => featureData.map((feature) => ({
 })));
 const quickStartHref = computed(() => withBase(copy.value.guideHref));
 const playgroundHref = withBase("/playground/");
+const heroPlaygroundLabel = computed(() => (isEnglish.value ? "Playground" : "示例"));
 </script>
 
 <template>
@@ -118,7 +119,9 @@ const playgroundHref = withBase("/playground/");
           <a
             class="ds-btn-secondary"
             :href="playgroundHref"
-            >Playground →</a
+            target="_blank"
+            rel="noopener noreferrer"
+            >{{ heroPlaygroundLabel }} →</a
           >
         </div>
       </div>
@@ -183,6 +186,8 @@ const playgroundHref = withBase("/playground/");
       <a
         class="ds-btn-primary"
         :href="playgroundHref"
+        target="_blank"
+        rel="noopener noreferrer"
         >{{ copy.playground }} →</a
       >
     </section>

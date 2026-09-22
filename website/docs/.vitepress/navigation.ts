@@ -144,7 +144,8 @@ export function createThemeConfig(
   const pricingReady = available(locale, "/pricing/", englishFiles);
   return {
     englishGuideReady: !en || guideReady,
-    i18nRouting: false,
+    // Keep language switcher on the current page path instead of locale home.
+    i18nRouting: true,
     siteTitle: "Daisy Space",
     logo: "/logo/64x64@2x.png",
     logoLink: en ? "/en/" : "/",
@@ -152,11 +153,7 @@ export function createThemeConfig(
       { text: en ? "Home" : "首页", link: en ? "/en/" : "/" },
       ...(guideReady ? [{ text: en ? "Guide" : "指南", link: guide, activeMatch: `^${guide}` }] : []),
       ...(apiReady ? [{ text: "API", link: api, activeMatch: `^${api}` }] : []),
-      { text: "Playground", link: "/playground/", target: "_blank" },
-      {
-        text: en ? "Releases" : "版本更新记录",
-        link: "https://github.com/the5xSpace/daisySpace/releases",
-      },
+      { text: en ? "Playground" : "示例", link: "/playground/", target: "_blank", rel: "noopener noreferrer" },
       ...(pricingReady ? [{ text: en ? "Pricing" : "定价", link: route(locale, "/pricing/") }] : []),
       { text: "GitHub", link: "https://github.com/the5xSpace/daisySpace" },
     ],

@@ -95,7 +95,8 @@ for (var i = 0; i < models.length; i++) {
         url: cfg.url,
         scale: cfg.scale,
         minimumPixelSize: cfg.minPx,
-        maximumScale: cfg.minPx * 40,
+        // 内置模型已是 1:1 米制，maximumScale 仅作远距放大保护
+        maximumScale: cfg.kind === "fixedGroundStation" ? 1800 : 800,
         distanceDisplayCondition: ddc,
         silhouetteSize: 2,
         silhouetteColor: cfg.silhouette,
@@ -134,122 +135,134 @@ function applyMainCameraView() {
 // ── 节点机械旋转动画（按内置 controlNodes） ──
 var nodeAnimations = [];
 
-function pickNodeByPatterns(nodeNames, patterns) {
-    for (var i = 0; i < patterns.length; i++) {
-        for (var j = 0; j < nodeNames.length; j++) {
-            if (patterns[i].test(nodeNames[j])) return nodeNames[j];
-        }
-    }
-    return nodeNames.length > 0 ? nodeNames[0] : undefined;
-}
-
-function pickNodesByPattern(nodeNames, pattern) {
+function pickExactNodes(loadedNames, wantedNames) {
+    var loaded = {};
+    for (var i = 0; i < loadedNames.length; i++) loaded[loadedNames[i]] = true;
     var out = [];
-    for (var i = 0; i < nodeNames.length; i++) {
-        if (pattern.test(nodeNames[i])) out.push(nodeNames[i]);
+    for (var j = 0; j < wantedNames.length; j++) {
+        if (loaded[wantedNames[j]]) out.push(wantedNames[j]);
     }
     return out;
 }
 
-function logUsefulNodes(modelName, nodeNames, pickedNodes) {
-    __log(modelName + " useful nodes: " + (pickedNodes.length > 0 ? pickedNodes.join(", ") : "(none)"));
-    __log("  all nodes: " + nodeNames.join(", "));
+function logUsefulNodes(modelIndex, nodeNames, pickedNodes) {
+    __log(models[modelIndex].name + " useful nodes: " + (pickedNodes.length > 0 ? pickedNodes.join(", ") : "(none)"));
+    __log("  catalog controlNodes: " + models[modelIndex].controlNodes.join(", "));
 }
 
 function setupNodeAnimations() {
     nodeAnimations = [];
 
-    // daisy-satellite: 太阳翼肩部摆动 + 载荷雷达跟踪
+    // daisy-satellite: 仅用目录 controlNodes，不再回退到任意节点
     var s0Nodes = featureList[0].getNodeNames();
-    var solarNodes = pickNodesByPattern(s0Nodes, /solar_array_.*_shoulder/i);
-    if (solarNodes.length === 0) solarNodes = pickNodesByPattern(s0Nodes, /solar_array/i);
-    if (solarNodes.length === 0) solarNodes = s0Nodes.slice(0, Math.min(2, s0Nodes.length));
-    logUsefulNodes(models[0].name, s0Nodes, solarNodes);
+    var solarNodes = pickExactNodes(s0Nodes, [
+        "solar_array_left_shoulder",
+        "solar_array_right_shoulder",
+    ]);
+    logUsefulNodes(0, s0Nodes, solarNodes);
     for (var j = 0; j < solarNodes.length; j++) {
         nodeAnimations.push({
             feature: featureList[0],
             node: solarNodes[j],
             mode: "panel-swing",
             axis: "y",
-            speed: 36 + j * 8,
+            speed: 24 + j * 6,
             phase: j * Math.PI,
+            amplitudeDeg: 28,
         });
     }
-    var radarAz = pickNodeByPatterns(s0Nodes, [/^radar_azimuth$/i, /radar_azimuth/i]);
+    var radarAz = pickExactNodes(s0Nodes, ["radar_azimuth"])[0];
+    var radarEl = pickExactNodes(s0Nodes, ["radar_elevation"])[0];
     if (radarAz) {
-        nodeAnimations.push({ feature: featureList[0], node: radarAz, mode: "spin-axis", axis: "z", speed: 18 });
+        // SDK 约定：方位轴通常为模型局部 Y
+        nodeAnimations.push({
+            feature: featureList[0],
+            node: radarAz,
+            mode: "axis-scan",
+            axis: "y",
+            speed: 18,
+        });
+    }
+    if (radarEl) {
+        nodeAnimations.push({
+            feature: featureList[0],
+            node: radarEl,
+            mode: "axis-scan",
+            axis: "x",
+            speed: 0.55,
+            minDeg: -8,
+            maxDeg: 20,
+        });
     }
 
-    // daisy-fixed-ground-station: 天线方位/俯仰扫描
+    // daisy-fixed-ground-station: azimuth(Y) / elevation(X)，与 PW.GroundStation 默认一致
     var s1Nodes = featureList[1].getNodeNames();
-    var antennaAz = pickNodeByPatterns(s1Nodes, [/^azimuth$/i, /azimuth/i]);
-    var antennaEl = pickNodeByPatterns(s1Nodes, [/^elevation$/i, /elevation/i]);
-    logUsefulNodes(models[1].name, s1Nodes, [antennaAz, antennaEl].filter(Boolean));
+    var antennaNodes = pickExactNodes(s1Nodes, ["azimuth", "elevation"]);
+    logUsefulNodes(1, s1Nodes, antennaNodes);
+    var antennaAz = pickExactNodes(s1Nodes, ["azimuth"])[0];
+    var antennaEl = pickExactNodes(s1Nodes, ["elevation"])[0];
     if (antennaAz) {
         nodeAnimations.push({
             feature: featureList[1],
             node: antennaAz,
-            mode: "radar-track",
-            yawSpeed: 28,
-            pitchMin: 0,
-            pitchMax: 0,
-            pitchSpeed: 0.65,
-            forcePitch: false,
+            mode: "axis-scan",
+            axis: "y",
+            speed: 28,
         });
     }
     if (antennaEl) {
         nodeAnimations.push({
             feature: featureList[1],
             node: antennaEl,
-            mode: "radar-pitch",
-            pitchMin: -10,
-            pitchMax: 22,
-            pitchSpeed: 0.65,
+            mode: "axis-scan",
             axis: "x",
+            speed: 0.65,
+            minDeg: -10,
+            maxDeg: 22,
         });
     }
 
-    // daisy-rocket: 芯级/助推器轻微旋转，展示可动部件
+    // daisy-rocket: 展示整流罩开合，而非无意义自转
     var s2Nodes = featureList[2].getNodeNames();
-    var rocketTargets = pickNodesByPattern(s2Nodes, /booster_/i);
-    if (rocketTargets.length === 0) rocketTargets = pickNodesByPattern(s2Nodes, /core_stage/i);
-    if (rocketTargets.length === 0) rocketTargets = s2Nodes.slice(0, Math.min(2, s2Nodes.length));
-    logUsefulNodes(models[2].name, s2Nodes, rocketTargets);
-    for (var ri = 0; ri < rocketTargets.length; ri++) {
+    var fairingNodes = pickExactNodes(s2Nodes, ["fairing_left", "fairing_right"]);
+    logUsefulNodes(2, s2Nodes, fairingNodes);
+    for (var ri = 0; ri < fairingNodes.length; ri++) {
         nodeAnimations.push({
             feature: featureList[2],
-            node: rocketTargets[ri],
-            mode: "spin-axis",
-            axis: "y",
-            speed: 6 + ri * 1.2,
+            node: fairingNodes[ri],
+            mode: "panel-swing",
+            axis: "z",
+            speed: 12,
+            phase: ri * Math.PI,
+            amplitudeDeg: 35,
         });
     }
 
-    // daisy-aircraft: 副翼/方向舵摆动
+    // daisy-aircraft: 副翼/升降舵/方向舵小幅摆动
     var s3Nodes = featureList[3].getNodeNames();
-    var surfaceTargets = pickNodesByPattern(s3Nodes, /aileron_|elevator_|rudder/i);
-    if (surfaceTargets.length === 0) surfaceTargets = s3Nodes.slice(0, Math.min(3, s3Nodes.length));
-    logUsefulNodes(models[3].name, s3Nodes, surfaceTargets);
+    var surfaceTargets = pickExactNodes(s3Nodes, [
+        "aileron_left", "aileron_right",
+        "elevator_left", "elevator_right",
+        "rudder",
+    ]);
+    logUsefulNodes(3, s3Nodes, surfaceTargets);
     for (var si = 0; si < surfaceTargets.length; si++) {
         var name = surfaceTargets[si] || "";
         nodeAnimations.push({
             feature: featureList[3],
             node: surfaceTargets[si],
             mode: "panel-swing",
-            axis: /rudder/i.test(name) ? "z" : "x",
-            speed: 40 + si * 10,
-            phase: si * 0.8,
+            axis: /rudder/i.test(name) ? "y" : "x",
+            speed: 30 + si * 6,
+            phase: si * 0.7,
+            amplitudeDeg: /rudder/i.test(name) ? 18 : 22,
         });
     }
 
     __log("节点动画: " + nodeAnimations.length + " 个旋转目标");
     for (var k = 0; k < nodeAnimations.length; k++) {
         var a = nodeAnimations[k];
-        if (a.mode === "radar-track" || a.mode === "radar-pitch") {
-            __log("  " + models[featureList.indexOf(a.feature)].name + " / " + a.node + " -> antenna scan");
-        } else {
-            __log("  " + models[featureList.indexOf(a.feature)].name + " / " + a.node + " -> rotate " + a.axis + " @ " + a.speed + " deg/s");
-        }
+        __log("  " + models[featureList.indexOf(a.feature)].name + " / " + a.node + " -> " + a.mode + " " + (a.axis || "") + (a.amplitudeDeg ? " ±" + a.amplitudeDeg + "°" : "") + (a.speed ? " @ " + a.speed : ""));
     }
 }
 
@@ -263,49 +276,45 @@ var demoExplosionOptions = {
 };
 var startMs = performance.now();
 
+function axisFromName(axis) {
+    return axis === "x" ? Daisy.Cartesian3.UNIT_X
+        : axis === "y" ? Daisy.Cartesian3.UNIT_Y
+        : Daisy.Cartesian3.UNIT_Z;
+}
+
 function updateAnimations() {
     var t = (performance.now() - startMs) / 1000;
 
     if (!rotating) return;
     for (var i = 0; i < nodeAnimations.length; i++) {
         var anim = nodeAnimations[i];
-        if (anim.mode === "radar-track") {
-            var yawDeg = t * anim.yawSpeed;
-            var pitchMid = (anim.pitchMin + anim.pitchMax) / 2;
-            var pitchAmp = (anim.pitchMax - anim.pitchMin) / 2;
-            var pitchDeg = pitchMid + Math.sin(t * anim.pitchSpeed * Math.PI * 2) * pitchAmp;
-            anim.feature.transformNode(anim.node).setRotationHprDeg(yawDeg, pitchDeg, 0);
-            continue;
-        }
+        if (!anim.node) continue;
 
-        if (anim.mode === "radar-pitch") {
-            var mid = (anim.pitchMin + anim.pitchMax) / 2;
-            var amp = (anim.pitchMax - anim.pitchMin) / 2;
-            var pDeg = mid + Math.sin(t * anim.pitchSpeed * Math.PI * 2) * amp;
-            var pAxis = anim.axis === "x" ? Daisy.Cartesian3.UNIT_X : Daisy.Cartesian3.UNIT_Y;
-            anim.feature.transformNode(anim.node).setRotationAxisAngleDeg(pAxis, pDeg);
+        if (anim.mode === "axis-scan") {
+            var deg;
+            if (anim.minDeg !== undefined && anim.maxDeg !== undefined) {
+                var mid = (anim.minDeg + anim.maxDeg) / 2;
+                var amp = (anim.maxDeg - anim.minDeg) / 2;
+                deg = mid + Math.sin(t * anim.speed * Math.PI * 2) * amp;
+            } else {
+                deg = t * anim.speed;
+            }
+            anim.feature.transformNode(anim.node)
+                .setRotationAxisAngleDeg(axisFromName(anim.axis || "y"), deg);
             continue;
         }
 
         if (anim.mode === "panel-swing") {
-            var swingDeg = Math.sin(t * 1.2 + (anim.phase || 0)) * 120;
-            var swingAxis = anim.axis === "x" ? Daisy.Cartesian3.UNIT_X
-                : anim.axis === "y" ? Daisy.Cartesian3.UNIT_Y
-                : Daisy.Cartesian3.UNIT_Z;
-            anim.feature.transformNode(anim.node).setRotationAxisAngleDeg(swingAxis, swingDeg);
+            var ampDeg = anim.amplitudeDeg || 24;
+            var swingDeg = Math.sin(t * 1.2 + (anim.phase || 0)) * ampDeg;
+            anim.feature.transformNode(anim.node)
+                .setRotationAxisAngleDeg(axisFromName(anim.axis || "y"), swingDeg);
             continue;
         }
 
-        var angle = t * anim.speed;
-        var axis = anim.axis === "x" ? Daisy.Cartesian3.UNIT_X
-                 : anim.axis === "y" ? Daisy.Cartesian3.UNIT_Y
-                 : Daisy.Cartesian3.UNIT_Z;
-        if (anim.mode === "spin-model-heading") {
-            anim.feature.transformer.setRotation({ heading: angle, pitch: 0, roll: 0 });
-            continue;
-        }
-        if (anim.node) {
-            anim.feature.transformNode(anim.node).setRotationAxisAngleDeg(axis, angle);
+        if (anim.mode === "spin-axis") {
+            anim.feature.transformNode(anim.node)
+                .setRotationAxisAngleDeg(axisFromName(anim.axis || "z"), t * anim.speed);
         }
     }
 }
@@ -321,20 +330,15 @@ for (var li = 0; li < featureList.length; li++) {
         featureList[idx].onload(function () {
             var nodeNames = featureList[idx].getNodeNames();
             var anims = featureList[idx].getAnimationInfos();
-            __log(models[idx].name + ": " + nodeNames.length + " nodes, " + anims.length + " animations (glTF)");
-            __log("  nodes: " + nodeNames.join(", "));
-            __log("  builtin animation: " + models[idx].animation);
+            var catalog = models[idx];
+            __log(catalog.name + ": " + nodeNames.length + " nodes, " + anims.length + " animations (glTF)");
+            __log("  catalog animation: " + catalog.animation);
+            __log("  catalog controlNodes: " + catalog.controlNodes.join(", "));
+            __log("  loaded nodes: " + nodeNames.join(", "));
 
-            // 播放内置目录动画（如 solar_array_fold / antenna_scan）
-            var target = models[idx].animation;
-            var matched = anims.filter(function (a) { return a.name === target; });
-            if (matched.length > 0) {
-                featureList[idx].playAnimation({
-                    name: target,
-                    loop: Daisy.ModelAnimationLoop.REPEAT,
-                    multiplier: 1.0,
-                });
-            }
+            // 本示例以节点 transform 为主，避免与手动节点动画互相覆盖。
+            // 需要播放内置动画时，可参考：
+            // featureList[idx].playAnimation({ name: catalog.animation, loop: Daisy.ModelAnimationLoop.REPEAT });
 
             loadCount++;
             if (loadCount === models.length) {

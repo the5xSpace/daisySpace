@@ -149,6 +149,25 @@ export default defineConfig({
     } : undefined,
   },
   markdown: {
-    config: (md) => md.use(autoApiLink),
+    config: (md) => {
+      md.use(autoApiLink);
+      // All Playground / 示例 links open in a new tab.
+      const defaultLinkOpen =
+        md.renderer.rules.link_open ||
+        ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options));
+      md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
+        const token = tokens[idx];
+        const href = token.attrGet("href") || "";
+        if (
+          href === "/playground" ||
+          href.startsWith("/playground/") ||
+          href.startsWith("/en/playground")
+        ) {
+          token.attrSet("target", "_blank");
+          token.attrSet("rel", "noopener noreferrer");
+        }
+        return defaultLinkOpen(tokens, idx, options, env, self);
+      };
+    },
   },
 });
