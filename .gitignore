@@ -6,6 +6,9 @@ playground/dist/
 website/docs/.vitepress/cache/
 website/docs/.vitepress/.temp/
 website/docs/.vitepress/dist/
+website/docs/.vitepress/config.ts.timestamp-*
+website/vitepress/
+website/.vitepress/
 website/docs/public/playground/
 website/i18n/*.tmp-*
 *.tsbuildinfo
